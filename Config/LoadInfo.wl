@@ -18,12 +18,11 @@
 				"FrontEnd/Palettes"
 			}
 		},
-		{
-			"InterfaceObjects`"
-		}
+		{"InterfaceObjects`"}
 	},
 	"DependencyContexts" -> {
 		"BTools`Paclets`",
+		"BTools`Developer`",
 		"BTools`External`",
 		"InterfaceObjects`"
 	},

@@ -1,0 +1,21 @@
+DynamicBox @ ToBoxes[
+	Pane[
+		Row @ Map[
+			EasyIDE`Notebooks`Private`createTabObject,
+			Keys @ CurrentValue[
+				FrontEnd`EvaluationNotebook[],
+				{
+					TaggingRules,
+					"EasyIDE",
+					"Tabs"
+				},
+				{}
+			]
+		],
+		{
+			Automatic,
+			35
+		}
+	],
+	StandardForm
+]

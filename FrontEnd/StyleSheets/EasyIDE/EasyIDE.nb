@@ -1,0 +1,527 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20856,        519]
+NotebookOptionsPosition[     16358,        454]
+NotebookOutlinePosition[     16921,        477]
+CellTagsIndexPosition[     16878,        474]
+MenuPosition->0
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{"EasyIDE"}, 
+  "Customizations.nb"]],ExpressionUUID->"3da2fef3-403e-48ff-9c78-\
+b4cde8e99ccf"],
+
+Cell[BoxData[
+ RowBox[{"<<", "BTools`FrontEnd`"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Notebook\>\"", "]"}]], "Input",ExpressionU\
+UID->"144f951c-5dfa-4297-9405-d2adedf9ac06"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Notebook"],
+ NotebookEventActions->{{"MenuCommand", "Save"} :> EasyIDE`Notebooks`IDESave[
+     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
+ 
+ TaggingRules->{
+  "IndentCharacter" -> 
+   "  "},ExpressionUUID->"eca302fe-1369-412d-b2f7-1ebc34585802"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Notebook\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"TaggingRules", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IndentCharacter\>\"", "\[Rule]", "\"\<  \>\""}], "}"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"NotebookEventActions", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Save\>\""}], "}"}], 
+         "\[RuleDelayed]", "\[IndentingNewLine]", 
+         RowBox[{"EasyIDE`Notebooks`IDESave", "[", 
+          RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"PassEventsDown", "\[Rule]", "True"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"EvaluationOrder", "\[Rule]", "After"}]}], 
+       "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"TabSpacings", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->
+  "In[418]:=",ExpressionUUID->"b4f58d90-a41d-426e-b0c8-118eea8732c6"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<IDENotebookDockedCell\>\"", 
+  "]"}]], "Input",
+ CellLabel->
+  "In[388]:=",ExpressionUUID->"d39322ff-eb2e-4002-bd88-04f80822905e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["IDENotebookDockedCell"],
+ CellFrame->{{0, 0}, {1, 0}},
+ CellMargins->{{0, 0}, {0, 0}},
+ CellFrameMargins->{{8, 0}, {-1, 15}},
+ CellFrameStyle->GrayLevel[0.8],
+ Background->GrayLevel[
+  0.98],ExpressionUUID->"18cbd97f-7b88-4567-a45a-576fbf9609ab"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<IDENotebookDockedCell\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Background", "\[Rule]", 
+      RowBox[{"GrayLevel", "[", ".98", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellFrameMargins", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"8", ",", " ", "0"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1"}], ",", " ", "15"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellFrame", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "0"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System`CellFrameStyle", "\[Rule]", 
+      RowBox[{"GrayLevel", "[", ".8", "]"}]}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", 
+  RowBox[{"\"\<DockedCell\>\"", "\[Rule]", "\"\<IDENotebookDockedCell\>\""}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[389]:=",ExpressionUUID->"b912e528-f6fe-4790-aa3c-d645daf286fe"]
+}, Open  ]],
+
+Cell[StyleData["DockedCell", StyleDefinitions -> StyleData[
+ "IDENotebookDockedCell"]],ExpressionUUID->"0dbabda3-e6c6-4fe8-9c0a-\
+e7e42a9b8f12"],
+
+Cell[CellGroupData[{
+
+Cell["CellMargin adjustments", "Subsection",ExpressionUUID->"6d2f2c04-95cc-4f65-8529-955de0aee1e9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allCellStyles", "=", "\[IndentingNewLine]", 
+   RowBox[{"Join", "[", "\[IndentingNewLine]", 
+    RowBox[{
+    "$StyleSheetTitleCellStyles", ",", "\[IndentingNewLine]", 
+     "$StyleSheetSectionCellStyles", ",", "\[IndentingNewLine]", 
+     "$StyleSheetIOCellStyles", ",", "\[IndentingNewLine]", 
+     "$StyleSheetTextCellStyles"}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellLabel->"In[61]:=",ExpressionUUID->"30ff5674-34b6-42ad-964a-666626cf5381"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "allCellStyles", "]"}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"01bf948e-9335-48d7-a054-ce84d3e39785"],
+
+Cell[StyleData["Title"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 227, 27], 
+    Inherited}, {10, 
+   30}},ExpressionUUID->"4f22e2da-9fdc-4207-b774-870c4229f73f"],
+
+Cell[StyleData["Chapter"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 227, 27], 
+    Inherited}, {10, 
+   15}},ExpressionUUID->"029afafd-21e4-49bc-8398-fc14c00a555d"],
+
+Cell[StyleData["Subchapter"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 263, 63], 
+    Inherited}, {8, 
+   20}},ExpressionUUID->"73234bcd-6c7f-43ae-aaa3-2e69d9d5c4a0"],
+
+Cell[StyleData["Section"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 227, 27], 
+    Inherited}, {8, 
+   18}},ExpressionUUID->"1247c901-0591-4367-8c5e-2c0983132d0e"],
+
+Cell[StyleData["Subsection"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 250.34765625, 
+     50.34765625], 3.}, {8., 
+   20.}},ExpressionUUID->"f0973b98-be05-4e37-b74f-d6ad7e175d77"],
+
+Cell[StyleData["Subsubsection"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 
+    Inherited}, {8, 
+   12}},ExpressionUUID->"963aa9c0-51f7-4258-aef9-be58d349da6a"],
+
+Cell[StyleData["Subsubsubsection"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 
+    Inherited}, {2, 
+   10}},ExpressionUUID->"68bb5ea7-f99c-4645-9b4c-3c00b1ba822d"],
+
+Cell[StyleData["Subsubsubsubsection"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 
+    Inherited}, {2, 
+   10}},ExpressionUUID->"2ebf27bd-56b1-4a72-ae51-de4412b2f528"],
+
+Cell[StyleData["Input"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 10}, {
+   5, 8}},ExpressionUUID->"7ead8d51-0c35-4e4e-886c-de50d60b9dc5"],
+
+Cell[StyleData["Code"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 10}, {
+   10, 10}},ExpressionUUID->"0c4af885-d05a-4873-bbcc-22e52a7e58d7"],
+
+Cell[StyleData["Output"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 10}, {
+   12, 5}},ExpressionUUID->"1a953279-7871-48fa-b9f1-678894604f14"],
+
+Cell[StyleData["Text"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 266, 66], 10}, {
+   7, 8}},ExpressionUUID->"700a70d6-cfb8-47a9-a55a-e2f8293f7ae9"],
+
+Cell[StyleData["Item"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 281, 81], 10}, {
+   4, 8}},ExpressionUUID->"96239c3f-bf4b-4c2c-80a5-d870ea4a6980"],
+
+Cell[StyleData["ItemParagraph"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 281, 81], 10}, {
+   4, 1}},ExpressionUUID->"2e02e275-643b-4d48-8b0a-b10e889254e7"],
+
+Cell[StyleData["Subitem"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 305, 105], 
+    12}, {4, 4}},ExpressionUUID->"6331a523-bd04-404d-8d0b-dfe1543c25f4"],
+
+Cell[StyleData["SubitemParagraph"],
+ CellMargins->{{
+    FEPrivate`If[
+     FEPrivate`SameQ[
+      FrontEnd`CurrentValue[
+       FrontEnd`EvaluationNotebook[], {
+       TaggingRules, "EasyIDE", "FileViewerVisible"}], True], 305, 105], 
+    12}, {4, 1}},ExpressionUUID->"876812e3-7013-4284-9e17-01024c2eb4cb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"paddedStyle1", "[", "n_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"FEPrivate`If", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FEPrivate`SameQ", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"FrontEnd`CurrentValue", "[", 
+       RowBox[{
+        RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+         "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+          "\"\<FileViewerVisible\>\""}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", "True"}], "\[IndentingNewLine]", "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"n", "+", "200"}], ",", "\[IndentingNewLine]", "n"}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->"In[64]:=",ExpressionUUID->"9263f21e-ad0d-4588-93da-ccf3c029ca35"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"paddedStyle", "[", "n_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"n", "+", "200", 
+   RowBox[{"(*", 
+    RowBox[{"FEPrivate`If", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"FEPrivate`SameQ", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"FrontEnd`CurrentValue", "[", 
+         RowBox[{
+          RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+           "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+            "\"\<FileViewerVisible\>\""}], "}"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", "True"}], "\[IndentingNewLine]", "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"n", "+", "200"}], ",", "\[IndentingNewLine]", "n"}], 
+     "\[IndentingNewLine]", "]"}], "*)"}]}]}]], "Input",
+ CellLabel->"In[60]:=",ExpressionUUID->"bb1de1cc-25a0-4223-86f8-42bddc29eb34"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"nb", "=", 
+      RowBox[{"CreateDocument", "[", "]"}]}], ",", " ", 
+     RowBox[{"enb", "=", 
+      RowBox[{"EvaluationNotebook", "[", "]"}]}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Internal`WithLocalSettings", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"FrontEndExecute", "@", 
+      RowBox[{"FrontEnd`NotebookSuspendScreenUpdates", "[", "enb", "]"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+        RowBox[{"#", ",", "\[IndentingNewLine]", 
+         RowBox[{"CellMargins", "\[Rule]", "\[IndentingNewLine]", 
+          RowBox[{"(", "\[IndentingNewLine]", 
+           RowBox[{"Replace", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"CurrentValue", "[", 
+              RowBox[{"nb", ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                "StyleDefinitions", ",", " ", "#", ",", " ", "CellMargins"}], 
+                "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"i_", "?", "NumberQ"}], "\[RuleDelayed]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"paddedStyle1", "[", "i", "]"}], ",", " ", "i"}], 
+                   "}"}], ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", " ", "i"}], "}"}]}], "}"}]}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"l_", ",", " ", "r_"}], "}"}], ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"b_", ",", " ", "t_"}], "}"}]}], "}"}], 
+                "\[RuleDelayed]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"paddedStyle1", "[", "l", "]"}], ",", " ", "r"}], 
+                   "}"}], ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"b", ",", " ", "t"}], "}"}]}], "}"}]}]}], 
+              "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], 
+           RowBox[{"(*", "&", "*)"}], "\[IndentingNewLine]", ")"}]}]}], 
+        RowBox[{"(*", 
+         RowBox[{",", "\[IndentingNewLine]", 
+          RowBox[{"\"\<ApplyFunctions\>\"", "\[Rule]", "True"}]}], "*)"}], 
+        "\[IndentingNewLine]", "]"}], "&"}], "/@", "allCellStyles"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"FrontEndExecute", "@", 
+       RowBox[{"FrontEnd`NotebookResumeScreenUpdates", "[", "enb", "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"NotebookClose", "[", "nb", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[65]:=",ExpressionUUID->"fa3a14dd-7a33-4e0a-a735-862ce1efad4e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "Null", ",", "Null", ",", "Null", ",", "Null", ",", "Null", ",", "Null", 
+   ",", "Null", ",", "Null", ",", "Null", ",", "Null", ",", "Null", ",", 
+   "Null", ",", "Null", ",", "Null", ",", "Null", ",", "Null"}], 
+  "}"}]], "Output",
+ CellLabel->"Out[65]=",ExpressionUUID->"89da4298-936c-4aa8-9a0c-736a5e593ce6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "//", "Options"}]], "Input",
+ CellLabel->"In[27]:=",ExpressionUUID->"a8b576ac-e7b9-458d-9eb5-eba77d3e3025"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"MakeCell\"\>", "\[Rule]", "False"}], ",", 
+   RowBox[{"\<\"SelectMode\"\>", "\[Rule]", "StyleData"}], ",", 
+   RowBox[{"\<\"DetectStylesheet\"\>", "\[Rule]", "True"}], ",", 
+   RowBox[{"\<\"ApplyFunctions\"\>", "\[Rule]", "False"}]}], "}"}]], "Output",\
+
+ CellLabel->"Out[27]=",ExpressionUUID->"68f7af2e-3027-4bd7-9bc0-296e2627c58d"]
+}, Open  ]]
+}, Open  ]]
+},
+Editable->True,
+Saveable->True,
+WindowSize->{908, 775},
+WindowMargins->{{Automatic, 40}, {14, Automatic}},
+WindowFrame->"Normal",
+DockedCells->FEPrivate`FrontEndResource[
+ "FEExpressions", "BuiltInStylesheetToolbar"],
+TrackCellChangeTimes->False,
+MenuSortingValue->None,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"StylesheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[574, 21, 148, 2, 36, 91, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"3da2fef3-403e-48ff-9c78-b4cde8e99ccf"],
+Cell[725, 25, 138, 2, 30, "Input",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
+Cell[866, 29, 138, 2, 30, "Input",ExpressionUUID->"144f951c-5dfa-4297-9405-d2adedf9ac06"],
+Cell[CellGroupData[{
+Cell[1029, 35, 292, 6, 36, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"eca302fe-1369-412d-b2f7-1ebc34585802"],
+Cell[1324, 43, 1219, 26, 283, "Input",ExpressionUUID->"b4f58d90-a41d-426e-b0c8-118eea8732c6"],
+Cell[2546, 71, 180, 4, 30, "Input",ExpressionUUID->"d39322ff-eb2e-4002-bd88-04f80822905e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2763, 80, 262, 6, 43, 40, 0, "StyleData", "IDENotebookDockedCell", "All",ExpressionUUID->"18cbd97f-7b88-4567-a45a-576fbf9609ab"],
+Cell[3028, 88, 1373, 35, 199, "Input",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"],
+Cell[4404, 125, 226, 5, 30, "Input",ExpressionUUID->"b912e528-f6fe-4790-aa3c-d645daf286fe"]
+}, Open  ]],
+Cell[4645, 133, 144, 2, 43, 87, 1, "StyleData", "DockedCell", "All",ExpressionUUID->"0dbabda3-e6c6-4fe8-9c0a-e7e42a9b8f12"],
+Cell[CellGroupData[{
+Cell[4814, 139, 99, 0, 45, "Subsection",ExpressionUUID->"6d2f2c04-95cc-4f65-8529-955de0aee1e9"],
+Cell[4916, 141, 497, 10, 157, "Input",ExpressionUUID->"30ff5674-34b6-42ad-964a-666626cf5381"],
+Cell[5416, 153, 157, 2, 30, "Input",ExpressionUUID->"01bf948e-9335-48d7-a054-ce84d3e39785"],
+Cell[5576, 157, 309, 8, 113, 24, 0, "StyleData", "Title", "All",ExpressionUUID->"4f22e2da-9fdc-4207-b774-870c4229f73f"],
+Cell[5888, 167, 311, 8, 84, 26, 0, "StyleData", "Chapter", "All",ExpressionUUID->"029afafd-21e4-49bc-8398-fc14c00a555d"],
+Cell[6202, 177, 313, 8, 63, 29, 0, "StyleData", "Subchapter", "All",ExpressionUUID->"73234bcd-6c7f-43ae-aaa3-2e69d9d5c4a0"],
+Cell[6518, 187, 310, 8, 68, 26, 0, "StyleData", "Section", "All",ExpressionUUID->"1247c901-0591-4367-8c5e-2c0983132d0e"],
+Cell[6831, 197, 327, 8, 53, 29, 0, "StyleData", "Subsection", "All",ExpressionUUID->"f0973b98-be05-4e37-b74f-d6ad7e175d77"],
+Cell[7161, 207, 316, 8, 52, 32, 0, "StyleData", "Subsubsection", "All",ExpressionUUID->"963aa9c0-51f7-4258-aef9-be58d349da6a"],
+Cell[7480, 217, 319, 8, 41, 35, 0, "StyleData", "Subsubsubsection", "All",ExpressionUUID->"68bb5ea7-f99c-4645-9b4c-3c00b1ba822d"],
+Cell[7802, 227, 322, 8, 40, 38, 0, "StyleData", "Subsubsubsubsection", "All",ExpressionUUID->"2ebf27bd-56b1-4a72-ae51-de4412b2f528"],
+Cell[8127, 237, 295, 7, 38, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"7ead8d51-0c35-4e4e-886c-de50d60b9dc5"],
+Cell[8425, 246, 296, 7, 64, 23, 0, "StyleData", "Code", "All",ExpressionUUID->"0c4af885-d05a-4873-bbcc-22e52a7e58d7"],
+Cell[8724, 255, 297, 7, 46, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"1a953279-7871-48fa-b9f1-678894604f14"],
+Cell[9024, 264, 294, 7, 50, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"700a70d6-cfb8-47a9-a55a-e2f8293f7ae9"],
+Cell[9321, 273, 294, 7, 47, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"96239c3f-bf4b-4c2c-80a5-d870ea4a6980"],
+Cell[9618, 282, 303, 7, 40, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"2e02e275-643b-4d48-8b0a-b10e889254e7"],
+Cell[9924, 291, 299, 7, 42, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"6331a523-bd04-404d-8d0b-dfe1543c25f4"],
+Cell[10226, 300, 308, 7, 39, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"876812e3-7013-4284-9e17-01024c2eb4cb"],
+Cell[10537, 309, 831, 18, 220, "Input",ExpressionUUID->"9263f21e-ad0d-4588-93da-ccf3c029ca35"],
+Cell[11371, 329, 916, 20, 220, "Input",ExpressionUUID->"bb1de1cc-25a0-4223-86f8-42bddc29eb34"],
+Cell[CellGroupData[{
+Cell[12312, 353, 3084, 71, 451, "Input",ExpressionUUID->"fa3a14dd-7a33-4e0a-a735-862ce1efad4e"],
+Cell[15399, 426, 354, 7, 34, "Output",ExpressionUUID->"89da4298-936c-4aa8-9a0c-736a5e593ce6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15790, 438, 148, 2, 30, "Input",ExpressionUUID->"a8b576ac-e7b9-458d-9eb5-eba77d3e3025"],
+Cell[15941, 442, 389, 8, 34, "Output",ExpressionUUID->"68f7af2e-3027-4bd7-9bc0-296e2627c58d"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

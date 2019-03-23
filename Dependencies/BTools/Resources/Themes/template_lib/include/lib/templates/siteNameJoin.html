@@ -1,0 +1,20 @@
+<wolfram:expr>
+  With[{
+    f=
+    Replace[#file,
+      Except[_String]:>
+        URLBuild@#file
+      ]
+    },
+    If[
+      URLParse[f,{"Scheme","Domain"}]==={None,None}&&
+        !StringEndsQ[f,".com"|".org"|".edu"|".io"|".eu"|".fr"|".de"],
+      StringTrim@
+        URLBuild@{
+          Replace[#SiteURL, Except[_String]:>""],
+          f
+        },
+      f
+      ]
+    ]
+</wolfram:expr>
