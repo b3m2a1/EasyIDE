@@ -11,6 +11,11 @@ IDEClose::usage="";
 
 
 AttachFileViewer::usage="Creates the IDE notebook AttachedCell";
+
+
+$PluginsPath::usage="The path to look for plugins on";
+
+
 LoadIDEPlugin::usage="";
 CreatePluginMenu::usage="Sets the ContextMenu for the plugins";
 
@@ -43,12 +48,18 @@ Begin["`Private`"];
 
 
 pauseDo[nb_NotebookObject, expr_]:=
-  Internal`WithLocalSettings[
-    FrontEndExecute@
-      FrontEnd`NotebookSuspendScreenUpdates[nb],
-    expr,
-    FrontEndExecute@
-      FrontEnd`NotebookResumeScreenUpdates[nb]
+  Block[{paused = If[TrueQ@paused, True, False]},
+    If[paused,
+      expr,
+      Internal`WithLocalSettings[
+        FrontEndExecute@
+          FrontEnd`NotebookSuspendScreenUpdates[nb];,
+        paused = True;
+        expr,
+        FrontEndExecute@
+          FrontEnd`NotebookResumeScreenUpdates[nb];
+        ]
+      ]
     ];
 pauseDo~SetAttributes~HoldRest
 
@@ -169,11 +180,11 @@ ideAbsPath[nb_NotebookObject, file_]:=
 
 
 ideViewerToggled[nb_]:=
-  With[{if=ideNbData[nb, "FileViewerVisible", False]},
+  With[{if=ideNbData[nb, {"FileViewer", "Visible"}, False]},
     If[if,
-      If[Length@Options[ideNbData[nb, "FileViewerCell"]]==0,
-        ideSetNbData[nb, "FileViewerCell", None];
-        ideSetNbData[nb, "FileViewerVisible", False];
+      If[Length@Options[ideNbData[nb, {"FileViewer", "Cell"}]]==0,
+        ideSetNbData[nb, {"FileViewer", "Cell"}, None];
+        ideSetNbData[nb, {"FileViewer", "Visible"}, False];
         False,
         True
         ],
@@ -194,7 +205,7 @@ ideNotebookExpr[nb_]:=
       },
     Notebook[
       NotebookGet[nb][[1]],
-      opts
+      Flatten[List@@opts]
       ]
     ]
 
@@ -279,9 +290,9 @@ ideNotebookSave[nb_NotebookObject, file_:Automatic]:=
           nbExpr = ideNotebookExpr[nb];
           Export[f, nbExpr] (* should I just Put this? *),
         "m"|"wl",
-          nbExpr = Quiet@ideNotebookExpr[nb];
+          nbExpr =ideNotebookExpr[nb];
           Internal`WithLocalSettings[
-            nbObj = CreateDocument[Insert[nbExpr, Visible->False, 2]],
+            nbObj = CreateDocument[nbExpr, Visible->False],
             FrontEndExecute@
               FrontEndToken[
                 nbObj,
@@ -292,8 +303,8 @@ ideNotebookSave[nb_NotebookObject, file_:Automatic]:=
             ],
         _,
           nbExpr = ideNotebookExpr[nb];
-          Quiet@Internal`WithLocalSettings[
-            nbObj = CreateDocument[Insert[nbExpr, Visible->False, 2]],
+          Internal`WithLocalSettings[
+            nbObj = CreateDocument[nbExpr, Visible->False],
             FrontEndExecute@
               FrontEndToken[
                 nbObj,
@@ -305,6 +316,11 @@ ideNotebookSave[nb_NotebookObject, file_:Automatic]:=
         ]
       ]
     ]
+
+
+(* ::Subsection:: *)
+(*FileViewer*)
+
 
 
 (* ::Subsubsection::Closed:: *)
@@ -342,30 +358,33 @@ fileViewer[
       ],
     Initialization:>{
         fileViewerCell[s:Verbatim[Dynamic][state_], dir_, styl_]:=
-          OpenerView[
-            {
-              Replace[
-                styl["Directory"],
-                {
-                  f_Function:>f[dir],
-                  e_:>Style[FileNameTake[dir], e]
-                  }
-                ],
-              If[DirectoryQ[#], 
-                fileViewerCell[s, #, styl],
+          MouseAppearance[
+            OpenerView[
+              {
                 Replace[
-                  styl["File"],
+                  styl["Directory"],
                   {
-                    f_Function:>f[#],
-                    e_:>Style[FileNameTake[#], e]
+                    f_Function:>f[dir],
+                    e_:>Style[FileNameTake[dir], e]
                     }
-                  ]
-                ]&/@FileNames["*", dir]//Column//Dynamic
-              },
-            Dynamic[
-              Lookup[state, dir, False],
-              (state[dir]=#)&
-              ]
+                  ],
+                If[DirectoryQ[#], 
+                  fileViewerCell[s, #, styl],
+                  Replace[
+                    styl["File"],
+                    {
+                      f_Function:>f[#],
+                      e_:>Style[FileNameTake[#], e]
+                      }
+                    ]
+                  ]&/@FileNames["*", dir]//Column//Dynamic
+                },
+              Dynamic[
+                Lookup[state, dir, False],
+                (state[dir]=#)&
+                ]
+              ],
+            "Arrow"
             ]
         }
     ]
@@ -375,6 +394,8 @@ fileViewer[
 (*getFileViewerCell*)
 
 
+
+Quiet[
 
 getFileViewerCell[nb_]:=
   Cell[
@@ -390,14 +411,15 @@ getFileViewerCell[nb_]:=
                   {"MouseClicked":>If[CurrentValue["MouseClickCount"]==2, IDEOpen[nb, #]]}
                   ]&
                 )
-            |>
+            |>,
+          ideNbData[nb, {"FileViewer", "RefreshHook"}, Dynamic[fileViewerRefresh]]
           ],
         {
           200, 
           FEPrivate`Part[
             FrontEnd`AbsoluteCurrentValue[nb, WindowSize],
             2
-            ]-115
+            ]-30
           },
         Alignment->{Left, Top},
         Scrollbars->{False, Automatic},
@@ -408,7 +430,10 @@ getFileViewerCell[nb_]:=
     CellFrame->{{0, 1}, {0, 0}},
     CellMargins->{{0, 0}, {0, -2}},
     System`CellFrameStyle->GrayLevel[.8]
-    ]
+    ],
+    
+General::shdw
+]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -416,14 +441,12 @@ getFileViewerCell[nb_]:=
 
 
 
-Quiet[
-
 ideNotebookToggleFileBrowser[nb_]:=
   If[!ideViewerToggled[nb],
-    ideSetNbData[nb, "FileViewerVisible", True];
+    ideSetNbData[nb, {"FileViewer", "Visible"}, True];
     ideSetNbData[
       nb,
-      "FileViewerCell",
+      {"FileViewer", "Cell"},
       FEAttachCell[
         nb, 
         getFileViewerCell[nb],
@@ -433,12 +456,384 @@ ideNotebookToggleFileBrowser[nb_]:=
         {"EvaluatorQuit"}
         ]
       ],
-    NotebookDelete@ideNbData[nb, "FileViewerCell"];
-    ideSetNbData[nb, "FileViewerVisible", False]
-    ],
-    
-General::shdw
-]
+    NotebookDelete@ideNbData[nb, {"FileViewer", "Cell"}];
+    ideSetNbData[nb, {"FileViewer", "Visible"}, False]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*toggleFileViewerButton*)
+
+
+
+toggleFileViewerButton[]:=
+  Button["\[Congruent]",
+    ideNotebookToggleFileBrowser[EvaluationNotebook[]],
+    Appearance->
+      {
+        "Default"->
+          With[{p={$PackageName}},
+            FrontEnd`FileName[
+              p,
+              "FileViewerDown.png"
+              ]
+            ],
+        "Pressed"->
+          With[{p={$PackageName}},
+            FrontEnd`FileName[
+              p,
+              "FileViewerUp.png"
+              ]
+            ],
+        With[
+          {
+            c=
+              Block[
+                {CurrentValue=FrontEnd`CurrentValue}, 
+                ideViewerToggled[FrontEnd`EvaluationNotebook[]]
+                ]
+            },
+          FEPrivate`If[FEPrivate`SameQ[c, True], "Pressed", Automatic]
+          ]
+        },
+    ImageSize->{25, 25},
+    FrameMargins->{{-5, -5}, {-3, -5}}
+    ]
+
+
+(* ::Subsection:: *)
+(*Plugins*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*$PluginsPath*)
+
+
+
+$PluginsPath = 
+  {
+    FileNameJoin@{$UserBaseDirectory, "ApplicationData", "EasyIDE", "Plugins"},
+    PackageFilePath["Resources", "Plugins"]
+    } 
+
+
+(* ::Subsubsection::Closed:: *)
+(*loadPlugin*)
+
+
+
+Quiet[
+  System`MenuKey;
+  System`MenuItem;
+  ]
+
+
+(* ::Text:: *)
+(*
+	MenuCommands get loaded into the main menu bar, ActionMenus get stuck into the DockedCell, and 
+	some day MenuItem expressions will get dumped into the main menu.
+*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*loadPlugin*)
+
+
+
+loadPlugin[file_String]:=
+  Module[
+    {
+      pluginData
+      },
+    PackageExecute[
+      Internal`WithLocalSettings[
+        Begin["`Plugins`"],
+        pluginData = Get[file],
+        End[]
+        ]
+      ];
+    If[!AssociationQ@pluginData,
+      If[ListQ[pluginData],
+        pluginData = 
+          <|
+            "Name"->FileBaseName[file],
+            "Commands"->pluginData
+            |>,
+        pluginData = 
+          <|
+            "Name"->FileBaseName[file],
+            "Menu"->pluginData
+            |>
+        ]
+      ];
+    If[!KeyExistsQ[pluginData, "Type"],
+      pluginData["Type"]=
+        If[KeyExistsQ[pluginData, "Commands"], "Commands", "Menu"]
+      ];
+    If[pluginData["Type"]==="Commands",
+      pluginData["Commands"]=
+        pluginData["Name"]->pluginData["Commands"]
+      ];
+    normalizePlugin@pluginData
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*normalizePlugin*)
+
+
+
+normalizePlugin[a_Association]:=
+  Module[{plugin=a},
+    Which[plugin["Type"]=="Menu",
+      If[ListQ@plugin["Menu"],
+        plugin["Menu"]=
+          ActionMenu[
+            Button[Style[plugin["Name"], Hue[0, .1, 1]], "", 
+              FrameMargins->{{5, 0}, {0, 0}},
+              Appearance->{"Default"->FrontEnd`FileName[{"EasyIDE"}, "DropDown.9.png"]}
+              ],
+            plugin["Menu"],
+            Appearance->None,
+            Method->"Queued"
+            ]
+        ]
+      ];
+    plugin
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*getPluginData*)
+
+
+
+getPluginData[]:=
+  Module[
+    {baseData},
+    baseData=
+      Map[
+        loadPlugin,
+        FileNames[__~~(".wl"|".m"), $PluginsPath]
+        ];
+    baseData =
+      GroupBy[baseData, #Type&];
+    If[!KeyExistsQ[baseData, "Menu"], baseData["Menu"]={}];
+    If[!KeyExistsQ[baseData, "Commands"], baseData["Commands"]={}];
+    baseData
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*Make Menu*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*makeMenuExpr*)
+
+
+
+makeMenuExpr[s:Verbatim[Dynamic][state_], menuList_]:=
+  Pane[
+    Panel[
+      Column[
+        makeMenuCommand[s, #]&/@menuList
+        ],
+      FilterRules[
+        {
+          BaseStyle->"Text",
+          ImageSize->{150, Automatic},
+          FrameMargins->{{-1, -3}, {-2, -1}},
+          Appearance->
+            {
+              "Default"->
+                FrontEnd`FileName[{"EasyIDE"}, "MenuItem.9.png"]
+              }
+          },
+        Options[Panel]
+        ]
+      ],
+    {150, Automatic},
+    ImageSizeAction->"Clip"
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*makeMenuCommand*)
+
+
+
+makeMenuCommand//Clear
+
+
+makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
+    Button[
+      Grid[{{
+        Pane[label, {90, Automatic}, Alignment->{Left, Top}], 
+        Pane["\[RightPointer]", {10, Automatic}, Alignment->{Left, Top}]}}],
+      attachMenuExpr[s, EvaluationBox[], makeMenuExpr[s, list]],
+      AutoAction->True,
+      Appearance->{
+        "Hover"->FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"],
+        "Pressed" -> FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"]
+        },
+      FrameMargins->{{20, 20}, {15, 15}},
+      ImageSize->{150, Automatic},
+      BaseStyle->"Text",
+      Alignment->{Left, Top}
+      ]
+
+
+makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>command_]:=
+  EventHandler[
+    Button[
+      label,
+      command;
+      destroyMenu[s],
+      ButtonData:>s,
+      Appearance->
+        {
+          "Default"->None,
+          "Hover"->FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"]
+          },
+      FrameMargins->{{20, 20}, {15, 15}},
+      ImageSize->Scaled[1],
+      Alignment->Left
+      ],
+  {
+    "MouseEntered":> pruneMenu[s, EvaluationCell[], False],
+    PassEventsDown->True
+    }
+  ];
+
+
+makeMenuCommand[s:Verbatim[Dynamic][state_], Delimiter]:=
+  Framed["", 
+    FrameStyle->GrayLevel[.8],
+    ImageSize->{Scaled[1], 0},
+    FrameMargins->{{0, 0}, {-1, 0}}
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*pruneMenu*)
+
+
+
+pruneMenu[s:Verbatim[Dynamic][state_], root_, pruneHead:True|False:True]:=
+  Module[
+    {
+      kid
+      },
+    kid = state[root]["Submenu"];
+    pauseDo[
+      ParentNotebook@root,
+      If[Head[kid]===CellObject,
+        pruneMenu[s, kid]
+        ];
+      If[pruneHead, 
+        NotebookDelete[root];
+        If[KeyExistsQ[state, root],
+          state[root]=.
+          ],
+        If[KeyExistsQ[state, root],
+          state[root, "Submenu"]=.;
+          state[root, "MenuBox"]=.;
+          ]
+        ]
+      ];
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*destroyMenu*)
+
+
+
+destroyMenu[s:Verbatim[Dynamic][state_]]:=
+  (
+    pruneMenu[s, state["RootCell"], True];
+    state["RootCell"]=.;
+    state["Root"]=.;
+    )
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*attachMenuExpr*)
+
+
+
+attachMenuExpr[s:Verbatim[Dynamic][state_], parentBox_, menuExpr_]:=
+  Module[
+    {
+      parentCell,
+      cell,
+      currentKids
+      },
+    parentCell = ParentCell@parentBox;
+    If[!KeyExistsQ[state, parentCell], 
+      state[parentCell] = <||>
+      ];
+    If[state[parentCell, "MenuBox"] =!= parentBox || 
+        (
+          Head[state[parentCell, "Submenu"]]===CellObject&&
+            NotebookRead[state[parentCell, "Submenu"]] === $Failed
+          ),
+      pruneMenu[s, parentCell, False];
+      cell=
+        FEAttachCell[
+          parentBox,
+          menuExpr,
+          Automatic,
+          {Left, Top},
+          {Right, Top},
+          {"EvaluatorQuit"}
+          ];
+      state[parentCell, "MenuBox"] = parentBox;
+      state[parentCell, "Submenu"] = cell
+      ];
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*makeMenu*)
+
+
+
+makeMenu//Clear
+makeMenu[
+  stateTracker:(Verbatim[Dynamic][_](*|None*)),
+  parentBox:_BoxObject|Automatic:Automatic, 
+  menuCommands_
+  ]:=
+  With[
+    {
+      box=Replace[parentBox, Automatic:>EvaluationBox[]],
+      state=
+        Replace[stateTracker, 
+          None:>Module[{menuState}, Dynamic[menuState]]
+          ]
+      },
+    Replace[state,
+      s:Verbatim[Dynamic][menuState_]:>
+        Replace[
+          FEAttachCell[
+            box,
+            If[!AssociationQ[menuState], menuState=<||>];
+            menuState["Root"] = box;
+            makeMenuExpr[s, Append[menuCommands, Style["Cancel", Italic]:>None]],
+            Automatic,
+            {Right, Bottom},
+            {Right, Top},
+            {(*"OutsideMouseClick", *)"ParentChanged", "EvaluatorQuit"}
+            ],
+          c_CellObject:>(menuState["RootCell"] = c)
+          ]
+      ]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -447,7 +842,32 @@ General::shdw
 
 
 ideNotebookLoadPluginsMenu[]:=
-  ActionMenu["Coming Soon!", {}]
+  With[{data=getPluginData[]},
+    Module[{pluginMenuState},
+      {
+        Button[
+          Style["Plugins", Hue[0, .1, 1]],
+          If[!AssociationQ[pluginMenuState],
+            pluginMenuState=<||>
+            ];
+          If[Length[pluginMenuState]>0,
+            destroyMenu[Dynamic[pluginMenuState]],
+            makeMenu[Dynamic[pluginMenuState], EvaluationBox[], 
+              Lookup[data["Commands"], "Commands"]
+              ]
+            ],
+          Appearance->{
+            "Default"->
+              FrontEnd`FileName[{"EasyIDE"}, "DropDown.9.png"]
+            },
+          ImageSize->{Automatic, Automatic},
+          FrameMargins->{{5, 0}, {0, 0}},
+          BaselinePosition->Top
+          ],
+        Lookup[data["Menu"], "Menu"]
+        }
+      ]
+    ]
 
 
 (* ::Subsection:: *)
@@ -470,7 +890,9 @@ createDynamicTabRow[]:=
           ]
       },
     Dynamic[
-      Pane[Row@Map[createTabObject, tns], {Automatic, 35}, Alignment->Bottom]
+      tabRowRefresh;
+      Pane[Row@Map[createTabObject, tns], {Automatic, 35}, Alignment->Bottom],
+      TrackedSymbols:>{tabRowRefresh}
       ]/.cv->CurrentValue
     ]
 
@@ -513,7 +935,7 @@ createTabObject[tabName_String]:=
           ImageSize->{12, 12}
           ]
         },
-    ImageSize->{Automatic, 35},
+    ImageSize->{Automatic, 25},
     Appearance->
       {
         "Default"->With[
@@ -530,7 +952,8 @@ createTabObject[tabName_String]:=
             ]
           ]
         },
-    BoxID->tabName<>"-tab"
+    BoxID->tabName<>"-tab",
+    BaselinePosition->Top
     ]
 
 
@@ -568,12 +991,24 @@ deleteTab[dockedCell_, tabName_]:=
 
 
 (* ::Subsubsection::Closed:: *)
+(*refreshTabs*)
+
+
+
+refreshTabs[]:=
+  tabRowRefresh=RandomReal[];
+
+
+(* ::Subsubsection::Closed:: *)
 (*ideNotebookCreateTab*)
 
 
 
 ideNotebookCreateTab[nb_NotebookObject, tabName_String, tabData_]:=
-  ideSetNbData[nb, {"Tabs", tabName}, tabData];
+  (
+    ideSetNbData[nb, {"Tabs", tabName}, tabData];
+    refreshTabs[]
+    )
 
 
 (* ::Subsubsection::Closed:: *)
@@ -618,7 +1053,8 @@ ideNotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:Tr
             ideNotebookPut[nb, Notebook[{}]]
             ]
           ];
-        ideSetNbData[nb, "Tabs", tabs]
+        ideSetNbData[nb, "Tabs", tabs];
+        refreshTabs[]
         ]
       ]
     ]
@@ -699,56 +1135,26 @@ IDEClose[nb_IDENotebookObject, tabName_]:=
 
 
 createIDENotebookBar[]:=
+  GridBox[{{
     GridBox[{{
-      GridBox[{{
-        ToBoxes@Button["",
-          ideNotebookToggleFileBrowser[EvaluationNotebook[]],
-          Appearance->
-            {
-              "Default"->
-                With[{p={$PackageName}},
-                  FrontEnd`FileName[
-                    p,
-                    "FileViewerDown.png"
-                    ]
-                  ],
-              "Pressed"->
-                With[{p={$PackageName}},
-                  FrontEnd`FileName[
-                    p,
-                    "FileViewerUp.png"
-                    ]
-                  ],
-              With[
-                {
-                  c=
-                    Block[
-                      {CurrentValue=FrontEnd`CurrentValue}, 
-                      ideViewerToggled[FrontEnd`EvaluationNotebook[]]
-                      ]
-                  },
-                FEPrivate`If[FEPrivate`SameQ[c, True], "Pressed", Automatic]
-                ]
-              },
-          ImageSize->{30, 30}
-          ],
-        ""
-        }},
-        GridBoxAlignment->{"Rows" -> {{Center}}},
-        GridBoxItemSize->
-          {
-            "Columns" -> 
-              {Full, Scaled[0.02]},
-            "Rows" -> {{2.5}}
-            }
-        ],
-      Cell[
-        BoxData@
-          ToBoxes@ideNotebookLoadPluginsMenu[],
-        "IDENotebookMenu"
-        ]
-      }}
-    ];
+      ToBoxes@toggleFileViewerButton[],
+      ""
+      }},
+      GridBoxAlignment->{"Rows" -> {{Center}}},
+      GridBoxItemSize->
+        {
+          "Columns" -> 
+            {Full, Scaled[0.02]},
+          "Rows" -> {{2.5}}
+          }
+      ],
+    Cell[
+      BoxData@
+        ToBoxes@Dynamic[Refresh[ideNotebookLoadPluginsMenus[], None]],
+      "IDENotebookMenu"
+      ]
+    }}
+  ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -758,40 +1164,75 @@ createIDENotebookBar[]:=
 
 createIDENotebookTabs[]:=
   RowBox@{
-    ToBoxes@Spacer[{25, 35}],
+    ToBoxes@Spacer[{25, 25}],
     ToBoxes@createDynamicTabRow[]
     }
 
 
+(* ::Subsubsection::Closed:: *)
+(*createIDENotebookDockedCell*)
+
+
+
 createIDENotebookDockedCell[]:=
-  Cell[
-    BoxData@
-      GridBox[
+  Module[
+    {
+      tabs=
+        createDynamicTabRow[],
+      menus=
+        ideNotebookLoadPluginsMenu[],
+      viewer=
+        toggleFileViewerButton[]
+      },
+    If[Length@menus[[2]]>3,
+      Column[
         {
-          {
-          DynamicBox@
-            Get@
-              PackageFilePath["FrontEnd", 
-                "TextResources", "IDENotebookMainMenu.tr"]
-            }, 
-          {
-          AdjustmentBox[
-            DynamicBox@
-              Get@
-                PackageFilePath["FrontEnd", 
-                  "TextResources", "IDENotebookTabs.tr"],
-            BoxMargins->{{0, 0}, {-1, 0}}
-            ]
-            }
-          },
-        GridBoxItemSize->
-          {
-            "Columns" -> {Scaled[1]}
+          menus[[2]]//List//Grid,
+          Grid[
+            {
+              {
+                Item[
+                  Pane[viewer, ImageSize->{Scaled[1], 25},
+                    BaselinePosition->Top],
+                  Alignment->Right
+                  ],
+                Item[tabs, Alignment->Left],
+                Item[menus[[1]], Alignment->Right]
+                }
             },
-        GridBoxAlignment->{"Columns"->{"Left"}},
-        GridBoxDividers->{"Columns" -> {}, "Rows" -> {None, GrayLevel[0.8]}}
-        ],
-    "IDENotebookDockedCell"
+          ItemSize->{
+              {Scaled[.05], Scaled[.75], Scaled[.2]}, 
+              Automatic
+              },
+          Alignment->{Left, Bottom}
+          ]
+        },
+      ItemSize->{Scaled[1], Automatic},
+      Dividers->{{}, {None, GrayLevel[.8]}}
+      ],
+      Grid[
+          {
+            {
+              Item[
+                Pane[viewer, ImageSize->{Scaled[1], 25},
+                  BaselinePosition->Top],
+                Alignment->Right
+                ],
+              Item[tabs, Alignment->Left],
+              Item[
+                Map[
+                  Append[#, BaselinePosition->Top]&,
+                  Append[menus[[2]], menus[[1]]]
+                  ]//List//Grid, Alignment->Right]
+              }
+          },
+          ItemSize->{
+            {Scaled[.05], Scaled[.55], Scaled[.4]}, 
+            Automatic
+            },
+          Alignment->{Left, Bottom}
+          ]
+      ]
     ]
 
 
@@ -830,7 +1271,16 @@ createIDENotebook[dir_String]:=
         
         },
       DockedCells->
-        createIDENotebookDockedCell[],
+        Cell[
+          BoxData@ToBoxes@
+            Dynamic[
+              Refresh[
+                createIDENotebookDockedCell[],
+                None
+                ]
+              ],
+          "IDENotebookDockedCell"
+          ],
       TaggingRules->{$PackageName->{"Project"->{"Directory"->dir}}},
       StyleDefinitions->
         FrontEnd`FileName[{"EasyIDE"}, "EasyIDE.nb"],
