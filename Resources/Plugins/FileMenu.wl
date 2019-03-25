@@ -26,7 +26,7 @@ openFile[]:=
 
 newFile[]:=
   Module[{newFileName=SystemDialogInput["FileSave"]},
-    If[newFileName=!=$Canceled,
+    If[StringQ@newFileName,
       If[!FileExistsQ[newFileName],
         If[FileExtension[newFileName]==="nb",
           Export[newFileName, Notebook[{}]],

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     77249,       1316]
-NotebookOptionsPosition[     70072,       1242]
-NotebookOutlinePosition[     70716,       1265]
-CellTagsIndexPosition[     70673,       1262]
+NotebookDataLength[     76226,       1290]
+NotebookOptionsPosition[     68823,       1212]
+NotebookOutlinePosition[     69467,       1235]
+CellTagsIndexPosition[     69424,       1232]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -634,53 +634,16 @@ Cell[StyleData["Subsubsubsection"],
    "ConstantStyle"},ExpressionUUID->"5c2c4e6e-160b-40fb-9aaf-bc0f05afddfa"],
 
 Cell[StyleData["Input"],
- CellEventActions->{{"MenuCommand", "SelectionCloseAllGroups"} :> Quiet[
-     Check[Needs["EasyIDE`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`FrontEnd`Private`f], Length[
-             DownValues[#]] > 0& ]["Indent"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], {
-    "MenuCommand", "SelectionOpenAllGroups"} :> Quiet[
-     Check[Needs["BTools`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`Dependencies`BTools`FrontEnd`Private`f], 
-           Length[
-             DownValues[#]] > 0& ]["Dedent"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], {
-    "MenuCommand", "InsertMatchingBrackets"} :> Quiet[
-     Check[Needs["EasyIDE`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`Dependencies`BTools`FrontEnd`Private`f], 
-           Length[
-             DownValues[#]] > 0& ]["Toggle"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], PassEventsDown -> False},
+ CellEventActions->{{"MenuCommand", "SelectionCloseAllGroups"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Indent"]], {
+    "MenuCommand", "SelectionOpenAllGroups"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Dedent"]], {
+    "MenuCommand", "InsertMatchingBrackets"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Toggle"]], 
+   PassEventsDown -> False},
  AutoIndent->Automatic,
  AutoStyleOptions->{"CommentStyle"->"CommentStyle",
  "EmphasizedSyntaxErrorStyle"->"EmphasizedSyntaxErrorStyle",
@@ -756,53 +719,16 @@ Cell[BoxData[
  CellLabel->"In[32]:=",ExpressionUUID->"eebae581-c4d2-4444-a268-3a384b9c0c7b"],
 
 Cell[StyleData["Code"],
- CellEventActions->{{"MenuCommand", "SelectionCloseAllGroups"} :> Quiet[
-     Check[Needs["EasyIDE`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`FrontEnd`Private`f], Length[
-             DownValues[#]] > 0& ]["Indent"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], {
-    "MenuCommand", "SelectionOpenAllGroups"} :> Quiet[
-     Check[Needs["BTools`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`Dependencies`BTools`FrontEnd`Private`f], 
-           Length[
-             DownValues[#]] > 0& ]["Dedent"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], {
-    "MenuCommand", "InsertMatchingBrackets"} :> Quiet[
-     Check[Needs["EasyIDE`"]; Replace[
-        Join[
-         Names[
-          StringJoin["EasyIDE`Dependencies`BTools`", "IndentationEvent"]], 
-         Names[
-          StringJoin[
-          "EasyIDE`Dependencies`BTools`", "*`IndentationEvent"]]], {
-        Pattern[EasyIDE`Dependencies`BTools`FrontEnd`Private`f, {
-            BlankSequence[]}] :> SelectFirst[
-           ToExpression[EasyIDE`Dependencies`BTools`FrontEnd`Private`f], 
-           Length[
-             DownValues[#]] > 0& ]["Toggle"], Blank[] :> SetAttributes[
-           EvaluationCell[], CellEventActions -> None]}], 
-      SetAttributes[
-       EvaluationCell[], CellEventActions -> None]]], PassEventsDown -> False},
+ CellEventActions->{{"MenuCommand", "SelectionCloseAllGroups"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Indent"]], {
+    "MenuCommand", "SelectionOpenAllGroups"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Dedent"]], {
+    "MenuCommand", "InsertMatchingBrackets"} :> 
+   Quiet[Needs["EasyIDE`"]; 
+     EasyIDE`Dependencies`BTools`FrontEnd`IndentationEvent["Toggle"]], 
+   PassEventsDown -> False},
  AutoIndent->True,
  AutoStyleOptions->{"CommentStyle"->"CommentStyle",
  "EmphasizedSyntaxErrorStyle"->"EmphasizedSyntaxErrorStyle",
@@ -1238,7 +1164,51 @@ Cell[BoxData[
 
  CellChangeTimes->{{3.727890091912572*^9, 3.727890093953969*^9}, {
   3.727892334205614*^9, 
-  3.7278923379389*^9}},ExpressionUUID->"2ba4db8b-76cd-4c49-b535-ddeb688695cf"]
+  3.7278923379389*^9}},ExpressionUUID->"2ba4db8b-76cd-4c49-b535-ddeb688695cf"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"NotebookRead", "[", "\[IndentingNewLine]", 
+    RowBox[{"StyleSheetCells", "[", "\"\<*Style\>\"", "]"}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Cell", "[", 
+     RowBox[{
+      RowBox[{"StyleData", "[", 
+       RowBox[{"s_String", ",", " ", "___"}], "]"}], ",", " ", "___"}], "]"}],
+     "\[RuleDelayed]", "s"}], ",", "\[IndentingNewLine]", "1"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.762461737739089*^9, 3.7624617731654654`*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"4ed95e32-c3e1-40f9-be26-c2970a032fcf"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"CodeStyle\"\>", ",", "\<\"CommandStyle\"\>", 
+   ",", "\<\"TypeStyle\"\>", ",", "\<\"FormattingHeadStyle\"\>", 
+   ",", "\<\"ConstantStyle\"\>", ",", "\<\"FunctionStyle\"\>", 
+   ",", "\<\"StringStyle\"\>", ",", "\<\"CommentStyle\"\>", 
+   ",", "\<\"UndefinedSymbolStyle\"\>", ",", "\<\"SystemStyle\"\>", 
+   ",", "\<\"GlobalStyle\"\>", ",", "\<\"PrivateStyle\"\>", 
+   ",", "\<\"OperatorStyle\"\>", ",", "\<\"UnstyledStyle\"\>", 
+   ",", "\<\"EmphasizedSyntaxErrorStyle\"\>", 
+   ",", "\<\"ExcessArgumentStyle\"\>", ",", "\<\"FormattingErrorStyle\"\>", 
+   ",", "\<\"GlobalToLocalScopeConflictStyle\"\>", 
+   ",", "\<\"GraphicsCompatibilityProblemStyle\"\>", 
+   ",", "\<\"LocalScopeConflictStyle\"\>", ",", "\<\"LocalVariableStyle\"\>", 
+   ",", "\<\"FunctionLocalVariableStyle\"\>", 
+   ",", "\<\"PatternVariableStyle\"\>", ",", "\<\"MissingArgumentStyle\"\>", 
+   ",", "\<\"MissingArgumentTemplateStyle\"\>", ",", "\<\"ErrorStyle\"\>", 
+   ",", "\<\"MisspelledWordStyle\"\>", ",", "\<\"NoKernelPresentStyle\"\>", 
+   ",", "\<\"SymbolShadowingStyle\"\>", 
+   ",", "\<\"OrderOfEvaluationConflictStyle\"\>", 
+   ",", "\<\"UnknownOptionStyle\"\>", 
+   ",", "\<\"UnwantedAssignmentStyle\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.7624617735358543`*^9},
+ CellLabel->"Out[49]=",ExpressionUUID->"87bdc04b-89b4-4baf-b255-eeb7e7029bb8"]
+}, Open  ]]
 },
 WindowSize->{808, 755},
 WindowMargins->{{192, Automatic}, {2, Automatic}},
@@ -1308,16 +1278,20 @@ Cell[19193, 391, 3793, 59, 68, 26, 0, "StyleData", "Section", "All",ExpressionUU
 Cell[22989, 452, 3796, 59, 53, 29, 0, "StyleData", "Subsection", "All",ExpressionUUID->"5726d9f1-e783-4318-b041-c8e6c29dd604"],
 Cell[26788, 513, 3799, 59, 52, 32, 0, "StyleData", "Subsubsection", "All",ExpressionUUID->"4b2670ec-0a23-4b50-90be-1a23a534c13b"],
 Cell[30590, 574, 3802, 59, 41, 35, 0, "StyleData", "Subsubsubsection", "All",ExpressionUUID->"5c2c4e6e-160b-40fb-9aaf-bc0f05afddfa"],
-Cell[34395, 635, 6015, 108, 38, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"748cae16-eb23-40d6-bdb8-605c4955c506"],
-Cell[40413, 745, 507, 10, 115, "Input",ExpressionUUID->"eebae581-c4d2-4444-a268-3a384b9c0c7b"],
-Cell[40923, 757, 6009, 108, 64, 23, 0, "StyleData", "Code", "All",ExpressionUUID->"2565eb60-4c93-479f-a5ec-fc9abad73d73"],
-Cell[46935, 867, 3792, 59, 46, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"a1ac34e1-a023-4463-95bc-ea3c94c3ec18"],
-Cell[50730, 928, 3790, 59, 50, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"f1aa8812-d994-43bd-aa7a-a97662886f24"],
-Cell[54523, 989, 3790, 59, 47, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"d6b30784-5fff-4546-80ce-3d66ea1b6cf0"],
-Cell[58316, 1050, 3799, 59, 40, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"19a1500d-cb7e-4b05-80b1-352dcf3afdf3"],
-Cell[62118, 1111, 3793, 59, 42, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"532e8745-76ea-44ff-bcca-89b148dde549"],
-Cell[65914, 1172, 3802, 59, 39, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"5e8fcf0b-ca70-40ff-ba70-d1963f95a490"],
-Cell[69719, 1233, 349, 7, 30, "Input",ExpressionUUID->"2ba4db8b-76cd-4c49-b535-ddeb688695cf"]
+Cell[34395, 635, 4345, 71, 38, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"748cae16-eb23-40d6-bdb8-605c4955c506"],
+Cell[38743, 708, 507, 10, 115, "Input",ExpressionUUID->"eebae581-c4d2-4444-a268-3a384b9c0c7b"],
+Cell[39253, 720, 4339, 71, 64, 23, 0, "StyleData", "Code", "All",ExpressionUUID->"2565eb60-4c93-479f-a5ec-fc9abad73d73"],
+Cell[43595, 793, 3792, 59, 46, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"a1ac34e1-a023-4463-95bc-ea3c94c3ec18"],
+Cell[47390, 854, 3790, 59, 50, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"f1aa8812-d994-43bd-aa7a-a97662886f24"],
+Cell[51183, 915, 3790, 59, 47, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"d6b30784-5fff-4546-80ce-3d66ea1b6cf0"],
+Cell[54976, 976, 3799, 59, 40, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"19a1500d-cb7e-4b05-80b1-352dcf3afdf3"],
+Cell[58778, 1037, 3793, 59, 42, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"532e8745-76ea-44ff-bcca-89b148dde549"],
+Cell[62574, 1098, 3802, 59, 39, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"5e8fcf0b-ca70-40ff-ba70-d1963f95a490"],
+Cell[66379, 1159, 349, 7, 30, "Input",ExpressionUUID->"2ba4db8b-76cd-4c49-b535-ddeb688695cf"],
+Cell[CellGroupData[{
+Cell[66753, 1170, 673, 14, 157, "Input",ExpressionUUID->"4ed95e32-c3e1-40f9-be26-c2970a032fcf"],
+Cell[67429, 1186, 1378, 23, 203, "Output",ExpressionUUID->"87bdc04b-89b4-4baf-b255-eeb7e7029bb8"]
+}, Open  ]]
 }
 ]
 *)
