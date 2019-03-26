@@ -36,6 +36,14 @@ $PluginsPath::usage="The path to look for plugins on";
 $IDENotebookMenu::usage="";
 
 
+(* ::Text:: *)
+(*Used by plugins instead of EvaluationNotebook*)
+
+
+
+$CurrentIDENotebook::usage=""
+
+
 Begin["`Private`"];
 
 
@@ -88,8 +96,7 @@ premptiveQueuedEval[nb_, expr_]:=
           Null,
           Block[
             {
-              EvaluationNotebook=nb&,
-              FrontEnd`EvaluationNotebook=nb&
+              $CurrentIDENotebook=nb
               },
             expr
             ],
@@ -140,6 +147,49 @@ ideSetNbDataDelayed[nb_, opts_, value_]:=
     Flatten[{TaggingRules, $PackageName, opts}, 1]
     ] := value;
 ideSetNbDataDelayed~SetAttributes~HoldRest;
+
+
+(* ::Subsubsection::Closed:: *)
+(*ideTmpData*)
+
+
+
+If[!ValueQ[$ideDataCache],
+  $ideDataCacheTag = $FrontEndSession;
+  (* for some reason the $FrontEnd object went out of scope...? *)
+  $ideDataCache=Language`NewExpressionStore["IDEState"]
+  ];
+
+
+ideTmpData[nb_, key_]:=
+  With[{base=$ideDataCache@"get"[$FrontEndSession, nb[[2]]]},
+    If[!AssociationQ@base,
+      $ideDataCache@"put"[$FrontEndSession, nb[[2]], <||>];
+      Missing["KeyAbset", key],
+      base[key]
+      ]
+    ];
+ideSetTmpData[nb_, key_, val_]:=
+  Module[{base=$ideDataCache@"get"[$FrontEndSession, nb[[2]]]},
+    If[!AssociationQ@base,
+      $ideDataCache@"put"[$FrontEndSession, nb[[2]], <|key->val|>],
+      base[key]=val;
+      $ideDataCache@"put"[$FrontEndSession, nb[[2]], base]
+      ]
+    ];
+ideTmpData[nb_, key_, val_]:=
+  Replace[
+    ideTmpData[nb, key],
+    _Missing:>(ideSetTmpData[nb, key, val];val)
+    ]
+
+
+ideTmpDataClean[]:=
+  (
+    If[NotebookInformation[NotebookObject[$FrontEnd, #[[2]]]]===$Failed,
+      $ideDataCache
+      ]&/@Flatten[test@"listTable"[], 1]
+    );
 
 
 (* ::Subsubsection::Closed:: *)
@@ -220,10 +270,14 @@ ideAbsPath[nb_NotebookObject, file_]:=
 
 
 ideViewerToggled[nb_]:=
-  With[{if=ideNbData[nb, {"FileViewer", "Visible"}, False]},
+  With[
+    {
+      if = ideNbData[nb, {"FileViewer", "Visible"}, False],
+      cell = ideTmpData[nb, "FileViewerCell"]
+      },
     If[if,
-      If[Length@Options[ideNbData[nb, {"FileViewer", "Cell"}]]==0,
-        ideSetNbData[nb, {"FileViewer", "Cell"}, None];
+      If[NotebookRead[cell]===$Failed,
+        ideSetTmpData[nb, "FileViewerCell", None];
         ideSetNbData[nb, {"FileViewer", "Visible"}, False];
         False,
         True
@@ -246,6 +300,159 @@ ideNotebookExpr[nb_]:=
     Notebook[
       NotebookGet[nb][[1]],
       Flatten[List@@opts]
+      ]
+    ]
+
+
+(* ::Subsection:: *)
+(*Styles*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*getStylesheetDefsSection*)
+
+
+
+getStylesheetDefsSection[file_]:=
+  Module[
+    {
+      fileName,
+      data,
+      sec
+      },
+    fileName=
+      FrontEndExecute@
+        FrontEnd`FindFileOnPath[file, "StyleSheetPath"];
+    data = Cases[Get[fileName][[1]], Cell[_StyleData, ___], \[Infinity]];
+    sec = 
+      Cell[
+        ToString[file], 
+        "Subsubsubsubsection",
+        CellGroupingRules->{"SectionGrouping",200},
+        CellTags->{ToString[file]}
+        ];
+    Cell[
+      CellGroupData[
+        Flatten@{
+          sec,
+          data
+          },
+        Closed
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*getMainStylesheet*)
+
+
+
+getMainStylesheet[nb_]:=
+  Module[
+    {
+      s=CurrentValue[nb, StyleDefinitions]
+      },
+    If[Head[s]===Notebook,
+      FirstCase[s, Cell[StyleData[StyleDefinitions->f_, ___], ___]:>f, None, \[Infinity]],
+      s
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*setMainStylesheet*)
+
+
+
+setMainStylesheet[nb_, f_]:=
+  Module[
+    {
+      s=CurrentValue[nb, StyleDefinitions],
+      scell,
+      nbo
+      },
+    If[Head[s]===Notebook,
+      nbo = StyleSheetNotebookObject[nb];
+      scell = 
+        SelectFirst[Cells[nbo], 
+          MatchQ[NotebookRead[#], Cell[StyleData[StyleDefinitions->_, ___], ___]]&,
+          None
+          ];
+      If[scell === None,
+        SelectionMove[nbo, Before, Notebook];
+        NotebookWrite[nbo,
+          Cell[StyleData[StyleDefinitions->f]]
+          ],
+        NotebookWrite[
+          scell,
+          Cell[StyleData[StyleDefinitions->f]]
+          ]
+        ],
+      SetOptions[nb, StyleDefinitions->f]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*addIDENotebookStylesheet*)
+
+
+
+addIDENotebookStylesheet[nb_, fileName_]:=
+  Module[
+    {
+      nbo,
+      currDefs,
+      defCells,
+      defFiles,
+      file = If[!StringQ[fileName], ToFileName[fileName], fileName]
+      },
+    currDefs = CurrentValue[nb, StyleDefinitions];
+    If[Head[currDefs] =!= Notebook,
+      CurrentValue[nb, StyleDefinitions]=
+        Notebook[
+          {
+            Cell[StyleData[StyleDefinitions->currDefs]],
+            getStylesheetDefsSection[file]
+            },
+          StyleDefinitions->"PrivateStylesheetFormatting.nb"
+          ],
+      nbo = StyleSheetNotebookObject[nb];
+      defCells = Cells[nbo, CellTags->file];
+      If[Length@defCells === 0,
+        If[!MemberQ[defFiles, file],
+          SelectionMove[nbo, After, Notebook];
+          NotebookWrite[nbo, getStylesheetDefsSection[file]]
+          ]
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*removeIDENotebookStylesheet*)
+
+
+
+removeIDENotebookStylesheet[nb_, fileName_]:=
+  Module[
+    {
+      nbo,
+      currDefs,
+      defCells,
+      defFiles,
+      file = If[!StringQ[fileName], ToFileName[fileName], fileName]
+      },
+    nbo = StyleSheetNotebookObject[nb];
+    defCells = Cells[nbo, CellTags->file];
+    Map[
+      Function[
+        SelectionMove[#, All, CellGroup];
+        NotebookDelete[nbo]
+        ],
+      defCells
       ]
     ]
 
@@ -285,6 +492,41 @@ ideNotebookPut[nbObj_NotebookObject, nb_Notebook]:=
 
 
 (* ::Subsubsection::Closed:: *)
+(*setNbFileStyle*)
+
+
+
+getFileStylesheet[fExt_]:=
+  fExt/.Get[PackageFilePath["Resources", "Settings", "ExtensionStylesMap.wl"]]
+
+
+setNbFileStyle[nb_, fExt_]:=
+  Module[
+    {
+      currentStyles = ideNbData[nb, "StyleSheet", None],
+      main = getMainStylesheet[nb],
+      mainName,
+      targ
+      },
+    mainName = Replace[main, FrontEnd`FileName[_, fn_]:>StringSplit[fn, "."|"-"][[1]]];
+    targ = 
+      Replace[getFileStylesheet[fExt],
+        {
+          FrontEnd`FileName[p_, s_String?(StringStartsQ["-"])]:>
+            With[{tt=mainName<>s},
+              FrontEnd`FileName[p, tt]
+              ],
+          None:>With[{mn=mainName<>".nb"}, FrontEnd`FileName[{"EasyIDE"}, mn]]
+          }
+        ];
+    ideSetNbData[nb, "StyleSheet", targ];
+    If[targ =!= None,
+      setMainStylesheet[nb, targ]
+      ];
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
 (*ideNotebookPutFile*)
 
 
@@ -303,7 +545,11 @@ ideNotebookPutFile[nb_NotebookObject, f_String]:=
         nbExpr = NotebookGet[nbObj];
         NotebookClose[nbObj];
       ];
-    ideNotebookPut[nb, nbExpr]
+    pauseDo[
+      nb,
+      setNbFileStyle[nb, FileExtension[f]];
+      ideNotebookPut[nb, nbExpr]
+      ]
     ];
 
 
@@ -312,47 +558,82 @@ ideNotebookPutFile[nb_NotebookObject, f_String]:=
 
 
 
-ideNotebookSave[nb_NotebookObject, file_:Automatic]:=
-  Module[
-    {
-      f = file,
-      dir,
-      nbExpr,
-      nbObj
-      },
-    If[f === Automatic,
-      f = ideActiveFile[nb]
-      ];
-    If[f=!=None,
-      f = ideAbsPath[nb, f];
-      Switch[FileExtension[f],
-        "nb",
-          nbExpr = ideNotebookExpr[nb];
-          Export[f, nbExpr] (* should I just Put this? *),
-        "m"|"wl",
-          nbExpr =ideNotebookExpr[nb];
-          Internal`WithLocalSettings[
-            nbObj = CreateDocument[nbExpr, Visible->False],
-            FrontEndExecute@
-              FrontEndToken[
-                nbObj,
-                "Save",
-                {f, "Package"}
-                ],
-            NotebookClose[nbObj]
-            ],
-        _,
-          nbExpr = ideNotebookExpr[nb];
-          Internal`WithLocalSettings[
-            nbObj = CreateDocument[nbExpr, Visible->False],
-            FrontEndExecute@
-              FrontEndToken[
-                nbObj,
-                "Save",
-                {f, "Text"}
-                ],
-            NotebookClose[nbObj]
+ideNotebookSave//Clear
+Module[{recurseProtect},
+  ideNotebookSave[nb_NotebookObject, 
+    file:_String|Automatic:Automatic,
+    preemptive:True|False:False
+    ]:=
+    Block[{recurseProtect = !preemptive&&TrueQ[recurseProtect]},
+      If[!recurseProtect,
+        recurseProtect=True;
+        Module[
+          {
+            f = file,
+            dir,
+            nbExpr,
+            nbObj
+            },
+          If[f === Automatic,
+            f = ideActiveFile[nb]
+            ];
+          If[f=!=None,
+            f = ideAbsPath[nb, f];
+            Switch[FileExtension[f],
+              "nb",
+                nbExpr = ideNotebookExpr[nb];
+                If[preemptive,
+                  premptiveQueuedEval[nb, Export[f, nbExpr]]
+                  ] (* should I just Put this? *),
+              "m"|"wl",
+                If[preemptive,
+                  nbExpr =ideNotebookExpr[nb];
+                  premptiveQueuedEval[nb,
+                    Internal`WithLocalSettings[
+                      nbObj = CreateDocument[nbExpr, Visible->False],
+                      FrontEndExecute@
+                        FrontEndToken[
+                          nbObj,
+                          "Save",
+                          {f, "Package"}
+                          ],
+                      NotebookClose[nbObj]
+                      ]
+                    ],
+                  nbObj = nb;
+                  FrontEndExecute@
+                    FrontEndToken[
+                      nbObj,
+                      "Save",
+                      {f, "Package"}
+                      ]
+                  ],
+              _,
+                If[preemptive,
+                  nbExpr =ideNotebookExpr[nb];
+                  premptiveQueuedEval[nb,
+                    Internal`WithLocalSettings[
+                      nbObj = CreateDocument[nbExpr, Visible->False],
+                      FrontEndExecute@
+                        FrontEndToken[
+                          nbObj,
+                          "Save",
+                          {f, "Text"}
+                          ],
+                      NotebookClose[nbObj]
+                      ]
+                    ],
+                  nbObj = nb;
+                  FrontEndExecute@
+                    FrontEndToken[
+                      nbObj,
+                      "Save",
+                      {f, "Text"}
+                      ]
+                  ]
+              ]
             ]
+          ]
         ]
       ]
     ]
@@ -364,24 +645,68 @@ ideNotebookSave[nb_NotebookObject, file_:Automatic]:=
 
 
 (* ::Subsubsection::Closed:: *)
+(*fileViewerFilter*)
+
+
+
+fileViewerFilter=
+  c__/;(Not@StringStartsQ[c, "."]||StringStartsQ[c, ".git"]);
+
+
+(* ::Subsubsection::Closed:: *)
+(*fileEntryContextMenu*)
+
+
+
+fileEntryContextMenu[file_]:=
+  With[
+    {
+      en=ExpandFileName[file],
+      f=
+        "file://"<>ExternalService`EncodeString[ExpandFileName[file],"/\\"],
+      d=
+        "file://"<>ExternalService`EncodeString[ExpandFileName@DirectoryName[file],"/\\"]
+      },
+      {  
+        MenuItem["Copy File Name",
+          FrontEndExecute[FrontEnd`CopyToClipboard[en]]
+          ],    
+        MenuItem["Open Externally",
+          KernelExecute[FrontEndExecute[FrontEnd`SystemOpen[f]]],
+          MenuEvaluator->Automatic
+          ],
+        MenuItem["Open Parent",
+          KernelExecute@FrontEndExecute[FrontEnd`SystemOpen[d]],
+          MenuEvaluator->Automatic
+          ]
+        }
+      ]
+
+
+(* ::Subsubsection::Closed:: *)
 (*fileViewer*)
 
 
 
+fileViewer//Clear
 fileViewer[
+  st:Verbatim[Dynamic][stt_],
   root_, 
-  smap_:<|
-    "Directory"->{FontFamily->"Helvetica", FontColor->Hue[.666, .5, .5]}, 
-    "File"->{FontFamily->"Helvetica"}
-    |>,
-  refreshHandle:Verbatim[Dynamic][_]:Dynamic[None]
+  smap_,
+  refreshHandle:Verbatim[Dynamic][_]:Dynamic[None],
+  fileFilter:_StringPattern`StringPatternQ:fileViewerFilter
   ]:=
   DynamicModule[
     {
-      state = <||>,
       styles = If[!AssociationQ@smap, <|"Directory"->{}, "File"->smap|>, smap],
-      fileViewerCell
+      fileViewerCell,
+      getDirColumn,
+      setDeleteState,
+      getDirectoryToggle,
+      getToggleListener,
+      filter = fileFilter
       },
+    If[!AssociationQ[stt], stt=<||>];
     If[!KeyExistsQ[styles, "Directory"],
       styles["Directory"]={}
       ];
@@ -392,39 +717,102 @@ fileViewer[
       Verbatim[Dynamic][refresh_]:>
         Dynamic[
           refresh;
-          fileViewerCell[Dynamic[state], root, styles],
+          fileViewerCell[Dynamic[stt], root, styles],
           TrackedSymbols:>{refresh}
           ]
       ],
     Initialization:>{
-        fileViewerCell[s:Verbatim[Dynamic][state_], dir_, styl_]:=
-          MouseAppearance[
-            OpenerView[
-              {
-                Replace[
-                  styl["Directory"],
+      getDirColumn[s_, dir_, styl_]:=
+        If[DirectoryQ[#], 
+          fileViewerCell[s, #, styl],
+          Replace[
+            styl["File"],
+            {
+              f_Function:>f[#],
+              e_:>Style[FileNameTake[#], e]
+              }
+            ]
+          ]&/@FileNames[filter, dir]//Column;,
+      setDeleteState[s:Verbatim[Dynamic][state_], dir_, styl_][val_, old_]:=
+        (
+          If[!KeyExistsQ[state, dir], state[dir]=<||>];
+          If[val,
+            state[dir, "Listing"]=
+              getDirColumn[s, dir, styl],
+            state[dir, "Listing"]=.
+            ];
+          state[dir, "Visible"]=val;
+          ),
+      getDirectoryToggle[s:Verbatim[Dynamic][state_], dir_, styl_]:=
+        EventHandler[
+          Replace[
+            styl["Directory"],
+            {
+              f_Function:>f[dir],
+              e_:>Style[FileNameTake[dir], e]
+              }
+            ],
+          {
+            "MouseClicked":>
+              With[{old=Lookup[Lookup[state, dir, <||>], "Visible", False]},
+                setDeleteState[s, dir, styl][!old, old]
+                ],
+            PassEventsDown->True,
+            PassEventsUp->True
+            }
+          ],
+      getToggleListener[s:Verbatim[Dynamic][state_], dir_]:=
+        Replace[
+          If[!KeyExistsQ[state, dir], state[dir]=<||>];
+          Lookup[state[dir], "Listener", Null],
+          Null:>
+            (state[dir, "Listener"]=Module[{toggleListener}, toggleListener])
+          ],
+      fileViewerCell[s:Verbatim[Dynamic][state_], dir_, styl_]:=
+        (*With[{toggler=getToggleListener[s, dir]},*)
+          PaneSelector[
+            {
+              False->
+                Grid[
                   {
-                    f_Function:>f[dir],
-                    e_:>Style[FileNameTake[dir], e]
-                    }
-                  ],
-                If[DirectoryQ[#], 
-                  fileViewerCell[s, #, styl],
-                  Replace[
-                    styl["File"],
                     {
-                      f_Function:>f[#],
-                      e_:>Style[FileNameTake[#], e]
+                      Opener[
+                        Dynamic[
+                          Lookup[Lookup[state, dir, <||>], "Visible", False],
+                          setDeleteState[s, dir, styl]
+                          ]
+                        ], 
+                      getDirectoryToggle[s, dir, styl]
                       }
-                    ]
-                  ]&/@FileNames["*", dir]//Column//Dynamic
-                },
-              Dynamic[
-                Lookup[state, dir, False],
-                (state[dir]=#)&
-                ]
+                    },
+                  Alignment->Left
+                  ],
+              True->
+                Grid[
+                  {
+                    {
+                      Opener[
+                        Dynamic[
+                          Lookup[Lookup[state, dir, <||>], "Visible", False],
+                          setDeleteState[s, dir, styl]
+                          ]
+                        ], 
+                      getDirectoryToggle[s, dir, styl]
+                      },
+                    {Null, 
+                      Dynamic[
+                        state[dir, "Listing"],
+                        TrackedSymbols:>{state}
+                        ]}
+                    },
+                  Alignment->Left
+                  ]
+              },
+            Dynamic[
+              Lookup[Lookup[state, dir, <||>], "Visible", False],
+              setDeleteState[s, dir, styl]
               ],
-            "Arrow"
+            BaseStyle->"FileViewerOpener"
             ]
         }
     ]
@@ -435,45 +823,58 @@ fileViewer[
 
 
 
-Quiet[
+getStateSym[nb_]:=
+  ideTmpData[
+    nb,
+    "FileViewerState",
+    With[{state=Unique["state"<>ToString[RandomInteger[{100, 200}]]<>"$"]},
+      SetAttributes[state, Temporary];
+      Dynamic[state]
+      ]
+    ];
+
 
 getFileViewerCell[nb_]:=
   Cell[
     BoxData@ToBoxes@
       Pane[
         fileViewer[
+          getStateSym[nb],
           ideProjectDir[nb],
           <|
-            "Directory"->{FontFamily->"Helvetica", FontColor->Hue[.666, .5, .5]}, 
-            "File"->(
+            "Directory"->{
+              "FileViewerDirectory"
+              }, 
+            "File"->
+              Function[
                 EventHandler[
-                  Style[FileNameTake[#], FontFamily->"Helvetica"], 
-                  {"MouseClicked":>If[CurrentValue["MouseClickCount"]==2, IDEOpen[nb, #]]}
-                  ]&
-                )
+                  MouseAppearance[
+                    Style[FileNameTake[#], 
+                      "FileViewerFile",
+                      ContextMenu->fileEntryContextMenu[#]
+                      ], 
+                    "LinkHand"
+                    ],
+                  {
+                    "MouseClicked":>
+                      (
+                        If[CurrentValue["MouseClickCount"]==2, 
+                          IDEOpen[nb, #]
+                          ]
+                        ),
+                    PassEventsUp->True,
+                    PassEventsDown->True
+                    }
+                  ]
+                ]
             |>,
           ideNbData[nb, {"FileViewer", "RefreshHook"}, Dynamic[fileViewerRefresh]]
           ],
-        {
-          200, 
-          FEPrivate`Part[
-            FrontEnd`AbsoluteCurrentValue[nb, WindowSize],
-            2
-            ]-30
-          },
-        Alignment->{Left, Top},
-        Scrollbars->{False, Automatic},
-        AppearanceElements->None
+        BaseStyle->"FileViewerPane"
         ],
-    "FileBrowserCell",
-    Background->GrayLevel[.98],
-    CellFrame->{{0, 1}, {0, 0}},
-    CellMargins->{{0, 0}, {0, -2}},
-    System`CellFrameStyle->GrayLevel[.8]
-    ],
-    
-General::shdw
-]
+    "FileViewerCell",
+    "DockedCell"
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -484,9 +885,9 @@ General::shdw
 ideNotebookToggleFileBrowser[nb_]:=
   If[!ideViewerToggled[nb],
     ideSetNbData[nb, {"FileViewer", "Visible"}, True];
-    ideSetNbData[
+    ideSetTmpData[
       nb,
-      {"FileViewer", "Cell"},
+      "FileViewerCell",
       FEAttachCell[
         nb, 
         getFileViewerCell[nb],
@@ -495,8 +896,19 @@ ideNotebookToggleFileBrowser[nb_]:=
         {Left, Top},
         {"EvaluatorQuit"}
         ]
+      ];
+    addIDENotebookStylesheet[
+      nb, 
+      FrontEnd`FileName[{"EasyIDE", "Private"}, "FileViewer.nb"]
       ],
-    NotebookDelete@ideNbData[nb, {"FileViewer", "Cell"}];
+    With[{c=ideTmpData[nb, "FileViewerCell"]},
+      If[NotebookRead[c]=!=$Failed, NotebookDelete[c]]
+      ];
+    removeIDENotebookStylesheet[
+      nb, 
+      FrontEnd`FileName[{"EasyIDE", "Private"}, "FileViewer.nb"]
+      ];
+    ideSetTmpData[nb, "FileViewerCell", None];
     ideSetNbData[nb, {"FileViewer", "Visible"}, False]
     ];
 
@@ -507,37 +919,11 @@ ideNotebookToggleFileBrowser[nb_]:=
 
 
 toggleFileViewerButton[]:=
-  Button["\[Congruent]",
+  Button[
+    "\[Congruent]",
     ideNotebookToggleFileBrowser[EvaluationNotebook[]],
-    Appearance->
-      {
-        "Default"->
-          With[{p={$PackageName}},
-            FrontEnd`FileName[
-              p,
-              "FileViewerDown.png"
-              ]
-            ],
-        "Pressed"->
-          With[{p={$PackageName}},
-            FrontEnd`FileName[
-              p,
-              "FileViewerUp.png"
-              ]
-            ],
-        With[
-          {
-            c=
-              Block[
-                {CurrentValue=FrontEnd`CurrentValue}, 
-                ideViewerToggled[FrontEnd`EvaluationNotebook[]]
-                ]
-            },
-          FEPrivate`If[FEPrivate`SameQ[c, True], "Pressed", Automatic]
-          ]
-        },
-    ImageSize->{25, 25},
-    FrameMargins->{{-5, -5}, {-3, -5}}
+    BaseStyle->"FileViewerToggleButton",
+    Appearance->Inherited
     ]
 
 
@@ -626,9 +1012,11 @@ normalizePlugin[a_Association]:=
       If[ListQ@plugin["Menu"],
         plugin["Menu"]=
           ActionMenu[
-            Button[Style[plugin["Name"], Hue[0, .1, 1]], "", 
-              FrameMargins->{{5, 0}, {0, 0}},
-              Appearance->{"Default"->FrontEnd`FileName[{"EasyIDE"}, "DropDown.9.png"]}
+            Button[
+              plugin["Name"], 
+              "",
+              BaseStyle->"PluginMenu",
+              Appearance->Inherited
               ],
             Replace[
               plugin["Menu"],
@@ -638,7 +1026,8 @@ normalizePlugin[a_Association]:=
                 },
               1
               ],
-            Appearance->None
+            BaseStyle->"PluginMenu",
+            MenuAppearance->"PluginMenuList"
             ]
         ]
       ];
@@ -683,21 +1072,9 @@ makeMenuExpr[s:Verbatim[Dynamic][state_], menuList_]:=
       Column[
         makeMenuCommand[s, #]&/@menuList
         ],
-      FilterRules[
-        {
-          BaseStyle->"Text",
-          ImageSize->{150, Automatic},
-          FrameMargins->{{-1, -3}, {-2, -1}},
-          Appearance->
-            {
-              "Default"->
-                FrontEnd`FileName[{"EasyIDE"}, "MenuItem.9.png"]
-              }
-          },
-        Options[Panel]
-        ]
+      BaseStyle->"CascadingMenuMain"
       ],
-    {150, Automatic},
+    BaseStyle->"CascadingMenuMain",
     ImageSizeAction->"Clip"
     ];
 
@@ -712,19 +1089,18 @@ makeMenuCommand//Clear
 
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
     Button[
-      Grid[{{
-        Pane[label, {90, Automatic}, Alignment->{Left, Top}], 
-        Pane["\[RightPointer]", {10, Automatic}, Alignment->{Left, Top}]}}],
+      Grid[
+        {
+          {
+            Pane[label, {90, Automatic}, Alignment->{Left, Top}], 
+            Pane["\[RightPointer]", {10, Automatic}, Alignment->{Left, Top}]
+            }
+          },
+        GridBoxItemSize->Inherited
+        ],
       attachMenuExpr[s, EvaluationBox[], makeMenuExpr[s, list]],
-      AutoAction->True,
-      Appearance->{
-        "Hover"->FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"],
-        "Pressed" -> FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"]
-        },
-      FrameMargins->{{20, 20}, {15, 15}},
-      ImageSize->{150, Automatic},
-      BaseStyle->"Text",
-      Alignment->{Left, Top}
+      BaseStyle->"CascadingMenuSubmenu",
+      Appearance->Inherited
       ]
 
 
@@ -738,14 +1114,8 @@ makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>command_]:=
         destroyMenu[s]
         ],
       ButtonData:>s,
-      Appearance->
-        {
-          "Default"->None,
-          "Hover"->FrontEnd`FileName[{"EasyIDE"}, "MenuItem-Hover.9.png"]
-          },
-      FrameMargins->{{20, 20}, {15, 15}},
-      ImageSize->Scaled[1],
-      Alignment->Left
+      BaseStyle->"CascadingMenuCommand",
+      Appearance->Inherited
       ],
   {
     "MouseEntered":> pruneMenu[s, EvaluationCell[], False],
@@ -890,7 +1260,7 @@ ideNotebookLoadPluginsMenu[]:=
     Module[{pluginMenuState},
       {
         Button[
-          Style["Plugins", Hue[0, .1, 1]],
+          "Plugins",
           If[!AssociationQ[pluginMenuState],
             pluginMenuState=<||>
             ];
@@ -900,13 +1270,9 @@ ideNotebookLoadPluginsMenu[]:=
               Lookup[data["Commands"], "Commands"]
               ]
             ],
-          Appearance->{
-            "Default"->
-              FrontEnd`FileName[{"EasyIDE"}, "DropDown.9.png"]
-            },
-          ImageSize->{Automatic, Automatic},
-          FrameMargins->{{5, 0}, {0, 0}},
-          BaselinePosition->Top
+          BaseStyle->"PluginMenu",
+          Appearance->Inherited,
+          ImageSize->{Automatic, Automatic}
           ],
         Lookup[data["Menu"], "Menu"]
         }
@@ -968,21 +1334,13 @@ createTabObject[tabName_String]:=
         Spacer[3],
         Button["", 
          ideNotebookCloseTab[EvaluationNotebook[], tabName], 
-          Appearance->
-            {
-              "Default"->None,
-              "Hover"->
-                FrontEnd`FileName[{"Typeset", "Message"}, "close.png"],
-              "Pressed"->
-                FrontEnd`FileName[{"Typeset", "Message"}, "close-hover.png"]
-              },
-          ImageSize->{12, 12}
+          BaseStyle->"TabCloseButton",
+          Appearance->Inherited
           ]
         },
     ImageSize->{Automatic, 25},
-    Appearance->
-      {
-        "Default"->With[
+    BaseStyle->
+      With[
           {
             c=
               Block[
@@ -991,13 +1349,11 @@ createTabObject[tabName_String]:=
                 ]
             },
           FEPrivate`If[FEPrivate`SameQ[c, tabName], 
-            FrontEnd`FileName[{"EasyIDE"}, "Tab.9.png"], 
-            FrontEnd`FileName[{"EasyIDE"}, "TabBackground.9.png"]
+            "TabPanelActive", 
+            "TabPanelBackground"
             ]
-          ]
-        },
-    BoxID->tabName<>"-tab",
-    BaselinePosition->Top
+          ],
+    BoxID->tabName<>"-tab"
     ]
 
 
@@ -1008,30 +1364,6 @@ createTabObject[tabName_String]:=
 
 tabObjectPattern[tabName_]:=
   Panel[___, BoxID->tabName, ___]
-
-
-(* ::Subsubsection::Closed:: *)
-(*insertTab*)
-
-
-
-insertTab[dockedCell_, tabName_]:=
-  dockedCell/.
-    TemplateBox[tabs_, k:"TabbingRow", r___]:>
-      TemplateBox[
-        Append[tabs, ToBoxes[createTabObject[tabName]]],
-        k,
-        r
-        ]
-
-
-(* ::Subsubsection::Closed:: *)
-(*deleteTab*)
-
-
-
-deleteTab[dockedCell_, tabName_]:=
-  DeleteCases[dockedCell, tabObjectPattern[tabName], Infinity]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1116,7 +1448,31 @@ ideNotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:Tr
 
 
 getFileTabName[nb_, f_]:=
-  FileBaseName[f]
+  Module[
+    {
+      tabs = ideNbData[nb, "Tabs"],
+      tns,
+      tabName
+      },
+    tabName =
+      Do[If[Lookup[t[[2]], "File"]==f, Return[t[[1]], Do]], {t, tabs}];
+    If[tabName===Null,
+      tabName = FileBaseName[f];
+      tns = tabs[[All, 1]];
+      If[MemberQ[tns, tabName],
+        tabName = tabName <> "." <> FileExtension[f]
+        ];
+      tabName=
+        NestWhile[
+          # <> "/" <> FileNameTake[f, -Length[URLParse[#, "Path"]]]&,
+          tabName,
+          MemberQ[tns, #]&,
+          1,
+          FileNameDepth[f]-1
+          ]
+      ];
+    tabName
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1175,34 +1531,6 @@ IDEClose[nb_IDENotebookObject, tabName_]:=
 
 
 (* ::Subsubsection::Closed:: *)
-(*createIDENotebookBar*)
-
-
-
-createIDENotebookBar[]:=
-  GridBox[{{
-    GridBox[{{
-      ToBoxes@toggleFileViewerButton[],
-      ""
-      }},
-      GridBoxAlignment->{"Rows" -> {{Center}}},
-      GridBoxItemSize->
-        {
-          "Columns" -> 
-            {Full, Scaled[0.02]},
-          "Rows" -> {{2.5}}
-          }
-      ],
-    Cell[
-      BoxData@
-        ToBoxes@Dynamic[Refresh[ideNotebookLoadPluginsMenus[], None]],
-      "IDENotebookMenu"
-      ]
-    }}
-  ];
-
-
-(* ::Subsubsection::Closed:: *)
 (*createIDENotebookTabs*)
 
 
@@ -1230,53 +1558,42 @@ createIDENotebookDockedCell[]:=
         toggleFileViewerButton[]
       },
     If[Length@menus[[2]]>3,
-      Column[
-        {
-          menus[[2]]//List//Grid,
-          Grid[
-            {
-              {
-                Item[
-                  Pane[viewer, ImageSize->{Scaled[1], 25},
-                    BaselinePosition->Top],
-                  Alignment->Right
-                  ],
-                Item[tabs, Alignment->Left],
-                Item[menus[[1]], Alignment->Right]
-                }
+      Panel[
+        Column[
+          {
+            Grid[
+              menus[[2]]//List, 
+              BaseStyle->"MainMenuTwoRowTop",
+              GridBoxItemSize->Inherited
+              ],
+            Grid[
+              {{viewer, tabs, menus[[1]]}},
+              BaseStyle->"MainMenuTwoRowBottom",
+              GridBoxItemSize->Inherited
+              ]
             },
-          ItemSize->{
-              {Scaled[.05], Scaled[.75], Scaled[.2]}, 
-              Automatic
-              },
-          Alignment->{Left, Bottom}
-          ]
-        },
-      ItemSize->{Scaled[1], Automatic},
-      Dividers->{{}, {None, GrayLevel[.8]}}
-      ],
-      Grid[
+          BaseStyle->"MainMenuTwoRow"
+          ],
+        BaseStyle->"MainMenuTwoRow"
+        ],
+      Panel[
+        Grid[
           {
             {
-              Item[
-                Pane[viewer, ImageSize->{Scaled[1], 25},
-                  BaselinePosition->Top],
-                Alignment->Right
-                ],
-              Item[tabs, Alignment->Left],
-              Item[
-                Map[
-                  Append[#, BaselinePosition->Top]&,
-                  Append[menus[[2]], menus[[1]]]
-                  ]//List//Grid, Alignment->Right]
+              viewer,
+              tabs,
+              Grid[
+                {Append[menus[[2]], menus[[1]]]},
+                BaseStyle->"MainMenuOneRowPlugins",
+                GridBoxItemSize->Inherited
+                ]
               }
-          },
-          ItemSize->{
-            {Scaled[.05], Scaled[.55], Scaled[.4]}, 
-            Automatic
             },
-          Alignment->{Left, Bottom}
-          ]
+          BaseStyle->"MainMenuOneRow",
+          GridBoxItemSize->Inherited
+          ],
+        BaseStyle->"MainMenuOneRow"
+        ]
       ]
     ]
 
@@ -1328,7 +1645,16 @@ createIDENotebook[dir_String]:=
         "IndentCharacter"->"  "
         },
       StyleDefinitions->
-        FrontEnd`FileName[{"EasyIDE"}, "EasyIDE.nb"],
+        Notebook[
+          {
+            Cell[
+              StyleData[
+                StyleDefinitions->FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]
+                ]
+              ]
+            },
+          StyleDefinitions->"PrivateStylesheetFormatting.nb"
+          ],
       WindowTitle->"EasyIDE: ``"~TemplateApply~FileBaseName[dir]
       ]
 

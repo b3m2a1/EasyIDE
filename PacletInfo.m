@@ -10,16 +10,6 @@ Paclet[
      		"Context" -> {"EasyIDE`"}
      	},
     	{
-     		"Resource",
-     		"Root" -> "Resources",
-     		"Resources" -> {
-       			{
-        				"Tab.9",
-        				"Tab.9.png"
-        			}
-       		}
-     	},
-    	{
      		"FrontEnd",
      		Prepend -> True
      	}

@@ -18,7 +18,7 @@ $ContextPath = DeleteDuplicates@Join[$ContextPath, cpath];
 
 openFile[f_String]:=
   If[FileExistsQ[f],
-    IDEOpen[EvaluationNotebook[], f]
+    IDEOpen[$CurrentIDENotebook, f]
     ];
 openFile[]:=
   openFile@SystemDialogInput["FileOpen"]

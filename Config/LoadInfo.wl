@@ -24,6 +24,7 @@
 		"BTools`Paclets`",
 		"BTools`Developer`",
 		"BTools`External`",
+		"BTools`FrontEnd`",
 		"InterfaceObjects`"
 	},
 	"PreLoad" -> None,
