@@ -33,6 +33,53 @@ InterfaceMethod[IDENotebookObject]@
     IDEClose[g, f];
 
 
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["SwitchTab"][t_]:=
+    IDESwitchTab[g, t]
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["Path"][f_]:=
+    IDEPath[g, f];
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["Data"][f__]:=
+    IDEData[g, f];
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["SetData"][f__, v_]:=
+    IDEData[g, f]=v;
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["ToggleFileViewer"][]:=
+    IDEToggleFileViewer[g];
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["AddToolbar"][t_, tag_]:=
+    IDEAddToolbar[g, t, tag];
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["RemoveToolbar"][tag_]:=
+    IDERemoveToolbar[g, tag];
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["AddStyles"][styles_, tag:Repeated[_, {0, 1}]]:=
+    IDEAddStyles[g, styles, tag];
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["RemoveStyles"][tag_]:=
+    IDERemoveStyles[g, tag];
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["GetStylesheet"][]:=
+    IDEGetStylesheet[g];
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["SetStylesheet"][styleSheet_]:=
+    IDESetStylesheet[g, styleSheet];
+
+
 End[];
 
 

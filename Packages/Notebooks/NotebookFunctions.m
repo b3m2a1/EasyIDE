@@ -11,13 +11,53 @@ CreateIDENotebook::usage="";
 
 
 (* ::Text:: *)
+(*Functions for getting IDE data*)
+
+
+
+IDEData::usage="";
+IDEPath::usage="";
+
+
+(* ::Text:: *)
 (*The functions provided to an IDENotebookObject as methods*)
 
 
 
-IDEOpen::usage="";
-IDESave::usage="";
-IDEClose::usage="";
+IDEOpen::usage="Open a file in the IDE notebook";
+IDESave::usage="Save the active IDE notebook file";
+IDEClose::usage="Close the IDE notebook";
+
+
+(* ::Text:: *)
+(*Tabs / toolbars / stylesheets*)
+
+
+
+IDEToggleFileViewer::usage="Toggles the file viewer";
+
+
+IDESwitchTab::usage="Switches the IDE tab";
+
+
+IDEAddToolbar::usage="Adds a toolbar to the IDE";
+IDERemoveToolbar::usage="Removes a toolbar from the IDE";
+
+
+IDEAddStyles::usage="Adds styles to the IDE notebook";
+IDERemoveStyles::usage="Removes styles from the IDE notebook";
+
+
+IDEGetStylesheet::usage="Gets the IDE notebook stylesheet";
+IDESetStylesheet::usage="Sets the IDE notebook stylesheet";
+
+
+(* ::Text:: *)
+(*Ensures the IDE has a project bound to it*)
+
+
+
+EnsureIDEProject::usage="";
 
 
 (* ::Text:: *)
@@ -28,12 +68,7 @@ IDEClose::usage="";
 $PluginsPath::usage="The path to look for plugins on";
 
 
-(* ::Text:: *)
-(*The menu used in the notebooks*)
-
-
-
-$IDENotebookMenu::usage="";
+GetIDENotebookMenu::usage="Gets the menu used in the IDENotebookObjects";
 
 
 (* ::Text:: *)
@@ -220,15 +255,6 @@ ideTabExists[nb_, tab_]:=
 
 
 (* ::Subsubsection::Closed:: *)
-(*ideProjectDir*)
-
-
-
-ideProjectDir[nb_]:=
-  ideNbData[nb, {"Project", "Directory"}];
-
-
-(* ::Subsubsection::Closed:: *)
 (*ideActiveFile*)
 
 
@@ -304,44 +330,86 @@ ideNotebookExpr[nb_]:=
     ]
 
 
-(* ::Subsection:: *)
-(*Styles*)
+(* ::Subsubsection::Closed:: *)
+(*IDEData*)
 
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*Normal*)
+
+
+
+IDEData[nb_NotebookObject, key:_String|{__String}, default_]:=
+  ideNbData[nb, key, default];
+IDEData[nb_NotebookObject, key:_String|{__String}]:=
+  ideNbData[nb, key];
+IDEData/:
+  (IDEData[nb_NotebookObject, key:_String|{__String}]=val_):=
+    ideSetNbData[nb, key, val]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*Temporary*)
+
+
+
+IDEData[nb_NotebookObject, PrivateKey[key_]]:=
+  ideTmpData[nb, key];
+IDEData[nb_NotebookObject, PrivateKey[key_], default_]:=
+  ideTmpData[nb, key, default];
+IDEData/:
+  (IDEData[nb_NotebookObject, PrivateKey[key_]]=val_):=
+    ideSetTmpData[nb, key, val]
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*IDENotebookObject*)
+
+
+
+IDEData[ide_IDENotebookObject, key_, default___]:=
+  Module[{nb=ide["Notebook"], res},
+    res = IDEData[nb, key, default];
+    res/;Head[res]=!=IDEData
+    ];
+IDEData/:
+  (IDEData[ide_IDENotebookObject, key:_String|{__String}|_PrivateKey]=val_):=
+    Module[{nb=ide["Notebook"], res},
+      IDEData[nb, key]=val
+      ]
 
 
 (* ::Subsubsection::Closed:: *)
-(*getStylesheetDefsSection*)
+(*ideProjectDir*)
 
 
 
-getStylesheetDefsSection[file_]:=
-  Module[
-    {
-      fileName,
-      data,
-      sec
-      },
-    fileName=
-      FrontEndExecute@
-        FrontEnd`FindFileOnPath[file, "StyleSheetPath"];
-    data = Cases[Get[fileName][[1]], Cell[_StyleData, ___], \[Infinity]];
-    sec = 
-      Cell[
-        ToString[file], 
-        "Subsubsubsubsection",
-        CellGroupingRules->{"SectionGrouping",200},
-        CellTags->{ToString[file]}
-        ];
-    Cell[
-      CellGroupData[
-        Flatten@{
-          sec,
-          data
-          },
-        Closed
-        ]
-      ]
-    ]
+ideProjectDir[nb_]:=
+  ideNbData[nb, {"Project", "Directory"}];
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDEPath*)
+
+
+
+IDEPath[nb_NotebookObject, fileName_String]:=
+  ideAbsPath[nb, fileName];
+IDEPath[ide_IDENotebookObject, fileName_String]:=
+  ideAbsPath[ide["Notebook"], fileName];
+
+
+IDEPath[nb_NotebookObject]:=
+  ideProjectDir[nb];
+IDEPath[ide_IDENotebookObject]:=
+  ideProjectDir[ide["Notebook"]];
+
+
+(* ::Subsection:: *)
+(*Styles*)
+
 
 
 (* ::Subsubsection::Closed:: *)
@@ -396,18 +464,59 @@ setMainStylesheet[nb_, f_]:=
 
 
 (* ::Subsubsection::Closed:: *)
-(*addIDENotebookStylesheet*)
+(*getStylesheetDefsSection*)
 
 
 
-addIDENotebookStylesheet[nb_, fileName_]:=
+getStylesheetDefsSection[data:{__Cell}, tag_String]:=
+  Module[
+    {sec},
+    sec = 
+      Cell[
+        tag, 
+        "Subsubsubsubsection",
+        CellGroupingRules->{"SectionGrouping",200},
+        CellTags->{tag}
+        ];
+    Cell[
+      CellGroupData[
+        Flatten@{
+          sec,
+          data
+          },
+        Closed
+        ]
+      ]
+    ];
+getStylesheetDefsSection[file:_String|_FrontEnd`FileName]:=
+  Module[
+    {
+      fileName,
+      data,
+      sec
+      },
+    fileName=
+      FrontEndExecute@
+        FrontEnd`FindFileOnPath[file, "StyleSheetPath"];
+    If[StringQ@fileName, 
+      data = Cases[Get[fileName][[1]], Cell[_StyleData, ___], \[Infinity]];
+      getStylesheetDefsSection[data, ToString@file],
+      $Failed
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*addIDENotebookStyles*)
+
+
+
+addIDENotebookStyles[nb_, styleData:_Cell, tag_]:=
   Module[
     {
       nbo,
       currDefs,
-      defCells,
-      defFiles,
-      file = If[!StringQ[fileName], ToFileName[fileName], fileName]
+      defCells
       },
     currDefs = CurrentValue[nb, StyleDefinitions];
     If[Head[currDefs] =!= Notebook,
@@ -415,18 +524,59 @@ addIDENotebookStylesheet[nb_, fileName_]:=
         Notebook[
           {
             Cell[StyleData[StyleDefinitions->currDefs]],
-            getStylesheetDefsSection[file]
+            styleData
             },
           StyleDefinitions->"PrivateStylesheetFormatting.nb"
           ],
       nbo = StyleSheetNotebookObject[nb];
-      defCells = Cells[nbo, CellTags->file];
+      defCells = Cells[nbo, CellTags->tag];
       If[Length@defCells === 0,
-        If[!MemberQ[defFiles, file],
-          SelectionMove[nbo, After, Notebook];
-          NotebookWrite[nbo, getStylesheetDefsSection[file]]
-          ]
+        SelectionMove[nbo, After, Notebook];
+        NotebookWrite[nbo, styleData]
         ]
+      ]
+    ]
+addIDENotebookStyles[nb_, styleData:{__Cell}, tag_]:=
+  addIDENotebookStyles[nb, getStylesheetDefsSection[styleData, tag], tag];
+
+
+(* ::Subsubsection::Closed:: *)
+(*addIDENotebookStylesheet*)
+
+
+
+addIDENotebookStylesheet[nb_, fileName_]:=
+  Module[
+    {
+      file = If[!StringQ[fileName], ToFileName[fileName], fileName],
+      styles
+      },
+    styles = getStylesheetDefsSection[file];
+    If[styles=!=$Failed,
+      addIDENotebookStyles[nb, styles, ToString@file]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*removeIDENotebookStyles*)
+
+
+
+removeIDENotebookStyles[nb_, tag_]:=
+  Module[
+    {
+      nbo,
+      defCells
+      },
+    nbo = StyleSheetNotebookObject[nb];
+    defCells = Cells[nbo, CellTags->tag];
+    Map[
+      Function[
+        SelectionMove[#, All, CellGroup];
+        NotebookDelete[nbo]
+        ],
+      defCells
       ]
     ]
 
@@ -437,24 +587,102 @@ addIDENotebookStylesheet[nb_, fileName_]:=
 
 
 removeIDENotebookStylesheet[nb_, fileName_]:=
-  Module[
-    {
-      nbo,
-      currDefs,
-      defCells,
-      defFiles,
-      file = If[!StringQ[fileName], ToFileName[fileName], fileName]
-      },
-    nbo = StyleSheetNotebookObject[nb];
-    defCells = Cells[nbo, CellTags->file];
-    Map[
-      Function[
-        SelectionMove[#, All, CellGroup];
-        NotebookDelete[nbo]
-        ],
-      defCells
-      ]
+  removeIDENotebookStyles[
+    nb,
+    If[!StringQ[fileName], ToFileName[fileName], fileName]
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*prepStyleDefs*)
+
+
+
+prepStyleDefs[rules:{(_String->_)..}]:=
+  KeyValueMap[
+    Cell[
+      StyleData[#],
+      Sequence@@Flatten@{#2}
+      ]&,
+    Association@rules
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDEAddStyles*)
+
+
+
+IDEAddStyles//Clear
+
+
+IDEAddStyles[nb_NotebookObject, styles:{__Cell}, tag_String]:=
+  addIDENotebookStyles[nb, styles, tag];
+IDEAddStyles[ide_IDENotebookObject, styles:{__Cell}, tag_String]:=
+  IDEAddStyles[ide["Notebook"], styles, tag];
+
+
+IDEAddStyles[nb_NotebookObject, styles:_String|_FrontEnd`FileName]:=
+  addIDENotebookStylesheet[nb, styles];
+IDEAddStyles[ide_IDENotebookObject, styles:_String|_FrontEnd`FileName]:=
+  addIDENotebookStylesheet[ide["Notebook"], styles];
+
+
+IDEAddStyles[
+  nb_NotebookObject, 
+  rules:({(_String->_)..})|(_String->_)|(_Association), 
+  tag_String
+  ]:=
+  addIDENotebookStyles[nb, prepStyleDefs[Normal@Association[rules]], tag];
+IDEAddStyles[
+  ide_IDENotebookObject, 
+  rules:{(_String->_)..}|(_String->_)|_Association, 
+  tag_String
+  ]:=IDEAddStyles[ide["Notebook"], rules, tag]
+
+
+IDEAddStyles::usage="Adds styles to the IDE notebook";
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDERemoveStyles*)
+
+
+
+IDERemoveStyles//Clear
+
+
+IDERemoveStyles[nb_NotebookObject, tag_String]:=
+  If[StringEndsQ[tag, ".nb"],
+    removeIDENotebookStylesheet[nb, tag];,
+    removeIDENotebookStyles[nb, tag];
+    ];
+IDERemoveStyles[nb_NotebookObject, tag_FrontEnd`FileName]:=
+  removeIDENotebookStylesheet[nb, tag];
+IDERemoveStyles[ide_IDENotebookObject, tag:_FrontEnd`FileName|_String]:=
+  IDERemoveStyles[ide["Notebook"], tag]
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDEGetStylesheet*)
+
+
+
+IDEGetStylesheet[nb_NotebookObject]:=
+  getMainStylesheet[nb];
+IDEGetStylesheet[ide_IDENotebookObject]:=
+  IDEGetStylesheet[ide["Notebook"]];
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDESetStylesheet*)
+
+
+
+IDESetStylesheet[nb_NotebookObject, file:_String|_FrontEnd`FileName]:=
+  setMainStylesheet[nb, file];
+IDESetStylesheet[ide_IDENotebookObject, file:_String|_FrontEnd`FileName]:=
+  IDESetStylesheet[ide["Notebook"], file];
 
 
 (* ::Subsection:: *)
@@ -868,7 +1096,7 @@ getFileViewerCell[nb_]:=
                   ]
                 ]
             |>,
-          ideNbData[nb, {"FileViewer", "RefreshHook"}, Dynamic[fileViewerRefresh]]
+          ideTmpData[nb, {"FileViewer", "RefreshHook"}, Dynamic[fileViewerRefresh]]
           ],
         BaseStyle->"FileViewerPane"
         ],
@@ -918,13 +1146,25 @@ ideNotebookToggleFileBrowser[nb_]:=
 
 
 
-toggleFileViewerButton[]:=
+toggleFileViewerButton//Clear
+toggleFileViewerButton[nb_:Automatic]:=
   Button[
     "\[Congruent]",
-    ideNotebookToggleFileBrowser[EvaluationNotebook[]],
+    ideNotebookToggleFileBrowser[Replace[nb, Automatic:>EvaluationNotebook[]]],
     BaseStyle->"FileViewerToggleButton",
     Appearance->Inherited
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDEToggleFileViewer*)
+
+
+
+IDEToggleFileViewer[nb_NotebookObject]:=
+  ideNotebookToggleFileBrowser[nb];
+IDEToggleFileViewer[ide_IDENotebookObject]:=
+  IDEToggleFileViewer[ide["Notebook"]];
 
 
 (* ::Subsection:: *)
@@ -1290,7 +1530,7 @@ ideNotebookLoadPluginsMenu[]:=
 
 
 
-createDynamicTabRow[]:=
+createDynamicTabRow[refresh_]:=
   With[
     {
       tns=
@@ -1300,9 +1540,9 @@ createDynamicTabRow[]:=
           ]
       },
     Dynamic[
-      tabRowRefresh;
+      refresh;
       Pane[Row@Map[createTabObject, tns], {Automatic, 35}, Alignment->Bottom],
-      TrackedSymbols:>{tabRowRefresh}
+      TrackedSymbols:>{refresh}
       ]/.cv->CurrentValue
     ]
 
@@ -1371,8 +1611,11 @@ tabObjectPattern[tabName_]:=
 
 
 
-refreshTabs[]:=
-  tabRowRefresh=RandomReal[];
+refreshTabs[nb_]:=
+  Replace[
+    IDEData[nb, PrivateKey["TabsRefreshHandle"]],
+    Hold[var_]:>(var=RandomReal[])
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1435,6 +1678,155 @@ ideNotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:Tr
         ]
       ]
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDESwitchTab*)
+
+
+
+IDESwitchTab[nb_NotebookObject, tagName_]:=
+  ideNotebookSwitchTab[nb, tagName];
+IDESwitchTab[ide_IDENotebookObject, tagName_]:=
+  IDESwitchTab[ide["Notebook"], tagName];
+
+
+(* ::Subsection:: *)
+(*Toolbars*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*refreshToolbars*)
+
+
+
+refreshToolbars[nb_]:=
+  Replace[
+    IDEData[nb, PrivateKey["ToolbarRefreshHandle"]],
+    Hold[var_]:>(var=RandomReal[])
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*makeIDEToolbarGrid*)
+
+
+
+makeIDEToolbarGrid[nb_, tags_]:=
+  With[{data=Lookup[IDEData[nb, {"Toolbars", "Cells"}], tags]},
+    If[Length@data===0,
+      None,
+      GridBox[
+        Thread[{data}],
+        BaseStyle->"Toolbars"
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*removeIDENotebookToolbar*)
+
+
+
+removeIDENotebookToolbar[nb_, tag_]:=
+  Module[{cell, tools, tags},
+    pauseDo[
+      nb,
+      tags = IDEData[nb, {"Toolbars", "Tags"}, {}];
+      If[!ListQ@tags, tags = {}];
+      If[MemberQ[tags, tag], 
+        IDEData[nb, {"Toolbars", "Tags"}] = DeleteCases[tags, tag];
+        IDEData[nb, {"Toolbars", "Cells", tag}] = None
+        ];
+      If[MemberQ[tags, tag],
+        IDEData[nb, {"Toolbars", "Column"}] = 
+          makeIDEToolbarGrid[nb, DeleteCases[tags, tag]]
+        ]
+      ];
+    refreshToolbars[nb]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*addIDENotebookToolbar*)
+
+
+
+addIDENotebookToolbar[nb_, toolbar_, tag_]:=
+  Module[{cell, tools, tags},
+    tools = Flatten@{toolbar};
+    tools=
+      If[Head[#]=!=Cell,
+        StyleBox[ToBoxes[#], "ToolbarElement"],
+        #
+        ]&/@tools;
+    tools =GridBox[Map[List, tools], BaseStyle->"ToolbarCell", BoxID->tag];
+    pauseDo[
+      nb,
+      tags = IDEData[nb, {"Toolbars", "Tags"}, {}];
+      If[!ListQ@tags, tags = {}];
+      If[!MemberQ[tags, tag], 
+        IDEData[nb, {"Toolbars", "Tags"}] = Append[tags, tag];
+        ];
+      IDEData[nb, {"Toolbars", "Cells", tag}] = tools;
+      If[IDEData[nb, {"Toolbars", "Cells", tag}] =!= tools,
+        IDEData[nb, {"Toolbars", "Cells"}] = {};
+        IDEData[nb, {"Toolbars", "Cells", tag}] = tools;
+        ];
+      IDEData[nb, {"Toolbars", "Column"}] = 
+        makeIDEToolbarGrid[nb, Append[tags, tag]];
+      ];
+    refreshToolbars[nb]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*createDynamicToolbarsCell*)
+
+
+
+createDynamicToolbarsCell[toolbarRefresh_]:=
+  With[
+    {
+      h=
+        FrontEnd`CurrentValue[
+          FrontEnd`EvaluationNotebook[], 
+          {TaggingRules, "EasyIDE", "Toolbars", "Column"},
+          None
+          ]
+     },
+    DynamicBox[
+      FEPrivate`If[
+        FEPrivate`SameQ[FEPrivate`Head[h], GridBox],
+        h,
+        PaneBox["", ImageSize->{1, 2}]
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDEAddToolbar*)
+
+
+
+IDEAddToolbar[nb_NotebookObject, toolbar_, tag_String]:=
+  (addIDENotebookToolbar[nb, toolbar, tag];);
+IDEAddToolbar[ide_IDENotebookObject, toolbar_, tag_String]:=
+  IDEAddToolbar[ide["Notebook"], toolbar, tag];
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDERemoveToolbar*)
+
+
+
+IDERemoveToolbar[nb_NotebookObject, tag_String]:=
+  (removeIDENotebookToolbar[nb, tag];);
+IDERemoveToolbar[ide_IDENotebookObject, tag_String]:=
+  IDERemoveToolbar[ide["Notebook"], tag];
 
 
 (* ::Subsection:: *)
@@ -1531,79 +1923,118 @@ IDEClose[nb_IDENotebookObject, tabName_]:=
 
 
 (* ::Subsubsection::Closed:: *)
-(*createIDENotebookTabs*)
-
-
-
-createIDENotebookTabs[]:=
-  RowBox@{
-    ToBoxes@Spacer[{25, 25}],
-    ToBoxes@createDynamicTabRow[]
-    }
-
-
-(* ::Subsubsection::Closed:: *)
 (*createIDENotebookDockedCell*)
 
 
 
-createIDENotebookDockedCell[]:=
-  Module[
+createIDENotebookDockedCell[nb_]:=
+  With[
     {
-      tabs=
-        createDynamicTabRow[],
-      menus=
-        ideNotebookLoadPluginsMenu[],
-      viewer=
-        toggleFileViewerButton[]
+      tabRowRefresh = Unique[tabRowRefresh],
+      toolbarRefresh = Unique[toolbarRefresh]
       },
-    If[Length@menus[[2]]>3,
-      Panel[
-        Column[
-          {
-            Grid[
-              menus[[2]]//List, 
-              BaseStyle->"MainMenuTwoRowTop",
-              GridBoxItemSize->Inherited
-              ],
-            Grid[
-              {{viewer, tabs, menus[[1]]}},
-              BaseStyle->"MainMenuTwoRowBottom",
-              GridBoxItemSize->Inherited
-              ]
-            },
-          BaseStyle->"MainMenuTwoRow"
-          ],
-        BaseStyle->"MainMenuTwoRow"
-        ],
-      Panel[
-        Grid[
-          {
+    IDEData[nb, PrivateKey["TabsRefreshHandle"]]=Hold[tabRowRefresh];
+    IDEData[nb, PrivateKey["ToolbarRefreshHandle"]]=Hold[toolbarRefresh];
+    Module[
+      {
+        tabs=
+          createDynamicTabRow[tabRowRefresh],
+        toolbars=
+          createDynamicToolbarsCell[toolbarRefresh],
+        menus=
+          ideNotebookLoadPluginsMenu[],
+        viewer=
+          toggleFileViewerButton[]
+        },
+      Cell[
+        BoxData@
+          If[Length@menus[[2]]>3,
+            GridBox[
+              {
+                {PanelBox[toolbars, BaseStyle->"MainMenuTwoRowToolbars"]},
+                {ToBoxes@Panel[
+                  Column[
+                    {
+                      Grid[
+                        menus[[2]]//List, 
+                        BaseStyle->"MainMenuTwoRowTop",
+                        GridBoxItemSize->Inherited
+                        ],
+                      Grid[
+                        {{viewer, tabs, menus[[1]]}},
+                        BaseStyle->"MainMenuTwoRowBottom",
+                        GridBoxItemSize->Inherited
+                        ]
+                      },
+                    BaseStyle->"MainMenuTwoRow"
+                    ],
+                  BaseStyle->"MainMenuTwoRow"
+                  ]}
+              },
+            BaseStyle->"MainMenu"
+            ],
+          GridBox[
             {
-              viewer,
-              tabs,
-              Grid[
-                {Append[menus[[2]], menus[[1]]]},
-                BaseStyle->"MainMenuOneRowPlugins",
-                GridBoxItemSize->Inherited
-                ]
-              }
+              {PanelBox[toolbars, BaseStyle->"MainMenuOneRowToolbars"]},
+              {ToBoxes@Panel[
+                Grid[
+                  {
+                    {
+                      viewer,
+                      tabs,
+                      Grid[
+                        {Append[menus[[2]], menus[[1]]]},
+                        BaseStyle->"MainMenuOneRowPlugins",
+                        GridBoxItemSize->Inherited
+                        ]
+                      }
+                    },
+                  BaseStyle->"MainMenuOneRow",
+                  GridBoxItemSize->Inherited
+                  ],
+                BaseStyle->"MainMenuOneRow"
+                ]}
             },
-          BaseStyle->"MainMenuOneRow",
-          GridBoxItemSize->Inherited
-          ],
-        BaseStyle->"MainMenuOneRow"
-        ]
+          BaseStyle->"MainMenu"
+          ]
+        ],
+      "MainMenuCell"
       ]
     ]
+  ];
 
 
 (* ::Subsubsection::Closed:: *)
-(*$IDENotebookMenu*)
+(*GetIDENotebookMenu*)
 
 
 
-$IDENotebookMenu:=createIDENotebookDockedCell[];
+GetIDENotebookMenu[nb_:Automatic]:=
+  createIDENotebookDockedCell@
+    Replace[nb, Automatic:>EvaluationNotebook[]];
+
+
+(* ::Subsubsection::Closed:: *)
+(*EnsureIDEProject*)
+
+
+
+EnsureIDEProject[nb_]:=
+  Module[{p=IDEPath[nb]},
+    If[!(StringQ[p]&&DirectoryQ[p]),
+      premptiveQueuedEval[
+        nb,
+        p = SystemDialogInput[
+          "Directory",
+          $HomeDirectory,
+          WindowTitle->"IDE Directory"
+          ];
+        If[(StringQ[p]&&DirectoryQ[p]),
+          IDEData[nb, {"Project", "Directory"}]=p
+          ]
+        ]
+      ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)

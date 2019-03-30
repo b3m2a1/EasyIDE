@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     71551,       1710]
-NotebookOptionsPosition[     59825,       1512]
-NotebookOutlinePosition[     60475,       1537]
-CellTagsIndexPosition[     60432,       1534]
+NotebookDataLength[     89206,       2126]
+NotebookOptionsPosition[     73841,       1872]
+NotebookOutlinePosition[     74490,       1897]
+CellTagsIndexPosition[     74447,       1894]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,11 +23,16 @@ Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{"EasyIDE", "Private"},
 
 Cell[BoxData[
  RowBox[{"<<", "BTools`FrontEnd`"}]], "Input",
- CellLabel->"In[71]:=",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
+ CellLabel->"In[5]:=",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
 
 Cell[BoxData[
  RowBox[{"StyleSheetNew", "[", "\"\<Notebook\>\"", "]"}]], "Input",ExpressionU\
 UID->"144f951c-5dfa-4297-9405-d2adedf9ac06"],
+
+Cell[BoxData[
+ RowBox[{"<<", "EasyIDE`"}]], "Input",
+ CellLabel->
+  "In[332]:=",ExpressionUUID->"700e5759-fa67-4761-afde-95a8b96fd02b"],
 
 Cell[CellGroupData[{
 
@@ -297,11 +302,12 @@ Cell[StyleData["Notebook"],
      EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
  
  DockedCells->Cell[
-   BoxData[
-    DynamicBox[
-     ToBoxes[
-      Refresh[Needs["EasyIDE`"]; EasyIDE`Notebooks`$IDENotebookMenu, None], 
-      StandardForm]]], "IDENotebookDockedCell"],
+   BoxData[{
+     DynamicBox[
+      EasyIDE`Notebooks`GetIDENotebookMenu[
+       EvaluationNotebook[]], TrackedSymbols :> {}, 
+      Initialization :> {Needs["EasyIDE`"]; EasyIDE`Notebooks`EnsureIDEProject[
+          EvaluationNotebook[]]; Null}]}], "IDENotebookDockedCell"],
  TaggingRules->{"IndentCharacter" -> "  "},
  TabSpacings->2,ExpressionUUID->"eca302fe-1369-412d-b2f7-1ebc34585802"],
 
@@ -328,17 +334,29 @@ Cell[BoxData[
       RowBox[{"Cell", "[", "\[IndentingNewLine]", 
        RowBox[{
         RowBox[{"BoxData", "@", 
-         RowBox[{"ToBoxes", "@", "\[IndentingNewLine]", 
-          RowBox[{"Dynamic", "[", "\[IndentingNewLine]", 
-           RowBox[{"Refresh", "[", "\[IndentingNewLine]", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"Needs", "[", "\"\<EasyIDE`\>\"", "]"}], ";", 
-              "\[IndentingNewLine]", "EasyIDE`Notebooks`$IDENotebookMenu"}], 
-             ",", "\[IndentingNewLine]", "None"}], "\[IndentingNewLine]", 
-            "]"}], "\[IndentingNewLine]", "]"}]}]}], ",", 
-        "\[IndentingNewLine]", "\"\<IDENotebookDockedCell\>\""}], 
-       "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"DynamicBox", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"EasyIDE`Notebooks`GetIDENotebookMenu", "[", 
+             RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+             RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Initialization", "\[RuleDelayed]", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Needs", "[", "\"\<EasyIDE`\>\"", "]"}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"EasyIDE`Notebooks`EnsureIDEProject", "[", 
+                RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], ";"}], 
+              "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "]"}], 
+          "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+        "\"\<IDENotebookDockedCell\>\""}], "\[IndentingNewLine]", "]"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"TaggingRules", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IndentCharacter\>\"", "\[Rule]", "\"\<  \>\""}], "}"}]}], 
+     ",", "\[IndentingNewLine]", 
      RowBox[{"TabSpacings", "\[Rule]", "2"}], ",", "\[IndentingNewLine]", 
      RowBox[{
      "System`CellInsertionPointCell", "\[Rule]", "\[IndentingNewLine]", 
@@ -365,8 +383,8 @@ Cell[BoxData[
            "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
           RowBox[{"NotebookClose", "[", "nb", "]"}]}], "\[IndentingNewLine]", 
          "]"}]}], "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
-    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"b4f58d90-a41d-426e-b0c8-118eea8732c6"]
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"b4f58d90-\
+a41d-426e-b0c8-118eea8732c6"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -404,6 +422,7 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[StyleData["IDENotebookDockedCell"],
+ DockedCells->{},
  CellFrame->{{0, 0}, {1, 0}},
  CellMargins->{{0, 0}, {0, 0}},
  CellFrameMargins->{{0, 0}, {-2, 0}},
@@ -449,7 +468,7 @@ Cell[BoxData[
      RowBox[{"ContextMenu", "\[Rule]", 
       RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], 
   "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[87]:=",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"]
+ CellLabel->"In[65]:=",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"]
 }, Open  ]]
 }, Open  ]],
 
@@ -475,6 +494,65 @@ Cell["MainMenu", "Subsection",ExpressionUUID->"4678e1af-f867-41f8-a7cc-09254a0d9
 
 Cell[CellGroupData[{
 
+Cell["MainMenu", "Subsubsection",ExpressionUUID->"a47c8cdc-eedc-4b33-89b1-28bec09d7ed4"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<MainMenu\>\"", "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"20351fb6-1f03-4d40-bca9-6c5a425acebc"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["MainMenu"],
+ GridBoxOptions->{GridBoxDividers->{"Columns" -> {}, "Rows" -> {}},
+ GridBoxItemSize->{
+  "Columns" -> {{All}}, "ColumnsIndexed" -> {}, "Rows" -> {{0}}, 
+   "RowsIndexed" -> {}},
+ GridBoxSpacings->{"Columns" -> {
+     Offset[0.27999999999999997`], {
+      Offset[0.5599999999999999]}, 
+     Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+     Offset[0.2], {
+      Offset[0.]}, 
+     Offset[0.2]}, 
+   "RowsIndexed" -> \
+{}}},ExpressionUUID->"27bfd525-1db0-4f11-9fe1-5514c6176f69"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<MainMenu\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"GridBoxOptions", "\[Rule]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"GridBoxItemSize", "\[Rule]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<Columns\>\"", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{"Scaled", "[", "1", "]"}], "}"}], "}"}]}], ",", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", "Automatic", "}"}], "}"}]}]}], "\[IndentingNewLine]",
+          "}"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"GridBoxDividers", "\[Rule]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<Columns\>\"", "\[Rule]", 
+           RowBox[{"{", "}"}]}], ",", " ", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+           RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"RowMinHeight", "\[Rule]", "0"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"RowSpacings", "\[Rule]", "0"}]}], "\[IndentingNewLine]", 
+      "}"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"8051ad18-b520-40c1-9454-43f88491f5a2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["MainMenuTwoRow", "Subsubsection",ExpressionUUID->"7a678fa5-b238-40d0-8ef3-dc24ad1935bf"],
 
 Cell[BoxData[
@@ -490,7 +568,9 @@ Cell[StyleData["MainMenuTwoRow"],
   "Default" -> FrontEnd`FileName[{"EasyIDE"}, "MainMenuBackground.9.png"]},
  FrameMargins->{{8, 8}, {0, 5}},
  ImageSize->{
-   Scaled[1], 60}},
+   Scaled[1], {60, 1000}}},
+ GridBoxOptions->{
+ GridBoxDividers->{"Rows" -> None, "RowsIndexed" -> GrayLevel[0.8]}},
  GridBoxOptions -> {ItemSize -> {
      Scaled[1], Automatic}},
  GridBoxOptions -> {Dividers -> {{}, {None, 
@@ -505,12 +585,9 @@ Cell[BoxData[
      RowBox[{"GridBoxOptions", "\[Rule]", 
       RowBox[{"{", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"ItemSize", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"Scaled", "[", "1", "]"}], ",", " ", "Automatic"}], 
-          "}"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"Dividers", "\[Rule]", 
+        RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"GridBoxDividers", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{
            RowBox[{"{", "}"}], ",", " ", 
@@ -540,13 +617,14 @@ Cell[BoxData[
         RowBox[{"ImageSize", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{
-           RowBox[{"Scaled", "[", "1", "]"}], ",", " ", "60"}], "}"}]}]}], 
+           RowBox[{"Scaled", "[", "1", "]"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"60", ",", " ", "1000"}], "}"}]}], "}"}]}]}], 
        "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], 
   "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->
-  "In[198]:=",ExpressionUUID->"e7872c2f-2012-4436-9eaa-cc9d5175f35c"]
+ CellLabel->"In[76]:=",ExpressionUUID->"e7872c2f-2012-4436-9eaa-cc9d5175f35c"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -570,7 +648,7 @@ Cell[BoxData[
     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"837546f3-\
 324e-40eb-9b68-faa36089418a"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -585,6 +663,12 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[StyleData["MainMenuTwoRowBottom"],
+ GridBoxOptions->{
+ GridBoxAlignment->{"Columns" -> {Right, Left, Right}, "Rows" -> {Bottom}},
+ GridBoxItemSize->{"Columns" -> {
+     Scaled[0.05], 
+     Scaled[0.75], 
+     Scaled[0.2]}, "Rows" -> {Automatic}}},
  GridBoxOptions -> {Alignment -> {{Right, Left, Right}, {Bottom}}},
  GridBoxOptions -> {ItemSize -> {{
       Scaled[0.05], 
@@ -599,28 +683,33 @@ Cell[BoxData[
     RowBox[{"GridBoxOptions", "\[Rule]", "\[IndentingNewLine]", 
      RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{"Alignment", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"Right", ",", " ", "Left", ",", " ", "Right"}], "}"}], ",",
-           " ", 
-          RowBox[{"{", "Bottom", "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
-       RowBox[{"ItemSize", "\[Rule]", 
+       RowBox[{"GridBoxAlignment", "\[Rule]", 
         RowBox[{"{", "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"Scaled", "[", ".05", "]"}], ",", " ", 
-            RowBox[{"Scaled", "[", ".75", "]"}], ",", " ", 
-            RowBox[{"Scaled", "[", ".2", "]"}]}], "}"}], ",", 
-          "\[IndentingNewLine]", "Automatic"}], "\[IndentingNewLine]", 
+          RowBox[{"\"\<Columns\>\"", "->", 
+           RowBox[{"{", 
+            RowBox[{"Right", ",", " ", "Left", ",", " ", "Right"}], "}"}]}], 
+          ",", " ", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Rows\>\"", "->", 
+           RowBox[{"{", "Bottom", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"GridBoxItemSize", "\[Rule]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<Columns\>\"", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Scaled", "[", ".05", "]"}], ",", " ", 
+             RowBox[{"Scaled", "[", ".75", "]"}], ",", " ", 
+             RowBox[{"Scaled", "[", ".2", "]"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+           RowBox[{"{", "Automatic", "}"}]}]}], "\[IndentingNewLine]", 
          "}"}]}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->
-  "In[180]:=",ExpressionUUID->"d29f76e1-204b-4bc4-bde7-7c050629dd55"]
+ CellLabel->"In[77]:=",ExpressionUUID->"d29f76e1-204b-4bc4-bde7-7c050629dd55"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -637,9 +726,11 @@ Cell[StyleData["MainMenuOneRow"],
  PanelBoxOptions->{Alignment->Bottom,
  Appearance->{
   "Default" -> FrontEnd`FileName[{"EasyIDE"}, "MainMenuBackground.png"]},
- FrameMargins->{{8, 8}, {0, 5}},
+ FrameMargins->{{8, 8}, {0, 0}},
  ImageSize->{
-   Scaled[1], 50}},
+   FEPrivate`Part[
+    FrontEnd`AbsoluteCurrentValue[
+     FrontEnd`EvaluationNotebook[], WindowSize], 1], {50, 1000}}},
  GridBoxOptions->{
  GridBoxAlignment->{
   "Columns" -> {{Center, Left, Right}}, "Rows" -> {{Bottom}}},
@@ -707,19 +798,27 @@ Cell[BoxData[
            RowBox[{"{", 
             RowBox[{"8", ",", " ", "8"}], "}"}], ",", " ", 
            RowBox[{"{", 
-            RowBox[{"0", ",", " ", "5"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"0", ",", " ", "0"}], "}"}]}], "}"}]}], ",", 
         "\[IndentingNewLine]", 
         RowBox[{"ImageSize", "\[Rule]", 
-         RowBox[{"{", 
+         RowBox[{"{", "\[IndentingNewLine]", 
           RowBox[{
-           RowBox[{"Scaled", "[", "1", "]"}], ",", " ", "50"}], "}"}]}], ",", 
-        "\[IndentingNewLine]", 
+           RowBox[{"FEPrivate`Part", "[", 
+            RowBox[{
+             RowBox[{"FrontEnd`AbsoluteCurrentValue", "[", 
+              RowBox[{
+               RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+               "WindowSize"}], "]"}], ",", " ", "1"}], "]"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"50", ",", " ", "1000"}], "}"}]}], "\[IndentingNewLine]", 
+          "}"}]}], ",", "\[IndentingNewLine]", 
         RowBox[{"Alignment", "\[Rule]", "Bottom"}]}], "\[IndentingNewLine]", 
        "}"}]}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
   "]"}]], "Input",
- CellLabel->"In[87]:=",ExpressionUUID->"2e4fe711-2842-413e-bac1-311e7eb6c136"]
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"2e4fe711-2842-413e-bac1-311e7eb6c136"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -773,7 +872,171 @@ Cell[BoxData[
   "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"f58a2071-ac15-456a-\
 b9b4-7499b0b68afa"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MainMenuToolbars", "Subsubsection",ExpressionUUID->"89aa0a28-48c5-4299-adbf-f4b3e3b0effa"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<MainMenuToolbars\>\"", "]"}]], "Input",
+ CellLabel->"In[69]:=",ExpressionUUID->"a63e2f6e-2bdc-47df-86ae-12659270ac55"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["MainMenuToolbars"],
+ ButtonBoxOptions->{
+ Appearance->{
+  "Default" -> FrontEnd`FileName[{"EasyIDE"}, "Button.9.png"], "Hover" -> 
+   FrontEnd`FileName[{"EasyIDE"}, "Button-Hover.9.png"], "Pressed" -> 
+   FrontEnd`FileName[{"EasyIDE"}, "Button-Pressed.9.png"]},
+ FrameMargins->{{5, 5}, {2, 2}},
+ ImageSize->Automatic},
+ PanelBoxOptions->{
+ Appearance->{
+  "Default" -> FrontEnd`FileName[{"EasyIDE"}, "ToolbarsBackground.png"]},
+ ImageSize->{
+   FEPrivate`Part[
+    FrontEnd`AbsoluteCurrentValue[
+     FrontEnd`EvaluationNotebook[], WindowSize], 1], Automatic}},
+ GridBoxOptions->{BaselinePosition->Automatic,
+ GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+ GridBoxDividers->{"Rows" -> {None, {
+      GrayLevel[0.8]}, None}},
+ GridBoxItemSize->{"Columns" -> {{
+      Scaled[1]}}, 
+   "Rows" -> {
+    Automatic}}},ExpressionUUID->"00125964-0ed8-4081-b685-4c188a54c70f"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<MainMenuToolbars\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"PanelBoxOptions", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"FEPrivate`Part", "[", 
+            RowBox[{
+             RowBox[{"FrontEnd`AbsoluteCurrentValue", "[", 
+              RowBox[{
+               RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+               "WindowSize"}], "]"}], ",", " ", "1"}], "]"}], ",", 
+           "\[IndentingNewLine]", "Automatic"}], "\[IndentingNewLine]", 
+          "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Appearance", "\[Rule]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Default\>\"", "\[Rule]", 
+           RowBox[{"FrontEnd`FileName", "[", 
+            RowBox[{
+             RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", " ", 
+             "\"\<ToolbarsBackground.png\>\""}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"ButtonBoxOptions", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Appearance", "\[Rule]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\"\<Default\>\"", "->", 
+            RowBox[{"FrontEnd`FileName", "[", 
+             RowBox[{
+              RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", " ", 
+              "\"\<Button.9.png\>\""}], "]"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"\"\<Hover\>\"", "->", 
+            RowBox[{"FrontEnd`FileName", "[", 
+             RowBox[{
+              RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", " ", 
+              "\"\<Button-Hover.9.png\>\""}], "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"\"\<Pressed\>\"", "->", 
+            RowBox[{"FrontEnd`FileName", "[", 
+             RowBox[{
+              RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", " ", 
+              "\"\<Button-Pressed.9.png\>\""}], "]"}]}]}], 
+          "\[IndentingNewLine]", "}"}]}], ",", " ", "\[IndentingNewLine]", 
+        RowBox[{"FrameMargins", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"5", ",", " ", "5"}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", " ", "2"}], "}"}]}], "}"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ImageSize", "\[Rule]", "Automatic"}]}], 
+       "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridBoxOptions", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"GridBoxItemSize", "\[Rule]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\"\<Columns\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"Scaled", "[", "1", "]"}], "}"}], "}"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+            RowBox[{"{", "Automatic", "}"}]}]}], "\[IndentingNewLine]", 
+          "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"GridBoxAlignment", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\"\<Columns\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"{", "Left", "}"}], "}"}]}], ",", 
+           RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"{", "Top", "}"}], "}"}]}]}], "}"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"GridBoxDividers", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Rows\>\"", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"None", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"GrayLevel", "[", ".8", "]"}], "}"}], ",", " ", 
+             "None"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"BaselinePosition", "\[Rule]", "Automatic"}]}], 
+       "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"7a2031ad-4de5-4c24-\
+bf06-f012d64242dd"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MainMenuOneRowToolbars ", "Subsubsection",ExpressionUUID->"8db163ff-6589-48cb-9ecf-9b23e04392a1"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", 
+  RowBox[{
+  "\"\<MainMenuOneRowToolbars\>\"", "->", "\"\<MainMenuToolbars\>\""}], 
+  "]"}]], "Input",
+ CellLabel->"In[98]:=",ExpressionUUID->"471073b1-76c6-463c-a2ac-580cc579c842"],
+
+Cell[StyleData["MainMenuOneRowToolbars", StyleDefinitions -> StyleData[
+ "MainMenuToolbars"]],ExpressionUUID->"67c5f2f3-38db-4a3a-b667-ea1d5da1bdb9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MainMenuTwoRowToolbars", "Subsubsection",ExpressionUUID->"5111e087-b0ab-4163-b381-a0d76d3d3e49"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", 
+  RowBox[{
+  "\"\<MainMenuTwoRowToolbars\>\"", "->", "\"\<MainMenuToolbars\>\""}], 
+  "]"}]], "Input",
+ CellLabel->"In[97]:=",ExpressionUUID->"1979bb22-2622-4ec7-af93-cb8cb53d3d65"],
+
+Cell[StyleData["MainMenuTwoRowToolbars", StyleDefinitions -> StyleData[
+ "MainMenuToolbars"]],ExpressionUUID->"51a8cfb3-2f18-41d3-bc87-cc3b6520db33"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -834,8 +1097,8 @@ Cell[BoxData[
         RowBox[{"BaselinePosition", "\[Rule]", "Inherited"}]}], 
        "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
      RowBox[{"ShowStringCharacters", "->", "False"}]}], "\[IndentingNewLine]",
-     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[27]:=",ExpressionUUID->"2bdfc5e8-9372-479d-b888-1ae00da39afd"],
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->\
+"2bdfc5e8-9372-479d-b888-1ae00da39afd"],
 
 Cell[BoxData[
  RowBox[{"StyleSheetNew", "[", 
@@ -1056,8 +1319,105 @@ Cell[BoxData[
   "\[IndentingNewLine]", "]"}]], "Input",
  CellLabel->"In[81]:=",ExpressionUUID->"4529d53b-0495-4caa-b182-382ab4daa5a7"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 }, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Toolbars", "Subsection",ExpressionUUID->"a772dc16-365d-41a7-9c1d-7ae6d1ecde75"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Toolbars\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[155]:=",ExpressionUUID->"c274b7af-1d65-4873-b7b2-9e6a8f1d8a78"],
+
+Cell[StyleData["Toolbars"],ExpressionUUID->"b2efe140-9f9d-40ed-9f81-d3609114e66b"],
+
+Cell[CellGroupData[{
+
+Cell["ToolbarElement", "Subsubsection",ExpressionUUID->"5e376d10-c3b3-4a64-b833-874e7dfc4c21"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<ToolbarElement\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[131]:=",ExpressionUUID->"4d113b03-effe-4754-adca-d0935cf09945"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["ToolbarElement"],ExpressionUUID->"e69c7733-e076-4162-bcbc-7f2ec810ddbb"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<ToolbarElement\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellSize", "\[Rule]", "Inherited"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Background", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->
+  "In[152]:=",ExpressionUUID->"c00bd90d-2f59-4518-becc-6f80055594cd"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ToolbarElement", "Subsubsection",ExpressionUUID->"5a92632b-cdec-4b24-9005-4cea7de63a7d"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<ToolbarElement\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[131]:=",ExpressionUUID->"a85bd11a-047c-474d-94d7-961127d692cc"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["ToolbarElement"],ExpressionUUID->"25b3cddc-fe04-4e32-8333-61b055103b1b"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<ToolbarElement\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellSize", "\[Rule]", "Inherited"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Background", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->
+  "In[152]:=",ExpressionUUID->"c9ed7de1-1d5d-4f03-8979-26cb7d914f4d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ToolbarCell", "Subsubsection",ExpressionUUID->"1164b3f0-1286-4096-b617-ba4fc3404dc0"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<ToolbarCell\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[130]:=",ExpressionUUID->"a249309f-ba76-49a4-9356-f97f0c073740"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["ToolbarCell"],
+ CellSize->{
+   Scaled[1], 
+   Automatic},ExpressionUUID->"f3b008da-1ddd-4be9-b6a7-ff320416c5f7"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<ToolbarCell\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Scaled", "[", "1", "]"}], ",", " ", "Automatic"}], "}"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"Background", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->
+  "In[153]:=",ExpressionUUID->"01f5ae5d-d1d9-4493-970b-266f72ba52ff"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1209,7 +1569,7 @@ Cell[BoxData[
  CellLabel->
   "In[135]:=",ExpressionUUID->"3077f330-bafd-41b5-9b7d-2e83441d0f77"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1293,7 +1653,7 @@ Cell[BoxData[
   "\[IndentingNewLine]", "]"}]], "Input",
  CellLabel->"In[11]:=",ExpressionUUID->"6f1757b1-3d5f-4438-8305-30e77f2da378"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1513,7 +1873,7 @@ Cell[BoxData[
 Editable->True,
 Saveable->True,
 WindowSize->{908, 775},
-WindowMargins->{{Automatic, -5}, {Automatic, 0}},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 WindowFrame->"Normal",
 DockedCells->FEPrivate`FrontEndResource[
  "FEExpressions", "BuiltInStylesheetToolbar"],
@@ -1537,178 +1897,234 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 153, 1, 36, 98, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"3da2fef3-403e-48ff-9c78-b4cde8e99ccf"],
-Cell[714, 23, 139, 2, 30, "Input",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
-Cell[856, 27, 138, 2, 30, "Input",ExpressionUUID->"144f951c-5dfa-4297-9405-d2adedf9ac06"],
+Cell[714, 23, 138, 2, 30, "Input",ExpressionUUID->"80eb3782-9072-4bd7-95de-11503ff59787"],
+Cell[855, 27, 138, 2, 30, "Input",ExpressionUUID->"144f951c-5dfa-4297-9405-d2adedf9ac06"],
+Cell[996, 31, 135, 3, 30, "Input",ExpressionUUID->"700e5759-fa67-4761-afde-95a8b96fd02b"],
 Cell[CellGroupData[{
-Cell[1019, 33, 85, 0, 45, "Subsection",ExpressionUUID->"a839e299-c311-4713-8429-3d83496c806a"],
+Cell[1156, 38, 85, 0, 45, "Subsection",ExpressionUUID->"a839e299-c311-4713-8429-3d83496c806a"],
 Cell[CellGroupData[{
-Cell[1129, 37, 13051, 268, 36, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"eca302fe-1369-412d-b2f7-1ebc34585802"],
-Cell[14183, 307, 3008, 61, 745, "Input",ExpressionUUID->"b4f58d90-a41d-426e-b0c8-118eea8732c6"]
+Cell[1266, 42, 13159, 269, 36, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"eca302fe-1369-412d-b2f7-1ebc34585802"],
+Cell[14428, 313, 3585, 73, 808, "Input",ExpressionUUID->"b4f58d90-a41d-426e-b0c8-118eea8732c6"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17228, 373, 148, 2, 28, 41, 0, "StyleData", "CellInsertionPointCell", "All",ExpressionUUID->"8b766ca9-ce8c-4fa7-97ec-84a3aaea43f4"],
-Cell[17379, 377, 468, 12, 73, "Input",ExpressionUUID->"d1fda1f3-2b68-4854-91f2-59e1ff51eebf"]
+Cell[18050, 391, 148, 2, 28, 41, 0, "StyleData", "CellInsertionPointCell", "All",ExpressionUUID->"8b766ca9-ce8c-4fa7-97ec-84a3aaea43f4"],
+Cell[18201, 395, 468, 12, 73, "Input",ExpressionUUID->"d1fda1f3-2b68-4854-91f2-59e1ff51eebf"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[17896, 395, 98, 0, 29, "Subsection",ExpressionUUID->"5493eb8b-f13a-43ee-9859-80967339b446"],
-Cell[17997, 397, 180, 4, 30, "Input",ExpressionUUID->"d39322ff-eb2e-4002-bd88-04f80822905e"],
+Cell[18718, 413, 98, 0, 29, "Subsection",ExpressionUUID->"5493eb8b-f13a-43ee-9859-80967339b446"],
+Cell[18819, 415, 180, 4, 30, "Input",ExpressionUUID->"d39322ff-eb2e-4002-bd88-04f80822905e"],
 Cell[CellGroupData[{
-Cell[18202, 405, 279, 7, 27, 40, 0, "StyleData", "IDENotebookDockedCell", "All",ExpressionUUID->"18cbd97f-7b88-4567-a45a-576fbf9609ab"],
-Cell[18484, 414, 1468, 37, 220, "Input",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"]
+Cell[19024, 423, 297, 8, 27, 40, 0, "StyleData", "IDENotebookDockedCell", "All",ExpressionUUID->"18cbd97f-7b88-4567-a45a-576fbf9609ab"],
+Cell[19324, 433, 1468, 37, 220, "Input",ExpressionUUID->"f90ab2cc-5c63-4f91-ae6b-3013466eff74"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20001, 457, 87, 0, 45, "Subsection",ExpressionUUID->"1c351688-7b58-43b7-95e7-54551ab23b92"],
-Cell[20091, 459, 226, 5, 30, "Input",ExpressionUUID->"b912e528-f6fe-4790-aa3c-d645daf286fe"],
-Cell[20320, 466, 144, 2, 27, 87, 1, "StyleData", "DockedCell", "All",ExpressionUUID->"0dbabda3-e6c6-4fe8-9c0a-e7e42a9b8f12"]
+Cell[20841, 476, 87, 0, 45, "Subsection",ExpressionUUID->"1c351688-7b58-43b7-95e7-54551ab23b92"],
+Cell[20931, 478, 226, 5, 30, "Input",ExpressionUUID->"b912e528-f6fe-4790-aa3c-d645daf286fe"],
+Cell[21160, 485, 144, 2, 27, 87, 1, "StyleData", "DockedCell", "All",ExpressionUUID->"0dbabda3-e6c6-4fe8-9c0a-e7e42a9b8f12"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20501, 473, 85, 0, 45, "Subsection",ExpressionUUID->"4678e1af-f867-41f8-a7cc-09254a0d920f"],
+Cell[21341, 492, 85, 0, 45, "Subsection",ExpressionUUID->"4678e1af-f867-41f8-a7cc-09254a0d920f"],
 Cell[CellGroupData[{
-Cell[20611, 477, 94, 0, 44, "Subsubsection",ExpressionUUID->"7a678fa5-b238-40d0-8ef3-dc24ad1935bf"],
-Cell[20708, 479, 170, 3, 30, "Input",ExpressionUUID->"e19338a9-20f6-4095-bbba-80719ccb5ec7"],
+Cell[21451, 496, 88, 0, 44, "Subsubsection",ExpressionUUID->"a47c8cdc-eedc-4b33-89b1-28bec09d7ed4"],
+Cell[21542, 498, 159, 2, 30, "Input",ExpressionUUID->"20351fb6-1f03-4d40-bca9-6c5a425acebc"],
 Cell[CellGroupData[{
-Cell[20903, 486, 406, 11, 36, 33, 0, "StyleData", "MainMenuTwoRow", "All",ExpressionUUID->"08572c98-7425-4efd-950a-61c4c2aef038"],
-Cell[21312, 499, 1976, 47, 346, "Input",ExpressionUUID->"e7872c2f-2012-4436-9eaa-cc9d5175f35c"]
+Cell[21726, 504, 528, 13, 36, 27, 0, "StyleData", "MainMenu", "All",ExpressionUUID->"27bfd525-1db0-4f11-9fe1-5514c6176f69"],
+Cell[22257, 519, 1455, 30, 367, "Input",ExpressionUUID->"8051ad18-b520-40c1-9454-43f88491f5a2"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[23337, 552, 97, 0, 28, "Subsubsection",ExpressionUUID->"978823c6-acd7-48a3-9b6b-71c0440153a7"],
-Cell[23437, 554, 173, 3, 30, "Input",ExpressionUUID->"d5e1bbdb-0632-4b2d-a8ac-e912c362eade"],
+Cell[23761, 555, 94, 0, 44, "Subsubsection",ExpressionUUID->"7a678fa5-b238-40d0-8ef3-dc24ad1935bf"],
+Cell[23858, 557, 170, 3, 30, "Input",ExpressionUUID->"e19338a9-20f6-4095-bbba-80719ccb5ec7"],
 Cell[CellGroupData[{
-Cell[23635, 561, 91, 0, 36, 36, 0, "StyleData", "MainMenuTwoRowTop", "All",ExpressionUUID->"3214ab8d-3c38-48fe-b0c0-802bd8e03df2"],
-Cell[23729, 563, 426, 7, 178, "Input",ExpressionUUID->"837546f3-324e-40eb-9b68-faa36089418a"]
+Cell[24053, 564, 503, 13, 36, 33, 0, "StyleData", "MainMenuTwoRow", "All",ExpressionUUID->"08572c98-7425-4efd-950a-61c4c2aef038"],
+Cell[24559, 579, 1949, 45, 346, "Input",ExpressionUUID->"e7872c2f-2012-4436-9eaa-cc9d5175f35c"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[24204, 576, 100, 0, 28, "Subsubsection",ExpressionUUID->"0cf978cc-0991-465f-8f42-15bf88b7a521"],
-Cell[24307, 578, 178, 4, 30, "Input",ExpressionUUID->"f345650a-cfad-45a0-8360-3fdf09b9a5ec"],
+Cell[26557, 630, 97, 0, 44, "Subsubsection",ExpressionUUID->"978823c6-acd7-48a3-9b6b-71c0440153a7"],
+Cell[26657, 632, 173, 3, 30, "Input",ExpressionUUID->"d5e1bbdb-0632-4b2d-a8ac-e912c362eade"],
 Cell[CellGroupData[{
-Cell[24510, 586, 278, 6, 36, 39, 0, "StyleData", "MainMenuTwoRowBottom", "All",ExpressionUUID->"9549d9ae-184e-4e14-82a6-7d583ac08ca6"],
-Cell[24791, 594, 1195, 26, 283, "Input",ExpressionUUID->"d29f76e1-204b-4bc4-bde7-7c050629dd55"]
+Cell[26855, 639, 91, 0, 36, 36, 0, "StyleData", "MainMenuTwoRowTop", "All",ExpressionUUID->"3214ab8d-3c38-48fe-b0c0-802bd8e03df2"],
+Cell[26949, 641, 426, 7, 178, "Input",ExpressionUUID->"837546f3-324e-40eb-9b68-faa36089418a"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[26035, 626, 94, 0, 28, "Subsubsection",ExpressionUUID->"39104894-10eb-49c3-9f35-16d99f406eca"],
-Cell[26132, 628, 170, 3, 30, "Input",ExpressionUUID->"4f2d83fd-ce80-457b-8c24-57d8bd58e550"],
+Cell[27424, 654, 100, 0, 44, "Subsubsection",ExpressionUUID->"0cf978cc-0991-465f-8f42-15bf88b7a521"],
+Cell[27527, 656, 178, 4, 30, "Input",ExpressionUUID->"f345650a-cfad-45a0-8360-3fdf09b9a5ec"],
 Cell[CellGroupData[{
-Cell[26327, 635, 673, 20, 36, 33, 0, "StyleData", "MainMenuOneRow", "All",ExpressionUUID->"2cc3d056-9024-49d7-8522-493080114894"],
-Cell[27003, 657, 2698, 62, 451, "Input",ExpressionUUID->"2e4fe711-2842-413e-bac1-311e7eb6c136"]
+Cell[27730, 664, 491, 12, 36, 39, 0, "StyleData", "MainMenuTwoRowBottom", "All",ExpressionUUID->"9549d9ae-184e-4e14-82a6-7d583ac08ca6"],
+Cell[28224, 678, 1505, 31, 346, "Input",ExpressionUUID->"d29f76e1-204b-4bc4-bde7-7c050629dd55"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[29750, 725, 101, 0, 28, "Subsubsection",ExpressionUUID->"eebc73c5-bdd3-4ed8-bad7-e65487cf47d7"],
-Cell[29854, 727, 176, 3, 30, "Input",ExpressionUUID->"39dbee98-86c2-41ae-b8bb-42475b457a9a"],
+Cell[29778, 715, 94, 0, 44, "Subsubsection",ExpressionUUID->"39104894-10eb-49c3-9f35-16d99f406eca"],
+Cell[29875, 717, 170, 3, 30, "Input",ExpressionUUID->"4f2d83fd-ce80-457b-8c24-57d8bd58e550"],
 Cell[CellGroupData[{
-Cell[30055, 734, 290, 6, 36, 40, 0, "StyleData", "MainMenuOneRowPlugins", "All",ExpressionUUID->"669f7371-a357-41d9-90f3-073fb9abba70"],
-Cell[30348, 742, 1370, 31, 283, "Input",ExpressionUUID->"f58a2071-ac15-456a-b9b4-7499b0b68afa"]
+Cell[30070, 724, 774, 22, 36, 33, 0, "StyleData", "MainMenuOneRow", "All",ExpressionUUID->"2cc3d056-9024-49d7-8522-493080114894"],
+Cell[30847, 748, 3063, 70, 514, "Input",ExpressionUUID->"2e4fe711-2842-413e-bac1-311e7eb6c136"]
 }, Open  ]]
-}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31779, 780, 88, 0, 45, "Subsection",ExpressionUUID->"fade659a-017e-4ae0-b2cd-3f45c633c96e"],
-Cell[31870, 782, 206, 4, 30, "Input",ExpressionUUID->"da62ef3e-71b0-4772-bfd6-b7560a13fdde"],
+Cell[33959, 824, 101, 0, 44, "Subsubsection",ExpressionUUID->"eebc73c5-bdd3-4ed8-bad7-e65487cf47d7"],
+Cell[34063, 826, 176, 3, 30, "Input",ExpressionUUID->"39dbee98-86c2-41ae-b8bb-42475b457a9a"],
 Cell[CellGroupData[{
-Cell[32101, 790, 384, 8, 50, 68, 0, "StyleData", "PluginMenu", "All",ExpressionUUID->"86edefc5-d87a-4946-b848-c29719c7aca9"],
-Cell[32488, 800, 1707, 37, 346, "Input",ExpressionUUID->"2bdfc5e8-9372-479d-b888-1ae00da39afd"],
-Cell[34198, 839, 219, 5, 30, "Input",ExpressionUUID->"e4a27e7b-3e13-4642-8fce-df36b7064967"]
-}, Open  ]],
-Cell[34432, 847, 133, 0, 50, 78, 0, "StyleData", "PluginMenuList", "All",ExpressionUUID->"69ce4de7-a55e-4b1c-81c3-44129d6bdb3b"],
-Cell[CellGroupData[{
-Cell[34590, 851, 93, 0, 44, "Subsubsection",ExpressionUUID->"51e3acb8-3959-4b27-9d5b-9bee4aad85e7"],
-Cell[34686, 853, 208, 4, 30, "Input",ExpressionUUID->"3f4ee71a-b215-439e-b9d6-6fabd7415a6f"],
-Cell[CellGroupData[{
-Cell[34919, 861, 126, 0, 50, 71, 0, "StyleData", "CascadingMenu", "All",ExpressionUUID->"769f8910-abb3-4998-8e2b-c61882a31a50"],
-Cell[35048, 863, 227, 5, 30, "Input",ExpressionUUID->"156afc7f-4315-49ec-9fd0-ba0b6b1bfe9a"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[35312, 873, 488, 11, 50, 89, 1, "StyleData", "CascadingMenuSubmenu", "All",ExpressionUUID->"026e6a95-40b3-4135-8ee8-623503264ad3"],
-Cell[35803, 886, 2011, 45, 367, "Input",ExpressionUUID->"17556f52-325a-426e-8d89-21267c4a0571"],
-Cell[37817, 933, 227, 5, 30, "Input",ExpressionUUID->"74db223a-9879-47e4-8a69-96ad6d7d58b8"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[38081, 943, 379, 8, 50, 89, 1, "StyleData", "CascadingMenuCommand", "All",ExpressionUUID->"530a2af0-acf9-4364-aa12-134c60f8632e"],
-Cell[38463, 953, 1576, 33, 367, "Input",ExpressionUUID->"b14e2e2d-b632-47ee-9cca-02f61d80c8b9"],
-Cell[40042, 988, 221, 4, 30, "Input",ExpressionUUID->"6a6c2e41-bd90-462f-bb1c-6135e4c8f3c1"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[40300, 997, 570, 15, 50, 86, 1, "StyleData", "CascadingMenuMain", "All",ExpressionUUID->"6b419ef2-5e67-4b4e-ac32-6d49f7804a5b"],
-Cell[40873, 1014, 1841, 42, 388, "Input",ExpressionUUID->"4529d53b-0495-4caa-b182-382ab4daa5a7"]
+Cell[34264, 833, 290, 6, 36, 40, 0, "StyleData", "MainMenuOneRowPlugins", "All",ExpressionUUID->"669f7371-a357-41d9-90f3-073fb9abba70"],
+Cell[34557, 841, 1370, 31, 283, "Input",ExpressionUUID->"f58a2071-ac15-456a-b9b4-7499b0b68afa"]
 }, Open  ]]
-}, Closed]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[42775, 1063, 81, 0, 29, "Subsection",ExpressionUUID->"1d0011ca-78f4-41d9-920b-797b1bab1827"],
-Cell[42859, 1065, 205, 4, 30, "Input",ExpressionUUID->"9f189f99-1b7a-49b5-8c88-4bf7919c9463"],
-Cell[CellGroupData[{
-Cell[43089, 1073, 150, 2, 52, 67, 0, "StyleData", "TabPanel", "All",ExpressionUUID->"5162fc01-480a-4828-8d54-21d4fb323bcb"],
-Cell[43242, 1077, 354, 6, 136, "Input",ExpressionUUID->"f219fc01-07e7-4638-acc3-b2234dee1845"],
-Cell[43599, 1085, 212, 5, 30, "Input",ExpressionUUID->"f3289d6c-6bd1-4c11-bcb0-6aae959e5020"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[43848, 1095, 238, 5, 52, 76, 0, "StyleData", "TabPanelActive", "All",ExpressionUUID->"7ad461c5-0c15-4869-81df-24896cebd348"],
-Cell[44089, 1102, 827, 16, 262, "Input",ExpressionUUID->"5f75f36c-e8eb-47b2-b7b7-9b4d10bca2ed"],
-Cell[44919, 1120, 216, 5, 30, "Input",ExpressionUUID->"090e43d6-fc96-491f-a554-3a2f632996f3"]
-}, Open  ]],
+Cell[35976, 878, 96, 0, 44, "Subsubsection",ExpressionUUID->"89aa0a28-48c5-4299-adbf-f4b3e3b0effa"],
+Cell[36075, 880, 168, 2, 30, "Input",ExpressionUUID->"a63e2f6e-2bdc-47df-86ae-12659270ac55"],
 Cell[CellGroupData[{
-Cell[45172, 1130, 284, 8, 52, 82, 1, "StyleData", "TabPanelBackground", "All",ExpressionUUID->"16ec91ff-367b-467d-a055-c713dcee2276"],
-Cell[45459, 1140, 984, 19, 283, "Input",ExpressionUUID->"186eac80-cf8f-4c76-9588-dbc7a9cf3195"],
-Cell[46446, 1161, 170, 3, 30, "Input",ExpressionUUID->"5167348b-71b7-4bea-877e-4b4a57ff09ae"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[46653, 1169, 319, 6, 36, 33, 0, "StyleData", "TabCloseButton", "All",ExpressionUUID->"75d797bd-afa3-4f62-b3d6-c8335cb02058"],
-Cell[46975, 1177, 1553, 32, 367, "Input",ExpressionUUID->"3077f330-bafd-41b5-9b7d-2e83441d0f77"]
+Cell[36268, 886, 899, 22, 36, 35, 0, "StyleData", "MainMenuToolbars", "All",ExpressionUUID->"00125964-0ed8-4081-b685-4c188a54c70f"],
+Cell[37170, 910, 4291, 96, 682, "Input",ExpressionUUID->"7a2031ad-4de5-4c24-bf06-f012d64242dd"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[48577, 1215, 87, 0, 29, "Subsection",ExpressionUUID->"ad919d62-9ecc-4185-99ef-cd13c6c6025a"],
+Cell[41510, 1012, 103, 0, 44, "Subsubsection",ExpressionUUID->"8db163ff-6589-48cb-9ecf-9b23e04392a1"],
+Cell[41616, 1014, 227, 5, 30, "Input",ExpressionUUID->"471073b1-76c6-463c-a2ac-580cc579c842"],
+Cell[41846, 1021, 149, 1, 36, 94, 1, "StyleData", "MainMenuOneRowToolbars", "All",ExpressionUUID->"67c5f2f3-38db-4a3a-b667-ea1d5da1bdb9"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[48689, 1219, 102, 0, 44, "Subsubsection",ExpressionUUID->"8d5f2f82-44cb-42b4-92fb-a32aaca12154"],
-Cell[48794, 1221, 181, 4, 30, "Input",ExpressionUUID->"3a92eb0c-910d-42c8-a94b-00c9433bf8fe"],
+Cell[42032, 1027, 102, 0, 44, "Subsubsection",ExpressionUUID->"5111e087-b0ab-4163-b381-a0d76d3d3e49"],
+Cell[42137, 1029, 227, 5, 30, "Input",ExpressionUUID->"1979bb22-2622-4ec7-af93-cb8cb53d3d65"],
+Cell[42367, 1036, 149, 1, 36, 94, 1, "StyleData", "MainMenuTwoRowToolbars", "All",ExpressionUUID->"51a8cfb3-2f18-41d3-bc87-cc3b6520db33"]
+}, Open  ]]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[49000, 1229, 607, 12, 36, 41, 0, "StyleData", "FileViewerToggleButton", "All",ExpressionUUID->"fca78328-4f1c-4943-b445-c3009732578a"],
-Cell[49610, 1243, 2482, 50, 577, "Input",ExpressionUUID->"6f1757b1-3d5f-4438-8305-30e77f2da378"]
+Cell[42565, 1043, 88, 0, 45, "Subsection",ExpressionUUID->"fade659a-017e-4ae0-b2cd-3f45c633c96e"],
+Cell[42656, 1045, 206, 4, 30, "Input",ExpressionUUID->"da62ef3e-71b0-4772-bfd6-b7560a13fdde"],
+Cell[CellGroupData[{
+Cell[42887, 1053, 384, 8, 50, 68, 0, "StyleData", "PluginMenu", "All",ExpressionUUID->"86edefc5-d87a-4946-b848-c29719c7aca9"],
+Cell[43274, 1063, 1685, 37, 346, "Input",ExpressionUUID->"2bdfc5e8-9372-479d-b888-1ae00da39afd"],
+Cell[44962, 1102, 219, 5, 30, "Input",ExpressionUUID->"e4a27e7b-3e13-4642-8fce-df36b7064967"]
+}, Open  ]],
+Cell[45196, 1110, 133, 0, 50, 78, 0, "StyleData", "PluginMenuList", "All",ExpressionUUID->"69ce4de7-a55e-4b1c-81c3-44129d6bdb3b"],
+Cell[CellGroupData[{
+Cell[45354, 1114, 93, 0, 44, "Subsubsection",ExpressionUUID->"51e3acb8-3959-4b27-9d5b-9bee4aad85e7"],
+Cell[45450, 1116, 208, 4, 30, "Input",ExpressionUUID->"3f4ee71a-b215-439e-b9d6-6fabd7415a6f"],
+Cell[CellGroupData[{
+Cell[45683, 1124, 126, 0, 50, 71, 0, "StyleData", "CascadingMenu", "All",ExpressionUUID->"769f8910-abb3-4998-8e2b-c61882a31a50"],
+Cell[45812, 1126, 227, 5, 30, "Input",ExpressionUUID->"156afc7f-4315-49ec-9fd0-ba0b6b1bfe9a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46076, 1136, 488, 11, 50, 89, 1, "StyleData", "CascadingMenuSubmenu", "All",ExpressionUUID->"026e6a95-40b3-4135-8ee8-623503264ad3"],
+Cell[46567, 1149, 2011, 45, 367, "Input",ExpressionUUID->"17556f52-325a-426e-8d89-21267c4a0571"],
+Cell[48581, 1196, 227, 5, 30, "Input",ExpressionUUID->"74db223a-9879-47e4-8a69-96ad6d7d58b8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48845, 1206, 379, 8, 50, 89, 1, "StyleData", "CascadingMenuCommand", "All",ExpressionUUID->"530a2af0-acf9-4364-aa12-134c60f8632e"],
+Cell[49227, 1216, 1576, 33, 367, "Input",ExpressionUUID->"b14e2e2d-b632-47ee-9cca-02f61d80c8b9"],
+Cell[50806, 1251, 221, 4, 30, "Input",ExpressionUUID->"6a6c2e41-bd90-462f-bb1c-6135e4c8f3c1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51064, 1260, 570, 15, 50, 86, 1, "StyleData", "CascadingMenuMain", "All",ExpressionUUID->"6b419ef2-5e67-4b4e-ac32-6d49f7804a5b"],
+Cell[51637, 1277, 1841, 42, 388, "Input",ExpressionUUID->"4529d53b-0495-4caa-b182-382ab4daa5a7"]
+}, Open  ]]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[52141, 1299, 94, 0, 28, "Subsubsection",ExpressionUUID->"dbb155f4-6376-4b1c-b21d-88e6f26d20b1"],
-Cell[52238, 1301, 166, 2, 30, "Input",ExpressionUUID->"42458efb-2b2c-42e4-8b47-ba850ad1fb31"],
+Cell[53539, 1326, 85, 0, 29, "Subsection",ExpressionUUID->"a772dc16-365d-41a7-9c1d-7ae6d1ecde75"],
+Cell[53627, 1328, 164, 3, 30, "Input",ExpressionUUID->"c274b7af-1d65-4873-b7b2-9e6a8f1d8a78"],
+Cell[53794, 1333, 82, 0, 36, 27, 0, "StyleData", "Toolbars", "All",ExpressionUUID->"b2efe140-9f9d-40ed-9f81-d3609114e66b"],
 Cell[CellGroupData[{
-Cell[52429, 1307, 264, 7, 42, 33, 0, "StyleData", "FileViewerCell", "All",ExpressionUUID->"50341f35-cbf8-4588-8284-b64bbfc3fc07"],
-Cell[52696, 1316, 1340, 33, 220, "Input",ExpressionUUID->"266c9f65-084d-466f-aafa-aac8bee10fce"]
+Cell[53901, 1337, 94, 0, 44, "Subsubsection",ExpressionUUID->"5e376d10-c3b3-4a64-b833-874e7dfc4c21"],
+Cell[53998, 1339, 170, 3, 30, "Input",ExpressionUUID->"4d113b03-effe-4754-adca-d0935cf09945"],
+Cell[CellGroupData[{
+Cell[54193, 1346, 88, 0, 36, 33, 0, "StyleData", "ToolbarElement", "All",ExpressionUUID->"e69c7733-e076-4162-bcbc-7f2ec810ddbb"],
+Cell[54284, 1348, 482, 9, 157, "Input",ExpressionUUID->"c00bd90d-2f59-4518-becc-6f80055594cd"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[54085, 1355, 96, 0, 44, "Subsubsection",ExpressionUUID->"1c5a8f15-57ae-4a6b-b152-b8ef57ea5f6b"],
-Cell[54184, 1357, 217, 4, 30, "Input",ExpressionUUID->"edb66f61-74f8-4a18-b6ae-e5e0cc3c30d3"],
+Cell[54815, 1363, 94, 0, 44, "Subsubsection",ExpressionUUID->"5a92632b-cdec-4b24-9005-4cea7de63a7d"],
+Cell[54912, 1365, 170, 3, 30, "Input",ExpressionUUID->"a85bd11a-047c-474d-94d7-961127d692cc"],
 Cell[CellGroupData[{
-Cell[54426, 1365, 274, 6, 36, 82, 1, "StyleData", "FileViewerOpener", "All",ExpressionUUID->"f7dab4b5-b8ee-4ee9-a0ec-99d3aec0d56c"],
-Cell[54703, 1373, 1034, 22, 241, "Input",ExpressionUUID->"b3f567c2-39d1-4eb2-a419-ebedfc72dc12"]
+Cell[55107, 1372, 88, 0, 36, 33, 0, "StyleData", "ToolbarElement", "All",ExpressionUUID->"25b3cddc-fe04-4e32-8333-61b055103b1b"],
+Cell[55198, 1374, 482, 9, 157, "Input",ExpressionUUID->"c9ed7de1-1d5d-4f03-8979-26cb7d914f4d"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[55786, 1401, 94, 0, 44, "Subsubsection",ExpressionUUID->"f33c009b-4144-4390-b855-d9affd79f231"],
-Cell[55883, 1403, 170, 3, 30, "Input",ExpressionUUID->"f0631260-18d0-4c5a-acab-85715e01a7c7"],
+Cell[55729, 1389, 91, 0, 44, "Subsubsection",ExpressionUUID->"1164b3f0-1286-4096-b617-ba4fc3404dc0"],
+Cell[55823, 1391, 167, 3, 30, "Input",ExpressionUUID->"a249309f-ba76-49a4-9356-f97f0c073740"],
 Cell[CellGroupData[{
-Cell[56078, 1410, 320, 7, 36, 33, 0, "StyleData", "FileViewerPane", "All",ExpressionUUID->"4c1bdbfd-6866-441d-b9b0-3f522f182633"],
-Cell[56401, 1419, 1440, 30, 388, "Input",ExpressionUUID->"9d4b4f65-dca0-4f70-9e6f-d6ea9d3db54d"]
+Cell[56015, 1398, 128, 3, 36, 30, 0, "StyleData", "ToolbarCell", "All",ExpressionUUID->"f3b008da-1ddd-4be9-b6a7-ff320416c5f7"],
+Cell[56146, 1403, 584, 13, 157, "Input",ExpressionUUID->"01f5ae5d-d1d9-4493-970b-266f72ba52ff"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[57890, 1455, 99, 0, 44, "Subsubsection",ExpressionUUID->"5f9e7496-8b51-466c-a446-0945349c929a"],
-Cell[57992, 1457, 177, 4, 30, "Input",ExpressionUUID->"c3c508c4-316b-4e3c-a30c-0b95e42cbe2d"],
+Cell[56791, 1423, 81, 0, 45, "Subsection",ExpressionUUID->"1d0011ca-78f4-41d9-920b-797b1bab1827"],
+Cell[56875, 1425, 205, 4, 30, "Input",ExpressionUUID->"9f189f99-1b7a-49b5-8c88-4bf7919c9463"],
 Cell[CellGroupData[{
-Cell[58194, 1465, 153, 3, 36, 38, 0, "StyleData", "FileViewerDirectory", "All",ExpressionUUID->"0c660d44-fe63-42a4-9e7a-dc6b51cf49fd"],
-Cell[58350, 1470, 580, 11, 157, "Input",ExpressionUUID->"22ea52fd-dfe9-4925-a17e-f1d007a8aaf1"]
+Cell[57105, 1433, 150, 2, 52, 67, 0, "StyleData", "TabPanel", "All",ExpressionUUID->"5162fc01-480a-4828-8d54-21d4fb323bcb"],
+Cell[57258, 1437, 354, 6, 136, "Input",ExpressionUUID->"f219fc01-07e7-4638-acc3-b2234dee1845"],
+Cell[57615, 1445, 212, 5, 30, "Input",ExpressionUUID->"f3289d6c-6bd1-4c11-bcb0-6aae959e5020"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57864, 1455, 238, 5, 52, 76, 0, "StyleData", "TabPanelActive", "All",ExpressionUUID->"7ad461c5-0c15-4869-81df-24896cebd348"],
+Cell[58105, 1462, 827, 16, 262, "Input",ExpressionUUID->"5f75f36c-e8eb-47b2-b7b7-9b4d10bca2ed"],
+Cell[58935, 1480, 216, 5, 30, "Input",ExpressionUUID->"090e43d6-fc96-491f-a554-3a2f632996f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59188, 1490, 284, 8, 52, 82, 1, "StyleData", "TabPanelBackground", "All",ExpressionUUID->"16ec91ff-367b-467d-a055-c713dcee2276"],
+Cell[59475, 1500, 984, 19, 283, "Input",ExpressionUUID->"186eac80-cf8f-4c76-9588-dbc7a9cf3195"],
+Cell[60462, 1521, 170, 3, 30, "Input",ExpressionUUID->"5167348b-71b7-4bea-877e-4b4a57ff09ae"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60669, 1529, 319, 6, 36, 33, 0, "StyleData", "TabCloseButton", "All",ExpressionUUID->"75d797bd-afa3-4f62-b3d6-c8335cb02058"],
+Cell[60991, 1537, 1553, 32, 367, "Input",ExpressionUUID->"3077f330-bafd-41b5-9b7d-2e83441d0f77"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[58979, 1487, 94, 0, 44, "Subsubsection",ExpressionUUID->"2af0857b-ddb6-4b32-81e0-03dd7767b728"],
-Cell[59076, 1489, 170, 3, 30, "Input",ExpressionUUID->"83ea5f9c-96c6-40fe-8beb-d8ea2a3df9e7"],
+Cell[62593, 1575, 87, 0, 29, "Subsection",ExpressionUUID->"ad919d62-9ecc-4185-99ef-cd13c6c6025a"],
 Cell[CellGroupData[{
-Cell[59271, 1496, 117, 2, 36, 33, 0, "StyleData", "FileViewerFile", "All",ExpressionUUID->"45931fa3-ad05-4705-b379-c6828b9e6a71"],
-Cell[59391, 1500, 394, 7, 136, "Input",ExpressionUUID->"82fdd548-b70a-4cc4-8e23-29af79bfff38"]
+Cell[62705, 1579, 102, 0, 44, "Subsubsection",ExpressionUUID->"8d5f2f82-44cb-42b4-92fb-a32aaca12154"],
+Cell[62810, 1581, 181, 4, 30, "Input",ExpressionUUID->"3a92eb0c-910d-42c8-a94b-00c9433bf8fe"],
+Cell[CellGroupData[{
+Cell[63016, 1589, 607, 12, 36, 41, 0, "StyleData", "FileViewerToggleButton", "All",ExpressionUUID->"fca78328-4f1c-4943-b445-c3009732578a"],
+Cell[63626, 1603, 2482, 50, 577, "Input",ExpressionUUID->"6f1757b1-3d5f-4438-8305-30e77f2da378"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[66157, 1659, 94, 0, 28, "Subsubsection",ExpressionUUID->"dbb155f4-6376-4b1c-b21d-88e6f26d20b1"],
+Cell[66254, 1661, 166, 2, 30, "Input",ExpressionUUID->"42458efb-2b2c-42e4-8b47-ba850ad1fb31"],
+Cell[CellGroupData[{
+Cell[66445, 1667, 264, 7, 42, 33, 0, "StyleData", "FileViewerCell", "All",ExpressionUUID->"50341f35-cbf8-4588-8284-b64bbfc3fc07"],
+Cell[66712, 1676, 1340, 33, 220, "Input",ExpressionUUID->"266c9f65-084d-466f-aafa-aac8bee10fce"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68101, 1715, 96, 0, 44, "Subsubsection",ExpressionUUID->"1c5a8f15-57ae-4a6b-b152-b8ef57ea5f6b"],
+Cell[68200, 1717, 217, 4, 30, "Input",ExpressionUUID->"edb66f61-74f8-4a18-b6ae-e5e0cc3c30d3"],
+Cell[CellGroupData[{
+Cell[68442, 1725, 274, 6, 36, 82, 1, "StyleData", "FileViewerOpener", "All",ExpressionUUID->"f7dab4b5-b8ee-4ee9-a0ec-99d3aec0d56c"],
+Cell[68719, 1733, 1034, 22, 241, "Input",ExpressionUUID->"b3f567c2-39d1-4eb2-a419-ebedfc72dc12"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69802, 1761, 94, 0, 44, "Subsubsection",ExpressionUUID->"f33c009b-4144-4390-b855-d9affd79f231"],
+Cell[69899, 1763, 170, 3, 30, "Input",ExpressionUUID->"f0631260-18d0-4c5a-acab-85715e01a7c7"],
+Cell[CellGroupData[{
+Cell[70094, 1770, 320, 7, 36, 33, 0, "StyleData", "FileViewerPane", "All",ExpressionUUID->"4c1bdbfd-6866-441d-b9b0-3f522f182633"],
+Cell[70417, 1779, 1440, 30, 388, "Input",ExpressionUUID->"9d4b4f65-dca0-4f70-9e6f-d6ea9d3db54d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71906, 1815, 99, 0, 44, "Subsubsection",ExpressionUUID->"5f9e7496-8b51-466c-a446-0945349c929a"],
+Cell[72008, 1817, 177, 4, 30, "Input",ExpressionUUID->"c3c508c4-316b-4e3c-a30c-0b95e42cbe2d"],
+Cell[CellGroupData[{
+Cell[72210, 1825, 153, 3, 36, 38, 0, "StyleData", "FileViewerDirectory", "All",ExpressionUUID->"0c660d44-fe63-42a4-9e7a-dc6b51cf49fd"],
+Cell[72366, 1830, 580, 11, 157, "Input",ExpressionUUID->"22ea52fd-dfe9-4925-a17e-f1d007a8aaf1"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72995, 1847, 94, 0, 44, "Subsubsection",ExpressionUUID->"2af0857b-ddb6-4b32-81e0-03dd7767b728"],
+Cell[73092, 1849, 170, 3, 30, "Input",ExpressionUUID->"83ea5f9c-96c6-40fe-8beb-d8ea2a3df9e7"],
+Cell[CellGroupData[{
+Cell[73287, 1856, 117, 2, 36, 33, 0, "StyleData", "FileViewerFile", "All",ExpressionUUID->"45931fa3-ad05-4705-b379-c6828b9e6a71"],
+Cell[73407, 1860, 394, 7, 136, "Input",ExpressionUUID->"82fdd548-b70a-4cc4-8e23-29af79bfff38"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
