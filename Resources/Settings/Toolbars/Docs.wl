@@ -33,8 +33,20 @@ withNewTaggingRules[expr_]:=
    ];
 withNewTaggingRules~SetAttributes~HoldFirst;
 
-metadataEditor = 
-  $MetadataEditor // patchTaggingRules;
+metadataEditor =
+  RawBoxes@
+    ReplaceAll[
+      ToBoxes@
+        Framed[
+          $MetadataEditor // patchTaggingRules,
+          ImageSize->{{100, 500}, {55, 1000}},
+          Background->White,
+          RoundingRadius->5,
+          BaseStyle->"Panel",
+          FrameStyle->GrayLevel[.8]
+          ],
+      TagBox[g_GridBox, "Grid"]:>g
+      ]
 
 
 docsTemplates = 
@@ -76,5 +88,5 @@ End[]
 {
   metadataEditor,
   docsTemplates,
-  docsOpsMenu,
+  docsOpsMenu
   }

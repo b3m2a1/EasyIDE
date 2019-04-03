@@ -1,8 +1,19 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     22486,        572]
+NotebookOptionsPosition[     19117,        496]
+NotebookOutlinePosition[     19782,        519]
+CellTagsIndexPosition[     19739,        516]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Plugins", \
-"CodeSection",ExpressionUUID->"9f8ab4b6-1736-4dca-a305-48916810b9dd"],
+Cell["Plugins", "CodeSection"],
 
 Cell[BoxData[{
  RowBox[{
@@ -14,29 +25,26 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"GetPluginsMenus", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"16774c55-0dfd-4d60-b2f9-f53ace47300f"],
+  ";"}]}], "CodeInput"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"e9a5aeb9-0a46-46b4-ae9f-\
-1b3b892ac3bb"],
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "InputSection"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Plugins\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"4a5f7757-a1ed-4ad7-b3fe-bb06dc66284c"],
+ Evaluatable->True],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]LoadPlugin\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"88bf0264-9f14-4449-9cac-3bdcb689226d"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{"Quiet", "[", "\n", "\t", 
   RowBox[{"System`MenuKey", ";", "\n", "\t", "System`MenuItem", ";"}], "\n", 
-  "\t", "]"}]], \
-"CodeInput",ExpressionUUID->"a6e5da09-4769-40ab-a41f-38e1f084d6bb"],
+  "\t", "]"}]], "CodeInput"],
 
 Cell["\<\
 \[LeftCeiling]
@@ -45,7 +53,7 @@ the DockedCell, and
 \tsome day MenuItem expressions will get dumped into the main menu.
 \[RightFloor]\
 \>", "Text",
- Evaluatable->True,ExpressionUUID->"9dd63ff1-9216-4468-a783-d727ca71bd20"],
+ Evaluatable->True],
 
 Cell[BoxData[{
  RowBox[{"LoadPlugin", "//", "Clear"}], "\n", 
@@ -111,8 +119,7 @@ Cell[BoxData[{
              RowBox[{"\"\<Name\>\"", "\[Rule]", 
               RowBox[{"FileBaseName", "[", "file", "]"}]}], ",", "\n", 
              "\t\t\t\t\t\t\t", 
-             RowBox[{"default", "\[Rule]", 
-              RowBox[{"Normal", "@", "pd"}]}]}], "\n", "\t\t\t\t\t\t\t", 
+             RowBox[{"default", "\[Rule]", "pd"}]}], "\n", "\t\t\t\t\t\t\t", 
             "|>"}]}], ",", "\n", "\t\t\t\t\t", 
           RowBox[{
            RowBox[{"pd", ":", 
@@ -127,9 +134,8 @@ Cell[BoxData[{
              RowBox[{"\"\<Name\>\"", "\[Rule]", 
               RowBox[{"FileBaseName", "[", "file", "]"}]}], ",", "\n", "\t", 
              "\t\t\t\t\t\t", 
-             RowBox[{"\"\<Commands\>\"", "\[Rule]", 
-              RowBox[{"Normal", "@", "pd"}]}]}], "\n", "\t\t\t\t\t\t\t", 
-            "|>"}]}], ",", "\n", "\t\t\t\t\t", 
+             RowBox[{"\"\<Commands\>\"", "\[Rule]", "pd"}]}], "\n", 
+            "\t\t\t\t\t\t\t", "|>"}]}], ",", "\n", "\t\t\t\t\t", 
           RowBox[{
            RowBox[{"pd", ":", 
             RowBox[{"{", 
@@ -193,14 +199,13 @@ Cell[BoxData[{
          RowBox[{"pluginData", "[", "\"\<Commands\>\"", "]"}]}]}]}], "\n", 
       "\t\t\t", "]"}], ";", "\n", "\t\t", 
      RowBox[{"normalizePlugin", "@", "pluginData"}]}]}], "\n", "\t\t", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"e16b0b53-e71b-439a-a583-3b85ff4867b9"]
-}, Closed]],
+   "]"}]}]}], "CodeInput"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]getPluginActionMenu\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"eb6eae8c-ae9e-4602-a350-1467e0fb5b43"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
@@ -242,67 +247,60 @@ Cell[BoxData[
         RowBox[{"Lookup", "[", 
          RowBox[{"plugin", ",", " ", "\"\<Options\>\"", ",", " ", 
           RowBox[{"{", "}"}]}], "]"}], "}"}]}]}]}], "\n", "\t\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"29174465-3fba-4c38-a2ad-e189105f4544"]
+  ";"}]], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]getPluginToolbar\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"daebd7b7-ab9a-4459-b559-ad6e783dcb43"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"getPluginToolbar", "[", "plugin_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"Grid", "[", "\n", "\t\t", 
+  RowBox[{"Replace", "[", "\n", "\t\t ", 
    RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{"Replace", "[", 
+    RowBox[{"plugin", "[", "\"\<Toolbar\>\"", "]"}], ",", "\n", "\t\t ", 
+    RowBox[{"{", "\n", "\t\t\t ", 
+     RowBox[{
       RowBox[{
-       RowBox[{"plugin", "[", "\"\<Toolbar\>\"", "]"}], ",", "\n", "\t", "\t",
-        "\t\t", 
-       RowBox[{"{", "\n", "\t", "\t", "\t\t\t", 
+       RowBox[{"(", 
+        RowBox[{"key_", "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"command_", ",", " ", "ops___"}], "}"}]}], ")"}], ":>", 
+       "\n", "\t", "\t", "\t\t\t\t", 
+       RowBox[{"Button", "[", 
         RowBox[{
-         RowBox[{
-          RowBox[{"(", 
-           RowBox[{"key_", "\[RuleDelayed]", 
-            RowBox[{"{", 
-             RowBox[{"command_", ",", " ", "ops___"}], "}"}]}], ")"}], ":>", 
-          "\n", "\t", "\t", "\t\t\t\t", 
-          RowBox[{"Button", "[", 
+        "key", ",", " ", "\n", "\t\t\t\t\t\t\t", "command", ",", " ", "\n", 
+         "\t\t\t\t\t\t\t", 
+         RowBox[{"Sequence", "@@", 
+          RowBox[{"FilterRules", "[", "\n", "\t\t\t\t\t\t\t\t", 
            RowBox[{
-           "key", ",", " ", "\n", "\t", "\t", "\t\t\t\t\t", "command", ",", 
-            " ", "\n", "\t", "\t", "\t\t\t\t\t", 
-            RowBox[{"Sequence", "@@", 
-             RowBox[{"FilterRules", "[", "\n", "\t", "\t", "\t\t\t\t\t\t", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{
-                 RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", " ", 
-                 "ops"}], "}"}], ",", " ", "\n", "\t", "\t", "\t\t\t\t\t\t", 
-               RowBox[{"Join", "[", 
-                RowBox[{
-                 RowBox[{"Options", "[", "Button", "]"}], ",", " ", 
-                 RowBox[{"Options", "[", "ButtonBox", "]"}]}], "]"}]}], "\n", 
-              "\t", "\t", "\t\t\t\t\t\t", "]"}]}]}], "\n", "\t", "\t", 
-           "\t\t\t\t\t", "]"}]}], ",", "\n", "\t", "\t", "\t\t\t", 
-         RowBox[{
-          RowBox[{"(", 
-           RowBox[{"key_", "\[RuleDelayed]", "command_"}], ")"}], ":>", "\n", 
-          "\t", "\t", "\t\t\t\t", 
-          RowBox[{"Button", "[", 
-           RowBox[{"key", ",", " ", "command", ",", " ", 
-            RowBox[{"Appearance", "\[Rule]", "Inherited"}]}], "]"}]}]}], "\n",
-         "\t", "\t", "\t\t\t", "}"}], ",", "\n", "\t\t\t\t", "1"}], "\n", 
-      "\t\t\t\t", "]"}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
-    RowBox[{"BaseStyle", "\[Rule]", "\"\<PluginToolbar\>\""}]}], "\n", "\t\t",
-    "]"}]}]], \
-"CodeInput",ExpressionUUID->"d2e25041-a2ec-4f62-afae-df3c936b8a45"]
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", " ", 
+              "ops"}], "}"}], ",", " ", "\n", "\t", "\t", "\t\t\t\t\t\t", 
+            RowBox[{"Join", "[", 
+             RowBox[{
+              RowBox[{"Options", "[", "Button", "]"}], ",", " ", 
+              RowBox[{"Options", "[", "ButtonBox", "]"}]}], "]"}]}], "\n", 
+           "\t", "\t", "\t\t\t\t\t\t", "]"}]}]}], "\n", "\t", "\t", 
+        "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t\t\t", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"key_", "\[RuleDelayed]", "command_"}], ")"}], ":>", "\n", 
+       "\t\t\t\t\t\t ", 
+       RowBox[{"Button", "[", 
+        RowBox[{"key", ",", " ", "command", ",", " ", 
+         RowBox[{"Appearance", "\[Rule]", "Inherited"}]}], "]"}]}]}], "\n", 
+     "\t\t\t\t \t", "}"}], ",", "\n", "\t\t\t\t", "1"}], "\n", "\t\t\t\t", 
+   "]"}]}]], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]normalizePlugin\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"50aba7a8-ca6e-4b08-b17f-2e492c8cb6d2"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
@@ -340,15 +338,13 @@ Cell[BoxData[
           "\t\t\t\t\t\t", 
           RowBox[{"getPluginToolbar", "[", "plugin", "]"}]}]}], "\n", 
         "\t\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", 
-     "plugin"}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"aac14ef6-01e9-488f-afd4-b77e28bf4459"]
-}, Closed]],
+     "plugin"}]}], "\n", "\t\t", "]"}]}]], "CodeInput"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]GetPluginData\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"62612e11-0961-42f3-a20a-0f541b87cce0"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
@@ -391,16 +387,14 @@ Cell[BoxData[
        RowBox[{
         RowBox[{"baseData", "[", "\"\<Commands\>\"", "]"}], "=", 
         RowBox[{"{", "}"}]}]}], "]"}], ";", "\n", "\t\t", "baseData"}]}], 
-   "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"9255e624-76bf-4d45-84fa-577283b93b03"]
+   "\n", "\t\t", "]"}]}]], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]createPluginCommandsMenu\[RightFloor]", \
 "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"89ad1e7d-b94f-4159-bcd4-609381f324b2"],
+ Evaluatable->True],
 
 Cell[BoxData[{
  RowBox[{
@@ -433,14 +427,13 @@ Cell[BoxData[{
            RowBox[{"{", "}"}]}], "]"}]}], "\n", "\t\t\t\t", "]"}]}], "\n", 
       "\t\t\t", "]"}]}], "\n", "\t\t", ")"}]}], ";"}], "\n", 
  RowBox[{"createPluginCommandsMenu", "~", "SetAttributes", "~", 
-  "HoldFirst"}]}], \
-"CodeInput",ExpressionUUID->"e75c601d-f735-4d38-9081-27c63f6e0e14"]
+  "HoldFirst"}]}], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]GetPluginsMenus\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"44904010-d092-436e-ac05-e121c1c63954"],
+ Evaluatable->True],
 
 Cell[BoxData[{
  RowBox[{"GetPluginsMenus", "//", "Clear"}], "\n", 
@@ -490,21 +483,16 @@ Cell[BoxData[{
            RowBox[{
             RowBox[{"data", "[", "\"\<Menu\>\"", "]"}], ",", " ", 
             "\"\<Menu\>\""}], "]"}]}]}], "\n", "\t\t\t\t", "|>"}]}]}], "\n", 
-     "\t\t\t", "]"}]}], "\n", "\t\t", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"9466090e-73ef-4e84-a380-0ec43070af7b"]
+     "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}]}], "CodeInput"]
 }, Closed]]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"49c7f707-12b4-4d44-bf67-\
-c8dd1a07a340"]
+  RowBox[{"End", "[", "]"}], ";"}]], "InputSection"]
 }, Open  ]],
 
-Cell["", "SectionSeparator",ExpressionUUID->"384a4e07-d52d-41d0-ab6f-\
-7cf00393bac3"]
+Cell["", "SectionSeparator"]
 },
 WindowSize->{808, 755},
 WindowMargins->{{166, Automatic}, {Automatic, 0}},
@@ -519,3 +507,67 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 30, 0, 70, "CodeSection",ExpressionUUID->"f1169049-a616-4f1f-9b32-c3e5b66fa8cc"],
+Cell[455, 17, 321, 10, 70, "CodeInput",ExpressionUUID->"8cd4e70a-a55d-4b40-ba24-6715dcf3415a"],
+Cell[779, 29, 99, 2, 70, "InputSection",ExpressionUUID->"062c6366-4a38-413e-82b7-21e63aec4c6d"],
+Cell[CellGroupData[{
+Cell[903, 35, 80, 1, 70, "CodeSubsection",ExpressionUUID->"fed898ec-f5f0-48d2-a4bc-61bfb5fd71d2",
+ Evaluatable->True],
+Cell[CellGroupData[{
+Cell[1008, 40, 86, 1, 70, "CodeSubsubsection",ExpressionUUID->"e9468c4c-86d6-413c-a3cd-8ab2cfffc708",
+ Evaluatable->True],
+Cell[1097, 43, 156, 3, 70, "CodeInput",ExpressionUUID->"7f151a57-002a-4ef4-830c-e8a2a7b93804"],
+Cell[1256, 48, 240, 7, 70, "Text",ExpressionUUID->"1a80eb24-c3c4-4ba6-ba78-b3478e79b9a4",
+ Evaluatable->True],
+Cell[1499, 57, 6639, 144, 70, "CodeInput",ExpressionUUID->"210f60e2-3a1b-40d6-b391-9d3d363a36a5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8175, 206, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"4f799edc-95ab-46f7-b209-624c70cc05bd",
+ Evaluatable->True],
+Cell[8273, 209, 1709, 40, 70, "CodeInput",ExpressionUUID->"12fff315-48be-4462-b23d-b8e6f6424cd6"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10019, 254, 92, 1, 70, "CodeSubsubsection",ExpressionUUID->"18b9aa6d-3ecc-4813-9231-5c369bdf0de1",
+ Evaluatable->True],
+Cell[10114, 257, 1683, 39, 70, "CodeInput",ExpressionUUID->"2e3ea7fa-d3ad-4ee4-83b5-dfb09f8761c4"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11834, 301, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"5a8bb360-ae4a-49ba-b9ea-5dfefd24422b",
+ Evaluatable->True],
+Cell[11928, 304, 1465, 36, 70, "CodeInput",ExpressionUUID->"84426514-5704-42fb-8e8a-06e043a73c27"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13430, 345, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"6af928b8-fcc4-43f2-b2e6-69d65e1cd44e",
+ Evaluatable->True],
+Cell[13522, 348, 1649, 41, 70, "CodeInput",ExpressionUUID->"f457a1fd-0705-47d7-83fa-456aca168870"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[15208, 394, 102, 2, 70, "CodeSubsubsection",ExpressionUUID->"f053440c-cfad-4498-b6d7-c742e27e16fe",
+ Evaluatable->True],
+Cell[15313, 398, 1307, 31, 70, "CodeInput",ExpressionUUID->"bd63fda1-ff1a-45f9-b686-b16e5e1004a3"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[16657, 434, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"3223dfda-77df-4cc7-ad02-4bbe06e1d47f",
+ Evaluatable->True],
+Cell[16751, 437, 2216, 48, 70, "CodeInput",ExpressionUUID->"dda3dcd9-771e-4472-bb2e-d57a87c3470d"]
+}, Closed]]
+}, Open  ]],
+Cell[18994, 489, 76, 2, 70, "InputSection",ExpressionUUID->"ffbddbde-cf09-4399-b4d4-43a6259027b0"]
+}, Open  ]],
+Cell[19085, 494, 28, 0, 70, "SectionSeparator",ExpressionUUID->"1a361d47-8120-4401-89b1-a59d7478c65b"]
+}
+]
+*)
+

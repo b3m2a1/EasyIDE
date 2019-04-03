@@ -65,12 +65,12 @@ LoadPlugin[file_String, default_:Automatic]:=
           pd_?(StringQ[default]&):>
             <|
               "Name"->FileBaseName[file],
-              default->Normal@pd
+              default->pd
               |>,
           pd:{(_Rule|_RuleDelayed)..}|_Association:>
             <|
               "Name"->FileBaseName[file],
-              "Commands"->Normal@pd
+              "Commands"->pd
               |>,
           pd:{(Delimiter|_RuleDelayed)..}:>
             <|
@@ -141,11 +141,10 @@ getPluginActionMenu[plugin_]:=
 
 
 getPluginToolbar[plugin_]:=
-  Grid[
-    {
-      Replace[plugin["Toolbar"],
-        {
-          (key_:>{command_, ops___}):>
+  Replace[
+     plugin["Toolbar"],
+     {
+       (key_:>{command_, ops___}):>
             Button[key, 
               command, 
               Sequence@@FilterRules[
@@ -154,13 +153,10 @@ getPluginToolbar[plugin_]:=
                 ]
               ],
           (key_:>command_):>
-            Button[key, command, Appearance->Inherited]
-          },
+             Button[key, command, Appearance->Inherited]
+           },
         1
         ]
-      },
-    BaseStyle->"PluginToolbar"
-    ]
 
 
 (* ::Subsubsection::Closed:: *)
