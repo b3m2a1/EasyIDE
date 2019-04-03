@@ -43,8 +43,9 @@ MessagePopupPanel[expression_]:=
 
 
 CreateMessagePopup//Clear
-CreateMessagePopup[nb_, 
- expression_, 
+CreateMessagePopup[
+  nb_, 
+  expression_, 
   position:{_Integer|_Scaled, _Integer|_Scaled}:{-15, -15},
   align:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
   anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom}

@@ -107,7 +107,7 @@ TabObject[tabName_String, file_]:=
       Grid[
         List@{
           MouseAppearance[
-            EventHandler[
+            Button[
               Pane[tabName, BaseStyle->"TabName"],
               {
                 "MouseClicked":>
@@ -116,7 +116,9 @@ TabObject[tabName_String, file_]:=
                     ],
                 PassEventsUp->True,
                 PassEventsDown->True
-                }
+                },
+              Appearance->None,
+              Method->"Queued"
               ],
             "LinkHand"
             ],

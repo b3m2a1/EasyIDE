@@ -408,7 +408,7 @@ loadFVStyles[]:=
 
 
 getFileViewerStylesheet[nb_]:=
-  getMainStylesheet[nb]/.loadFVStyles[]
+  GetMainStylesheet[nb]/.loadFVStyles[]
 
 
 (* ::Subsubsection::Closed:: *)
