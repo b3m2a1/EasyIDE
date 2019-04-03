@@ -4,10 +4,18 @@
   "Initialize":>
     Replace[
       SimpleDocs@"InitializeProject"[IDEPath[$CurrentIDENotebook]],
-      s_String:>
-        With[{cf=Block[{SystemOpen=#&}, SimpleDocs@"OpenConfig"[FileBaseName[s]]]},
-          IDEOpen[$CurrentIDENotebook, cf]
-          ]
+      {
+        s_String:>
+          With[{cf=Block[{SystemOpen=#&}, SimpleDocs@"OpenConfig"[FileBaseName[s]]]},
+            IDEOpen[$CurrentIDENotebook, cf]
+            ],
+        e_:>
+          CreateMessagePopup[
+            StringForm["Failed to initialize docs. Got:\n``",
+              e
+              ]
+            ]
+        }
       ],
   "New Symbol":>
     Module[

@@ -107,25 +107,16 @@ TabObject[tabName_String, file_]:=
       Grid[
         List@{
           MouseAppearance[
-            Button[
-              Pane[tabName, BaseStyle->"TabName"],
-              {
-                "MouseClicked":>
-                  If[FreeQ[CurrentValue["ModifierKeys"], "Control"],
-                    NotebookSwitchTab[EvaluationNotebook[], tabName]
-                    ],
-                PassEventsUp->True,
-                PassEventsDown->True
-                },
-              Appearance->None,
-              Method->"Queued"
+            RawBoxes@ButtonBox[
+              ToBoxes@Pane[tabName, BaseStyle->"TabName"],
+              BaseStyle->"TabName",
+              ButtonData->tabName
               ],
             "LinkHand"
             ],
-          Button["", 
-           NotebookCloseTab[EvaluationNotebook[], tabName], 
+          RawBoxes@ButtonBox["", 
             BaseStyle->"TabCloseButton",
-            Appearance->Inherited
+            ButtonData->tabName
             ]
           }
         ],

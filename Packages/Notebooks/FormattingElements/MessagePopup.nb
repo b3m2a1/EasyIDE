@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      7156,        208]
-NotebookOptionsPosition[      4922,        153]
-NotebookOutlinePosition[      5588,        176]
-CellTagsIndexPosition[      5545,        173]
+NotebookDataLength[      9249,        258]
+NotebookOptionsPosition[      6918,        202]
+NotebookOutlinePosition[      7584,        225]
+CellTagsIndexPosition[      7541,        222]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -73,11 +73,69 @@ Cell[CellGroupData[{
 Cell["\[LeftCeiling]CreateMessagePopup\[RightFloor]", "CodeSubsubsection",
  Evaluatable->True],
 
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"attachables", "=", "\n", "\t", 
+   RowBox[{
+   "_NotebookObject", "|", "_FrontEnd`EvaluationNotebook", "|", 
+    "_FrontEnd`InputNotebook", "|", "\n", "  ", "_FrontEnd`SelectedNotebook", 
+    "|", "_FrontEnd`ParentNotebook", "|", "_FrontEnd`ButtonNotebook", "|", 
+    "\n", "  ", "_CellObject", "|", "_FrontEnd`EvaluationCell", "|", 
+    "_FrontEnd`ParentCell", "|", "_FrontEnd`IndexedCell", "|", "\n", "  ", 
+    "_BoxObject", "|", "_FrontEnd`EvaluationBox", "|", 
+    "_FrontEnd`ParentBox"}]}], ";"}]], "CodeInput"],
+
 Cell[BoxData[{
  RowBox[{"CreateMessagePopup", "//", "Clear"}], "\n", 
  RowBox[{
-  RowBox[{"CreateMessagePopup", "[", "\n", "  ", 
-   RowBox[{"nb_", ",", " ", "\n", "  ", "expression_", ",", " ", "\n", "  ", 
+  RowBox[{
+   RowBox[{"CreateMessagePopup", "[", "\n", "  ", 
+    RowBox[{
+     RowBox[{"nb", ":", "attachables"}], ",", " ", "\n", "  ", "expression_", 
+     ",", " ", "\n", "  ", 
+     RowBox[{"position", ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"_Integer", "|", "_Scaled"}], ",", " ", 
+        RowBox[{"_Integer", "|", "_Scaled"}]}], "}"}], ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "15"}], ",", " ", 
+        RowBox[{"-", "15"}]}], "}"}]}], ",", "\n", "  ", 
+     RowBox[{"align", ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Left", "|", "Center", "|", "Right"}], ",", " ", 
+        RowBox[{"Bottom", "|", "Center", "|", "Top"}]}], "}"}], ":", 
+      RowBox[{"{", 
+       RowBox[{"Right", ",", " ", "Bottom"}], "}"}]}], ",", "\n", "  ", 
+     RowBox[{"anchor", ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Left", "|", "Center", "|", "Right"}], ",", " ", 
+        RowBox[{"Bottom", "|", "Center", "|", "Top"}]}], "}"}], ":", 
+      RowBox[{"{", 
+       RowBox[{"Right", ",", " ", "Bottom"}], "}"}]}]}], "\n", "  ", "]"}], ":=",
+    "\n", "  ", 
+   RowBox[{"FEAttachCell", "[", "\n", "    ", 
+    RowBox[{"nb", ",", "\n", "    ", 
+     RowBox[{"Cell", "[", "\n", "      ", 
+      RowBox[{
+       RowBox[{"BoxData", "@", 
+        RowBox[{"ToBoxes", "@", 
+         RowBox[{"MessagePopupPanel", "[", "expression", "]"}]}]}], ",", "\n",
+        "      ", "\"\<MessagePopupCell\>\""}], "\n", "      ", "]"}], ",", 
+     "\n", "    ", 
+     RowBox[{"Offset", "[", 
+      RowBox[{"position", ",", " ", "0"}], "]"}], ",", "\n", "    ", "align", 
+     ",", "\n", "    ", "anchor", ",", "\n", "    ", 
+     RowBox[{"{", "\"\<OutsideMouseClick\>\"", "}"}]}], "\n", "    ", "]"}]}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{"CreateMessagePopup", "[", " ", "\n", "  ", 
+   RowBox[{
+    RowBox[{"expression", ":", 
+     RowBox[{"Except", "[", "attachables", "]"}]}], ",", " ", "\n", "  ", 
     RowBox[{"position", ":", 
      RowBox[{"{", 
       RowBox[{
@@ -102,20 +160,11 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"Right", ",", " ", "Bottom"}], "}"}]}]}], "\n", "  ", "]"}], ":=",
    "\n", "  ", 
-  RowBox[{"FEAttachCell", "[", "\n", "    ", 
-   RowBox[{"nb", ",", "\n", "    ", 
-    RowBox[{"Cell", "[", "\n", "      ", 
-     RowBox[{
-      RowBox[{"BoxData", "@", 
-       RowBox[{"ToBoxes", "@", 
-        RowBox[{"MessagePopupPanel", "[", "expression", "]"}]}]}], ",", "\n", 
-      "      ", "\"\<MessagePopupCell\>\""}], "\n", "      ", "]"}], ",", 
-    "\n", "    ", 
-    RowBox[{"Offset", "[", 
-     RowBox[{"position", ",", " ", "0"}], "]"}], ",", "\n", "    ", "align", 
-    ",", "\n", "    ", "anchor", ",", "\n", "    ", 
-    RowBox[{"{", "\"\<OutsideMouseClick\>\"", "}"}]}], "\n", "    ", 
-   "]"}]}]}], "CodeInput"]
+  RowBox[{"CreateMessagePopup", "[", "\n", "    ", 
+   RowBox[{
+   "$CurrentIDENotebook", ",", "\n", "    ", "expression", ",", "\n", "    ", 
+    "position", ",", "\n", "    ", "align", ",", "\n", "    ", "anchor"}], 
+   "\n", "    ", "]"}]}]}], "CodeInput"]
 }, Open  ]]
 }, Open  ]],
 
@@ -176,33 +225,34 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 56, 1, 70, "CodeSection",ExpressionUUID->"d4d553eb-cdac-4b2e-9a2e-387b821d9ab0",
+Cell[422, 15, 56, 1, 70, "CodeSection",ExpressionUUID->"80a9a3e7-653d-4b3e-bce7-763076038dbf",
  Evaluatable->False],
-Cell[481, 18, 302, 8, 70, "CodeInput",ExpressionUUID->"0144c943-7eec-4f75-a360-1b5797219f58"],
-Cell[786, 28, 103, 2, 70, "CodeInput",ExpressionUUID->"1b020d9c-8595-4752-832d-91273b18e246"],
-Cell[892, 32, 99, 2, 70, "InputSection",ExpressionUUID->"e74a3261-bd76-4996-8524-709cf5f975e7"],
+Cell[481, 18, 302, 8, 70, "CodeInput",ExpressionUUID->"ec8ad62e-6f1d-41d9-8b7f-8601bf116ced"],
+Cell[786, 28, 103, 2, 70, "CodeInput",ExpressionUUID->"be39aec9-ac09-4fba-aa66-bd73d7a5c2e1"],
+Cell[892, 32, 99, 2, 70, "InputSection",ExpressionUUID->"2b36db89-85ec-4c7b-b40c-137f6206c7d9"],
 Cell[CellGroupData[{
-Cell[1016, 38, 91, 1, 70, "CodeSubsection",ExpressionUUID->"a1fe5014-f1e2-4afc-abfc-6a783ec99ce6",
+Cell[1016, 38, 91, 1, 70, "CodeSubsection",ExpressionUUID->"9d1beffa-c536-4ec2-b6f1-f39f3fda19f7",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[1132, 43, 93, 1, 70, "CodeSubsubsection",ExpressionUUID->"adb3f6d8-71df-4bd4-a384-be943ff2b842",
+Cell[1132, 43, 93, 1, 70, "CodeSubsubsection",ExpressionUUID->"be869baf-7332-4942-a45e-95366aa0a3a7",
  Evaluatable->True],
-Cell[1228, 46, 889, 21, 70, "CodeInput",ExpressionUUID->"49b96f82-f98d-4b85-8b7b-76277c6e829f"]
+Cell[1228, 46, 889, 21, 70, "CodeInput",ExpressionUUID->"12590d07-1c91-4dcd-96ea-3ce49f8ae945"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2154, 72, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"e0478e3f-3483-4893-97ed-f20f4cbddffa",
+Cell[2154, 72, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"38281bde-ebdb-48b1-aeaf-4ba5c2f5c690",
  Evaluatable->True],
-Cell[2251, 75, 1746, 42, 70, "CodeInput",ExpressionUUID->"d89ff14b-5573-44a6-9024-94392c9035a2"]
+Cell[2251, 75, 552, 10, 70, "CodeInput",ExpressionUUID->"854f730b-e51a-400a-bcd4-a391152f40d8"],
+Cell[2806, 87, 3187, 79, 70, "CodeInput",ExpressionUUID->"1c6e7d59-494a-42a5-a203-c64b5034e7a5"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4046, 123, 89, 1, 70, "CodeSubsection",ExpressionUUID->"769affba-f101-4aa4-9983-e9fbc4c1d086",
+Cell[6042, 172, 89, 1, 70, "CodeSubsection",ExpressionUUID->"6a04fbad-4fe3-44a2-8f78-bff4b9fabe2c",
  Evaluatable->True],
-Cell[4138, 126, 646, 17, 70, "CodeInput",ExpressionUUID->"3f72d2f1-4686-4124-a0e8-8d5352af8b98"]
+Cell[6134, 175, 646, 17, 70, "CodeInput",ExpressionUUID->"f5b30c35-774b-4da5-b66c-c0ea7853f142"]
 }, Open  ]],
-Cell[4799, 146, 76, 2, 70, "InputSection",ExpressionUUID->"0282ea73-5a40-43dc-95c0-3ad39de1289b"]
+Cell[6795, 195, 76, 2, 70, "InputSection",ExpressionUUID->"f33fe052-687d-486e-bf78-40d00193fce1"]
 }, Open  ]],
-Cell[4890, 151, 28, 0, 70, "SectionSeparator",ExpressionUUID->"a0de267e-e222-4516-932f-607175a057ff"]
+Cell[6886, 200, 28, 0, 70, "SectionSeparator",ExpressionUUID->"d83edf4a-8543-4e25-a103-9f5940bd1d2c"]
 }
 ]
 *)

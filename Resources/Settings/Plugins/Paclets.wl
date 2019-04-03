@@ -7,6 +7,9 @@
         pb=
           PacletExecute["Bundle", IDEPath[$CurrentIDENotebook]]
         },
+       StringForm["Created paclet at:\n ``",
+         Short[pb]
+         ];
        If[StringQ[pb], SystemOpen@DirectoryName[pb]]
       ],
   "Update Info":>
@@ -18,6 +21,10 @@
             IDEPath[$CurrentIDENotebook]
             ]
         },
-       If[StringQ[pi], IDEOpen[$CurrentIDENotebook, pi]]
+       CreateMessagePopup[
+         StringForm["Generated PacletInfo at:\n ``",
+           Short[pi]
+           ]
+         ]
       ]
   }

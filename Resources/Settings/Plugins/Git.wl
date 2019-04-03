@@ -15,7 +15,17 @@
         ]
       ),
   "Push":>
-    Git["PushOrigin", IDEPath[$CurrentIDENotebook]],
+    CreateMessagePopup[
+        $CurrentIDENotebook, 
+        StringForm["Pushed to origin: \n``", 
+          Git["PushOrigin", IDEPath[$CurrentIDENotebook]]
+          ]
+        ],
   "Pull":>
-    Git["PullOrigin", IDEPath[$CurrentIDENotebook]]
+    CreateMessagePopup[
+      $CurrentIDENotebook, 
+      StringForm["Pulled from origin: \n``", 
+        Git["PullOrigin", IDEPath[$CurrentIDENotebook]]
+        ]
+      ]
 }

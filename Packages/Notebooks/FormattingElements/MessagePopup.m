@@ -42,9 +42,16 @@ MessagePopupPanel[expression_]:=
 
 
 
+attachables=
+  _NotebookObject|_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook|
+  _FrontEnd`SelectedNotebook|_FrontEnd`ParentNotebook|_FrontEnd`ButtonNotebook|
+  _CellObject|_FrontEnd`EvaluationCell|_FrontEnd`ParentCell|_FrontEnd`IndexedCell|
+  _BoxObject|_FrontEnd`EvaluationBox|_FrontEnd`ParentBox;
+
+
 CreateMessagePopup//Clear
 CreateMessagePopup[
-  nb_, 
+  nb:attachables, 
   expression_, 
   position:{_Integer|_Scaled, _Integer|_Scaled}:{-15, -15},
   align:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
@@ -60,6 +67,19 @@ CreateMessagePopup[
     align,
     anchor,
     {"OutsideMouseClick"}
+    ];
+CreateMessagePopup[ 
+  expression:Except[attachables], 
+  position:{_Integer|_Scaled, _Integer|_Scaled}:{-15, -15},
+  align:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
+  anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom}
+  ]:=
+  CreateMessagePopup[
+    $CurrentIDENotebook,
+    expression,
+    position,
+    align,
+    anchor
     ]
 
 
