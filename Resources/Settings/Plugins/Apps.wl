@@ -2,7 +2,13 @@
 
 {
   "Update Dependencies":>
-    AppExecute["UpdateDependencies", IDEPath[$CurrentIDENotebook]],
+    (
+      AppExecute["UpdateDependencies", IDEPath[$CurrentIDENotebook]];
+      CreateMessagePopup["Updated dependencies"]
+      ),
   "Update Directories":>
-    AppExecute["RegenerateDirectories", IDEPath[$CurrentIDENotebook]]
+    (
+      AppExecute["RegenerateDirectories", IDEPath[$CurrentIDENotebook]];
+      CreateMessagePopup["Rebuilt directory structure"]
+      )
   }

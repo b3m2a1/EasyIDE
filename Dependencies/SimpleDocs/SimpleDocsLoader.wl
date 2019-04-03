@@ -1,5 +1,3 @@
-(* ::Package:: *)
-
 (* ::Title:: *)
 (*SimpleDocs`*)
 
@@ -282,8 +280,6 @@ $AllowPackageAutocompletions=
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Paths*)
 
@@ -341,8 +337,6 @@ PackagePathSymbol~SetAttributes~HoldRest;
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Usages*)
 
@@ -402,8 +396,6 @@ PackageAddUsage~SetAttributes~HoldFirst;
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Loading*)
 
@@ -905,8 +897,6 @@ PackageRecontext[
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Dependencies*)
 
@@ -1279,7 +1269,7 @@ PackageEnsureLoadDependency[dep_, ops:OptionsPattern[]]:=
              Options@PackageLoadPacletDependency
              ]
            ],
-         Lookup[Flatten@{ops}, "Loading", Get]@Echo@foundFile
+         Lookup[Flatten@{ops}, "Loading", Get]@foundFile
          (* I have my reasons to do this rather than Needs... but it could change... *)
          ],
       General::shdw
@@ -1362,8 +1352,6 @@ PackageExposeDependencies[]:=
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Exceptions*)
 
@@ -1669,8 +1657,6 @@ PackageExceptionBlock~SetAttributes~HoldFirst;
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Autocompletion*)
 
@@ -1891,8 +1877,6 @@ PackageSetAutocompletionData[]:=
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*FrontEnd*)
 
