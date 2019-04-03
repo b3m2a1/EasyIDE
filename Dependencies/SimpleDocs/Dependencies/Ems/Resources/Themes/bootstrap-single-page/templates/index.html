@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+    <wolfram:slot id="PageTitle">
+      <wolfram:get path="include/lib/templates/varDefinedBlock.html">
+        <wolfram:slot id="var">Title</wolfram:slot>
+        <wolfram:slot id="Title">`Title`</wolfram:slot>
+        <wolfram:slot id="if">`Title`</wolfram:slot>
+        <wolfram:slot id="else">
+          <wolfram:expr>$$templateLib["getSiteName"][#]</wolfram:expr>
+        </wolfram:slot>
+      </wolfram:get>
+    </wolfram:slot>
+  </title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <wolfram:expr>
+    $$templateLib["makeSiteIcons"][
+      Replace[#Icons,
+        Except[_List]:>
+          Import[FileNameJoin@{"include","config","icons.m"}]
+        ],
+      #
+      ]
+  </wolfram:expr>
+
+  <meta name="creator" content="`SiteCreator`" />
+  `PageSelfLink`
+
+  <meta name="description" content="{{ SITE_DESCRIPTION }}">
+  <meta name="author" content="{{ AUTHOR }}" >
+
+  <wolfram:get path="include/lib/templates/varNotFalseBlock.html">
+    <wolfram:slot id="var">StyleSheets</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:expr>
+        $$templateLib["makeSiteStylesheet"][
+          Replace[#StyleSheets,
+            {
+              None->{},
+              Except[_List]:>
+                Join[
+                  {
+                    StringJoin[
+                      "bootstrap",
+                      If[StringQ@#BootstrapTheme,
+                        {".", #BootstrapTheme},
+                        ""
+                        ],
+                      ".min.css"
+                      ],
+                    If[#Typogrify=!=False,
+                      "typogrify.css",
+                      Nothing
+                      ],
+                    "font-awesome.min.css"
+                    },
+                  Import[FileNameJoin@{"include", "config", "stylesheets.m"}]
+                  ]
+              }
+            ],
+          #
+          ]
+      </wolfram:expr>
+    </wolfram:slot>
+  </wolfram:get>
+
+  <wolfram:get path="include/lib/templates/varTrueBlock.html">
+    <wolfram:slot id="var">UseJQuery</wolfram:slot>
+    <wolfram:slot id="UseJQuery">`UseJQuery`</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:get path="include/load_jQuery.html"></wolfram:get>
+    </wolfram:slot>
+  </wolfram:get>
+  <wolfram:get path="include/lib/templates/varTrueBlock.html">
+    <wolfram:slot id="var">CopyableInput</wolfram:slot>
+    <wolfram:slot id="CopyableInput">`CopyableInput`</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:get path="include/lib/templates/varNotTrueBlock.html">
+        <wolfram:slot id="var">UseJQuery</wolfram:slot>
+        <wolfram:slot id="UseJQuery">`UseJQuery`</wolfram:slot>
+        <wolfram:slot id="if">
+          <wolfram:get path="include/load_jQuery.html"></wolfram:get>
+        </wolfram:slot>
+      </wolfram:get>
+      <wolfram:get path="include/copyable_input.html"></wolfram:get>
+    </wolfram:slot>
+  </wolfram:get>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  `head`
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <wolfram:expr>
+          $$templateLib["makeSiteHyperlink"][
+            {
+              <|
+                "class"->"navbar-brand",
+                "href"->
+                  Replace[#SiteExtension,
+                    Except[_String]:>
+                      Nothing
+                    ],
+                "body"->
+                  {
+                    Replace[TemplateSlot["SiteName"],
+                      Except[_String]:>
+                        URLParse[#SiteURL,"Path"][[-1]]
+                      ],
+                    Replace[
+                      TemplateSlot["SiteLogo"],
+                      {
+                        s_String:>
+                          $$templateLib["makeSiteImg"][
+                            {
+                              <|
+                                "class"->"img-responsive pull-left gap-right",
+                                "src"->s
+                                |>
+                              },
+                            #
+                            ],
+                        _->""
+                        }
+                      ]
+                    }
+                |>
+              },
+            #
+            ]
+        </wolfram:expr>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <wolfram:sequence
+            values='$$["SortedPages"]=Join[ #SortedObjectsBy[Lookup[#, "SortIndex", Lookup[#, "Title", Lookup[#, "Slug"]]]&, "page"], #SortedObjectsBy[Lookup[#, "SortIndex", Lookup[#, "Title", Lookup[#, "Slug"]]]& ] ]'
+            slot="Page"
+            >
+          <li>
+            <a class="page-scroll" href='#<*$$[{#Page["Title"], "Section"}]=Lookup[#Page, "Section", Lookup[#Page, "Slug"] ]*>'><*#Page["Title"]*></a>
+          </li>
+          </wolfram:sequence>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <wolfram:if test='StringQ@#BannerImage'>
+    <wolfram:get path="include/banner.html"/>
+  </wolfram:if>
+
+  <!-- sections -->
+  <wolfram:sequence
+    values='$$["SortedPages"]'
+    slot="Page"
+    >
+    <section id='<*$$[{#Page["Title"], "Section"}]*>' class='container <*$$[{#Page["Title"], "Section"}]*>-section text-center'>
+      <div class='<*$$[{#Page["Title"], "Section"}]*>-body'>
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                  <h1 class="brand-heading"><*#Page["Title"]*></h1>
+                  <div class='<*$$[{#Page["Title"], "Section"}]*>-text'>
+                    <*#Page["Content"]*>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  </wolfram:sequence>
+
+  <wolfram:get path="include/comments.html"/>
+
+  <!-- Footer -->
+
+  <footer>
+     <div class="container">
+      <hr>
+      <div class="row">
+        <div class="col-xs-10">
+           <wolfram:slot id='Footer'>
+            Generated with <a href="https://github.com/b3m2a1/Ems">Ems</a>
+          </wolfram:slot>
+        </div>
+        <div class="col-xs-2">
+          <p class="pull-right">
+            <i class="fa fa-arrow-up"></i>
+            <a href="#">Back to top</a>
+          </p>
+        </div>
+      </div>
+     </div>
+  </footer>
+
+  <!-- Plugin JavaScript -->
+  <script src="`SiteURL`/theme/js/jquery.easing.min.js"></script>
+
+  <script src="`SiteURL`/theme/js/jquery.min.js"></script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="`SiteURL`/theme/js/bootstrap.min.js"></script>
+
+  <wolfram:if test='StringQ@#CustomJavascript'>
+    <script src="`SiteURL`/theme/js/`CustomJavascript`"></script>
+  </wolfram:if>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="`SiteURL`/theme/js/grayscale.js"></script>
+
+  <wolfram:get path="include/analytics.html"/>
+
+  `Scripts`
+
+</body>
+
+</html>

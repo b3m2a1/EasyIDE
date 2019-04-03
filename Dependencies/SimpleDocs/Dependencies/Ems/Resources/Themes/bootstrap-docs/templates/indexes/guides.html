@@ -1,0 +1,22 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PrimaryContent">
+<div class="guide-list">
+  </br>
+  <h1>Guides</h1>
+  <ul>
+  <wolfram:sequence
+    values='SortBy[#SelectObjects["guide"], #["Title"]&]'
+    slot="Article"
+    >
+    <li><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></li>
+  </wolfram:sequence>
+  </ul>
+</div>
+</wolfram:slot>
+
+<wolfram:slot id="PageSelfLink">
+  <link rel="canonical" href="`SiteURL`">
+</wolfram:slot>
+
+</wolfram:get>

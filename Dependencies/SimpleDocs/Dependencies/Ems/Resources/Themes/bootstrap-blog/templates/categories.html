@@ -1,0 +1,43 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PageTitle">
+  Categories | <wolfram:expr> $$templateLib["getSiteName"][#] </wolfram:expr>
+</wolfram:slot>
+
+<wolfram:slot id="PageHeader">
+  <h1>Categories</h1>
+</wolfram:slot>
+
+<wolfram:slot id="PrimaryContent">
+  <section id="categories">
+    <wolfram:sequence values="Replace[#IndexListing, Except[_List]:>#Categories]">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href=`SiteURL`/`URL`>`Category`</a>
+                <a data-toggle="collapse" data-parent="#accordion" href='#collapse-<*Hash[#Category, "Adler32"]*>'>
+                  <i class="fa fa-angle-double-down"></i>
+                  <span class="badge pull-right"><*Length@#["Articles"]*></span>
+                </a>
+              </h4>
+          </div>
+          <div id='collapse-<*Hash[#Category, "Adler32"]*>' class="panel-collapse collapse">
+            <div class="panel-body">
+              <wolfram:sequence values='#["Articles"]' slot="Article">
+                <p>
+                  <span class="categories-timestamp">
+                    <time datetime='<*#ContentData[#Article]["Modified"]*>'><*#ContentData[#Article]["Modified"]*></time>
+                  </span>
+                  <a href='`SiteURL`/`Article`'><*#ContentData[#Article]["Title"]*></a>
+                </p>
+              </wolfram:sequence>
+            </div>
+          </div>
+        </div>
+      </div>
+    </wolfram:sequence>
+  </section>
+</wolfram:slot>
+
+</wolfram:get>

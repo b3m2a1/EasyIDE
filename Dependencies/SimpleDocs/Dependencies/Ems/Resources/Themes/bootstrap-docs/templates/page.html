@@ -1,0 +1,20 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PageTitle">
+  `Title` | <* $$templateLib["getSiteName"][#] *>
+</wolfram:slot>
+
+<wolfram:slot id="PageSelfLink">
+<link rel="canonical" href="`SiteURL`/`URL`">
+</wolfram:slot>
+
+<wolfram:slot id="PrimaryContent">
+  <section id="content" class="body">
+    <h1 class="entry-title">`Title`</h1>
+    <div class="entry-content">
+      `Content`
+    </div>
+  </section>
+</wolfram:slot>
+
+</wolfram:get>

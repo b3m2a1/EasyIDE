@@ -1,0 +1,227 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Project Functions", \
+"CodeSection",ExpressionUUID->"1a72312d-f2f5-43fc-9feb-e46ede45945b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"NewProjectFile", "::", "usage"}], "=", 
+   "\"\<Makes a new project file in the IDE\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetProjectDirectory", "::", "usage"}], "=", 
+   "\"\<Sets the project directory for a notebook\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"99ae978e-3d6e-42a9-b5db-58466296c986"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESetDirectory", "::", "usage"}], "=", 
+   "\"\<Same but for IDE\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"EnsureIDEProject", "::", "usage"}], "=", "\"\<\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"144ab647-a488-4f5a-ae4d-414df5da73c7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"2146947f-8bb2-44e7-97cc-\
+91b0e615f4a5"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Project\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"3f79b8df-c85c-42e3-a2c8-5175b5b58258"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getIDETitleBar\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"b9f8dd78-4a52-460f-9fb2-8da8f6832f85"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getIDETitleBar", "[", "dir_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"\"\<EasyIDE: ``\>\"", "~", "TemplateApply", "~", 
+    RowBox[{"FileBaseName", "[", "dir", "]"}]}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"6e72a2a3-cbfd-421d-91e5-da45c3f4613a"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]NewProjectFile\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"f61a3dbe-bb67-470f-8c0b-4e1b5944aea2"],
+
+Cell[BoxData[{
+ RowBox[{"NewProjectFile", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NewProjectFile", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"fileName_String", "?", 
+      RowBox[{"(", 
+       RowBox[{"Not", "@*", "DirectoryQ"}], ")"}]}]}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"fn", "=", 
+       RowBox[{"IDEPath", "[", 
+        RowBox[{"nb", ",", " ", "fileName"}], "]"}]}], "}"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"!", 
+         RowBox[{"FileExistsQ", "[", "fn", "]"}]}], ",", " ", 
+        RowBox[{"CreateFile", "[", "fn", "]"}]}], "]"}], ";", "\n", "\t\t", 
+      RowBox[{"IDEOpen", "[", 
+       RowBox[{"nb", ",", " ", "fn"}], "]"}], ";"}]}], "\n", "\t\t", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"NewProjectFile", "[", 
+   RowBox[{"nb_", ",", " ", 
+    RowBox[{"dir_String", "?", "DirectoryQ"}]}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"f", " ", "=", " ", 
+      RowBox[{"SystemDialogInput", "[", 
+       RowBox[{"\"\<FileSave\>\"", ",", " ", "dir", ",", " ", 
+        RowBox[{"WindowTitle", "\[Rule]", "\"\<New file\>\""}]}], "]"}]}], 
+     "}"}], ",", "\n", "    ", 
+    RowBox[{"NewProjectFile", "[", 
+     RowBox[{"nb", ",", " ", "f"}], "]"}]}], "\n", "    ", 
+   "]"}]}]}], \
+"CodeInput",ExpressionUUID->"f98e553a-e572-4edc-9a15-17020f94f778"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]SetProjectDirectory\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"4cb3f864-df33-41d7-8e75-1609aaf1b949"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetProjectDirectory", "[", 
+    RowBox[{"nb_", ",", " ", "dir_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"StringQ", "[", "dir", "]"}], "&&", 
+       RowBox[{"DirectoryQ", "[", "dir", "]"}]}], ")"}], ",", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"IDEData", "[", 
+        RowBox[{"nb", ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Project\>\"", ",", " ", "\"\<Directory\>\""}], "}"}]}],
+         "]"}], " ", "=", " ", "dir"}], ";", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"CurrentValue", "[", 
+        RowBox[{"nb", ",", " ", "WindowTitle"}], "]"}], " ", "=", " ", 
+       RowBox[{"getIDETitleBar", "[", "dir", "]"}]}], ";"}]}], "\n", "\t\t", 
+    "]"}]}], ";"}]], \
+"CodeInput",ExpressionUUID->"317c5b9b-4d89-4c72-bafb-4dc28bdce29f"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDE\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"f3356763-4b1d-4510-8d91-52828cd68273"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]EnsureIDEProject\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"1662df2b-a431-43f0-990a-182c34d10915"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"EnsureIDEProject", "[", "nb_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", "=", 
+       RowBox[{"IDEPath", "[", "nb", "]"}]}], "}"}], ",", "\n", "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"StringQ", "[", "p", "]"}], "&&", 
+          RowBox[{"DirectoryQ", "[", "p", "]"}]}], ")"}]}], ",", "\n", 
+       "\t\t\t", 
+       RowBox[{"PreemptiveQueued", "[", "\n", "\t\t\t\t", 
+        RowBox[{"nb", ",", "\n", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"p", " ", "=", " ", "\n", "\t\t\t\t\t", 
+           RowBox[{"SystemDialogInput", "[", "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+            "\"\<Directory\>\"", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+             "\t", "$HomeDirectory", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+             "\t", 
+             RowBox[{"WindowTitle", "\[Rule]", "\"\<IDE Directory\>\""}]}], 
+            "\n", "\t", "\t\t\t\t\t", "]"}]}], ";", "\n", "\t\t\t\t", 
+          RowBox[{"SetProjectDirectory", "[", 
+           RowBox[{"nb", ",", " ", "p"}], "]"}]}]}], "\n", "\t\t\t\t", 
+        "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"247a56d7-4374-43b9-b76c-8113c7f118e4"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDESetDirectory\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"fb3d3200-188a-4ad7-a9c8-fd3d7b70981d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESetDirectory", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "dir_"}], "]"}], ":=", "\n", "\t", 
+   
+   RowBox[{"SetProjectDirectory", "[", 
+    RowBox[{"nb", ",", " ", "dir"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESetDirectory", "[", 
+    RowBox[{"ide_IDENotebookObject", ",", " ", "dir_"}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"IDESetDirectory", "[", 
+    RowBox[{
+     RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "dir"}], 
+    "]"}]}], ";"}]}], \
+"CodeInput",ExpressionUUID->"9c1e4f2c-5029-43e1-a032-03597792c8db"]
+}, Closed]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"84e28b0c-818e-48c6-a2f7-\
+9c54ae8ec3e5"]
+}, Open  ]],
+
+Cell["", "SectionSeparator",ExpressionUUID->"e4d0f8d6-edca-4228-a5be-\
+16aad75b21e3"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{243, Automatic}, {Automatic, 9}},
+TaggingRules->{
+ "UUIDButtons" -> {
+   "Active" -> {
+     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+

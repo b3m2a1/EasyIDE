@@ -1,0 +1,61 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PrimaryContent">
+
+  <div class="container">
+    <wolfram:sequence
+      values="{Partition[Replace[#IndexListing, Except[_List]:>#Articles],
+                UpTo@Replace[#NumberOfColumns, Except[_Integer]->3]]}"
+      slot="ArticleList"
+      >
+      <div class="row">
+        <wolfram:sequence
+          values="#ArticleList"
+          slot="Article"
+          >
+          <div class='<*Replace[#ColumnClass, Except[_String]:>"col-sm-"<>ToString[Replace[#NumberOfColumns, Except[_Integer]->3]+1]]*>'>
+            <article>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h2><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></h2>
+                </div>
+                <div class="panel-body">
+                  <div class="summary">
+                    <wolfram:which>
+                      <wolfram:if test='StringQ@#Article["Image"]'>
+                        <img
+                          class="article-image"
+                          src='<*
+                            If[StringContainsQ[#Article["Image"], "://"],
+                              #Article["Image"],
+                              URLBuild@{#SiteURL, #Article["Image"]}
+                              ]
+                            *>'
+                          alt='<*#Article["Title"]*>'
+                          >
+                        </img>
+                      </wolfram:if>
+                      <wolfram:else>
+                        <*#Article["Summary"]*>
+                      </wolfram:else>
+                    </wolfram:which>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <wolfram:get path="include/article_info.html">
+                    <wolfram:slot id="Article">
+                      <*#Article*>
+                    </wolfram:slot>
+                  </wolfram:get>
+                </div>
+              </div>
+            </article>
+          </div>
+        </wolfram:sequence>
+      </div>
+    </wolfram:sequence>
+  </div>
+
+</wolfram:slot>
+
+</wolfram:get>

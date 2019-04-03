@@ -1,19 +1,12 @@
 (* ::Package:: *)
 
-`FileMenu`Private`cpath = $ContextPath;
+BeginPackage["`FileMenu`"]
+openFile;
+newFile;
+EndPackage[]
 
 
-BeginPackage["`FileMenu`"];
-
-
-openFile
-newFile
-
-
-Begin["`Private`"];
-
-
-$ContextPath = DeleteDuplicates@Join[$ContextPath, cpath];
+Begin["Private`"];
 
 
 openFile[f_String]:=
@@ -21,11 +14,11 @@ openFile[f_String]:=
     IDEOpen[$CurrentIDENotebook, f]
     ];
 openFile[]:=
-  openFile@SystemDialogInput["FileOpen"]
+  openFile@SystemDialogInput["FileOpen", IDEPath[$CurrentIDENotebook]]
 
 
 newFile[]:=
-  Module[{newFileName=SystemDialogInput["FileSave"]},
+  Module[{newFileName=SystemDialogInput["FileSave", IDEPath[$CurrentIDENotebook]]},
     If[StringQ@newFileName,
       If[!FileExistsQ[newFileName],
         If[FileExtension[newFileName]==="nb",
@@ -39,9 +32,6 @@ newFile[]:=
 
 
 End[]
-
-
-EndPackage[]
 
 
 <|

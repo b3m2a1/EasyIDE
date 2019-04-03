@@ -1,0 +1,38 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PageTitle">
+  <wolfram:slot id="Title"/> | <wolfram:get path="include/lib/templates/varDefinedBlock.html">
+    <wolfram:slot id="var">SiteName</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:slot id="SiteName" />
+    </wolfram:slot>
+    <wolfram:slot id="else">
+      <wolfram:expr>
+        URLParse[#SiteURL,"Path"][[-1]]
+      </wolfram:expr>
+    </wolfram:slot>
+</wolfram:get>
+
+</wolfram:slot>
+
+<wolfram:slot id="head">
+  <wolfram:get path="include/lib/templates/varDefinedBlock.html">
+    <wolfram:slot id="var">Summary</wolfram:slot>
+    <wolfram:slot id="if">
+      <meta name="description" content="<wolfram:slot id='summary' />">
+    </wolfram:slot>
+  </wolfram:get>
+</wolfram:slot>
+
+<wolfram:slot id="PrimaryContent">
+  <article class="article">
+    <div class="article content">
+      <wolfram:slot id="Content"/>
+    </div>
+  </article>
+
+<wolfram:get path="include/comments.html"/>
+
+</wolfram:slot>
+
+</wolfram:get>

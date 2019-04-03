@@ -1,0 +1,29 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PrimaryContent">
+
+  <wolfram:sequence
+    values="Replace[#IndexListing, Except[_List]:>#Articles]"
+    slot="Article"
+    delimiters="<hr/>"
+    >
+    <article>
+      <h2><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></h2>
+      <div class="panel">
+        <div class="panel-body">
+          <wolfram:get path="include/article_info.html">
+            <wolfram:slot id="Article">
+              <*#Article*>
+            </wolfram:slot>
+          </wolfram:get>
+        </div>
+      </div>
+      <div class="summary">
+        <*#Article["Summary"]*>
+      </div>
+    </article>
+  </wolfram:sequence>
+
+</wolfram:slot>
+
+</wolfram:get>

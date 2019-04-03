@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<wolfram:expr>
+  $$["Language"]=
+    Lookup[$$, "Language", "en"];
+</wolfram:expr>
+<html lang='<* $$["Language"] *>'>
+<head>
+  <title>
+    <wolfram:slot id="PageTitle">
+      <wolfram:get path="include/lib/templates/varDefinedBlock.html">
+        <wolfram:slot id="var">Title</wolfram:slot>
+        <wolfram:slot id="Title">`Title`</wolfram:slot>
+        <wolfram:slot id="if">`Title`</wolfram:slot>
+        <wolfram:slot id="else">
+          <wolfram:expr>$$templateLib["getSiteName"][#]</wolfram:expr>
+        </wolfram:slot>
+      </wolfram:get>
+    </wolfram:slot>
+  </title>
+
+  <!-- Using the latest rendering mode for IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <wolfram:expr>
+    $$templateLib["makeSiteIcons"][
+      Replace[#Icons,
+        Except[_List]:>
+          Import[FileNameJoin@{"include","config","icons.m"}]
+        ],
+      #
+      ]
+  </wolfram:expr>
+
+  <meta name="creator" content="`SiteCreator`" />
+  `PageSelfLink`
+
+  <wolfram:get path="include/lib/templates/varNotFalseBlock.html">
+    <wolfram:slot id="var">StyleSheets</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:expr>
+        $$templateLib["makeSiteStylesheet"][
+          Replace[#StyleSheets,
+            {
+              None->{},
+              Except[_List]:>
+                Join[
+                  {
+                    StringJoin[
+                      "bootstrap",
+                      If[StringQ@#BootstrapTheme,
+                        {".", #BootstrapTheme},
+                        ""
+                        ],
+                      ".min.css"
+                      ],
+                    If[#Typogrify=!=False,
+                      "typogrify.css",
+                      Nothing
+                      ],
+                    "font-awesome.min.css"
+                    },
+                  Import[FileNameJoin@{"include", "config", "stylesheets.m"}]
+                  ]
+              }
+            ],
+          #
+          ]
+      </wolfram:expr>
+    </wolfram:slot>
+  </wolfram:get>
+
+  <wolfram:get path="include/lib/templates/varTrueBlock.html">
+    <wolfram:slot id="var">UseJQuery</wolfram:slot>
+    <wolfram:slot id="UseJQuery">`UseJQuery`</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:get path="include/load_jQuery.html"></wolfram:get>
+    </wolfram:slot>
+  </wolfram:get>
+  <wolfram:get path="include/lib/templates/varTrueBlock.html">
+    <wolfram:slot id="var">CopyableInput</wolfram:slot>
+    <wolfram:slot id="CopyableInput">`CopyableInput`</wolfram:slot>
+    <wolfram:slot id="if">
+      <wolfram:get path="include/lib/templates/varNotTrueBlock.html">
+        <wolfram:slot id="var">UseJQuery</wolfram:slot>
+        <wolfram:slot id="UseJQuery">`UseJQuery`</wolfram:slot>
+        <wolfram:slot id="if">
+          <wolfram:get path="include/load_jQuery.html"></wolfram:get>
+        </wolfram:slot>
+      </wolfram:get>
+      <wolfram:get path="include/copyable_input.html"></wolfram:get>
+    </wolfram:slot>
+  </wolfram:get>
+
+  <wolfram:slot id="head"></wolfram:slot>
+
+</head>
+
+<body>
+
+<div class="navbar <wolfram:which><wolfram:if test='TrueQ[#NavbarInvert]'>navbar-inverse</wolfram:if><wolfram:else>navbar-default</wolfram:else></wolfram:which> navbar-fixed-top" role="navigation">
+  <div class="container<wolfram:if test='TrueQ[#ContentFluid]'>-fluid</wolfram:if>">
+    <div class="navbar-header">
+      <wolfram:if test='Length[$$templateLib["getSiteLinks"][]]>0'>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+        </button>
+      </wolfram:if>
+      <wolfram:expr>
+        $$templateLib["makeSiteHyperlink"][
+          {
+            <|
+              "class"->"navbar-brand",
+              "href"->
+                Replace[#SiteExtension,
+                  Except[_String]:>
+                    Nothing
+                  ],
+              "body"->
+                {
+                  Replace[TemplateSlot["SiteName"],
+                    Except[_String]:>
+                      URLParse[#SiteURL,"Path"][[-1]]
+                    ],
+                  Replace[
+                    TemplateSlot["SiteLogo"],
+                    {
+                      s_String:>
+                        $$templateLib["makeSiteImg"][
+                          {
+                            <|
+                              "class"->"img-responsive pull-left gap-right",
+                              "src"->s
+                              |>
+                            },
+                          #
+                          ],
+                      _->""
+                      }
+                    ]
+                  }
+              |>
+            },
+          #
+          ]
+      </wolfram:expr>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <*
+          $$templateLib["makeSiteLinkList"][
+            <|
+              "ListClass"->"nav navbar-nav",
+              "ItemClass"->""
+              |>,
+            Replace[
+              #PageLinks,
+              {
+                None->{},
+                Except[_List]:>
+                  Import[FileNameJoin@{"include", "config", "page_links.m"}]
+                }
+              ],
+            #
+            ]
+          *>
+        <wolfram:get path="include/lib/templates/varTrueBlock.html">
+          <wolfram:slot id="var">EnableSearch</wolfram:slot>
+          <wolfram:slot id="if">
+            <ul class="nav navbar-nav navbar-right">
+              <wolfram:get path="include/search.html"></wolfram:get>
+            </ul>
+          </wolfram:slot>
+        </wolfram:get>
+      </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<wolfram:if test='StringQ@#BannerImage'>
+  <wolfram:get path="include/banner.html"/>
+</wolfram:if>
+<!-- End Banner -->
+
+<!-- Content Container -->
+<*
+
+Which[
+  StringQ@#ContentClass,
+    $$["ContentClass"]=#ContentClass;
+    $$["SidebarClass"]=If[StringQ@#SidebarClass, #SidebarClass, ""],
+  TrueQ@#PaddedSingleColumnStyle,
+    $$["ContentClass"]="col-md-8 col-md-offset-2";
+    $$["SidebarClass"]="col-sm-3",
+  Not[TrueQ@#IncludeSidebar],
+    $$["ContentClass"]="col-lg-12";
+    $$["SidebarClass"]="",
+  TrueQ@#SidebarOnLeft,
+    $$["ContentClass"]="col-sm-9 col-sm-push-3";
+    $$["SidebarClass"]="col-sm-3 col-sm-pull-9",
+  True,
+    $$["ContentClass"]="col-sm-9";
+    $$["SidebarClass"]="col-sm-3"
+  ];
+
+*>
+
+<div class="container<wolfram:if test='TrueQ[#ContentFluid]'>-fluid</wolfram:if>">
+  <div class="main-content">
+    <div class="row">
+      <div class='<*$$["ContentClass"]*>'>
+        <div class="breadcrumbs">`Breadcrumbs`</div>
+        <div class="page-header">`PageHeader`</div>
+        <div class="page-content">`PrimaryContent`</div>
+      </div>
+      <wolfram:if test='TrueQ[#IncludeSidebar]'>
+        <div class='<*$$["SidebarClass"]*>' id="sidebar">
+          <aside>
+            <wolfram:comment><wolfram:get path="include/aboutme.html"/></wolfram:comment>
+            <wolfram:get path="include/sidebar.html"/>
+          </aside>
+        </div>
+      </wolfram:if>
+    </div>
+  </div>
+  <wolfram:get path="include/pagination.html"/>
+  `ContentFooter`
+</div>
+
+<!-- End Content Container -->
+
+
+<wolfram:get path="include/footer.html"/>
+
+<script src="`SiteURL`/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="`SiteURL`/theme/js/bootstrap.min.js"></script>
+
+<wolfram:if test='StringQ@#CustomJavascript'>
+  <script src="`SiteURL`/theme/js/`CustomJavascript`"></script>
+</wolfram:if>
+
+<wolfram:if test='StringQ@#BannerImage'>
+  <script src="`SiteURL`/theme/js/bodypadding.js"></script>
+</wolfram:if>
+
+<wolfram:get path="include/analytics.html"/>
+
+<wolfram:get path="include/lib/templates/varTrueBlock.html">
+  <wolfram:slot id="var">CopyableInput</wolfram:slot>
+  <wolfram:slot id="CopyableInput">`CopyableInput`</wolfram:slot>
+  <wolfram:slot id="if">
+    <wolfram:get path="include/copyable_input.html"></wolfram:get>
+  </wolfram:slot>
+</wolfram:get>
+
+<wolfram:get path="include/lib/templates/varTrueBlock.html">
+  <wolfram:slot id="var">UseMathJAX</wolfram:slot>
+  <wolfram:slot id="UseMathJAX">`UseMathJAX`</wolfram:slot>
+  <wolfram:slot id="if">
+    <wolfram:get path="include/mathjax.html"></wolfram:get>
+  </wolfram:slot>
+</wolfram:get>
+
+
+`Scripts`
+
+</body>
+</html>

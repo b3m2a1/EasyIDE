@@ -1,5 +1,3 @@
-(* ::Package:: *)
-
 {
 	"Mode" -> "Primary",
 	"Dependencies" -> {
@@ -18,17 +16,20 @@
 				"FrontEnd/Palettes"
 			}
 		},
-		{"InterfaceObjects`"}
+		{"InterfaceObjects`"},
+		{"SimpleDocs`"}
 	},
 	"DependencyContexts" -> {
 		"BTools`Paclets`",
 		"BTools`Developer`",
 		"BTools`External`",
 		"BTools`FrontEnd`",
-		"InterfaceObjects`"
+		"InterfaceObjects`",
+		"SimpleDocs`",
+		"SimpleDocs`Package`"
 	},
 	"PreLoad" -> None,
 	"FEHidden" -> {},
 	"PackageScope" -> None,
-	"PackageSymbolDefinitions" -> False
+	"PackageSymbolDefinitions" -> True
 }

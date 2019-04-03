@@ -1,0 +1,58 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PageTitle">
+  <wolfram:slot id="Title"/> | <* $$templateLib["getSiteName"][#] *>
+</wolfram:slot>
+
+<wolfram:slot id="head">
+  <meta name="author" content="`Author`" />
+  <meta name="keywords" content='<*StringRiffle[#Tags, ","]*>' />
+  <wolfram:get path="include/lib/templates/varDefinedBlock.html">
+    <wolfram:slot id="var">Summary</wolfram:slot>
+    <wolfram:slot id="if">
+      <meta name="description" content="`summary`">
+    </wolfram:slot>
+  </wolfram:get>
+</wolfram:slot>
+
+<wolfram:slot id="PageSelfLink">
+  <link rel="canonical" href="`SiteURL`/`URL`">
+</wolfram:slot>
+
+<wolfram:slot id="Breadcrumbs">
+  <wolfram:get path="include/breadcrumbs.html"/>
+</wolfram:slot>
+
+<wolfram:slot id="PrimaryContent">
+  <section id="content">
+    <article>
+      <h1 class="entry-title">`Title`</h1>
+      <div class="entry-content">
+        <div class="panel">
+          <div class="panel-body">
+            <wolfram:get path="include/article_info.html">
+              <wolfram:slot id="Article">
+                <*
+                  <|
+                    "Date"->#Date, "Modified"->#Modified,
+                    "Authors"->#Authors,
+                    "Categories"->#Categories, "Tags"->#Tags
+                    |>
+                *></wolfram:slot>
+            </wolfram:get>
+          </div>
+        </div>
+        `Content`
+      </div>
+      <!-- /.entry-content -->
+    </article>
+  </section>
+</wolfram:slot>
+
+<wolfram:slot id="ContentFooter">
+  <* If[TrueQ[#EmbedNotebook||#EmbedNotebook=="True"], $$templateLib["embedNotebook"]["Height"->500]] *>
+  <wolfram:get path="include/related-posts.html"/>
+  <wolfram:get path="include/comments.html"/>
+</wolfram:slot>
+
+</wolfram:get>

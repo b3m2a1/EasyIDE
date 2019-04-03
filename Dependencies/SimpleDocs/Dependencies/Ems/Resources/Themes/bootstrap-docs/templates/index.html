@@ -1,0 +1,66 @@
+<wolfram:get path="base.html">
+
+<wolfram:slot id="PrimaryContent">
+
+  <!-- About Section -->
+  <wolfram:get path="include/lib/templates/pageLocalizedBlock.html">
+    <wolfram:slot id="page">pages/about.html</wolfram:slot>
+    <wolfram:slot id="block">
+      <article>
+        <div class="col-sm-8 about-block w3-container w3-padding-32" id="about">
+              <div class="about-content content">
+                <wolfram:expr>#PageData["Content"]</wolfram:expr>
+              </div>
+            </h3>
+          </div>
+        </div>
+      </article>
+    </wolfram:slot>
+  </wolfram:get>
+  <br>
+  <div class="function-list">
+    <h2><a href='`SiteURL`/index/functions.html'>Functions</a></h2>
+    <ul>
+    <wolfram:sequence
+      values='Take[SortBy[#SelectObjects["function"], #["Title"]&], UpTo[5]]'
+      slot="Article"
+      >
+      <li><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></li>
+    </wolfram:sequence>
+    </ul>
+  </div>
+  </br>
+  <div class="guide-list">
+    <h2><a href='`SiteURL`/index/guides.html'>Guides</a></h2>
+    <ul>
+    <wolfram:sequence
+      values='Take[SortBy[#SelectObjects["guide"], #["Title"]&], UpTo[5]]'
+      slot="Article"
+      >
+      <article>
+        <li><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></li>
+      </article>
+    </wolfram:sequence>
+    </ul>
+  </div>
+  </br>
+  <div class="tutorial-list">
+    <h2><a href='`SiteURL`/index/tutorials.html'>Tutorials</a></h2>
+    <ul>
+    <wolfram:sequence
+      values='Take[SortBy[#SelectObjects["tutorial"], #["Title"]&], UpTo[5]]'
+      slot="Article"
+      >
+      <article>
+        <li><a href='`SiteURL`/<*#Article["URL"]*>'><*#Article["Title"]*></a></li>
+      </article>
+    </wolfram:sequence>
+    </ul>
+  </div>
+</wolfram:slot>
+
+<wolfram:slot id="PageSelfLink">
+  <link rel="canonical" href="`SiteURL`">
+</wolfram:slot>
+
+</wolfram:get>

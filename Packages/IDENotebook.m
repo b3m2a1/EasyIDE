@@ -57,7 +57,7 @@ InterfaceMethod[IDENotebookObject]@
 
 
 InterfaceMethod[IDENotebookObject]@
-  g_IDENotebookObject["AddToolbar"][t_, tag_]:=
+  g_IDENotebookObject["AddToolbar"][t:Repeated[_, {0, 1}], tag_String]:=
     IDEAddToolbar[g, t, tag];
 InterfaceMethod[IDENotebookObject]@
   g_IDENotebookObject["RemoveToolbar"][tag_]:=
@@ -78,6 +78,16 @@ InterfaceMethod[IDENotebookObject]@
 InterfaceMethod[IDENotebookObject]@
   g_IDENotebookObject["SetStylesheet"][styleSheet_]:=
     IDESetStylesheet[g, styleSheet];
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["SetProjectDirectory"][dir_]:=
+    IDESetProject[g, dir]
+
+
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["CreateMessage"][expr_, args___]:=
+    IDECreateMessage[g, expr, args];
 
 
 End[];

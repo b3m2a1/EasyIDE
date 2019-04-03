@@ -1,0 +1,19 @@
+<!-- Sidebar/Recent Posts -->
+<wolfram:if test='IntegerQ[#RecentPostCount]&&#RecentPostCount>0'>
+<li class="list-group-item">
+  <h4>"Recent Posts"</h4>
+  <*
+    $$templateLib["makeSiteLinkList"][
+      <|
+        "ListClass"->"list-group",
+        "ItemClass"->"list-group-item",
+        "ListID"->"links"
+        |>,
+      <|"href"->#URL, "title"->#Title|>&/@
+        MinimalBy[#Articles, #Modified&, #RecentPostCount],
+      #
+      ]
+    *>
+</li>
+<!-- End Sidebar/Recent Posts -->
+</wolfram:if>
