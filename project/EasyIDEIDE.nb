@@ -3,226 +3,378 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     16608,        356]
-NotebookOptionsPosition[     11343,        219]
-NotebookOutlinePosition[     16370,        348]
-CellTagsIndexPosition[     16327,        345]
+NotebookDataLength[     30430,        723]
+NotebookOptionsPosition[     15028,        371]
+NotebookOutlinePosition[     29477,        709]
+CellTagsIndexPosition[     29434,        706]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<`DocsToolbar`\>\"", "]"}], ";"}], "\n", 
+ RowBox[{"metadataEditor", ";"}], "\n", 
+ RowBox[{"docsTemplates", ";"}], "\n", 
+ RowBox[{"docsOpsMenu", ";"}], "\n", 
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",ExpressionUUID->"39d4db7d-\
+f3fe-45ea-8b19-88355cc37b11"],
 
-Cell[CellGroupData[{
 Cell[BoxData[
- RowBox[{"Plot", "[", 
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",ExpressionU\
+UID->"b73aa6df-c7a9-4142-9bd7-d7ef584b4a3c"],
+
+Cell[BoxData[{
+ RowBox[{
   RowBox[{
-   RowBox[{"Sin", "[", "x", "]"}], ",", " ", 
-   RowBox[{"{", 
-    RowBox[{"x", ",", " ", "0", ",", " ", 
-     RowBox[{"2", "\[Pi]"}]}], "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.7633298748361387`*^9, 3.763329881217267*^9}},
- CellLabel->"In[85]:=",ExpressionUUID->"afff780c-7547-47af-8baa-7c8e2f8b7534"],
+   RowBox[{"overrideGetNbData", "[", 
+    RowBox[{"nb_", ",", " ", "k_", ",", " ", "d_"}], "]"}], ":=", "\n", "\t", 
+   
+   RowBox[{"CurrentValue", "[", 
+    RowBox[{"nb", ",", " ", "\n", "\t  ", 
+     RowBox[{"Flatten", "@", 
+      RowBox[{"{", 
+       RowBox[{
+       "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+        "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], "}"}]}],
+      ",", " ", "d"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"overrideGetNbData", "[", 
+    RowBox[{"nb_", ",", " ", "k_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"CurrentValue", "[", 
+    RowBox[{"nb", ",", " ", "\n", "\t  ", 
+     RowBox[{"Flatten", "@", 
+      RowBox[{"{", 
+       RowBox[{
+       "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+        "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], 
+       "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"overrideSetNbData", "[", 
+    RowBox[{"nb_", ",", " ", "k_", ",", " ", "d_"}], "]"}], ":=", "\n", "\t", 
+   
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"CurrentValue", "[", 
+      RowBox[{"nb", ",", " ", "\n", "\t  ", 
+       RowBox[{"Flatten", "@", 
+        RowBox[{"{", 
+         RowBox[{
+         "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+          "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], 
+         "}"}]}]}], "]"}], " ", "=", " ", "d"}], ")"}]}], ";"}]}], "Code",Expr\
+essionUUID->"78453674-448d-4770-bddb-d8464134b52f"],
 
 Cell[BoxData[
- GraphicsBox[{{{}, {}, 
-    TagBox[
-     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
-      1.], LineBox[CompressedData["
-1:eJwlmXk4lN/7x61ZEjPPjJAU7SsppYXuUwlFSokWIWkhSURIKpWQZK9kS4X4
-RHZJTpSikKiEopAsYx7rmJksv/O9fn+d63Vd82zv9/u+73Ou0bA/u/e4mIiI
-SJaoiMj/VnEsW9ux9upmXun/rwt7SjfNibSFu/mNw7PJKnyu5dAUcRbORecZ
-fCHrH/YpfkHEZbjytMwnmazNhtfLn0TcAbWrSdX7yPrVNmJxfEQirNs+w2J/
-eCLsdVZpvheRBWux8JX37SwIH7LOjYnAsF7xqYGaH4ZNFTtlt7rXwY2SV9tl
-t9eBq4/Z0VzX71B44Y1OSVMjnCk6Hio2/xcsypjzyZjTCl+6d8ik2ndCZ1fT
-wQrpDgjW4okUHOwGDal00Z3MLji3vDL69RMOCNzfr83gd0Pn8c4rSQUcOOdZ
-NH+teA9YJok4X3nPgedXZqgVzeiBjYobtqIeDtTb6Sx6Oq8HxKaecvGKftja
-M3OLrmkPRNTfMsK5/WB/MpktmtADOd67Ba/KuGDW1Oihq9cLwmOnM3+6DEDG
-zO7au/Z9YMcc9irxHICSqcNzXzj1QUWpz7YHfgMQ4RBZ0+DWB2Eqwd8PhA5A
-kYnnplH/Plj8KU3sy7MBWGcWvKg7uQ8sNnZZfuAMQPaxhbdCfvdBJuPoVIHT
-IKjEWJwpP8gBdml3VbTbIKSUiVVNP8oB79OuUed9BsHkR7Oh2SkOGLy7vHR1
-8CC4N4gnl3pyoOViwr5nTwfhTo7bE9NIDkj/bUl91D0IHw3k7WZ/5ID9K8s9
-YSeGIGA/5vmt7YfVBcqUytkhcOPND3bX6wexrOaGhxeGwHveqmrbbf2QnGRj
-lRs4BJoP7SzmmvdD+7UTNt/Sh0A3OXzzRmei005P59n0ELxe71vzM4lwY3Rg
-2oVhYJze2F8rzoXVdVY7ta8Mw5HOxpx8GS6IVanIFQcOQ6BDISdSgQvJxfF3
-Pt4fhp7D4QXrVLnQHv8khvtyGA7k3TqvuJoL9g75j3VERuDXG9dV62y4cGzw
-y+vXgSPg6O/YJsjigp1PmFVR2Ai05sw+5pPHBWtxU27WvRHw1K3ZMVzEBUvF
-N6qJaSMQGle0qZb4aLwh2/NS5Qi0Gc2PXNLABc2rt1dslB4FmYnPGi4jXFgm
-u+ONNmMU1GKdLc7zubA4UuLQUuVReFu0tMltnAvqTy7eVF4yCrdB6esBCRpY
-VY7tPKNR2Bzme7GSRQOfYXgv9+YorMuIy1yrTcPIfVGtjDuj0PYxN+y1Dg2D
-815VJN8dBX9RYf629TT06ugMh6eOQlHd/XergYafB+aZub4fBdFg/e5cUxrK
-kybFV0rxgMtRPr/lBA2lS4tjFyjwoMrjy4I9jjS8zPHQnq3Eg/6ygulWzjTk
-veXYTF/MA1py0GuXGw2p3c0vegx5cG9+TsmPSzSErCo8mxLAg8NaZ02uR9Lw
-YXVjl0coDwZ3JC+XiaFBeu3Yke0xPDDmiNwIuEfD9Q26pp1PyP1ZHUlO8TRc
-3Fq4ZF4FD0avKJz5nkJDkUFj4mA1D/a2npim8ZQGnuHYzLIvPJghfYRtn0GD
-m4mupF0nD5pviIbUZNHgZFH4O158DN7tjGjZUURDmmXjgTPTx2BlzMbplsU0
-dB0Y+6THGoNSkVMZh0poOHpEt7Rl3hjUR5zctOs1DQdOFMaqbB0DB92RkMb3
-NBh5Fe6LvjIGOnPFo658Je/r0/jBIXAMlp/aGMNqJPr5jm3RCRuDwkg1scTv
-NGy+qruqIXEMnvu4Kia20LAuuFCOicfg9VJndYPfNJwPabz2690YPLmqciK2
-nYac0DFhVu0YrIrOpXo6aFgZqdtj1joGnFLXxLNdNCyIK6wImRiDvHWVfhp9
-NNgnNOpZS/LhWtPN4Y0cGpKSxnKXz+DDzIHuatN+GmY/0U3+MJsPOVtD/jtI
-03Ao1UoldgEf1J3NcywGaLj39EKY4wo+bOx8pWo8SPKVWegnrceHptspysrD
-NOx53jjauI0PA5p5GSOEQ3PGnFNN+DA8ceth1QgNsoW6hw0P86FWUJdnzaPB
-+IVVveIxPkyf1fp51hgNAS8v7PjjRN5n9+iez4TFXhfqXvfhg/nX6POLBTSk
-z6BSJvz5ECLxe88XwnsPO7Mv3OLDz7RGHS8hDcK0d/4DkXwIrzRRZ/2j4RFP
-fdAxjg9aXCbrCWFTg4u2HY/5ELBEdIbmOMl/+Nca62d8yJcdnpFJ2GBlcPru
-Uj5MpJkviJyggePTqVz1jg9mGn4b+ISjKjff3PqJD+MvVuy3mKRBb+b90ZeN
-fLCK23YhlfCfY8PH1v7iwzrPjMRBwqHZu+ozu/kw5b27dvUU8XMqFS0Z5MMz
-GzXx04RbTcWyHgr40GAruTmWcECstZqqmACe6Av9XhPW7C64FSUrgDG9wYqf
-hL+tZQpnsASwbXE7NUTY79rpUzdVBZC+8/3xCcKLP1d8E1kggBHv+NIpwnVz
-1Lf7rBBAtJyDmoCwl7NP7rCOADJaZ/v3EFYv/qJxRl8A43uqOXWEK6W0wrq2
-C4Bn7H0ki7Dr/qBJWzMBZK1a+eU6YeVHHc5NlgJo4w3vMSf8ekC/Za8tYfkf
-DWzCjpvv7ag+KYBHrjzrT+T7qZChwu2uAnhxz5JzhXBxk+ki7CWAzYGU/1LC
-9otTo9ZfFcCPt1vnVBF9ZT1ExXOCBFB+QKzMlnBO+eFzyyMEkFDv4tRP/DnE
-KGh7HCuAO9vTZrkRFrNhmM15JID5Oz5/7if+ZmQ4ldzNEICJQD7MjrCF4O0y
-Zp4AdvEC938g+Rg3nHs/uEQArxwc5y0nbNre4HGpRgDnX1ENn/kkD1qanbyv
-5Ptv6BUqEY67FLjXtVUAyDf0kQXJY7+yvtYxWgCXDwdG544Sf3endBszhbDy
-ocsfySHib7yIVbmKEDLG7JkSpD5aew9VbJonhKM5F40EpJ60AhSSNdcIgdYx
-bqgk9VZX4nWYvV8ItSaqbuPdxB/ZhqrbR4SgLk2P5fwl/hxYuV7qhBC09K8H
-25F6dh3+zRZ6CkHc4lxjEql35jKT2rZ7QtgdZala8JP0J6lEZmWSEPrOuGmh
-H0TvP0MWz9OEkBDpe7G8mQaHh7EtV4qEkBNeX5JF+k+Rcm+3xnchHD6qRa/4
-TMNtnv4K2V9CYFgeqvH6RPz5En526K8QFsdEdJXU0DA9bAOvfEwI3KDWjys/
-0GAjFSTuoPQPOOd0XXLKaVjz54eh6dx/4JlOab8m/VD6zapgncX/oDYhcvW7
-UuKn33eGpO4/aBnxHC4m/VSSt3hOiuU/kBos9THKoeG/znfru6P/QZHwuGJ/
-Ig1Xy2f51sX/g89+mSKXSX+3THLBRU/+QY3shjUyD2gQsZ5pGJT/D8pPXHKd
-RubDvobj+5Z9/QcfB+SOPL5F+kGZhIszexySeOWhLh6k3yRufTQQMQ7vAuU2
-bdlGw83Kup/+D8ahSNVjYRSZb+8GbZQVH5Pfb1+l3LqJhu0GF29vyB+HuVc7
-ZlmR+bi1J/eCf+M4/LyenftzAan/NQtN2bMnICNoTHMzmber3kuN6j6ZgKsx
-HTkWJVw4OxCt9eHZBKDnN3qCC7mQqbLAybpgAt5aXd9dlMOFlc6o7cr7CZCR
-nZ/FTyPzneldVdUzAQW3t3cqRHNhweHe+MOak+CccdTx/mkuKNHVhpcLJ6Fc
-st13PsWFe+H4aA+ehNCrxko2clxQ1snx3Vc5CS9Tl9qHTSPsfTdncdMknO6o
-Uvgh7IdZ4vZz6oSTsFJLgq/Q0Q9zlMZG1TdPwWj78Nm+7H5YBBpPyt9OQYrX
-GPPSjn6IfV8sKu4ogg6zfy10t+PAwK/n3rSzCLJ/HpemSfZ/RsKUwRZXEXQi
-PfZghzkHRlZE/s7zEkEL1I7uWr+NA2YRp8tOBIogReekZ2ELOSB2ZPbVD6ki
-qLg+oH28uw9OD10SiegSQb6NIiJ1ZH+qp7ZlSt1BFNXdDDxYc6gXjK2/uNmf
-EkXf2950aZj3gsWDk12PnEXRIcEN0bNGvXBaJbRmkYcoavsX2zu0phdiFVse
-rAgQRZ+Kjn9/KNcL/Bke69eniSLfUsOohJIeyJtMO7ebI4puRhgGLlbqgeW/
-GJ2XzouhQ7rDnWqFf+FZGnUq300cyfGkPrm2dYJv65GG5QES6Ofe40uvufyG
-c3rrTRKiJJFvnVHUGr8WECYa2PeFTUPNXaYPKzW/QJ1rrN2FZCmkJue9xO3L
-e9hgNG/y50Np9Pmb3IlJkedQtX1DGoqTQRvqbOZkhWTiJ9n3N7RnyKLPLHW9
-JxcqseL8FU42T6cji8U5Cwz/NOB6UWl/lRI5JPEh8alOcwvOl3ZPqauagaK8
-V+W/ifmNVygynOwr5NGKsEcHrF92YjqUx17zTQGtus3sWFT1F3MG5pSvbFZA
-holviqsa/uLevUZnl7QqoLf0vmcnWv/izpn3qtS6CI/f+R46/Bc3J2zwk+Yp
-oI0RppN31bqxvVXpMFeWgdSX2W+95dqNd50UPfJ2GQNti3do7GD24Pk3b2qd
-dWIg6SpL/4Ytvdjtm46fvTMDrSsQj325sxe/Xthevd+FgZa0njgXv68X27zV
-c9JzY6DwllZLs+O9OFZ06LGMDwOd7vtc5hDYiylf61mPgxjIyyzM0L6mF4ud
-05ZsSmMgx6PjdeF7+7D569Z91ekMtDJI8c+zQ304SSEkGf/HQL4xel5v7Pvw
-5swuSHnOQD+yJdktbn3Yp++Bj3sRAwX9ZXFeRvThoePTBmZUMlDdp+ILWz/3
-4fZDLc1b/zKQ9vYtsy13cLCcvlWqXQ8DJbxq+aRnzsFr5za4+/UxEFdeIUb1
-IAcHdnyQK6YZaJalm3nZKQ7Wci7erM1nIKfCaUbPbnKw76X7yXNlmCjdLtJE
-8i0HKyZZOY0vY6K90iEaqev68Wb/hnWzVjJRycl6+RD9fnzKYbf4ei0mMlwS
-XH3KoB+XLDGKc1/DRHq9Sdkye/uxffa62t5NTPSmTru/27kfZ5Yrrm4yZSIN
-9eSbqg/7sfGfBkG+CxN1zjfNNhDn4kvLQy9muTKRUUnU8EtpLs45ZzyR5sZE
-l8LVO5fLc7HqZIlInCcTvW8r+DCqzMXcmSlS/n5MNBmmE6StycVRxl6KZqFM
-VL9S+j8jKy7+lTFbu+sZE9UkKnD+POJixaFvOW1ZTLT6uWGgaxoX71wfrtOU
-zUSp579mDP/HxblvJddX5zNR5p/o6x35XBzwk7s55xUTLWeY2Di+J0dZhTJT
-vxomEuRWVcj1cLGX2/FTM/uZaF+yvW3GIhoHmnBPbqSZaEvVqmkRy2h8d8GF
-kzaDTHSSI/b6rCaNC74FnkgZZaLgPqNTjHU0Ht74n8O6SSbqcB917jKgsYv4
-sJ2lAoVCHE2tO+1ofOnHRTsfJoUWjc3M2+RA45B8CbsEFoUM/x6VDz5J44yT
-M227lChE8bLfTXehcffHDUc81SnUb3JoxSMfGh+LunIwRptCDDmQ1IigsdsZ
-mYPFayjUc1dRpTuKxv6GEQda11Jo/8RFjZS7NE7iP7JatJFCkbnf5KTiadxq
-/X5/wVYKzQ9xXG+dSuP+tXv2NxtQKNF/b0vzUxqPyzdZTBpSaNPFj857/qOx
-alnvPkMTCp39lnBAPZvGBxbK7/22j0Ka7gVoXzGNT03GmAv3Uyg4hG8QVELj
-C41zzeccoNBSyXOrC0ppHBOkveeENYWWPw96N1JO44Z+CzOeA4UcZULKJT7S
-2Kzgwc6ZnhTaqDp862wTud+w/ZSiF4W2yj3Yw2+m8bVVy/IUfSikN9qi7v2D
-xkXpRWqKfhRyM01vt2+j8bzErwOsAAotfOL++1snjfV+xD1hBRK9xOv4c7to
-bKXicIgVTCG7rePKR/8SvSOH3lChFHp5/4bbxx4a824q3GXGUIiFWf6IS2NG
-xTcT5j1y/ab7jTtoGi8XSxBhxhI/ah6vMRmgsZ3vCidGAoUeq+yeXDtEY58X
-w3MYSRTyMHR3njtM42hecYNCMmGnJb9ERmj8wXWHvkIKhRIcTjRmjNK48xlj
-SD6NQhZx1w958Gg81duYIp9O9A21aV83RmOd4ycY8pkUmm0eMPWQT/RJXlkx
-4zl5vod3lImAxo5tI94zcihkJHRb2U844eC1DrkCCp181eSk/I/oE7PznlwR
-hYa3jMsnE25oYO6SK6YQO/9OwfxxGnMZTaJyJRRyKXA/Gk9Y2iypYHophdZ2
-BikoTBA9b508Pf01hTa35L/2Iqxfqak+vZxC4ro/zzcTPiDJ+yL7lkKp4X+X
-60yS/G19FST7jkIT10r/3CAccvn6ZtlKCkU82ZVM9ts4tcRkWOYDhf4L8T/K
-nKJxuYBKk6mm0N5a0/kmhH+sa7aWqaXQnsn4v76Eee4PmTJ1FNqQ5ZiZQpiZ
-feqddD2FzriRaUR4BVfrovQXCil9N97WTthw+ZiW9DcKrTm7izlC2O5UaafU
-dwqFVWT+JucPfPHJjftSzRSqPemUR84fOKbd1EzqB8nD78tB5PyBn89li0u1
-kvosGbDrI/zBuqVw2i/yPP/XG78S/nM/2XlaO8lD8cjMQsIijY4a0zopVMWJ
-Gg0jPIut/U2yi1wfn/7NnrCOOT9YsptCt823FK8gvDsUg2Qvuf7WiSQu0cPp
-Y8CIBIfoU7s0KI3wdWmzpxJcCi2OjTt/iHDCdkUbiQEKMV3q7SUIv/D/QUkM
-Uehc5a99KUR/7riTrziPQqFifzfXE/8OHjBZKhij0Gl7kXgbwm9zl3/jCijU
-WFGyq4P4f9+Jo9U8QSGR+pjUr0IaS7yr/vFpiuRnzeiebYRdNJ4FVYiykIaM
-166nJE8G3890PJdkIZ/3V5ANyV/WGrOwFCkWslhoqfuM5HPWHU39OBkWsmvn
-Xh0h+R3YTsfcnMFC01PVWM4k3w9yXXfaKBLOebVsapDG0xTMx/YpsdBBX+5b
-BmFXJ+3HO1RYaOynV94sUk+GGkMTOmos9OxiYJQSqb+hUPfs6QtZyLPA1zaf
-1OeR3n02ootZ6D3XMiOom8aV23Wmjy1hoYTiGDNLUs/x4yMO7SvI9cKzcd9J
-/Rs7eSq/0GGhrBvyNldJf8itsKzIXMdC/Z23zyi30niOhq7b4/UsFOo18i2V
-9JPhxrGPd/RYSH+ouSir6X/6e18+YcBChT0r3xxroLHMw4MrrA1ZqPujMOPV
-ZxqfH9/QZG7MQldEUwYV6mi8I1e4Wt+UhUxq10bHV9N4RN23i2XBQrNseMZH
-Kmhs62sdKWPJQnkeDgt83pB8NeqhKSui5x41uztlNE4Mnbjfe5iFdu02Fia/
-ovHOcb9dZcdYaMmf7+9c8mn8sPFqnos7C8XMuqN9/xGNuypWtYV6sJAQFRRK
-PyT1kNcmk3WBhWaAwe6zCWQehenb0hdZ6AYnIF/jPo2rdwhkXK+z0AabBnfV
-UBrzX7ranosm9zfXdDzmSePN6XODw++ykFbNoWMG7qTf3qvNy75P/K1rvjjb
-lcbyHitkh+JZyCvo1PQcRxrP1+zOc0thoUt9pqVu1qQ/JdnKni9kIba4qLEJ
-onFUqPzaqBcs1GxWfzdBj8ZNvq9s816yUE3jccWe9TR2OKiaP4JZaCpzWsIx
-bRp7U422HpUsFLBaXZzWoPHj62b5nk0s1MWxZduJ0lh4St/O+x8L1dcER+S+
-IPP95TLkMcFCb7LTryIyzx/MUFY/N8VCzmckOyqec7FezlDbKXE2avD7KlKc
-ysV+/1JtD0xnI84lzUqjaC4WD6VsdVXZ6FmWSYDQhYvlcv8eGd3IRmX/7V9Y
-MZuLrSW/6g/qsdG26jnJ9kpc/MyqXK1/MxvVUPxCPpOLzcbjfnZuZaPYiFV5
-8lJcHLZ975EvO9koNcGD3T7Qj9nfS6xzD7FRd+XCtMVv+rHaRPjhcz6E/8aq
-rLcn+6P2XS/u+rJRe22ulsPhfnz+vYxSqR8bFQzUf7hp0Y8/hF+tl73GRvIN
-rHv5hv3Yc9G5HY9vsdHPa0XvMpb147rde3Qb49joqoS5vsQgB/sny7P0MRs1
-FynuP3+Bg7uMbn2QllBE1rb9az6d7sP2JnbqC6cpois7fLSVjvXhn2ZrPbdI
-K6Jxwe9QK7Jf/bK/TcNHThF1aYm5lxn34fJja7z72IrojxJauHFhH46/3LK4
-dqEiMh9xsSn70YstCpffiDRSRA/rDo+tN+zFbxZVw5xbiqjx2FsNe/Ee7CSd
-IqEhMxN5bpfdWWPbhQuTFui/CZ+JpF6tdCrR6MC1m/Qq9jKVUIBbccWbu22Y
-7/Rgn12oEtIqtCh+H/kdV+5J3D9jpjKaaP3+Xj20Dttv0EtNjVJGcZ7WaWpx
-Zdixv2b0R4wyKpG001SzLMOuD20NqPvKqLrn42klRhm+LHPtt2+8MmJN22Q/
-fu01jmuqUt2booyCz79dpNhYir95W4WNFyqjhu6ZntHuxXhnsZu3eYsyqndO
-mPErJRubu0hUBvxURhu/N7a0qWTjA/NiZpa0KaP51766N4c8xyeDX+Qu6lRG
-x/ypQ1f/ZOLrh0S4/zjK6L2P5kCGbzouFd62T5lURh5PoxdFPn2IKzLnZreI
-qCCe01lT9p0kXG2fPcUQV0EtYXnV6j0JuOXDl7iLUiros9H9+FG/WMyPVW3c
-w1BBv7clFm9LD8dTZs8WBlAqyGHRzk2M3lA8TRzOv2SroNXD9tF3Lgdj9ml7
-5iIVFVT39e/JC+lXsercEdvDqipoAdU2r+KyD57XcCMzTE0FvUjxsI9MP4eX
-3VSaqJirgtbHnblclH4Ua296avJPQwUt1L79v/+3Sv8Ph2LZdw==
-       "]]},
-     Annotation[#, "Charting`Private`Tag$62527#1"]& ]}, {}, {}},
-  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
-  Axes->{True, True},
-  AxesLabel->{None, None},
-  AxesOrigin->{0, 0},
-  DisplayFunction->Identity,
-  Frame->{{False, False}, {False, False}},
-  FrameLabel->{{None, None}, {None, None}},
-  FrameTicks->{{Automatic, 
-     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
-     Charting`ScaledFrameTicks[{Identity, Identity}]}},
-  GridLines->{None, None},
-  GridLinesStyle->Directive[
-    GrayLevel[0.5, 0.4]],
-  ImagePadding->All,
-  Method->{
-   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
-    AbsolutePointSize[6], "ScalingFunctions" -> None, 
-    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
-        (Identity[#]& )[
-         Part[#, 1]], 
-        (Identity[#]& )[
-         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
-        (Identity[#]& )[
-         Part[#, 1]], 
-        (Identity[#]& )[
-         Part[#, 2]]}& )}},
-  PlotRange->
-   NCache[{{0, 2 Pi}, {-0.9999998592131705, 0.9999998782112116}}, {{
-     0, 6.283185307179586}, {-0.9999998592131705, 0.9999998782112116}}],
-  PlotRangeClipping->True,
-  PlotRangePadding->{{
-     Scaled[0.02], 
-     Scaled[0.02]}, {
-     Scaled[0.05], 
-     Scaled[0.05]}},
-  Ticks->{Automatic, Automatic}]], "Output",
- CellChangeTimes->{3.763329881991637*^9},
- CellLabel->"Out[85]=",ExpressionUUID->"d46d3bf9-825a-4e22-9bfe-d3b2c8d4b364"]
-}, Open  ]]
+ RowBox[{
+  RowBox[{"overridePrepNotebookForDocs", "[", "nb_", "]"}], ":=", "\n", "  ", 
+  
+  RowBox[{"Notebook", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"DeleteCases", "[", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"NotebookGet", "[", "nb", "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "\t\t\t", 
+      RowBox[{"Cell", "[", 
+       RowBox[{"_", ",", " ", "\"\<Metadata\>\"", ",", " ", "___"}], "]"}], 
+      ",", "\n", "\t\t\t", "\[Infinity]", ",", "\n", "\t\t\t", "1"}], "\n", 
+     "\t\t\t", "]"}], ",", "\n", "\t\t", 
+    RowBox[{"Flatten", "@", 
+     RowBox[{"{", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{"FilterRules", "[", "\n", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", "\"\<Options\>\""}], "]"}], ",", " ", "\n", 
+         "\t\t\t\t", 
+         RowBox[{"Except", "[", 
+          RowBox[{
+          "ScreenStyleEnvironment", "|", "StyleDefinitions", "|", "Visible"}],
+           "]"}]}], "\n", "\t\t\t\t", "]"}], ",", "\n", "\t\t\t", 
+       RowBox[{"Visible", "\[Rule]", "True"}], ",", "\n", "\t\t\t", 
+       RowBox[{"ScreenStyleEnvironment", "\[Rule]", "\"\<Working\>\""}], ",", 
+       "\n", "\t\t\t", 
+       RowBox[{"StyleDefinitions", "->", "\n", "\t\t\t\t", 
+        RowBox[{"Notebook", "[", "\n", "\t\t\t\t\t", 
+         RowBox[{
+          RowBox[{"{", "\n", "\t\t\t\t\t\t", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"Cell", "[", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+              "StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
+               RowBox[{
+               "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
+                "\t\t\t\t\t\t", 
+                RowBox[{"FrontEnd`FileName", "[", 
+                 RowBox[{
+                  RowBox[{"{", "\"\<SimpleDocs\>\"", "}"}], ",", " ", 
+                  "\"\<SimpleDocs.nb\>\""}], "]"}]}], "\n", "\t", "\t", "\t", 
+               "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ","}], 
+            "*)"}], "\n", "\t", "\t", "\t", "\t\t\t", 
+           RowBox[{
+            RowBox[{"Cell", "[", "\n", "\t", "\t", "\t", "\t\t\t\t", 
+             RowBox[{"StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
+              RowBox[{
+              "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
+               "\t\t\t\t\t\t", 
+               RowBox[{"FrontEnd`FileName", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"ParentDirectory", "[", "]"}], "}"}], ",", " ", 
+                 "\"\<SimpleDocsStyles.nb\>\""}], "]"}]}], "\n", "\t", "\t", 
+              "\t", "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", 
+            "\n", "\t\t\t\t\t\t", 
+            RowBox[{"Cell", "[", "\n", "\t\t\t\t\t\t\t", 
+             RowBox[{"StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
+              RowBox[{
+              "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
+               "\t\t\t\t\t\t", 
+               RowBox[{"FrontEnd`FileName", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"ParentDirectory", "[", "]"}], ",", " ", 
+                   RowBox[{"ParentDirectory", "[", "]"}]}], "}"}], ",", " ", 
+                 "\"\<SimpleDocsStyles.nb\>\""}], "]"}]}], "\n", 
+              "\t\t\t\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", 
+            "\n", "\t\t\t\t\t\t", 
+            RowBox[{"Cell", "[", 
+             RowBox[{"StyleData", "[", 
+              RowBox[{"StyleDefinitions", "\[Rule]", "\"\<Default.nb\>\""}], 
+              "]"}], "]"}], ",", "\n", "\t\t\t\t\t\t", 
+            RowBox[{"Cell", "[", 
+             RowBox[{
+              RowBox[{"StyleData", "[", 
+               RowBox[{"All", ",", " ", "\"\<Editing\>\""}], "]"}], ",", " ", 
+              
+              RowBox[{"MenuSortingValue", "\[Rule]", "None"}]}], "]"}]}], 
+           "\n", "\t\t\t\t\t\t", "}"}], ",", "\n", "\t\t\t\t\t", 
+          RowBox[{
+          "StyleDefinitions", "\[Rule]", 
+           "\"\<PrivateStylesheetFormatting.nb\>\""}]}], "\n", "\t\t\t\t\t", 
+         "]"}]}]}], "\n", "\t\t\t", "}"}]}]}], "\n", "\t\t", "]"}]}]], "Code",
+ CellChangeTimes->{{3.763332790983509*^9, 3.763332812124485*^9}, {
+  3.763332850797265*^9, 
+  3.7633329363100357`*^9}},ExpressionUUID->"9d9991a3-4f0b-44a5-9566-\
+0ffae8d7ee2a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"patchTaggingRules", "[", "e_", "]"}], ":=", "\n", "  ", 
+    RowBox[{"e", "/.", 
+     RowBox[{"TaggingRules", ":>", 
+      RowBox[{"(", 
+       RowBox[{"Sequence", "@@", 
+        RowBox[{"{", 
+         RowBox[{
+         "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
+          "\"\<Options\>\"", ",", " ", "TaggingRules"}], "}"}]}], ")"}]}]}]}],
+    ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ensureLoadProject", "[", "nb_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"SimpleDocs", "@", 
+    RowBox[{"\"\<EnsureLoadProject\>\"", "[", 
+     RowBox[{"IDEPath", "[", "nb", "]"}], "]"}]}]}], ";"}]}], "Code",Expressio\
+nUUID->"57f5ad7a-3423-4ac6-ad05-dc5350854594"],
+
+Cell[BoxData[{
+ RowBox[{"createDocsNotebook", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"createDocsNotebook", "[", "notebook_", "]"}], ":=", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"assumes", " ", "already", " ", "inside", " ", "withIDE"}], 
+     "*)"}], "\n", "\t", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "\t\t", 
+      RowBox[{"Block", "[", "\n", "\t    ", 
+       RowBox[{
+        RowBox[{"{", "\n", "\t      ", 
+         RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", "False"}], "\n", 
+         "\t      ", "}"}], ",", "\n", "\t    ", 
+        RowBox[{
+         RowBox[{"IDEOpen", "[", 
+          RowBox[{"nb", ",", " ", "notebook"}], "]"}], ";", "\n", "\t    ", 
+         RowBox[{
+          RowBox[{"IDEData", "[", 
+           RowBox[{"nb", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", 
+              "\"\<SimpleDocs\>\"", ",", " ", "\"\<Project\>\""}], "}"}]}], 
+           "]"}], "=", "\n", "\t      ", 
+          RowBox[{"(", 
+           RowBox[{"Thread", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<Name\>\"", ",", " ", "\"\<Directory\>\"", ",", " ", 
+               "\"\<Config\>\""}], "}"}], "->", 
+             RowBox[{"ensureLoadProject", "[", "nb", "]"}]}], "]"}], ")"}]}], 
+         ";"}]}], "\n", "\t    ", "]"}]}], "\n", "\t  ", "]"}]}], ";"}], "\n",
+   "\t  "}], "\n", 
+ RowBox[{"catchCreateDocument", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"catchCreateDocument", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"Block", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"CreateDocument", "=", "createDocsNotebook"}], "\n", "      ", 
+      "}"}], ",", "\n", "    ", "expr"}], "\n", "    ", "]"}]}], ";"}], "\n", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{"catchCreateDocument", "~", "SetAttributes", "~", "HoldFirst"}], 
+   ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"withIDE", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"Block", "[", "\n", "   ", 
+    RowBox[{
+     RowBox[{"{", "\n", "     ", 
+      RowBox[{
+       RowBox[{
+       "EasyIDE`Dependencies`SimpleDocs`Package`Private`getNbData", " ", "=", 
+        "\n", "       ", "overrideGetNbData"}], ",", "\n", "     ", 
+       RowBox[{
+       "EasyIDE`Dependencies`SimpleDocs`Package`Private`setNbData", " ", "=", 
+        "\n", "       ", "overrideSetNbData"}], ",", "\n", "     ", 
+       RowBox[{
+       "EasyIDE`Dependencies`SimpleDocs`Package`Private`prepNotebookForDocs", 
+        " ", "=", "\n", "       ", "overridePrepNotebookForDocs"}], ",", "\n",
+        "     ", 
+       RowBox[{"e", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"Hold", "[", "expr", "]"}], " ", "//", " ", 
+         "patchTaggingRules"}]}]}], "\n", "     ", "}"}], ",", "\n", "    ", 
+     RowBox[{"catchCreateDocument", "[", "\n", "      ", 
+      RowBox[{"ReleaseHold", "[", 
+       RowBox[{"DeleteCases", "[", 
+        RowBox[{"e", ",", " ", 
+         RowBox[{
+          RowBox[{"Verbatim", "[", "Needs", "]"}], "[", "\"\<SimpleDocs`\>\"",
+           "]"}], ",", " ", "\[Infinity]"}], "]"}], "]"}], "\n", "      ", 
+      "]"}]}], "\n", "   ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"withIDE", "~", "SetAttributes", "~", "HoldFirst"}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{"metadataEditor", " ", "=", "\n", "  ", 
+  RowBox[{"RawBoxes", "@", "\n", "    ", 
+   RowBox[{"ReplaceAll", "[", "\n", "      ", 
+    RowBox[{
+     RowBox[{"ToBoxes", "@", "\n", "        ", 
+      RowBox[{"Framed", "[", "\n", "          ", 
+       RowBox[{
+        RowBox[{"$MetadataEditor", " ", "//", " ", "patchTaggingRules"}], ",",
+         "\n", "          ", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"100", ",", " ", "500"}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"55", ",", " ", "1000"}], "}"}]}], "}"}]}], ",", "\n", 
+        "          ", 
+        RowBox[{"Background", "->", "White"}], ",", "\n", "          ", 
+        RowBox[{"RoundingRadius", "->", "5"}], ",", "\n", "          ", 
+        RowBox[{"BaseStyle", "->", "\"\<Panel\>\""}], ",", "\n", "          ", 
+        RowBox[{"FrameStyle", "->", 
+         RowBox[{"GrayLevel", "[", ".8", "]"}]}]}], "\n", "          ", 
+       "]"}]}], ",", "\n", "      ", 
+     RowBox[{
+      RowBox[{"TagBox", "[", 
+       RowBox[{"g_GridBox", ",", " ", "\"\<Grid\>\""}], "]"}], ":>", "g"}]}], 
+    "\n", "      ", "]"}]}]}]}], "Code",
+ CellChangeTimes->{{3.763332950574479*^9, 
+  3.7633329666338787`*^9}},ExpressionUUID->"23389eaf-0ea7-4fe6-b8b0-\
+3f43d15f8c3d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"docsTemplates", " ", "=", " ", "\n", "  ", 
+   RowBox[{"ReplacePart", "[", 
+    RowBox[{"$InsertionMenu", ",", " ", "\n", "    ", 
+     RowBox[{"1", "->", " ", "\n", "     ", 
+      RowBox[{"Button", "[", "\n", "      ", 
+       RowBox[{"\"\<Insert\>\"", ",", "\n", "      ", 
+        RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", 
+        "      ", 
+        RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
+        RowBox[{"FrameMargins", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"10", ",", "10"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", 
+       "]"}]}]}], "\n", "    ", "]"}]}], ";"}]], "Code",ExpressionUUID->\
+"f811bff8-7f48-4e40-be15-97146d104bb2"],
+
+Cell[BoxData[
+ RowBox[{"docsOpsMenu", "=", "\n", "  ", 
+  RowBox[{"ReplacePart", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"Replace", "[", 
+     RowBox[{"$HamburgerMenu", ",", " ", "\n", "      ", 
+      RowBox[{"{", "\n", "        ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"k_", ":>", "v_"}], ")"}], ":>", "\n", "          ", 
+        RowBox[{"k", ":>", 
+         RowBox[{"withIDE", "[", "v", "]"}]}]}], "\n", "        ", "}"}], ",",
+       "\n", "      ", "2"}], "\n", "      ", "]"}], ",", "\n", "    ", 
+    RowBox[{"1", "->", " ", "\n", "     ", 
+     RowBox[{"Button", "[", "\n", "      ", 
+      RowBox[{"\"\<Menu\>\"", ",", "\n", "      ", 
+       RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", "      ", 
+       RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
+       RowBox[{"FrameMargins", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"10", ",", "10"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", 
+      "]"}]}]}], "\n", "    ", "]"}]}]], "Code",ExpressionUUID->"03df19c9-\
+1692-4ad6-b4fa-d22abdbe5d13"],
+
+Cell[BoxData[
+ RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"1a4b3438-9dc0-4a64-891c-c0a8f541b4b5"],
+
+Cell[BoxData[
+ RowBox[{"{", "\n", "  ", 
+  RowBox[{
+  "metadataEditor", ",", "\n", "  ", "docsTemplates", ",", "\n", "  ", 
+   "docsOpsMenu"}], "\n", "  ", "}"}]], "Code",ExpressionUUID->"8dbd3221-270b-\
+4f5e-b58e-945907fa72a4"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{826, 740},
-WindowMargins->{{248, Automatic}, {Automatic, 0}},
+WindowMargins->{{129, Automatic}, {Automatic, 0}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
@@ -232,31 +384,239 @@ TaggingRules->{
        "File" -> 
         "/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/scratch-\
 m00000797061.nb"}, 
-      "Sample Guide" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/project/docs/content/guide/Sample Guide.nb"},
-       "tutorial" -> {
+      "tutorial" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/project/docs/content/tutorial/tutorial.nb"}, 
       "Docs" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}}, 
-    "FileViewer" -> {"Visible" -> False}, 
-    "Toolbars" -> {
-     "Column" -> None, "Tags" -> {}, 
-      "Cells" -> {"CodePackage" -> None, "Docs" -> None, "Package" -> None}}, 
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}, 
+      "scratch-m00001597061" -> {
+       "File" -> 
+        "/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/scratch-\
+m00001597061.nb"}}, "FileViewer" -> {"Visible" -> False}, 
+    "Toolbars" -> {"Column" -> GridBox[{{
+          GridBox[{{
+             GridBox[{{
+                StyleBox[
+                 ActionMenuBox[
+                  ButtonBox[
+                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                   FrameMargins -> {{10, 10}, {0, 0}}, 
+                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                  "\"Function\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Options", "[", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
+                    "=", " ", 
+                    RowBox[{"{", " ", 
+                    TagBox[
+                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
+                    ";"}], "\n", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
+                    "usage"}], "=", "\"FunctionName[args...] ...\""}], ";"}], 
+                    "\n", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
+                    RowBox[{"ops", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    "\n", "\t", 
+                    TagBox[
+                    FrameBox["\"def\""], "Placeholder"]}], ";"}], "\n", 
+                    RowBox[{
+                    RowBox[{"SetAttributes", "~", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
+                    RowBox[{"{", 
+                    TagBox[
+                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], ";"}], 
+                    "\n"}]]], "\"Options\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Options", "[", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
+                    "=", " ", 
+                    RowBox[{"{", " ", 
+                    TagBox[
+                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
+                    ";"}]]], "\"Message\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
+                    "usage"}], "=", "\"FunctionName[args...] ...\""}], 
+                    ";"}]]], "\"Definition\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
+                    RowBox[{"ops", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    "\n", "\t", 
+                    TagBox[
+                    FrameBox["\"def\""], "Placeholder"]}], ";"}]]], 
+                   "\"Attributes\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{"SetAttributes", "~", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
+                    RowBox[{"{", 
+                    TagBox[
+                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], 
+                    ";"}]]]}, Appearance -> None, MenuAppearance -> 
+                  "Dropdown"], "ToolbarElement"]}}, BaseStyle -> 
+              "ToolbarElementRow"], 
+             ButtonBox[
+             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+              "Package"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
+        "Toolbars"], "Tags" -> {"Package"}, 
+      "Cells" -> {
+       "CodePackage" -> None, "Docs" -> None, "Package" -> GridBox[{{
+            GridBox[{{
+               StyleBox[
+                ActionMenuBox[
+                 ButtonBox[
+                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                  FrameMargins -> {{10, 10}, {0, 0}}, 
+                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                 "\"Function\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Options", "[", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
+                    "=", " ", 
+                    RowBox[{"{", " ", 
+                    TagBox[
+                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
+                    ";"}], "\n", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
+                    "usage"}], "=", "\"FunctionName[args...] ...\""}], ";"}], 
+                    "\n", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
+                    RowBox[{"ops", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    "\n", "\t", 
+                    TagBox[
+                    FrameBox["\"def\""], "Placeholder"]}], ";"}], "\n", 
+                    RowBox[{
+                    RowBox[{"SetAttributes", "~", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
+                    RowBox[{"{", 
+                    TagBox[
+                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], ";"}], 
+                    "\n"}]]], "\"Options\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Options", "[", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
+                    "=", " ", 
+                    RowBox[{"{", " ", 
+                    TagBox[
+                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
+                    ";"}]]], "\"Message\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
+                    "usage"}], "=", "\"FunctionName[args...] ...\""}], 
+                    ";"}]]], "\"Definition\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
+                    RowBox[{"ops", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    "\n", "\t", 
+                    TagBox[
+                    FrameBox["\"def\""], "Placeholder"]}], ";"}]]], 
+                  "\"Attributes\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], 
+                    RowBox[{
+                    RowBox[{"SetAttributes", "~", 
+                    TagBox[
+                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
+                    RowBox[{"{", 
+                    TagBox[
+                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], 
+                    ";"}]]]}, Appearance -> None, MenuAppearance -> 
+                 "Dropdown"], "ToolbarElement"]}}, BaseStyle -> 
+             "ToolbarElementRow"], 
+            ButtonBox[
+            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> "Package"]}},
+           BaseStyle -> "ToolbarCell"]}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "scratch-m00000797061", "StyleSheet" -> 
-    FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"], "FileToolbar" -> None, 
+    "ActiveTab" -> "Docs", "StyleSheet" -> 
+    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"], 
+    "FileToolbar" -> "Package", 
     "Options" -> {
-     FrontEndVersion -> 
+     WindowSize -> {808, 755}, 
+      WindowMargins -> {{28, Automatic}, {36, Automatic}}, Visible -> False, 
+      FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
-      StyleDefinitions -> "Default.nb"}, "AutoGeneratePackage" -> False}, 
+      StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False}, 
   "EasyIDE" -> {
    TaggingRules -> {
      "EasyIDE" -> {
@@ -329,7 +689,8 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
-    StyleDefinitions -> FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]]]}, 
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"]]]}, 
   Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> 
@@ -347,10 +708,16 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[CellGroupData[{
-Cell[452, 16, 357, 8, 30, "Input",ExpressionUUID->"afff780c-7547-47af-8baa-7c8e2f8b7534"],
-Cell[812, 26, 10515, 190, 231, "Output",ExpressionUUID->"d46d3bf9-825a-4e22-9bfe-d3b2c8d4b364"]
-}, Open  ]]
+Cell[430, 14, 340, 8, 134, "Code",ExpressionUUID->"39d4db7d-f3fe-45ea-8b19-88355cc37b11"],
+Cell[773, 24, 148, 3, 49, "Code",ExpressionUUID->"b73aa6df-c7a9-4142-9bd7-d7ef584b4a3c"],
+Cell[924, 29, 1519, 41, 218, "Code",ExpressionUUID->"78453674-448d-4770-bddb-d8464134b52f"],
+Cell[2446, 72, 4414, 93, 932, "Code",ExpressionUUID->"9d9991a3-4f0b-44a5-9566-0ffae8d7ee2a"],
+Cell[6863, 167, 737, 20, 134, "Code",ExpressionUUID->"57f5ad7a-3423-4ac6-ad05-dc5350854594"],
+Cell[7603, 189, 4791, 115, 1163, "Code",ExpressionUUID->"23389eaf-0ea7-4fe6-b8b0-3f43d15f8c3d"],
+Cell[12397, 306, 979, 22, 260, "Code",ExpressionUUID->"f811bff8-7f48-4e40-be15-97146d104bb2"],
+Cell[13379, 330, 1306, 29, 407, "Code",ExpressionUUID->"03df19c9-1692-4ad6-b4fa-d22abdbe5d13"],
+Cell[14688, 361, 105, 1, 70, "Code",ExpressionUUID->"1a4b3438-9dc0-4a64-891c-c0a8f541b4b5"],
+Cell[14796, 364, 228, 5, 70, "Code",ExpressionUUID->"8dbd3221-270b-4f5e-b58e-945907fa72a4"]
 }
 ]
 *)

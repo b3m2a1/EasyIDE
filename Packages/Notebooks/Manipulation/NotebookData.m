@@ -163,20 +163,20 @@ IDEData//Clear
 
 IDEData[
   nb:_NotebookObject|_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook, 
-  key:_String|{__String}, 
+  key:_String|_Symbol|{(_String|_Symbol)..}, 
   default_
   ]:=
   ideNbData[nb, key, default];
 IDEData[
   nb:_NotebookObject|_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook, 
-  key:_String|{__String}
+  key:(_String|_Symbol|{(_String|_Symbol)..})
   ]:=
   ideNbData[nb, key];
 IDEData/:
   HoldPattern[ 
     IDEData[
       nb:_NotebookObject|_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook, 
-      key:(_String|{__String})
+      key:(_String|_Symbol|{(_String|_Symbol)..})
       ]~Set~val_
     ]:=
     ideSetNbData[nb, key, val]
@@ -210,7 +210,8 @@ IDEData[ide_IDENotebookObject, key_, default___]:=
     ];
 IDEData/:
   HoldPattern[
-    IDEData[ide_IDENotebookObject, key:(_String|{__String}|_PrivateKey)]~Set~val_
+    IDEData[ide_IDENotebookObject, 
+      key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)]~Set~val_
     ]:=
     Module[{nb=ide["Notebook"], res},
       IDEData[nb, key]=val

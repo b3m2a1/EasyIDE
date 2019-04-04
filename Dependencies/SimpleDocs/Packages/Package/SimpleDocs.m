@@ -775,9 +775,9 @@ EnsureLoadProject[projDir_String]:=
   EnsureLoadProject[None, projDir, None];
 EnsureLoadProject[nb_NotebookObject]:=
   EnsureLoadProject[
-    CurrentValue[nb, $projNameTag],
-    CurrentValue[nb, $projDirTag],
-    CurrentValue[nb, $projConfigTag]
+    getNbData[nb, $projNameTag],
+    getNbData[nb, $projDirTag],
+    getNbData[nb, $projConfigTag]
     ]
 
 
@@ -1319,16 +1319,36 @@ $NotebookTemplates=
 
 
 (* ::Subsubsection::Closed:: *)
+(*getNbData*)
+
+
+
+getNbData[nb_, k_, default_]:=
+  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}, default];
+getNbData[nb_, k_]:=
+  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}];
+
+
+(* ::Subsubsection::Closed:: *)
+(*setNbData*)
+
+
+
+setNbData[nb_, k_, v_]:=
+  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}] =  v;
+
+
+(* ::Subsubsection::Closed:: *)
 (*taggingRules*)
 
 
 
 $projNameTag=
-  {TaggingRules, "SimpleDocs", "Project", "Name"};
+  {"SimpleDocs", "Project", "Name"};
 $projDirTag=
-  {TaggingRules, "SimpleDocs", "Project", "Directory"};
+  {"SimpleDocs", "Project", "Directory"};
 $projConfigTag=
-  {TaggingRules, "SimpleDocs", "Project", "Config"};
+  {"SimpleDocs", "Project", "Config"};
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1337,7 +1357,7 @@ $projConfigTag=
 
 
 getMeta[nb_, k_]:=
-  CurrentValue[nb, {TaggingRules, "Metadata", ToLowerCase@k}];
+  getNbData[nb, {"Metadata", ToLowerCase@k}];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1346,7 +1366,7 @@ getMeta[nb_, k_]:=
 
 
 getMeta[nb_, k_, v_]:=
-  CurrentValue[nb, {TaggingRules, "Metadata", ToLowerCase@k}]=v;
+  setNbData[nb, {"Metadata", ToLowerCase@k}, v];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1455,10 +1475,10 @@ CellInsertionPointCell->Automatic
 
 
 getNBPaclet[nb_]:=
-  CurrentValue[nb,
-  {TaggingRules, "SimpleDocs", "Paclet"},
-  Replace[CurrentValue[nb, {TaggingRules, "Paclet"}], Inherited->Automatic]
-  ]
+  getNbData[nb,
+    {"SimpleDocs", "Paclet"},
+    Replace[getNbData[nb, {"Paclet"}], Inherited->Automatic]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1468,7 +1488,7 @@ getNBPaclet[nb_]:=
 
 getNBProject//Clear
 getNBProject[nb_]:=
-  CurrentValue[nb, $projNameTag];
+  getNbData[nb, $projNameTag];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1479,8 +1499,8 @@ getNBProject[nb_]:=
 getNBProjectData[nb_]:=
   {
     getNBProject[nb],
-    CurrentValue[nb, $projDirTag],
-    CurrentValue[nb, $projConfigTag]
+    getNbData[nb, $projDirTag],
+    getNbData[nb, $projConfigTag]
     };
 
 
@@ -1492,14 +1512,14 @@ getNBProjectData[nb_]:=
 setNBProjectData[nb_, name_]:=
   If[projectQ[name],
     With[{dir=getProjectDir[name], conf=getProjectConfFile[name]},
-      If[CurrentValue[nb, $projNameTag]=!=name,
-        CurrentValue[nb, $projNameTag]=name
+      If[getNbData[nb, $projNameTag]=!=name,
+        getNbData[nb, $projNameTag]=name
         ];
-      If[CurrentValue[nb, $projDirTag]=!=dir,
-        CurrentValue[nb, $projDirTag]=dir
+      If[getNbData[nb, $projDirTag]=!=dir,
+        getNbData[nb, $projDirTag]=dir
         ];
-      If[CurrentValue[nb, $projConfigTag]=!=conf,
-        CurrentValue[nb, $projConfigTag]=conf
+      If[getNbData[nb, $projConfigTag]=!=conf,
+        getNbData[nb, $projConfigTag]=conf
         ];
       ]
     ];
@@ -1569,9 +1589,9 @@ SetNotebookProject[nb_, auto:True|False:False]:=
       {projName, projLoc, projConf}=projData
       ];
     If[StringQ@projName,
-      CurrentValue[nb, $projNameTag]=projName;
-      CurrentValue[nb, $projDirTag]=projLoc;
-      CurrentValue[nb, $projConfigTag]=projConf;
+      setNbData[nb, $projNameTag, projName];
+      setNbData[nb, $projDirTag, projLoc];
+      setNbData[nb, $projConfigTag, projConf];
       projName,
       $Failed
       ]
@@ -1726,7 +1746,7 @@ SetNotebookPaclet[nb_]:=
   Module[
     {pacletLoc=getPacletDialog[]},
     If[StringLength@pacletLoc>0,
-      CurrentValue[nb, {TaggingRules, "SimpleDocs", "Paclet"}]=pacletLoc,
+      setNbData[nb, {"SimpleDocs", "Paclet"}, pacletLoc],
       pacletLoc=None
       ];
     pacletLoc
@@ -1916,7 +1936,7 @@ SaveNotebookMarkdown[nb_]:=
           getProjectProp[projName, "MarkdownOptions", {}],
           Flatten@{
               Replace[
-                CurrentValue[nb, {TaggingRules, "Metadata"}],
+                getNbData[nb, {"Metadata"}],
                 Except[_?OptionQ]:>{}
                 ]
               }
@@ -1980,9 +2000,9 @@ capitalize=ToUpperCase[StringTake[#, {1}]]<>StringDrop[#, 1]&
 
 PopulateNotebookMetadata[nb_]:=
   Module[{md=PrepareNotebookMetadata[nb]},
-    CurrentValue[nb, {TaggingRules, "Metadata"}]=md;
-    CurrentValue[nb, {TaggingRules, "ColorType"}]=
-      capitalize[Lookup[md, "type", "message"]]<>"Color";
+    setNbData[nb, {"Metadata"}, md];
+    setNbData[nb, {"ColorType"}, 
+      capitalize[Lookup[md, "type", "message"]]<>"Color"];
     ]
 
 
@@ -2012,8 +2032,9 @@ populateNotebookMetadataDynamic[ev_]:=
 
 
 ClearNotebookMetadata[nb_]:=
-  CurrentValue[nb, {TaggingRules, "Metadata"}]=
-      Thread[Map[ToLowerCase, Flatten@Values@$MetadataMap]->Automatic];
+  setNbData[nb, {"Metadata"},
+      Thread[Map[ToLowerCase, Flatten@Values@$MetadataMap]->Automatic]
+      ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -2028,9 +2049,9 @@ CheckSaveNotebook[nb_]:=
       saveDoc
       },
     saveMD=
-      CurrentValue[nb, {TaggingRules, "SimpleDocs", "MarkdownAutosave"}, False];
+      getNbData[nb, {"SimpleDocs", "MarkdownAutosave"}, False];
     saveDoc=
-      CurrentValue[nb, {TaggingRules, "SimpleDocs", "DocumentationAutosave"}, False];
+      getNbData[nb, {"SimpleDocs", "DocumentationAutosave"}, False];
     If[TrueQ@saveDoc,
       SaveNotebookToDocumentation[nb]
       ];
@@ -2325,7 +2346,7 @@ SymbolNotebookTemplate[s_Symbol,
             "Metadata"->DocMetadata@Normal@meta,
             If[MatchQ[parent, _NotebookObject],
               "SimpleDocs"->
-                CurrentValue[nb, {parent, TaggingRules, "SimpleDocs"}],
+                getNbData[parent, {"SimpleDocs"}],
               Nothing
               ],
             "ColorType"->"SymbolColor",
@@ -2381,7 +2402,7 @@ GuideNotebookTemplate[name_String,
           TaggingRules->Flatten@{
             "Metadata"->DocMetadata@Normal@meta,
             If[MatchQ[parent, _NotebookObject],
-              "SimpleDocs"->CurrentValue[parent, {TaggingRules, "SimpleDocs"}],
+              "SimpleDocs"->getNbData[parent, {"SimpleDocs"}],
               Nothing
               ],
             "ColorType"->"GuideColor",
@@ -2436,7 +2457,7 @@ TutorialNotebookTemplate[name_String,
           TaggingRules->Flatten@{
             "Metadata"->DocMetadata@Normal@meta,
             If[MatchQ[parent, _NotebookObject],
-              "SimpleDocs"->CurrentValue[parent, {TaggingRules, "SimpleDocs"}],
+              "SimpleDocs"->getNbData[parent, {"SimpleDocs"}],
               Nothing
               ],
             "ColorType"->"TutorialColor",
@@ -2591,7 +2612,7 @@ TableOfContentsNotebook[name_->symbols_, parent_:None]:=
             TaggingRules->{
               "Metadata"->DocMetadata@Normal@meta,
               If[MatchQ[parent, _NotebookObject],
-                "SimpleDocs"->CurrentValue[parent, {TaggingRules, "SimpleDocs"}],
+                "SimpleDocs"->getNbData[parent, {"SimpleDocs"}],
                 Nothing
                 ],
               "ColorType"->"GuideColor"
@@ -2629,7 +2650,9 @@ Map[
 {#,
 With[{tag=ToLowerCase@StringDelete[#, " "]},
 InputField[
-Dynamic@CurrentValue[EvaluationNotebook[], {TaggingRules,"Metadata", tag}, Automatic]
+Dynamic@
+                    CurrentValue[EvaluationNotebook[], 
+                      {TaggingRules,"Metadata", tag}, Automatic]
 ]
 ]
 }&,
@@ -3338,7 +3361,7 @@ getSiteSaveFileName1[pac_, nb_]:=
     type=getMeta[nb, "type"];
     InitializeDocsSite[pac];
     baseDir=getSiteSaveLocation[pac, type];
-    title=CurrentValue[nb, {TaggingRules, "Metadata", "label"}];
+    title=getNbData[nb, {"Metadata", "label"}];
     If[!StringQ@title, title="Symbol"];
     Quiet@CreateDirectory[baseDir, CreateIntermediateDirectories->True];
     FileNameJoin@{baseDir,StringTrim[title, ".nb"]<>".nb" }
