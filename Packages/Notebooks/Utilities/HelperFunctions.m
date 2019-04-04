@@ -21,6 +21,7 @@ $CurrentIDE::usage="";
 
 SetCurrentValue::usage="";
 SetCurrentValueDelayed::usage="";
+WithIDEData::usage="Reroutes CurrentValue to the EasyIDE path";
 
 
 Begin["`Private`"];
@@ -28,6 +29,14 @@ Begin["`Private`"];
 
 (* ::Subsection:: *)
 (*CurrentValues*)
+
+
+
+iCurrentValue = System`FEDump`iCV;
+
+
+(* ::Subsubsection::Closed:: *)
+(*SetCurrentValue*)
 
 
 
@@ -46,6 +55,11 @@ SetCurrentValue[nb_, k_, value_]:=
     ]
 
 
+(* ::Subsubsection::Closed:: *)
+(*SetCurrentValueDelayed*)
+
+
+
 SetCurrentValueDelayed//Clear
 SetCurrentValueDelayed[nb_, k_, Hold[value_]]:=
   With[{h=FrontEnd`$TrackingEnabled},
@@ -59,6 +73,32 @@ SetCurrentValueDelayed[nb_, k_, Hold[value_]]:=
         ]
       ]
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithIDEData*)
+
+
+
+WithIDEData[nb_, expr_]:=
+  Block[
+    {
+      CurrentValue
+      },
+    CurrentValue[a_, b_, c___]:=
+      IDEData[a, Flatten@{"Options", b}, c];
+    CurrentValue/:
+      (CurrentValue[a_, b_, c___] = v_):=
+        (IDEData[a, Flatten@{"Options", b}] = v);
+    CurrentValue/:
+      (CurrentValue[a_, b_, c___] := v_):=
+        (IDEData[a, Flatten@{"Options", b}] := v);
+    Internal`InheritedBlock[{Options},
+      Options[nb] := IDEData[nb, "Options"];
+      expr
+      ]
+    ];
+WithIDEData~SetAttributes~HoldRest;
 
 
 (* ::Subsection:: *)
@@ -102,11 +142,17 @@ WithNotebookPaused[nb_NotebookObject, expr_]:=
       expr,
       Internal`WithLocalSettings[
         FrontEndExecute@
-          FrontEnd`NotebookSuspendScreenUpdates[nb];,
+          {
+            FrontEnd`NotebookSuspendScreenUpdates[nb](*,
+					  FrontEnd`SetOptions[nb, DynamicUpdating\[Rule]False]*)
+            },
         paused = True;
         expr,
         FrontEndExecute@
-          FrontEnd`NotebookResumeScreenUpdates[nb];
+          {
+            (*FrontEnd`SetOptions[nb, DynamicUpdating\[Rule]True],*)
+            FrontEnd`NotebookResumeScreenUpdates[nb]
+            }
         ]
       ]
     ];

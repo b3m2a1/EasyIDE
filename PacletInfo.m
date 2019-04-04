@@ -1,8 +1,6 @@
-(* ::Package:: *)
-
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.1",
+  Version -> "1.0.2",
   Extensions -> {
     	{
      		"Kernel",
@@ -29,8 +27,8 @@ Paclet[
         				"Settings/Mappings/ExtensionToolbarsMap.wl"
         			},
        			{
-        				"StylesheetStylesMap copy",
-        				"Settings/Mappings/StylesheetStylesMap copy.wl"
+        				"FileViewerStylesMap",
+        				"Settings/Mappings/FileViewerStylesMap.wl"
         			},
        			{
         				"StylesheetStylesMap",
@@ -39,6 +37,14 @@ Paclet[
        			{
         				"StylesheetToolbarsMap",
         				"Settings/Mappings/StylesheetToolbarsMap.wl"
+        			},
+       			{
+        				"Apps",
+        				"Settings/Plugins/Apps.wl"
+        			},
+       			{
+        				"Docs",
+        				"Settings/Plugins/Docs.wl"
         			},
        			{
         				"FileMenu",
@@ -81,6 +87,11 @@ Paclet[
         				"Settings/Toolbars"
         			}
        		}
+     	},
+    	{
+     		"Documentation",
+     		"Language" -> "English",
+     		"MainPage" -> "English/SimpleDocsStyles"
      	}
     }
  ]

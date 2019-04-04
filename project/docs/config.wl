@@ -2,5 +2,8 @@
 
 {
 	"BuildDirectory" -> Automatic,
-	"MarkdownOptions" -> {}
+	"MarkdownOptions" -> {},
+	"BatchDocsSettings" -> {
+	  "Contexts"->{"EasyIDE`Utilities`"}
+	  }
 }

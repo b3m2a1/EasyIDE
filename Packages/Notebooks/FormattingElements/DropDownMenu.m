@@ -27,7 +27,9 @@ makeMenuExpr[s:Verbatim[Dynamic][state_], menuList_]:=
   Pane[
     Panel[
       Column[
-        makeMenuCommand[s, #]&/@menuList
+        makeMenuCommand[s, #]&/@menuList,
+        GridBoxItemSize->Inherited,
+        GridBoxAlignment->Inherited
         ],
       BaseStyle->"CascadingMenuMain"
       ],
@@ -46,15 +48,7 @@ makeMenuCommand//Clear
 
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
     Button[
-      Grid[
-        {
-          {
-            Pane[label, {90, Automatic}, Alignment->{Left, Top}], 
-            Pane["\[RightPointer]", {10, Automatic}, Alignment->{Left, Top}]
-            }
-          },
-        GridBoxItemSize->Inherited
-        ],
+      Pane[label, BaseStyle->"CascadingMenuSubmenu"],
       attachMenuExpr[s, EvaluationBox[], makeMenuExpr[s, list]],
       BaseStyle->"CascadingMenuSubmenu",
       Appearance->Inherited
@@ -64,22 +58,25 @@ makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>{command_, ops___}]:=
   EventHandler[
     Button[
-      label,
+      Pane[label, BaseStyle->"CascadingMenuCommand"],
       Internal`WithLocalSettings[
         Null,
-        PreemptiveQueued[EvaluationNotebook[], command],
-        DestroyDropDownMenu[s]
+        If[Quiet[Lookup[Flatten@{ops}, Method, Automatic]]===Automatic,
+          PreemptiveQueued[EvaluationNotebook[], command],
+          command
+          ],
+        If[state["DestroyOnClick"], DestroyDropDownMenu[s]];
         ],
       ButtonData:>s,
       BaseStyle->"CascadingMenuCommand",
       Appearance->Inherited,
       ops
       ],
-  {
-    "MouseEntered":> pruneMenu[s, EvaluationCell[], False],
-    PassEventsDown->True
-    }
-  ];
+   {
+     "MouseEntered":> pruneMenu[s, EvaluationCell[], False],
+     PassEventsDown->True
+     }
+   ];
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>command_]:=
   makeMenuCommand[s, label:>{command}]
 
@@ -160,7 +157,7 @@ attachMenuExpr[s:Verbatim[Dynamic][state_], parentBox_, menuExpr_]:=
         FEAttachCell[
           parentBox,
           menuExpr,
-          Automatic,
+          Offset[{0, 0}, 0],
           {attachPoint, Top},
           {Replace[attachPoint, {Left->Right, Right->Left}], Top},
           {"EvaluatorQuit"}
@@ -190,29 +187,40 @@ DestroyDropDownMenu[s:Verbatim[Dynamic][state_]]:=
 
 
 AttachDropDownMenu//Clear
+Options[AttachDropDownMenu]=
+  {
+    "AttachToCell"->True,
+    "Position"->Automatic,
+    "DestroyOnClick"->True
+    }
 AttachDropDownMenu[
   stateTracker:(Verbatim[Dynamic][_](*|None*)),
   parentBox:_BoxObject|Automatic:Automatic, 
-  position:Left|Right|_Integer|Automatic:Automatic,
-  attachCell:True|False:True,
-  menuCommands_List
+  menuCommands_List,
+  ops:OptionsPattern[]
   ]:=
   With[
     {
       box=Replace[parentBox, Automatic:>EvaluationBox[]],
+      position = OptionValue["Position"],
+      attachCell = TrueQ@OptionValue["AttachToCell"],
+      clickDest = TrueQ@OptionValue["DestroyOnClick"],
       state=
         Replace[stateTracker, 
           None:>Module[{menuState}, Dynamic[menuState]]
           ]
       },
-    iMakeMenu[state, box, position, attachCell, menuCommands]
+    iMakeMenu[state, box, position, attachCell, clickDest, menuCommands]
     ];
+
+
 iMakeMenu//Clear
 iMakeMenu[
   s:Verbatim[Dynamic][menuState_], 
   box_, 
   position_, 
   attachCell_, 
+  clickDest_,
   menuCommands_
   ]:=
   Module[{align, pos},
@@ -223,6 +231,7 @@ iMakeMenu[
          ]; (* this will need an update once I am able to get the box position *)
     menuState["RootPosition"] = align;
     menuState["AttachToCell"] = attachCell;
+    menuState["DestroyOnClick"] = clickDest;
     Replace[
       FEAttachCell[
         If[attachCell, ParentCell@box, box],
@@ -232,10 +241,15 @@ iMakeMenu[
           BoxData@ToBoxes@
             makeMenuExpr[
               s, 
-              Append[menuCommands, Style["Cancel", Italic]:>None]
+              Append[menuCommands, 
+              Style["Cancel", Italic]:>
+                If[menuState["DestroyOnClick"], None, DestroyDropDownMenu[s]]
+              ]
               ]
           ],
-        Automatic,
+        Replace[align, 
+          {Left->Automatic, Right->Offset[{-22, -1}, 0]}
+          ],
         {align, If[attachCell, Bottom, Top]},
         {If[attachCell, align, Replace[align, {Left->Right, Right->Left}]], Top},
         {(*"OutsideMouseClick", *)"ParentChanged", "EvaluatorQuit"}
