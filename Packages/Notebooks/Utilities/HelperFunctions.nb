@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      8432,        233]
-NotebookOptionsPosition[      5997,        175]
-NotebookOutlinePosition[      6663,        198]
-CellTagsIndexPosition[      6620,        195]
+NotebookDataLength[     11270,        307]
+NotebookOptionsPosition[      8385,        242]
+NotebookOutlinePosition[      9051,        265]
+CellTagsIndexPosition[      9008,        262]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,9 +40,76 @@ Cell[BoxData[{
    RowBox[{"$CurrentIDE", "::", "usage"}], "=", "\"\<\>\""}], 
   ";"}]}], "CodeInput"],
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetCurrentValue", "::", "usage"}], "=", "\"\<\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetCurrentValueDelayed", "::", "usage"}], "=", "\"\<\>\""}], 
+  ";"}]}], "CodeInput"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "InputSection"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]CurrentValues\[RightFloor]", "CodeSubsection",
+ Evaluatable->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetCurrentValue", "[", 
+   RowBox[{"nb_", ",", " ", 
+    RowBox[{"{", "opts___", "}"}], ",", " ", "value_"}], "]"}], ":=", "\n", 
+  "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", "  ", 
+    "\t", 
+    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "  ", "    ", 
+     RowBox[{"FrontEnd`SetValue", "[", "\n", "  ", "      ", 
+      RowBox[{
+       RowBox[{"FEPrivate`Set", "[", "\n", "  ", "        ", 
+        RowBox[{
+         RowBox[{"FrontEnd`CurrentValue", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
+            "}"}]}], "]"}], ",", " ", "\n", "  ", "        ", "value"}], "\n",
+         "  ", "        ", "]"}], ",", "\n", "  ", "      ", "h"}], "\n", 
+      "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", "    ", 
+   "]"}]}]], "CodeInput"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetCurrentValueDelayed", "[", 
+   RowBox[{"nb_", ",", " ", 
+    RowBox[{"{", "opts___", "}"}], ",", " ", 
+    RowBox[{"Hold", "[", "value_", "]"}]}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", "  ", 
+    "\t", 
+    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "  ", "    ", 
+     RowBox[{"FrontEnd`SetValue", "[", "\n", "        ", 
+      RowBox[{
+       RowBox[{"FEPrivate`SetDelayed", "[", "\n", "          ", 
+        RowBox[{
+         RowBox[{"FrontEnd`CurrentValue", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
+            "}"}]}], "]"}], ",", " ", "\n", "  ", "        ", "value"}], "\n",
+         "  ", "        ", "]"}], ",", "\n", "  ", "      ", "h"}], "\n", 
+      "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", "    ", 
+   "]"}]}]], "CodeInput"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -198,36 +265,43 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 39, 0, 70, "CodeSection",ExpressionUUID->"624520e8-a6c0-42fa-9b51-158225ef1d43"],
-Cell[464, 17, 331, 9, 70, "CodeInput",ExpressionUUID->"2b9d078a-3933-4645-a694-c1ef62967101"],
-Cell[798, 28, 114, 2, 70, "Text",ExpressionUUID->"5c4999e7-77ba-423c-b065-0d764b2cecd6",
+Cell[422, 15, 39, 0, 70, "CodeSection",ExpressionUUID->"6901eaee-2610-4a86-a0a4-bcf173030206"],
+Cell[464, 17, 331, 9, 70, "CodeInput",ExpressionUUID->"dfb93a1b-f834-4d0d-ae89-f229704802b7"],
+Cell[798, 28, 114, 2, 70, "Text",ExpressionUUID->"81e6d555-1b90-419c-8046-fd5844223c2c",
  Evaluatable->True],
-Cell[915, 32, 230, 8, 70, "CodeInput",ExpressionUUID->"3b461389-36ea-434a-95a1-e3a2bdfb3a5e"],
-Cell[1148, 42, 99, 2, 70, "InputSection",ExpressionUUID->"8f6bb37b-0dd4-4f5e-a19b-5cc94827bdd2"],
+Cell[915, 32, 230, 8, 70, "CodeInput",ExpressionUUID->"49a98e8c-2b9e-4a39-9ada-5ef1bc9636be"],
+Cell[1148, 42, 234, 7, 70, "CodeInput",ExpressionUUID->"18383868-c7b5-4eb0-b4ee-70513cd9ab8a"],
+Cell[1385, 51, 99, 2, 70, "InputSection",ExpressionUUID->"3d0b133b-c991-4a45-9421-a6380c916f58"],
 Cell[CellGroupData[{
-Cell[1272, 48, 81, 1, 70, "CodeSubsection",ExpressionUUID->"b8327b46-f286-4360-956a-240eeea732ad",
+Cell[1509, 57, 86, 1, 70, "CodeSubsection",ExpressionUUID->"cc5e5f42-c747-41b4-a363-6df27f10e4b6",
  Evaluatable->True],
-Cell[1356, 51, 281, 7, 70, "CodeInput",ExpressionUUID->"15bada70-982c-4476-ad28-40cd856270c0"]
+Cell[1598, 60, 993, 24, 70, "CodeInput",ExpressionUUID->"4cfbe10d-d5ec-480c-8b35-ea1d89d6a5d9"],
+Cell[2594, 86, 1029, 24, 70, "CodeInput",ExpressionUUID->"f4125623-1d1b-4d17-8322-c04722b14dbc"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1674, 63, 80, 1, 70, "CodeSubsection",ExpressionUUID->"783f7cb5-d447-4100-8bef-b3d476292a98",
+Cell[3660, 115, 81, 1, 70, "CodeSubsection",ExpressionUUID->"ed582df3-9ce1-4347-9304-fa86d0fd43f4",
  Evaluatable->True],
-Cell[CellGroupData[{
-Cell[1779, 68, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"1005dceb-d637-4974-bf8a-8bd1a649242b",
- Evaluatable->True],
-Cell[1876, 71, 134, 5, 70, "Text",ExpressionUUID->"0c92c565-c40c-484a-9727-7b51d45a1f0d",
- Evaluatable->True],
-Cell[2013, 78, 2165, 47, 70, "CodeInput",ExpressionUUID->"5f62b4b0-d03d-4d87-936d-3fe5bb030bfa"]
+Cell[3744, 118, 281, 7, 70, "CodeInput",ExpressionUUID->"d5c59c97-3c7c-49b5-a8fe-b477eef1da14"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4215, 130, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"a3aa1739-06da-44ac-915b-c1f3d96f5f74",
+Cell[4062, 130, 80, 1, 70, "CodeSubsection",ExpressionUUID->"1bb42a2e-3d5c-4856-81bc-62d9562e471f",
  Evaluatable->True],
-Cell[4307, 133, 1540, 31, 70, "CodeInput",ExpressionUUID->"8180117b-9df3-4143-bde6-f338b99c9c46"]
+Cell[CellGroupData[{
+Cell[4167, 135, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"e76bde30-94df-44d6-b83d-58cdedb98ffa",
+ Evaluatable->True],
+Cell[4264, 138, 134, 5, 70, "Text",ExpressionUUID->"ae881c06-72d4-49ef-bc8a-3ddaef2dd1db",
+ Evaluatable->True],
+Cell[4401, 145, 2165, 47, 70, "CodeInput",ExpressionUUID->"fa9ab548-013d-4c37-86a2-cd959062e994"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6603, 197, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"29182981-7541-49e8-9017-f40701b32bcc",
+ Evaluatable->True],
+Cell[6695, 200, 1540, 31, 70, "CodeInput",ExpressionUUID->"9bf2c6f8-1b2d-4f3e-b10b-c41f2374a948"]
 }, Open  ]]
 }, Open  ]],
-Cell[5874, 168, 76, 2, 70, "InputSection",ExpressionUUID->"ce9c182f-0b18-4b59-9970-905b1ce740c9"]
+Cell[8262, 235, 76, 2, 70, "InputSection",ExpressionUUID->"e4ea5940-06c8-4a93-a7af-af5e398ffa60"]
 }, Open  ]],
-Cell[5965, 173, 28, 0, 70, "SectionSeparator",ExpressionUUID->"ad9ee9bd-104d-4253-ae67-44ee39e7bf39"]
+Cell[8353, 240, 28, 0, 70, "SectionSeparator",ExpressionUUID->"f494c86d-748d-476e-bd94-53064410ab5a"]
 }
 ]
 *)

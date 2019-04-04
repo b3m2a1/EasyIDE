@@ -20,7 +20,17 @@ overrideSetNbData[nb_, k_, d_]:=
 
 patchTaggingRules[e_]:=
   e/.TaggingRules:>(Sequence@@{TaggingRules, "EasyIDE", "Options", TaggingRules});
-withNewTaggingRules[expr_]:=
+
+catchCreateDocument[expr_]:=
+  Block[
+    {
+      CreateDocument=IDEOpen[$CurrentIDENotebook, #]&
+      },
+    expr
+    ];
+catchCreateDocument~SetAttributes~HoldFirst;
+
+withIDE[expr_]:=
   Block[
    {
      EasyIDE`Dependencies`SimpleDocs`Package`Private`getNbData =
@@ -29,9 +39,11 @@ withNewTaggingRules[expr_]:=
        overrideSetNbData,
      e = Hold[expr] // patchTaggingRules
      },
-    ReleaseHold[DeleteCases[e, Verbatim[Needs]["SimpleDocs`"], \[Infinity]]]
+    catchCreateDocument[
+      ReleaseHold[DeleteCases[e, Verbatim[Needs]["SimpleDocs`"], \[Infinity]]]
+      ]
    ];
-withNewTaggingRules~SetAttributes~HoldFirst;
+withIDE~SetAttributes~HoldFirst;
 
 metadataEditor =
   RawBoxes@
@@ -67,7 +79,7 @@ docsOpsMenu=
     Replace[$HamburgerMenu, 
       {
         (k_:>v_):>
-          k:>withNewTaggingRules[v]
+          k:>withIDE[v]
         },
       2
       ],

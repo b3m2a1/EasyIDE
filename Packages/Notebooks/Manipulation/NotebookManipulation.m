@@ -10,6 +10,7 @@
 NotebookSaveContents::usage="Saves the contents of a NotebookObject to a file";
 NotebookPutFile::usage="Puts a File expression into a NotebookObject";
 NotebookPutContents::usage="Puts a Notebook into a NotebookObject";
+NotebookPutScratch::usage="Puts a notebook into a scratch file";
 
 
 GetNotebookExpression::usage="Extracts the Notebook expression";
@@ -544,6 +545,30 @@ Module[{recurseProtect},
     ]
 
 
+(* ::Subsubsection::Closed:: *)
+(*notebookWriteToScratch*)
+
+
+
+notebookWriteToScratch[expr_]:=
+  Module[{tmp=CreateFile[]},
+    tmp = 
+      RenameFile[tmp, 
+        FileNameJoin@{DirectoryName[tmp], "scratch-"<>FileNameTake[tmp]<>".nb"}
+        ];
+    Export[tmp, expr]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*NotebookPutScratch*)
+
+
+
+NotebookPutScratch[nb_, expr_Notebook]:=
+  NotebookPutFile[nb, notebookWriteToScratch[expr]]
+
+
 (* ::Subsection:: *)
 (*File Operations*)
 
@@ -606,6 +631,10 @@ IDEOpen[nb_NotebookObject, f_String?FileExistsQ]:=
     ];
 IDEOpen[nb_IDENotebookObject, f_String?FileExistsQ]:=
   IDEOpen[nb["Notebook"], f];
+IDEOpen[nb_NotebookObject, expr_Notebook]:=
+  IDEOpen[nb, notebookWriteToScratch[expr]];
+IDEOpen[nb_IDENotebookObject, expr_Notebook]:=
+  IDEOpen[nb["Notebook"], expr];
 
 
 (* ::Subsubsection::Closed:: *)

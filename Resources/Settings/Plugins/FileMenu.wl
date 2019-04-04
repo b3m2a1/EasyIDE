@@ -39,6 +39,7 @@ End[]
   "Name"->"File",
   "Menu"->{
     "New":>newFile[],
-    "Open":>openFile[]
+    "Open":>openFile[],
+    "Scratch":>IDEOpen[$CurrentIDENotebook, Notebook[{}]]
     }
  |>

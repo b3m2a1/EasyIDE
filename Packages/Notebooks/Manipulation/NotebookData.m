@@ -41,21 +41,16 @@ ideNbData[nb_]:=
 
 
 
-(*MathLink`CallFrontEndHeld[
-    FrontEnd`SetValue[
-      FEPrivate`Set[FrontEnd`CurrentValue[nb, {TaggingRules, $PackageName, opts}], value]
-      ]
-    ]*)
+iSCV=SetCurrentValue;
+iSCVD=SetCurrentValueDelayed;
 
 
 ideSetNbData[nb_, {opts___}, value_]:=
-  CurrentValue[nb, {TaggingRules, $PackageName, opts}] = value;
+  iSCV[nb, {opts}, value];
 ideSetNbData[nb_, opts_, value_]:=
   ideSetNbData[nb, {opts}, value];
 ideSetNbDataDelayed[nb_, opts_, value_]:=
-  CurrentValue[nb, 
-    Flatten[{TaggingRules, $PackageName, opts}, 1]
-    ] := value;
+  iSCVD[nb, Flatten[{opts}, 1], Hold[value]];
 ideSetNbDataDelayed~SetAttributes~HoldRest;
 
 

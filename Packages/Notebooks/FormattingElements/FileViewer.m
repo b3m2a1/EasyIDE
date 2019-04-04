@@ -269,6 +269,10 @@ FileEntryContextMenu[file_]:=
         MenuItem["Open Parent",
           KernelExecute@FrontEndExecute[FrontEnd`SystemOpen[d]],
           MenuEvaluator->Automatic
+          ],
+        MenuItem["Rename",
+          KernelExecute@SaveProjectFileAs[$CurrentIDENotebook, en],
+          MenuEvaluator->Automatic
           ]
         }
       ]

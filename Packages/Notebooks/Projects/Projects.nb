@@ -1,8 +1,19 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     14908,        414]
+NotebookOptionsPosition[     11766,        341]
+NotebookOutlinePosition[     12431,        364]
+CellTagsIndexPosition[     12388,        361]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Project Functions", \
-"CodeSection",ExpressionUUID->"1a72312d-f2f5-43fc-9feb-e46ede45945b"],
+Cell["Project Functions", "CodeSection"],
 
 Cell[BoxData[{
  RowBox[{
@@ -11,9 +22,12 @@ Cell[BoxData[{
    "\"\<Makes a new project file in the IDE\>\""}], ";"}], "\n", 
  RowBox[{
   RowBox[{
+   RowBox[{"SaveProjectFileAs", "::", "usage"}], "=", 
+   "\"\<Moves a project file to a new name\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
    RowBox[{"SetProjectDirectory", "::", "usage"}], "=", 
-   "\"\<Sets the project directory for a notebook\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"99ae978e-3d6e-42a9-b5db-58466296c986"],
+   "\"\<Sets the project directory for a notebook\>\""}], ";"}]}], "CodeInput"],
 
 Cell[BoxData[{
  RowBox[{
@@ -23,37 +37,34 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"EnsureIDEProject", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"144ab647-a488-4f5a-ae4d-414df5da73c7"],
+  ";"}]}], "CodeInput"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"2146947f-8bb2-44e7-97cc-\
-91b0e615f4a5"],
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "InputSection"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Project\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"3f79b8df-c85c-42e3-a2c8-5175b5b58258"],
+ Evaluatable->True],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]getIDETitleBar\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"b9f8dd78-4a52-460f-9fb2-8da8f6832f85"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"getIDETitleBar", "[", "dir_", "]"}], ":=", "\n", "\t", 
    RowBox[{"\"\<EasyIDE: ``\>\"", "~", "TemplateApply", "~", 
-    RowBox[{"FileBaseName", "[", "dir", "]"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"6e72a2a3-cbfd-421d-91e5-da45c3f4613a"]
+    RowBox[{"FileBaseName", "[", "dir", "]"}]}]}], ";"}]], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]NewProjectFile\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"f61a3dbe-bb67-470f-8c0b-4e1b5944aea2"],
+ Evaluatable->True],
 
 Cell[BoxData[{
  RowBox[{"NewProjectFile", "//", "Clear"}], "\n", 
@@ -82,27 +93,149 @@ Cell[BoxData[{
        RowBox[{"nb", ",", " ", "fn"}], "]"}], ";"}]}], "\n", "\t\t", "]"}]}], 
   ";"}], "\n", 
  RowBox[{
+  RowBox[{
+   RowBox[{"NewProjectFile", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"dir_String", "?", "DirectoryQ"}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f", " ", "=", " ", 
+       RowBox[{"SystemDialogInput", "[", 
+        RowBox[{"\"\<FileSave\>\"", ",", " ", "dir", ",", " ", 
+         RowBox[{"WindowTitle", "\[Rule]", "\"\<New file\>\""}]}], "]"}]}], 
+      "}"}], ",", "\n", "    ", 
+     RowBox[{"NewProjectFile", "[", 
+      RowBox[{"nb", ",", " ", "f"}], "]"}]}], "\n", "    ", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"NewProjectFile", "[", "nb_", "]"}], ":=", "\n", "  ", 
   RowBox[{"NewProjectFile", "[", 
-   RowBox[{"nb_", ",", " ", 
-    RowBox[{"dir_String", "?", "DirectoryQ"}]}], "]"}], ":=", "\n", "  ", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"f", " ", "=", " ", 
-      RowBox[{"SystemDialogInput", "[", 
-       RowBox[{"\"\<FileSave\>\"", ",", " ", "dir", ",", " ", 
-        RowBox[{"WindowTitle", "\[Rule]", "\"\<New file\>\""}]}], "]"}]}], 
-     "}"}], ",", "\n", "    ", 
-    RowBox[{"NewProjectFile", "[", 
-     RowBox[{"nb", ",", " ", "f"}], "]"}]}], "\n", "    ", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"f98e553a-e572-4edc-9a15-17020f94f778"]
+   RowBox[{"nb", ",", " ", 
+    RowBox[{"IDEPath", "[", "nb", "]"}]}], "]"}]}]}], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
+Cell["\[LeftCeiling]SaveProjectFileAs\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True],
+
+Cell[BoxData[{
+ RowBox[{"SaveProjectFileAs", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SaveProjectFileAs", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"file1_String", "?", 
+      RowBox[{"(", "FileExistsQ", ")"}]}], ",", " ", 
+     RowBox[{"fileName_String", "?", 
+      RowBox[{"(", 
+       RowBox[{"Not", "@*", "DirectoryQ"}], ")"}]}]}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"tabs", " ", "=", " ", 
+        RowBox[{"IDEData", "[", 
+         RowBox[{"nb", ",", " ", "\"\<Tabs\>\""}], "]"}]}], ",", " ", 
+       "newTabName", ",", " ", "fileHavingTab"}], "}"}], ",", "\n", "\t  ", 
+     RowBox[{"Replace", "[", "\n", "\t    ", 
+      RowBox[{
+       RowBox[{"RenameFile", "[", 
+        RowBox[{"file1", ",", " ", "fileName"}], "]"}], ",", "\n", "\t    ", 
+       RowBox[{"s_String", "\[RuleDelayed]", 
+        RowBox[{"(", "\n", "\t      ", 
+         RowBox[{
+          RowBox[{"fileHavingTab", " ", "=", " ", "\n", "\t        ", 
+           RowBox[{"SelectFirst", "[", 
+            RowBox[{"tabs", ",", " ", "\n", "\t          ", 
+             RowBox[{
+              RowBox[{"Quiet", "[", "\n", "\t            ", 
+               RowBox[{
+                RowBox[{"ExpandFileName", "@", 
+                 RowBox[{"Lookup", "[", 
+                  RowBox[{
+                   RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+                   "\"\<File\>\""}], "]"}]}], "\[Equal]", "\n", 
+                "\t              ", 
+                RowBox[{"ExpandFileName", "@", "file1"}]}], "\n", 
+               "\t            ", "]"}], "&"}]}], "\n", "\t          ", 
+            "]"}]}], ";", "\n", "\t      ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"MissingQ", "[", "fileHavingTab", "]"}]}], ",", "\n", 
+            "\t        ", 
+            RowBox[{
+             RowBox[{"newTabName", " ", "=", " ", 
+              RowBox[{"GetFileTabName", "[", 
+               RowBox[{"nb", ",", " ", "fileName"}], "]"}]}], ";", "\n", 
+             "\t        ", 
+             RowBox[{
+              RowBox[{"IDEData", "[", 
+               RowBox[{"nb", ",", " ", "\"\<Tabs\>\""}], "]"}], " ", "=", " ",
+               "\n", "  \t        ", 
+              RowBox[{"Replace", "[", 
+               RowBox[{"tabs", ",", " ", "\n", "  \t          ", 
+                RowBox[{"fileHavingTab", "\[RuleDelayed]", 
+                 RowBox[{"(", "\n", "  \t            ", 
+                  RowBox[{
+                  "newTabName", "\[RuleDelayed]", "\n", "  \t              ", 
+                   
+                   RowBox[{"Replace", "[", 
+                    RowBox[{
+                    RowBox[{"fileHavingTab", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"\"\<File\>\"", "\[Rule]", "_"}], ")"}], 
+                    "\[RuleDelayed]", 
+                    RowBox[{"(", 
+                    RowBox[{"\"\<File\>\"", "\[Rule]", "fileName"}], ")"}]}], 
+                    ",", " ", "1"}], "]"}]}], "\n", "  \t            ", 
+                  ")"}]}], ",", "\n", "  \t          ", "1"}], "\n", 
+               "  \t          ", "]"}]}], ";", "\n", "  \t      ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"IDEData", "[", 
+                 RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}], " ", 
+                "\[Equal]", " ", 
+                RowBox[{"fileHavingTab", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}]}], ",", "\n", "  \t        ", 
+               
+               RowBox[{
+                RowBox[{"IDEData", "[", 
+                 RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}], " ", 
+                "=", " ", "newTabName"}]}], "\n", "  \t        ", "]"}]}]}], 
+           "\n", "\t        ", "]"}]}], "\n", "\t      ", ")"}]}]}], "\n", 
+      "\t    ", "]"}]}], "\n", "\t  ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SaveProjectFileAs", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"file_String", "?", 
+      RowBox[{"(", "FileExistsQ", ")"}]}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f", " ", "=", " ", 
+       RowBox[{"SystemDialogInput", "[", 
+        RowBox[{"\"\<FileSave\>\"", ",", " ", 
+         RowBox[{"IDEPath", "[", "nb", "]"}], ",", " ", 
+         RowBox[{"WindowTitle", "\[Rule]", "\"\<New name\>\""}]}], "]"}]}], 
+      "}"}], ",", "\n", "    ", 
+     RowBox[{"SaveProjectFileAs", "[", 
+      RowBox[{"nb", ",", " ", "file", ",", " ", "f"}], "]"}]}], "\n", "    ", 
+    "]"}]}], ";"}]}], "CodeInput"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["\[LeftCeiling]SetProjectDirectory\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"4cb3f864-df33-41d7-8e75-1609aaf1b949"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
@@ -126,20 +259,19 @@ Cell[BoxData[
        RowBox[{"CurrentValue", "[", 
         RowBox[{"nb", ",", " ", "WindowTitle"}], "]"}], " ", "=", " ", 
        RowBox[{"getIDETitleBar", "[", "dir", "]"}]}], ";"}]}], "\n", "\t\t", 
-    "]"}]}], ";"}]], \
-"CodeInput",ExpressionUUID->"317c5b9b-4d89-4c72-bafb-4dc28bdce29f"]
+    "]"}]}], ";"}]], "CodeInput"]
 }, Closed]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]IDE\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"f3356763-4b1d-4510-8d91-52828cd68273"],
+ Evaluatable->True],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]EnsureIDEProject\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"1662df2b-a431-43f0-990a-182c34d10915"],
+ Evaluatable->True],
 
 Cell[BoxData[
  RowBox[{
@@ -172,13 +304,13 @@ Cell[BoxData[
           RowBox[{"SetProjectDirectory", "[", 
            RowBox[{"nb", ",", " ", "p"}], "]"}]}]}], "\n", "\t\t\t\t", 
         "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"247a56d7-4374-43b9-b76c-8113c7f118e4"]
+  ";"}]], "CodeInput"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]IDESetDirectory\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"fb3d3200-188a-4ad7-a9c8-fd3d7b70981d"],
+ Evaluatable->True],
 
 Cell[BoxData[{
  RowBox[{
@@ -196,20 +328,16 @@ Cell[BoxData[{
    RowBox[{"IDESetDirectory", "[", 
     RowBox[{
      RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "dir"}], 
-    "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"9c1e4f2c-5029-43e1-a032-03597792c8db"]
+    "]"}]}], ";"}]}], "CodeInput"]
 }, Closed]]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"84e28b0c-818e-48c6-a2f7-\
-9c54ae8ec3e5"]
+  RowBox[{"End", "[", "]"}], ";"}]], "InputSection"]
 }, Open  ]],
 
-Cell["", "SectionSeparator",ExpressionUUID->"e4d0f8d6-edca-4228-a5be-\
-16aad75b21e3"]
+Cell["", "SectionSeparator"]
 },
 WindowSize->{808, 755},
 WindowMargins->{{243, Automatic}, {Automatic, 9}},
@@ -224,4 +352,64 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 40, 0, 70, "CodeSection",ExpressionUUID->"a136e6f3-e53a-4e17-a878-d8b72fda933d"],
+Cell[465, 17, 452, 12, 70, "CodeInput",ExpressionUUID->"aeec20ce-6039-439a-b6ee-b23ab334725c"],
+Cell[920, 31, 248, 8, 70, "CodeInput",ExpressionUUID->"e192d313-fd3d-4e8b-a819-3f3347ba1994"],
+Cell[1171, 41, 99, 2, 70, "InputSection",ExpressionUUID->"aac9aba2-aecc-4804-a922-46e7e8a2586b"],
+Cell[CellGroupData[{
+Cell[1295, 47, 80, 1, 70, "CodeSubsection",ExpressionUUID->"378e05b8-9dce-4e9a-892d-f4a2d733711f",
+ Evaluatable->True],
+Cell[CellGroupData[{
+Cell[1400, 52, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"a18a71e0-4a01-4df5-9ab1-f15c012becac",
+ Evaluatable->True],
+Cell[1493, 55, 236, 5, 70, "CodeInput",ExpressionUUID->"ce9da0ad-574c-493f-9682-966468b39494"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1766, 65, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"11d16df5-9323-4641-89aa-5af80adb775d",
+ Evaluatable->True],
+Cell[1859, 68, 1643, 46, 70, "CodeInput",ExpressionUUID->"cd8579b6-2a8f-49f0-a58a-21d2abe5c2cb"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3539, 119, 93, 1, 70, "CodeSubsubsection",ExpressionUUID->"cc87ec48-1ed7-4096-a328-287eef84a6cb",
+ Evaluatable->True],
+Cell[3635, 122, 4781, 109, 70, "CodeInput",ExpressionUUID->"22d50614-976a-4c6b-9a65-7c2b04331990"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8453, 236, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"aaf6b7c2-c269-406c-9f58-adbbd1909668",
+ Evaluatable->True],
+Cell[8551, 239, 830, 22, 70, "CodeInput",ExpressionUUID->"8f15a5c2-aa56-44a2-9d50-718147c664f0"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9430, 267, 76, 1, 70, "CodeSubsection",ExpressionUUID->"c0146df6-6ff2-440d-96f8-78ecc1169747",
+ Evaluatable->True],
+Cell[CellGroupData[{
+Cell[9531, 272, 92, 1, 70, "CodeSubsubsection",ExpressionUUID->"94140c4d-ddcd-47e5-9367-1f0fbc746115",
+ Evaluatable->True],
+Cell[9626, 275, 1305, 31, 70, "CodeInput",ExpressionUUID->"8ae35bde-b8bf-41d8-9a16-d25d24d0fe9a"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10968, 311, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"60102318-0d21-452f-a42a-81c07cd8f193",
+ Evaluatable->True],
+Cell[11062, 314, 554, 16, 70, "CodeInput",ExpressionUUID->"49f277c5-f638-466c-bc62-92bb96ffbf19"]
+}, Closed]]
+}, Open  ]],
+Cell[11643, 334, 76, 2, 70, "InputSection",ExpressionUUID->"7927b661-2fe0-4633-9bb8-d7f55b19b0f0"]
+}, Open  ]],
+Cell[11734, 339, 28, 0, 70, "SectionSeparator",ExpressionUUID->"978059ce-ea02-4814-a627-0fa51f59eaf1"]
+}
+]
+*)
 
