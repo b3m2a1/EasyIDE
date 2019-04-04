@@ -70,7 +70,7 @@ SaveProjectFileAs[nb_, file1_String?(FileExistsQ), fileName_String?(Not@*Directo
           IDEData[nb, "Tabs"] = 
             Replace[tabs, 
               fileHavingTab:>(
-                newTabName:>
+                newTabName->
                   Replace[fileHavingTab[[2]], ("File"->_):>("File"->fileName), 1]
                 ),
               1
@@ -83,7 +83,15 @@ SaveProjectFileAs[nb_, file1_String?(FileExistsQ), fileName_String?(Not@*Directo
       ]
     ];
 SaveProjectFileAs[nb_, file_String?(FileExistsQ)]:=
-  Module[{f = SystemDialogInput["FileSave", IDEPath[nb], WindowTitle->"New name"]},
+  Module[
+    {
+      f,
+      p = IDEPath[nb]
+      },
+    If[StringStartsQ[ExpandFileName@file, ExpandFileName@p],
+      p=DirectoryName[file]
+      ];
+    f = SystemDialogInput["FileSave", p, WindowTitle->"New name"];
     SaveProjectFileAs[nb, file, f]
     ];
 

@@ -1,19 +1,8 @@
-(*CacheID: 234*)
-(* Internal cache information:
-NotebookFileLineBreakTest
-NotebookFileLineBreakTest
-NotebookDataPosition[         0,          0]
-NotebookDataLength[     11270,        307]
-NotebookOptionsPosition[      8385,        242]
-NotebookOutlinePosition[      9051,        265]
-CellTagsIndexPosition[      9008,        262]
-WindowFrame->Normal*)
-
-(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Helper Functions", "CodeSection"],
+Cell["Helper Functions", \
+"CodeSection",ExpressionUUID->"2f69e40d-71a3-4345-a123-6177993c9b17"],
 
 Cell[BoxData[{
  RowBox[{
@@ -24,11 +13,11 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"PreemptiveQueued", "::", "usage"}], "=", 
    "\"\<Evaluates preemptive code in a queued fashion\>\""}], 
-  ";"}]}], "CodeInput"],
+  ";"}]}], "CodeInput",ExpressionUUID->"07809c5c-b98a-425d-9997-73575fe37f4c"],
 
 Cell["\[LeftCeiling]Consistent references to the current IDE notebook\
 \[RightFloor]", "Text",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"ad38fb1b-24d8-4de7-9483-a0163154fe3e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -38,7 +27,7 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"$CurrentIDE", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput"],
+  ";"}]}], "CodeInput",ExpressionUUID->"734e3831-2545-417b-85ca-57efb43f9b68"],
 
 Cell[BoxData[{
  RowBox[{
@@ -47,48 +36,47 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"SetCurrentValueDelayed", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput"],
+  ";"}]}], "CodeInput",ExpressionUUID->"35c5ef24-c0d1-43df-9290-0c330b3fad3f"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "InputSection"],
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"b9176f57-bf6a-4603-9239-\
+15682af645fa"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]CurrentValues\[RightFloor]", "CodeSubsection",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"cccbfd93-e68b-4b6a-8d36-e8fa9b0baf21"],
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{"SetCurrentValue", "//", "Clear"}], "\n", 
  RowBox[{
   RowBox[{"SetCurrentValue", "[", 
-   RowBox[{"nb_", ",", " ", 
-    RowBox[{"{", "opts___", "}"}], ",", " ", "value_"}], "]"}], ":=", "\n", 
+   RowBox[{"nb_", ",", " ", "k_", ",", " ", "value_"}], "]"}], ":=", "\n", 
   "  ", 
   RowBox[{"With", "[", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", "  ", 
-    "\t", 
-    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "  ", "    ", 
-     RowBox[{"FrontEnd`SetValue", "[", "\n", "  ", "      ", 
+     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", 
+    "  \t", 
+    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "      ", 
+     RowBox[{"FrontEnd`SetValue", "[", "\n", "\t\t\t\t\t", 
       RowBox[{
-       RowBox[{"FEPrivate`Set", "[", "\n", "  ", "        ", 
+       RowBox[{"FEPrivate`Set", "[", "\n", "\t\t\t\t\t\t", 
         RowBox[{
          RowBox[{"FrontEnd`CurrentValue", "[", 
-          RowBox[{"nb", ",", " ", 
-           RowBox[{"{", 
-            RowBox[{
-            "TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
-            "}"}]}], "]"}], ",", " ", "\n", "  ", "        ", "value"}], "\n",
-         "  ", "        ", "]"}], ",", "\n", "  ", "      ", "h"}], "\n", 
-      "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", "    ", 
-   "]"}]}]], "CodeInput"],
+          RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", "\n", "          ", 
+         "value"}], "\n", "\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t", 
+       "h"}], "\n", "\t\t\t\t\t", "]"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], \
+"CodeInput",ExpressionUUID->"bc8579e6-9659-49f7-8537-01a8672128d5"],
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{"SetCurrentValueDelayed", "//", "Clear"}], "\n", 
  RowBox[{
   RowBox[{"SetCurrentValueDelayed", "[", 
-   RowBox[{"nb_", ",", " ", 
-    RowBox[{"{", "opts___", "}"}], ",", " ", 
+   RowBox[{"nb_", ",", " ", "k_", ",", " ", 
     RowBox[{"Hold", "[", "value_", "]"}]}], "]"}], ":=", "\n", "\t", 
   RowBox[{"With", "[", 
    RowBox[{
@@ -101,20 +89,17 @@ Cell[BoxData[
        RowBox[{"FEPrivate`SetDelayed", "[", "\n", "          ", 
         RowBox[{
          RowBox[{"FrontEnd`CurrentValue", "[", 
-          RowBox[{"nb", ",", " ", 
-           RowBox[{"{", 
-            RowBox[{
-            "TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
-            "}"}]}], "]"}], ",", " ", "\n", "  ", "        ", "value"}], "\n",
-         "  ", "        ", "]"}], ",", "\n", "  ", "      ", "h"}], "\n", 
-      "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", "    ", 
-   "]"}]}]], "CodeInput"]
+          RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", "\n", "          ", 
+         "value"}], "\n", "  ", "        ", "]"}], ",", "\n", "  ", "      ", 
+       "h"}], "\n", "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], \
+"CodeInput",ExpressionUUID->"64c7082d-007e-49b3-bbf0-380a231bd42e"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]IDE Refs\[RightFloor]", "CodeSubsection",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"5f227acd-0de9-4788-acd9-1f2a997ecddb"],
 
 Cell[BoxData[{
  RowBox[{
@@ -123,25 +108,26 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"$CurrentIDE", " ", ":=", " ", 
    RowBox[{"IDENotebookObject", "[", "$CurrentIDENotebook", "]"}]}], 
-  ";"}]}], "CodeInput"]
+  ";"}]}], "CodeInput",ExpressionUUID->"260dd5be-b957-4804-b476-9030c495c4c0"]\
+
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Helpers\[RightFloor]", "CodeSubsection",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"3ca876ba-c6cb-44dd-883a-933565dec75f"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]WithPausedNotebook\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"c97c646b-7926-4275-81c8-15e9fdce2394"],
 
 Cell["\<\
 \[LeftCeiling]
 \tHelper function to suspend the screen while updating the nb
 \[RightFloor]\
 \>", "Text",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"5c02b0a8-4f76-4970-af6e-63454c49c042"],
 
 Cell[BoxData[{
  RowBox[{
@@ -190,13 +176,14 @@ Cell[BoxData[{
            ";"}]}], "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", 
     "\t\t", "]"}]}], ";"}], "\n", 
  RowBox[{"WithNotebookPaused", "~", "SetAttributes", "~", 
-  "HoldRest"}]}], "CodeInput"]
+  "HoldRest"}]}], \
+"CodeInput",ExpressionUUID->"d42816f2-f08b-45d7-b339-51ce1e889b54"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]IDEPreemptive\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True],
+ Evaluatable->True,ExpressionUUID->"b88b972d-01b4-4c49-940c-a084786649bc"],
 
 Cell[BoxData[{
  RowBox[{
@@ -229,16 +216,20 @@ Cell[BoxData[{
        RowBox[{"nb", ",", " ", "Evaluator"}], "]"}]}]}], "\n", "\t\t", 
     "]"}]}], ";"}], "\n", 
  RowBox[{"PreemptiveQueued", "~", "SetAttributes", "~", 
-  "HoldRest"}]}], "CodeInput"]
+  "HoldRest"}]}], \
+"CodeInput",ExpressionUUID->"3074f592-b082-435a-8e7b-83171530633e"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"End", "[", "]"}], ";"}]], "InputSection"]
+  RowBox[{"End", "[", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"6d856723-ce46-4de7-b993-\
+77bfa6fc3a3f"]
 }, Open  ]],
 
-Cell["", "SectionSeparator"]
+Cell["", "SectionSeparator",ExpressionUUID->"cdcc3b78-ca57-40c1-9dfd-\
+4bbccf62c1e5"]
 },
 WindowSize->{808, 755},
 WindowMargins->{{Automatic, 270}, {Automatic, 49}},
@@ -253,56 +244,4 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
-(* End of Notebook Content *)
-
-(* Internal cache information *)
-(*CellTagsOutline
-CellTagsIndex->{}
-*)
-(*CellTagsIndex
-CellTagsIndex->{}
-*)
-(*NotebookFileOutline
-Notebook[{
-Cell[CellGroupData[{
-Cell[422, 15, 39, 0, 70, "CodeSection",ExpressionUUID->"6901eaee-2610-4a86-a0a4-bcf173030206"],
-Cell[464, 17, 331, 9, 70, "CodeInput",ExpressionUUID->"dfb93a1b-f834-4d0d-ae89-f229704802b7"],
-Cell[798, 28, 114, 2, 70, "Text",ExpressionUUID->"81e6d555-1b90-419c-8046-fd5844223c2c",
- Evaluatable->True],
-Cell[915, 32, 230, 8, 70, "CodeInput",ExpressionUUID->"49a98e8c-2b9e-4a39-9ada-5ef1bc9636be"],
-Cell[1148, 42, 234, 7, 70, "CodeInput",ExpressionUUID->"18383868-c7b5-4eb0-b4ee-70513cd9ab8a"],
-Cell[1385, 51, 99, 2, 70, "InputSection",ExpressionUUID->"3d0b133b-c991-4a45-9421-a6380c916f58"],
-Cell[CellGroupData[{
-Cell[1509, 57, 86, 1, 70, "CodeSubsection",ExpressionUUID->"cc5e5f42-c747-41b4-a363-6df27f10e4b6",
- Evaluatable->True],
-Cell[1598, 60, 993, 24, 70, "CodeInput",ExpressionUUID->"4cfbe10d-d5ec-480c-8b35-ea1d89d6a5d9"],
-Cell[2594, 86, 1029, 24, 70, "CodeInput",ExpressionUUID->"f4125623-1d1b-4d17-8322-c04722b14dbc"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[3660, 115, 81, 1, 70, "CodeSubsection",ExpressionUUID->"ed582df3-9ce1-4347-9304-fa86d0fd43f4",
- Evaluatable->True],
-Cell[3744, 118, 281, 7, 70, "CodeInput",ExpressionUUID->"d5c59c97-3c7c-49b5-a8fe-b477eef1da14"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[4062, 130, 80, 1, 70, "CodeSubsection",ExpressionUUID->"1bb42a2e-3d5c-4856-81bc-62d9562e471f",
- Evaluatable->True],
-Cell[CellGroupData[{
-Cell[4167, 135, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"e76bde30-94df-44d6-b83d-58cdedb98ffa",
- Evaluatable->True],
-Cell[4264, 138, 134, 5, 70, "Text",ExpressionUUID->"ae881c06-72d4-49ef-bc8a-3ddaef2dd1db",
- Evaluatable->True],
-Cell[4401, 145, 2165, 47, 70, "CodeInput",ExpressionUUID->"fa9ab548-013d-4c37-86a2-cd959062e994"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6603, 197, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"29182981-7541-49e8-9017-f40701b32bcc",
- Evaluatable->True],
-Cell[6695, 200, 1540, 31, 70, "CodeInput",ExpressionUUID->"9bf2c6f8-1b2d-4f3e-b10b-c41f2374a948"]
-}, Open  ]]
-}, Open  ]],
-Cell[8262, 235, 76, 2, 70, "InputSection",ExpressionUUID->"e4ea5940-06c8-4a93-a7af-af5e398ffa60"]
-}, Open  ]],
-Cell[8353, 240, 28, 0, 70, "SectionSeparator",ExpressionUUID->"f494c86d-748d-476e-bd94-53064410ab5a"]
-}
-]
-*)
 

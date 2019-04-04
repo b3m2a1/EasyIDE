@@ -271,7 +271,10 @@ FileEntryContextMenu[file_]:=
           MenuEvaluator->Automatic
           ],
         MenuItem["Rename",
-          KernelExecute@SaveProjectFileAs[$CurrentIDENotebook, en],
+          KernelExecute@PreemptiveQueued[
+            $CurrentIDENotebook,
+            SaveProjectFileAs[$CurrentIDENotebook, en]
+            ],
           MenuEvaluator->Automatic
           ]
         }

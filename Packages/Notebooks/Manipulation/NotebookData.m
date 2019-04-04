@@ -41,8 +41,14 @@ ideNbData[nb_]:=
 
 
 
-iSCV=SetCurrentValue;
-iSCVD=SetCurrentValueDelayed;
+iSCV//Clear;
+iSCVD//Clear;
+
+
+iSCV[nb_, {opts___}, value_]:=
+  SetCurrentValue[nb, {TaggingRules, $PackageName, opts}, value];
+iSCVD[nb_, {opts___}, value_]:=
+  SetCurrentValueDelayed[nb, {TaggingRules, $PackageName, opts}, value];
 
 
 ideSetNbData[nb_, {opts___}, value_]:=

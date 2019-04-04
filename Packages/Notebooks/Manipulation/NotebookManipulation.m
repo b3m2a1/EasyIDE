@@ -14,6 +14,7 @@ NotebookPutScratch::usage="Puts a notebook into a scratch file";
 
 
 GetNotebookExpression::usage="Extracts the Notebook expression";
+GetFileTabName::usage="Gets a unique name for a tab";
 
 
 (* ::Text:: *)
@@ -575,11 +576,11 @@ NotebookPutScratch[nb_, expr_Notebook]:=
 
 
 (* ::Subsubsection::Closed:: *)
-(*getFileTabName*)
+(*GetFileTabName*)
 
 
 
-getFileTabName[nb_, f_]:=
+GetFileTabName[nb_, f_]:=
   Module[
     {
       tabs = IDEData[nb, "Tabs"],
@@ -619,7 +620,7 @@ IDEOpen[nb_NotebookObject, f_String?FileExistsQ]:=
       nbExpr,
       tabName
       },
-    tabName = getFileTabName[nb, f];
+    tabName = GetFileTabName[nb, f];
     If[!TrueQ@IDETabExists[nb, tabName],
       NotebookCreateTab[nb, tabName, 
         {

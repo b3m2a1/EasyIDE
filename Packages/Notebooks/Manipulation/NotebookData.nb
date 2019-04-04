@@ -86,9 +86,34 @@ Cell["\[LeftCeiling]ideSetNbData\[RightFloor]", "CodeSubsubsection",
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"iSCV", "=", "SetCurrentValue"}], ";"}], "\n", 
+  RowBox[{"iSCV", "//", "Clear"}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"iSCVD", "=", "SetCurrentValueDelayed"}], 
+  RowBox[{"iSCVD", "//", "Clear"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"d175fd4a-df8a-48ac-a1e2-6c6c5015ab58"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"iSCV", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"{", "opts___", "}"}], ",", " ", "value_"}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"SetCurrentValue", "[", 
+    RowBox[{"nb", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
+      "}"}], ",", " ", "value"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"iSCVD", "[", 
+    RowBox[{"nb_", ",", " ", 
+     RowBox[{"{", "opts___", "}"}], ",", " ", "value_"}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"SetCurrentValueDelayed", "[", 
+    RowBox[{"nb", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"TaggingRules", ",", " ", "$PackageName", ",", " ", "opts"}], 
+      "}"}], ",", " ", "value"}], "]"}]}], 
   ";"}]}], "CodeInput",ExpressionUUID->"fca45696-95c9-4da6-b77c-7c610a0f01b2"],
 
 Cell[BoxData[{
@@ -539,8 +564,8 @@ Cell[BoxData[{
    RowBox[{"ideAbsPath", "[", 
     RowBox[{
      RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "fileName"}], 
-    "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"f214f01c-786e-400b-86c4-c98c20169707"],
+    "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"f214f01c-786e-400b-86c4-c98c20169707"],
 
 Cell[BoxData[{
  RowBox[{
@@ -598,3 +623,4 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
+

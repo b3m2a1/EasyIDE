@@ -27,26 +27,28 @@ Begin["`Private`"];
 
 
 
-SetCurrentValue[nb_, {opts___}, value_]:=
+SetCurrentValue//Clear
+SetCurrentValue[nb_, k_, value_]:=
   With[{h=FrontEnd`$TrackingEnabled},
     MathLink`CallFrontEndHeld[
       FrontEnd`SetValue[
-        FEPrivate`Set[
-          FrontEnd`CurrentValue[nb, {TaggingRules, $PackageName, opts}], 
+          FEPrivate`Set[
+            FrontEnd`CurrentValue[nb, k], 
           value
-          ],
-        h
-        ]
+            ],
+          h
+          ]
       ]
     ]
 
 
-SetCurrentValueDelayed[nb_, {opts___}, Hold[value_]]:=
+SetCurrentValueDelayed//Clear
+SetCurrentValueDelayed[nb_, k_, Hold[value_]]:=
   With[{h=FrontEnd`$TrackingEnabled},
     MathLink`CallFrontEndHeld[
       FrontEnd`SetValue[
         FEPrivate`SetDelayed[
-          FrontEnd`CurrentValue[nb, {TaggingRules, $PackageName, opts}], 
+          FrontEnd`CurrentValue[nb, k], 
           value
           ],
         h
