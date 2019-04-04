@@ -1,6 +1,0 @@
-(* ::Package:: *)
-
-{
-	"BuildDirectory" -> Automatic,
-	"MarkdownOptions" -> {}
-}

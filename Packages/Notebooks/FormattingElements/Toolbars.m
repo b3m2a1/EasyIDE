@@ -7,6 +7,7 @@ CreateToolbarsBox::usage="Creates a box to display the notebook's toolbars";
 
 AddNotebookToolbar::usage="Adds a toolbar to a Notebook";
 RemoveNotebookToolbar::usage="Removes a toolbar from a Notebook";
+UpdateNotebookToolbars::usage="Updates notebook toolbar expressions";
 
 
 IDEAddToolbar::usage="Adds a toolbar to the IDE";
@@ -94,9 +95,28 @@ CreateToolbarsBox[toolbarRefresh_]:=
         FEPrivate`SameQ[FEPrivate`Head[h], GridBox],
         h,
         PaneBox["", ImageSize->{0, 10}]
-        ]
+        ](*,
+		  Evaluate@
+		    Replace[PrivateKey["ToolbarRefreshHandle"],
+		      {
+		        Hold[s_Symbol]:>TrackedSymbols\[RuleDelayed]{s},
+		        _\[RuleDelayed]Sequence@@{}
+		        }
+		      ]*)
       ]
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*UpdateNotebookToolbars*)
+
+
+
+UpdateNotebookToolbars[nb_, tags:{___String}|Automatic:Automatic]:=
+  IDEData[nb, {"Toolbars", "Column"}] = 
+    makeIDEToolbarGrid[nb, 
+      Replace[tags, Automatic:>IDEData[nb, {"Toolbars", "Tags"}, {}]]
+      ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -105,22 +125,22 @@ CreateToolbarsBox[toolbarRefresh_]:=
 
 
 RemoveNotebookToolbar[nb_, tag_]:=
-  Module[{cell, tools, tags},
+  Module[{cell, tools, tags, update},
     WithNotebookPaused[
       nb,
       tags = IDEData[nb, {"Toolbars", "Tags"}, {}];
-      Global`meh = tags;
       If[!ListQ@tags, tags = {}];
-      If[MemberQ[tags, tag], 
+      update = MemberQ[tags, tag];
+      If[update, 
         IDEData[nb, {"Toolbars", "Tags"}] = DeleteCases[tags, tag];
-        IDEData[nb, {"Toolbars", "Cells", tag}] = None
+        IDEData[nb, {"Toolbars", "Cells", tag}] = None;
         ];
-      If[MemberQ[tags, tag],
-        IDEData[nb, {"Toolbars", "Column"}] = 
-          makeIDEToolbarGrid[nb, DeleteCases[tags, tag]]
-        ]
       ];
-    refreshToolbars[nb]
+    (*refreshToolbars[nb]*)
+    WithCurrentValueUpdating@
+      If[update,
+        UpdateNotebookToolbars[nb, DeleteCases[tags, tag]]
+        ]
     ]
 
 
@@ -130,7 +150,7 @@ RemoveNotebookToolbar[nb_, tag_]:=
 
 
 AddNotebookToolbar[nb_, toolbar_, tag_]:=
-  Module[{cell, tools, tags},
+  Module[{cell, tools, tags, updateNeeded = False},
     tools = Flatten@{toolbar};
     tools=
       If[Head[#]=!=Cell,
@@ -152,17 +172,20 @@ AddNotebookToolbar[nb_, toolbar_, tag_]:=
       tags = IDEData[nb, {"Toolbars", "Tags"}, {}];
       If[!ListQ@tags, tags = {}];
       If[!MemberQ[tags, tag], 
-        IDEData[nb, {"Toolbars", "Tags"}] = Append[tags, tag]
+        IDEData[nb, {"Toolbars", "Tags"}] = Append[tags, tag];
+       updateNeeded = True
         ];
-      IDEData[nb, {"Toolbars", "Cells", tag}] = tools;
-      If[IDEData[nb, {"Toolbars", "Cells", tag}] =!= tools,
+      If[updateNeeded || (IDEData[nb, {"Toolbars", "Cells", tag}] =!= tools),
+        updateNeeded = True;
         IDEData[nb, {"Toolbars", "Cells"}] = {};
         IDEData[nb, {"Toolbars", "Cells", tag}] = tools;
         ];
-      IDEData[nb, {"Toolbars", "Column"}] = 
-        makeIDEToolbarGrid[nb, Append[tags, tag]];
       ];
-    refreshToolbars[nb]
+    WithCurrentValueUpdating@
+      If[updateNeeded,
+        UpdateNotebookToolbars[nb, Append[tags, tag]]
+        ];
+    (*refreshToolbars[nb]*)
     ];
 AddNotebookToolbar[nb_, tag_String]:=
   Replace[

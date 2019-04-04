@@ -6,6 +6,10 @@ WithNotebookPaused::usage="Pauses the notebook temporarily to execute code";
 PreemptiveQueued::usage="Evaluates preemptive code in a queued fashion";
 
 
+WithCurrentValueUpdating::usage="Executes with CurrentValue updating resumed";
+WithoutCurrentValueUpdating::usage="Executes with CurrentValue updating paused";
+
+
 (* ::Text:: *)
 (*Consistent references to the current IDE notebook*)
 
@@ -107,6 +111,43 @@ WithNotebookPaused[nb_NotebookObject, expr_]:=
       ]
     ];
 WithNotebookPaused~SetAttributes~HoldRest
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithCurrentValueUpdating*)
+
+
+
+WithCurrentValueUpdating[expr_]:=
+  Block[
+  {
+    FrontEnd`$TrackingEnabled = True
+    },
+    expr
+    ];
+WithCurrentValueUpdating~SetAttributes~HoldRest
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutCurrentValueUpdating*)
+
+
+
+(* ::Text:: *)
+(*
+	Helper function to suspend the screen while updating the nb
+*)
+
+
+
+WithCurrentValueUpdating[expr_]:=
+  Block[
+  {
+    FrontEnd`$TrackingEnabled = False
+    },
+    expr
+    ];
+WithCurrentValueUpdating~SetAttributes~HoldRest
 
 
 (* ::Subsubsection::Closed:: *)

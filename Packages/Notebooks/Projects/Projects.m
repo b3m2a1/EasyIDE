@@ -7,6 +7,9 @@ SaveProjectFileAs::usage="Moves a project file to a new name";
 SetProjectDirectory::usage="Sets the project directory for a notebook";
 
 
+CreateProjectScratchFile::usage="Creates a scratch file for the project";
+
+
 IDESetDirectory::usage="Same but for IDE";
 EnsureIDEProject::usage="";
 
@@ -105,6 +108,37 @@ SetProjectDirectory[nb_, dir_]:=
   If[(StringQ[dir]&&DirectoryQ[dir]),
     IDEData[nb, {"Project", "Directory"}] = dir;
     CurrentValue[nb, WindowTitle] = getIDETitleBar[dir];
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*CreateProjectScratchFile*)
+
+
+
+CreateProjectScratchFile[
+  expr_, 
+  loc:_String?DirectoryQ:$TemporaryDirectory,
+  name:_String:"scratch"
+  ]:=
+  Module[{file=FileNameJoin@{loc, StringTrim[name, ".nb"]<>".nb"}},
+    If[FileExistsQ[file],
+      file=FileNameJoin@{
+        loc, 
+        StringTrim[name, ".nb"]<>"-m"<>ToString[RandomInteger[{1000, 9999}]]<>".nb"
+        }
+      ];
+    Export[file, expr]
+    ];
+CreateProjectScratchFile[
+  nb_NotebookObject, 
+  expr_, 
+  loc:_String:".scratch",
+  name:_String:"scratch"
+  ]:=
+  Module[{d=FileNameJoin@{ExpandFileName@IDEPath[nb], loc}},
+    If[!DirectoryQ[d], CreateDirectory[d]];
+    CreateProjectScratchFile[expr, d, name]
     ];
 
 

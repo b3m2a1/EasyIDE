@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     58517,       1458]
-NotebookOptionsPosition[     50275,       1292]
-NotebookOutlinePosition[     50941,       1315]
-CellTagsIndexPosition[     50898,       1312]
+NotebookDataLength[     57615,       1431]
+NotebookOptionsPosition[     49537,       1269]
+NotebookOutlinePosition[     50203,       1292]
+CellTagsIndexPosition[     50160,       1289]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -183,7 +183,12 @@ Cell[BoxData[
         RowBox[{"If", "[", 
          RowBox[{
           RowBox[{
-           RowBox[{"Length", "@", "c"}], ">", "50"}], ",", "\n", "       ", 
+           RowBox[{"Length", "@", "c"}], ">", "0"}], ",", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Cell", " ", 
+            RowBox[{"open", "/", "close"}], " ", "state", " ", "was", " ", 
+            "getting", " ", "messed", " ", "up"}], " ", "*)"}], "\n", 
+          "       ", 
           RowBox[{"nbPut1", "[", 
            RowBox[{"ideNb", ",", " ", "nb"}], "]"}], ",", "\n", "       ", 
           RowBox[{"nbPut2", "[", 
@@ -194,7 +199,7 @@ Cell[BoxData[
           RowBox[{"ideNb", ",", " ", "\"\<Options\>\""}], "]"}], " ", "=", 
          " ", "ops"}], ";"}]}], "\n", "     ", "]"}], ";"}]}], "\n", "   ", 
    "]"}]}]], "CodeInput"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -442,7 +447,7 @@ Cell[BoxData[
   RowBox[{"getFExtToolbar", "[", "fExt_", "]"}], ":=", "\n", "\t", 
   RowBox[{"fExt", "/.", 
    RowBox[{"loadExtToolbars", "[", "]"}]}]}]], "CodeInput"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -475,7 +480,7 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}], "/.", "\n", "\t\t", 
    RowBox[{"loadSheetToolbars", "[", "]"}]}]}]], "CodeInput"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -514,7 +519,7 @@ Cell[BoxData[
            RowBox[{"getStylesheetToolbar", "[", "file", "]"}], ",", " ", 
            "None"}], "]"}]}]}], "\n", "\t\t\t\t", "]"}]}], ";", "\n", "\t\t", 
      "tbName"}]}], "\n", "\t\t", "]"}]}]], "CodeInput"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -553,14 +558,9 @@ Cell[BoxData[
           RowBox[{"RemoveNotebookToolbar", "[", 
            RowBox[{"nb", ",", " ", "currentTb"}], "]"}]}], "\n", "\t\t\t\t", 
          "]"}], ";", "\n", "\t\t\t", 
-        RowBox[{"If", "[", 
-         RowBox[{
-          RowBox[{"name", " ", "=!=", " ", "None"}], ",", "\n", "\t\t\t\t", 
-          RowBox[{"AddNotebookToolbar", "[", 
-           RowBox[{"nb", ",", " ", "name"}], "]"}]}], "\n", "\t\t\t\t", 
-         "]"}]}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
-   "]"}]}]], "CodeInput"]
-}, Open  ]]
+        RowBox[{"UpdateNotebookToolbars", "[", "nb", "]"}]}]}], "\n", 
+      "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", "]"}]}]], "CodeInput"]
+}, Closed]]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1033,37 +1033,6 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]notebookWriteToScratch\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"notebookWriteToScratch", "[", "expr_", "]"}], ":=", "\n", "  ", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"tmp", "=", 
-       RowBox[{"CreateFile", "[", "]"}]}], "}"}], ",", "\n", "    ", 
-     RowBox[{
-      RowBox[{"tmp", " ", "=", " ", "\n", "      ", 
-       RowBox[{"RenameFile", "[", 
-        RowBox[{"tmp", ",", " ", "\n", "  ", "      ", 
-         RowBox[{"FileNameJoin", "@", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"DirectoryName", "[", "tmp", "]"}], ",", " ", 
-            RowBox[{"\"\<scratch-\>\"", "<>", 
-             RowBox[{"FileNameTake", "[", "tmp", "]"}], "<>", 
-             "\"\<.nb\>\""}]}], "}"}]}]}], "\n", "        ", "]"}]}], ";", 
-      "\n", "    ", 
-      RowBox[{"Export", "[", 
-       RowBox[{"tmp", ",", " ", "expr"}], "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
 Cell["\[LeftCeiling]NotebookPutScratch\[RightFloor]", "CodeSubsubsection",
  Evaluatable->True],
 
@@ -1073,8 +1042,8 @@ Cell[BoxData[
    RowBox[{"nb_", ",", " ", "expr_Notebook"}], "]"}], ":=", "\n", "  ", 
   RowBox[{"NotebookPutFile", "[", 
    RowBox[{"nb", ",", " ", 
-    RowBox[{"notebookWriteToScratch", "[", "expr", "]"}]}], 
-   "]"}]}]], "CodeInput"]
+    RowBox[{"CreateProjectScratchFile", "[", 
+     RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "]"}]}]], "CodeInput"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1216,8 +1185,8 @@ Cell[BoxData[{
    "\n", "  ", 
    RowBox[{"IDEOpen", "[", 
     RowBox[{"nb", ",", " ", 
-     RowBox[{"notebookWriteToScratch", "[", "expr", "]"}]}], "]"}]}], 
-  ";"}], "\n", 
+     RowBox[{"CreateProjectScratchFile", "[", 
+      RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"IDEOpen", "[", 
@@ -1288,7 +1257,15 @@ Cell[BoxData[
   RowBox[{"End", "[", "]"}], ";"}]], "InputSection"]
 }, Open  ]],
 
-Cell["", "SectionSeparator"]
+Cell["", "SectionSeparator"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"IDENotebookObject", "[", 
+   RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], "@", 
+  RowBox[{"\"\<AddToolbar\>\"", "[", "\"\<CodePackage\>\"", "]"}]}]], "Input",\
+
+ CellLabel->"In[18]:="]
 },
 WindowSize->{808, 755},
 WindowMargins->{{244, Automatic}, {Automatic, 24}},
@@ -1315,144 +1292,140 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 44, 0, 70, "CodeSection",ExpressionUUID->"98131a26-63f2-40c4-9320-fd3fc1b3b07f"],
-Cell[469, 17, 140, 4, 70, "Text",ExpressionUUID->"3c78d59c-5417-4774-9dfc-9da92aab5ec5",
+Cell[422, 15, 44, 0, 70, "CodeSection",ExpressionUUID->"9fc62ddc-d333-495e-9489-312271b41574"],
+Cell[469, 17, 140, 4, 70, "Text",ExpressionUUID->"647aeb57-f621-4240-8441-a3db36d6f642",
  Evaluatable->True],
-Cell[612, 23, 621, 17, 70, "CodeInput",ExpressionUUID->"19f18eea-65d6-44fa-8371-b1e1f341ac7d"],
-Cell[1236, 42, 297, 8, 70, "CodeInput",ExpressionUUID->"292e819f-a9c6-4ead-b147-8cdfdf087a1b"],
-Cell[1536, 52, 122, 2, 70, "Text",ExpressionUUID->"b85f208a-09df-417e-8eb6-b3bd3a39d354",
+Cell[612, 23, 621, 17, 70, "CodeInput",ExpressionUUID->"ebef40c5-6835-491d-ac0c-a5b43429edf5"],
+Cell[1236, 42, 297, 8, 70, "CodeInput",ExpressionUUID->"5d10a48d-d325-4d9b-b4fd-0853f4f6d512"],
+Cell[1536, 52, 122, 2, 70, "Text",ExpressionUUID->"bcb2dcbd-b04e-4d0b-aad6-a652423bcca8",
  Evaluatable->True],
-Cell[1661, 56, 400, 12, 70, "CodeInput",ExpressionUUID->"edabf674-0011-4069-ab06-bc2e080c636a"],
-Cell[2064, 70, 99, 2, 70, "InputSection",ExpressionUUID->"d60b5d33-f087-4d83-8de6-a7094fc6f176"],
+Cell[1661, 56, 400, 12, 70, "CodeInput",ExpressionUUID->"0e55f056-7f70-4694-8e87-6028bbce2ee6"],
+Cell[2064, 70, 99, 2, 70, "InputSection",ExpressionUUID->"730178b2-2133-4057-8dde-9a0215e2cd3c"],
 Cell[CellGroupData[{
-Cell[2188, 76, 94, 1, 70, "CodeSubsection",ExpressionUUID->"a526818c-6468-4021-b546-297365d74500",
- Evaluatable->True],
-Cell[CellGroupData[{
-Cell[2307, 81, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"59c55dd8-6192-46cb-95e5-9902fd8ad280",
- Evaluatable->True],
-Cell[2405, 84, 105, 5, 70, "Text",ExpressionUUID->"1720c89a-7ab7-4078-8ece-87a245fa361c",
- Evaluatable->True],
-Cell[2513, 91, 1100, 26, 70, "CodeInput",ExpressionUUID->"24afe529-adc6-473f-b75f-b3bb3b798393"],
-Cell[3616, 119, 1824, 43, 70, "CodeInput",ExpressionUUID->"24596726-2ebb-4b67-a0c7-e9df8acd577f"],
-Cell[5443, 164, 1225, 31, 70, "CodeInput",ExpressionUUID->"1dce5728-7678-4865-b9a7-e6ef3de28a09"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[6705, 200, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"59068020-13f0-4c72-a664-44ed029e1daf",
+Cell[2188, 76, 94, 1, 70, "CodeSubsection",ExpressionUUID->"4fb690c3-c668-4421-8dfa-532ba9947244",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[6820, 205, 96, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"7ddb6f6c-7a8c-4e6b-8444-3cc4652e73d5",
+Cell[2307, 81, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"d233559a-a049-480b-a138-6842b3ae7468",
  Evaluatable->True],
-Cell[6919, 208, 799, 17, 70, "CodeInput",ExpressionUUID->"81454277-63cf-41c6-b1de-50936af1c9e4"],
-Cell[7721, 227, 177, 4, 70, "CodeInput",ExpressionUUID->"6d87d74e-d321-4690-b1f5-83883403f975"]
+Cell[2405, 84, 105, 5, 70, "Text",ExpressionUUID->"0821ae90-9a75-4253-86d1-ffbb2aae12bb",
+ Evaluatable->True],
+Cell[2513, 91, 1100, 26, 70, "CodeInput",ExpressionUUID->"07669972-40ec-49cf-8219-f6db5f08bd2f"],
+Cell[3616, 119, 1824, 43, 70, "CodeInput",ExpressionUUID->"566143ef-5ded-47af-89ca-6fd8573cee6f"],
+Cell[5443, 164, 1444, 36, 70, "CodeInput",ExpressionUUID->"201a4f19-698a-4bee-b9b0-016a0ccc8aae"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7935, 236, 94, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"d6c922ff-ddba-4826-91a0-3cd4e927dc9f",
+Cell[6924, 205, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"c2f95f8b-4f48-48d7-b710-f85c0faae88f",
  Evaluatable->True],
-Cell[8032, 239, 982, 22, 70, "CodeInput",ExpressionUUID->"645d0393-2ea2-4df2-b372-5cae9d99a1c8"],
-Cell[9017, 263, 3310, 79, 70, "CodeInput",ExpressionUUID->"830c4fd4-2ab7-4a62-a53d-0546df928842"]
+Cell[CellGroupData[{
+Cell[7039, 210, 96, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"b5be310a-ce96-4860-8c98-62cc85430834",
+ Evaluatable->True],
+Cell[7138, 213, 799, 17, 70, "CodeInput",ExpressionUUID->"89305654-7a32-4c10-bc96-973f632ef6c0"],
+Cell[7940, 232, 177, 4, 70, "CodeInput",ExpressionUUID->"e1330d33-a85a-489f-b056-cedce331e7de"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12364, 347, 96, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"2f84dce0-ce09-4710-9f11-35a7a47af144",
+Cell[8154, 241, 94, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"352377fc-2508-4ea3-81ea-673b1809cb0b",
  Evaluatable->True],
-Cell[12463, 350, 938, 22, 70, "CodeInput",ExpressionUUID->"4804f1cf-3ba7-43bb-9c31-5f8fc077ac9a"]
+Cell[8251, 244, 982, 22, 70, "CodeInput",ExpressionUUID->"fb07fac9-c75c-4448-8b3f-1c71a30f3991"],
+Cell[9236, 268, 3310, 79, 70, "CodeInput",ExpressionUUID->"84ceee02-db8b-4733-8e83-90350fb077db"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13438, 377, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"fb926194-deba-4cf7-ba62-355d01a06f6d",
+Cell[12583, 352, 96, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"cb87b5db-28ce-47f4-bf51-07115dc82865",
  Evaluatable->True],
-Cell[13534, 380, 1107, 26, 70, "CodeInput",ExpressionUUID->"df780678-77d8-4cac-aa90-4286ca18a2b9"]
+Cell[12682, 355, 938, 22, 70, "CodeInput",ExpressionUUID->"b02bf339-cc23-4292-a6b3-4f60c77533cd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13657, 382, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"8aac1664-524a-4e96-b53a-5337428fdac5",
+ Evaluatable->True],
+Cell[13753, 385, 1107, 26, 70, "CodeInput",ExpressionUUID->"0f59e1c6-4eb6-4661-8ba0-f6dbc84b74a6"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[14690, 412, 92, 1, 70, "CodeSubsubsection",ExpressionUUID->"98a6a3b3-8cd2-44e2-8e76-4459d772c5ee",
+Cell[14909, 417, 92, 1, 70, "CodeSubsubsection",ExpressionUUID->"48514a9a-6ff7-4edc-88d8-fe483f4052be",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[14807, 417, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"b64af0c6-6822-4c17-8138-94da8ab32fda",
+Cell[15026, 422, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"f95060d2-77b4-4849-a157-85b713a0cff4",
  Evaluatable->True],
-Cell[14903, 420, 795, 17, 70, "CodeInput",ExpressionUUID->"56131e5c-d733-493d-8c6b-397af19f51c7"],
-Cell[15701, 439, 176, 4, 70, "CodeInput",ExpressionUUID->"7f69da6e-d82b-4ffd-8116-b8212e312c98"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[15914, 448, 99, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"0c6f0b59-c43b-4d79-9592-09849e1439ba",
- Evaluatable->True],
-Cell[16016, 451, 833, 18, 70, "CodeInput",ExpressionUUID->"76ed37da-0fbe-498a-a118-c81c3ba3ab8b"],
-Cell[16852, 471, 245, 5, 70, "CodeInput",ExpressionUUID->"473a0c3f-8cb3-4550-88e4-2f81e4cec476"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[17134, 481, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"a69157bc-8fbd-49ab-b8fa-f7b5d462c633",
- Evaluatable->True],
-Cell[17230, 484, 192, 6, 70, "Text",ExpressionUUID->"608d486c-8664-4847-acc8-87b0c4896eb8",
- Evaluatable->True],
-Cell[17425, 492, 954, 23, 70, "CodeInput",ExpressionUUID->"520cbd8b-a6ad-4c77-b4b9-8746457949a2"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[18416, 520, 95, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"39b1e3eb-12fc-4fbf-afb4-144d8e494028",
- Evaluatable->True],
-Cell[18514, 523, 1576, 38, 70, "CodeInput",ExpressionUUID->"18e55edf-d90c-4724-bd86-2ba2828ab9a6"]
-}, Open  ]]
+Cell[15122, 425, 795, 17, 70, "CodeInput",ExpressionUUID->"b7c42d20-5e49-4974-bfaa-f206f763875e"],
+Cell[15920, 444, 176, 4, 70, "CodeInput",ExpressionUUID->"c9e54e29-4c59-4e2a-aa42-c3ae0dc4b0cf"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[20139, 567, 87, 1, 70, "CodeSubsubsection",ExpressionUUID->"37e3371b-53d7-4c55-98cc-09a96f8f475f",
+Cell[16133, 453, 99, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"8064bef5-eb32-4a9d-9434-4d16e498d5e6",
  Evaluatable->True],
-Cell[20229, 570, 1065, 27, 70, "CodeInput",ExpressionUUID->"9bca6eed-d791-4bfb-9422-07d14889fc7f"]
+Cell[16235, 456, 833, 18, 70, "CodeInput",ExpressionUUID->"06f4b75e-2d89-4426-99d6-8e092a7dd78e"],
+Cell[17071, 476, 245, 5, 70, "CodeInput",ExpressionUUID->"796cdd20-8381-4a71-ac1d-b7e2533246f8"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[21331, 602, 88, 1, 70, "CodeSubsubsection",ExpressionUUID->"509a65e8-ede0-4c34-b241-48e2536bffed",
+Cell[17353, 486, 93, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"fb5e7922-fc7b-4697-8796-774e21542f77",
  Evaluatable->True],
-Cell[21422, 605, 2270, 54, 70, "CodeInput",ExpressionUUID->"31cf51ab-d226-4c84-9919-b6fe70589b77"]
+Cell[17449, 489, 192, 6, 70, "Text",ExpressionUUID->"15e73302-1420-4062-99c4-b5c4deb19dbb",
+ Evaluatable->True],
+Cell[17644, 497, 954, 23, 70, "CodeInput",ExpressionUUID->"84d2e4ba-0870-4c57-9100-91c212e68f2a"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[23729, 664, 97, 1, 70, "CodeSubsubsection",ExpressionUUID->"5f8d4fc2-1fee-4dad-a9fb-597231007c77",
+Cell[18635, 525, 95, 1, 70, "CodeSubsubsubsection",ExpressionUUID->"5b106d12-5e0d-49ab-910b-a3cf0677e4da",
  Evaluatable->True],
-Cell[23829, 667, 733, 18, 70, "CodeInput",ExpressionUUID->"662b5779-b698-4d36-94d1-2706f2c008f3"]
+Cell[18733, 528, 1381, 33, 70, "CodeInput",ExpressionUUID->"6de8bea4-8eb8-49ad-a635-87b46e825f72"]
+}, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[24599, 690, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"11ac1833-59be-460e-937b-14ec34ef9a94",
+Cell[20163, 567, 87, 1, 70, "CodeSubsubsection",ExpressionUUID->"88557f75-3687-41d7-8af8-1b24f0c85cd9",
  Evaluatable->True],
-Cell[24693, 693, 2257, 51, 70, "CodeInput",ExpressionUUID->"f5314a84-f003-41ea-b792-ce4f1c85db20"]
+Cell[20253, 570, 1065, 27, 70, "CodeInput",ExpressionUUID->"f09efe07-4a8b-47e1-bffd-a86247f98868"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[26987, 749, 96, 1, 70, "CodeSubsubsection",ExpressionUUID->"e4a59b6c-1775-4779-af63-f89e5557f4e1",
+Cell[21355, 602, 88, 1, 70, "CodeSubsubsection",ExpressionUUID->"c99b9b52-d963-4b0e-b716-d1d062426f1a",
  Evaluatable->True],
-Cell[27086, 752, 14460, 278, 70, "CodeInput",ExpressionUUID->"03975d1e-d707-44c2-a4ec-ad111ce570da"]
+Cell[21446, 605, 2270, 54, 70, "CodeInput",ExpressionUUID->"1d71218f-7a37-43ba-b6f4-b2fcb3dee26c"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[41583, 1035, 98, 1, 70, "CodeSubsubsection",ExpressionUUID->"0287ba76-bf9a-4ce6-9a09-46298fc305f3",
+Cell[23753, 664, 97, 1, 70, "CodeSubsubsection",ExpressionUUID->"551f45ef-fd7c-4cb4-bd1c-98f7bb3888ad",
  Evaluatable->True],
-Cell[41684, 1038, 912, 23, 70, "CodeInput",ExpressionUUID->"2ab0a735-6d7c-475c-87c3-6d52c0e52f00"]
+Cell[23853, 667, 733, 18, 70, "CodeInput",ExpressionUUID->"c3933389-c81d-4ca4-a934-abff8c854384"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[42633, 1066, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"31d4972c-bf37-40fa-ae88-62472c50c2be",
+Cell[24623, 690, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"2cdf27a8-021f-43bd-96bc-383c1c6ce534",
  Evaluatable->True],
-Cell[42730, 1069, 284, 7, 70, "CodeInput",ExpressionUUID->"1384ad92-5607-42ed-8c78-f269bbe7abea"]
+Cell[24717, 693, 2257, 51, 70, "CodeInput",ExpressionUUID->"be35ca12-5332-409b-89bb-3f65e7c8920b"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[27011, 749, 96, 1, 70, "CodeSubsubsection",ExpressionUUID->"a60bd8a4-5f3c-42a8-9a63-e8afb45f9adc",
+ Evaluatable->True],
+Cell[27110, 752, 14460, 278, 70, "CodeInput",ExpressionUUID->"b4ccc5ea-597b-4d76-b34d-e26af5b718b8"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[41607, 1035, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"de677c29-94cc-4ee0-bc4d-397e6f2faebb",
+ Evaluatable->True],
+Cell[41704, 1038, 314, 7, 70, "CodeInput",ExpressionUUID->"75756366-14ad-4689-b32c-5c8a7d64b929"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[43063, 1082, 88, 1, 70, "CodeSubsection",ExpressionUUID->"5429ec58-3c6a-4061-a181-265598557b70",
+Cell[42067, 1051, 88, 1, 70, "CodeSubsection",ExpressionUUID->"ee793467-4a32-4fb2-856b-dc7f61880c4e",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[43176, 1087, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"2e37c817-107b-456a-9e53-6981d91a35ca",
+Cell[42180, 1056, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"810e6648-b3cf-4e31-ba85-13bac476432e",
  Evaluatable->True],
-Cell[43269, 1090, 2991, 72, 70, "CodeInput",ExpressionUUID->"1ff047f5-47b1-4b72-9ad2-10865a29653c"]
+Cell[42273, 1059, 2991, 72, 70, "CodeInput",ExpressionUUID->"b4446704-483d-49e4-93ad-d946b96eddbd"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46297, 1167, 83, 1, 70, "CodeSubsubsection",ExpressionUUID->"dd115931-9985-469c-aef4-ed6b6288cb2e",
+Cell[45301, 1136, 83, 1, 70, "CodeSubsubsection",ExpressionUUID->"570fdaac-8d3d-43a4-ac7d-86be982c154f",
  Evaluatable->True],
-Cell[46383, 1170, 2169, 58, 70, "CodeInput",ExpressionUUID->"05926279-03c2-4220-ba2c-11d3146abec3"]
+Cell[45387, 1139, 2201, 58, 70, "CodeInput",ExpressionUUID->"dc15b569-874c-468c-96b0-558bb583bd7b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48589, 1233, 83, 1, 70, "CodeSubsubsection",ExpressionUUID->"970a8dbd-5d1f-4a5d-bece-80e8251db5cb",
+Cell[47625, 1202, 83, 1, 70, "CodeSubsubsection",ExpressionUUID->"5005b98d-bf45-4a48-a6fc-e379235bca21",
  Evaluatable->True],
-Cell[48675, 1236, 669, 18, 70, "CodeInput",ExpressionUUID->"6ef3e0f3-637e-44c5-aa4c-0f21f66f5458"]
+Cell[47711, 1205, 669, 18, 70, "CodeInput",ExpressionUUID->"d7515e9f-8a6e-4f53-8b13-721d308ec589"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[49381, 1259, 84, 1, 70, "CodeSubsubsection",ExpressionUUID->"0fd4607e-3520-4f25-b7e5-191956f4040e",
+Cell[48417, 1228, 84, 1, 70, "CodeSubsubsection",ExpressionUUID->"7e017aa9-7622-4d78-953c-e25d2b6d4dd9",
  Evaluatable->True],
-Cell[49468, 1262, 657, 19, 70, "CodeInput",ExpressionUUID->"5aa771a6-f183-46cb-83d6-d1d183d61a25"]
+Cell[48504, 1231, 657, 19, 70, "CodeInput",ExpressionUUID->"26afd819-f7a0-4d02-9617-bc24aa4de3c7"]
 }, Open  ]]
 }, Open  ]],
-Cell[50152, 1285, 76, 2, 70, "InputSection",ExpressionUUID->"a18154a3-7104-4199-a152-9342cd143f79"]
+Cell[49188, 1254, 76, 2, 70, "InputSection",ExpressionUUID->"3edda51f-6978-448c-a346-ccb8a751997c"]
 }, Open  ]],
-Cell[50243, 1290, 28, 0, 70, "SectionSeparator",ExpressionUUID->"a19a33ce-5346-4fe7-85b9-8784a16cf759"]
+Cell[49279, 1259, 28, 0, 70, "SectionSeparator",ExpressionUUID->"9e73fa8b-b30d-4d18-a824-b72ce6f9027c"],
+Cell[49310, 1261, 223, 6, 70, "Input",ExpressionUUID->"13b2ecb7-7ab3-4e7f-8108-05ff408e35be"]
 }
 ]
 *)

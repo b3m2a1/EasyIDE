@@ -3,617 +3,154 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     30430,        723]
-NotebookOptionsPosition[     15028,        371]
-NotebookOutlinePosition[     29477,        709]
-CellTagsIndexPosition[     29434,        706]
+NotebookDataLength[     11009,        251]
+NotebookOptionsPosition[      6004,        122]
+NotebookOutlinePosition[     10897,        246]
+CellTagsIndexPosition[     10854,        243]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"BeginPackage", "[", "\"\<`DocsToolbar`\>\"", "]"}], ";"}], "\n", 
- RowBox[{"metadataEditor", ";"}], "\n", 
- RowBox[{"docsTemplates", ";"}], "\n", 
- RowBox[{"docsOpsMenu", ";"}], "\n", 
- RowBox[{
-  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",ExpressionUUID->"39d4db7d-\
-f3fe-45ea-8b19-88355cc37b11"],
-
 Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",ExpressionU\
-UID->"b73aa6df-c7a9-4142-9bd7-d7ef584b4a3c"],
-
-Cell[BoxData[{
- RowBox[{
+ RowBox[{"Paclet", "[", "\n", "  ", 
   RowBox[{
-   RowBox[{"overrideGetNbData", "[", 
-    RowBox[{"nb_", ",", " ", "k_", ",", " ", "d_"}], "]"}], ":=", "\n", "\t", 
-   
-   RowBox[{"CurrentValue", "[", 
-    RowBox[{"nb", ",", " ", "\n", "\t  ", 
-     RowBox[{"Flatten", "@", 
-      RowBox[{"{", 
-       RowBox[{
-       "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
-        "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], "}"}]}],
-      ",", " ", "d"}], "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"overrideGetNbData", "[", 
-    RowBox[{"nb_", ",", " ", "k_"}], "]"}], ":=", "\n", "\t", 
-   RowBox[{"CurrentValue", "[", 
-    RowBox[{"nb", ",", " ", "\n", "\t  ", 
-     RowBox[{"Flatten", "@", 
-      RowBox[{"{", 
-       RowBox[{
-       "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
-        "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], 
-       "}"}]}]}], "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"overrideSetNbData", "[", 
-    RowBox[{"nb_", ",", " ", "k_", ",", " ", "d_"}], "]"}], ":=", "\n", "\t", 
-   
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"CurrentValue", "[", 
-      RowBox[{"nb", ",", " ", "\n", "\t  ", 
-       RowBox[{"Flatten", "@", 
-        RowBox[{"{", 
-         RowBox[{
-         "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
-          "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", "k"}], 
-         "}"}]}]}], "]"}], " ", "=", " ", "d"}], ")"}]}], ";"}]}], "Code",Expr\
-essionUUID->"78453674-448d-4770-bddb-d8464134b52f"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"overridePrepNotebookForDocs", "[", "nb_", "]"}], ":=", "\n", "  ", 
-  
-  RowBox[{"Notebook", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"DeleteCases", "[", "\n", "\t\t\t", 
+   RowBox[{"Name", " ", "->", " ", "\"\<EasyIDE\>\""}], ",", "\n", "  ", 
+   RowBox[{"Version", " ", "->", " ", "\"\<1.0.1\>\""}], ",", "\n", "  ", 
+   RowBox[{"Extensions", " ", "->", " ", 
+    RowBox[{"{", "\n", "    \t", 
      RowBox[{
-      RowBox[{
-       RowBox[{"NotebookGet", "[", "nb", "]"}], "[", 
-       RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "\t\t\t", 
-      RowBox[{"Cell", "[", 
-       RowBox[{"_", ",", " ", "\"\<Metadata\>\"", ",", " ", "___"}], "]"}], 
-      ",", "\n", "\t\t\t", "\[Infinity]", ",", "\n", "\t\t\t", "1"}], "\n", 
-     "\t\t\t", "]"}], ",", "\n", "\t\t", 
-    RowBox[{"Flatten", "@", 
-     RowBox[{"{", "\n", "\t\t\t", 
-      RowBox[{
-       RowBox[{"FilterRules", "[", "\n", "\t\t\t\t", 
-        RowBox[{
-         RowBox[{"IDEData", "[", 
-          RowBox[{"nb", ",", " ", "\"\<Options\>\""}], "]"}], ",", " ", "\n", 
-         "\t\t\t\t", 
-         RowBox[{"Except", "[", 
+      RowBox[{"{", "\n", "     \t\t", 
+       RowBox[{"\"\<Kernel\>\"", ",", "\n", "     \t\t", 
+        RowBox[{"\"\<Root\>\"", " ", "->", " ", "\"\<.\>\""}], ",", "\n", 
+        "     \t\t", 
+        RowBox[{"\"\<Context\>\"", " ", "->", " ", "\"\<EasyIDE`\>\""}]}], 
+       "\n", "     \t", "}"}], ",", "\n", "    \t", 
+      RowBox[{"{", "\n", "     \t\t", 
+       RowBox[{"\"\<FrontEnd\>\"", ",", "\n", "     \t\t", 
+        RowBox[{"\"\<Prepend\>\"", " ", "->", " ", "True"}], ",", "\n", 
+        "     \t\t", 
+        RowBox[{"Prepend", " ", "->", " ", "True"}]}], "\n", "     \t", "}"}],
+       ",", "\n", "    \t", 
+      RowBox[{"{", "\n", "     \t\t", 
+       RowBox[{"\"\<Resource\>\"", ",", "\n", "     \t\t", 
+        RowBox[{"\"\<Root\>\"", " ", "->", " ", "\"\<Resources\>\""}], ",", 
+        "\n", "     \t\t", 
+        RowBox[{"\"\<Resources\>\"", " ", "->", " ", 
+         RowBox[{"{", "\n", "       \t\t\t", 
           RowBox[{
-          "ScreenStyleEnvironment", "|", "StyleDefinitions", "|", "Visible"}],
-           "]"}]}], "\n", "\t\t\t\t", "]"}], ",", "\n", "\t\t\t", 
-       RowBox[{"Visible", "\[Rule]", "True"}], ",", "\n", "\t\t\t", 
-       RowBox[{"ScreenStyleEnvironment", "\[Rule]", "\"\<Working\>\""}], ",", 
-       "\n", "\t\t\t", 
-       RowBox[{"StyleDefinitions", "->", "\n", "\t\t\t\t", 
-        RowBox[{"Notebook", "[", "\n", "\t\t\t\t\t", 
-         RowBox[{
-          RowBox[{"{", "\n", "\t\t\t\t\t\t", 
-           RowBox[{"(*", 
+          "\"\<Settings\>\"", ",", "\n", "       \t\t\t", 
+           "\"\<StyleSheets\>\"", ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
             RowBox[{
-             RowBox[{"Cell", "[", "\n", "\t\t\t\t\t\t\t", 
-              RowBox[{
-              "StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
-               RowBox[{
-               "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
-                "\t\t\t\t\t\t", 
-                RowBox[{"FrontEnd`FileName", "[", 
-                 RowBox[{
-                  RowBox[{"{", "\"\<SimpleDocs\>\"", "}"}], ",", " ", 
-                  "\"\<SimpleDocs.nb\>\""}], "]"}]}], "\n", "\t", "\t", "\t", 
-               "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ","}], 
-            "*)"}], "\n", "\t", "\t", "\t", "\t\t\t", 
-           RowBox[{
-            RowBox[{"Cell", "[", "\n", "\t", "\t", "\t", "\t\t\t\t", 
-             RowBox[{"StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
-              RowBox[{
-              "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
-               "\t\t\t\t\t\t", 
-               RowBox[{"FrontEnd`FileName", "[", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"ParentDirectory", "[", "]"}], "}"}], ",", " ", 
-                 "\"\<SimpleDocsStyles.nb\>\""}], "]"}]}], "\n", "\t", "\t", 
-              "\t", "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", 
-            "\n", "\t\t\t\t\t\t", 
-            RowBox[{"Cell", "[", "\n", "\t\t\t\t\t\t\t", 
-             RowBox[{"StyleData", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t", 
-              RowBox[{
-              "StyleDefinitions", "\[Rule]", "\n", "\t", "\t", "\t", 
-               "\t\t\t\t\t\t", 
-               RowBox[{"FrontEnd`FileName", "[", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{
-                   RowBox[{"ParentDirectory", "[", "]"}], ",", " ", 
-                   RowBox[{"ParentDirectory", "[", "]"}]}], "}"}], ",", " ", 
-                 "\"\<SimpleDocsStyles.nb\>\""}], "]"}]}], "\n", 
-              "\t\t\t\t\t\t\t\t", "]"}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", 
-            "\n", "\t\t\t\t\t\t", 
-            RowBox[{"Cell", "[", 
-             RowBox[{"StyleData", "[", 
-              RowBox[{"StyleDefinitions", "\[Rule]", "\"\<Default.nb\>\""}], 
-              "]"}], "]"}], ",", "\n", "\t\t\t\t\t\t", 
-            RowBox[{"Cell", "[", 
-             RowBox[{
-              RowBox[{"StyleData", "[", 
-               RowBox[{"All", ",", " ", "\"\<Editing\>\""}], "]"}], ",", " ", 
-              
-              RowBox[{"MenuSortingValue", "\[Rule]", "None"}]}], "]"}]}], 
-           "\n", "\t\t\t\t\t\t", "}"}], ",", "\n", "\t\t\t\t\t", 
-          RowBox[{
-          "StyleDefinitions", "\[Rule]", 
-           "\"\<PrivateStylesheetFormatting.nb\>\""}]}], "\n", "\t\t\t\t\t", 
-         "]"}]}]}], "\n", "\t\t\t", "}"}]}]}], "\n", "\t\t", "]"}]}]], "Code",
- CellChangeTimes->{{3.763332790983509*^9, 3.763332812124485*^9}, {
-  3.763332850797265*^9, 
-  3.7633329363100357`*^9}},ExpressionUUID->"9d9991a3-4f0b-44a5-9566-\
-0ffae8d7ee2a"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"patchTaggingRules", "[", "e_", "]"}], ":=", "\n", "  ", 
-    RowBox[{"e", "/.", 
-     RowBox[{"TaggingRules", ":>", 
-      RowBox[{"(", 
-       RowBox[{"Sequence", "@@", 
-        RowBox[{"{", 
-         RowBox[{
-         "TaggingRules", ",", " ", "\"\<EasyIDE\>\"", ",", " ", 
-          "\"\<Options\>\"", ",", " ", "TaggingRules"}], "}"}]}], ")"}]}]}]}],
-    ";"}], "\n"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"ensureLoadProject", "[", "nb_", "]"}], ":=", "\n", "  ", 
-   RowBox[{"SimpleDocs", "@", 
-    RowBox[{"\"\<EnsureLoadProject\>\"", "[", 
-     RowBox[{"IDEPath", "[", "nb", "]"}], "]"}]}]}], ";"}]}], "Code",Expressio\
-nUUID->"57f5ad7a-3423-4ac6-ad05-dc5350854594"],
-
-Cell[BoxData[{
- RowBox[{"createDocsNotebook", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"createDocsNotebook", "[", "notebook_", "]"}], ":=", " ", 
-    RowBox[{"(*", " ", 
-     RowBox[{"assumes", " ", "already", " ", "inside", " ", "withIDE"}], 
-     "*)"}], "\n", "\t", 
-    RowBox[{"With", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "\t\t", 
-      RowBox[{"Block", "[", "\n", "\t    ", 
-       RowBox[{
-        RowBox[{"{", "\n", "\t      ", 
-         RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", "False"}], "\n", 
-         "\t      ", "}"}], ",", "\n", "\t    ", 
-        RowBox[{
-         RowBox[{"IDEOpen", "[", 
-          RowBox[{"nb", ",", " ", "notebook"}], "]"}], ";", "\n", "\t    ", 
-         RowBox[{
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", 
-            RowBox[{"{", 
-             RowBox[{
-             "\"\<Options\>\"", ",", " ", "TaggingRules", ",", " ", 
-              "\"\<SimpleDocs\>\"", ",", " ", "\"\<Project\>\""}], "}"}]}], 
-           "]"}], "=", "\n", "\t      ", 
-          RowBox[{"(", 
-           RowBox[{"Thread", "[", 
+            "\"\<ExtensionStylesMap\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Mappings/ExtensionStylesMap.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
             RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-              "\"\<Name\>\"", ",", " ", "\"\<Directory\>\"", ",", " ", 
-               "\"\<Config\>\""}], "}"}], "->", 
-             RowBox[{"ensureLoadProject", "[", "nb", "]"}]}], "]"}], ")"}]}], 
-         ";"}]}], "\n", "\t    ", "]"}]}], "\n", "\t  ", "]"}]}], ";"}], "\n",
-   "\t  "}], "\n", 
- RowBox[{"catchCreateDocument", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"catchCreateDocument", "[", "expr_", "]"}], ":=", "\n", "  ", 
-   RowBox[{"Block", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"{", "\n", "      ", 
-      RowBox[{"CreateDocument", "=", "createDocsNotebook"}], "\n", "      ", 
-      "}"}], ",", "\n", "    ", "expr"}], "\n", "    ", "]"}]}], ";"}], "\n", 
-
- RowBox[{
-  RowBox[{
-   RowBox[{"catchCreateDocument", "~", "SetAttributes", "~", "HoldFirst"}], 
-   ";"}], "\n"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"withIDE", "[", "expr_", "]"}], ":=", "\n", "  ", 
-   RowBox[{"Block", "[", "\n", "   ", 
-    RowBox[{
-     RowBox[{"{", "\n", "     ", 
-      RowBox[{
-       RowBox[{
-       "EasyIDE`Dependencies`SimpleDocs`Package`Private`getNbData", " ", "=", 
-        "\n", "       ", "overrideGetNbData"}], ",", "\n", "     ", 
-       RowBox[{
-       "EasyIDE`Dependencies`SimpleDocs`Package`Private`setNbData", " ", "=", 
-        "\n", "       ", "overrideSetNbData"}], ",", "\n", "     ", 
-       RowBox[{
-       "EasyIDE`Dependencies`SimpleDocs`Package`Private`prepNotebookForDocs", 
-        " ", "=", "\n", "       ", "overridePrepNotebookForDocs"}], ",", "\n",
-        "     ", 
-       RowBox[{"e", " ", "=", " ", 
-        RowBox[{
-         RowBox[{"Hold", "[", "expr", "]"}], " ", "//", " ", 
-         "patchTaggingRules"}]}]}], "\n", "     ", "}"}], ",", "\n", "    ", 
-     RowBox[{"catchCreateDocument", "[", "\n", "      ", 
-      RowBox[{"ReleaseHold", "[", 
-       RowBox[{"DeleteCases", "[", 
-        RowBox[{"e", ",", " ", 
-         RowBox[{
-          RowBox[{"Verbatim", "[", "Needs", "]"}], "[", "\"\<SimpleDocs`\>\"",
-           "]"}], ",", " ", "\[Infinity]"}], "]"}], "]"}], "\n", "      ", 
-      "]"}]}], "\n", "   ", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"withIDE", "~", "SetAttributes", "~", "HoldFirst"}], ";"}], 
-  "\n"}], "\n", 
- RowBox[{"metadataEditor", " ", "=", "\n", "  ", 
-  RowBox[{"RawBoxes", "@", "\n", "    ", 
-   RowBox[{"ReplaceAll", "[", "\n", "      ", 
-    RowBox[{
-     RowBox[{"ToBoxes", "@", "\n", "        ", 
-      RowBox[{"Framed", "[", "\n", "          ", 
-       RowBox[{
-        RowBox[{"$MetadataEditor", " ", "//", " ", "patchTaggingRules"}], ",",
-         "\n", "          ", 
-        RowBox[{"ImageSize", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"100", ",", " ", "500"}], "}"}], ",", " ", 
-           RowBox[{"{", 
-            RowBox[{"55", ",", " ", "1000"}], "}"}]}], "}"}]}], ",", "\n", 
-        "          ", 
-        RowBox[{"Background", "->", "White"}], ",", "\n", "          ", 
-        RowBox[{"RoundingRadius", "->", "5"}], ",", "\n", "          ", 
-        RowBox[{"BaseStyle", "->", "\"\<Panel\>\""}], ",", "\n", "          ", 
-        RowBox[{"FrameStyle", "->", 
-         RowBox[{"GrayLevel", "[", ".8", "]"}]}]}], "\n", "          ", 
-       "]"}]}], ",", "\n", "      ", 
-     RowBox[{
-      RowBox[{"TagBox", "[", 
-       RowBox[{"g_GridBox", ",", " ", "\"\<Grid\>\""}], "]"}], ":>", "g"}]}], 
-    "\n", "      ", "]"}]}]}]}], "Code",
- CellChangeTimes->{{3.763332950574479*^9, 
-  3.7633329666338787`*^9}},ExpressionUUID->"23389eaf-0ea7-4fe6-b8b0-\
-3f43d15f8c3d"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"docsTemplates", " ", "=", " ", "\n", "  ", 
-   RowBox[{"ReplacePart", "[", 
-    RowBox[{"$InsertionMenu", ",", " ", "\n", "    ", 
-     RowBox[{"1", "->", " ", "\n", "     ", 
-      RowBox[{"Button", "[", "\n", "      ", 
-       RowBox[{"\"\<Insert\>\"", ",", "\n", "      ", 
-        RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", 
-        "      ", 
-        RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
-        RowBox[{"FrameMargins", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"10", ",", "10"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
-        RowBox[{"ImageSize", "->", 
-         RowBox[{"{", 
-          RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", 
-       "]"}]}]}], "\n", "    ", "]"}]}], ";"}]], "Code",ExpressionUUID->\
-"f811bff8-7f48-4e40-be15-97146d104bb2"],
-
-Cell[BoxData[
- RowBox[{"docsOpsMenu", "=", "\n", "  ", 
-  RowBox[{"ReplacePart", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"Replace", "[", 
-     RowBox[{"$HamburgerMenu", ",", " ", "\n", "      ", 
-      RowBox[{"{", "\n", "        ", 
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"k_", ":>", "v_"}], ")"}], ":>", "\n", "          ", 
-        RowBox[{"k", ":>", 
-         RowBox[{"withIDE", "[", "v", "]"}]}]}], "\n", "        ", "}"}], ",",
-       "\n", "      ", "2"}], "\n", "      ", "]"}], ",", "\n", "    ", 
-    RowBox[{"1", "->", " ", "\n", "     ", 
-     RowBox[{"Button", "[", "\n", "      ", 
-      RowBox[{"\"\<Menu\>\"", ",", "\n", "      ", 
-       RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", "      ", 
-       RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
-       RowBox[{"FrameMargins", "->", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"10", ",", "10"}], "}"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
-       RowBox[{"ImageSize", "->", 
-        RowBox[{"{", 
-         RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", 
-      "]"}]}]}], "\n", "    ", "]"}]}]], "Code",ExpressionUUID->"03df19c9-\
-1692-4ad6-b4fa-d22abdbe5d13"],
-
-Cell[BoxData[
- RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"1a4b3438-9dc0-4a64-891c-c0a8f541b4b5"],
-
-Cell[BoxData[
- RowBox[{"{", "\n", "  ", 
-  RowBox[{
-  "metadataEditor", ",", "\n", "  ", "docsTemplates", ",", "\n", "  ", 
-   "docsOpsMenu"}], "\n", "  ", "}"}]], "Code",ExpressionUUID->"8dbd3221-270b-\
-4f5e-b58e-945907fa72a4"]
+            "\"\<ExtensionToolbarsMap\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Mappings/ExtensionToolbarsMap.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<StylesheetStylesMap copy\>\"", ",", "\n", 
+             "        \t\t\t\t", 
+             "\"\<Settings/Mappings/StylesheetStylesMap copy.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<StylesheetStylesMap\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Mappings/StylesheetStylesMap.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<StylesheetToolbarsMap\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Mappings/StylesheetToolbarsMap.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<FileMenu\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Plugins/FileMenu.wl\>\""}], "\n", "        \t\t\t",
+             "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Git\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Plugins/Git.wl\>\""}], "\n", "        \t\t\t", 
+            "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Paclets\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Plugins/Paclets.wl\>\""}], "\n", "        \t\t\t", 
+            "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<ProjectMenu\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Plugins/ProjectMenu.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<CodePackage\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Toolbars/CodePackage.wl\>\""}], "\n", 
+            "        \t\t\t", "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Package\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Toolbars/Package.wl\>\""}], "\n", "        \t\t\t",
+             "}"}], ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Custom\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<StyleSheets/Custom.nb\>\""}], "\n", "        \t\t\t", "}"}],
+            ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Mappings\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Mappings\>\""}], "\n", "        \t\t\t", "}"}], 
+           ",", "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Plugins\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Plugins\>\""}], "\n", "        \t\t\t", "}"}], ",",
+            "\n", "       \t\t\t", 
+           RowBox[{"{", "\n", "        \t\t\t\t", 
+            RowBox[{
+            "\"\<Toolbars\>\"", ",", "\n", "        \t\t\t\t", 
+             "\"\<Settings/Toolbars\>\""}], "\n", "        \t\t\t", "}"}]}], 
+          "\n", "       \t\t", "}"}]}]}], "\n", "     \t", "}"}]}], "\n", 
+     "    ", "}"}]}]}], "\n", " ", "]"}]], "Code",ExpressionUUID->"3c31dabb-\
+f0c5-4975-ae2f-f8f4b53967f9"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
-WindowSize->{826, 740},
-WindowMargins->{{129, Automatic}, {Automatic, 0}},
+WindowSize->{875, 742},
+WindowMargins->{{Automatic, 151}, {Automatic, 21}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "scratch-m00000797061" -> {
-       "File" -> 
-        "/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/scratch-\
-m00000797061.nb"}, 
-      "tutorial" -> {
+     "PacletInfo" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/project/docs/content/tutorial/tutorial.nb"}, 
-      "Docs" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}, 
-      "scratch-m00001597061" -> {
-       "File" -> 
-        "/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/scratch-\
-m00001597061.nb"}}, "FileViewer" -> {"Visible" -> False}, 
-    "Toolbars" -> {"Column" -> GridBox[{{
+Mathematica/Applications/EasyIDE/PacletInfo.m"}}, 
+    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             GridBox[{{
-                StyleBox[
-                 ActionMenuBox[
-                  ButtonBox[
-                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                   FrameMargins -> {{10, 10}, {0, 0}}, 
-                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                  "\"Function\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"Options", "[", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
-                    "=", " ", 
-                    RowBox[{"{", " ", 
-                    TagBox[
-                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
-                    ";"}], "\n", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
-                    "usage"}], "=", "\"FunctionName[args...] ...\""}], ";"}], 
-                    "\n", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
-                    RowBox[{"ops", ":", 
-                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    "\n", "\t", 
-                    TagBox[
-                    FrameBox["\"def\""], "Placeholder"]}], ";"}], "\n", 
-                    RowBox[{
-                    RowBox[{"SetAttributes", "~", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
-                    RowBox[{"{", 
-                    TagBox[
-                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], ";"}], 
-                    "\n"}]]], "\"Options\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"Options", "[", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
-                    "=", " ", 
-                    RowBox[{"{", " ", 
-                    TagBox[
-                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
-                    ";"}]]], "\"Message\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
-                    "usage"}], "=", "\"FunctionName[args...] ...\""}], 
-                    ";"}]]], "\"Definition\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
-                    RowBox[{"ops", ":", 
-                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    "\n", "\t", 
-                    TagBox[
-                    FrameBox["\"def\""], "Placeholder"]}], ";"}]]], 
-                   "\"Attributes\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{"SetAttributes", "~", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
-                    RowBox[{"{", 
-                    TagBox[
-                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], 
-                    ";"}]]]}, Appearance -> None, MenuAppearance -> 
-                  "Dropdown"], "ToolbarElement"]}}, BaseStyle -> 
-              "ToolbarElementRow"], 
+             PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-              "Package"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {"Package"}, 
-      "Cells" -> {
-       "CodePackage" -> None, "Docs" -> None, "Package" -> GridBox[{{
-            GridBox[{{
-               StyleBox[
-                ActionMenuBox[
-                 ButtonBox[
-                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                  FrameMargins -> {{10, 10}, {0, 0}}, 
-                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                 "\"Function\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"Options", "[", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
-                    "=", " ", 
-                    RowBox[{"{", " ", 
-                    TagBox[
-                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
-                    ";"}], "\n", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
-                    "usage"}], "=", "\"FunctionName[args...] ...\""}], ";"}], 
-                    "\n", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
-                    RowBox[{"ops", ":", 
-                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    "\n", "\t", 
-                    TagBox[
-                    FrameBox["\"def\""], "Placeholder"]}], ";"}], "\n", 
-                    RowBox[{
-                    RowBox[{"SetAttributes", "~", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
-                    RowBox[{"{", 
-                    TagBox[
-                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], ";"}], 
-                    "\n"}]]], "\"Options\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"Options", "[", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "]"}], " ", 
-                    "=", " ", 
-                    RowBox[{"{", " ", 
-                    TagBox[
-                    FrameBox["\"ops...\""], "Placeholder"], " ", "}"}]}], 
-                    ";"}]]], "\"Message\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "::", 
-                    "usage"}], "=", "\"FunctionName[args...] ...\""}], 
-                    ";"}]]], "\"Definition\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "[", 
-                    RowBox[{
-                    TagBox[
-                    FrameBox["\"args___\""], "Placeholder"], ",", " ", 
-                    RowBox[{"ops", ":", 
-                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    "\n", "\t", 
-                    TagBox[
-                    FrameBox["\"def\""], "Placeholder"]}], ";"}]]], 
-                  "\"Attributes\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], 
-                    RowBox[{
-                    RowBox[{"SetAttributes", "~", 
-                    TagBox[
-                    FrameBox["\"FunctionName\""], "Placeholder"], "~", 
-                    RowBox[{"{", 
-                    TagBox[
-                    FrameBox["\"attrs...\""], "Placeholder"], "}"}]}], 
-                    ";"}]]]}, Appearance -> None, MenuAppearance -> 
-                 "Dropdown"], "ToolbarElement"]}}, BaseStyle -> 
-             "ToolbarElementRow"], 
-            ButtonBox[
-            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> "Package"]}},
-           BaseStyle -> "ToolbarCell"]}}, 
+             "", BaseStyle -> "ToolbarShowButton", ButtonData -> "Package"]}},
+            BaseStyle -> "ToolbarCell"]}}, BaseStyle -> "Toolbars"], 
+      "Tags" -> {}, "Cells" -> {"Docs" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "Docs", "StyleSheet" -> 
+    "ActiveTab" -> "PacletInfo", "StyleSheet" -> 
     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"], 
     "FileToolbar" -> "Package", 
     "Options" -> {
      WindowSize -> {808, 755}, 
-      WindowMargins -> {{28, Automatic}, {36, Automatic}}, Visible -> False, 
+      WindowMargins -> {{68, Automatic}, {16, Automatic}}, Visible -> False, 
       FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
       StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False}, 
@@ -708,16 +245,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[430, 14, 340, 8, 134, "Code",ExpressionUUID->"39d4db7d-f3fe-45ea-8b19-88355cc37b11"],
-Cell[773, 24, 148, 3, 49, "Code",ExpressionUUID->"b73aa6df-c7a9-4142-9bd7-d7ef584b4a3c"],
-Cell[924, 29, 1519, 41, 218, "Code",ExpressionUUID->"78453674-448d-4770-bddb-d8464134b52f"],
-Cell[2446, 72, 4414, 93, 932, "Code",ExpressionUUID->"9d9991a3-4f0b-44a5-9566-0ffae8d7ee2a"],
-Cell[6863, 167, 737, 20, 134, "Code",ExpressionUUID->"57f5ad7a-3423-4ac6-ad05-dc5350854594"],
-Cell[7603, 189, 4791, 115, 1163, "Code",ExpressionUUID->"23389eaf-0ea7-4fe6-b8b0-3f43d15f8c3d"],
-Cell[12397, 306, 979, 22, 260, "Code",ExpressionUUID->"f811bff8-7f48-4e40-be15-97146d104bb2"],
-Cell[13379, 330, 1306, 29, 407, "Code",ExpressionUUID->"03df19c9-1692-4ad6-b4fa-d22abdbe5d13"],
-Cell[14688, 361, 105, 1, 70, "Code",ExpressionUUID->"1a4b3438-9dc0-4a64-891c-c0a8f541b4b5"],
-Cell[14796, 364, 228, 5, 70, "Code",ExpressionUUID->"8dbd3221-270b-4f5e-b58e-945907fa72a4"]
+Cell[430, 14, 5570, 106, 1793, "Code",ExpressionUUID->"3c31dabb-f0c5-4975-ae2f-f8f4b53967f9"]
 }
 ]
 *)

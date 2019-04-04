@@ -1,5 +1,17 @@
 (* ::Package:: *)
 
+(* ::Section:: *)
+(*DocsToolbar*)
+
+
+(* ::Text:: *)
+(*Implements the toolbar for the Docs stylesheets*)
+
+
+(* ::Subsection:: *)
+(*Exported*)
+
+
 BeginPackage["`DocsToolbar`"];
 metadataEditor;
 docsTemplates;
@@ -7,7 +19,19 @@ docsOpsMenu;
 EndPackage[];
 
 
-Begin["`Private`"];
+(* ::Subsection:: *)
+(*Private*)
+
+
+Begin["`DocsToolbar`Private`"];
+
+
+(* ::Subsubsection::Closed:: *)
+(*Shared Stuff*)
+
+
+(* ::Text:: *)
+(*This is shared between toolbar and plugin*)
 
 
 overrideGetNbData[nb_, k_, d_]:=
@@ -19,6 +43,75 @@ overrideGetNbData[nb_, k_]:=
 overrideSetNbData[nb_, k_, d_]:=
 	(CurrentValue[nb, 
 	  Flatten@{TaggingRules, "EasyIDE", "Options", TaggingRules, k}] = d);
+
+
+patchTaggingRules[e_]:=
+  e/.TaggingRules:>(Sequence@@{TaggingRules, "EasyIDE", "Options", TaggingRules});
+
+ensureLoadProject[nb_]:=
+  SimpleDocs@"EnsureLoadProject"[IDEPath[nb]];
+
+
+createDocsNotebook//Clear
+createDocsNotebook[notebook_]:= (* assumes already inside withIDE*)
+	With[{nb=$CurrentIDENotebook},
+		Block[
+	    {
+	      FrontEnd`$TrackingEnabled = False,
+	      type = 
+	        Replace[
+	          Fold[Lookup[#, #2, <||>]&, Options[notebook], {TaggingRules, "Metadata", "type"}],
+	          Except[_String]->"Symbol"
+	          ],
+	       load = ensureLoadProject[nb],
+	       file = $currentFileName
+	      },
+	    If[StringQ@file,
+	      file = StringTrim[file, "."<>FileExtension[file]]<>".nb";
+	      Export[file, notebook, "Package"],
+	      file = 
+	        CreateProjectScratchFile[
+    	      notebook,
+    	      ProjectSaveDirectory[load//First, type],
+    	      type
+    	      ]
+       ];
+	    IDEOpen[nb, file];
+	    IDEData[nb, {"Options", TaggingRules, "SimpleDocs", "Project"}]=
+	      (Thread[{"Name", "Directory", "Config"}->load]);
+	    ]
+	  ];
+
+
+catchCreateDocument//Clear
+catchCreateDocument[expr_]:=
+  Block[
+    {
+      CreateDocument=createDocsNotebook
+      },
+    expr
+    ];
+catchCreateDocument~SetAttributes~HoldFirst;
+
+
+withIDE[expr_]:=
+  Block[
+   {
+     EasyIDE`Dependencies`SimpleDocs`Package`Private`getNbData =
+       overrideGetNbData,
+     EasyIDE`Dependencies`SimpleDocs`Package`Private`setNbData =
+       overrideSetNbData,
+     EasyIDE`Dependencies`SimpleDocs`Package`Private`prepNotebookForDocs =
+       overridePrepNotebookForDocs,
+     SystemOpen = (IDEOpen[$CurrentIDENotebook, #]&),
+     e = Hold[expr] // patchTaggingRules,
+     $currentFileName
+     },
+    catchCreateDocument[
+      ReleaseHold[DeleteCases[e, Verbatim[Needs]["SimpleDocs`"], \[Infinity]]]
+      ]
+   ];
+withIDE~SetAttributes~HoldFirst;
 
 
 overridePrepNotebookForDocs[nb_]:=
@@ -66,52 +159,9 @@ overridePrepNotebookForDocs[nb_]:=
 		]
 
 
-patchTaggingRules[e_]:=
-  e/.TaggingRules:>(Sequence@@{TaggingRules, "EasyIDE", "Options", TaggingRules});
+(* ::Subsubsection:: *)
+(*Elements*)
 
-ensureLoadProject[nb_]:=
-  SimpleDocs@"EnsureLoadProject"[IDEPath[nb]];
-
-
-createDocsNotebook//Clear
-createDocsNotebook[notebook_]:= (* assumes already inside withIDE*)
-	With[{nb=$CurrentIDENotebook},
-		Block[
-	    {
-	      FrontEnd`$TrackingEnabled = False
-	      },
-	    IDEOpen[nb, notebook];
-	    IDEData[nb, {"Options", TaggingRules, "SimpleDocs", "Project"}]=
-	      (Thread[{"Name", "Directory", "Config"}->ensureLoadProject[nb]]);
-	    ]
-	  ];
-	  
-catchCreateDocument//Clear
-catchCreateDocument[expr_]:=
-  Block[
-    {
-      CreateDocument=createDocsNotebook
-      },
-    expr
-    ];
-catchCreateDocument~SetAttributes~HoldFirst;
-
-withIDE[expr_]:=
-  Block[
-   {
-     EasyIDE`Dependencies`SimpleDocs`Package`Private`getNbData =
-       overrideGetNbData,
-     EasyIDE`Dependencies`SimpleDocs`Package`Private`setNbData =
-       overrideSetNbData,
-     EasyIDE`Dependencies`SimpleDocs`Package`Private`prepNotebookForDocs =
-       overridePrepNotebookForDocs,
-     e = Hold[expr] // patchTaggingRules
-     },
-    catchCreateDocument[
-      ReleaseHold[DeleteCases[e, Verbatim[Needs]["SimpleDocs`"], \[Infinity]]]
-      ]
-   ];
-withIDE~SetAttributes~HoldFirst;
 
 metadataEditor =
   RawBoxes@
@@ -162,7 +212,15 @@ docsOpsMenu=
     ]
 
 
+(* ::Subsubsection:: *)
+(*End*)
+
+
 End[]
+
+
+(* ::Section:: *)
+(*Exposed Content*)
 
 
 {

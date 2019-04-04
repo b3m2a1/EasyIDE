@@ -99,7 +99,7 @@ NotebookPutContents[ideNb_NotebookObject, nb_Notebook]:=
       },
     WithNotebookPaused[
       ideNb,
-     If[Length@c>50,
+     If[Length@c>0, (* Cell open/close state was getting messed up *)
        nbPut1[ideNb, nb],
        nbPut2[ideNb, nb]
        ];
@@ -321,9 +321,7 @@ setNbFileToolbar[nb_, file_]:=
       If[currentTb =!= None,
         RemoveNotebookToolbar[nb, currentTb]
         ];
-      If[name =!= None,
-        AddNotebookToolbar[nb, name]
-        ]
+      UpdateNotebookToolbars[nb]
       ];
     ]
 
@@ -547,27 +545,12 @@ Module[{recurseProtect},
 
 
 (* ::Subsubsection::Closed:: *)
-(*notebookWriteToScratch*)
-
-
-
-notebookWriteToScratch[expr_]:=
-  Module[{tmp=CreateFile[]},
-    tmp = 
-      RenameFile[tmp, 
-        FileNameJoin@{DirectoryName[tmp], "scratch-"<>FileNameTake[tmp]<>".nb"}
-        ];
-    Export[tmp, expr]
-    ];
-
-
-(* ::Subsubsection::Closed:: *)
 (*NotebookPutScratch*)
 
 
 
 NotebookPutScratch[nb_, expr_Notebook]:=
-  NotebookPutFile[nb, notebookWriteToScratch[expr]]
+  NotebookPutFile[nb, CreateProjectScratchFile[nb, expr]]
 
 
 (* ::Subsection:: *)
@@ -633,7 +616,7 @@ IDEOpen[nb_NotebookObject, f_String?FileExistsQ]:=
 IDEOpen[nb_IDENotebookObject, f_String?FileExistsQ]:=
   IDEOpen[nb["Notebook"], f];
 IDEOpen[nb_NotebookObject, expr_Notebook]:=
-  IDEOpen[nb, notebookWriteToScratch[expr]];
+  IDEOpen[nb, CreateProjectScratchFile[nb, expr]];
 IDEOpen[nb_IDENotebookObject, expr_Notebook]:=
   IDEOpen[nb["Notebook"], expr];
 
