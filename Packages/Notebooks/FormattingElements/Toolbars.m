@@ -60,7 +60,7 @@ makeIDEToolbarGrid[nb_, tags_]:=
   Module[
     {
       ft = IDEData[nb, "FileToolbar"],
-      data=Lookup[IDEData[nb, {"Toolbars", "Cells"}], DeleteDuplicates@tags]
+      data=Lookup[IDEData[nb, {"Toolbars", "Cells"}, {}], DeleteDuplicates@tags]
       },
     If[!MemberQ[tags, ft]&&StringQ[ft],
       data = Prepend[data, reopenFileToolbarBox[ft]]
