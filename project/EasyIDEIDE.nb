@@ -1,987 +1,221 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     16608,        356]
+NotebookOptionsPosition[     11343,        219]
+NotebookOutlinePosition[     16370,        348]
+CellTagsIndexPosition[     16327,        345]
+WindowTitle->EasyIDE: EasyIDE
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["FileViewer Pane", \
-"CodeSection",ExpressionUUID->"4f77e1d1-08db-4a8a-a4ff-f3e6bb538938"],
-
-Cell[BoxData[{
- RowBox[{
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
   RowBox[{
-   RowBox[{"FileViewerPane", "::", "usage"}], "=", 
-   "\"\<Creates a file viewer pane\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"AttachFileViewer", "::", "usage"}], "=", 
-   "\"\<Attaches a FileViewerPane to a Notebook\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"4dd2a10c-c59f-46a3-a650-7478f1ce68e2"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"NotebookToggleFileViewer", "::", "usage"}], "=", 
-   "\"\<Toggles a file viewer in a Notebook\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"ToggleFileViewerButton", "::", "usage"}], "=", 
-   "\"\<A button for the toggle\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"c2cf1ce6-bc43-4c85-8f84-4146c6542807"],
+   RowBox[{"Sin", "[", "x", "]"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "0", ",", " ", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7633298748361387`*^9, 3.763329881217267*^9}},
+ CellLabel->"In[85]:=",ExpressionUUID->"afff780c-7547-47af-8baa-7c8e2f8b7534"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"IDEToggleFileViewer", "::", "usage"}], "=", 
-   "\"\<Toggles the file viewer in an IDE\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"b76ef241-12f2-465d-a801-5b8926d30126"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"FileEntryContextMenu", "::", "usage"}], "=", 
-   "\"\<ContextMenu for files\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"897e8b08-c9f7-466a-b91a-94a2658b7377"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"65336da1-cf9e-4a5b-9e97-\
-8ebc3325175c"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]FileViewerPane\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"b41fbc2d-5b02-4c06-9504-c7b2e7f99452"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]fileViewerFilter\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"9c2c2b47-258d-4c8e-a1a0-ab024cd82f3f"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"fileViewerFilter", "=", "\n", "\t", 
-   RowBox[{"c__", "/;", 
-    RowBox[{"(", 
-     RowBox[{
-      RowBox[{"Not", "@", 
-       RowBox[{"StringStartsQ", "[", 
-        RowBox[{"c", ",", " ", "\"\<.\>\""}], "]"}]}], "||", 
-      RowBox[{"StringStartsQ", "[", 
-       RowBox[{"c", ",", " ", "\"\<.git\>\""}], "]"}]}], ")"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"f8ceb8ef-977f-493d-97eb-7c5b63637b51"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getToggleListener\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"9982c8a4-1939-4d23-842f-9590192ebc73"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"getToggleListener", "[", 
-   RowBox[{
-    RowBox[{"s", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "state_", "]"}]}], ",", 
-    " ", "dir_"}], "]"}], ":=", "\n", "\t\t\t\t", 
-  RowBox[{"Replace", "[", "\n", "\t\t\t\t\t", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"!", 
-        RowBox[{"KeyExistsQ", "[", 
-         RowBox[{"state", ",", " ", "dir"}], "]"}]}], ",", " ", 
-       RowBox[{
-        RowBox[{"state", "[", "dir", "]"}], "=", 
-        RowBox[{"<|", "|>"}]}]}], "]"}], ";", "\n", "\t\t\t\t\t", 
-     RowBox[{"Lookup", "[", 
-      RowBox[{
-       RowBox[{"state", "[", "dir", "]"}], ",", " ", "\"\<Listener\>\"", ",", 
-       " ", "Null"}], "]"}]}], ",", "\n", "\t\t\t\t\t", 
-    RowBox[{"Null", ":>", "\n", "\t\t\t\t\t\t", 
-     RowBox[{"(", 
-      RowBox[{
-       RowBox[{"state", "[", 
-        RowBox[{"dir", ",", " ", "\"\<Listener\>\""}], "]"}], "=", 
-       RowBox[{"Module", "[", 
-        RowBox[{
-         RowBox[{"{", "toggleListener", "}"}], ",", " ", "toggleListener"}], 
-        "]"}]}], ")"}]}]}], "\n", "\t\t\t\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"0e2a9d90-1751-4c04-ad64-1e48e63e8f87"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getDirectoryToggle\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"95ba9fa4-25a1-42e2-9e97-71d0be9128f8"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"getDirectoryToggle", "[", 
-   RowBox[{
-    RowBox[{"s", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "state_", "]"}]}], ",", 
-    " ", "dir_", ",", " ", "styl_"}], "]"}], ":=", "\n", "  ", 
-  RowBox[{"EventHandler", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"Replace", "[", "\n", "      ", 
-     RowBox[{
-      RowBox[{"styl", "[", "\"\<Directory\>\"", "]"}], ",", "\n", "      ", 
-      RowBox[{"{", "\n", "        ", 
-       RowBox[{
-        RowBox[{"f_Function", ":>", 
-         RowBox[{"f", "[", "dir", "]"}]}], ",", "\n", "        ", 
-        RowBox[{"e_", "\[RuleDelayed]", 
-         RowBox[{"Style", "[", 
-          RowBox[{
-           RowBox[{"FileNameTake", "[", "dir", "]"}], ",", " ", "e"}], 
-          "]"}]}]}], "\n", "        ", "}"}]}], "\n", "      ", "]"}], ",", 
-    "\n", "    ", 
-    RowBox[{"{", "\n", "      ", 
-     RowBox[{
-      RowBox[{"\"\<MouseClicked\>\"", ":>", "\n", "        ", 
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{"!", 
-          RowBox[{"CurrentValue", "[", "\"\<ControlKey\>\"", "]"}]}], ",", 
-         "\n", "          ", 
-         RowBox[{"With", "[", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"old", "=", 
-             RowBox[{"Lookup", "[", 
-              RowBox[{
-               RowBox[{"Lookup", "[", 
-                RowBox[{"state", ",", " ", "dir", ",", " ", 
-                 RowBox[{"<|", "|>"}]}], "]"}], ",", " ", "\"\<Visible\>\"", 
-               ",", " ", "False"}], "]"}]}], "}"}], ",", "\n", "            ", 
-           RowBox[{
-            RowBox[{"setDeleteState", "[", 
-             RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}], "[", 
-            RowBox[{
-             RowBox[{"!", "old"}], ",", " ", "old"}], "]"}]}], "\n", 
-          "            ", "]"}]}], "\n", "          ", "]"}]}], ",", "\n", 
-      "      ", 
-      RowBox[{"PassEventsDown", "\[Rule]", "True"}], ",", "\n", "      ", 
-      RowBox[{"PassEventsUp", "\[Rule]", "True"}]}], "\n", "      ", "}"}]}], 
-   "\n", "    ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"3330948b-4328-444d-8966-10daeeb331bf"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getDirColumn\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"64121b62-7b2b-4f4b-96a6-d977ff7a6e4f"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"getDirColumn", "[", 
-   RowBox[{
-    RowBox[{"s", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "state_", "]"}]}], ",", 
-    " ", "dir_", ",", " ", "styl_"}], "]"}], ":=", "\n", "  ", 
-  RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"DirectoryQ", "[", "#", "]"}], ",", " ", "\n", "    ", 
-       RowBox[{"fileViewerCell", "[", 
-        RowBox[{"s", ",", " ", "#", ",", " ", "styl"}], "]"}], ",", "\n", 
-       "    ", 
-       RowBox[{"Replace", "[", "\n", "      ", 
-        RowBox[{
-         RowBox[{"styl", "[", "\"\<File\>\"", "]"}], ",", "\n", "      ", 
-         RowBox[{"{", "\n", "        ", 
-          RowBox[{
-           RowBox[{"f_Function", ":>", 
-            RowBox[{"f", "[", "#", "]"}]}], ",", "\n", "        ", 
-           RowBox[{"e_", "\[RuleDelayed]", 
-            RowBox[{"Style", "[", 
-             RowBox[{
-              RowBox[{"FileNameTake", "[", "#", "]"}], ",", " ", "e"}], 
-             "]"}]}]}], "\n", "        ", "}"}]}], "  ", "\n", "      ", 
-        "]"}]}], "\n", "    ", "]"}], "&"}], "/@", 
-    RowBox[{"FileNames", "[", 
-     RowBox[{
-      RowBox[{"state", "[", "\"\<Filter\>\"", "]"}], ",", " ", "dir"}], 
-     "]"}]}], "//", 
-   "Column"}]}]], \
-"CodeInput",ExpressionUUID->"e4f54ca0-ea81-4202-ae3e-e36e6af80fdb"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]setDeleteState\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"cc3ddc64-5d8b-4df4-b44e-b5e68c50aadf"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"setDeleteState", "[", 
-    RowBox[{
-     RowBox[{"s", ":", 
-      RowBox[{
-       RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "state_", "]"}]}], ",",
-      " ", "dir_", ",", " ", "styl_"}], "]"}], "[", 
-   RowBox[{"val_", ",", " ", "old_"}], "]"}], ":=", "\n", "\t\t\t\t", 
-  RowBox[{"(", "\n", "\t\t\t\t\t", 
-   RowBox[{
-    RowBox[{"If", "[", 
-     RowBox[{
-      RowBox[{"!", 
-       RowBox[{"KeyExistsQ", "[", 
-        RowBox[{"state", ",", " ", "dir"}], "]"}]}], ",", " ", 
-      RowBox[{
-       RowBox[{"state", "[", "dir", "]"}], "=", 
-       RowBox[{"<|", "|>"}]}]}], "]"}], ";", "\n", "\t\t\t\t\t", 
-    RowBox[{"If", "[", 
-     RowBox[{"val", ",", "\n", "\t\t\t\t\t\t", 
-      RowBox[{
-       RowBox[{"state", "[", 
-        RowBox[{"dir", ",", " ", "\"\<Listing\>\""}], "]"}], "=", "\n", 
-       "\t\t\t\t\t\t\t", 
-       RowBox[{"getDirColumn", "[", 
-        RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], ",", "\n", 
-      "\t\t\t\t\t\t", 
-      RowBox[{
-       RowBox[{"state", "[", 
-        RowBox[{"dir", ",", " ", "\"\<Listing\>\""}], "]"}], "=."}]}], "\n", 
-     "\t\t\t\t\t\t", "]"}], ";", "\n", "\t\t\t\t\t", 
-    RowBox[{
-     RowBox[{"state", "[", 
-      RowBox[{"dir", ",", " ", "\"\<Visible\>\""}], "]"}], "=", "val"}], 
-    ";"}], "\n", "\t\t\t\t\t", 
-   ")"}]}]], \
-"CodeInput",ExpressionUUID->"0a7eb254-36a5-430d-8536-9ee66df75c45"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]fileViewerCell\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"dfdc6c47-40aa-4994-9300-da2d02f5060a"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"fileViewerCell", "[", 
-   RowBox[{
-    RowBox[{"s", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "state_", "]"}]}], ",", 
-    " ", "dir_", ",", " ", "styl_"}], "]"}], ":=", "\n", "  ", 
-  RowBox[{"PaneSelector", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"{", "\n", "      ", 
-     RowBox[{
-      RowBox[{"False", "\[Rule]", "\n", "  ", "      ", 
-       RowBox[{"Grid", "[", "\n", "  ", "        ", 
-        RowBox[{
-         RowBox[{"{", "\n", "  ", "          ", 
-          RowBox[{"{", "\n", "  ", "            ", 
-           RowBox[{
-            RowBox[{"Opener", "[", "\n", "  ", "              ", 
-             RowBox[{"Dynamic", "[", "\n", "  ", "                ", 
-              RowBox[{
-               RowBox[{"Lookup", "[", 
-                RowBox[{
-                 RowBox[{"Lookup", "[", 
-                  RowBox[{"state", ",", " ", "dir", ",", " ", 
-                   RowBox[{"<|", "|>"}]}], "]"}], ",", " ", "\"\<Visible\>\"",
-                  ",", " ", "False"}], "]"}], ",", "\n", "  ", 
-               "                ", 
-               RowBox[{"setDeleteState", "[", 
-                RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], 
-              "\n", "  ", "                ", "]"}], "\n", "  ", 
-             "              ", "]"}], ",", " ", "\n", "  ", "            ", 
-            RowBox[{"getDirectoryToggle", "[", 
-             RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], "\n", 
-           "  ", "            ", "}"}], "\n", "  ", "          ", "}"}], ",", 
-         "\n", "  ", "        ", 
-         RowBox[{"Alignment", "\[Rule]", "Left"}]}], "\n", "  ", "        ", 
-        "]"}]}], ",", "\n", "  ", "    ", 
-      RowBox[{"True", "->", "\n", "  ", "      ", 
-       RowBox[{"Grid", "[", "\n", "  ", "        ", 
-        RowBox[{
-         RowBox[{"{", "\n", "  ", "          ", 
-          RowBox[{
-           RowBox[{"{", "\n", "  ", "            ", 
-            RowBox[{
-             RowBox[{"Opener", "[", "\n", "  ", "              ", 
-              RowBox[{"Dynamic", "[", "\n", "  ", "                ", 
-               RowBox[{
-                RowBox[{"Lookup", "[", 
-                 RowBox[{
-                  RowBox[{"Lookup", "[", 
-                   RowBox[{"state", ",", " ", "dir", ",", " ", 
-                    RowBox[{"<|", "|>"}]}], "]"}], ",", " ", 
-                  "\"\<Visible\>\"", ",", " ", "False"}], "]"}], ",", "\n", 
-                "  ", "                ", 
-                RowBox[{"setDeleteState", "[", 
-                 RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], 
-               "\n", "  ", "                ", "]"}], "\n", "  ", 
-              "              ", "]"}], ",", " ", "\n", "  ", "            ", 
-             RowBox[{"getDirectoryToggle", "[", 
-              RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], "\n",
-             "  ", "            ", "}"}], ",", "\n", "  ", "          ", 
-           RowBox[{"{", "\n", "  ", "            ", 
-            RowBox[{"Null", ",", " ", "\n", "  ", "            ", 
-             RowBox[{"Dynamic", "[", "\n", "  ", "              ", 
-              RowBox[{
-               RowBox[{"state", "[", 
-                RowBox[{"dir", ",", " ", "\"\<Listing\>\""}], "]"}], ",", 
-               "\n", "  ", "              ", 
-               RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
-                RowBox[{"{", "state", "}"}]}]}], "\n", "  ", "              ",
-               "]"}]}], "\n", "  ", "            ", "}"}]}], "\n", "  ", 
-          "          ", "}"}], ",", "\n", "  ", "        ", 
-         RowBox[{"Alignment", "\[Rule]", "Left"}]}], "\n", "  ", "        ", 
-        "]"}]}]}], "\n", "  ", "    ", "}"}], ",", "\n", "  ", "  ", 
-    RowBox[{"Dynamic", "[", "\n", "  ", "    ", 
-     RowBox[{
-      RowBox[{"Lookup", "[", 
-       RowBox[{
-        RowBox[{"Lookup", "[", 
-         RowBox[{"state", ",", " ", "dir", ",", " ", 
-          RowBox[{"<|", "|>"}]}], "]"}], ",", " ", "\"\<Visible\>\"", ",", 
-        " ", "False"}], "]"}], ",", "\n", "  ", "    ", 
-      RowBox[{"setDeleteState", "[", 
-       RowBox[{"s", ",", " ", "dir", ",", " ", "styl"}], "]"}]}], "\n", "  ", 
-     "    ", "]"}], ",", "\n", "  ", "  ", 
-    RowBox[{"BaseStyle", "\[Rule]", "\"\<FileViewerOpener\>\""}]}], "\n", 
-   "  ", "  ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"1c8b4ad3-af95-48e6-bf8c-6cdcb1fd8d30"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]FileViewerPane\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"7300014f-e994-44f6-8ecd-cd057ed52965"],
-
-Cell[BoxData[{
- RowBox[{"FileViewerPane", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{"FileViewerPane", "[", "\n", "\t", 
-   RowBox[{
-    RowBox[{"st", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "stt_", "]"}]}], ",", 
-    "\n", "\t", "root_", ",", " ", "\n", "\t", "smap_", ",", "\n", "\t", 
-    RowBox[{"refreshHandle", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "_", "]"}], ":", 
-     RowBox[{"Dynamic", "[", "None", "]"}]}], ",", "\n", "\t", 
-    RowBox[{
-    "fileFilter", ":", "_StringPattern`StringPatternQ", ":", 
-     "fileViewerFilter"}]}], "\n", "\t", "]"}], ":=", "\n", "\t", 
-  RowBox[{"DynamicModule", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"styles", " ", "=", " ", 
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{"!", 
-          RowBox[{"AssociationQ", "@", "smap"}]}], ",", " ", 
-         RowBox[{"<|", 
-          RowBox[{
-           RowBox[{"\"\<Directory\>\"", "\[Rule]", 
-            RowBox[{"{", "}"}]}], ",", " ", 
-           RowBox[{"\"\<File\>\"", "\[Rule]", "smap"}]}], "|>"}], ",", " ", 
-         "smap"}], "]"}]}], ",", "\n", "\t\t\t", 
-      RowBox[{"filter", " ", "=", " ", "fileFilter"}]}], "\n", "\t\t\t", 
-     "}"}], ",", "\n", "\t\t", 
-    RowBox[{
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"!", 
-        RowBox[{"AssociationQ", "[", "stt", "]"}]}], ",", " ", 
-       RowBox[{"stt", "=", 
-        RowBox[{"<|", "|>"}]}]}], "]"}], ";", "\n", "\t\t", 
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"!", 
-        RowBox[{"KeyExistsQ", "[", 
-         RowBox[{"styles", ",", " ", "\"\<Directory\>\""}], "]"}]}], ",", 
-       "\n", "\t\t\t", 
-       RowBox[{
-        RowBox[{"styles", "[", "\"\<Directory\>\"", "]"}], "=", 
-        RowBox[{"{", "}"}]}]}], "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", 
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"!", 
-        RowBox[{"KeyExistsQ", "[", 
-         RowBox[{"styles", ",", " ", "\"\<File\>\""}], "]"}]}], ",", "\n", 
-       "\t\t\t", 
-       RowBox[{
-        RowBox[{"styles", "[", "\"\<File\>\"", "]"}], "=", 
-        RowBox[{"{", "}"}]}]}], "\n", "\t\t\t", "]"}], ";", "\n", "\t ", 
-     RowBox[{
-      RowBox[{"stt", "[", "\"\<Filter\>\"", "]"}], "=", "filter"}], ";", "\n",
-      "\t\t", 
-     RowBox[{"Replace", "[", 
-      RowBox[{"refreshHandle", ",", "\n", "\t\t\t", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "refresh_", "]"}], ":>",
-         "\n", "\t\t\t\t", 
-        RowBox[{"Dynamic", "[", "\n", "\t\t\t\t\t", 
-         RowBox[{
-          RowBox[{"refresh", ";", "\n", "\t\t\t\t\t", 
-           RowBox[{"fileViewerCell", "[", 
-            RowBox[{
-             RowBox[{"Dynamic", "[", "stt", "]"}], ",", " ", "root", ",", " ",
-              "styles"}], "]"}]}], ",", "\n", "\t\t\t\t\t", 
-          RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
-           RowBox[{"{", "refresh", "}"}]}]}], "\n", "\t\t\t\t\t", "]"}]}]}], 
-      "\n", "\t\t\t", "]"}]}]}], "\n", "\t\t", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"12b2eb33-96b8-4120-99bb-b95013a37bc3"]
-}, Closed]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]Attach\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"057c56b3-9560-4421-8ccc-5a26cdebef75"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]ideViewerToggled\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"144ee0a9-2532-470d-a581-a2213670a21c"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"ideViewerToggled", "[", "nb_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"With", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"if", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"\"\<FileViewer\>\"", ",", " ", "\"\<Visible\>\""}], "}"}], 
-         ",", " ", "False"}], "]"}]}], ",", "\n", "\t\t\t", 
-      RowBox[{"cell", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", 
-         RowBox[{"PrivateKey", "[", "\"\<FileViewerCell\>\"", "]"}]}], 
-        "]"}]}]}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
-    RowBox[{"If", "[", 
-     RowBox[{"if", ",", "\n", "\t\t\t", 
-      RowBox[{"If", "[", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"NotebookRead", "[", "cell", "]"}], "===", "$Failed"}], ",", 
-        "\n", "\t\t\t\t", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", 
-            RowBox[{"PrivateKey", "[", "\"\<FileViewerCell\>\"", "]"}]}], 
-           "]"}], " ", "=", " ", "None"}], ";", "\n", "\t\t\t\t", 
-         RowBox[{
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", 
-            RowBox[{"{", 
-             RowBox[{"\"\<FileViewer\>\"", ",", " ", "\"\<Visible\>\""}], 
-             "}"}]}], "]"}], " ", "=", " ", "False"}], ";", "\n", "\t\t\t\t", 
-         "False"}], ",", "\n", "\t\t\t\t", "True"}], "\n", "\t\t\t\t", "]"}], 
-      ",", "\n", "\t\t\t", "False"}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"cab7f3ca-ddf0-4189-af2a-4a5b469f8a16"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getStateSym\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"a64c0439-14c7-4e79-afbb-9e40d65cd41b"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"getStateSym", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{"IDEData", "[", "\n", "\t\t", 
-    RowBox[{"nb", ",", "\n", "\t\t", 
-     RowBox[{"PrivateKey", "@", "\"\<FileViewerState\>\""}], ",", "\n", 
-     "\t\t", 
-     RowBox[{"With", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"state", "=", 
-         RowBox[{"Unique", "[", 
-          RowBox[{"\"\<state\>\"", "<>", 
-           RowBox[{"ToString", "[", 
-            RowBox[{"RandomInteger", "[", 
-             RowBox[{"{", 
-              RowBox[{"100", ",", " ", "200"}], "}"}], "]"}], "]"}], "<>", 
-           "\"\<$\>\""}], "]"}]}], "}"}], ",", "\n", "\t", "\t\t", 
-       RowBox[{
-        RowBox[{"SetAttributes", "[", 
-         RowBox[{"state", ",", " ", "Temporary"}], "]"}], ";", "\n", "\t", 
-        "\t\t", 
-        RowBox[{"Dynamic", "[", "state", "]"}]}]}], "\n", "\t\t\t", "]"}]}], 
-    "\n", "\t\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"1dc2f655-7b1f-4fc1-9317-80dd141eb36d"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]FileEntryContextMenu\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"cd373875-e42f-4aa9-931b-f8f0743c43da"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"FileEntryContextMenu", "[", "file_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"With", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"en", "=", 
-       RowBox[{"ExpandFileName", "[", "file", "]"}]}], ",", "\n", "\t", 
-      "\t\t", 
-      RowBox[{"f", "=", "\n", "\t", "\t\t\t", 
-       RowBox[{"\"\<file://\>\"", "<>", 
-        RowBox[{"ExternalService`EncodeString", "[", 
-         RowBox[{
-          RowBox[{"ExpandFileName", "[", "file", "]"}], ",", 
-          "\"\</\\\\\>\""}], "]"}]}]}], ",", "\n", "\t", "\t\t", 
-      RowBox[{"d", "=", "\n", "\t", "\t\t\t", 
-       RowBox[{"\"\<file://\>\"", "<>", 
-        RowBox[{"ExternalService`EncodeString", "[", 
-         RowBox[{
-          RowBox[{"ExpandFileName", "@", 
-           RowBox[{"DirectoryName", "[", "file", "]"}]}], ",", 
-          "\"\</\\\\\>\""}], "]"}]}]}]}], "\n", "\t", "\t\t", "}"}], ",", 
-    "\n", "\t", "\t\t", 
-    RowBox[{"{", "\t", "\n", "\t", "\t\t\t", 
-     RowBox[{
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Copy File Name\>\"", ",", "\n", "\t", "\t\t\t\t", 
-        RowBox[{"FrontEndExecute", "[", 
-         RowBox[{"FrontEnd`CopyToClipboard", "[", "en", "]"}], "]"}]}], "\n", 
-       "\t", "\t\t\t\t", "]"}], ",", "\t\t", "\n", "\t", "\t\t\t", 
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Open Externally\>\"", ",", "\n", "\t", "\t\t\t\t", 
-        RowBox[{"KernelExecute", "[", 
-         RowBox[{"FrontEndExecute", "[", 
-          RowBox[{"FrontEnd`SystemOpen", "[", "f", "]"}], "]"}], "]"}], ",", 
-        "\n", "\t", "\t\t\t\t", 
-        RowBox[{"MenuEvaluator", "\[Rule]", "Automatic"}]}], "\n", "\t", 
-       "\t\t\t\t", "]"}], ",", "\n", "\t", "\t\t\t", 
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Open Parent\>\"", ",", "\n", "\t", "\t\t\t\t", 
-        RowBox[{"KernelExecute", "@", 
-         RowBox[{"FrontEndExecute", "[", 
-          RowBox[{"FrontEnd`SystemOpen", "[", "d", "]"}], "]"}]}], ",", "\n", 
-        "\t", "\t\t\t\t", 
-        RowBox[{"MenuEvaluator", "\[Rule]", "Automatic"}]}], "\n", 
-       "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Rename\>\"", ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"KernelExecute", "@", 
-         RowBox[{"PreemptiveQueued", "[", "\n", "\t\t\t\t\t  ", 
-          RowBox[{"$CurrentIDENotebook", ",", "\n", "\t\t\t\t\t  ", 
-           RowBox[{"SaveProjectFileAs", "[", 
-            RowBox[{"$CurrentIDENotebook", ",", " ", "en"}], "]"}]}], "\n", 
-          "\t\t\t\t\t  ", "]"}]}], ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"MenuEvaluator", "\[Rule]", "Automatic"}]}], "\n", 
-       "\t\t\t\t  ", "]"}]}], "\n", "\t\t\t\t", "}"}]}], "\n", "\t\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"af034e3b-cd7d-4734-92c3-60653da58932"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]fileStyleFunction\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"28b6bb28-fa14-426c-a6e5-441dff13e4f1"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"fileStyleFunction", "[", "nb_", "]"}], ":=", " ", "\n", "  ", 
-   RowBox[{"Function", "[", "\n", "    ", 
-    RowBox[{"Style", "[", "\n", "      ", 
-     RowBox[{
-      RowBox[{"EventHandler", "[", "\n", "        ", 
-       RowBox[{
-        RowBox[{"Panel", "[", "\n", "          ", 
-         RowBox[{
-          RowBox[{"MouseAppearance", "[", "\n", "            ", 
-           RowBox[{
-            RowBox[{"FileNameTake", "[", "#", "]"}], ",", " ", "\n", "  ", 
-            "          ", "\"\<LinkHand\>\""}], "\n", "            ", "]"}], 
-          ",", "\n", "          ", 
-          RowBox[{"Appearance", "\[Rule]", 
-           RowBox[{"{", 
-            RowBox[{"\"\<Default\>\"", "->", "None"}], "}"}]}], ",", "\n", 
-          "          ", 
-          RowBox[{"DefaultBaseStyle", "\[Rule]", "\"\<FileViewerFile\>\""}], 
-          ",", "\n", "          ", 
-          RowBox[{"ContentPadding", "\[Rule]", "None"}], ",", "\n", 
-          "          ", 
-          RowBox[{"FrameMargins", "\[Rule]", "0"}], ",", "\n", "          ", 
-          RowBox[{"BaseStyle", "\[Rule]", "\"\<FileViewerFile\>\""}]}], "\n", 
-         "          ", "]"}], ",", "\n", "        ", 
-        RowBox[{"{", "\n", "          ", 
-         RowBox[{
-          RowBox[{
-          "\"\<MouseClicked\>\"", "\[RuleDelayed]", "\n", "            ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"!", 
-               RowBox[{"CurrentValue", "[", "\"\<ControlKey\>\"", "]"}]}], "&&", 
-              RowBox[{
-               RowBox[{"CurrentValue", "[", "\"\<MouseClickCount\>\"", "]"}], 
-               "\[Equal]", "2"}]}], ",", "\n", "  ", "            ", 
-             RowBox[{"IDEOpen", "[", 
-              RowBox[{"nb", ",", " ", "#"}], "]"}]}], "\n", "  ", 
-            "            ", "]"}]}], ",", "\n", "          ", 
-          RowBox[{"PassEventsUp", "\[Rule]", "True"}], ",", "\n", "  ", "  ", 
-          "  ", "  ", "  ", 
-          RowBox[{"PassEventsDown", "\[Rule]", "True"}]}], "\n", "  ", "  ", 
-         "      ", "}"}]}], "\n", "  ", "      ", "]"}], ",", "\n", "    ", 
-      "\"\<FileViewerFile\>\"", ",", "\n", "    ", 
-      RowBox[{"ContextMenu", "\[Rule]", 
-       RowBox[{"FileEntryContextMenu", "[", "#", "]"}]}]}], "\n", "    ", 
-     "]"}], "\n", "  ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"87bf76f0-71dc-4783-b4b0-a6c02b8be12a"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]dirEntryContextMenu\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"fd181146-f11e-4d06-be45-9d8227a93e8a"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"dirEntryContextMenu", "[", 
-   RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
-  RowBox[{"With", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"en", "=", 
-       RowBox[{"ExpandFileName", "[", "file", "]"}]}], ",", "\n", "\t\t\t", 
-      RowBox[{"d", "=", "\n", "\t\t\t\t", 
-       RowBox[{"\"\<file://\>\"", "<>", 
-        RowBox[{"ExternalService`EncodeString", "[", 
-         RowBox[{
-          RowBox[{"ExpandFileName", "[", "file", "]"}], ",", 
-          "\"\</\\\\\>\""}], "]"}]}]}]}], "\n", "\t\t\t", "}"}], ",", "\n", 
-    "\t\t\t", 
-    RowBox[{"{", "\t", "\n", "\t", "\t\t\t", 
-     RowBox[{
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Copy Directory Name\>\"", ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"FrontEndExecute", "[", 
-         RowBox[{"FrontEnd`CopyToClipboard", "[", "en", "]"}], "]"}]}], "\n", 
-       "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<Open Externally\>\"", ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"KernelExecute", "[", 
-         RowBox[{"FrontEndExecute", "[", 
-          RowBox[{"FrontEnd`SystemOpen", "[", "d", "]"}], "]"}], "]"}], ",", 
-        "\n", "\t", "\t\t\t\t", 
-        RowBox[{"MenuEvaluator", "\[Rule]", "Automatic"}]}], "\n", "\t", 
-       "\t\t\t\t", "]"}], ",", "\n", "\t", "\t\t\t", 
-      RowBox[{"MenuItem", "[", 
-       RowBox[{"\"\<New File\>\"", ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"KernelExecute", "@", "\n", "\t\t\t\t\t\t", 
-         RowBox[{"PreemptiveQueued", "[", "\n", "\t\t\t\t\t\t  ", 
-          RowBox[{"nb", ",", "\n", "\t\t\t\t\t\t  ", 
-           RowBox[{"NewProjectFile", "[", 
-            RowBox[{"nb", ",", " ", "en"}], "]"}]}], "\n", "\t\t\t\t\t\t  ", 
-          "]"}]}], ",", "\n", "\t\t\t\t\t", 
-        RowBox[{"MenuEvaluator", "\[Rule]", "Automatic"}]}], "\n", "\t", 
-       "\t\t\t\t", "]"}]}], "\n", "\t", "\t\t\t", "}"}]}], "\n", "\t", "\t\t",
-    "]"}]}]], \
-"CodeInput",ExpressionUUID->"f3eea881-c260-45e5-a5e2-2251d4503eb1"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]dirStyleFunction\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"7a53b2cc-0f8a-45f8-aba5-aeb2ebde8c3b"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"dirStyles", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{
-    RowBox[{"Style", "[", "\n", "\t  ", 
-     RowBox[{
-      RowBox[{"Panel", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"FileNameTake", "[", "#", "]"}], ",", "\n", "      ", 
-        RowBox[{"Appearance", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"\"\<Default\>\"", "->", "None"}], "}"}]}], ",", "\n", 
-        "      ", 
-        RowBox[{
-        "DefaultBaseStyle", "\[Rule]", "\"\<FileViewerDirectory\>\""}], ",", 
-        "\n", "      ", 
-        RowBox[{"ContentPadding", "\[Rule]", "None"}], ",", "\n", "      ", 
-        RowBox[{"FrameMargins", "\[Rule]", "0"}], ",", "\n", "      ", 
-        RowBox[{"BaseStyle", "\[Rule]", "\"\<FileViewerDirectory\>\""}]}], 
-       "\n", "      ", "]"}], ",", "\n", "\t  ", 
-      "\"\<FileViewerDirectory\>\"", ",", "\n", "\t  ", 
-      RowBox[{"ContextMenu", "->", 
-       RowBox[{"dirEntryContextMenu", "[", 
-        RowBox[{"nb", ",", " ", "#"}], "]"}]}]}], "\n", "\t  ", "]"}], 
-    "&"}]}], ";"}]], "CodeInput",
- CellLabel->"",ExpressionUUID->"9a36a7f0-456b-4046-b76e-ba8134aa2240"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getFileViewerCell\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"cc524a79-0dd1-467e-a3a0-00969005c0da"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"getFileViewerCell", "[", "nb_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"Cell", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"BoxData", "@", 
-     RowBox[{"ToBoxes", "@", "\n", "\t\t\t", 
-      RowBox[{"Pane", "[", "\n", "\t\t\t\t", 
-       RowBox[{
-        RowBox[{"FileViewerPane", "[", "\n", "\t\t\t\t\t", 
-         RowBox[{
-          RowBox[{"getStateSym", "[", "nb", "]"}], ",", "\n", "\t\t\t\t\t", 
-          RowBox[{"IDEPath", "[", "nb", "]"}], ",", "\n", "\t\t\t\t\t", 
-          RowBox[{"<|", "\n", "\t\t\t\t\t\t", 
-           RowBox[{
-            RowBox[{"\"\<Directory\>\"", "\[Rule]", "\n", "\t\t\t\t\t\t  ", 
-             RowBox[{"dirStyles", "[", "nb", "]"}]}], ",", " ", "\n", 
-            "\t\t\t\t\t\t", 
-            RowBox[{"\"\<File\>\"", "\[Rule]", "\n", "\t\t\t\t\t\t\t", 
-             RowBox[{"fileStyleFunction", "[", "nb", "]"}]}]}], "\n", 
-           "\t\t\t\t\t\t", "|>"}], ",", "\n", "\t\t\t\t\t", 
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", 
-            RowBox[{"PrivateKey", "[", "\"\<FileViewerRefreshHook\>\"", "]"}],
-             ",", " ", 
-            RowBox[{"Dynamic", "[", "fileViewerRefresh", "]"}]}], "]"}]}], 
-         "\n", "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
-        RowBox[{"BaseStyle", "\[Rule]", "\"\<FileViewerPane\>\""}]}], "\n", 
-       "\t\t\t\t", "]"}]}]}], ",", "\n", "\t\t", "\"\<FileViewerCell\>\"", 
-    ",", "\n", "\t\t", "\"\<DockedCell\>\""}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"7917ffb3-2447-427e-b2a7-9cc7d21d50d4"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]getFileViewerStylesheet\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"e5610ca6-45e7-4d00-8084-bfb1ff3fc4d0"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"loadFVStyles", "[", "]"}], ":=", "\n", "\t", 
-   RowBox[{"Append", "[", "\n", "\t\t", 
-    RowBox[{
-     RowBox[{"Normal", "@", 
-      RowBox[{"Merge", "[", "\n", "\t", "\t\t", 
-       RowBox[{
-        RowBox[{"Get", "/@", "\n", "\t", "\t\t\t", 
-         RowBox[{"FileNames", "[", "\n", "\t\t\t\t\t", 
-          RowBox[{"\"\<FileViewerStylesMap.wl\>\"", ",", "\n", "\t\t\t\t\t", 
-           RowBox[{"FileNames", "[", 
-            RowBox[{"\"\<Mappings\>\"", ",", " ", "$IDESettingsPath"}], 
-            "]"}]}], "\n", "\t", "\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t", 
-        "First"}], "\n", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
-     RowBox[{"_", "\[Rule]", 
-      RowBox[{"FrontEnd`FileName", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"\"\<EasyIDE\>\"", ",", " ", "\"\<Private\>\""}], "}"}], ",",
-         " ", "\"\<FileViewer.nb\>\""}], "]"}]}]}], "\n", "\t\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"6233c113-ccb2-43b3-8c30-abf839c3d435"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"getFileViewerStylesheet", "[", "nb_", "]"}], ":=", "\n", "  ", 
-  RowBox[{
-   RowBox[{"GetMainStylesheet", "[", "nb", "]"}], "/.", 
-   RowBox[{
-   "loadFVStyles", "[", 
-    "]"}]}]}]], \
-"CodeInput",ExpressionUUID->"c1fa8038-4bb7-4043-9ecf-32b1a99de4be"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachFileViewer\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"a1c5871e-ae3b-4888-b87b-c720587b8174"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"AttachFileViewer", "[", "nb_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"FEAttachCell", "[", "\n", "\t\t", 
-   RowBox[{"nb", ",", " ", "\n", "\t\t", 
-    RowBox[{"getFileViewerCell", "[", "nb", "]"}], ",", "\n", "\t\t", 
-    "Automatic", ",", "\n", "\t\t", 
-    RowBox[{"{", 
-     RowBox[{"Left", ",", " ", "Top"}], "}"}], ",", "\n", "\t\t", 
-    RowBox[{"{", 
-     RowBox[{"Left", ",", " ", "Top"}], "}"}], ",", "\n", "\t\t", 
-    RowBox[{"{", "\"\<EvaluatorQuit\>\"", "}"}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"ecb9beb4-efee-4caa-a6fd-337fa59304b4"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]NotebookToggleFileViewer\[RightFloor]", \
-"CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"409db16a-daad-4dc0-97a4-2e29ff0c9aef"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"NotebookToggleFileViewer", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", "fvStyleSheet", "}"}], ",", "\n", "\t  ", 
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"!", 
-        RowBox[{"ideViewerToggled", "[", "nb", "]"}]}], ",", "\n", "  \t\t", 
-       RowBox[{"WithNotebookPaused", "[", "\n", "  \t\t  ", 
-        RowBox[{"nb", ",", "\n", "  \t\t  ", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"IDEData", "[", 
-            RowBox[{"nb", ",", " ", 
-             RowBox[{"{", 
-              RowBox[{"\"\<FileViewer\>\"", ",", " ", "\"\<Visible\>\""}], 
-              "}"}]}], "]"}], " ", "=", " ", "True"}], ";", "\n", "    \t\t", 
-          
-          RowBox[{
-           RowBox[{"IDEData", "[", "\n", "    \t\t\t", 
-            RowBox[{"nb", ",", "\n", "    \t\t\t", 
-             RowBox[{"PrivateKey", "[", "\"\<FileViewerCell\>\"", "]"}]}], 
-            "\n", "    \t\t\t", "]"}], " ", "=", " ", 
-           RowBox[{"AttachFileViewer", "[", "nb", "]"}]}], ";", "\n", 
-          "    \t\t", 
-          RowBox[{"AddNotebookStylesheet", "[", "\n", "    \t\t\t", 
-           RowBox[{"nb", ",", " ", "\n", "    \t\t\t", 
-            RowBox[{"getFileViewerStylesheet", "[", "nb", "]"}], ",", "\n", 
-            "         ", "\"\<FileViewerStyles\>\""}], "\n", "    \t\t\t", 
-           "]"}]}]}], "\n", "        ", "]"}], ",", "\n", "  \t\t", 
-       RowBox[{
-        RowBox[{"With", "[", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"c", "=", 
-            RowBox[{"IDEData", "[", 
-             RowBox[{"nb", ",", " ", 
-              RowBox[{"PrivateKey", "[", "\"\<FileViewerCell\>\"", "]"}]}], 
-             "]"}]}], "}"}], ",", "\n", "  ", "\t\t\t", 
-          RowBox[{"If", "[", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"NotebookRead", "[", "c", "]"}], "=!=", "$Failed"}], ",",
-             " ", 
-            RowBox[{"NotebookDelete", "[", "c", "]"}]}], "]"}]}], "\n", "  ", 
-         "\t\t\t", "]"}], ";", "\n", "  \t\t", 
-        RowBox[{"RemoveNotebookStylesheet", "[", "\n", "  \t\t\t", 
-         RowBox[{
-         "nb", ",", " ", "\n", "  \t\t\t", "\"\<FileViewerStyles\>\""}], "\n",
-          "  \t\t\t", "]"}], ";", "\n", "  \t\t", 
-        RowBox[{
-         RowBox[{"IDEData", "[", 
-          RowBox[{"nb", ",", " ", 
-           RowBox[{"PrivateKey", "[", "\"\<FileViewerCell\>\"", "]"}]}], 
-          "]"}], " ", "=", " ", "None"}], ";", "\n", "  \t\t", 
-        RowBox[{
-         RowBox[{"IDEData", "[", 
-          RowBox[{"nb", ",", " ", 
-           RowBox[{"{", 
-            RowBox[{"\"\<FileViewer\>\"", ",", " ", "\"\<Visible\>\""}], 
-            "}"}]}], "]"}], " ", "=", " ", "False"}], ";"}]}], "\n", "  \t\t",
-       "]"}]}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"03d282c7-5516-488c-bfa7-e4e530e5bf6b"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]ToggleFileViewerButton\[RightFloor]", "CodeSubsubsection",
- 
- Evaluatable->True,ExpressionUUID->"eea0a2d3-341f-4481-af8e-7c4b2f55e77b"],
-
-Cell[BoxData[{
- RowBox[{"ToggleFileViewerButton", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{"ToggleFileViewerButton", "[", 
-   RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\n", "\t", 
-  RowBox[{"Button", "[", "\n", "\t\t", 
-   RowBox[{"\"\<\[Congruent]\>\"", ",", "\n", "\t\t", 
-    RowBox[{"NotebookToggleFileViewer", "[", 
-     RowBox[{"Replace", "[", 
-      RowBox[{"nb", ",", " ", 
-       RowBox[{"Automatic", ":>", 
-        RowBox[{"EvaluationNotebook", "[", "]"}]}]}], "]"}], "]"}], ",", "\n",
-     "\t\t", 
-    RowBox[{"BaseStyle", "\[Rule]", "\"\<FileViewerToggleButton\>\""}], ",", 
-    "\n", "\t\t", 
-    RowBox[{"Appearance", "\[Rule]", "Inherited"}]}], "\n", "\t\t", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"26b6609d-3ab7-4541-9bbf-b357e35d2c8e"]
-}, Closed]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDE\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"d7293d56-4d38-4840-8efe-41754fbe117b"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDEToggleFileViewer\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,
- CellLabel->"",ExpressionUUID->"772e239a-6d55-4f82-b546-c5357ae31300"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"IDEToggleFileViewer", "[", "nb_NotebookObject", "]"}], ":=", "\n",
-    "\t", 
-   RowBox[{"NotebookToggleFileViewer", "[", "nb", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"IDEToggleFileViewer", "[", "ide_IDENotebookObject", "]"}], ":=", 
-   "\n", "\t", 
-   RowBox[{"IDEToggleFileViewer", "[", 
-    RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"abc40414-56e9-4646-9a09-07c1332636a8"]\
-
-}, Closed]]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"5e42d2f5-f666-4634-be24-\
-a86a0122f41e"]
-}, Open  ]],
-
-Cell["", "SectionSeparator",ExpressionUUID->"c518316e-0d72-4f28-81d7-\
-35627f2eab3d"]
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1: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
+       "]]},
+     Annotation[#, "Charting`Private`Tag$62527#1"]& ]}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->
+   NCache[{{0, 2 Pi}, {-0.9999998592131705, 0.9999998782112116}}, {{
+     0, 6.283185307179586}, {-0.9999998592131705, 0.9999998782112116}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.763329881991637*^9},
+ CellLabel->"Out[85]=",ExpressionUUID->"d46d3bf9-825a-4e22-9bfe-d3b2c8d4b364"]
+}, Open  ]]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
@@ -994,132 +228,35 @@ TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "FileViewer" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-FileViewer.nb"}, 
-      "Projects" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Projects/Projects.nb"}, 
-      "scratch-m00000797061" -> {
+     "scratch-m00000797061" -> {
        "File" -> 
         "/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/scratch-\
 m00000797061.nb"}, 
-      "NotebookData" -> {
+      "Sample Guide" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/NotebookData.\
-nb"}}, "FileViewer" -> {"Visible" -> False}, 
-    "Toolbars" -> {"Column" -> GridBox[{{
-          GridBox[{{
-             GridBox[{{
-                StyleBox[
-                 ButtonBox[
-                 "\"Load Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ButtonBox[
-                 "\"Open Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ActionMenuBox[
-                  ButtonBox[
-                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                   FrameMargins -> {{10, 10}, {0, 0}}, 
-                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                  "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-              BaseStyle -> "ToolbarElementRow"], 
-             ButtonBox[
-             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-              "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {"CodePackage"}, 
-      "Cells" -> {"CodePackage" -> GridBox[{{
-            GridBox[{{
-               StyleBox[
-                ButtonBox[
-                "\"Load Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ButtonBox[
-                "\"Open Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ActionMenuBox[
-                 ButtonBox[
-                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                  FrameMargins -> {{10, 10}, {0, 0}}, 
-                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                 "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-             BaseStyle -> "ToolbarElementRow"], 
-            ButtonBox[
-            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
+Mathematica/Applications/EasyIDE/project/docs/content/guide/Sample Guide.nb"},
+       "tutorial" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/project/docs/content/tutorial/tutorial.nb"}, 
+      "Docs" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}}, 
+    "FileViewer" -> {"Visible" -> False}, 
+    "Toolbars" -> {
+     "Column" -> None, "Tags" -> {}, 
+      "Cells" -> {"CodePackage" -> None, "Docs" -> None, "Package" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "NotebookData", "StyleSheet" -> 
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-CodePackage.nb"], 
-    "FileToolbar" -> "CodePackage", 
+    "ActiveTab" -> "scratch-m00000797061", "StyleSheet" -> 
+    FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"], "FileToolbar" -> None, 
     "Options" -> {
-     WindowSize -> {808, 755}, 
-      WindowMargins -> {{65, Automatic}, {Automatic, 46}}, 
-      TaggingRules -> {
-       "UUIDButtons" -> {
-         "Active" -> {
-           "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-            "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-            "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
-      FrontEndVersion -> 
+     FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
-      StyleDefinitions -> 
-      FrontEnd`FileName[{"BTools"}, "CodePackage.nb", CharacterEncoding -> 
-        "UTF-8"]}, "AutoGeneratePackage" -> True}, 
+      StyleDefinitions -> "Default.nb"}, "AutoGeneratePackage" -> False}, 
   "EasyIDE" -> {
    TaggingRules -> {
      "EasyIDE" -> {
@@ -1146,7 +283,7 @@ nb"}}, "FileViewer" -> {"Visible" -> False},
         "HelperFunctions", "StyleSheet" -> 
         FrontEnd`FileName[{"EasyIDE", "Extensions"}, 
           "LightMode-CodePackage.nb"]}}}, 
-  EasyIDE`PackageScope`Private`$PackageName -> {
+  "EasyIDE" -> {
    TaggingRules -> {
      "EasyIDE" -> {
        "Options" -> {
@@ -1192,12 +329,29 @@ FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
-    StyleDefinitions -> 
-     FrontEnd`FileName[{"EasyIDE", "Extensions"}, 
-       "LightMode-CodePackage.nb"]]]}, Visible -> False, 
+    StyleDefinitions -> FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]]]}, 
+  Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[452, 16, 357, 8, 30, "Input",ExpressionUUID->"afff780c-7547-47af-8baa-7c8e2f8b7534"],
+Cell[812, 26, 10515, 190, 231, "Output",ExpressionUUID->"d46d3bf9-825a-4e22-9bfe-d3b2c8d4b364"]
+}, Open  ]]
+}
+]
+*)
 
