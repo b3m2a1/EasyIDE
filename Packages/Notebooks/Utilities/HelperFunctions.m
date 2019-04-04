@@ -120,9 +120,9 @@ WithNotebookPaused~SetAttributes~HoldRest
 
 WithCurrentValueUpdating[expr_]:=
   Block[
-  {
-    FrontEnd`$TrackingEnabled = True
-    },
+    {
+      FrontEnd`$TrackingEnabled = True
+      },
     expr
     ];
 WithCurrentValueUpdating~SetAttributes~HoldRest
@@ -140,14 +140,15 @@ WithCurrentValueUpdating~SetAttributes~HoldRest
 
 
 
-WithCurrentValueUpdating[expr_]:=
+WithoutCurrentValueUpdating//Clear
+WithoutCurrentValueUpdating[expr_]:=
   Block[
-  {
-    FrontEnd`$TrackingEnabled = False
-    },
+    {
+      FrontEnd`$TrackingEnabled = False
+      },
     expr
     ];
-WithCurrentValueUpdating~SetAttributes~HoldRest
+WithoutCurrentValueUpdating~SetAttributes~HoldRest
 
 
 (* ::Subsubsection::Closed:: *)

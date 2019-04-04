@@ -1324,9 +1324,9 @@ $NotebookTemplates=
 
 
 getNbData[nb_, k_, default_]:=
-  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}, default];
+  CurrentValue[nb, Flatten@{TaggingRules, k}, default];
 getNbData[nb_, k_]:=
-  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}];
+  CurrentValue[nb, Flatten@{TaggingRules, k}];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1335,7 +1335,7 @@ getNbData[nb_, k_]:=
 
 
 setNbData[nb_, k_, v_]:=
-  CurrentValue[nb, Flatten@{TaggingRules, "SimpleDocs", k}] =  v;
+  CurrentValue[nb, Flatten@{TaggingRules, k}] =  v;
 
 
 (* ::Subsubsection::Closed:: *)

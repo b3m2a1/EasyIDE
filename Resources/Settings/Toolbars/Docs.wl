@@ -26,7 +26,7 @@ EndPackage[];
 Begin["`DocsToolbar`Private`"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Shared Stuff*)
 
 
@@ -35,18 +35,31 @@ Begin["`DocsToolbar`Private`"];
 
 
 overrideGetNbData[nb_, k_, d_]:=
-	CurrentValue[nb, 
+	WithoutCurrentValueUpdating@System`FEDump`iCV[nb, 
 	  Flatten@{TaggingRules, "EasyIDE", "Options", TaggingRules, k}, d];
 overrideGetNbData[nb_, k_]:=
-	CurrentValue[nb, 
+	WithoutCurrentValueUpdating@System`FEDump`iCV[nb, 
 	  Flatten@{TaggingRules, "EasyIDE", "Options", TaggingRules, k}];
 overrideSetNbData[nb_, k_, d_]:=
-	(CurrentValue[nb, 
-	  Flatten@{TaggingRules, "EasyIDE", "Options", TaggingRules, k}] = d);
+	WithoutCurrentValueUpdating@
+	  SetCurrentValue[nb, 
+	    Flatten@{TaggingRules, "EasyIDE", "Options", TaggingRules, k},
+	    d
+	    ];
 
 
 patchTaggingRules[e_]:=
-  e/.TaggingRules:>(Sequence@@{TaggingRules, "EasyIDE", "Options", TaggingRules});
+  e/.{
+    HoldPattern@Verbatim[Dynamic][CurrentValue[a_, {TaggingRules, b__}, arg___]]:>
+      Dynamic[
+        WithoutCurrentValueUpdating@
+          CurrentValue[a, {TaggingRules, "EasyIDE", "Options", TaggingRules, b}, arg],
+        WithoutCurrentValueUpdating[
+          CurrentValue[a, {TaggingRules, "EasyIDE", "Options", TaggingRules, b}] = #
+          ]&
+        ]
+    };
+
 
 ensureLoadProject[nb_]:=
   SimpleDocs@"EnsureLoadProject"[IDEPath[nb]];
@@ -92,6 +105,10 @@ catchCreateDocument[expr_]:=
     expr
     ];
 catchCreateDocument~SetAttributes~HoldFirst;
+
+
+removeNeeds[e_]:=
+  DeleteCases[e, Verbatim[Needs]["SimpleDocs`"], \[Infinity]];
 
 
 withIDE[expr_]:=
@@ -159,24 +176,91 @@ overridePrepNotebookForDocs[nb_]:=
 		]
 
 
+cleanPopulate=
+  ReplaceAll[
+    {
+      EasyIDE`Dependencies`SimpleDocs`Package`Private`populateNotebookMetadataDynamic->
+        overridePopulateNotebookMetadataDynamic,
+      EasyIDE`Dependencies`SimpleDocs`Package`Private`ClearNotebookMetadata->
+        overrideClearNotebookMetadataDynamic
+      }
+    ]
+
+
+overridePopulateNotebookMetadataDynamic[ev_]:=
+  PreemptiveQueued[ev, 
+    EasyIDE`Dependencies`SimpleDocs`Package`Private`PopulateNotebookMetadata[ev]
+    ]
+
+
+(*overridePopulateNotebookMetadataDynamic[ev_]:=
+  PreemptiveQueued[ev, 
+    withIDE@
+      Block[{CurrentValue},
+        CurrentValue[_, {TaggingRules, b__}, d___]:=
+          (
+              System`FEDump`iCV[
+                ev, 
+                {TaggingRules, "EasyIDE", "Options", TaggingRules, b}, d]
+            );
+        EasyIDE`Dependencies`SimpleDocs`Package`Private`PopulateNotebookMetadata[
+         ev
+         ]
+       ]
+    ]*)
+
+
+overrideClearNotebookMetadataDynamic[ev_]:=
+  PreemptiveQueued[
+    ev,
+    (*withIDE@*)EasyIDE`Dependencies`SimpleDocs`Package`Private`ClearNotebookMetadata[ev]
+    ]
+
+
+editMeta[nb_]:=
+  CreateDialog[
+    Column[
+      {
+        Pane[$MetadataEditor // removeNeeds // cleanPopulate, {500, {600, 1000}}],
+        Row@{
+            DefaultButton[
+              WithoutCurrentValueUpdating[
+                SetCurrentValue[nb, 
+                  {TaggingRules, "EasyIDE", "Options", TaggingRules, "Metadata"}, 
+                  CurrentValue[EvaluationNotebook[], {TaggingRules, "Metadata"}]
+                  ];
+                SetCurrentValue[nb, 
+                  {TaggingRules, "EasyIDE", "Options", TaggingRules, "ColorType"}, 
+                  CurrentValue[EvaluationNotebook[], {TaggingRules, "ColorType"}]
+                  ]
+                ];
+              NotebookClose[EvaluationNotebook[]]
+              ],
+            CancelButton[]
+            }
+       }
+       ],
+    TaggingRules->
+      WithoutCurrentValueUpdating@
+        CurrentValue[nb, {TaggingRules, "EasyIDE", "Options", TaggingRules}],
+    WindowFloating->True,
+    Background->White
+    ]
+
+
 (* ::Subsubsection:: *)
 (*Elements*)
 
 
 metadataEditor =
-  RawBoxes@
-    ReplaceAll[
-      ToBoxes@
-        Framed[
-          $MetadataEditor // patchTaggingRules,
-          ImageSize->{{100, 500}, {55, 1000}},
-          Background->White,
-          RoundingRadius->5,
-          BaseStyle->"Panel",
-          FrameStyle->GrayLevel[.8]
-          ],
-      TagBox[g_GridBox, "Grid"]:>g
-      ]
+	Button[
+  "Edit Metadata",
+  editMeta[EvaluationNotebook[]],
+  Appearance->Inherited,
+  FrameMargins->{{10,10},{0,0}},
+  ImageSize->{Automatic,28},
+  Method->"Queued"
+  ]
 
 
 docsTemplates = 
