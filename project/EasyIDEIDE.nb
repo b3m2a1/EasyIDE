@@ -1,634 +1,399 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     24195,        545]
+NotebookOptionsPosition[     14892,        350]
+NotebookOutlinePosition[     22199,        506]
+CellTagsIndexPosition[     21843,        490]
+WindowTitle->EasyIDE: EasyIDE
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Tabbing", \
-"CodeSection",ExpressionUUID->"8dbb1320-9497-4cfb-b0f6-d15eb8dc0fec"],
+Cell[TextData[{
+ "Bug Tracker",
+ "  ",
+ Cell[BoxData[
+  TemplateBox[{PanelBox[
+     TagBox[
+      InputFieldBox[
+       Dynamic[
+        CurrentValue[
+         EvaluationNotebook[], {
+         TaggingRules, "Bugs", "SearchInterface", "SearchText"}, ""]], String,
+        Appearance -> "Frameless"], 
+      EventHandlerTag[{"ReturnKeyDown" :> (Replace[
+           BugTracker`Package`BugsNotebookLocate[
+            EvaluationNotebook[], 
+            CurrentValue[
+             EvaluationNotebook[], {
+             TaggingRules, "Bugs", "SearchInterface", 
+              "SearchText"}]], $Failed :> Beep[]]; CurrentValue[
+            EvaluationNotebook[], {
+            TaggingRules, "Bugs", "SearchInterface", "SearchText"}] = ""), 
+        Method -> "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+        True}]], 
+     Appearance -> {
+      "Hover" -> FrontEnd`FileName[{"BugTracker"}, 
+         "SearchBackground-Hover.png"]}, FrameMargins -> {{5, 5}, {5, 5}}],
+    TemplateBox[{5}, "Spacer1"],ButtonBox["\"\"", ButtonFunction :> (Replace[
+        BugTracker`Package`BugsNotebookLocate[
+         EvaluationNotebook[], 
+         CurrentValue[
+          EvaluationNotebook[], {
+          TaggingRules, "Bugs", "SearchInterface", "SearchText"}]], $Failed :> 
+        Beep[]]; CurrentValue[
+         EvaluationNotebook[], {
+         TaggingRules, "Bugs", "SearchInterface", "SearchText"}] = ""), 
+     Appearance -> {
+      "Default" -> FrontEnd`FileName[{"BugTracker"}, "Search-Default.png"], 
+       "Hover" -> FrontEnd`FileName[{"BugTracker"}, "Search-Hover.png"], 
+       "Pressed" -> FrontEnd`FileName[{"BugTracker"}, "Search-Pressed.png"]}, 
+     ImageSize -> {16, 16}, Evaluator -> Automatic, Method -> "Preemptive"]},
+   "RowDefault"]], "Text", "BugSearchBar",ExpressionUUID->
+  "18523908-fb2e-41c2-a308-3371fe642621"]
+}], "Chapter", \
+"BugsNotebookHeader",ExpressionUUID->"791eb544-228e-499a-9601-7b10d877f053"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"TabObject", "::", "usage"}], "=", "\"\<\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateTabRow", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"3908163e-b42c-4bfc-9c26-aa79b777f914"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"NotebookCreateTab", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"NotebookSwitchTab", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"NotebookCloseTab", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"3089f750-c50f-4223-afac-36f2ee4f497e"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"IDETabExists", "::", "usage"}], "=", 
-   "\"\<Not sure where else this one would live...?\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"IDETabNames", "::", "usage"}], "=", 
-  "\"\<Not sure where else this one would live...?\>\""}], "\n", 
- RowBox[{
-  RowBox[{"IDETabNameFiles", "::", "usage"}], "=", 
-  "\"\<Not sure where else this one would live...?\>\""}]}], \
-"CodeInput",ExpressionUUID->"0f2ed019-3265-41df-8b49-4e5e149c14bc"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"IDESwitchTab", "::", "usage"}], "=", 
-   "\"\<Switches the IDE tab\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"9e83f9f4-dc78-42a6-997c-f2b839d165a3"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"65983254-4b5f-4f6d-895d-\
-955f789adda4"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]TabData\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"bb64295c-2aa0-41a5-8851-d5f917b234f3"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]ideSetTab\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"998d5460-30d5-489b-a9f4-d244b1a67449"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"ideSetTab", "[", 
-    RowBox[{"nb_", ",", " ", "tabName_"}], "]"}], ":=", "\n", "\t", 
-   RowBox[{
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}], " ", "=", " ", 
-    "tabName"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"4081ed0c-d3e7-443d-ba8f-06141b825256"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDETabNames\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"f5bf68cc-bce1-45c1-b42f-413ffb705b0c"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"IDETabNames", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{"Keys", "@", 
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", "\"\<Tabs\>\"", ",", " ", 
-      RowBox[{"{", "}"}]}], "]"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"bc1c3e9d-3445-4e93-9339-9cebd43294e0"]
-}, Closed]],
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["\<\"View List\"\>",
+   Appearance->{
+    "Default" -> 
+     FrontEnd`FileName[{"BugTracker"}, "ButtonAppearanceLeft-Default.png"], 
+     "Hover" -> FrontEnd`FileName[{"BugTracker"}, 
+       "ButtonAppearanceLeft-Hover.png"], "Pressed" -> 
+     FrontEnd`FileName[{"BugTracker"}, "ButtonAppearanceLeft-Pressed.png"]},
+   ButtonFunction:>(Needs["BugTracker`"]; 
+    BugTracker`Package`BugsNotebookWriteViewCell[
+      BugTracker`Package`BugsNotebookToBugs[
+       EvaluationNotebook[]]]),
+   Evaluator->Automatic,
+   FrameMargins->{{10, 10}, {5, 5}},
+   Method->"Preemptive"]], "Text",ExpressionUUID->
+  "e01dcb1a-dca9-4a85-bc9d-4b63bbcb5a17"],
+ Cell[BoxData[
+  ButtonBox["\<\"View Dataset\"\>",
+   Appearance->{
+    "Default" -> 
+     FrontEnd`FileName[{"BugTracker"}, "ButtonAppearanceRight-Default.png"], 
+     "Hover" -> FrontEnd`FileName[{"BugTracker"}, 
+       "ButtonAppearanceRight-Hover.png"], "Pressed" -> 
+     FrontEnd`FileName[{"BugTracker"}, "ButtonAppearanceRight-Pressed.png"]},
+   ButtonFunction:>(Needs["BugTracker`"]; 
+    BugTracker`Package`BugsNotebookWriteViewCell[
+      BugTracker`Package`BugsToDataset[
+       BugTracker`Package`BugsNotebookToBugs[
+        EvaluationNotebook[]]]]),
+   Evaluator->Automatic,
+   FrameMargins->{{10, 10}, {5, 5}},
+   Method->"Preemptive"]], "Text",ExpressionUUID->
+  "c4b76494-79d4-4191-b834-7ff90fa0a9bf"]
+}], "Text", \
+"BugsNotebookButtonBar",ExpressionUUID->"a9687101-3589-4bc9-b9c9-\
+a38797c7ce0b"],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]IDETabNameFiles\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"64beca84-8406-4d7d-bd50-329020d126e1"],
+Cell[BoxData[GridBox[{
+   {
+    ItemBox[Cell["Test Bug", "Section", "BugTitle",
+      CellFrame->None,
+      StripOnInput->False,ExpressionUUID->
+      "fa5b049a-c4f6-49aa-832d-bfc6ba343a90"],
+     Alignment->Left,
+     ItemSize->Scaled[0.8],
+     StripOnInput->False], 
+    ItemBox[Cell[BoxData[
+      TogglerBox[Dynamic[
+        CurrentValue[
+         EvaluationCell[], {TaggingRules, "Bugs", "test", "Resolved"}, 
+         False]], {True->"\[CheckmarkedBox]", False->"\[EmptySquare]"}, 
+       "\[CheckedBox]"]], "BugResolved",
+      Selectable->False,
+      Deletable->False,
+      Deployed->True,
+      TaggingRules->{
+       "IndentCharacter" -> "  ", 
+        "EasyIDE" -> {
+         "Tabs" -> {
+           "BugTracker" -> {
+             "File" -> 
+              "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/BugTracker.wl"}, 
+            "BugTracker.nb" -> {
+             "File" -> 
+              "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/project/BugTracker.nb"}, 
+            "HelperFunctions" -> {
+             "File" -> 
+              "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions.\
+nb"}}, "FileViewer" -> {"Visible" -> False}, 
+          "Toolbars" -> {"Column" -> GridBox[{{
+                GridBox[{{
+                   GridBox[{{
+                    StyleBox[
+                    ButtonBox[
+                    "\"Add Bug\"", ButtonFunction :> 
+                    With[{EasyIDE`Plugins`Private`nb = 
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook}, 
+                    BugTracker`Package`FindBugsNotebook; 
+                    EasyIDE`Notebooks`Utilities`PreemptiveQueued[
+                    EasyIDE`Plugins`Private`nb, 
+                    Replace[
+                    BugTracker`Package`BugsNotebookAddDataDialog[
+                    WindowMargins -> ({{
+                    Part[#, 1], Automatic}, {Automatic, 
+                    Part[#, 2]}}& )[
+                    MousePosition["ScreenAbsolute"]]], 
+                    Pattern[EasyIDE`Plugins`Private`a, 
+                    Blank[Association]] :> 
+                    BugTracker`Package`BugsNotebookAdd[
+                    EasyIDE`Plugins`Private`nb, 
+                    EasyIDE`Plugins`Private`a["Tag"], 
+                    Normal[
+                    KeyDrop[EasyIDE`Plugins`Private`a, "Tag"]]]]]], 
+                    Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                    "Preemptive"], "ToolbarElement"], 
+                    StyleBox[
+                    ActionMenuBox[
+                    ButtonBox[
+                    "\"Export\"", ButtonFunction :> {}, Evaluator -> None, 
+                    BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                    FrameMargins -> {{10, 10}, {0, 0}}, 
+                    ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                    "\"List\"" :> Export[
+                    StringReplace[".nb" -> "-List.m"][
+                    NotebookFileName[]], 
+                    BugTracker`Package`BugsNotebookToBugs[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]], 
+                    "\"Dataset\"" :> Export[
+                    StringReplace[".nb" -> "-Dataset.mx"][
+                    EasyIDE`Notebooks`Manipulation`IDEPath[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                    Key["ActiveFile"]]], 
+                    BugTracker`Package`BugsToDataset[
+                    BugTracker`Package`BugsNotebookToBugs[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]]], 
+                    "\"Index\"" :> BugTracker`Package`BuildBugIndex[
+                    DirectoryName[
+                    EasyIDE`Notebooks`Manipulation`IDEPath[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                    Key["ActiveFile"]]], 
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook], 
+                    "\"Markdown\"" :> 
+                    BugTracker`Package`BugsNotebookMarkdownSave[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]}, 
+                    Appearance -> None, MenuAppearance -> "Dropdown"], 
+                    "ToolbarElement"]}}, BaseStyle -> "ToolbarElementRow"], 
+                   ButtonBox[
+                   "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+                    "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
+              "Toolbars"], "Tags" -> {"BugTracker"}, 
+            "Cells" -> {"BugTracker" -> GridBox[{{
+                  GridBox[{{
+                    StyleBox[
+                    ButtonBox[
+                    "\"Add Bug\"", ButtonFunction :> 
+                    With[{EasyIDE`Plugins`Private`nb = 
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook}, 
+                    BugTracker`Package`FindBugsNotebook; 
+                    EasyIDE`Notebooks`Utilities`PreemptiveQueued[
+                    EasyIDE`Plugins`Private`nb, 
+                    Replace[
+                    BugTracker`Package`BugsNotebookAddDataDialog[
+                    WindowMargins -> ({{
+                    Part[#, 1], Automatic}, {Automatic, 
+                    Part[#, 2]}}& )[
+                    MousePosition["ScreenAbsolute"]]], 
+                    Pattern[EasyIDE`Plugins`Private`a, 
+                    Blank[Association]] :> 
+                    BugTracker`Package`BugsNotebookAdd[
+                    EasyIDE`Plugins`Private`nb, 
+                    EasyIDE`Plugins`Private`a["Tag"], 
+                    Normal[
+                    KeyDrop[EasyIDE`Plugins`Private`a, "Tag"]]]]]], 
+                    Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                    "Preemptive"], "ToolbarElement"], 
+                    StyleBox[
+                    ActionMenuBox[
+                    ButtonBox[
+                    "\"Export\"", ButtonFunction :> {}, Evaluator -> None, 
+                    BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                    FrameMargins -> {{10, 10}, {0, 0}}, 
+                    ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                    "\"List\"" :> Export[
+                    StringReplace[".nb" -> "-List.m"][
+                    NotebookFileName[]], 
+                    BugTracker`Package`BugsNotebookToBugs[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]], 
+                    "\"Dataset\"" :> Export[
+                    StringReplace[".nb" -> "-Dataset.mx"][
+                    EasyIDE`Notebooks`Manipulation`IDEPath[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                    Key["ActiveFile"]]], 
+                    BugTracker`Package`BugsToDataset[
+                    BugTracker`Package`BugsNotebookToBugs[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]]], 
+                    "\"Index\"" :> BugTracker`Package`BuildBugIndex[
+                    DirectoryName[
+                    EasyIDE`Notebooks`Manipulation`IDEPath[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                    Key["ActiveFile"]]], 
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook], 
+                    "\"Markdown\"" :> 
+                    BugTracker`Package`BugsNotebookMarkdownSave[
+                    EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]}, 
+                    Appearance -> None, MenuAppearance -> "Dropdown"], 
+                    "ToolbarElement"]}}, BaseStyle -> "ToolbarElementRow"], 
+                  ButtonBox[
+                  "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+                   "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, 
+          "Project" -> {
+           "Directory" -> 
+            "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/"}, "ActiveTab" -> "BugTracker.nb", 
+          "StyleSheet" -> 
+          FrontEnd`FileName[{"EasyIDE", "Extensions"}, 
+            "LightMode-BugTracker.nb"], "FileToolbar" -> "BugTracker", 
+          "Options" -> {
+           TaggingRules -> {
+             "Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}}, 
+            FrontEndVersion -> 
+            "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+            StyleDefinitions -> 
+            FrontEnd`FileName[{"BugTracker", "Private"}, "BugTracker.nb", 
+              CharacterEncoding -> "UTF-8"]}, "AutoGeneratePackage" -> False, 
+          "SavingAction" -> None}, 
+        "Bugs" -> {
+         "SearchInterface" -> {"SearchText" -> ""}, 
+          "test" -> {"Resolved" -> True}}},ExpressionUUID->
+      "5a74e73d-353f-4440-b0dd-633f9ed052c4"],
+     Alignment->Right,
+     ItemSize->Scaled[0.1],
+     StripOnInput->False]}
+  },
+  AutoDelete->False,
+  GridBoxItemSize->{
+   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]], "Section", \
+"BugTitle",
+ CellChangeTimes->{3.763453237162057*^9},
+ CellTags->{
+  "Bug", "test", 
+   "Title"},ExpressionUUID->"4e91f994-3b1f-4ce0-af28-61d4219974f1"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"IDETabNameFiles", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Keys", "[", "#", "]"}], ",", " ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{
-         RowBox[{"Values", "[", "#", "]"}], ",", " ", "\"\<File\>\"", ",", 
-         " ", 
-         RowBox[{"{", "}"}]}], "]"}]}], "}"}], "&"}], "@", "\n", "\t\t", 
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", "\"\<Tabs\>\"", ",", " ", 
-      RowBox[{"{", "}"}]}], "]"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"269645d5-fbbf-4280-bedc-b275b4b8599e"]
-}, Closed]],
+Cell["Fri 5 Apr 2019 04:35:18", "Text", "BugAnnotation", "BugTimestamp", "BugCreated",
+ CellTags->{
+  "Bug", "test", 
+   "CreationDate"},ExpressionUUID->"1612f694-6f62-45d3-815d-3e017b03e225"],
+
+Cell["", "Text", "BugAnnotation", "BugTimestamp", "BugResolved",
+ CellTags->{
+  "Bug", "test", 
+   "ResolutionDate"},ExpressionUUID->"94fc0f7a-0254-4fc2-8533-211891753504"],
+
+Cell["1", "Text", "BugAnnotation", "BugID",
+ CellTags->{
+  "Bug", "test", "ID"},ExpressionUUID->"63806d8e-c467-4287-a052-ea27b93f4f18"],
+
+Cell["EasyIDE", "Text", "BugAnnotation", "BugPackage",
+ CellTags->{
+  "Bug", "test", 
+   "Package"},ExpressionUUID->"1d487fc4-008b-49a0-ad76-67a09b10336a"],
+
+Cell["", "Text", "BugAnnotation", "BugOwner",
+ CellTags->{
+  "Bug", "test", 
+   "Owner"},ExpressionUUID->"38f4a6ea-70a8-4cd8-a3ab-dbe186d21b8a"],
+
+Cell["crashes", "Text", "BugAnnotation", "BugKeywords",
+ CellTags->{
+  "Bug", "test", 
+   "Keywords"},ExpressionUUID->"d90edcb6-eb67-406c-a212-74ba511ddbb0"],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]IDETabExists\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"69421f34-3e2c-47f4-89c2-ff9bbab0b99c"],
+Cell["Description", "Subsection",ExpressionUUID->"82b89e53-760c-4ab9-bb1d-7a107bd770ba"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"ideTabExists", "[", 
-    RowBox[{"nb_", ",", " ", "tab_"}], "]"}], ":=", "\n", "\t", 
-   RowBox[{"ListQ", "@", 
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Tabs\>\"", ",", " ", "tab"}], "}"}]}], "]"}]}]}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"IDETabExists", "[", 
-    RowBox[{"nb_", ",", " ", "tab_"}], "]"}], ":=", "\n", "\t", 
-   RowBox[{"ListQ", "@", 
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Tabs\>\"", ",", " ", "tab"}], "}"}]}], "]"}]}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"a63538c3-7e52-499f-b467-222f3880ebe6"]\
-
-}, Closed]]
+Cell["EasyIDE is fragile (though actually not really anymore...)", "Text", "BugDescription",
+ CellTags->{
+  "Bug", "test", 
+   "Description"},ExpressionUUID->"7338f5ab-2aad-4c35-ae1f-2560843c0284"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]Tab Objects\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"23fe1746-df82-4979-9ede-2603a2d27b24"],
+Cell["Examples", "Subsection", "BugExamples",
+ CellTags->{
+  "Bug", "test", 
+   "Examples"},ExpressionUUID->"f832c787-3ccd-44c7-8444-de67b3a5c573"],
 
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateTabRow\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"74123da7-f2f5-415f-854b-7882a6ca5999"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"CreateTabRow", "[", "refresh_", "]"}], ":=", "\n", "\t", 
-  RowBox[{"With", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{"tns", "=", "\n", "\t\t\t\t", 
-      RowBox[{"Quiet", "@", 
-       RowBox[{"Block", "[", "\n", "\t\t\t\t\t", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"CurrentValue", "=", "cv"}], "}"}], ",", " ", "\n", 
-         "\t\t\t\t\t", 
-         RowBox[{"IDETabNameFiles", "[", 
-          RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], "]"}]}], "\n", 
-        "\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
-    RowBox[{
-     RowBox[{"Dynamic", "[", "\n", "\t\t\t", 
-      RowBox[{
-       RowBox[{"refresh", ";", "\n", "\t\t\t", 
-        RowBox[{"Pane", "[", "\n", "\t\t\t\t", 
-         RowBox[{
-          RowBox[{"Grid", "@", 
-           RowBox[{"List", "@", 
-            RowBox[{"MapThread", "[", 
-             RowBox[{"TabObject", ",", " ", "tns"}], "]"}]}]}], ",", " ", 
-          "\n", "\t\t\t\t", 
-          RowBox[{"BaseStyle", "\[Rule]", "\"\<TabbingRow\>\""}]}], "\n", 
-         "\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t", 
-       RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
-        RowBox[{"{", "refresh", "}"}]}]}], "\n", "\t\t\t", "]"}], "/.", 
-     RowBox[{"cv", "\[Rule]", "CurrentValue"}]}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"0a000ac1-a394-45a9-a581-b9939cf5d791"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]TabObject\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"36abd916-3a91-4a98-bea7-7af4e01508a9"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"TabObject", "[", 
-   RowBox[{"tabName_String", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
-  RowBox[{"Style", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"Panel", "[", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"Grid", "[", "\n", "\t\t\t\t", 
-       RowBox[{"List", "@", 
-        RowBox[{"{", "\n", "\t\t\t\t\t", 
-         RowBox[{
-          RowBox[{"MouseAppearance", "[", "\n", "\t\t\t\t\t\t", 
-           RowBox[{
-            RowBox[{"RawBoxes", "@", 
-             RowBox[{"ButtonBox", "[", "\n", "\t\t\t\t\t\t\t", 
-              RowBox[{
-               RowBox[{"ToBoxes", "@", 
-                RowBox[{"Pane", "[", 
-                 RowBox[{"tabName", ",", " ", 
-                  RowBox[{"BaseStyle", "\[Rule]", "\"\<TabName\>\""}]}], 
-                 "]"}]}], ",", "\n", "\t\t\t\t\t\t\t", 
-               RowBox[{"BaseStyle", "\[Rule]", "\"\<TabName\>\""}], ",", "\n",
-                "\t\t\t\t\t\t\t", 
-               RowBox[{"ButtonData", "\[Rule]", "tabName"}]}], "\n", 
-              "\t\t\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t\t\t\t", 
-            "\"\<LinkHand\>\""}], "\n", "\t\t\t\t\t\t", "]"}], ",", "\n", 
-          "\t\t\t\t\t", 
-          RowBox[{"RawBoxes", "@", 
-           RowBox[{"ButtonBox", "[", 
-            RowBox[{"\"\<\>\"", ",", " ", "\n", "\t\t\t\t\t\t", 
-             RowBox[{"BaseStyle", "\[Rule]", "\"\<TabCloseButton\>\""}], ",", 
-             "\n", "\t\t\t\t\t\t", 
-             RowBox[{"ButtonData", "\[Rule]", "tabName"}]}], "\n", 
-            "\t\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t\t\t", "}"}]}], "\n", 
-       "\t\t\t\t", "]"}], ",", "\n", "\t\t\t", 
-      RowBox[{"BaseStyle", "\[Rule]", "\n", "\t\t\t\t", 
-       RowBox[{"With", "[", "\n", "\t\t\t\t\t", 
-        RowBox[{
-         RowBox[{"{", "\n", "\t\t\t\t\t\t", 
-          RowBox[{"c", "=", "\n", "\t\t\t\t\t\t\t", 
-           RowBox[{"Block", "[", "\n", "\t\t\t\t\t\t\t\t", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{"CurrentValue", "=", "FrontEnd`CurrentValue"}], "}"}], 
-             ",", " ", "\n", "\t\t\t\t\t\t\t\t", 
-             RowBox[{"IDEData", "[", 
-              RowBox[{
-               RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
-               "\"\<ActiveTab\>\""}], "]"}]}], "\n", "\t", "\t", 
-            "\t\t\t\t\t\t", "]"}]}], "\n", "\t", "\t", "\t\t\t\t", "}"}], ",",
-          "\n", "\t", "\t", "\t\t\t", 
-         RowBox[{"FEPrivate`If", "[", 
-          RowBox[{
-           RowBox[{"FEPrivate`SameQ", "[", 
-            RowBox[{"c", ",", " ", "tabName"}], "]"}], ",", " ", "\n", "\t", 
-           "\t", "\t\t\t\t", "\"\<TabPanelActive\>\"", ",", " ", "\n", "\t", 
-           "\t", "\t\t\t\t", "\"\<TabPanelBackground\>\""}], "\n", "\t", "\t",
-           "\t\t\t\t", "]"}]}], "\n", "\t\t\t\t\t", "]"}]}], ",", "\n", 
-      "\t\t\t", 
-      RowBox[{"BoxID", "\[Rule]", 
-       RowBox[{"tabName", "<>", "\"\<-tab\>\""}]}]}], "\n", "\t\t\t", "]"}], 
-    ",", "\n", "\t\t", 
-    RowBox[{"ContextMenu", "->", 
-     RowBox[{"FileEntryContextMenu", "[", "file", "]"}]}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"396b7557-103a-4a53-a27e-c25f23cde321"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]refreshTabs\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"bb556dc9-c2df-4e39-bb23-709f5704a823"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"refreshTabs", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{"Replace", "[", "\n", "\t\t", 
-    RowBox[{
-     RowBox[{"IDEData", "[", 
-      RowBox[{"nb", ",", " ", 
-       RowBox[{"PrivateKey", "[", "\"\<TabsRefreshHandle\>\"", "]"}]}], "]"}],
-      ",", "\n", "\t\t", 
-     RowBox[{
-      RowBox[{"Hold", "[", "var_", "]"}], "\[RuleDelayed]", 
-      RowBox[{"(", 
-       RowBox[{"var", "=", 
-        RowBox[{"RandomReal", "[", "]"}]}], ")"}]}]}], "\n", "\t\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"cf543f73-d8da-426d-859a-a8c4c5cca5b9"]
-}, Closed]]
+Cell["<<Example>>", "Text",ExpressionUUID->"19f39f70-b9e2-4792-be06-8203da215256"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]Tabbing\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"417afa17-470e-4a01-8029-d86dbfa5d1e0"],
+Cell["Notes", "Subsection", "BugNotes",
+ CellTags->{
+  "Bug", "test", 
+   "Notes"},ExpressionUUID->"0630501f-0e2d-40c3-bef8-e7e7be625ed8"],
 
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]NotebookCreateTab\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"212a03f2-0d71-4ed9-90a4-109dcd13e07f"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"NotebookCreateTab", "[", 
-   RowBox[{
-   "nb_NotebookObject", ",", " ", "tabName_String", ",", " ", "tabData_"}], 
-   "]"}], ":=", "\n", "\t", 
-  RowBox[{"(", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"IDEData", "[", 
-      RowBox[{"nb", ",", " ", 
-       RowBox[{"{", 
-        RowBox[{"\"\<Tabs\>\"", ",", " ", "tabName"}], "}"}]}], "]"}], " ", 
-     "=", " ", "tabData"}], ";", "\n", "\t\t", 
-    RowBox[{"refreshTabs", "[", "]"}]}], "\n", "\t\t", 
-   ")"}]}]], \
-"CodeInput",ExpressionUUID->"3d2fd24b-f351-4397-ae6c-d1451aedd38d"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]NotebookSwitchTab\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"d05faead-a664-40a5-8ff9-8068ee584367"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"NotebookSwitchTab", "[", 
-   RowBox[{"nb_NotebookObject", ",", " ", "tabName_String", ",", " ", 
-    RowBox[{"saveCurrent", ":", 
-     RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", "\n", "\t", 
-  RowBox[{"Module", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{"file", ",", "\n", "\t\t\t", 
-      RowBox[{"active", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}]}]}], "\n", 
-     "\t\t\t", "}"}], ",", "\n", "\t\t", 
-    RowBox[{"If", "[", 
-     RowBox[{
-      RowBox[{"active", " ", "=!=", " ", "tabName"}], ",", "\n", "\t\t\t", 
-      RowBox[{
-       RowBox[{"If", "[", 
-        RowBox[{"saveCurrent", ",", " ", 
-         RowBox[{"IDESave", "[", 
-          RowBox[{"nb", ",", " ", 
-           RowBox[{"\"\<AutoGenerateSave\>\"", "\[Rule]", "False"}]}], 
-          "]"}]}], "]"}], ";", "\n", "\t\t\t", 
-       RowBox[{"file", " ", "=", " ", 
-        RowBox[{"IDEData", "[", 
-         RowBox[{"nb", ",", " ", 
-          RowBox[{"{", 
-           RowBox[{
-           "\"\<Tabs\>\"", ",", " ", "tabName", ",", " ", "\"\<File\>\""}], 
-           "}"}]}], "]"}]}], ";", "\n", "\t\t\t", 
-       RowBox[{"NotebookPutFile", "[", 
-        RowBox[{"nb", ",", " ", "file"}], "]"}], ";", "\n", "\t", "\t\t", 
-       RowBox[{"ideSetTab", "[", 
-        RowBox[{"nb", ",", " ", "tabName"}], "]"}], ";"}]}], "\n", "\t\t\t", 
-     "]"}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"d623687c-f19d-446d-837d-50f2722f9e45"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]NotebookCloseTab\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"4ca8e5ff-a352-4db2-80cd-544ea9d85dcf"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"NotebookCloseTab", "[", 
-   RowBox[{"nb_NotebookObject", ",", " ", "tabName_String", ",", " ", 
-    RowBox[{"saveCurrent", ":", 
-     RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", "\n", "\t", 
-  RowBox[{"Module", "[", "\n", "\t\t", 
-   RowBox[{
-    RowBox[{"{", "\n", "\t\t\t", 
-     RowBox[{
-      RowBox[{"active", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}]}], ",", "\n", 
-      "\t\t\t", 
-      RowBox[{"tabs", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", "\"\<Tabs\>\""}], "]"}]}]}], "\n", "\t\t\t", 
-     "}"}], ",", "\n", "\t\t", 
-    RowBox[{"If", "[", 
-     RowBox[{
-      RowBox[{"MemberQ", "[", 
-       RowBox[{
-        RowBox[{"Keys", "@", "tabs"}], ",", " ", "tabName"}], "]"}], ",", 
-      "\n", "\t\t\t", 
-      RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t\t", 
-       RowBox[{"nb", ",", "\n", "\t\t\t\t", 
-        RowBox[{
-         RowBox[{"tabs", " ", "=", " ", 
-          RowBox[{"DeleteCases", "[", 
-           RowBox[{"tabs", ",", " ", 
-            RowBox[{"tabName", "\[Rule]", "_"}]}], "]"}]}], ";", "\n", 
-         "\t\t\t\t", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{"tabName", " ", "\[Equal]", " ", "active"}], ",", "\n", 
-           "\t\t\t\t\t", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"Length", "@", "tabs"}], " ", ">", " ", "0"}], ",", 
-             "\n", "\t\t\t\t\t\t", 
-             RowBox[{"NotebookSwitchTab", "[", 
-              RowBox[{"nb", ",", " ", 
-               RowBox[{
-                RowBox[{"Keys", "[", "tabs", "]"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", "\n", 
-             "\t\t\t\t\t\t", 
-             RowBox[{
-              RowBox[{"If", "[", 
-               RowBox[{"saveCurrent", ",", " ", 
-                RowBox[{"NotebookSaveContents", "[", 
-                 RowBox[{"nb", ",", " ", 
-                  RowBox[{"\"\<AutoGenerateSave\>\"", "\[Rule]", "False"}]}], 
-                 "]"}]}], "]"}], ";", "\n", "\t\t\t\t\t\t", 
-              RowBox[{"NotebookPutContents", "[", 
-               RowBox[{"nb", ",", " ", 
-                RowBox[{"Notebook", "[", 
-                 RowBox[{"{", "}"}], "]"}]}], "]"}], ";", "\n", 
-              "\t\t\t\t\t\t", 
-              RowBox[{
-               RowBox[{"IDEData", "[", 
-                RowBox[{"nb", ",", " ", "\"\<ActiveTab\>\""}], "]"}], " ", 
-               "=", " ", "None"}], ";"}]}], "\n", "\t\t\t\t\t\t", "]"}]}], 
-          "\n", "\t\t\t\t\t", "]"}], ";", "\n", "\t\t\t\t", 
-         RowBox[{
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", "\"\<Tabs\>\""}], "]"}], " ", "=", " ", 
-          "tabs"}], ";", "\n", "\t\t\t\t", 
-         RowBox[{"refreshTabs", "[", "]"}]}]}], "\n", "\t\t\t\t", "]"}]}], 
-     "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"334f002d-3516-4e51-b700-a8c0e15876d2"]
+Cell["<<Note>>", "Text",ExpressionUUID->"204c87db-ca4d-4a24-bc38-4410693eadc8"]
 }, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDE\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"0e54e6a3-2a34-420c-9832-970155593ea8"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDESwitchTab\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"81c7280b-1c2f-4da4-aa9e-56e82b841772"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"IDESwitchTab", "[", 
-    RowBox[{"nb_NotebookObject", ",", " ", "tagName_"}], "]"}], ":=", "\n", 
-   "\t", 
-   RowBox[{"NotebookSwitchTab", "[", 
-    RowBox[{"nb", ",", " ", "tagName"}], "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"IDESwitchTab", "[", 
-    RowBox[{"ide_IDENotebookObject", ",", " ", "tagName_"}], "]"}], ":=", 
-   "\n", "\t", 
-   RowBox[{"IDESwitchTab", "[", 
-    RowBox[{
-     RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "tagName"}], 
-    "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"7d426814-9ded-451b-8d53-0bcb1d78d4ae"]
-}, Closed]]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"ff64ffa4-4d48-4998-beee-\
-8b573bf9a222"]
-}, Open  ]],
-
-Cell["", "SectionSeparator",ExpressionUUID->"59699398-8f6f-42c6-8b6f-\
-e176d61036d2"]
+}, Open  ]]
+}, Open  ]]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{875, 742},
-WindowMargins->{{219, Automatic}, {Automatic, 0}},
+WindowMargins->{{Automatic, 63}, {Automatic, 41}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "NotebookManipulation" -> {
+     "BugTracker" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/\
-NotebookManipulation.nb"}, 
-      "DropDownMenu" -> {
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/BugTracker.wl"}, 
+      "BugTracker.nb" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-DropDownMenu.nb"}, 
-      "MessagePopup" -> {
+Mathematica/Applications/EasyIDE/project/BugTracker.nb"}, 
+      "HelperFunctions" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-MessagePopup.nb"}, 
-      "Toolbars" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-Toolbars.nb"}, 
-      "Tabs" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/Tabs.\
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions.\
 nb"}}, "FileViewer" -> {"Visible" -> False}, 
     "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             GridBox[{{
-                StyleBox[
-                 ButtonBox[
-                 "\"Load Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ButtonBox[
-                 "\"Open Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ActionMenuBox[
-                  ButtonBox[
-                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                   FrameMargins -> {{10, 10}, {0, 0}}, 
-                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                  "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-              BaseStyle -> "ToolbarElementRow"], 
+             PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-              "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {"CodePackage"}, 
-      "Cells" -> {"CodePackage" -> GridBox[{{
-            GridBox[{{
-               StyleBox[
-                ButtonBox[
-                "\"Load Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ButtonBox[
-                "\"Open Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ActionMenuBox[
-                 ButtonBox[
-                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                  FrameMargins -> {{10, 10}, {0, 0}}, 
-                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                 "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-             BaseStyle -> "ToolbarElementRow"], 
-            ButtonBox[
-            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
+             "", BaseStyle -> "ToolbarShowButton", ButtonData -> 
+              "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
+        "Toolbars"], "Tags" -> {}, "Cells" -> {"BugTracker" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "Tabs", "StyleSheet" -> 
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-CodePackage.nb"], 
-    "FileToolbar" -> "CodePackage", 
+    "ActiveTab" -> "BugTracker.nb", "StyleSheet" -> 
+    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-BugTracker.nb"], 
+    "FileToolbar" -> "BugTracker", 
     "Options" -> {
-     WindowSize -> {808, 755}, 
-      WindowMargins -> {{98, Automatic}, {39, Automatic}}, 
-      TaggingRules -> {
-       "UUIDButtons" -> {
-         "Active" -> {
-           "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-            "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-            "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+     TaggingRules -> {"Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}}, 
       FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
       StyleDefinitions -> 
-      FrontEnd`FileName[{"BTools"}, "CodePackage.nb", CharacterEncoding -> 
-        "UTF-8"]}, "AutoGeneratePackage" -> True, "SavingAction" -> None}},
+      FrontEnd`FileName[{"BugTracker", "Private"}, "BugTracker.nb", 
+        CharacterEncoding -> "UTF-8"]}, "AutoGeneratePackage" -> False, 
+    "SavingAction" -> None}, 
+  "Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}},
 DynamicUpdating->Automatic,
 FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 2018)",
@@ -637,10 +402,145 @@ StyleDefinitions->Notebook[{
     StyleData[
     StyleDefinitions -> 
      FrontEnd`FileName[{"EasyIDE", "Extensions"}, 
-       "LightMode-CodePackage.nb"]]]}, Visible -> False, 
+       "LightMode-BugTracker.nb"]]]}, Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Bug"->{
+  Cell[3910, 101, 9130, 186, 96, "Section",ExpressionUUID->"4e91f994-3b1f-4ce0-af28-61d4219974f1",
+   CellTags->{"Bug", "test", "Title"}],
+  Cell[13043, 289, 192, 3, 17, "Text",ExpressionUUID->"1612f694-6f62-45d3-815d-3e017b03e225",
+   CellTags->{"Bug", "test", "CreationDate"}],
+  Cell[13238, 294, 172, 3, 17, "Text",ExpressionUUID->"94fc0f7a-0254-4fc2-8533-211891753504",
+   CellTags->{"Bug", "test", "ResolutionDate"}],
+  Cell[13413, 299, 135, 2, 17, "Text",ExpressionUUID->"63806d8e-c467-4287-a052-ea27b93f4f18",
+   CellTags->{"Bug", "test", "ID"}],
+  Cell[13551, 303, 155, 3, 17, "Text",ExpressionUUID->"1d487fc4-008b-49a0-ad76-67a09b10336a",
+   CellTags->{"Bug", "test", "Package"}],
+  Cell[13709, 308, 144, 3, 17, "Text",ExpressionUUID->"38f4a6ea-70a8-4cd8-a3ab-dbe186d21b8a",
+   CellTags->{"Bug", "test", "Owner"}],
+  Cell[13856, 313, 157, 3, 17, "Text",ExpressionUUID->"d90edcb6-eb67-406c-a212-74ba511ddbb0",
+   CellTags->{"Bug", "test", "Keywords"}],
+  Cell[14129, 322, 197, 3, 35, "Text",ExpressionUUID->"7338f5ab-2aad-4c35-ae1f-2560843c0284",
+   CellTags->{"Bug", "test", "Description"}],
+  Cell[14363, 330, 147, 3, 54, "Subsection",ExpressionUUID->"f832c787-3ccd-44c7-8444-de67b3a5c573",
+   CellTags->{"Bug", "test", "Examples"}],
+  Cell[14632, 340, 138, 3, 54, "Subsection",ExpressionUUID->"0630501f-0e2d-40c3-bef8-e7e7be625ed8",
+   CellTags->{"Bug", "test", "Notes"}]},
+ "test"->{
+  Cell[3910, 101, 9130, 186, 96, "Section",ExpressionUUID->"4e91f994-3b1f-4ce0-af28-61d4219974f1",
+   CellTags->{"Bug", "test", "Title"}],
+  Cell[13043, 289, 192, 3, 17, "Text",ExpressionUUID->"1612f694-6f62-45d3-815d-3e017b03e225",
+   CellTags->{"Bug", "test", "CreationDate"}],
+  Cell[13238, 294, 172, 3, 17, "Text",ExpressionUUID->"94fc0f7a-0254-4fc2-8533-211891753504",
+   CellTags->{"Bug", "test", "ResolutionDate"}],
+  Cell[13413, 299, 135, 2, 17, "Text",ExpressionUUID->"63806d8e-c467-4287-a052-ea27b93f4f18",
+   CellTags->{"Bug", "test", "ID"}],
+  Cell[13551, 303, 155, 3, 17, "Text",ExpressionUUID->"1d487fc4-008b-49a0-ad76-67a09b10336a",
+   CellTags->{"Bug", "test", "Package"}],
+  Cell[13709, 308, 144, 3, 17, "Text",ExpressionUUID->"38f4a6ea-70a8-4cd8-a3ab-dbe186d21b8a",
+   CellTags->{"Bug", "test", "Owner"}],
+  Cell[13856, 313, 157, 3, 17, "Text",ExpressionUUID->"d90edcb6-eb67-406c-a212-74ba511ddbb0",
+   CellTags->{"Bug", "test", "Keywords"}],
+  Cell[14129, 322, 197, 3, 35, "Text",ExpressionUUID->"7338f5ab-2aad-4c35-ae1f-2560843c0284",
+   CellTags->{"Bug", "test", "Description"}],
+  Cell[14363, 330, 147, 3, 54, "Subsection",ExpressionUUID->"f832c787-3ccd-44c7-8444-de67b3a5c573",
+   CellTags->{"Bug", "test", "Examples"}],
+  Cell[14632, 340, 138, 3, 54, "Subsection",ExpressionUUID->"0630501f-0e2d-40c3-bef8-e7e7be625ed8",
+   CellTags->{"Bug", "test", "Notes"}]},
+ "Title"->{
+  Cell[3910, 101, 9130, 186, 96, "Section",ExpressionUUID->"4e91f994-3b1f-4ce0-af28-61d4219974f1",
+   CellTags->{"Bug", "test", "Title"}]},
+ "CreationDate"->{
+  Cell[13043, 289, 192, 3, 17, "Text",ExpressionUUID->"1612f694-6f62-45d3-815d-3e017b03e225",
+   CellTags->{"Bug", "test", "CreationDate"}]},
+ "ResolutionDate"->{
+  Cell[13238, 294, 172, 3, 17, "Text",ExpressionUUID->"94fc0f7a-0254-4fc2-8533-211891753504",
+   CellTags->{"Bug", "test", "ResolutionDate"}]},
+ "ID"->{
+  Cell[13413, 299, 135, 2, 17, "Text",ExpressionUUID->"63806d8e-c467-4287-a052-ea27b93f4f18",
+   CellTags->{"Bug", "test", "ID"}]},
+ "Package"->{
+  Cell[13551, 303, 155, 3, 17, "Text",ExpressionUUID->"1d487fc4-008b-49a0-ad76-67a09b10336a",
+   CellTags->{"Bug", "test", "Package"}]},
+ "Owner"->{
+  Cell[13709, 308, 144, 3, 17, "Text",ExpressionUUID->"38f4a6ea-70a8-4cd8-a3ab-dbe186d21b8a",
+   CellTags->{"Bug", "test", "Owner"}]},
+ "Keywords"->{
+  Cell[13856, 313, 157, 3, 17, "Text",ExpressionUUID->"d90edcb6-eb67-406c-a212-74ba511ddbb0",
+   CellTags->{"Bug", "test", "Keywords"}]},
+ "Description"->{
+  Cell[14129, 322, 197, 3, 35, "Text",ExpressionUUID->"7338f5ab-2aad-4c35-ae1f-2560843c0284",
+   CellTags->{"Bug", "test", "Description"}]},
+ "Examples"->{
+  Cell[14363, 330, 147, 3, 54, "Subsection",ExpressionUUID->"f832c787-3ccd-44c7-8444-de67b3a5c573",
+   CellTags->{"Bug", "test", "Examples"}]},
+ "Notes"->{
+  Cell[14632, 340, 138, 3, 54, "Subsection",ExpressionUUID->"0630501f-0e2d-40c3-bef8-e7e7be625ed8",
+   CellTags->{"Bug", "test", "Notes"}]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Bug", 17498, 415},
+ {"test", 18894, 436},
+ {"Title", 20291, 457},
+ {"CreationDate", 20450, 460},
+ {"ResolutionDate", 20613, 463},
+ {"ID", 20766, 466},
+ {"Package", 20912, 469},
+ {"Owner", 21061, 472},
+ {"Keywords", 21211, 475},
+ {"Description", 21367, 478},
+ {"Examples", 21523, 481},
+ {"Notes", 21679, 484}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[452, 16, 1931, 43, 71, "Chapter",ExpressionUUID->"791eb544-228e-499a-9601-7b10d877f053"],
+Cell[2386, 61, 1499, 36, 54, "Text",ExpressionUUID->"a9687101-3589-4bc9-b9c9-a38797c7ce0b"],
+Cell[CellGroupData[{
+Cell[3910, 101, 9130, 186, 96, "Section",ExpressionUUID->"4e91f994-3b1f-4ce0-af28-61d4219974f1",
+ CellTags->{"Bug", "test", "Title"}],
+Cell[13043, 289, 192, 3, 17, "Text",ExpressionUUID->"1612f694-6f62-45d3-815d-3e017b03e225",
+ CellTags->{"Bug", "test", "CreationDate"}],
+Cell[13238, 294, 172, 3, 17, "Text",ExpressionUUID->"94fc0f7a-0254-4fc2-8533-211891753504",
+ CellTags->{"Bug", "test", "ResolutionDate"}],
+Cell[13413, 299, 135, 2, 17, "Text",ExpressionUUID->"63806d8e-c467-4287-a052-ea27b93f4f18",
+ CellTags->{"Bug", "test", "ID"}],
+Cell[13551, 303, 155, 3, 17, "Text",ExpressionUUID->"1d487fc4-008b-49a0-ad76-67a09b10336a",
+ CellTags->{"Bug", "test", "Package"}],
+Cell[13709, 308, 144, 3, 17, "Text",ExpressionUUID->"38f4a6ea-70a8-4cd8-a3ab-dbe186d21b8a",
+ CellTags->{"Bug", "test", "Owner"}],
+Cell[13856, 313, 157, 3, 17, "Text",ExpressionUUID->"d90edcb6-eb67-406c-a212-74ba511ddbb0",
+ CellTags->{"Bug", "test", "Keywords"}],
+Cell[CellGroupData[{
+Cell[14038, 320, 88, 0, 54, "Subsection",ExpressionUUID->"82b89e53-760c-4ab9-bb1d-7a107bd770ba"],
+Cell[14129, 322, 197, 3, 35, "Text",ExpressionUUID->"7338f5ab-2aad-4c35-ae1f-2560843c0284",
+ CellTags->{"Bug", "test", "Description"}]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14363, 330, 147, 3, 54, "Subsection",ExpressionUUID->"f832c787-3ccd-44c7-8444-de67b3a5c573",
+ CellTags->{"Bug", "test", "Examples"}],
+Cell[14513, 335, 82, 0, 35, "Text",ExpressionUUID->"19f39f70-b9e2-4792-be06-8203da215256"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14632, 340, 138, 3, 54, "Subsection",ExpressionUUID->"0630501f-0e2d-40c3-bef8-e7e7be625ed8",
+ CellTags->{"Bug", "test", "Notes"}],
+Cell[14773, 345, 79, 0, 35, "Text",ExpressionUUID->"204c87db-ca4d-4a24-bc38-4410693eadc8"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
 

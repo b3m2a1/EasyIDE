@@ -147,7 +147,7 @@ $CurrentIDE := IDENotebookObject[$CurrentIDENotebook];
 
 
 (* ::Subsubsection::Closed:: *)
-(*WithPausedNotebook*)
+(*WithNotebookPaused*)
 
 
 
@@ -229,7 +229,7 @@ WithoutCurrentValueUpdating~SetAttributes~HoldRest
 
 
 (* ::Subsubsection::Closed:: *)
-(*IDEPreemptive*)
+(*PreemptiveQueued*)
 
 
 
@@ -255,7 +255,9 @@ PreemptiveQueued[nb_, expr_]:=
     Visible->False,
     Evaluator->CurrentValue[nb, Evaluator]
     ];
-PreemptiveQueued~SetAttributes~HoldRest
+PreemptiveQueued[expr_]:=
+  PreemptiveQueued[$CurrentIDENotebook, expr];
+PreemptiveQueued~SetAttributes~HoldAll
 
 
 End[];

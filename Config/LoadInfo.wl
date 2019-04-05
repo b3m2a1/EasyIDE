@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 {
 	"Mode" -> "Primary",
 	"Dependencies" -> {
@@ -17,7 +19,8 @@
 			}
 		},
 		{"InterfaceObjects`"},
-		{"SimpleDocs`"}
+		{"SimpleDocs`"},
+		{"BugTracker`"}
 	},
 	"DependencyContexts" -> {
 		"BTools`Paclets`",
@@ -26,7 +29,8 @@
 		"BTools`FrontEnd`",
 		"InterfaceObjects`",
 		"SimpleDocs`",
-		"SimpleDocs`Package`"
+		"SimpleDocs`Package`",
+		"BugTracker`Package`"
 	},
 	"PreLoad" -> None,
 	"FEHidden" -> {},

@@ -476,12 +476,13 @@ Options[NotebookSaveContents]=
 Module[{recurseProtect},
   NotebookSaveContents[nb_NotebookObject, 
     file:_String|Automatic:Automatic,
-    preemptive:True|False:False,
+    preempt:True|False:False,
     ops:OptionsPattern[]
     ]:=
     Block[
       {
-        recurseProtect = !preemptive&&TrueQ[recurseProtect]
+        preemptive = False,
+        recurseProtect = !preempt&&TrueQ[recurseProtect]
         },
       If[!recurseProtect,
         recurseProtect=True;
@@ -491,8 +492,6 @@ Module[{recurseProtect},
             dir,
             nbExpr,
             nbObj,
-            nbFName,
-            nbPkgName,
             ags = OptionValue["AutoGenerateSave"]
             },
           If[f === Automatic,
@@ -504,7 +503,7 @@ Module[{recurseProtect},
               "nb",
                 If[preemptive,
                   PreemptiveQueued[nb, notebookSaveNotebook[f, nb]],
-                  notebookSaveNotebook[f, nb]; (* would Put be better ? *)
+                   notebookSaveNotebook[f, nb]; (* would Put be better ? *)
                   ];
                 If[ags,
                   If[preemptive,
@@ -650,9 +649,7 @@ IDEOpen[nb_IDENotebookObject, expr_Notebook]:=
 
 IDESave//Clear
 IDESave[nb_NotebookObject, ops:OptionsPattern[]]:=
-  If[TrueQ@Lookup[NotebookInformation[nb], "ModifiedInMemory", True], 
-    NotebookSaveContents[nb, ops]
-    ];
+  NotebookSaveContents[nb, ops];
 IDESave[nb_IDENotebookObject, ops:OptionsPattern[]]:=
   IDESave[nb["Notebook"], ops]
 

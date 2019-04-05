@@ -1,0 +1,217 @@
+Notebook[
+ {Cell[CellGroupData[{Cell[TextData[{"Bug Tracker", "  ", 
+        Cell[BoxData[TemplateBox[{PanelBox[TagBox[InputFieldBox[Dynamic[
+                CurrentValue[EvaluationNotebook[], {TaggingRules, "Bugs", 
+                  "SearchInterface", "SearchText"}, ""]], String, 
+               Appearance -> "Frameless"], EventHandlerTag[{
+                "ReturnKeyDown" :> (Replace[
+                   BugTracker`Package`BugsNotebookLocate[EvaluationNotebook[
+                     ], CurrentValue[EvaluationNotebook[], {TaggingRules, 
+                      "Bugs", "SearchInterface", "SearchText"}]], $Failed :> 
+                    Beep[]]; CurrentValue[EvaluationNotebook[], 
+                    {TaggingRules, "Bugs", "SearchInterface", 
+                     "SearchText"}] = ""), Method -> "Preemptive", 
+                PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+             Appearance -> {"Hover" -> FrontEnd`FileName[{"BugTracker"}, 
+                 "SearchBackground-Hover.png"]}, FrameMargins -> 
+              {{5, 5}, {5, 5}}], TemplateBox[{5}, "Spacer1"], 
+            ButtonBox["\"\"", ButtonFunction :> (Replace[
+                BugTracker`Package`BugsNotebookLocate[EvaluationNotebook[], 
+                 CurrentValue[EvaluationNotebook[], {TaggingRules, "Bugs", 
+                   "SearchInterface", "SearchText"}]], $Failed :> Beep[]]; 
+               CurrentValue[EvaluationNotebook[], {TaggingRules, "Bugs", 
+                  "SearchInterface", "SearchText"}] = ""), Appearance -> 
+              {"Default" -> FrontEnd`FileName[{"BugTracker"}, 
+                 "Search-Default.png"], "Hover" -> FrontEnd`FileName[
+                 {"BugTracker"}, "Search-Hover.png"], "Pressed" -> 
+                FrontEnd`FileName[{"BugTracker"}, "Search-Pressed.png"]}, 
+             ImageSize -> {16, 16}, Evaluator -> Automatic, 
+             Method -> "Preemptive"]}, "RowDefault"]], "Text", 
+         "BugSearchBar"]}], "Chapter", "BugsNotebookHeader"], 
+     Cell[TextData[{Cell[BoxData[ButtonBox["\"View List\"", 
+           Appearance -> {"Default" -> FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceLeft-Default.png"], "Hover" -> 
+              FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceLeft-Hover.png"], "Pressed" -> 
+              FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceLeft-Pressed.png"]}, ButtonFunction :> 
+            (Needs["BugTracker`"]; 
+             BugTracker`Package`BugsNotebookWriteViewCell[
+              BugTracker`Package`BugsNotebookToBugs[EvaluationNotebook[]]]), 
+           Evaluator -> Automatic, FrameMargins -> {{10, 10}, {5, 5}}, 
+           Method -> "Preemptive"]], "Text"], 
+        Cell[BoxData[ButtonBox["\"View Dataset\"", Appearance -> 
+            {"Default" -> FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceRight-Default.png"], "Hover" -> 
+              FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceRight-Hover.png"], "Pressed" -> 
+              FrontEnd`FileName[{"BugTracker"}, 
+               "ButtonAppearanceRight-Pressed.png"]}, ButtonFunction :> 
+            (Needs["BugTracker`"]; 
+             BugTracker`Package`BugsNotebookWriteViewCell[
+              BugTracker`Package`BugsToDataset[
+               BugTracker`Package`BugsNotebookToBugs[EvaluationNotebook[
+                 ]]]]), Evaluator -> Automatic, FrameMargins -> 
+            {{10, 10}, {5, 5}}, Method -> "Preemptive"]], "Text"]}], "Text", 
+      "BugsNotebookButtonBar"], Cell[CellGroupData[
+       {Cell[BoxData[GridBox[{{ItemBox[Cell["Test Bug", "Section", 
+               "BugTitle", CellFrame -> None, StripOnInput -> False], 
+              Alignment -> Left, ItemSize -> Scaled[0.8], StripOnInput -> 
+               False], ItemBox[Cell[BoxData[TogglerBox[Dynamic[CurrentValue[
+                   EvaluationCell[], {TaggingRules, "Bugs", "test", 
+                    "Resolved"}, False]], {True -> "\[CheckmarkedBox]", 
+                  False -> "\[EmptySquare]"}, "\[CheckedBox]"]], 
+               "BugResolved", Selectable -> False, Deletable -> False, 
+               Deployed -> True, TaggingRules -> {"IndentCharacter" -> "  ", 
+                 "EasyIDE" -> {"Tabs" -> {"BugTracker" -> {"File" -> "/Users/\
+Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/BugTracker.wl"}, 
+                     "BugTracker.nb" -> {"File" -> "/Users/Mark/Documents/Wol\
+fram Mathematica/Applications/EasyIDE/project/BugTracker.nb"}, 
+                     "HelperFunctions" -> {"File" -> "/Users/Mark/Documents/W\
+olfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions\
+.nb"}}, "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> 
+                      GridBox[{{GridBox[{{GridBox[{{StyleBox[ButtonBox[
+                          "\"Add Bug\"", ButtonFunction :> With[
+                          {EasyIDE`Plugins`Private`nb = 
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook}, 
+                          BugTracker`Package`FindBugsNotebook; 
+                          EasyIDE`Notebooks`Utilities`PreemptiveQueued[
+                          EasyIDE`Plugins`Private`nb, Replace[
+                          BugTracker`Package`BugsNotebookAddDataDialog[
+                          WindowMargins -> ({{#1[[1]], Automatic}, 
+                          {Automatic, #1[[2]]}} & )[MousePosition[
+                          "ScreenAbsolute"]]], 
+                          EasyIDE`Plugins`Private`a_Association :> 
+                          BugTracker`Package`BugsNotebookAdd[
+                          EasyIDE`Plugins`Private`nb, 
+                          EasyIDE`Plugins`Private`a["Tag"], Normal[KeyDrop[
+                          EasyIDE`Plugins`Private`a, "Tag"]]]]]], 
+                          Appearance -> Inherited, Evaluator -> Automatic, 
+                          Method -> "Preemptive"], "ToolbarElement"], 
+                          StyleBox[ActionMenuBox[ButtonBox["\"Export\"", 
+                          ButtonFunction :> {}, Evaluator -> None, 
+                          BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                          FrameMargins -> {{10, 10}, {0, 0}}, ImageSize -> 
+                          {Automatic, 28}, Method -> "Preemptive"], 
+                          {"\"List\"" :> Export[StringReplace[".nb" -> 
+                          "-List.m"][NotebookFileName[]], 
+                          BugTracker`Package`BugsNotebookToBugs[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]], 
+                          "\"Dataset\"" :> Export[StringReplace[".nb" -> 
+                          "-Dataset.mx"][
+                          EasyIDE`Notebooks`Manipulation`IDEPath[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                          Key["ActiveFile"]]], 
+                          BugTracker`Package`BugsToDataset[
+                          BugTracker`Package`BugsNotebookToBugs[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]]], 
+                          "\"Index\"" :> BugTracker`Package`BuildBugIndex[
+                          DirectoryName[
+                          EasyIDE`Notebooks`Manipulation`IDEPath[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                          Key["ActiveFile"]]], 
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook], 
+                          "\"Markdown\"" :> 
+                          BugTracker`Package`BugsNotebookMarkdownSave[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]}, 
+                          Appearance -> None, MenuAppearance -> "Dropdown"], 
+                          "ToolbarElement"]}}, BaseStyle -> 
+                          "ToolbarElementRow"], ButtonBox["", BaseStyle -> 
+                          "ToolbarCloseButton", ButtonData -> 
+                          "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, 
+                       BaseStyle -> "Toolbars"], "Tags" -> {"BugTracker"}, 
+                     "Cells" -> {"BugTracker" -> GridBox[{{GridBox[
+                          {{StyleBox[ButtonBox["\"Add Bug\"", 
+                          ButtonFunction :> With[{
+                          EasyIDE`Plugins`Private`nb = 
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook}, 
+                          BugTracker`Package`FindBugsNotebook; 
+                          EasyIDE`Notebooks`Utilities`PreemptiveQueued[
+                          EasyIDE`Plugins`Private`nb, Replace[
+                          BugTracker`Package`BugsNotebookAddDataDialog[
+                          WindowMargins -> ({{#1[[1]], Automatic}, 
+                          {Automatic, #1[[2]]}} & )[MousePosition[
+                          "ScreenAbsolute"]]], 
+                          EasyIDE`Plugins`Private`a_Association :> 
+                          BugTracker`Package`BugsNotebookAdd[
+                          EasyIDE`Plugins`Private`nb, 
+                          EasyIDE`Plugins`Private`a["Tag"], Normal[KeyDrop[
+                          EasyIDE`Plugins`Private`a, "Tag"]]]]]], 
+                          Appearance -> Inherited, Evaluator -> Automatic, 
+                          Method -> "Preemptive"], "ToolbarElement"], 
+                          StyleBox[ActionMenuBox[ButtonBox["\"Export\"", 
+                          ButtonFunction :> {}, Evaluator -> None, 
+                          BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                          FrameMargins -> {{10, 10}, {0, 0}}, ImageSize -> 
+                          {Automatic, 28}, Method -> "Preemptive"], 
+                          {"\"List\"" :> Export[StringReplace[".nb" -> 
+                          "-List.m"][NotebookFileName[]], 
+                          BugTracker`Package`BugsNotebookToBugs[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]], 
+                          "\"Dataset\"" :> Export[StringReplace[".nb" -> 
+                          "-Dataset.mx"][
+                          EasyIDE`Notebooks`Manipulation`IDEPath[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                          Key["ActiveFile"]]], 
+                          BugTracker`Package`BugsToDataset[
+                          BugTracker`Package`BugsNotebookToBugs[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]]], 
+                          "\"Index\"" :> BugTracker`Package`BuildBugIndex[
+                          DirectoryName[
+                          EasyIDE`Notebooks`Manipulation`IDEPath[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook, 
+                          Key["ActiveFile"]]], 
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook], 
+                          "\"Markdown\"" :> 
+                          BugTracker`Package`BugsNotebookMarkdownSave[
+                          EasyIDE`Notebooks`Utilities`$CurrentIDENotebook]}, 
+                          Appearance -> None, MenuAppearance -> "Dropdown"], 
+                          "ToolbarElement"]}}, BaseStyle -> 
+                          "ToolbarElementRow"], ButtonBox["", BaseStyle -> 
+                          "ToolbarCloseButton", ButtonData -> 
+                          "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, 
+                   "Project" -> {"Directory" -> "/Users/Mark/Documents/Wolfra\
+m Mathematica/Applications/EasyIDE/"}, "ActiveTab" -> "BugTracker.nb", 
+                   "StyleSheet" -> FrontEnd`FileName[{"EasyIDE", 
+                      "Extensions"}, "LightMode-BugTracker.nb"], 
+                   "FileToolbar" -> "BugTracker", "Options" -> 
+                    {TaggingRules -> {"Bugs" -> {"SearchInterface" -> 
+                          {"SearchText" -> ""}}}, FrontEndVersion -> "11.3 \
+for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+                     StyleDefinitions -> FrontEnd`FileName[{"BugTracker", 
+                        "Private"}, "BugTracker.nb", CharacterEncoding -> 
+                        "UTF-8"]}, "AutoGeneratePackage" -> False, 
+                   "SavingAction" -> None}, "Bugs" -> {"SearchInterface" -> 
+                    {"SearchText" -> ""}, "test" -> {"Resolved" -> True}}}], 
+              Alignment -> Right, ItemSize -> Scaled[0.1], StripOnInput -> 
+               False]}}, AutoDelete -> False, GridBoxItemSize -> 
+            {"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]], 
+         "Section", "BugTitle", CellChangeTimes -> {3.763453237162057*^9}, 
+         CellTags -> {"Bug", "test", "Title"}], 
+        Cell["Fri 5 Apr 2019 04:35:18", "Text", "BugAnnotation", 
+         "BugTimestamp", "BugCreated", CellTags -> {"Bug", "test", 
+           "CreationDate"}], Cell["", "Text", "BugAnnotation", 
+         "BugTimestamp", "BugResolved", CellTags -> {"Bug", "test", 
+           "ResolutionDate"}], Cell["1", "Text", "BugAnnotation", "BugID", 
+         CellTags -> {"Bug", "test", "ID"}], Cell["EasyIDE", "Text", 
+         "BugAnnotation", "BugPackage", CellTags -> {"Bug", "test", 
+           "Package"}], Cell["", "Text", "BugAnnotation", "BugOwner", 
+         CellTags -> {"Bug", "test", "Owner"}], Cell["crashes", "Text", 
+         "BugAnnotation", "BugKeywords", CellTags -> {"Bug", "test", 
+           "Keywords"}], Cell[CellGroupData[{Cell["Description", 
+            "Subsection"], Cell[
+            "EasyIDE is fragile (though actually not really anymore...)", 
+            "Text", "BugDescription", CellTags -> {"Bug", "test", 
+              "Description"}]}, Open]], Cell[CellGroupData[
+          {Cell["Examples", "Subsection", "BugExamples", CellTags -> 
+             {"Bug", "test", "Examples"}], Cell["<<Example>>", "Text"]}, 
+          Open]], Cell[CellGroupData[{Cell["Notes", "Subsection", "BugNotes", 
+            CellTags -> {"Bug", "test", "Notes"}], Cell["<<Note>>", "Text"]}, 
+          Open]]}, Open]]}, Open]]}, TaggingRules -> 
+  {"Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}}, 
+ FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BugTracker", "Private"}, 
+   "BugTracker.nb", CharacterEncoding -> "UTF-8"]]

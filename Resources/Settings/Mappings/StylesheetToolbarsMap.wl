@@ -6,5 +6,7 @@
   FrontEnd`FileName[{___, "BTools", ___}, "CodePackage.nb", ___]:>
     "CodePackage",
   FrontEnd`FileName[{___, "BTools", ___}, "MarkdownNotebook.nb", ___]:>
-    "Markdown"
+    "Markdown",
+  FrontEnd`FileName[{___, "BugTracker", ___}, "BugTracker.nb", ___]:>
+    "BugTracker"
 }

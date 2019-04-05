@@ -213,10 +213,15 @@ NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]
             ]
           ];
         IDEData[nb, "Tabs"] = tabs;
-        refreshTabs[]
-        ]
+        ];
+      refreshTabs[]
       ]
     ]
+
+
+(* ::Subsection:: *)
+(*IDE*)
+
 
 
 (* ::Subsubsection::Closed:: *)
