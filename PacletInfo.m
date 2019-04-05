@@ -2,7 +2,7 @@
 
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.2",
+  Version -> "1.0.3",
   Extensions -> {
     	{
      		"Kernel",
@@ -43,6 +43,10 @@ Paclet[
        			{
         				"Apps",
         				"Settings/Plugins/Apps.wl"
+        			},
+       			{
+        				"BugTracker",
+        				"Settings/Plugins/BugTracker.wl"
         			},
        			{
         				"Docs",
@@ -93,7 +97,7 @@ Paclet[
     	{
      		"Documentation",
      		"Language" -> "English",
-     		"MainPage" -> "English/SimpleDocsStyles"
+     		"MainPage" -> "Tutorials/GettingStarted"
      	}
     }
  ]

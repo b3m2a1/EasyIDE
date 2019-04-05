@@ -125,7 +125,7 @@ getPluginActionMenu[plugin_]:=
       plugin["Menu"],
       {
         (l_:>c_):>
-          (l:>(PreemptiveQueued[EvaluationNotebook[], c]))
+          (l:>(PreemptiveQueued[$CurrentIDENotebook, c]))
         },
       1
       ],

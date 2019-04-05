@@ -54,24 +54,29 @@ Notebook[
                  ]]]]), Evaluator -> Automatic, FrameMargins -> 
             {{10, 10}, {5, 5}}, Method -> "Preemptive"]], "Text"]}], "Text", 
       "BugsNotebookButtonBar"], Cell[CellGroupData[
-       {Cell[BoxData[GridBox[{{ItemBox[Cell["Test Bug", "Section", 
+       {Cell[BoxData[GridBox[
+           {{ItemBox[Cell["Tab close doesn't remove from list", "Section", 
                "BugTitle", CellFrame -> None, StripOnInput -> False], 
               Alignment -> Left, ItemSize -> Scaled[0.8], StripOnInput -> 
                False], ItemBox[Cell[BoxData[TogglerBox[Dynamic[CurrentValue[
-                   EvaluationCell[], {TaggingRules, "Bugs", "test", 
+                   EvaluationCell[], {TaggingRules, "Bugs", "tab-close-fail", 
                     "Resolved"}, False]], {True -> "\[CheckmarkedBox]", 
                   False -> "\[EmptySquare]"}, "\[CheckedBox]"]], 
                "BugResolved", Selectable -> False, Deletable -> False, 
                Deployed -> True, TaggingRules -> {"IndentCharacter" -> "  ", 
-                 "EasyIDE" -> {"Tabs" -> {"BugTracker" -> {"File" -> "/Users/\
-Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/BugTracker.wl"}, 
-                     "BugTracker.nb" -> {"File" -> "/Users/Mark/Documents/Wol\
-fram Mathematica/Applications/EasyIDE/project/BugTracker.nb"}, 
+                 "EasyIDE" -> {"Tabs" -> {"AttachedDialog" -> {"File" -> "/Us\
+ers/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/Attach\
+edDialog.nb"}, "Git" -> {"File" -> "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/Git.wl"}, 
                      "HelperFunctions" -> {"File" -> "/Users/Mark/Documents/W\
 olfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions\
-.nb"}}, "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> 
+.nb"}, "DropDownMenu" -> {"File" -> "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/DropDo\
+wnMenu.nb"}, "BugTracker" -> {"File" -> "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/project/BugTracker.nb"}}, "FileViewer" -> 
+                    {"Visible" -> False}, "Toolbars" -> {"Column" -> 
                       GridBox[{{GridBox[{{GridBox[{{StyleBox[ButtonBox[
                           "\"Add Bug\"", ButtonFunction :> With[
                           {EasyIDE`Plugins`Private`nb = 
@@ -173,7 +178,7 @@ Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions\
                           "ToolbarCloseButton", ButtonData -> 
                           "BugTracker"]}}, BaseStyle -> "ToolbarCell"]}}, 
                    "Project" -> {"Directory" -> "/Users/Mark/Documents/Wolfra\
-m Mathematica/Applications/EasyIDE/"}, "ActiveTab" -> "BugTracker.nb", 
+m Mathematica/Applications/EasyIDE/"}, "ActiveTab" -> "BugTracker", 
                    "StyleSheet" -> FrontEnd`FileName[{"EasyIDE", 
                       "Extensions"}, "LightMode-BugTracker.nb"], 
                    "FileToolbar" -> "BugTracker", "Options" -> 
@@ -184,33 +189,35 @@ for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)",
                         "Private"}, "BugTracker.nb", CharacterEncoding -> 
                         "UTF-8"]}, "AutoGeneratePackage" -> False, 
                    "SavingAction" -> None}, "Bugs" -> {"SearchInterface" -> 
-                    {"SearchText" -> ""}, "test" -> {"Resolved" -> True}}}], 
-              Alignment -> Right, ItemSize -> Scaled[0.1], StripOnInput -> 
-               False]}}, AutoDelete -> False, GridBoxItemSize -> 
-            {"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]], 
-         "Section", "BugTitle", CellChangeTimes -> {3.763453237162057*^9}, 
-         CellTags -> {"Bug", "test", "Title"}], 
-        Cell["Fri 5 Apr 2019 04:35:18", "Text", "BugAnnotation", 
-         "BugTimestamp", "BugCreated", CellTags -> {"Bug", "test", 
+                    {"SearchText" -> ""}, "tab-close-fail" -> {"Resolved" -> 
+                      False}}}], Alignment -> Right, ItemSize -> Scaled[0.1], 
+              StripOnInput -> False]}}, AutoDelete -> False, 
+           GridBoxItemSize -> {"Columns" -> {{Automatic}}, 
+             "Rows" -> {{Automatic}}}]], "Section", "BugTitle", 
+         CellTags -> {"Bug", "tab-close-fail", "Title"}], 
+        Cell["Fri 5 Apr 2019 16:36:44", "Text", "BugAnnotation", 
+         "BugTimestamp", "BugCreated", CellTags -> {"Bug", "tab-close-fail", 
            "CreationDate"}], Cell["", "Text", "BugAnnotation", 
-         "BugTimestamp", "BugResolved", CellTags -> {"Bug", "test", 
+         "BugTimestamp", "BugResolved", CellTags -> {"Bug", "tab-close-fail", 
            "ResolutionDate"}], Cell["1", "Text", "BugAnnotation", "BugID", 
-         CellTags -> {"Bug", "test", "ID"}], Cell["EasyIDE", "Text", 
-         "BugAnnotation", "BugPackage", CellTags -> {"Bug", "test", 
-           "Package"}], Cell["", "Text", "BugAnnotation", "BugOwner", 
-         CellTags -> {"Bug", "test", "Owner"}], Cell["crashes", "Text", 
-         "BugAnnotation", "BugKeywords", CellTags -> {"Bug", "test", 
-           "Keywords"}], Cell[CellGroupData[{Cell["Description", 
-            "Subsection"], Cell[
-            "EasyIDE is fragile (though actually not really anymore...)", 
-            "Text", "BugDescription", CellTags -> {"Bug", "test", 
+         CellTags -> {"Bug", "tab-close-fail", "ID"}], 
+        Cell["EasyIDE", "Text", "BugAnnotation", "BugPackage", 
+         CellTags -> {"Bug", "tab-close-fail", "Package"}], 
+        Cell["", "Text", "BugAnnotation", "BugOwner", 
+         CellTags -> {"Bug", "tab-close-fail", "Owner"}], 
+        Cell["tabs", "Text", "BugAnnotation", "BugKeywords", 
+         CellTags -> {"Bug", "tab-close-fail", "Keywords"}], 
+        Cell[CellGroupData[{Cell["Description", "Subsection"], 
+           Cell["If the \"ActiveTab\" is closed the tab switching mechanism \
+kicks in but it fails to be removed from the list for whatever reason", 
+            "Text", "BugDescription", CellTags -> {"Bug", "tab-close-fail", 
               "Description"}]}, Open]], Cell[CellGroupData[
           {Cell["Examples", "Subsection", "BugExamples", CellTags -> 
-             {"Bug", "test", "Examples"}], Cell["<<Example>>", "Text"]}, 
-          Open]], Cell[CellGroupData[{Cell["Notes", "Subsection", "BugNotes", 
-            CellTags -> {"Bug", "test", "Notes"}], Cell["<<Note>>", "Text"]}, 
-          Open]]}, Open]]}, Open]]}, TaggingRules -> 
-  {"Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}}, 
+             {"Bug", "tab-close-fail", "Examples"}], Cell["<<Example>>", 
+            "Text"]}, Open]], Cell[CellGroupData[{Cell["Notes", "Subsection", 
+            "BugNotes", CellTags -> {"Bug", "tab-close-fail", "Notes"}], 
+           Cell["<<Note>>", "Text"]}, Open]]}, Open]]}, Open]]}, 
+ TaggingRules -> {"Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}}, 
  FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
  StyleDefinitions -> FrontEnd`FileName[{"BugTracker", "Private"}, 

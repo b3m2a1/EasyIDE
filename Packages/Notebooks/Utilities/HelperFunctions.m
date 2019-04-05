@@ -234,29 +234,33 @@ WithoutCurrentValueUpdating~SetAttributes~HoldRest
 
 
 PreemptiveQueued[nb_, expr_]:=
-  MessageDialog[
-    DynamicModule[
-      {},
-      Null,
-      Initialization:>{
-        Internal`WithLocalSettings[
-          Null,
-          Block[
-            {
-              $CurrentIDENotebook=nb
-              },
-            expr
-            ],
-          NotebookClose[EvaluationNotebook[]]
-          ]
-        },
-      SynchronousInitialization -> False
-      ],
-    Visible->False,
-    Evaluator->CurrentValue[nb, Evaluator]
+  With[{nnbb=nb},
+    MessageDialog[
+      DynamicModule[
+        {},
+        Null,
+        Initialization:>{
+          Internal`WithLocalSettings[
+            Null,
+            Block[
+              {
+                $CurrentIDENotebook=nnbb
+                },
+              expr
+              ],
+            NotebookClose[EvaluationNotebook[]]
+            ]
+          },
+        SynchronousInitialization -> False
+        ],
+      Visible->False,
+      Evaluator->CurrentValue[nb, Evaluator]
+      ]
     ];
 PreemptiveQueued[expr_]:=
-  PreemptiveQueued[$CurrentIDENotebook, expr];
+  With[{nb=$CurrentIDENotebook},
+    PreemptiveQueued[nb, expr]
+    ];
 PreemptiveQueued~SetAttributes~HoldAll
 
 

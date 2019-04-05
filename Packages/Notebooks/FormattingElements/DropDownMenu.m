@@ -71,7 +71,7 @@ makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>{command_, ops___}]:=
       Internal`WithLocalSettings[
         Null,
         If[Quiet[Lookup[Flatten@{ops}, Method, Automatic]]===Automatic,
-          PreemptiveQueued[EvaluationNotebook[], command],
+          PreemptiveQueued[command],
           command
           ],
         If[state["DestroyOnClick"], DestroyDropDownMenu[s]];

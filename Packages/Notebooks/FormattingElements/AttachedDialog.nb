@@ -1,0 +1,197 @@
+Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection", 
+      Evaluatable -> False], 
+     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"AttachedDialogPanel", "::", 
+              "usage"}], "=", "\"\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"CreateAttachedDialog", "::", "usage"}], "=", 
+            "\"\""}], ";"}]}], "CodeInput"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"IDECreateDialog", "::", "usage"}], 
+           "=", "\"\""}], ";"}]], "CodeInput"], 
+     Cell[BoxData[RowBox[{RowBox[{"Begin", "[", "\"`Private`\"", "]"}], 
+         ";"}]], "InputSection"], 
+     Cell[CellGroupData[
+       {Cell["\[LeftCeiling]CreateAttachedDialog\[RightFloor]", 
+         "CodeSubsection", Evaluatable -> True], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]AttachedDialogPanel\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"AttachedDialogPanel", "[", 
+                   "\n", "  ", RowBox[{"expr_", ",", "\n", "  ", RowBox[
+                      {"ops", ":", RowBox[{"OptionsPattern", "[", "]"}]}]}], 
+                   "\n", "  ", "]"}], ":=", "\n", "  ", RowBox[{"Panel", "[", 
+                   "\n", "    ", RowBox[{"expr", ",", "\n", "    ", 
+                     RowBox[{"BaseStyle", "\[Rule]", "\"AttachedDialog\""}], 
+                     ",", "\n", "    ", "ops"}], "\n", "    ", "]"}]}], 
+               ";"}]], "CodeInput"], Cell[BoxData[
+             {RowBox[{RowBox[{RowBox[{"prepSubmitButton", "[", RowBox[
+                     {"{", RowBox[{"label_", ",", " ", "action_", ",", " ", 
+                        "ops___"}], "}"}], "]"}], ":=", "\n", "  ", 
+                  RowBox[{"Button", "[", RowBox[{"label", ",", " ", "action", 
+                      ",", "\n", "    ", "ops", ",", "\n", "    ", RowBox[
+                       {"BaseStyle", "\[Rule]", 
+                        "\"AttachedDialogDefaultButton\""}], ",", "\n", 
+                      "    ", RowBox[{"Appearance", "\[Rule]", "Inherited"}], 
+                      ",", "\n", "    ", RowBox[{"Evaluator", "\[Rule]", 
+                        "Inherited"}], ",", "\n", "    ", RowBox[{"Method", 
+                        "\[Rule]", "Inherited"}]}], "\n", "    ", "]"}]}], 
+                ";"}], "\n", RowBox[{RowBox[{"prepCancelButton", "[", 
+                  RowBox[{"{", RowBox[{"label_", ",", " ", "action_", ",", 
+                      " ", "ops___"}], "}"}], "]"}], ":=", "\n", "  ", 
+                RowBox[{"Button", "[", RowBox[{"label", ",", " ", "\n", 
+                    "    ", "action", ",", "\n", "    ", "ops", ",", "\n", 
+                    "    ", RowBox[{"BaseStyle", "\[Rule]", 
+                      "\"AttachedDialogCancelButton\""}], ",", "\n", "    ", 
+                    RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", 
+                    "\n", "    ", RowBox[{"Evaluator", "\[Rule]", 
+                      "Inherited"}], ",", "\n", "    ", RowBox[{"Method", 
+                      "\[Rule]", "Inherited"}]}], "\n", "    ", "]"}]}]}], 
+            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"AttachedDialogPanel", 
+                 "[", "\n", "  ", RowBox[{"header_", ",", "\n", "  ", 
+                   "expr_", ",", "\n", "  ", RowBox[{"submitButton", ":", 
+                     RowBox[{"{", RowBox[{"_", ",", " ", RowBox[{"_Function", 
+                          "|", "None"}], ",", " ", "___"}], "}"}], ":", 
+                     RowBox[{"{", RowBox[{"\"OK\"", ",", " ", "None"}], 
+                       "}"}]}], ",", "\n", "  ", RowBox[{"closingButton", 
+                     ":", RowBox[{"{", RowBox[{"_", ",", " ", RowBox[
+                          {"_Function", "|", "Automatic"}], ",", " ", 
+                         "___"}], "}"}], ":", RowBox[{"{", RowBox[
+                        {"\"Cancel\"", ",", " ", "Automatic"}], "}"}]}], ",", 
+                   "\n", "  ", RowBox[{"ops", ":", RowBox[{"OptionsPattern", 
+                       "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", "  ", 
+               RowBox[{"AttachedDialogPanel", "[", "\n", "    ", 
+                 RowBox[{RowBox[{"Column", "[", "\n", "      ", RowBox[
+                      {RowBox[{"{", "\n", "        ", RowBox[{RowBox[
+                          {"Panel", "[", RowBox[{"header", ",", " ", RowBox[
+                          {"BaseStyle", "\[Rule]", 
+                          "\"AttachedDialogHeader\""}]}], "]"}], ",", "\n", 
+                          "        ", RowBox[{"Panel", "[", RowBox[{"expr", 
+                          ",", " ", RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"AttachedDialogBody\""}]}], "]"}], ",", "\n", 
+                          "        ", RowBox[{"Panel", "[", "\n", 
+                          "          ", RowBox[{RowBox[{"Grid", "@", RowBox[
+                          {"{", "\n", "            ", RowBox[{"{", RowBox[
+                          {RowBox[{"prepSubmitButton", "@", "submitButton"}], 
+                          ",", " ", RowBox[{"prepCancelButton", "@", 
+                          "closingButton"}]}], "}"}], "\n", "            ", 
+                          "}"}]}], ",", " ", "\n", "          ", RowBox[
+                          {"BaseStyle", "\[Rule]", 
+                          "\"AttachedDialogButtons\""}]}], "\n", 
+                          "          ", "]"}]}], "\n", "        ", "}"}], 
+                       ",", "\n", "      ", RowBox[{"GridBoxItemSize", 
+                         "\[Rule]", "Inherited"}]}], "\n", "      ", "]"}], 
+                   ",", "\n", "    ", "ops"}], "\n", "    ", "]"}]}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]CreateAttachedDialog\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"attachables", "=", "\n", "\t", 
+                 RowBox[{"_NotebookObject", "|", 
+                   "_FrontEnd`EvaluationNotebook", "|", 
+                   "_FrontEnd`InputNotebook", "|", "\n", "  ", 
+                   "_FrontEnd`SelectedNotebook", "|", 
+                   "_FrontEnd`ParentNotebook", "|", 
+                   "_FrontEnd`ButtonNotebook", "|", "\n", "  ", 
+                   "_CellObject", "|", "_FrontEnd`EvaluationCell", "|", 
+                   "_FrontEnd`ParentCell", "|", "_FrontEnd`IndexedCell", "|", 
+                   "\n", "  ", "_BoxObject", "|", "_FrontEnd`EvaluationBox", 
+                   "|", "_FrontEnd`ParentBox"}]}], ";"}]], "CodeInput"], 
+           Cell[BoxData[{RowBox[{"CreateAttachedDialog", "//", "Clear"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"CreateAttachedDialog", "[", 
+                    "\n", "  ", RowBox[{RowBox[{"nb", ":", "attachables"}], 
+                      ",", " ", "\n", "  ", "expression_", ",", " ", "\n", 
+                      "  ", RowBox[{"position", ":", RowBox[{"{", RowBox[
+                          {RowBox[{"_Integer", "|", "_Scaled"}], ",", " ", 
+                          RowBox[{"_Integer", "|", "_Scaled"}]}], "}"}], ":", 
+                        RowBox[{"{", RowBox[{"0", ",", " ", "0"}], "}"}]}], 
+                      ",", "\n", "  ", RowBox[{"align", ":", RowBox[{"{", 
+                          RowBox[{RowBox[{"Left", "|", "Center", "|", 
+                          "Right"}], ",", " ", RowBox[{"Bottom", "|", 
+                          "Center", "|", "Top"}]}], "}"}], ":", RowBox[
+                         {"{", RowBox[{"Center", ",", " ", "Center"}], 
+                          "}"}]}], ",", "\n", "  ", RowBox[{"anchor", ":", 
+                        RowBox[{"{", RowBox[{RowBox[{"Left", "|", "Center", 
+                          "|", "Right"}], ",", " ", RowBox[{"Bottom", "|", 
+                          "Center", "|", "Top"}]}], "}"}], ":", RowBox[
+                         {"{", RowBox[{"Center", ",", " ", "Center"}], 
+                          "}"}]}], ",", "\n", "  ", RowBox[{"closers", ":", 
+                        RowBox[{"{", RowBox[{RowBox[{"(", RowBox[
+                          {"\"MouseExit\"", "|", "\"OutsideMouseClick\"", 
+                          "|", "\"EvaluatorQuit\""}], ")"}], ".."}], "}"}], 
+                        ":", RowBox[{"{", "\"EvaluatorQuit\"", "}"}]}], ",", 
+                      "\n", "  ", RowBox[{"ops", ":", RowBox[
+                         {"OptionsPattern", "[", "]"}]}]}], "\n", "  ", 
+                    "]"}], ":=", "\n", "  ", RowBox[{"FEAttachCell", "[", 
+                    "\n", "    ", RowBox[{"nb", ",", "\n", "    ", RowBox[
+                       {"Cell", "[", "\n", "      ", RowBox[{RowBox[
+                          {"BoxData", "@", RowBox[{"ToBoxes", "@", "\n", 
+                          "        ", RowBox[{"AttachedDialogPanel", "[", 
+                          "expression", "]"}]}]}], ",", "\n", "      ", 
+                          "\"AttachedDialogCell\"", ",", "\n", "      ", 
+                          "ops", ",", "\n", "      ", RowBox[{"FirstCase", 
+                          "[", "\n", "        ", RowBox[{"expression", ",", 
+                          "\n", "        ", RowBox[{RowBox[{"i", ":", RowBox[
+                          {"InputField", "[", RowBox[{"___", ",", " ", RowBox[
+                          {"BoxID", "\[Rule]", "b_"}], ",", " ", "___"}], 
+                          "]"}]}], ":>", "\n", "          ", RowBox[{"(", 
+                          "\n", "            ", RowBox[{
+                          "CellDynamicExpression", ":>", "\n", 
+                          "              ", RowBox[{"Refresh", "[", "\n", 
+                          "  ", "  \t\t\t      \t", RowBox[{RowBox[{RowBox[
+                          {"FrontEnd`MoveCursorToInputField", "[", "\n", 
+                          "  ", "  ", "      \t\t\t\t\t", RowBox[{RowBox[
+                          {"EvaluationNotebook", "[", "]"}], ",", " ", "\n", 
+                          "          \t\t\t\t\t", "b"}], "\n", 
+                          "          \t\t\t\t\t", "]"}], ";"}], ",", "\n", 
+                          "          \t\t\t\t", "None"}], "\n", 
+                          "          \t\t\t", "]"}]}], "\n", "            ", 
+                          ")"}]}]}], "\n", "        ", "]"}]}], "\n", 
+                        "      ", "]"}], ",", "\n", "    ", RowBox[{"Offset", 
+                        "[", RowBox[{"position", ",", " ", "0"}], "]"}], ",", 
+                      "\n", "    ", "align", ",", "\n", "    ", "anchor", 
+                      ",", "\n", "    ", "closers"}], "\n", "    ", "]"}]}], 
+                ";"}], "\n", RowBox[{RowBox[{"CreateAttachedDialog", "[", 
+                  " ", "\n", "  ", RowBox[{RowBox[{"expression", ":", 
+                      RowBox[{"Except", "[", "attachables", "]"}]}], ",", 
+                    " ", "\n", "  ", RowBox[{"position", ":", RowBox[
+                       {"{", RowBox[{RowBox[{"_Integer", "|", "_Scaled"}], 
+                          ",", " ", RowBox[{"_Integer", "|", "_Scaled"}]}], 
+                        "}"}], ":", RowBox[{"{", RowBox[{"0", ",", " ", 
+                          "0"}], "}"}]}], ",", "\n", "  ", RowBox[{"align", 
+                      ":", RowBox[{"{", RowBox[{RowBox[{"Left", "|", 
+                          "Center", "|", "Right"}], ",", " ", RowBox[
+                          {"Bottom", "|", "Center", "|", "Top"}]}], "}"}], 
+                      ":", RowBox[{"{", RowBox[{"Center", ",", " ", 
+                          "Center"}], "}"}]}], ",", "\n", "  ", RowBox[
+                     {"anchor", ":", RowBox[{"{", RowBox[{RowBox[{"Left", 
+                          "|", "Center", "|", "Right"}], ",", " ", RowBox[
+                          {"Bottom", "|", "Center", "|", "Top"}]}], "}"}], 
+                      ":", RowBox[{"{", RowBox[{"Center", ",", " ", 
+                          "Center"}], "}"}]}]}], "\n", "  ", "]"}], ":=", 
+                "\n", "  ", RowBox[{"CreateAttachedDialog", "[", "\n", 
+                  "    ", RowBox[{"$CurrentIDENotebook", ",", "\n", "    ", 
+                    "expression", ",", "\n", "    ", "position", ",", "\n", 
+                    "    ", "align", ",", "\n", "    ", "anchor"}], "\n", 
+                  "    ", "]"}]}]}], "CodeInput"]}, Open]]}, Open]], 
+     Cell[CellGroupData[{Cell["\[LeftCeiling]IDECreateDialog\[RightFloor]", 
+         "CodeSubsection", Evaluatable -> True], 
+        Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDECreateDialog", "[", 
+                 RowBox[{"nb_NotebookObject", ",", " ", "expr_", ",", " ", 
+                   "args___"}], "]"}], ":=", "\n", "  ", RowBox[
+                {"CreateAttachedDialog", "[", RowBox[{"nb", ",", " ", "expr", 
+                   ",", " ", "args"}], "]"}]}], ";"}], "\n", 
+           RowBox[{RowBox[{RowBox[{"IDECreateDialog", "[", RowBox[
+                  {"ide_IDENotebookObject", ",", " ", "expr_", ",", " ", 
+                   "args___"}], "]"}], ":=", "\n", "  ", RowBox[
+                {"CreateAttachedDialog", "[", RowBox[{RowBox[{"ide", "[", 
+                     "\"Notebook\"", "]"}], ",", " ", "expr", ",", " ", 
+                   "args"}], "]"}]}], ";"}]}], "CodeInput"]}, Open]], 
+     Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
+      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+ WindowSize -> {808, 755}, WindowMargins -> {{Automatic, 212}, 
+   {-4, Automatic}}, TaggingRules -> 
+  {"UUIDButtons" -> 
+    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+ FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+   CharacterEncoding -> "UTF-8"]]

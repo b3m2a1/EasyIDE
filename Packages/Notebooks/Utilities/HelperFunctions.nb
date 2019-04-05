@@ -238,38 +238,43 @@ IDE notebook\[RightFloor]", "Text", Evaluatable -> True],
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"PreemptiveQueued", "[", 
                     RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", 
-                  "\t", RowBox[{"MessageDialog", "[", "\n", "\t\t", 
-                    RowBox[{RowBox[{"DynamicModule", "[", "\n", "\t\t\t", 
-                        RowBox[{RowBox[{"{", "}"}], ",", "\n", "\t\t\t", 
-                          "Null", ",", "\n", "\t\t\t", RowBox[
-                          {"Initialization", "\[RuleDelayed]", RowBox[{"{", 
-                          "\n", "\t\t\t\t", RowBox[{
-                          "Internal`WithLocalSettings", "[", "\n", 
-                          "\t\t\t\t\t", RowBox[{"Null", ",", "\n", 
-                          "\t\t\t\t\t", RowBox[{"Block", "[", "\n", 
-                          "\t\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", 
+                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                         {"nnbb", "=", "nb"}], "}"}], ",", "\n", "  ", "\t", 
+                      RowBox[{"MessageDialog", "[", "\n", "  ", "\t\t", 
+                        RowBox[{RowBox[{"DynamicModule", "[", "\n", "  ", 
+                          "\t\t\t", RowBox[{RowBox[{"{", "}"}], ",", "\n", 
+                          "  ", "\t\t\t", "Null", ",", "\n", "  ", "\t\t\t", 
+                          RowBox[{"Initialization", "\[RuleDelayed]", RowBox[
+                          {"{", "\n", "  ", "\t\t\t\t", RowBox[
+                          {"Internal`WithLocalSettings", "[", "\n", "  ", 
+                          "\t\t\t\t\t", RowBox[{"Null", ",", "\n", "  ", 
+                          "\t\t\t\t\t", RowBox[{"Block", "[", "\n", "  ", 
+                          "\t\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", "  ", 
                           "\t\t\t\t\t\t\t", RowBox[{"$CurrentIDENotebook", 
-                          "=", "nb"}], "\n", "\t\t\t\t\t\t\t", "}"}], ",", 
-                          "\n", "\t\t\t\t\t\t", "expr"}], "\n", 
-                          "\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t", 
-                          RowBox[{"NotebookClose", "[", RowBox[
+                          "=", "nnbb"}], "\n", "  ", "\t\t\t\t\t\t\t", "}"}], 
+                          ",", "\n", "  ", "\t\t\t\t\t\t", "expr"}], "\n", 
+                          "  ", "\t\t\t\t\t\t", "]"}], ",", "\n", "  ", 
+                          "\t\t\t\t\t", RowBox[{"NotebookClose", "[", RowBox[
                           {"EvaluationNotebook", "[", "]"}], "]"}]}], "\n", 
-                          "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t", "}"}]}], 
-                          ",", "\n", "\t\t\t", RowBox[
+                          "  ", "\t\t\t\t\t", "]"}], "\n", "  ", "\t\t\t\t", 
+                          "}"}]}], ",", "\n", "  ", "\t\t\t", RowBox[
                           {"SynchronousInitialization", " ", "->", " ", 
-                          "False"}]}], "\n", "\t\t\t", "]"}], ",", "\n", 
-                      "\t\t", RowBox[{"Visible", "\[Rule]", "False"}], ",", 
-                      "\n", "\t\t", RowBox[{"Evaluator", "\[Rule]", RowBox[
-                         {"CurrentValue", "[", RowBox[{"nb", ",", " ", 
-                          "Evaluator"}], "]"}]}]}], "\n", "\t\t", "]"}]}], 
-                ";"}], "\n", RowBox[{RowBox[{RowBox[{"PreemptiveQueued", "[", 
-                    "expr_", "]"}], ":=", "\n", "  ", RowBox[
-                   {"PreemptiveQueued", "[", RowBox[{"$CurrentIDENotebook", 
-                      ",", " ", "expr"}], "]"}]}], ";"}], "\n", 
-              RowBox[{"PreemptiveQueued", "~", "SetAttributes", "~", 
-                "HoldAll"}]}], "CodeInput"]}, Open]]}, Open]], 
-     Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
-      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+                          "False"}]}], "\n", "  ", "\t\t\t", "]"}], ",", 
+                          "\n", "  ", "\t\t", RowBox[{"Visible", "\[Rule]", 
+                          "False"}], ",", "\n", "  ", "\t\t", RowBox[
+                          {"Evaluator", "\[Rule]", RowBox[{"CurrentValue", 
+                          "[", RowBox[{"nb", ",", " ", "Evaluator"}], 
+                          "]"}]}]}], "\n", "  \t\t", "]"}]}], "\n", "    ", 
+                    "]"}]}], ";"}], "\n", RowBox[{RowBox[
+                 {RowBox[{"PreemptiveQueued", "[", "expr_", "]"}], ":=", 
+                  "\n", "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", 
+                        RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], 
+                      ",", "\n", "  ", "  ", RowBox[{"PreemptiveQueued", "[", 
+                        RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "\n", 
+                    "    ", "]"}]}], ";"}], "\n", RowBox[{"PreemptiveQueued", 
+                "~", "SetAttributes", "~", "HoldAll"}]}], "CodeInput"]}, 
+          Closed]]}, Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], 
+         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
  WindowSize -> {808, 755}, WindowMargins -> {{112, Automatic}, 
    {45, Automatic}}, TaggingRules -> 
   {"UUIDButtons" -> 
