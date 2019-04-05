@@ -36,7 +36,7 @@ Begin["`Private`"];
 
 
 (* ::Subsubsection::Closed:: *)
-(*NotebookPutNotebook*)
+(*NotebookPutContents*)
 
 
 
@@ -70,18 +70,14 @@ nbPut2[enb_NotebookObject, nb_Notebook]:=
   With[
     {
      mcells=
-      Sequence@@Flatten@
-       Map[
-        {
-         FrontEnd`SetOptions[#, Deletable->True],
-         FrontEnd`NotebookDelete[#]
-         }&,
-        Cells[enb]
-        ],
+       Sequence@@{
+         FrontEnd`SelectionMove[enb, All, Notebook],
+         FrontEnd`SetOptions[NotebookSelection[enb], Deletable->True],
+         FrontEnd`NotebookDelete[enb]
+         },
      ops=Options[enb]
     },
     MathLink`CallFrontEnd@{
-     FrontEnd`SetOptions[enb, ops],
      mcells,
      FrontEnd`SelectionMove[enb, Before, Notebook],
      FrontEnd`NotebookWrite[enb, nb[[1]], None,
@@ -99,7 +95,7 @@ NotebookPutContents[ideNb_NotebookObject, nb_Notebook]:=
       },
     WithNotebookPaused[
       ideNb,
-     If[Length@c>100000, (* Cell open/close state was getting messed up *)
+     If[Length@c>100000,
        nbPut1[ideNb, nb],
        nbPut2[ideNb, nb]
        ];
@@ -347,12 +343,26 @@ setAutoSave[nb_]:=
 
 
 setNbActions[nb_]:=
-  Module[{nbActs},
+  Module[{nbActs, saveAction},
+    (* reset the actions to start *)
     CurrentValue[nb, NotebookEventActions] = Inherited;
+    (* pull the events from the stylesheet *)
     nbActs = CurrentValue[nb, NotebookEventActions];
     If[MemberQ[nbActs, {"MenuCommand", "Save"}],
-      CurrentValue[nb, "SavingAction"]
+      saveAction = 
+        Extract[Association[nbActs],
+          Key[{"MenuCommand", "Save"}],
+          Hold
+          ],
+      saveAction = None
       ];
+    If[MatchQ[saveAction, 
+        Hold[IDESave[EvaluationNotebook[]]]|
+          Hold[CompoundExpression[_Needs, IDESave[EvaluationNotebook[]]]]
+        ],
+      saveAction = None
+      ];
+    IDEData[nb, "SavingAction"] = saveAction;
     CurrentValue[nb, NotebookEventActions]=
       DeleteDuplicatesBy[First]@
         Join[
@@ -422,6 +432,38 @@ NotebookPutFile[nb_NotebookObject, f_String]:=
 
 
 (* ::Subsubsection::Closed:: *)
+(*notebookSaveNotebook*)
+
+
+
+notebookSaveNotebook[f_, nb_]:=
+  Put[GetNotebookExpression[nb], f]
+
+
+(* ::Subsubsection::Closed:: *)
+(*notebookHandleAutoSave*)
+
+
+
+notebookHandleAutoSave[f_, nb_]:=
+  Module[{nbFName, nbPkgName},
+    If[IDEData[nb, "AutoGeneratePackage"],
+      nbFName = NotebookFileName[nb];
+      If[StringQ[nbFName],
+        nbPkgName = StringReplace[nbFName, ".nb"->".m"];
+        If[FileExistsQ[nbPkgName],
+          RenameFile[
+            nbPkgName,
+            StringReplace[f, ".nb"->".m"],
+            OverwriteTarget->True
+            ]
+          ]
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
 (*NotebookSaveContents*)
 
 
@@ -443,101 +485,81 @@ Module[{recurseProtect},
         },
       If[!recurseProtect,
         recurseProtect=True;
-        (*While[TrueQ[inSave], Pause[.1]];*) 
-          (* 
-				  An attempt to protect against crashes by introducing a forced wait...not sure if this is the issue at all
-				  *)
-        Internal`WithLocalSettings[
-          inSave = True,
-          Module[
-            {
-              f = file,
-              dir,
-              nbExpr,
-              nbObj,
-              nbFName,
-              nbPkgName,
-              ags = OptionValue["AutoGenerateSave"]
-              },
-            If[f === Automatic,
-              f = IDEPath[nb, Key["ActiveFile"]]
-              ];
-            If[f=!=None,
-              f = IDEPath[nb, f];
-              Switch[FileExtension[f],
-                "nb",
-                  nbExpr = GetNotebookExpression[nb];
-                  If[preemptive,
-                    PreemptiveQueued[nb, Export[f, nbExpr]],
-                    Export[f, nbExpr]; (* would Put be better ? *)
-                    ];
+        Module[
+          {
+            f = file,
+            dir,
+            nbExpr,
+            nbObj,
+            nbFName,
+            nbPkgName,
+            ags = OptionValue["AutoGenerateSave"]
+            },
+          If[f === Automatic,
+            f = IDEPath[nb, Key["ActiveFile"]]
+            ];
+          If[f=!=None,
+            f = IDEPath[nb, f];
+            Switch[FileExtension[f],
+              "nb",
+                If[preemptive,
+                  PreemptiveQueued[nb, notebookSaveNotebook[f, nb]],
+                  notebookSaveNotebook[f, nb]; (* would Put be better ? *)
+                  ];
+                If[ags,
                   If[preemptive,
                     Function[Null, PreemptiveQueued[nb, #], HoldAllComplete],
                     #&
-                    ]@
-                    If[ags && IDEData[nb, "AutoGeneratePackage"],
-                      nbFName = NotebookFileName[nb];
-                      If[StringQ[nbFName],
-                        nbPkgName = StringReplace[nbFName, ".nb"->".m"];
-                        If[FileExistsQ[nbPkgName],
-                          RenameFile[
-                            nbPkgName,
-                            StringReplace[f, ".nb"->".m"],
-                            OverwriteTarget->True
-                            ]
-                          ]
-                        ]
-                      ],
-                "m"|"wl",
-                  If[preemptive,
-                    nbExpr =GetNotebookExpression[nb];
-                    PreemptiveQueued[nb,
-                      Internal`WithLocalSettings[
-                        nbObj = CreateDocument[nbExpr, Visible->False],
-                        FrontEndExecute@
-                          FrontEndToken[
-                            nbObj,
-                            "Save",
-                            {f, "Package"}
-                            ],
-                        NotebookClose[nbObj]
-                        ]
-                      ],
-                    nbObj = nb;
-                    FrontEndExecute@
-                      FrontEndToken[
-                        nbObj,
-                        "Save",
-                        {f, "Package"}
-                        ]
+                    ]@notebookHandleAutoSave[f, nb]
+                  ],
+              "m"|"wl",
+                If[preemptive,
+                  nbExpr =GetNotebookExpression[nb];
+                  PreemptiveQueued[nb,
+                    Internal`WithLocalSettings[
+                      nbObj = CreateDocument[nbExpr, Visible->False],
+                      FrontEndExecute@
+                        FrontEndToken[
+                          nbObj,
+                          "Save",
+                          {f, "Package"}
+                          ],
+                      NotebookClose[nbObj]
+                      ]
                     ],
-                _,
-                  If[preemptive,
-                    nbExpr =GetNotebookExpression[nb];
-                    PreemptiveQueued[nb,
-                      Internal`WithLocalSettings[
-                        nbObj = CreateDocument[nbExpr, Visible->False],
-                        FrontEndExecute@
-                          FrontEndToken[
-                            nbObj,
-                            "Save",
-                            {f, "Text"}
-                            ],
-                        NotebookClose[nbObj]
-                        ]
-                      ],
-                    nbObj = nb;
-                    FrontEndExecute@
-                      FrontEndToken[
-                        nbObj,
-                        "Save",
-                        {f, "Text"}
-                        ]
-                    ]
-                ]
+                  nbObj = nb;
+                  FrontEndExecute@
+                    FrontEndToken[
+                      nbObj,
+                      "Save",
+                      {f, "Package"}
+                      ]
+                  ],
+              _,
+                If[preemptive,
+                  nbExpr =GetNotebookExpression[nb];
+                  PreemptiveQueued[nb,
+                    Internal`WithLocalSettings[
+                      nbObj = CreateDocument[nbExpr, Visible->False],
+                      FrontEndExecute@
+                        FrontEndToken[
+                          nbObj,
+                          "Save",
+                          {f, "Text"}
+                          ],
+                      NotebookClose[nbObj]
+                      ]
+                    ],
+                  nbObj = nb;
+                  FrontEndExecute@
+                    FrontEndToken[
+                      nbObj,
+                      "Save",
+                      {f, "Text"}
+                      ]
+                  ]
               ]
-            ],
-          inSave = False
+            ]
           ];
         ]
       ]
@@ -628,7 +650,9 @@ IDEOpen[nb_IDENotebookObject, expr_Notebook]:=
 
 IDESave//Clear
 IDESave[nb_NotebookObject, ops:OptionsPattern[]]:=
-  NotebookSaveContents[nb, ops];
+  If[TrueQ@Lookup[NotebookInformation[nb], "ModifiedInMemory", True], 
+    NotebookSaveContents[nb, ops]
+    ];
 IDESave[nb_IDENotebookObject, ops:OptionsPattern[]]:=
   IDESave[nb["Notebook"], ops]
 

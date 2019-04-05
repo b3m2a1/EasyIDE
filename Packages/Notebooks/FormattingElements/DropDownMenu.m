@@ -73,7 +73,7 @@ makeMenuCommand[s:Verbatim[Dynamic][state_], label_:>{command_, ops___}]:=
       ops
       ],
    {
-     (*"MouseEntered" \[RuleDelayed] pruneMenu[s, EvaluationCell[], False],*)
+     "MouseEntered" :> pruneMenu[s, EvaluationCell[], False],
      PassEventsDown->True
      }
    ];
