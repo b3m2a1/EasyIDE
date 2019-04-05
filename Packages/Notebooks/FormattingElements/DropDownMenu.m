@@ -46,6 +46,15 @@ makeMenuExpr[s:Verbatim[Dynamic][state_], menuList_]:=
 makeMenuCommand//Clear
 
 
+makeMenuCommand[s:Verbatim[Dynamic][state_], CancelButton]:=
+    Button[
+      "",
+      DestroyDropDownMenu[s],
+      BaseStyle->"CascadingMenuCloseButton",
+      Appearance->Inherited
+      ]
+
+
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
     Button[
       Pane[label, BaseStyle->"CascadingMenuSubmenu"],
@@ -252,10 +261,7 @@ iMakeMenu[
           BoxData@ToBoxes@
             makeMenuExpr[
               s, 
-              Append[menuCommands, 
-              Style["Cancel", Italic]:>
-                If[menuState["DestroyOnClick"], None, DestroyDropDownMenu[s]]
-              ]
+              Prepend[menuCommands, CancelButton]
               ]
           ],
         Replace[align, 
