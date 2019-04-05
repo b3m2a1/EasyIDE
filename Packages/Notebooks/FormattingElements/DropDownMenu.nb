@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     30408,        762]
-NotebookOptionsPosition[     26836,        687]
-NotebookOutlinePosition[     27501,        710]
-CellTagsIndexPosition[     27458,        707]
+NotebookDataLength[     27923,        711]
+NotebookOptionsPosition[     24541,        638]
+NotebookOutlinePosition[     25206,        661]
+CellTagsIndexPosition[     25163,        658]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -158,14 +158,15 @@ Cell[BoxData[{
        RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", "\n", "\t\t\t", 
        "ops"}], "\n", "\t\t\t", "]"}], ",", "\n", "\t ", 
      RowBox[{"{", "\n", "\t \t", 
-      RowBox[{
-       RowBox[{"\"\<MouseEntered\>\"", "\[RuleDelayed]", " ", 
-        RowBox[{"pruneMenu", "[", 
-         RowBox[{"s", ",", " ", 
-          RowBox[{"EvaluationCell", "[", "]"}], ",", " ", "False"}], "]"}]}], 
-       ",", "\n", "\t \t", 
-       RowBox[{"PassEventsDown", "\[Rule]", "True"}]}], "\n", "\t \t", 
-      "}"}]}], "\n", "\t ", "]"}]}], ";"}], "\n", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"\"\<MouseEntered\>\"", " ", "\[RuleDelayed]", " ", 
+         RowBox[{"pruneMenu", "[", 
+          RowBox[{"s", ",", " ", 
+           RowBox[{"EvaluationCell", "[", "]"}], ",", " ", "False"}], "]"}]}],
+         ","}], "*)"}], "\n", "\t \t", 
+      RowBox[{"PassEventsDown", "\[Rule]", "True"}], "\n", "\t \t", "}"}]}], 
+    "\n", "\t ", "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"makeMenuCommand", "[", 
    RowBox[{
@@ -233,48 +234,50 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"state", "[", "root", "]"}], "[", "\"\<Submenu\>\"", "]"}]}], 
      ";", "\n", "\t\t", 
-     RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t", 
-      RowBox[{
-       RowBox[{"ParentNotebook", "@", "root"}], ",", "\n", "\t\t\t", 
+     RowBox[{"(*", 
+      RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t", 
        RowBox[{
+        RowBox[{"ParentNotebook", "@", "root"}], ","}]}], "*)"}], "\n", 
+     "\t\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Head", "[", "kid", "]"}], "===", "CellObject"}], ",", "\n", 
+       "\t\t\t\t", 
+       RowBox[{"pruneMenu", "[", 
+        RowBox[{"s", ",", " ", "kid"}], "]"}]}], "\n", "\t\t\t\t", "]"}], ";",
+      "\n", "\t\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{"pruneHead", ",", " ", "\n", "\t", "\t\t\t", 
+       RowBox[{
+        RowBox[{"NotebookDelete", "[", "root", "]"}], ";", "\n", "\t\t\t\t", 
         RowBox[{"If", "[", 
          RowBox[{
+          RowBox[{"KeyExistsQ", "[", 
+           RowBox[{"state", ",", " ", "root"}], "]"}], ",", "\n", 
+          "\t\t\t\t\t", 
           RowBox[{
-           RowBox[{"Head", "[", "kid", "]"}], "===", "CellObject"}], ",", 
-          "\n", "\t\t\t\t", 
-          RowBox[{"pruneMenu", "[", 
-           RowBox[{"s", ",", " ", "kid"}], "]"}]}], "\n", "\t\t\t\t", "]"}], 
-        ";", "\n", "\t", "\t\t", 
-        RowBox[{"If", "[", 
-         RowBox[{"pruneHead", ",", " ", "\n", "\t", "\t\t\t", 
+           RowBox[{"state", "[", "root", "]"}], "=."}]}], "\n", "\t\t\t\t\t", 
+         "]"}]}], ",", "\n", "\t\t\t\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"KeyExistsQ", "[", 
+          RowBox[{"state", ",", " ", "root"}], "]"}], ",", "\n", "\t\t\t\t\t", 
+         RowBox[{
           RowBox[{
-           RowBox[{"NotebookDelete", "[", "root", "]"}], ";", "\n", 
-           "\t\t\t\t", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"KeyExistsQ", "[", 
-              RowBox[{"state", ",", " ", "root"}], "]"}], ",", "\n", 
-             "\t\t\t\t\t", 
-             RowBox[{
-              RowBox[{"state", "[", "root", "]"}], "=."}]}], "\n", 
-            "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t\t", 
-          RowBox[{"If", "[", 
-           RowBox[{
-            RowBox[{"KeyExistsQ", "[", 
-             RowBox[{"state", ",", " ", "root"}], "]"}], ",", "\n", 
-            "\t\t\t\t\t", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"state", "[", 
-               RowBox[{"root", ",", " ", "\"\<Submenu\>\""}], "]"}], "=."}], 
-             ";", "\n", "\t\t\t\t\t", 
-             RowBox[{
-              RowBox[{"state", "[", 
-               RowBox[{"root", ",", " ", "\"\<MenuBox\>\""}], "]"}], "=."}], 
-             ";"}]}], "\n", "\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t", 
-         "]"}]}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
+           RowBox[{"state", "[", 
+            RowBox[{"root", ",", " ", "\"\<Submenu\>\""}], "]"}], "=."}], ";",
+           "\n", "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"state", "[", 
+            RowBox[{"root", ",", " ", "\"\<MenuBox\>\""}], "]"}], "=."}], 
+          ";"}]}], "\n", "\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t", "]"}], 
+     ";"}]}], 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"\n", "\t\t\t", "]"}], ";"}], "*)"}], "\n", "\t\t", 
    "]"}]}]], "CodeInput"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -384,7 +387,7 @@ Cell[BoxData[
            RowBox[{"parentCell", ",", " ", "\"\<Submenu\>\""}], "]"}], " ", 
           "=", " ", "cell"}]}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", 
     "\t\t", "]"}]}], ";"}]], "CodeInput"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -411,7 +414,7 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"state", "[", "\"\<Root\>\"", "]"}], "=."}], ";"}], "\n", 
     "\t\t", ")"}]}], ";"}]], "CodeInput"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -425,6 +428,8 @@ Cell[BoxData[{
   RowBox[{"{", "\n", "    ", 
    RowBox[{
     RowBox[{"\"\<AttachToCell\>\"", "\[Rule]", "True"}], ",", "\n", "    ", 
+    RowBox[{"\"\<AttachToNotebook\>\"", "\[Rule]", "False"}], ",", "\n", 
+    "    ", 
     RowBox[{"\"\<Position\>\"", "->", "Automatic"}], ",", "\n", "    ", 
     RowBox[{"\"\<DestroyOnClick\>\"", "\[Rule]", "True"}]}], "\n", "    ", 
    "}"}]}], "\n", 
@@ -457,6 +462,10 @@ Cell[BoxData[{
        RowBox[{"position", " ", "=", " ", 
         RowBox[{"OptionValue", "[", "\"\<Position\>\"", "]"}]}], ",", "\n", 
        "\t\t\t", 
+       RowBox[{"attachNb", " ", "=", " ", 
+        RowBox[{"TrueQ", "@", 
+         RowBox[{"OptionValue", "[", "\"\<AttachToNotebook\>\"", "]"}]}]}], 
+       ",", "\n", "\t\t\t", 
        RowBox[{"attachCell", " ", "=", " ", 
         RowBox[{"TrueQ", "@", 
          RowBox[{"OptionValue", "[", "\"\<AttachToCell\>\"", "]"}]}]}], ",", 
@@ -477,8 +486,8 @@ Cell[BoxData[{
      RowBox[{"iMakeMenu", "[", 
       RowBox[{
       "state", ",", " ", "box", ",", " ", "position", ",", " ", "attachCell", 
-       ",", " ", "clickDest", ",", " ", "menuCommands"}], "]"}]}], "\n", 
-    "\t\t", "]"}]}], ";"}]}], "CodeInput"],
+       ",", " ", "attachNb", ",", " ", "clickDest", ",", " ", 
+       "menuCommands"}], "]"}]}], "\n", "\t\t", "]"}]}], ";"}]}], "CodeInput"],
 
 Cell[BoxData[{
  RowBox[{"iMakeMenu", "//", "Clear"}], "\n", 
@@ -490,8 +499,9 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "menuState_", "]"}]}], 
      ",", " ", "\n", "\t", "box_", ",", " ", "\n", "\t", "position_", ",", 
-     " ", "\n", "\t", "attachCell_", ",", " ", "\n", "\t", "clickDest_", ",", 
-     "\n", "\t", "menuCommands_"}], "\n", "\t", "]"}], ":=", "\n", "\t", 
+     " ", "\n", "\t", "attachCell_", ",", "\n", "\t", "attachNb_", ",", " ", 
+     "\n", "\t", "clickDest_", ",", "\n", "\t", "menuCommands_"}], "\n", "\t",
+     "]"}], ":=", "\n", "\t", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -504,9 +514,10 @@ Cell[BoxData[{
           RowBox[{"{", "\n", "\t", "\t\t\t\t", 
            RowBox[{"Automatic", "\[RuleDelayed]", 
             RowBox[{"If", "[", 
-             RowBox[{"attachCell", ",", " ", "Right", ",", " ", "Left"}], 
-             "]"}]}], "\n", "\t", "\t\t\t\t", "}"}]}], "\n", "\t", "\t\t\t ", 
-         "]"}]}]}], ";", " ", 
+             RowBox[{
+              RowBox[{"attachCell", "||", "attachNb"}], ",", " ", "Right", 
+              ",", " ", "Left"}], "]"}]}], "\n", "\t", "\t\t\t\t", "}"}]}], 
+         "\n", "\t", "\t\t\t ", "]"}]}]}], ";", " ", 
       RowBox[{"(*", " ", 
        RowBox[{
        "this", " ", "will", " ", "need", " ", "an", " ", "update", " ", 
@@ -519,16 +530,25 @@ Cell[BoxData[{
        RowBox[{"menuState", "[", "\"\<AttachToCell\>\"", "]"}], " ", "=", " ",
         "attachCell"}], ";", "\n", "\t\t", 
       RowBox[{
+       RowBox[{"menuState", "[", "\"\<AttachToNotebook\>\"", "]"}], " ", "=", 
+       " ", "attachNb"}], ";", "\n", "\t\t", 
+      RowBox[{
        RowBox[{"menuState", "[", "\"\<DestroyOnClick\>\"", "]"}], " ", "=", 
        " ", "clickDest"}], ";", "\n", "\t\t", 
       RowBox[{"Replace", "[", "\n", "\t\t\t", 
        RowBox[{
-        RowBox[{"FEAttachCell", "[", "\n", "\t\t\t\t", 
+        RowBox[{"FEAttachCell", "[", "\n", "\t\t\t  ", 
          RowBox[{
-          RowBox[{"If", "[", 
-           RowBox[{"attachCell", ",", " ", 
-            RowBox[{"ParentCell", "@", "box"}], ",", " ", "box"}], "]"}], ",",
-           "\n", "\t\t\t\t", 
+          RowBox[{"Which", "[", "\n", "\t\t\t    ", 
+           RowBox[{
+            RowBox[{"TrueQ", "[", "attachNb", "]"}], ",", "\n", 
+            "  \t\t\t    ", 
+            RowBox[{"ParentNotebook", "@", "box"}], ",", "\n", "\t\t\t    ", 
+            RowBox[{"TrueQ", "[", "attachCell", "]"}], ",", "\n", 
+            "\t\t\t      ", 
+            RowBox[{"ParentCell", "@", "box"}], ",", "\n", "\t\t\t    ", 
+            "True", ",", "\n", "\t\t\t      ", "box"}], "\n", "\t\t\t    ", 
+           "]"}], ",", "\n", "\t\t\t\t", 
           RowBox[{
            RowBox[{"If", "[", 
             RowBox[{
@@ -538,12 +558,12 @@ Cell[BoxData[{
               RowBox[{"<|", "|>"}]}]}], "]"}], ";", "\n", "\t", "\t\t\t", 
            RowBox[{
             RowBox[{"menuState", "[", "\"\<Root\>\"", "]"}], " ", "=", " ", 
-            "box"}], ";", "\n", "\t", "\t\t\t", 
-           RowBox[{"Cell", "[", "\n", "\t", "\t\t\t\t", 
+            "box"}], ";", "\n", "\t\t\t\t", 
+           RowBox[{"Cell", "[", "\n", "\t\t\t\t\t", 
             RowBox[{"BoxData", "@", 
-             RowBox[{"ToBoxes", "@", "\n", "\t", "\t\t\t\t\t", 
-              RowBox[{"makeMenuExpr", "[", "\n", "\t", "\t\t\t\t\t\t", 
-               RowBox[{"s", ",", " ", "\n", "\t", "\t\t\t\t\t\t", 
+             RowBox[{"ToBoxes", "@", "\n", "\t\t\t\t\t\t", 
+              RowBox[{"makeMenuExpr", "[", "\n", "\t\t\t\t\t\t\t", 
+               RowBox[{"s", ",", " ", "\n", "\t\t\t\t\t\t\t", 
                 RowBox[{"Append", "[", 
                  RowBox[{"menuCommands", ",", " ", "\n", "\t            ", 
                   RowBox[{
@@ -554,23 +574,27 @@ Cell[BoxData[{
                     RowBox[{
                     RowBox[{"menuState", "[", "\"\<DestroyOnClick\>\"", "]"}],
                      ",", " ", "None", ",", " ", 
-                    RowBox[{"DestroyDropDownMenu", "[", "s", "]"}]}], 
-                    "]"}]}]}], "\n", "\t            ", "]"}]}], "\n", 
-               "\t\t\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t\t\t", "]"}]}], ",", 
-          "\n", "\t\t\t\t", 
+                    RowBox[{"DestroyDropDownMenu", "[", "s", "]"}]}], "]"}]}]}
+                  ], "\n", "\t            ", "]"}]}], "\n", "\t\t\t\t\t\t\t", 
+               "]"}]}]}], "\n", "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t\t", 
+          
           RowBox[{"Replace", "[", 
            RowBox[{"align", ",", " ", "\n", "\t\t\t\t  ", 
-            RowBox[{"{", 
+            RowBox[{"{", "\n", "\t\t\t\t    ", 
              RowBox[{
-              RowBox[{"Left", "\[Rule]", "Automatic"}], ",", " ", 
-              RowBox[{"Right", "\[Rule]", 
-               RowBox[{"Offset", "[", 
-                RowBox[{
-                 RowBox[{"{", 
+              RowBox[{"Left", "\[Rule]", "Automatic"}], ",", " ", "\n", 
+              "\t\t\t\t    ", 
+              RowBox[{"Right", "\[Rule]", "\n", "\t\t\t\t      ", 
+               RowBox[{"If", "[", 
+                RowBox[{"attachCell", ",", " ", 
+                 RowBox[{"Offset", "[", 
                   RowBox[{
-                   RowBox[{"-", "22"}], ",", " ", 
-                   RowBox[{"-", "1"}]}], "}"}], ",", " ", "0"}], "]"}]}]}], 
-             "}"}]}], "\n", "\t\t\t\t  ", "]"}], ",", "\n", "\t\t\t\t", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "22"}], ",", " ", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", " ", "0"}], "]"}], ",", 
+                 " ", "Automatic"}], "]"}]}]}], "\n", "\t\t\t\t    ", "}"}]}],
+            "\n", "\t\t\t\t  ", "]"}], ",", "\n", "\t\t\t\t", 
           RowBox[{"{", 
            RowBox[{"align", ",", " ", 
             RowBox[{"If", "[", 
@@ -579,20 +603,23 @@ Cell[BoxData[{
           RowBox[{"{", 
            RowBox[{
             RowBox[{"If", "[", 
-             RowBox[{"attachCell", ",", " ", "align", ",", " ", 
+             RowBox[{
+              RowBox[{"attachCell", "||", "attachNb"}], ",", " ", "align", 
+              ",", " ", 
               RowBox[{"Replace", "[", 
                RowBox[{"align", ",", " ", 
                 RowBox[{"{", 
                  RowBox[{
                   RowBox[{"Left", "\[Rule]", "Right"}], ",", " ", 
                   RowBox[{"Right", "\[Rule]", "Left"}]}], "}"}]}], "]"}]}], 
-             "]"}], ",", " ", "Top"}], "}"}], ",", "\n", "\t", "\t\t\t", 
+             "]"}], ",", " ", "Top"}], "}"}], ",", "\n", "\t\t\t\t", 
           RowBox[{"{", 
            RowBox[{"(*", 
-            RowBox[{"\"\<OutsideMouseClick\>\"", ","}], " ", "*)"}], 
-           RowBox[{
-           "\"\<ParentChanged\>\"", ",", " ", "\"\<EvaluatorQuit\>\""}], 
-           "}"}]}], "\n", "\t", "\t\t\t", "]"}], ",", "\n", "\t", "\t\t", 
+            RowBox[{"\"\<OutsideMouseClick\>\"", ","}], " ", "*)"}], " ", 
+           RowBox[{"(*", 
+            RowBox[{"\"\<ParentChanged\>\"", ","}], "*)"}], " ", 
+           "\"\<EvaluatorQuit\>\"", "}"}]}], "\n", "\t\t\t\t", "]"}], ",", 
+        "\n", "\t\t\t", 
         RowBox[{"c_CellObject", "\[RuleDelayed]", 
          RowBox[{"(", 
           RowBox[{
@@ -607,83 +634,7 @@ Cell[BoxData[
   RowBox[{"End", "[", "]"}], ";"}]], "InputSection"]
 }, Open  ]],
 
-Cell["", "SectionSeparator"],
-
-Cell[BoxData[
- RowBox[{"CurrentValue", "[", 
-  RowBox[{
-   RowBox[{"EvaluationNotebook", "[", "]"}], ",", "\[IndentingNewLine]", 
-   RowBox[{"{", 
-    RowBox[{
-    "StyleDefinitions", ",", " ", "\"\<CascadingMenuCommand\>\"", ",", " ", 
-     "ButtonBoxOptions"}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[76]:="],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"ButtonBoxOptionsBaseStyle", "\[Rule]", "\"\<GenericButton\>\""}],
-     ",", 
-    RowBox[{"ButtonBoxOptionsDefaultBaseStyle", "\[Rule]", "\"\<Button\>\""}],
-     ",", 
-    RowBox[{"ButtonBoxOptionsEnabled", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsAppearance", "\[Rule]", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"\"\<Default\>\"", "\[Rule]", "None"}], ",", 
-       RowBox[{"\"\<Hover\>\"", "\[Rule]", 
-        RowBox[{"FrontEnd`FileName", "[", 
-         RowBox[{
-          RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", 
-          "\"\<MenuItem-Hover.9.png\>\""}], "]"}]}], ",", 
-       RowBox[{"\"\<Pressed\>\"", "\[Rule]", 
-        RowBox[{"FrontEnd`FileName", "[", 
-         RowBox[{
-          RowBox[{"{", "\"\<EasyIDE\>\"", "}"}], ",", 
-          "\"\<MenuItem-Hover.9.png\>\""}], "]"}]}]}], "}"}]}], ",", 
-    RowBox[{"ButtonBoxOptionsBackground", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsImageSize", "\[Rule]", "Full"}], ",", 
-    RowBox[{"ButtonBoxOptionsImageMargins", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsFrameMargins", "\[Rule]", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"20", ",", "20"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"15", ",", "15"}], "}"}]}], "}"}]}], ",", 
-    RowBox[{"ButtonBoxOptionsContentPadding", "\[Rule]", "True"}], ",", 
-    RowBox[{"ButtonBoxOptionsBaselinePosition", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsAlignment", "\[Rule]", "Left"}], ",", 
-    RowBox[{"ButtonBoxOptionsAutoAction", "\[Rule]", "False"}], ",", 
-    RowBox[{"ButtonBoxOptionsEvaluator", "\[Rule]", "None"}], ",", 
-    RowBox[{"ButtonBoxOptionsMethod", "\[Rule]", "\"\<Queued\>\""}], ",", 
-    RowBox[{"ButtonBoxOptionsTooltip", "\[Rule]", "None"}], ",", 
-    RowBox[{"ButtonBoxOptionsTooltipStyle", "\[Rule]", 
-     RowBox[{"{", "}"}]}], ",", 
-    RowBox[{
-    "ButtonBoxOptionsDefaultTooltipStyle", "\[Rule]", 
-     "\"\<TooltipLabel\>\""}], ",", 
-    RowBox[{"ButtonBoxOptionsTooltipDelay", "\[Rule]", "0.`"}], ",", 
-    RowBox[{"ButtonBoxOptionsActive", "\[Rule]", "True"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonFunction", "\[RuleDelayed]", 
-     RowBox[{"(", 
-      RowBox[{
-       RowBox[{"FrontEndExecute", "[", 
-        RowBox[{"{", 
-         RowBox[{"FrontEnd`NotebookApply", "[", 
-          RowBox[{
-           RowBox[{"FrontEnd`InputNotebook", "[", "]"}], ",", "#1", ",", 
-           "Placeholder"}], "]"}], "}"}], "]"}], "&"}], ")"}]}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonSource", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonData", "\[Rule]", "Automatic"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonNote", "\[Rule]", "None"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonFrame", "\[Rule]", "\"\<Automatic\>\""}], 
-    ",", 
-    RowBox[{"ButtonBoxOptionsButtonMargins", "\[Rule]", "3"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonMinHeight", "\[Rule]", "1.`"}], ",", 
-    RowBox[{"ButtonBoxOptionsButtonExpandable", "\[Rule]", "True"}]}], "}"}], 
-  " "}]], "Input"]
+Cell["", "SectionSeparator"]
 },
 WindowSize->{808, 755},
 WindowMargins->{{166, Automatic}, {Automatic, 0}},
@@ -710,53 +661,51 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 37, 0, 70, "CodeSection",ExpressionUUID->"06d7ec62-878a-40c3-ac98-cf810a6be1aa"],
-Cell[462, 17, 189, 5, 70, "CodeInput",ExpressionUUID->"4f5d39f8-df3f-4baf-8398-dc7a6a1089f2"],
-Cell[654, 24, 164, 4, 70, "CodeInput",ExpressionUUID->"2497958d-218a-4815-a202-4331a17a7746"],
-Cell[821, 30, 99, 2, 70, "InputSection",ExpressionUUID->"8feaa648-4fd3-4b42-ae43-810def02b0e1"],
+Cell[422, 15, 37, 0, 70, "CodeSection",ExpressionUUID->"e6c6673f-eac9-44a6-8114-dc751fa1cb25"],
+Cell[462, 17, 189, 5, 70, "CodeInput",ExpressionUUID->"08e16886-894a-4053-9fc6-7cbe0e97b9f5"],
+Cell[654, 24, 164, 4, 70, "CodeInput",ExpressionUUID->"678f5059-1b84-4f09-9bdb-e1af4f0c4551"],
+Cell[821, 30, 99, 2, 70, "InputSection",ExpressionUUID->"6ba4fff8-979e-4304-86c2-4d9b6174f405"],
 Cell[CellGroupData[{
-Cell[945, 36, 91, 1, 70, "CodeSubsection",ExpressionUUID->"e96432cc-0eb7-4a14-bd07-50128072445e",
+Cell[945, 36, 91, 1, 70, "CodeSubsection",ExpressionUUID->"2cf3b34f-492e-4f0d-8756-1c329033d38b",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[1061, 41, 88, 1, 70, "CodeSubsubsection",ExpressionUUID->"81a77b46-3e02-45aa-95a9-7b91dba5a85e",
+Cell[1061, 41, 88, 1, 70, "CodeSubsubsection",ExpressionUUID->"7e61c46e-9c6f-4873-9af0-4a123f8074fe",
  Evaluatable->True],
-Cell[1152, 44, 1163, 29, 70, "CodeInput",ExpressionUUID->"a0695596-b3c6-432d-bd59-a8afbe402937"]
+Cell[1152, 44, 1163, 29, 70, "CodeInput",ExpressionUUID->"1961a116-a3c6-45af-8a3e-d0ebc9a53def"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[2352, 78, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"b2228d79-4cde-4a34-a365-eca0a39bbe1b",
+Cell[2352, 78, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"4d7ba5d9-757f-470f-8b5e-42d4d6e00a44",
  Evaluatable->True],
-Cell[2446, 81, 97, 2, 70, "CodeInput",ExpressionUUID->"3a5e5a1d-345c-4615-8c2a-5857aaf2f28e"],
-Cell[2546, 85, 918, 23, 70, "CodeInput",ExpressionUUID->"e6d78c04-fb07-4129-a371-1fd8fcfbdc18"],
-Cell[3467, 110, 2868, 70, 70, "CodeInput",ExpressionUUID->"2185ed10-eeff-4b06-b4d0-cc5e5e00defd"],
-Cell[6338, 182, 899, 26, 70, "CodeInput",ExpressionUUID->"455fd730-91ad-4e74-ada3-94d5cd4e9108"]
+Cell[2446, 81, 97, 2, 70, "CodeInput",ExpressionUUID->"b39e8bfc-66a9-4c6a-b05f-d276e8f67da6"],
+Cell[2546, 85, 918, 23, 70, "CodeInput",ExpressionUUID->"a44d5f65-bb40-4315-8a35-534b606e62da"],
+Cell[3467, 110, 2905, 71, 70, "CodeInput",ExpressionUUID->"e4d3afd7-0b46-40ec-bd85-d8ac4bb09f22"],
+Cell[6375, 183, 899, 26, 70, "CodeInput",ExpressionUUID->"175e3293-4d8f-4497-998c-4f8557514b17"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7274, 213, 85, 1, 70, "CodeSubsubsection",ExpressionUUID->"6ddec063-149d-4ccb-9fa0-f72bef873185",
+Cell[7311, 214, 85, 1, 70, "CodeSubsubsection",ExpressionUUID->"e5db3979-7cc0-4b76-8adf-33531de049c0",
  Evaluatable->True],
-Cell[7362, 216, 2329, 59, 70, "CodeInput",ExpressionUUID->"a12bc38b-135e-457a-9c2a-711ebaac1fc8"]
-}, Closed]],
+Cell[7399, 217, 2278, 61, 70, "CodeInput",ExpressionUUID->"05daaeb0-1595-4911-a4c3-820c2330951f"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[9728, 280, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"81c2d2dc-3ebc-45cc-9353-f8481e90da7b",
+Cell[9714, 283, 90, 1, 70, "CodeSubsubsection",ExpressionUUID->"ab7865a2-54b7-4065-9e4b-c4f22f15a84a",
  Evaluatable->True],
-Cell[9821, 283, 4431, 102, 70, "CodeInput",ExpressionUUID->"47ea6b8a-2403-45bf-ac20-521ed8c8cf28"]
-}, Closed]],
+Cell[9807, 286, 4431, 102, 70, "CodeInput",ExpressionUUID->"52e7d6bf-50d1-4ab7-9a8f-b2ff22f507d1"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[14289, 390, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"a9527ca4-8d68-47ad-887e-ad529a4d84c2",
+Cell[14275, 393, 95, 1, 70, "CodeSubsubsection",ExpressionUUID->"e920516d-d253-4d2d-a1ff-386a4fb5fcf4",
  Evaluatable->True],
-Cell[14387, 393, 663, 19, 70, "CodeInput",ExpressionUUID->"ba75da1e-f07d-4e90-8bee-552f2559a254"]
-}, Closed]],
+Cell[14373, 396, 663, 19, 70, "CodeInput",ExpressionUUID->"b4778d07-37e6-4e7e-ab42-9a0bb1ffc488"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[15087, 417, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"1ee6c1e8-fa5d-4861-831a-b6f75b90d293",
+Cell[15073, 420, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"e72c57ca-76ef-4ef8-8ad8-ad154107df9a",
  Evaluatable->True],
-Cell[15184, 420, 2575, 60, 70, "CodeInput",ExpressionUUID->"7619e005-9674-472e-9ee3-f74db232f9a3"],
-Cell[17762, 482, 5473, 118, 70, "CodeInput",ExpressionUUID->"37255447-4ac5-4473-8ca8-364fb3a7d3e7"]
+Cell[15170, 423, 2867, 66, 70, "CodeInput",ExpressionUUID->"2df3fc3c-4f84-493c-927c-d6af622353f0"],
+Cell[18040, 491, 6351, 136, 70, "CodeInput",ExpressionUUID->"6c7db8e1-29a6-4256-96b1-435b757bb384"]
 }, Open  ]]
 }, Open  ]],
-Cell[23262, 604, 76, 2, 70, "InputSection",ExpressionUUID->"b2215e81-1d6e-451e-a71d-75970a991ab1"]
+Cell[24418, 631, 76, 2, 70, "InputSection",ExpressionUUID->"a08b7aaf-4133-418d-ab77-d5e5e484c5cd"]
 }, Open  ]],
-Cell[23353, 609, 28, 0, 70, "SectionSeparator",ExpressionUUID->"b4dd7f02-169d-47e3-9a5d-a30fcaa7fab9"],
-Cell[23384, 611, 336, 8, 70, "Input",ExpressionUUID->"5978cfd3-3b40-45c5-8b37-5076d0a8a71a"],
-Cell[23723, 621, 3109, 64, 70, "Input",ExpressionUUID->"416fa5a4-3137-4980-876a-a6a65fcc7aa9"]
+Cell[24509, 636, 28, 0, 70, "SectionSeparator",ExpressionUUID->"229235ea-2aee-4fb6-8193-294650b38334"]
 }
 ]
 *)

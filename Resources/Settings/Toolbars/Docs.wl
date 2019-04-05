@@ -33,7 +33,7 @@ Begin["`DocsToolbar`Private`"];
 
 
 metadataEditor =
-	Button[
+ Button[
   "Edit Metadata",
   OpenMetadataEditor[EvaluationNotebook[]],
   Appearance->Inherited,
@@ -61,7 +61,7 @@ docsOpsMenu=
     Replace[$HamburgerMenu, 
       {
         (k_:>v_):>
-          k:>WithDocsIDE[v]
+          (k:>WithDocsIDE[$CurrentIDENotebook, v])
         },
       2
       ],
@@ -79,6 +79,9 @@ docsOpsMenu=
 batchDocs=
   Button[
     "Create Batch Docs",
+    CreateMessagePopup[
+      Row@{"Creating docs", ProgressIndicator[Appearance->"Ellipsis"]}
+      ];
     CreateBatchSymbolPages[EvaluationNotebook[]];
     CreateMessagePopup["Batch docs created"],
     Appearance->Inherited,
@@ -93,9 +96,22 @@ edits = {
     {
       NotebookWrite[EvaluationNotebook[], Cell["", "RawMarkdown"]],
       Method->"Preemptive"
+      },
+  "Function Link":>
+    {
+      NotebookWrite[EvaluationNotebook[], 
+        TextData@{
+          Cell[" | ", "Text"], 
+          ButtonBox["FunctionName", 
+            BaseStyle->{"Link", "Input"},
+            ButtonData->"paclet:Paclet/ref/FunctionName"
+            ]
+          }
+        ],
+      Method->"Preemptive"
       }
   }
-menuState  = <||>;
+If[!ValueQ[menuState], menuState  = <||>];
 showMenuButton=
   Button[
     "Edits Menu",

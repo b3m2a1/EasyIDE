@@ -1,0 +1,320 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9856,        311]
+NotebookOptionsPosition[      5049,        203]
+NotebookOutlinePosition[      6443,        238]
+CellTagsIndexPosition[      6400,        235]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Markdown", " ", "metadata"}], " ", "*)"}], "\[IndentingNewLine]", 
+  
+  RowBox[{"<|", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\"\<Date\>\"", "\[RuleDelayed]", "Now"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"\"\<UseImageInput\>\"", "\[Rule]", "True"}], "*)"}], 
+      "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", 
+   "|>"}]}]], "Metadata",
+ CellID->1306750222],
+
+Cell["EasyIDE Symbol", "TitleBar",
+ CellID->1376294782],
+
+Cell[CellGroupData[{
+
+Cell["SetCurrentValue", "Section", "SymbolName",
+ CellID->235723285],
+
+Cell["", "UsageSection",
+ CellID->1841405927],
+
+Cell[BoxData[
+ RowBox[{"SetCurrentValue", "[", 
+  RowBox[{"nb", ",", " ", "k", ",", " ", "value"}], "]"}]], "Code", \
+"UsageInput",
+ CellID->1122578172],
+
+Cell[TextData[{
+ "sets a ",
+ ButtonBox["CurrentValue",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/CurrentValue"]
+}], "Text", "UsageText",
+ CellID->1527497909],
+
+Cell["", "UsageSectionFooter",
+ CellID->1637840325],
+
+Cell[CellGroupData[{
+
+Cell["Details", "Subsection", "DetailsSection",
+ CellID->736955029],
+
+Cell[TextData[{
+ Cell[BoxData["SetCurrentValue"], "InlineInput"],
+ " is a reimplementation of ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"CurrentValue", "[", "...", "]"}], "  ", "=", " ", "val"}]], 
+  "InlineInput"],
+ " that tries to allow ",
+ ButtonBox["DynamicUpdating",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/DynamicUpdating"],
+ " to be turned off while in process"
+}], "Item", "DetailsItem",
+ CellID->1464980154]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Examples", "Subsection", "ExamplesSection",
+ CellID->1021435423],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "Subsubsection", "ExamplesSection",
+ CellID->280880243],
+
+Cell[BoxData[
+ RowBox[{"<<", "EasyIDE`Notebooks`Utilities`"}]], "Input",
+ CellLabel->"In[8]:=",
+ CellID->523880109],
+
+Cell["Set the notebook background:", "Text", "ExamplesText",
+ CellID->585187995],
+
+Cell[BoxData[
+ RowBox[{"SetCurrentValue", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", "Background", ",", " ",
+    "Red"}], "]"}]], "Input", "ExamplesInput",
+ CellLabel->"In[9]:=",
+ CellID->1927012352],
+
+Cell["Revert that", "Text",
+ CellID->49314247],
+
+Cell[BoxData[
+ RowBox[{"SetCurrentValue", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", "Background", ",", " ",
+    "Inherited"}], "]"}]], "Input", "ExamplesInput",
+ CellLabel->"In[10]:=",
+ CellID->1283900015]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Definitions", "Subsubsection", "ExamplesSection",
+ CellID->1095719657],
+
+Cell["Examine all definitions:", "Text", "ExamplesText",
+ CellID->1088002174],
+
+Cell[BoxData[
+ RowBox[{"GeneralUtilities`PrintDefinitionsLocal", "[", "SetCurrentValue", 
+  "]"}]], "Code", "ExamplesInput",
+ CellID->229284213],
+
+Cell["", "PageBreak",
+ PageBreakAbove->False,
+ PageBreakBelow->False,
+ CellID->820995645]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Subsection", "SeeAlso",
+ CellID->714164647],
+
+Cell[TextData[{
+ ButtonBox["CurrentValue",
+  BaseStyle->{"Link", "Input"},
+  ButtonData->"paclet:ref/CurrentValue"],
+ Cell[" | ", "Text"],
+ ButtonBox["IDEData",
+  BaseStyle->{"Link", "Input"},
+  ButtonData->"paclet:EasyIDE/ref/IDEData"],
+ Cell[" | ", "Text"],
+ ButtonBox["SetCurrentValueDelayed",
+  BaseStyle->{"Link", "Input"},
+  ButtonData->"paclet:EasyIDE/ref/SetCurrentValueDelayed"]
+}], "Text",
+ CellID->679119046]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Guides", "Subsection", "Related",
+ CellID->891373540],
+
+Cell[TextData[ButtonBox["EasyIDE Overview",
+ BaseStyle->"Link",
+ ButtonData->"paclet:EasyIDE/guide/EasyIDE"]], "Item",
+ CellID->469165308]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Links", "Subsection", "RelatedLinks",
+ CellID->17906014],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EasyIDE GitHub",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://github.com/b3m2a1/EasyIDE"], None},
+ ButtonNote->"https://github.com/b3m2a1/EasyIDE"]], "Item",
+ CellID->779935306],
+
+Cell[TextData[ButtonBox["Mathematica Paclet Server",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://paclets.github.io/PacletServer"], None},
+ ButtonNote->"https://paclets.github.io/PacletServer"]], "Item",
+ CellID->1480088952]
+}, Open  ]]
+}, Open  ]],
+
+Cell["Made with SimpleDocs and EasyIDE", "Text", "Footer",
+ CellID->70414905]
+}, Open  ]]
+},
+ScreenStyleEnvironment->"Editing",
+WindowSize->{808, 755},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+TaggingRules->{
+ "Metadata" -> {
+   "built" -> "{2019, 4, 4, 18, 41, 13.362766}", 
+    "history" -> {"11.3", "", ""}, "context" -> "EasyIDE`", "keywords" -> {}, 
+    "specialkeywords" -> {}, "tutorialcollectionlinks" -> {}, "index" -> True,
+     "label" -> "SetCurrentValue", "language" -> "en", "paclet" -> 
+    "Mathematica", "status" -> "None", "summary" -> "", "synonyms" -> {}, 
+    "tabletags" -> {}, "title" -> "SetCurrentValue", "titlemodifier" -> "", 
+    "windowtitle" -> "SetCurrentValue", "type" -> "Symbol", "uri" -> 
+    "EasyIDE/ref/SetCurrentValue"}, "ColorType" -> "SymbolColor", 
+  "SimpleDocs" -> {
+   "MarkdownAutosave" -> False, "DocumentationAutosave" -> False, 
+    "Project" -> {
+     "Name" -> "EasyIDE", "Directory" -> 
+      FrontEnd`FileName[{$UserDocumentsDirectory, "Wolfram Mathematica", 
+         "Applications"}, "EasyIDE"], "Config" -> 
+      FrontEnd`FileName[{"project", "docs"}, "config.wl"]}}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"SimpleDocs"}, "SimpleDocs.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 561, 15, 70, "Metadata",ExpressionUUID->"9be87105-869d-4c93-a45f-2269172426ff",
+ CellID->1306750222],
+Cell[1122, 37, 55, 1, 70, "TitleBar",ExpressionUUID->"3bd4c341-23bb-4090-b316-eb75ecabe884",
+ CellID->1376294782],
+Cell[CellGroupData[{
+Cell[1202, 42, 68, 1, 70, "Section",ExpressionUUID->"99046097-cee8-4d77-9cea-f5fd941891c0",
+ CellID->235723285],
+Cell[1273, 45, 45, 1, 70, "UsageSection",ExpressionUUID->"f0a10fa6-645c-4801-a3f1-fd8127051b3d",
+ CellID->1841405927],
+Cell[1321, 48, 152, 4, 70, "Code",ExpressionUUID->"5b80b158-42e3-4da3-99f9-0433e5e7b83c",
+ CellID->1122578172],
+Cell[1476, 54, 162, 6, 70, "Text",ExpressionUUID->"8b330498-360d-4bee-91bf-bf752ec6fdf6",
+ CellID->1527497909],
+Cell[1641, 62, 51, 1, 70, "UsageSectionFooter",ExpressionUUID->"c2781586-8227-4e22-957c-42d25251aa07",
+ CellID->1637840325],
+Cell[CellGroupData[{
+Cell[1717, 67, 67, 1, 70, "Subsection",ExpressionUUID->"4a68fed2-f863-4e39-859e-438abeaa40ec",
+ CellID->736955029],
+Cell[1787, 70, 421, 13, 70, "Item",ExpressionUUID->"c5bb6ec5-6ed0-4492-a460-4232b5062793",
+ CellID->1464980154]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2245, 88, 70, 1, 70, "Subsection",ExpressionUUID->"7c77e5dc-4e02-4ca3-b685-d0c92febe426",
+ CellID->1021435423],
+Cell[CellGroupData[{
+Cell[2340, 93, 78, 1, 70, "Subsubsection",ExpressionUUID->"fbf6b2a9-1e3b-4401-9cdd-f26f27f3a1de",
+ CellID->280880243],
+Cell[2421, 96, 115, 3, 70, "Input",ExpressionUUID->"69684ddd-8717-4285-a5ef-44fadc4b4afd",
+ CellID->523880109],
+Cell[2539, 101, 80, 1, 70, "Text",ExpressionUUID->"a565480f-d608-4afa-91ca-353cf049b18f",
+ CellID->585187995],
+Cell[2622, 104, 228, 6, 70, "Input",ExpressionUUID->"d9054290-42da-48cf-a4db-dd6d73c13836",
+ CellID->1927012352],
+Cell[2853, 112, 46, 1, 70, "Text",ExpressionUUID->"a6908609-7f28-4f72-b874-af32639a12a1",
+ CellID->49314247],
+Cell[2902, 115, 235, 6, 70, "Input",ExpressionUUID->"bdd855ae-ff65-4528-b2bd-4d7b2256160b",
+ CellID->1283900015]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3174, 126, 76, 1, 70, "Subsubsection",ExpressionUUID->"6fa01870-5bce-4e55-b552-1063e54033c1",
+ CellID->1095719657],
+Cell[3253, 129, 77, 1, 70, "Text",ExpressionUUID->"b2863c50-e385-4f43-9c76-03ed529c83db",
+ CellID->1088002174],
+Cell[3333, 132, 144, 3, 70, "Code",ExpressionUUID->"9c2232d6-779c-47c2-92eb-246b9989a71c",
+ CellID->229284213],
+Cell[3480, 137, 89, 3, 70, "PageBreak",ExpressionUUID->"fd586692-c29c-46cd-82d1-36bac35e803d",
+ PageBreakAbove->False,
+ PageBreakBelow->False,
+ CellID->820995645]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3618, 146, 61, 1, 70, "Subsection",ExpressionUUID->"68214c76-37f4-48b0-8d84-a1cf54995f79",
+ CellID->714164647],
+Cell[3682, 149, 419, 13, 70, "Text",ExpressionUUID->"613a185e-4c62-49b1-bfb6-3f474d9759f5",
+ CellID->679119046]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4138, 167, 67, 1, 70, "Subsection",ExpressionUUID->"1b40846b-ea85-4251-a786-825bf6fdf70f",
+ CellID->891373540],
+Cell[4208, 170, 138, 3, 70, "Item",ExpressionUUID->"14ec61f1-5fbf-439e-bb5e-95d747f389be",
+ CellID->469165308]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4383, 178, 70, 1, 70, "Subsection",ExpressionUUID->"ee11114f-4226-4f6c-a92b-9896edeb7d93",
+ CellID->17906014],
+Cell[CellGroupData[{
+Cell[4478, 183, 213, 5, 70, "Item",ExpressionUUID->"47007932-f72e-4828-8969-0b70a0313867",
+ CellID->779935306],
+Cell[4694, 190, 235, 5, 70, "Item",ExpressionUUID->"21e1a5f7-c490-4c6b-aaaa-1971e423e4a8",
+ CellID->1480088952]
+}, Open  ]]
+}, Open  ]],
+Cell[4956, 199, 77, 1, 70, "Text",ExpressionUUID->"6de61de8-5f86-46da-af04-5ea6f84c405a",
+ CellID->70414905]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

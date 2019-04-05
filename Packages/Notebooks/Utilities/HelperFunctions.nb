@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     17820,        487]
-NotebookOptionsPosition[     13539,        395]
-NotebookOutlinePosition[     14205,        418]
-CellTagsIndexPosition[     14162,        415]
+NotebookDataLength[     20449,        547]
+NotebookOptionsPosition[     16162,        455]
+NotebookOutlinePosition[     16828,        478]
+CellTagsIndexPosition[     16785,        475]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -54,6 +54,11 @@ Cell[BoxData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{
+   RowBox[{"iCurrentValue", "::", "usage"}], "=", 
+   "\"\<Just reimplements CurrentValue for when it's needed\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
    RowBox[{"SetCurrentValue", "::", "usage"}], "=", "\"\<\>\""}], ";"}], "\n", 
  RowBox[{
   RowBox[{
@@ -75,8 +80,21 @@ Cell["\[LeftCeiling]CurrentValues\[RightFloor]", "CodeSubsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"iCurrentValue", " ", "=", " ", "System`FEDump`iCV"}], 
-  ";"}]], "CodeInput"],
+  RowBox[{"iCurrentValue", "[", "a___", "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"c", "=", 
+      RowBox[{"FrontEnd`CurrentValue", "[", "a", "]"}]}], "}"}], ",", "\n", 
+    "  ", "  ", 
+    RowBox[{"Replace", "[", "\n", "  ", "    ", 
+     RowBox[{
+      RowBox[{"MathLink`CallFrontEnd", "[", "\n", "  ", "  ", "    ", 
+       RowBox[{"FrontEnd`Value", "[", 
+        RowBox[{"c", ",", " ", "FrontEnd`$TrackingEnabled"}], "]"}], "]"}], 
+      ",", "\n", "  ", "  ", "  ", 
+      RowBox[{"c", "\[Rule]", "$Failed"}]}], "\n", "  ", "    ", "]"}]}], 
+   "\n", "  ", "  ", "]"}]}]], "CodeInput"],
 
 Cell[CellGroupData[{
 
@@ -146,57 +164,100 @@ Cell[BoxData[{
     RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", "  ", 
    RowBox[{"Block", "[", "\n", "    ", 
     RowBox[{
-     RowBox[{"{", "\n", "      ", "CurrentValue", "\n", "      ", "}"}], ",", 
-     "\n", "    ", 
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"CurrentValue", ",", "\n", "      ", "FrontEnd`Options"}], "\n",
+       "      ", "}"}], ",", "\n", "    ", 
      RowBox[{
       RowBox[{
        RowBox[{"CurrentValue", "[", 
         RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], ":=", "\n", 
        "      ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"a", ",", " ", 
-         RowBox[{"Flatten", "@", 
-          RowBox[{"{", 
-           RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}], ",", " ", 
-         "c"}], "]"}]}], ";", "\n", "    ", 
+       RowBox[{"Block", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "        ", 
+         RowBox[{"IDEData", "[", 
+          RowBox[{"a", ",", " ", 
+           RowBox[{"Flatten", "@", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}], ",", " ", 
+           "c"}], "]"}]}], "\n", "        ", "]"}]}], ";", "\n", "    ", 
       RowBox[{"CurrentValue", "/:", "\n", "      ", 
        RowBox[{"(", 
         RowBox[{
          RowBox[{"CurrentValue", "[", 
           RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], " ", "=", 
          " ", "v_"}], ")"}], ":=", "\n", "        ", 
-       RowBox[{"(", 
+       RowBox[{"Block", "[", 
         RowBox[{
-         RowBox[{"IDEData", "[", 
-          RowBox[{"a", ",", " ", 
-           RowBox[{"Flatten", "@", 
-            RowBox[{"{", 
-             RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
-         " ", "=", " ", "v"}], ")"}]}], ";", "\n", "    ", 
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "          ", 
+         RowBox[{
+          RowBox[{"IDEData", "[", 
+           RowBox[{"a", ",", " ", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
+          " ", "=", " ", "v"}]}], "\n", "          ", "]"}]}], ";", "\n", 
+      "    ", 
       RowBox[{"CurrentValue", "/:", "\n", "      ", 
        RowBox[{"(", 
         RowBox[{
          RowBox[{"CurrentValue", "[", 
           RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], " ", ":=", 
          " ", "v_"}], ")"}], ":=", "\n", "        ", 
-       RowBox[{"(", 
+       RowBox[{"Block", "[", 
         RowBox[{
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "          ", 
+         RowBox[{
+          RowBox[{"IDEData", "[", 
+           RowBox[{"a", ",", " ", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
+          " ", ":=", " ", "v"}]}], "\n", "          ", "]"}]}], ";", "\n", 
+      "    ", 
+      RowBox[{
+       RowBox[{"FrontEnd`Options", "[", "n_", "]"}], ":=", "\n", "    \t", 
+       RowBox[{"Block", "[", "\n", "    \t\t", 
+        RowBox[{
+         RowBox[{"{", "\n", "    \t\t\t", 
+          RowBox[{"CurrentValue", "=", "\n", "    \t\t\t\t", 
+           RowBox[{
+            RowBox[{"FrontEnd`Value", "[", 
+             RowBox[{
+              RowBox[{"FrontEnd`CurrentValue", "[", "##", "]"}], ",", " ", 
+              "FrontEnd`$TrackingEnabled"}], "]"}], "&"}]}], "\n", 
+          "    \t\t\t", "}"}], ",", "\n", "    \t  ", 
          RowBox[{"IDEData", "[", 
-          RowBox[{"a", ",", " ", 
-           RowBox[{"Flatten", "@", 
-            RowBox[{"{", 
-             RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
-         " ", ":=", " ", "v"}], ")"}]}], ";", "\n", "    ", 
+          RowBox[{"n", ",", " ", "\"\<Options\>\""}], "]"}]}], "\n", 
+        "    \t  ", "]"}]}], ";", "\n", "    ", 
       RowBox[{"Internal`InheritedBlock", "[", 
        RowBox[{
-        RowBox[{"{", "Options", "}"}], ",", "\n", "      ", 
+        RowBox[{"{", "NotebookGet", "}"}], ",", "\n", "    \t", 
         RowBox[{
+         RowBox[{"Unprotect", "[", "NotebookGet", "]"}], ";", "\n", "    \t", 
+         
          RowBox[{
-          RowBox[{"Options", "[", "nb", "]"}], " ", ":=", " ", 
-          RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", "\"\<Options\>\""}], "]"}]}], ";", "\n", 
-         "\t    ", "expr"}]}], "\n", "\t    ", "]"}]}]}], "\n", "    ", 
-    "]"}]}], ";"}], "\n", 
+          RowBox[{"NotebookGet", "[", "nb", "]"}], ":=", "\n", "    \t  ", 
+          RowBox[{"Block", "[", "\n", "    \t  \t", 
+           RowBox[{
+            RowBox[{"{", "\n", "    \t  \t\t", 
+             RowBox[{
+              RowBox[{"NotebookGet", "=", 
+               RowBox[{
+                RowBox[{"MathLink`CallFrontEnd", "[", 
+                 RowBox[{"FrontEnd`NotebookGet", "[", "nb", "]"}], "]"}], 
+                "&"}]}], ",", "\n", "    \t  \t\t", 
+              RowBox[{"CurrentValue", "=", "iCurrentValue"}]}], "\n", 
+             "    \t  \t\t", "}"}], ",", "\n", "    \t\t\t", 
+            RowBox[{"GetNotebookExpression", "[", "nb", "]"}]}], "\n", 
+           "    \t\t\t", "]"}]}], ";", "\n", " \t   ", "expr"}]}], "\n", 
+       " \t   ", "]"}]}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"WithIDEData", "~", "SetAttributes", "~", "HoldRest"}], 
   ";"}]}], "CodeInput"]
@@ -225,7 +286,7 @@ Cell["\[LeftCeiling]Helpers\[RightFloor]", "CodeSubsection",
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]WithPausedNotebook\[RightFloor]", "CodeSubsubsection",
+Cell["\[LeftCeiling]WithNotebookPaused\[RightFloor]", "CodeSubsubsection",
  Evaluatable->True],
 
 Cell["\<\
@@ -270,27 +331,26 @@ Cell[BoxData[{
         RowBox[{
          RowBox[{"FrontEndExecute", "@", "\n", "\t\t\t\t\t", 
           RowBox[{"{", "\n", "\t\t\t\t\t  ", 
-           RowBox[{"FrontEnd`NotebookSuspendScreenUpdates", "[", "nb", "]"}], 
-           
-           RowBox[{"(*", 
-            RowBox[{",", "\n", "\t\t\t\t\t  ", 
-             RowBox[{"FrontEnd`SetOptions", "[", 
-              RowBox[{"nb", ",", " ", 
-               RowBox[{"DynamicUpdating", "\[Rule]", "False"}]}], "]"}]}], 
-            "*)"}], "\n", "\t\t\t\t\t  ", "}"}]}], ",", "\n", "\t\t\t\t", 
+           RowBox[{
+            RowBox[{"FrontEnd`NotebookSuspendScreenUpdates", "[", "nb", "]"}],
+             ",", "\n", "\t\t\t\t\t  ", 
+            RowBox[{"FrontEnd`SetOptions", "[", 
+             RowBox[{"nb", ",", " ", 
+              RowBox[{"DynamicUpdating", "\[Rule]", "False"}]}], "]"}]}], 
+           "\n", "\t\t\t\t\t  ", "}"}]}], ",", "\n", "\t\t\t\t", 
          RowBox[{
           RowBox[{"paused", " ", "=", " ", "True"}], ";", "\n", "\t\t\t\t", 
           "expr"}], ",", "\n", "\t\t\t\t", 
          RowBox[{"FrontEndExecute", "@", "\n", "\t\t\t\t\t", 
           RowBox[{"{", "\n", "\t\t\t\t\t  ", 
-           RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"FrontEnd`SetOptions", "[", 
+             RowBox[{"nb", ",", " ", 
+              RowBox[{"DynamicUpdating", "\[Rule]", "Automatic"}]}], "]"}], 
+            ",", "\n", "\t\t\t\t\t  ", 
             RowBox[{
-             RowBox[{"FrontEnd`SetOptions", "[", 
-              RowBox[{"nb", ",", " ", 
-               RowBox[{"DynamicUpdating", "\[Rule]", "True"}]}], "]"}], ","}],
-             "*)"}], "\n", "\t\t\t\t\t  ", 
-           RowBox[{"FrontEnd`NotebookResumeScreenUpdates", "[", "nb", "]"}], 
-           "\n", "\t\t\t\t\t  ", "}"}]}]}], "\n", "\t\t\t\t", "]"}]}], "\n", 
+            "FrontEnd`NotebookResumeScreenUpdates", "[", "nb", "]"}]}], "\n", 
+           "\t\t\t\t\t  ", "}"}]}]}], "\n", "\t\t\t\t", "]"}]}], "\n", 
       "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
  RowBox[{"WithNotebookPaused", "~", "SetAttributes", "~", 
   "HoldRest"}]}], "CodeInput"]
@@ -394,7 +454,7 @@ Cell[BoxData[
 Cell["", "SectionSeparator"]
 },
 WindowSize->{808, 755},
-WindowMargins->{{Automatic, 270}, {Automatic, 49}},
+WindowMargins->{{112, Automatic}, {45, Automatic}},
 TaggingRules->{
  "UUIDButtons" -> {
    "Active" -> {
@@ -418,70 +478,70 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 39, 0, 70, "CodeSection",ExpressionUUID->"88aea480-7307-4093-b996-1555bedc042d"],
-Cell[464, 17, 331, 9, 70, "CodeInput",ExpressionUUID->"6495548f-bec3-496b-a341-7adb3af26014"],
-Cell[798, 28, 341, 9, 70, "CodeInput",ExpressionUUID->"7899ea82-bcde-470c-bfe2-a413d85e3ae8"],
-Cell[1142, 39, 114, 2, 70, "Text",ExpressionUUID->"dda21ca9-ca62-4506-9599-00fc55092498",
+Cell[422, 15, 39, 0, 70, "CodeSection",ExpressionUUID->"aefa6ece-e424-4110-8079-5c2a2dcd3033"],
+Cell[464, 17, 331, 9, 70, "CodeInput",ExpressionUUID->"349dc2c7-1a05-4772-b2b7-d9d4a53e896e"],
+Cell[798, 28, 341, 9, 70, "CodeInput",ExpressionUUID->"05285f1d-8cc1-410c-9c58-ab23c2ef943f"],
+Cell[1142, 39, 114, 2, 70, "Text",ExpressionUUID->"9b238242-dbbc-4fb6-8978-6423331b22bf",
  Evaluatable->True],
-Cell[1259, 43, 230, 8, 70, "CodeInput",ExpressionUUID->"374568e0-0a94-4f70-a9a7-e4a0962fde5e"],
-Cell[1492, 53, 376, 11, 70, "CodeInput",ExpressionUUID->"e951ad13-10b7-484e-8029-d3d5aed5ea20"],
-Cell[1871, 66, 99, 2, 70, "InputSection",ExpressionUUID->"ef63879c-34a6-447d-9594-92f6e7f88aa8"],
+Cell[1259, 43, 230, 8, 70, "CodeInput",ExpressionUUID->"10ee29e1-545a-444b-bc79-5c680af55a67"],
+Cell[1492, 53, 533, 16, 70, "CodeInput",ExpressionUUID->"85b17323-7e62-4e28-b36e-26b359b71788"],
+Cell[2028, 71, 99, 2, 70, "InputSection",ExpressionUUID->"ec34bc09-2f93-49d1-a97c-2ce479a27dc5"],
 Cell[CellGroupData[{
-Cell[1995, 72, 86, 1, 70, "CodeSubsection",ExpressionUUID->"dcb65c06-09c1-4edd-b011-cfabf582f548",
+Cell[2152, 77, 86, 1, 70, "CodeSubsection",ExpressionUUID->"756368ce-c2c4-462a-8322-ad1f860bdfc1",
  Evaluatable->True],
-Cell[2084, 75, 112, 3, 70, "CodeInput",ExpressionUUID->"6f62d4b7-2f65-49f7-a3fa-6a828accb88e"],
+Cell[2241, 80, 666, 16, 70, "CodeInput",ExpressionUUID->"334cd56e-2a19-4ef0-949c-b56887dfed09"],
 Cell[CellGroupData[{
-Cell[2221, 82, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"8e74c97a-e931-44c0-aae3-0d84cbe09be9",
+Cell[2932, 100, 91, 1, 70, "CodeSubsubsection",ExpressionUUID->"a3eaf722-7abb-4899-901f-1368b8472efd",
  Evaluatable->True],
-Cell[2315, 85, 861, 20, 70, "CodeInput",ExpressionUUID->"92e0068d-5737-4172-b1df-5ebab8ebcb2a"]
+Cell[3026, 103, 861, 20, 70, "CodeInput",ExpressionUUID->"74e004a5-465a-4949-8628-6897dbc67c5d"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[3213, 110, 98, 1, 70, "CodeSubsubsection",ExpressionUUID->"5675f0cd-cdc3-4f47-bf44-669a775f49f4",
+Cell[3924, 128, 98, 1, 70, "CodeSubsubsection",ExpressionUUID->"e9f8db14-8000-4779-8a15-3cbc30b93370",
  Evaluatable->True],
-Cell[3314, 113, 922, 20, 70, "CodeInput",ExpressionUUID->"1921ab32-0c32-4549-b8dc-7d1f77135267"]
+Cell[4025, 131, 922, 20, 70, "CodeInput",ExpressionUUID->"69de2ad5-275a-446c-9d1a-c38e8ebab6a1"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[4273, 138, 87, 1, 70, "CodeSubsubsection",ExpressionUUID->"36f0f4ed-5d12-4b62-a4f1-369230c1d4d1",
+Cell[4984, 156, 87, 1, 70, "CodeSubsubsection",ExpressionUUID->"7cd5546f-3216-4dec-b2db-78bd4db1a64d",
  Evaluatable->True],
-Cell[4363, 141, 2359, 60, 70, "CodeInput",ExpressionUUID->"c86d06f8-2dd8-4768-9309-acc10b99fe14"]
+Cell[5074, 159, 4327, 103, 70, "CodeInput",ExpressionUUID->"2c678f37-a2df-488e-84f8-6a58d222ed5c"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6771, 207, 81, 1, 70, "CodeSubsection",ExpressionUUID->"8e5961a9-1f89-43fe-8b31-f7f12e80505b",
+Cell[9450, 268, 81, 1, 70, "CodeSubsection",ExpressionUUID->"8e202191-3c67-4d20-a97d-e300544feedc",
  Evaluatable->True],
-Cell[6855, 210, 281, 7, 70, "CodeInput",ExpressionUUID->"65b9b460-5bdc-4f74-83ec-bb7dd31643d3"]
+Cell[9534, 271, 281, 7, 70, "CodeInput",ExpressionUUID->"7bee722c-261c-4622-b02e-ab7c7de785bb"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7173, 222, 80, 1, 70, "CodeSubsection",ExpressionUUID->"9a636e19-2cbe-4acf-a0ad-796453ef9127",
+Cell[9852, 283, 80, 1, 70, "CodeSubsection",ExpressionUUID->"384dda45-1787-4e31-8799-e73d83f96597",
  Evaluatable->True],
 Cell[CellGroupData[{
-Cell[7278, 227, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"093519e5-a537-4ae7-b2ec-e57414a5351e",
+Cell[9957, 288, 94, 1, 70, "CodeSubsubsection",ExpressionUUID->"69aee005-a7bf-4e26-bca4-02668522ddeb",
  Evaluatable->True],
-Cell[7375, 230, 134, 5, 70, "Text",ExpressionUUID->"b51fc8c2-6a29-470e-a6c4-1f3049a8cace",
+Cell[10054, 291, 134, 5, 70, "Text",ExpressionUUID->"8c7373db-befa-4066-bb16-f86d9e0c6218",
  Evaluatable->True],
-Cell[7512, 237, 2767, 58, 70, "CodeInput",ExpressionUUID->"e109bfa1-a8fa-4208-a6f2-91e1edb13c66"]
+Cell[10191, 298, 2711, 57, 70, "CodeInput",ExpressionUUID->"d1f1af42-c5ff-4664-9a9a-f77b12d0319b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10316, 300, 102, 2, 70, "CodeSubsubsection",ExpressionUUID->"f69e28b3-280c-4179-b067-7871ff9d01b5",
+Cell[12939, 360, 102, 2, 70, "CodeSubsubsection",ExpressionUUID->"3197be0f-4988-4cca-8cad-4fa4b737b66c",
  Evaluatable->True],
-Cell[10421, 304, 473, 12, 70, "CodeInput",ExpressionUUID->"c6783e34-5949-4652-b4b6-25f64db57135"]
+Cell[13044, 364, 473, 12, 70, "CodeInput",ExpressionUUID->"8ba646e2-6979-4177-bf99-1dc48782aae0"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[10931, 321, 105, 2, 70, "CodeSubsubsection",ExpressionUUID->"be1992f4-9089-422d-af70-769f00a13f08",
+Cell[13554, 381, 105, 2, 70, "CodeSubsubsection",ExpressionUUID->"2f3d35ea-acbb-406f-bf02-f5b91b676172",
  Evaluatable->True],
-Cell[11039, 325, 134, 5, 70, "Text",ExpressionUUID->"7bbb3336-0740-4dd3-acaf-f4b30fca0c38",
+Cell[13662, 385, 134, 5, 70, "Text",ExpressionUUID->"41a726f5-d601-45f5-af53-dc5e1681a6c1",
  Evaluatable->True],
-Cell[11176, 332, 544, 13, 70, "CodeInput",ExpressionUUID->"e48d6192-4381-47e1-ba18-45ba6696949d"]
+Cell[13799, 392, 544, 13, 70, "CodeInput",ExpressionUUID->"0692a078-d96c-4c52-a758-0c6431fc65e3"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[11757, 350, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"f853762d-4a40-48ab-b6d4-2a35aa94a277",
+Cell[14380, 410, 89, 1, 70, "CodeSubsubsection",ExpressionUUID->"dce031ff-1594-4b8a-8181-eb0d2d7a6fa3",
  Evaluatable->True],
-Cell[11849, 353, 1540, 31, 70, "CodeInput",ExpressionUUID->"e34b779e-90a6-4171-b388-a6efea3321dc"]
+Cell[14472, 413, 1540, 31, 70, "CodeInput",ExpressionUUID->"339017be-efc1-4d75-8230-d0317dde89b6"]
 }, Closed]]
 }, Open  ]],
-Cell[13416, 388, 76, 2, 70, "InputSection",ExpressionUUID->"5c13d61c-3de2-4c6a-8ae3-c46e34313c8a"]
+Cell[16039, 448, 76, 2, 70, "InputSection",ExpressionUUID->"1c6991f1-f06e-4e32-98dd-0a29853151a8"]
 }, Open  ]],
-Cell[13507, 393, 28, 0, 70, "SectionSeparator",ExpressionUUID->"11ea7c93-a54d-4480-8719-ffe5aedc8a20"]
+Cell[16130, 453, 28, 0, 70, "SectionSeparator",ExpressionUUID->"cad343f9-e58a-4f3f-8716-e41298e5f366"]
 }
 ]
 *)

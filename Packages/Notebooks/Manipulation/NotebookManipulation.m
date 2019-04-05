@@ -99,7 +99,7 @@ NotebookPutContents[ideNb_NotebookObject, nb_Notebook]:=
       },
     WithNotebookPaused[
       ideNb,
-     If[Length@c>0, (* Cell open/close state was getting messed up *)
+     If[Length@c>100000, (* Cell open/close state was getting messed up *)
        nbPut1[ideNb, nb],
        nbPut2[ideNb, nb]
        ];
@@ -383,7 +383,7 @@ GetNotebookExpression[nb_]:=
       },
     Notebook[
       NotebookGet[nb][[1]],
-      Flatten[List@@opts]
+      Sequence@@Flatten[List@@opts]
       ]
     ]
 

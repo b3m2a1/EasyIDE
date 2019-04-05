@@ -19,6 +19,7 @@ $CurrentIDENotebook::usage="";
 $CurrentIDE::usage="";
 
 
+iCurrentValue::usage="Just reimplements CurrentValue for when it's needed";
 SetCurrentValue::usage="";
 SetCurrentValueDelayed::usage="";
 WithIDEData::usage="Reroutes CurrentValue to the EasyIDE path";
@@ -32,7 +33,14 @@ Begin["`Private`"];
 
 
 
-iCurrentValue = System`FEDump`iCV;
+iCurrentValue[a___]:=
+  With[{c=FrontEnd`CurrentValue[a]},
+    Replace[
+      MathLink`CallFrontEnd[
+        FrontEnd`Value[c, FrontEnd`$TrackingEnabled]],
+      c->$Failed
+      ]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -83,18 +91,41 @@ SetCurrentValueDelayed[nb_, k_, Hold[value_]]:=
 WithIDEData[nb_, expr_]:=
   Block[
     {
-      CurrentValue
+      CurrentValue,
+      FrontEnd`Options
       },
     CurrentValue[a_, b_, c___]:=
-      IDEData[a, Flatten@{"Options", b}, c];
+      Block[{CurrentValue=iCurrentValue},
+        IDEData[a, Flatten@{"Options", b}, c]
+        ];
     CurrentValue/:
       (CurrentValue[a_, b_, c___] = v_):=
-        (IDEData[a, Flatten@{"Options", b}] = v);
+        Block[{CurrentValue=iCurrentValue},
+          IDEData[a, Flatten@{"Options", b}] = v
+          ];
     CurrentValue/:
       (CurrentValue[a_, b_, c___] := v_):=
-        (IDEData[a, Flatten@{"Options", b}] := v);
-    Internal`InheritedBlock[{Options},
-      Options[nb] := IDEData[nb, "Options"];
+        Block[{CurrentValue=iCurrentValue},
+          IDEData[a, Flatten@{"Options", b}] := v
+          ];
+    FrontEnd`Options[n_]:=
+      Block[
+        {
+          CurrentValue=
+            FrontEnd`Value[FrontEnd`CurrentValue[##], FrontEnd`$TrackingEnabled]&
+          },
+        IDEData[n, "Options"]
+        ];
+    Internal`InheritedBlock[{NotebookGet},
+      Unprotect[NotebookGet];
+      NotebookGet[nb]:=
+        Block[
+          {
+            NotebookGet=MathLink`CallFrontEnd[FrontEnd`NotebookGet[nb]]&,
+            CurrentValue=iCurrentValue
+            },
+          GetNotebookExpression[nb]
+          ];
       expr
       ]
     ];
@@ -143,14 +174,14 @@ WithNotebookPaused[nb_NotebookObject, expr_]:=
       Internal`WithLocalSettings[
         FrontEndExecute@
           {
-            FrontEnd`NotebookSuspendScreenUpdates[nb](*,
-					  FrontEnd`SetOptions[nb, DynamicUpdating\[Rule]False]*)
+            FrontEnd`NotebookSuspendScreenUpdates[nb],
+            FrontEnd`SetOptions[nb, DynamicUpdating->False]
             },
         paused = True;
         expr,
         FrontEndExecute@
           {
-            (*FrontEnd`SetOptions[nb, DynamicUpdating\[Rule]True],*)
+            FrontEnd`SetOptions[nb, DynamicUpdating->Automatic],
             FrontEnd`NotebookResumeScreenUpdates[nb]
             }
         ]

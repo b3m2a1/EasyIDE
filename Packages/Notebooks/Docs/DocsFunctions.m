@@ -192,12 +192,12 @@ createBatchDocsPages[projData_, context_, relatedCells_, generatedTypes_]:=
   (* assumes projName is already loaded *)
   Module[
    {
-     names
+     fns
      },
-   names = getNeedsDocsFunctions[projData[[1]], context];
+   fns = getNeedsDocsFunctions[projData[[1]], context];
    AssociationMap[
      doTemplateDocs[projData, context, relatedCells, generatedTypes, #]&,
-     names
+     fns
      ]
    ];
 
@@ -213,7 +213,21 @@ getNeedsDocsFunctions[projName_, context_]:=
       names = Names[context<>"*"],
       pdir = ProjectSaveDirectory[projName, "Symbol"]
       },
-    Select[
+    ToExpression[#, StandardForm, 
+       Function[Null, 
+         If[
+           Length@OwnValues[#]==0||
+               MatchQ[
+                 OwnValues[#], 
+                 {_:>_?(SymbolName[#]=="PackageLoadPackage"&)[___]}
+                 ],
+             #,
+             Nothing
+             ], 
+           HoldAllComplete
+           ]
+         ]&@
+       Select[
       names, 
       !FileExistsQ@
         FileNameJoin@{pdir, "ref", StringSplit[#, "`"][[-1]]<>".nb"}&
@@ -282,7 +296,9 @@ doTemplateDocs[projData_, context_, relatedCells_, generatedTypes_, fn_]:=
     file = NotebookFileName@nb;
     correctMetadata[nb, context];
     correctTitleBar[nb, context];
-    correctRelatedStuff[nb, relatedCells];
+    If[relatedCells=!=None,
+     correctRelatedStuff[nb, relatedCells]
+     ];
     Export[file, DeleteCases[NotebookGet[nb], (Visible->False), Infinity]];
     If[MemberQ[generatedTypes, "Documentation"],
       docs = SimpleDocs@"SaveToDocumentation"[nb];
@@ -300,6 +316,29 @@ doTemplateDocs[projData_, context_, relatedCells_, generatedTypes_, fn_]:=
       Append[generatedTypes, "Notebook"]
       ]
     ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*getContExt*)
+
+
+
+getContExt[nbObject_, contexts_]:=
+    Replace[
+      Flatten@List@contexts,
+      Except[{__String}]:>
+        With[
+          {
+            basic = 
+              Fold[
+                Lookup[#, <||>]&,
+                PacletExecute["Association", IDEPath[nbObject]],
+                {"Extensions", "Kernel"}
+                ]
+            },
+          Flatten@List@Lookup[basic, "Context", Lookup[basic, "Contexts"]]
+          ]
+      ]
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -330,15 +369,7 @@ CreateBatchSymbolPages[
       SimpleDocs@"ReloadProject"[projData[[1]]]; (* ensures up-to-dateness *)
       configData = Lookup[SimpleDocs@"Projects"[projData[[1]]], "BatchDocsSettings", <||>];
       contexts = Lookup[configData, "Contexts", Automatic];
-      contexts = 
-        Replace[
-          contexts,
-          Except[{__String}]:>
-            Fold[Lookup[#, <||>]&,
-              PacletExecute["Association", IDEPath[nbObject]],
-              {"Extensions", "Kernel", "Contexts"}
-              ]
-          ];
+      contexts = getContExt[nbObject, contexts];
       If[!MatchQ[contexts, {__String}],
         PackageRaiseException[
           Automatic,
@@ -360,7 +391,7 @@ CreateBatchSymbolPages[
             ];
         generatedTypes = 
           Replace[generatedTypes,
-            {___String}:>{}
+            Except[{___String}]:>{}
             ];
         createBatchDocsPages[projData, cont, relatedCells, generatedTypes],
         {cont, contexts}
