@@ -64,22 +64,24 @@ iAttachedDialogPanel[
   ops:OptionsPattern[]
   ]:=
   AttachedDialogPanel[
-    Column[
+    Grid[
       {
-        Panel[header, BaseStyle->"AttachedDialogHeader"],
-        Panel[expr, BaseStyle->"AttachedDialogBody"],
-        Panel[
-          Grid[
-            {
+        {Panel[Pane[header], BaseStyle->"AttachedDialogHeader"]},
+        {Panel[expr, BaseStyle->"AttachedDialogBody"]},
+        {
+          Panel[
+            Grid[
               {
-                prepSubmitButton@submitButton, 
-                prepCancelButton@closingButton
-                }
-              },
-            GridBoxItemSize->Inherited
-            ], 
-          BaseStyle->"AttachedDialogButtons"
-          ]
+                {
+                  prepSubmitButton@submitButton, 
+                  prepCancelButton@closingButton
+                  }
+                },
+              GridBoxItemSize->Inherited
+              ], 
+            BaseStyle->"AttachedDialogButtons"
+            ]
+          }
         },
       GridBoxItemSize->Inherited
       ],
@@ -123,6 +125,12 @@ AttachedDialogPanel[
 createInputFieldElement//Clear
 
 
+createInputFieldElementName[fieldName_]:=
+  Item[Row@{Spacer[15], fieldName, ":"}, Alignment->Right];
+createInputFieldElementDescription[fieldDescription_]:=
+  fieldDescription;
+
+
 createInputFieldElement[
   Dynamic[var_],
   fieldID_, 
@@ -133,9 +141,9 @@ createInputFieldElement[
   ]:=
     {
       {
-        Row@{fieldName, ":"},
+        createInputFieldElementName[fieldName],
+        var[fieldID]=default;
         InputField[
-          var[fieldID]=default;
           Dynamic[var[fieldID]],
           String,
           ops,
@@ -143,12 +151,28 @@ createInputFieldElement[
           ]
        },
      If[fieldDescription=!=None,
-       {Row@{Spacer[5], fieldDescription}, SpanFromLeft},
+       {"", createInputFieldElementDescription@fieldDescription},
        Nothing
        ]
      }
 
 
+createInputFieldElement[
+  d:Verbatim[Dynamic][var_],
+  e:Except[_Association|_List]
+  ]:=
+  {
+    {Pane[e, BaseStyle->"AttachedDialog"], SpanFromLeft}
+    };
+createInputFieldElement[
+  d:Verbatim[Dynamic][var_],
+  l_List
+  ]:=
+  Map[
+    Pane[#, BaseStyle->"AttachedDialog"]&,
+    l,
+    {2}
+    ];
 createInputFieldElement[
   d:Verbatim[Dynamic][var_],
   a_Association
@@ -193,12 +217,7 @@ createInputFields[
   Dynamic[var_],
   specs_
   ]:=
-  Replace[specs,
-    {
-      a_Association:>createInputFieldElement[Dynamic[var], a]
-      },
-    1
-    ]
+  createInputFieldElement[Dynamic[var], #]&/@specs;
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -234,7 +253,7 @@ attachedDialogInputSpec[
       {
         "Body"->
           If[s===None,
-            DynamicModule[{state},
+            DynamicModule[{state=<||>},
               createInputFieldDialog[
                 Dynamic[state],
                 fields
@@ -277,7 +296,7 @@ AttachedDialogInputPanel[
 attachSpecData=
   <|
     "Position"->
-      <|"Pattern"->{_Integer|_Scaled, _Integer|_Scaled}, "Default"->{0, 0}|>,
+      <|"Pattern"->{_?NumberQ|_Scaled, _?NumberQ|_Scaled}, "Default"->{0, 0}|>,
     "Alignment"->
       <|"Pattern"->{Left|Center|Right, Bottom|Center|Top}, "Default"->{Center, Center}|>,
     "Anchor"->
@@ -324,14 +343,44 @@ CreateAttachedDialog[
   nb:attachables, 
   expression_, 
   cellType:_String:"AttachedDialogCell",
-  a:_Association|Automatic:Automatic
+  a:_Association|Automatic:Automatic,
+  ops:OptionsPattern[]
   ]:=
   With[{sepc=createAttachSpec[a]},
     FEAttachCell[
       nb,
       Cell[
         BoxData@ToBoxes@
-          AttachedDialogPanel[expression],
+          ReplaceAll[
+            AttachedDialogPanel[expression],
+            Grid[
+              {
+                {Panel[h_, BaseStyle->"AttachedDialogHeader"]},
+                r___
+                },
+              o___
+              ]:>
+              Grid[
+                {
+                  {
+                    Panel[
+                      Grid[
+                        {{
+                          "",
+                          h,
+                          RawBoxes@ButtonBox["", BaseStyle->"AttachedDialogCloseButton"]
+                          }},
+                        BaseStyle->"AttachedDialogCloseButtonRow",
+                        GridBoxItemSize->Inherited
+                        ],
+                     BaseStyle->"AttachedDialogHeader"
+                     ]
+                    },
+                  r
+                  },
+                o
+                ]
+            ],
         cellType,
         FirstCase[
           expression,
@@ -347,7 +396,8 @@ CreateAttachedDialog[
                   ]
               ),
           Sequence@@{}
-          ]
+          ],
+        ops
         ],
       Offset[sepc["Position"], 0],
       sepc["Alignment"],
@@ -358,13 +408,15 @@ CreateAttachedDialog[
 CreateAttachedDialog[ 
   expression:Except[attachables], 
   cellType:_String:"AttachedDialogCell",
-  a:_Association|Automatic:Automatic
+  a:_Association|Automatic:Automatic,
+  ops:OptionsPattern[]
   ]:=
   CreateAttachedDialog[
     $CurrentIDENotebook,
     expression,
     cellType,
-    a
+    a,
+    ops
     ]
 
 
@@ -378,25 +430,27 @@ CreateAttachedDialogInput[
   nb:attachables, 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
-  a:_Association|Automatic:Automatic(*,
-  ops:OptionsPattern[]*)
+  a:_Association|Automatic:Automatic,
+  ops:OptionsPattern[]
   ]:=
   CreateAttachedDialog[nb, 
     attachedDialogInputSpec[fields],
     cellType,
-    a
+    a,
+    ops
     ];
 CreateAttachedDialogInput[ 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
-  a:_Association|Automatic:Automatic(*,
-  ops:OptionsPattern[]*)
+  a:_Association|Automatic:Automatic,
+  ops:OptionsPattern[]
   ]:=
   CreateAttachedDialogInput[
     $CurrentIDENotebook,
     fields,
     cellType,
-    a
+    a,
+    ops
     ]
 
 
