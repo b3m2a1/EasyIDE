@@ -4,6 +4,7 @@
   "Commit":>
     Module[{msg},
       CreateAttachedInputDialog[
+        $CurrentIDENotebook,
         <|
           "Header"->"Commit to Git",
           "State"->Dynamic[msg],
@@ -11,10 +12,10 @@
             "Provide a commit message",
             <|
               "ID"->"Message",
-              "FieldName"->None,
+              "Name"->None,
               "Default"->"Committed via EasyIDE @ ``"~TemplateApply~Now,
               "Options"->{
-                FieldSize->{15, {5, 25}},
+                FieldSize->{25, {5, 25}},
                 FieldHint->"Commit message..."
                 }
               |>
@@ -45,7 +46,9 @@
         "Position"->{15, 15},
         "Alignment"->{Top, Right},
         "Anchor"->{Top, Right}
-        |>
+        |>,
+      CellSize->{350, Automatic},
+      "CreateCloseButton"->False
       ]
     ],
   "Push":>

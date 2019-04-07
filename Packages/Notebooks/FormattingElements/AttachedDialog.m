@@ -128,7 +128,9 @@ createInputFieldElement//Clear
 createInputFieldElementName[None]:=
   Nothing;
 createInputFieldElementName[fieldName_]:=
-  Item[Row@{Spacer[15], fieldName, ":"}, Alignment->Right];
+  Item[Row@{Spacer[15], fieldName, ":"}, 
+    Alignment->Right
+    ];
 createInputFieldElementDescription[fieldDescription_]:=
   fieldDescription;
 
@@ -329,6 +331,43 @@ createAttachSpec[Automatic]:=
 
 
 (* ::Subsubsection::Closed:: *)
+(*insertCloseBox*)
+
+
+
+insertCloseBox[panel_]:=
+  ReplaceAll[
+    Grid[
+      {
+        {Panel[h_, BaseStyle->"AttachedDialogHeader"]},
+        r___
+        },
+      o___
+      ]:>
+      Grid[
+        {
+          {
+            Panel[
+              Grid[
+                {{
+                  "",
+                  h,
+                  RawBoxes@ButtonBox["", BaseStyle->"AttachedDialogCloseButton"]
+                  }},
+                BaseStyle->"AttachedDialogCloseButtonRow",
+                GridBoxItemSize->Inherited
+                ],
+             BaseStyle->"AttachedDialogHeader"
+             ]
+            },
+          r
+          },
+        o
+        ]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
 (*CreateAttachedDialog*)
 
 
@@ -341,6 +380,10 @@ attachables=
 
 
 CreateAttachedDialog//Clear
+Options[CreateAttachedDialog]=
+  {
+    "CreateCloseButton"->True
+    };
 CreateAttachedDialog[
   nb:attachables, 
   expression_, 
@@ -348,56 +391,39 @@ CreateAttachedDialog[
   a:_Association|Automatic:Automatic,
   ops:OptionsPattern[]
   ]:=
-  With[{sepc=createAttachSpec[a]},
+  With[
+    {
+      sepc=createAttachSpec[a],
+      panel=
+        AttachedDialogPanel[expression]},
     FEAttachCell[
       nb,
       Cell[
-        BoxData@ToBoxes@
-          ReplaceAll[
-            AttachedDialogPanel[expression],
-            Grid[
-              {
-                {Panel[h_, BaseStyle->"AttachedDialogHeader"]},
-                r___
-                },
-              o___
-              ]:>
-              Grid[
-                {
-                  {
-                    Panel[
-                      Grid[
-                        {{
-                          "",
-                          h,
-                          RawBoxes@ButtonBox["", BaseStyle->"AttachedDialogCloseButton"]
-                          }},
-                        BaseStyle->"AttachedDialogCloseButtonRow",
-                        GridBoxItemSize->Inherited
-                        ],
-                     BaseStyle->"AttachedDialogHeader"
-                     ]
-                    },
-                  r
-                  },
-                o
-                ]
-            ],
+        panel//
+          If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
+            insertCloseBox,
+            Identity
+            ]//ToBoxes//BoxData,
         cellType,
         FirstCase[
-          expression,
-          i:InputField[___, BoxID->b_, ___]:>
-            (
+          panel,
+          i:InputField[___, BoxID->boxID_, ___]:>
+            ( 
               CellDynamicExpression:>
                 Refresh[
+                 SelectionMove[EvaluationCell[], Next, Word,
+                   AutoScroll->False
+                   ];
+                  FE`Evaluate@
                     FrontEnd`MoveCursorToInputField[
-                      EvaluationNotebook[], 
-                      b
-                      ];,
+                       EvaluationNotebook[], 
+                        boxID
+                        ],
                     None
                   ]
               ),
-          Sequence@@{}
+          Sequence@@{},
+          Infinity
           ],
         ops
         ],
@@ -423,31 +449,32 @@ CreateAttachedDialog[
 
 
 (* ::Subsubsection::Closed:: *)
-(*  CreateAttachedInputDialog*)
+(*CreateAttachedInputDialog*)
 
 
 
-  CreateAttachedInputDialog//Clear
-  CreateAttachedInputDialog[
+CreateAttachedInputDialog//Clear
+CreateAttachedInputDialog[
   nb:attachables, 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
   a:_Association|Automatic:Automatic,
   ops:OptionsPattern[]
   ]:=
-  CreateAttachedDialog[nb, 
+  CreateAttachedDialog[
+    nb, 
     attachedDialogInputSpec[fields],
     cellType,
     a,
     ops
     ];
-  CreateAttachedInputDialog[ 
+CreateAttachedInputDialog[ 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
   a:_Association|Automatic:Automatic,
   ops:OptionsPattern[]
   ]:=
-    CreateAttachedInputDialog[
+CreateAttachedInputDialog[
     $CurrentIDENotebook,
     fields,
     cellType,
