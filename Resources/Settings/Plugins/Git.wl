@@ -7,7 +7,6 @@
         $CurrentIDENotebook,
         <|
           "Header"->"Commit to Git",
-          "State"->Dynamic[msg],
           "Fields"->{
             "Provide a commit message",
             <|
@@ -20,26 +19,18 @@
                 }
               |>
             },
-        "SubmitAction"->Function[
-          With[{m=msg["Message"]},
-            Remove[msg];
-            NotebookDelete[EvaluationCell[]];
+        "SubmitAction"->
+          Function[
             Git["Add", IDEPath[$CurrentIDENotebook], "All"->True];
             CreateMessagePopup[
               $CurrentIDENotebook, 
               StringForm["Committed to git: \n``", 
                 Git["Commit", 
                   IDEPath[$CurrentIDENotebook],
-                  "Message"->m
+                  "Message"->#Message
                   ]
                 ]
               ]
-            ]
-          ],
-        "CancelAction"->
-          Function[
-            Remove[msg];
-            NotebookDelete[EvaluationCell[]]
             ]
         |>,
       <|

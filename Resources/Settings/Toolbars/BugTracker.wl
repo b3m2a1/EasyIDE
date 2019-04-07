@@ -57,7 +57,12 @@ exportBugsMenu =
           $CurrentIDENotebook
           ],
       "Markdown":>
-        BugsNotebookMarkdownSave[$CurrentIDENotebook]
+        BugsNotebookMarkdownSave[$CurrentIDENotebook,
+          StringReplace[
+            IDEPath[$CurrentIDENotebook, Key["ActiveFile"]],
+            ".nb"->".md"
+            ]
+          ]
       },
     Appearance->None,
     MenuAppearance->"Dropdown"

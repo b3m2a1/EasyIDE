@@ -1513,13 +1513,13 @@ setNBProjectData[nb_, name_]:=
   If[projectQ[name],
     With[{dir=getProjectDir[name], conf=getProjectConfFile[name]},
       If[getNbData[nb, $projNameTag]=!=name,
-        getNbData[nb, $projNameTag]=name
+        setNbData[nb, $projNameTag, name]
         ];
       If[getNbData[nb, $projDirTag]=!=dir,
-        getNbData[nb, $projDirTag]=dir
+        setNbData[nb, $projDirTag, dir]
         ];
       If[getNbData[nb, $projConfigTag]=!=conf,
-        getNbData[nb, $projConfigTag]=conf
+        setNbData[nb, $projConfigTag, conf]
         ];
       ]
     ];
@@ -1620,7 +1620,7 @@ prepNotebookForDocs[nb_]:=
       ],
     Flatten@{
       FilterRules[
-        List@@#[[2;;]], 
+        Flatten[List@@#[[2;;]]], 
         Except[ScreenStyleEnvironment|StyleDefinitions|Visible]
         ],
       Visible->True,

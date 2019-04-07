@@ -5,7 +5,11 @@
 AttachedDialogPanel::usage="";
 AttachedDialogInputPanel::usage="";
 CreateAttachedDialog::usage="";
-  CreateAttachedInputDialog::usage="";
+CreateAttachedInputDialog::usage="";
+
+
+CreateWindowedDialog::usage="";
+CreateWindowedInputDialog::usage="";
 
 
 IDECreateDialog::usage="";
@@ -15,11 +19,16 @@ Begin["`Private`"];
 
 
 (* ::Subsection:: *)
-(*CreateAttachedDialog*)
+(*AttachedDialogPanel*)
 
 
 
 (* ::Subsubsection::Closed:: *)
+(*AttachedDialogPanel*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
 (*AttachedDialogPanel*)
 
 
@@ -35,6 +44,26 @@ AttachedDialogPanel[
     ];
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*destroyDialog*)
+
+
+
+destroyDialog[]:=
+  Replace[CurrentValue[EvaluationNotebook[], StyleDefinitions],
+    {
+      FrontEnd`FileName[_, _String?(StringEndsQ["-Dialog.nb"]), ___]:>
+        NotebookClose[EvaluationNotebook[]],
+      _:>NotebookDelete[EvaluationCell[]]
+      }
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*prepSubmitButton*)
+
+
+
 prepSubmitButton[{label_, action_, ops___}]:=
   Button[label, action,
     ops,
@@ -43,8 +72,19 @@ prepSubmitButton[{label_, action_, ops___}]:=
     Evaluator->Inherited,
     Method->Inherited
     ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*prepCancelButton*)
+
+
+
 prepCancelButton[{label_, action_, ops___}]:=
-  With[{act=If[action===Automatic, NotebookDelete[EvaluationCell[]]&, action]},
+  With[{act=
+    If[action===Automatic, 
+      destroyDialog[]&,
+      action
+      ]},
     Button[label, 
       act,
       ops,
@@ -54,6 +94,11 @@ prepCancelButton[{label_, action_, ops___}]:=
       Method->Inherited
       ]
     ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*iAttachedDialogPanel*)
+
 
 
 iAttachedDialogPanel[
@@ -89,6 +134,11 @@ iAttachedDialogPanel[
     ];
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*AttachedDialogPanel*)
+
+
+
 AttachedDialogPanel[
   a_Association,
   ops:OptionsPattern[]
@@ -97,13 +147,13 @@ AttachedDialogPanel[
     Lookup[a, "Header", ""],
     Lookup[a, "Body"],
     Lookup[a, "SubmitButton", 
-      {
+      Flatten@{
         "OK",
         Lookup[a, "SubmitAction", None]
         }
       ],
     Lookup[a, "CancelButton", 
-      {
+      Flatten@{
         "Cancel",
         Lookup[a, "CancelAction", Automatic]
         }
@@ -115,6 +165,44 @@ AttachedDialogPanel[
 (* ::Subsubsection::Closed:: *)
 (*AttachedDialogInputPanel*)
 
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*normalizeInputField*)
+
+
+
+normalizeInputField[a_Association]:=
+  Module[
+    {
+      fid,
+      fname,
+      fieldDescription,
+      default,
+      ops
+      },
+    fid = 
+        Lookup[a, "ID",
+          Lookup[a, "Name", CreateUUID[]]
+          ];
+    fname = 
+      Lookup[a, "Name", fid];
+    fieldDescription = 
+      Lookup[a, "Description", None];
+    default =
+      Lookup[a, "Default", ""];
+    ops =
+      Lookup[a, "Options", {}];
+    <|
+      "ID"->fid,
+      "Name"->fname,
+      "Description"->fieldDescription,
+      "Default"->default,
+      "Options"->ops
+      |>
+    ];
+normalizeInputField[e_]:=
+  e
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -143,22 +231,22 @@ createInputFieldElement[
   default_,
   ops___
   ]:=
+  {
     {
-      {
-        createInputFieldElementName[fieldName],
-        var[fieldID]=default;
-        InputField[
-          Dynamic[var[fieldID]],
-          String,
-          ops,
-          BoxID->fieldID
-          ]
-       },
-     If[fieldDescription=!=None,
-       {"", createInputFieldElementDescription@fieldDescription},
-       Nothing
-       ]
-     }
+      createInputFieldElementName[fieldName],
+      var[fieldID]=default;
+      InputField[
+        Dynamic[var[fieldID]],
+        String,
+        ops,
+        BoxID->fieldID
+        ]
+     },
+   If[fieldDescription=!=None,
+     {"", createInputFieldElementDescription@fieldDescription},
+     Nothing
+     ]
+   }
 
 
 createInputFieldElement[
@@ -183,31 +271,15 @@ createInputFieldElement[
   ]:=
   Module[
     {
-      fid,
-      fname,
-      fieldDescription,
-      default,
-      ops
+      f
       },
-    fid = 
-      Lookup[a, "ID",
-        Lookup[a, "Name", CreateUUID[]]
-        ];
-    fname = 
-      Lookup[a, "Name", fid];
-    fieldDescription = 
-      Lookup[a, "Description", None];
-    default =
-      Lookup[a, "Default", ""];
-    ops =
-      Lookup[a, "Options", {}];
     createInputFieldElement[
       d,
-      fid,
-      fname,
-      fieldDescription,
-      default,
-      Sequence@@Flatten@{ops}
+      Lookup[a, "ID"],
+      Lookup[a, "Name"],
+      Lookup[a, "Description"],
+      Lookup[a, "Default"],
+      Sequence@@Flatten@{Lookup[a, "Options"]}
       ]
     ]
 
@@ -241,6 +313,19 @@ createInputFieldDialog[
 
 
 (* ::Subsubsubsection::Closed:: *)
+(*prepState*)
+
+
+
+prepState[s_, ids_, remove_]:=
+  With[{a=AssociationMap[s, ids]},
+    If[remove, remove[s]];
+    a
+    ];
+prepState~SetAttributes~HoldFirst
+
+
+(* ::Subsubsubsection::Closed:: *)
 (*attachedDialogInputSpec*)
 
 
@@ -248,31 +333,50 @@ createInputFieldDialog[
 attachedDialogInputSpec[
   a_Association
   ]:=
-  With[
+  Module[
     {
-      s=Lookup[a, "State", None],
-      fields = Flatten@List@Lookup[a, "Fields", {}]
+      s=Lookup[a, "State", Module[{state}, Dynamic[state]]],
+      fields = normalizeInputField/@Flatten@List@Lookup[a, "Fields", {}]
       },
-    Merge[
+    With[
       {
-        "Body"->
-          If[s===None,
-            DynamicModule[{state=<||>},
-              createInputFieldDialog[
-                Dynamic[state],
-                fields
-                ]
-              ],
+        ids = Cases[fields, f_Association:>f["ID"]],
+        remove = Lookup[a, "ClearState", Replace[Lookup[a, "State", True], _Dynamic:>False]],
+        submit = Lookup[a, "SubmitAction", None],
+        cancel = Lookup[a, "CancelAction", None],
+        dest = Lookup[a, "DestroyOnClick", True]
+        },
+      Merge[
+        {
+          "Body"->
             createInputFieldDialog[
               s,
               fields
-              ]
-           ],
-       a,
-       "SubmitAction"->
-         (NotebookDelete[EvaluationCell[]]&)
-       },
-     First
+              ],
+          "SubmitAction"->
+             {
+               Function[
+                 Null,
+                 submit@prepState[#, ids, remove];
+                 If[dest, destroyDialog[]],
+                 HoldFirst
+                 ],
+               ButtonData->s
+               },
+           "CancelAction"->
+             {
+               Function[
+                 Null,
+                 cancel@prepState[#, ids, remove];
+                 If[dest, destroyDialog[]],
+                 HoldFirst
+                 ],
+               ButtonData->s
+               },
+           a
+         },
+       First
+       ]
      ]
    ]
 
@@ -290,6 +394,11 @@ AttachedDialogInputPanel[
     attachedDialogInputSpec[a],
     ops
     ]
+
+
+(* ::Subsection:: *)
+(*CreateAttachedDialog*)
+
 
 
 (* ::Subsubsection::Closed:: *)
@@ -484,14 +593,161 @@ CreateAttachedInputDialog[
 
 
 (* ::Subsection:: *)
+(*CreateDetachedDialog*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*CreateWindowedDialog*)
+
+
+
+CreateWindowedDialog//Clear
+Options[CreateWindowedDialog]=
+  {
+    "CreateCloseButton"->True
+    };
+CreateWindowedDialog[
+  nb:attachables, 
+  expression_, 
+  cellType:_String:"AttachedDialogCell",
+  ops:OptionsPattern[]
+  ]:=
+  With[
+    {
+      nbb=
+        Replace[attachables, 
+          {
+            nbos:_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook|
+              _FrontEnd`SelectedNotebook|_FrontEnd`ParentNotebook|_FrontEnd`ButtonNotebook:>
+              MathLink`CallFrontEnd@FrontEnd`Value[nbos],
+            e:Except[_NotebookObject]:>
+              ParentNotebook[e]
+            }
+          ],
+      panel=
+        AttachedDialogPanel[expression]
+    },
+    CreateDialog[
+      Cell[
+        panel//
+          If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
+            insertCloseBox,
+            Identity
+            ]//ToBoxes//BoxData,
+        cellType,
+        FilterRules[{ops}, Options[Cell]]
+        ],
+      FilterRules[
+        {
+          ops,
+          FirstCase[
+            panel,
+            i:InputField[___, BoxID->boxID_, ___]:>
+              ( 
+                NotebookDynamicExpression:>
+                  Refresh[
+                    FE`Evaluate@
+                      FrontEnd`MoveCursorToInputField[
+                         EvaluationNotebook[], 
+                          boxID
+                          ],
+                      None
+                    ]
+                ),
+            Sequence@@{},
+            Infinity
+            ],
+          StyleDefinitions->
+            (* maybe I should make this more extensible...? *)
+            FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Dialog"]
+          },
+        Options[Notebook]
+        ]
+      ]
+    ];
+CreateWindowedDialog[
+  expression:Except[attachables], 
+  cellType:_String:"AttachedDialogCell",
+  ops:OptionsPattern[]
+  ]:=
+  CreateWindowedDialog[
+    $CurrentIDENotebook,
+    expression,
+    cellType,
+    ops
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*CreateWindowedInputDialog*)
+
+
+
+CreateWindowedInputDialog//Clear
+CreateWindowedInputDialog[
+  nb:attachables, 
+  fields_Association, 
+  cellType:_String:"AttachedDialogCell",
+  ops:OptionsPattern[]
+  ]:=
+  CreateWindowedDialog[
+    nb, 
+    attachedDialogInputSpec[fields],
+    cellType,
+    ops
+    ];
+CreateWindowedInputDialog[ 
+  fields_Association, 
+  cellType:_String:"AttachedDialogCell",
+  ops:OptionsPattern[]
+  ]:=
+CreateWindowedInputDialog[
+    $CurrentIDENotebook,
+    fields,
+    cellType,
+    ops
+    ]
+
+
+(* ::Subsection:: *)
 (*IDECreateDialog*)
 
 
 
-IDECreateDialog[nb_NotebookObject, expr_, args___]:=
-  CreateAttachedDialog[nb, expr, args];
-IDECreateDialog[ide_IDENotebookObject, expr_, args___]:=
-  CreateAttachedDialog[ide["Notebook"], expr, args];
+(* ::Subsubsection::Closed:: *)
+(*createDialogDispatcher*)
+
+
+
+createDialogDispatcher[{"Attached", "Normal"}]=
+  CreateAttachedDialog;
+createDialogDispatcher[{"Attached", "Input"}]=
+  CreateAttachedInputDialog;
+createDialogDispatcher[{"Detached", "Normal"}]=
+  CreateWindowedDialog;
+createDialogDispatcher[{"Detached", "Input"}]=
+  CreateWindowedInputDialog;
+
+
+(* ::Subsubsection::Closed:: *)
+(*IDECreateDialog*)
+
+
+
+IDECreateDialog[
+  nb_NotebookObject, 
+  mode:{"Attached"|"Detached", "Normal"|"Input"}:{"Attached", "Normal"},
+  expr_, 
+  args___
+  ]:=
+  createDialogDispatcher[mode][nb, expr, args];
+IDECreateDialog[ide_IDENotebookObject, 
+  mode:{"Attached"|"Detached", "Normal"|"Input"}:{"Attached", "Normal"},
+  expr_, 
+  args___
+  ]:=
+  createDialogDispatcher[mode][ide["Notebook"], expr, args];
 
 
 End[];
