@@ -43,9 +43,9 @@
             ]
         |>,
       <|
-        "Position"->{15, 15},
-        "Alignment"->{Top, Right},
-        "Anchor"->{Top, Right}
+        "Position"->{-5, -5},
+        "Alignment"->{Right, Top},
+        "Anchor"->{Right, Top}
         |>,
       CellSize->{350, Automatic},
       "CreateCloseButton"->False
