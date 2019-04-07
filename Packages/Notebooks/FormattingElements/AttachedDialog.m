@@ -5,7 +5,7 @@
 AttachedDialogPanel::usage="";
 AttachedDialogInputPanel::usage="";
 CreateAttachedDialog::usage="";
-CreateAttachedDialogInput::usage="";
+  CreateAttachedInputDialog::usage="";
 
 
 IDECreateDialog::usage="";
@@ -125,6 +125,8 @@ AttachedDialogPanel[
 createInputFieldElement//Clear
 
 
+createInputFieldElementName[None]:=
+  Nothing;
 createInputFieldElementName[fieldName_]:=
   Item[Row@{Spacer[15], fieldName, ":"}, Alignment->Right];
 createInputFieldElementDescription[fieldDescription_]:=
@@ -421,12 +423,12 @@ CreateAttachedDialog[
 
 
 (* ::Subsubsection::Closed:: *)
-(*CreateAttachedDialogInput*)
+(*  CreateAttachedInputDialog*)
 
 
 
-CreateAttachedDialogInput//Clear
-CreateAttachedDialogInput[
+  CreateAttachedInputDialog//Clear
+  CreateAttachedInputDialog[
   nb:attachables, 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
@@ -439,13 +441,13 @@ CreateAttachedDialogInput[
     a,
     ops
     ];
-CreateAttachedDialogInput[ 
+  CreateAttachedInputDialog[ 
   fields_Association, 
   cellType:_String:"AttachedDialogCell",
   a:_Association|Automatic:Automatic,
   ops:OptionsPattern[]
   ]:=
-  CreateAttachedDialogInput[
+    CreateAttachedInputDialog[
     $CurrentIDENotebook,
     fields,
     cellType,

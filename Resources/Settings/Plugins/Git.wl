@@ -2,18 +2,52 @@
 
 {
   "Commit":>
-    (
-      Git["Add", IDEPath[$CurrentIDENotebook], "All"->True];
-      CreateMessagePopup[
-        $CurrentIDENotebook, 
-        StringForm["Committed to git: \n``", 
-          Git["Commit", 
-            IDEPath[$CurrentIDENotebook],
-            "Message"->"Committed via EasyIDE @ ``"~TemplateApply~Now
+    Module[{msg},
+      CreateAttachedInputDialog[
+        <|
+          "Header"->"Commit to Git",
+          "State"->Dynamic[msg],
+          "Fields"->{
+            "Provide a commit message",
+            <|
+              "ID"->"Message",
+              "FieldName"->None,
+              "Default"->"Committed via EasyIDE @ ``"~TemplateApply~Now,
+              "Options"->{
+                FieldSize->{15, {5, 25}},
+                FieldHint->"Commit message..."
+                }
+              |>
+            },
+        "SubmitAction"->Function[
+          With[{m=msg["Message"]},
+            Remove[msg];
+            NotebookDelete[EvaluationCell[]];
+            Git["Add", IDEPath[$CurrentIDENotebook], "All"->True];
+            CreateMessagePopup[
+              $CurrentIDENotebook, 
+              StringForm["Committed to git: \n``", 
+                Git["Commit", 
+                  IDEPath[$CurrentIDENotebook],
+                  "Message"->m
+                  ]
+                ]
+              ]
             ]
-          ]
-        ]
-      ),
+          ],
+        "CancelAction"->
+          Function[
+            Remove[msg];
+            NotebookDelete[EvaluationCell[]]
+            ]
+        |>,
+      <|
+        "Position"->{15, 15},
+        "Alignment"->{Top, Right},
+        "Anchor"->{Top, Right}
+        |>
+      ]
+    ],
   "Push":>
     CreateMessagePopup[
       $CurrentIDENotebook, 
