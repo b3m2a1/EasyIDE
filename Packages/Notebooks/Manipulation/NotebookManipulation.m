@@ -348,7 +348,7 @@ setNbActions[nb_]:=
     CurrentValue[nb, NotebookEventActions] = Inherited;
     (* pull the events from the stylesheet *)
     nbActs = Global`blech = CurrentValue[nb, NotebookEventActions];
-    If[MemberQ[Keys@nbActs, {"MenuCommand", "Save"}],
+    If[Global`hmmmmm = MemberQ[Keys@nbActs, {"MenuCommand", "Save"}],
       saveAction = 
         Extract[Association[nbActs],
           Key[{"MenuCommand", "Save"}],
@@ -426,8 +426,11 @@ NotebookPutFile[nb_NotebookObject, f_String]:=
       setNbFileToolbar[nb, f];
       NotebookPutContents[nb, nbExpr];
       ];
-    setAutoSave[nb];
-    setNbActions[nb];
+   WithoutScreenUpdatesOrDynamics[
+     nb,
+      setAutoSave[nb];
+      setNbActions[nb];
+     ]
     ];
 
 

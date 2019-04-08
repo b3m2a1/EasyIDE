@@ -192,8 +192,15 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                      "\n", "\t\t", "absFile"}]}], "\n", "\t\t", "]"}]}]], 
             "CodeInput"]}, Closed]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]IDEData\[RightFloor]", "CodeSubsubsection", 
-            Evaluatable -> True], Cell[BoxData[RowBox[{"IDEData", "//", 
-               "Clear"}]], "CodeInput"], Cell[CellGroupData[
+            Evaluatable -> True], Cell[BoxData[{RowBox[{"IDEData", "//", 
+                "Unprotect"}], "\n", RowBox[{"IDEData", "//", "Clear"}]}], 
+            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"notebookObjectQ", 
+                 "[", "nb_", "]"}], ":=", "\n", "  ", RowBox[
+                {RowBox[{"MatchQ", "[", RowBox[{"nb", ",", " ", 
+                     "_NotebookObject"}], "]"}], "||", "\n", "    ", 
+                 RowBox[{"MatchQ", "[", RowBox[{RowBox[{"FE`Evaluate", "@", 
+                       "nb"}], ",", " ", "_NotebookObject"}], "]"}]}]}]], 
+            "CodeInput"], Cell[CellGroupData[
              {Cell["\[LeftCeiling]Normal\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 {RowBox[{RowBox[{RowBox[{"IDEData", "[", "\n", "\t", 
@@ -222,15 +229,15 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                      {"HoldPattern", "[", " ", "\n", "\t\t", RowBox[
                        {RowBox[{"IDEData", "[", "\n", "\t\t\t", RowBox[
                           {RowBox[{"nb", ":", RowBox[{"_NotebookObject", "|", 
-                          "_FrontEnd`EvaluationNotebook", "|", 
-                          "_FrontEnd`InputNotebook"}]}], ",", " ", "\n", 
-                          "\t\t\t", RowBox[{"key", ":", RowBox[{"(", RowBox[
-                          {"_String", "|", "_Symbol", "|", RowBox[{"{", 
-                          RowBox[{RowBox[{"(", RowBox[{"_String", "|", 
-                          "_Symbol"}], ")"}], ".."}], "}"}]}], ")"}]}]}], 
-                          "\n", "\t\t\t", "]"}], "~", "Set", "~", "val_"}], 
-                      "\n", "\t\t", "]"}], ":=", "\n", "\t\t", RowBox[
-                     {"ideSetNbData", "[", RowBox[{"nb", ",", " ", "key", 
+                          RowBox[{"_", "?", "notebookObjectQ"}]}]}], ",", 
+                          " ", "\n", "\t\t\t", RowBox[{"key", ":", RowBox[
+                          {"(", RowBox[{"_String", "|", "_Symbol", "|", 
+                          RowBox[{"{", RowBox[{RowBox[{"(", RowBox[
+                          {"_String", "|", "_Symbol"}], ")"}], ".."}], 
+                          "}"}]}], ")"}]}]}], "\n", "\t\t\t", "]"}], "~", 
+                        "Set", "~", "val_"}], "\n", "\t\t", "]"}], ":=", 
+                    "\n", "\t\t", RowBox[{"ideSetNbData", "[", RowBox[
+                       {RowBox[{"FE`Evaluate", "@", "nb"}], ",", " ", "key", 
                         ",", " ", "val"}], "]"}]}], ";"}]], "CodeInput"]}, 
              Open]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]Temporary\[RightFloor]", 
@@ -247,12 +254,14 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                         {"nb", ",", " ", "key", ",", " ", "default"}], 
                        "]"}]}], ";"}], "\n", RowBox[{"IDEData", "/:", "\n", 
                    "\t", RowBox[{"HoldPattern", "[", "\n", "\t\t", RowBox[
-                      {RowBox[{"IDEData", "[", RowBox[{"nb_NotebookObject", 
-                          ",", " ", RowBox[{"PrivateKey", "[", "key_", 
-                          "]"}]}], "]"}], "~", "Set", "~", "val_"}], "\n", 
-                     "\t\t", "]"}], ":=", "\n", "\t\t", RowBox[
-                    {"ideSetTmpData", "[", RowBox[{"nb", ",", " ", "key", 
-                       ",", " ", "val"}], "]"}]}]}], "CodeInput"]}, Closed]], 
+                      {RowBox[{"IDEData", "[", RowBox[{RowBox[{"nb", ":", 
+                          RowBox[{"_NotebookObject", "|", RowBox[{"_", "?", 
+                          "notebookObjectQ"}]}]}], ",", " ", RowBox[
+                          {"PrivateKey", "[", "key_", "]"}]}], "]"}], "~", 
+                       "Set", "~", "val_"}], "\n", "\t\t", "]"}], ":=", "\n", 
+                   "\t\t", RowBox[{"ideSetTmpData", "[", RowBox[
+                      {RowBox[{"FE`Evaluate", "@", "nb"}], ",", " ", "key", 
+                       ",", " ", "val"}], "]"}]}]}], "CodeInput"]}, Open]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]IDENotebookObject\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -270,15 +279,17 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                           "IDEData"}]}]}]}], "\n", "\t\t", "]"}]}], ";"}], 
                  "\n", RowBox[{RowBox[{"IDEData", "/:", "\n", "\t", 
                      RowBox[{"HoldPattern", "[", "\n", "\t\t", RowBox[
-                        {RowBox[{"IDEData", "[", RowBox[
-                          {"ide_IDENotebookObject", ",", " ", "\n", "\t\t  ", 
-                          RowBox[{"key", ":", RowBox[{"(", RowBox[{"_String", 
-                          "|", "_Symbol", "|", RowBox[{"{", RowBox[{RowBox[
-                          {"(", RowBox[{"_String", "|", "_Symbol"}], ")"}], 
-                          ".."}], "}"}], "|", "_PrivateKey"}], ")"}]}]}], 
-                          "]"}], "~", "Set", "~", "val_"}], "\n", "\t\t", 
-                       "]"}], ":=", "\n", "\t\t", RowBox[{"Module", "[", 
-                       RowBox[{RowBox[{"{", RowBox[{RowBox[{"nb", "=", RowBox[
+                        {RowBox[{"IDEData", "[", RowBox[{RowBox[{"ide_", "?", 
+                          RowBox[{"(", RowBox[{RowBox[{"MatchQ", "[", RowBox[
+                          {"#", ",", " ", "_IDENotebookObject"}], "]"}], 
+                          "&"}], ")"}]}], ",", " ", "\n", "\t\t  ", RowBox[
+                          {"key", ":", RowBox[{"(", RowBox[{"_String", "|", 
+                          "_Symbol", "|", RowBox[{"{", RowBox[{RowBox[{"(", 
+                          RowBox[{"_String", "|", "_Symbol"}], ")"}], ".."}], 
+                          "}"}], "|", "_PrivateKey"}], ")"}]}]}], "]"}], "~", 
+                         "Set", "~", "val_"}], "\n", "\t\t", "]"}], ":=", 
+                     "\n", "\t\t", RowBox[{"Module", "[", RowBox[
+                        {RowBox[{"{", RowBox[{RowBox[{"nb", "=", RowBox[
                           {"ide", "[", "\"Notebook\"", "]"}]}], ",", " ", 
                           "res"}], "}"}], ",", "\n", "\t\t\t", RowBox[
                           {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
@@ -304,8 +315,12 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                        "\t\t", "]"}], ":=", "\n", "\t\t", RowBox[
                       {RowBox[{"IDEData", "[", RowBox[{"$CurrentIDENotebook", 
                           ",", " ", "key"}], "]"}], "~", "Set", "~", 
-                       "val"}]}], ";"}]}], "CodeInput"]}, Open]]}, Closed]], 
-        Cell[CellGroupData[{Cell["\[LeftCeiling]ideProjectDir\[RightFloor]", 
+                       "val"}]}], ";"}]}], "CodeInput"]}, Open]], 
+           Cell[CellGroupData[{Cell["\[LeftCeiling]Protect\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{"IDEData", "//", "Protect"}]], "CodeInput"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]ideProjectDir\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{RowBox[{"ideProjectDir", "[", "nb_", 
                    "]"}], ":=", "\n", "\t", RowBox[{"ideNbData", "[", 
