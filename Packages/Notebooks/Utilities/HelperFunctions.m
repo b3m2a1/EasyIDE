@@ -24,6 +24,10 @@ WithoutScreenUpdatesOrDynamics::usage=
   "Turns of both screen updates and DynamicUpdating in a clean fashion";
 
 
+WithActiveNotebookPath::usage=
+  "Temporarily sets NotebookFileName and NotebookDirectory to the ActiveFile path";
+
+
 (* ::Text:: *)
 (*Consistent references to the current IDE notebook*)
 
@@ -407,6 +411,41 @@ PreemptiveQueued[expr_]:=
     PreemptiveQueued[nb, expr]
     ];
 PreemptiveQueued~SetAttributes~HoldAll
+
+
+(* ::Subsection:: *)
+(*Paths*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithActiveNotebookPath*)
+
+
+
+WithActiveNotebookPath[nb_, expr_]:=
+  With[{p=IDEPath[nb, Key["ActiveFile"]]},
+    If[StringQ[p],
+      Internal`InheritedBlock[
+        {
+          NotebookFileName,
+          NotebookDirectory
+          },
+        Unprotect[NotebookFileName];
+        Unprotect[NotebookDirectory];
+        NotebookFileName[nb]=p;
+        NotebookDirectory[nb]=DirectoryName[p];
+        DownValues[NotebookFileName];
+        expr
+        ],
+      expr
+      ]
+    ];
+WithActiveNotebookPath[expr_]:=
+  With[{nb=$CurrentIDENotebook},
+    WithActiveNotebookPath[nb, expr]
+    ];
+WithActiveNotebookPath~SetAttributes~HoldAll
 
 
 End[];

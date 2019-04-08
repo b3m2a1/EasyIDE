@@ -161,7 +161,7 @@ getNbFileSSheet[nbFile_]:=
         Replace[sd, 
           Except[_String|_FrontEnd`FileName]:>
             FirstCase[sd, 
-              StyleData[StyleDefinitions->s_:>s, ___], 
+              StyleData[StyleDefinitions->s_, ___]:>s, 
               "Default.nb",
               \[Infinity]
               ]
@@ -347,8 +347,8 @@ setNbActions[nb_]:=
     (* reset the actions to start *)
     CurrentValue[nb, NotebookEventActions] = Inherited;
     (* pull the events from the stylesheet *)
-    nbActs = Global`blech = CurrentValue[nb, NotebookEventActions];
-    If[Global`hmmmmm = MemberQ[Keys@nbActs, {"MenuCommand", "Save"}],
+    nbActs = CurrentValue[nb, NotebookEventActions];
+    If[MemberQ[Keys@nbActs, {"MenuCommand", "Save"}],
       saveAction = 
         Extract[Association[nbActs],
           Key[{"MenuCommand", "Save"}],
