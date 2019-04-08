@@ -3,6 +3,9 @@
 Paclet[
   Name -> "EasyIDE",
   Version -> "1.0.3",
+  Creator -> "b3m2a1 <b3m2a1@gmail.com>",
+  URL -> "https://github.com/b3m2a1/EasyIDE",
+  Description -> "An IDE for Mathematica written entirely within Mathematica",
   Extensions -> {
     	{
      		"Kernel",
@@ -13,6 +16,12 @@ Paclet[
      		"FrontEnd",
      		"Prepend" -> True,
      		Prepend -> True
+     	},
+     {
+     		"PacletServer",
+     		"Description" -> "An IDE for Mathematica. Supports tabbing, file browsing, plugins, \
+customizable stylesheets, extension specific tweaks and toolbars, and is reasonably customizable",
+        "License" -> "MIT"
      	},
     	{
      		"Resource",

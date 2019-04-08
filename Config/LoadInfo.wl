@@ -1,5 +1,3 @@
-(* ::Package:: *)
-
 {
 	"Mode" -> "Primary",
 	"Dependencies" -> {
@@ -19,37 +17,37 @@
 			}
 		},
 		{
-		  "InterfaceObjects`",
-		  "RemovePaths"->{
-		    ParentList,
-		    "Documentation",
-		    "Dependencies"
-		    }
-		  },
+			"InterfaceObjects`",
+			"RemovePaths" -> {
+				ParentList,
+				"Documentation",
+				"Dependencies"
+			}
+		},
 		{
-		  "SimpleDocs`",
-		  "RemovePaths"->{
-		    ParentList,
-		    "Documentation",
-		    "Dependencies"
-		    }
-		  },
+			"SimpleDocs`",
+			"RemovePaths" -> {
+				ParentList,
+				"Documentation",
+				"Dependencies"
+			}
+		},
 		{
-		  "Ems`",
-		  "RemovePaths"->{
-		    ParentList,
-		    "Documentation",
-		    "Dependencies"
-		    }
-		  },
+			"Ems`",
+			"RemovePaths" -> {
+				ParentList,
+				"Documentation",
+				"Dependencies"
+			}
+		},
 		{
-		  "BugTracker`",
-		  "RemovePaths"->{
-	  	  ParentList,
-		    "Documentation",
-		    "Dependencies"
-		    }
-		  }
+			"BugTracker`",
+			"RemovePaths" -> {
+				ParentList,
+				"Documentation",
+				"Dependencies"
+			}
+		}
 	},
 	"DependencyContexts" -> {
 		"BTools`Paclets`",
