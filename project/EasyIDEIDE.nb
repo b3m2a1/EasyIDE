@@ -3,69 +3,139 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6267,        161]
-NotebookOptionsPosition[      1998,         52]
-NotebookOutlinePosition[      5881,        153]
-CellTagsIndexPosition[      5838,        150]
+NotebookDataLength[      9765,        249]
+NotebookOptionsPosition[      4716,        126]
+NotebookOutlinePosition[      8575,        226]
+CellTagsIndexPosition[      8532,        223]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[
- RowBox[{"\[LeftAssociation]", 
+ RowBox[{"<|", "\[IndentingNewLine]", 
+  RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"\"\<Directory\>\"", "\[Rule]", "\"\<..\>\""}], "}"}]}], 
+  "\[IndentingNewLine]", "|>"}]], "Metadata",
+ CellChangeTimes->{{3.732830406695567*^9, 3.732830432925774*^9}, {
+  3.7328323350873213`*^9, 
+  3.7328323409624166`*^9}},ExpressionUUID->"b430a8da-eb4a-4117-bd8b-\
+fdc2347bf8ef"],
+
+Cell[CellGroupData[{
+
+Cell["EasyIDE", "Section",
+ CellChangeTimes->{{3.71293841054522*^9, 3.712938421466749*^9}, {
+  3.712938914585651*^9, 3.712938915534898*^9}, {3.76374774745129*^9, 
+  3.76374774848939*^9}},ExpressionUUID->"5c79578b-253d-40a2-b50e-\
+0acfe58968fe"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+   "version","http://img.shields.io/badge/version-1.0.2-orange.svg",
+    "https://github.com/b3m2a1/EasyIDE/PacletInfo.m"},
+   "MarkdownLinkedImageLink"]],ExpressionUUID->
+  "ff82f5b4-91c6-40fb-a398-6f77798c662c"],
+ " ",
+ Cell[BoxData[
+  TemplateBox[{
+   "license","http://img.shields.io/badge/license-MIT-blue.svg",
+    "https://opensource.org/licenses/MIT"},
+   "MarkdownLinkedImageLink"]],ExpressionUUID->
+  "d259d369-6409-4c57-b460-c1416b6055ba"]
+}], "Text",
+ CellChangeTimes->{
+  3.732843180303953*^9, {3.732843319602983*^9, 3.732843353258875*^9}, {
+   3.732843412794588*^9, 3.732843412794701*^9}, {3.7328442368519287`*^9, 
+   3.732844236852051*^9}, {3.732846682467456*^9, 3.732846685849126*^9}, {
+   3.732846977968954*^9, 3.7328469779692*^9}, {3.7328475500110483`*^9, 
+   3.732847550011239*^9}, {3.7328476122538357`*^9, 3.732847638675231*^9}, {
+   3.739288570682428*^9, 3.739288577475281*^9}, {3.763747767519034*^9, 
+   3.7637477675191727`*^9}},ExpressionUUID->"95059ebb-0158-425f-a4b4-\
+bb805a36c5ab"],
+
+Cell["EasyIDE is an IDE for Mathematica, written in Mathematica.", "Text",
+ CellChangeTimes->{{3.712938427698472*^9, 3.712938432754331*^9}, 
+   3.7129389313072557`*^9, {3.7129406941654243`*^9, 3.7129407586081657`*^9}, {
+   3.712940795481729*^9, 3.7129407992712727`*^9}, {3.7637477716511517`*^9, 
+   3.763747785321124*^9}},ExpressionUUID->"bc58195c-8827-44f4-9a4a-\
+8de31f8450cd"],
+
+Cell[TextData[StyleBox["EasyIDE is in beta. Please make sure to commit your \
+work frequently as I cannot yet be entirely certain that there will be no \
+nasty state-losing bugs. I have written 90% of EasyIDE using the system \
+itself, but I can only attest for my personal experience as its creator.",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.763747859227983*^9, 
+  3.7637479245416937`*^9}},ExpressionUUID->"e876907b-d3a4-4a2e-a12a-\
+e93a0aa0a8d9"]
+}, Open  ]],
+
+Cell["", "PageBreak",
+ PageBreakBelow->True,ExpressionUUID->"2d516e70-5825-41ef-bb57-78243a30f6a8"],
+
+Cell[CellGroupData[{
+
+Cell["Installation", "Section",
+ CellChangeTimes->{{3.7243624707560883`*^9, 
+  3.724362474482638*^9}},ExpressionUUID->"8888dba8-0d51-49ea-a673-\
+6f83745af645"],
+
+Cell[TextData[{
+ "The easiest way to install EasyIDE is from the",
+ ButtonBox[" Paclet Server",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://paclets.github.io/PacletServer/easyide.html"], None},
+  ButtonNote->"https://paclets.github.io/PacletServer/easyide.html"]
+}], "Text",
+ CellChangeTimes->{{3.724362476282546*^9, 3.724362541401701*^9}, {
+  3.763747797514536*^9, 
+  3.763747820699128*^9}},ExpressionUUID->"871a2b57-4b1f-4ed1-be46-\
+d2a35a2e1ed8"]
+}, Open  ]],
+
+Cell["", "PageBreak",
+ PageBreakBelow->True,ExpressionUUID->"20f93506-2758-4beb-ba14-5c9d981c5cee"],
+
+Cell[CellGroupData[{
+
+Cell["Getting Started", "Section",
+ CellChangeTimes->{{3.763747841904592*^9, 
+  3.763747853798946*^9}},ExpressionUUID->"498e8e6a-69ad-424b-b3c4-\
+fe86c158a239"],
+
+Cell[TextData[{
+ "To use EasyIDE just create a new notebook and go to ",
+ Cell[BoxData[
   RowBox[{
-   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<< Post Title >\>\""}], ",", 
-   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
-   RowBox[{"\"\<Date\>\"", "\[Rule]", 
-    TemplateBox[{RowBox[{"\"Mon 8 Apr 2019 12:22:01\"", 
-        StyleBox[
-         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
-           StyleBox[
-            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
-            False]}], FontColor -> GrayLevel[0.5]]}],
-      RowBox[{"DateObject", "[", 
-        RowBox[{
-          RowBox[{"{", 
-            
-            RowBox[{"2019", ",", "4", ",", "8", ",", "12", ",", "22", ",", 
-              "1.527451`6.936542276036854"}], "}"}], ",", "\"Instant\"", ",", 
-          "\"Gregorian\"", ",", 
-          RowBox[{"-", "7.`"}]}], "]"}]},
-     "DateObject",
-     Editable->False]}], ",", 
-   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
-    RowBox[{"{", "}"}]}], ",", 
-   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
-    RowBox[{"{", "}"}]}], ",", 
-   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
-    RowBox[{"{", "}"}]}]}], "\[RightAssociation]"}]], "Metadata",ExpressionUUI\
-D->"45689287-2068-4382-8b57-35b900923296"],
-
-Cell["Check the style list for the entire set of supported styles", "Text",ExpressionUUID->"aa78ae84-7f9f-441a-8944-ddccd5749907"],
-
-Cell["Input style cells will be dropped", "Text",ExpressionUUID->"9a419604-6906-4b33-aadf-48cdf29a9eed"],
-
-Cell["\<\
-This is a post, so article.html is the theme template for it.\
-\>", "Text",ExpressionUUID->"da5190a4-e727-4df4-95e2-b42974c291b9"]
+  "Format", " ", ">", " ", "Stylesheet", " ", ">", " ", "EasyIDE", " ", ">", 
+   " ", "LightMode"}]], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "63fa16b7-c6d3-4685-b10a-5187c909a42f"],
+ ". The notebook will ask you for a location to use as the root directory. \
+This can be changed via the Project menu at any time."
+}], "Text",
+ CellChangeTimes->{{3.763747948069138*^9, 
+  3.763748011676611*^9}},ExpressionUUID->"9ba9af12-deac-4098-a616-\
+9a98a48044cd"]
+}, Open  ]]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{875, 742},
-WindowMargins->{{76, Automatic}, {Automatic, 2}},
+WindowMargins->{{79, Automatic}, {Automatic, 22}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "Post #1" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/.scratch/content/posts/Post #1.nb"}, 
-      "NotebookManipulation" -> {
+     "NotebookManipulation" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/\
@@ -79,8 +149,11 @@ AttachedDialog.nb"},
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/NotebookData.\
-nb"}}, "FileViewer" -> {"Visible" -> False}, 
-    "Toolbars" -> {"Column" -> GridBox[{{
+nb"}, "README" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/project/README.nb"}}, 
+    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
              PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
@@ -90,7 +163,7 @@ nb"}}, "FileViewer" -> {"Visible" -> False},
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "Post #1", "StyleSheet" -> 
+    "ActiveTab" -> "README", "StyleSheet" -> 
     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Markdown.nb"], 
     "FileToolbar" -> "Markdown", 
     "Options" -> {
@@ -152,10 +225,25 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[430, 14, 1181, 28, 86, "Metadata",ExpressionUUID->"45689287-2068-4382-8b57-35b900923296"],
-Cell[1614, 44, 130, 0, 35, "Text",ExpressionUUID->"aa78ae84-7f9f-441a-8944-ddccd5749907"],
-Cell[1747, 46, 104, 0, 35, "Text",ExpressionUUID->"9a419604-6906-4b33-aadf-48cdf29a9eed"],
-Cell[1854, 48, 140, 2, 35, "Text",ExpressionUUID->"da5190a4-e727-4df4-95e2-b42974c291b9"]
+Cell[430, 14, 434, 9, 112, "Metadata",ExpressionUUID->"b430a8da-eb4a-4117-bd8b-fdc2347bf8ef"],
+Cell[CellGroupData[{
+Cell[889, 27, 244, 4, 51, "Section",ExpressionUUID->"5c79578b-253d-40a2-b50e-0acfe58968fe"],
+Cell[1136, 33, 1055, 23, 39, "Text",ExpressionUUID->"95059ebb-0158-425f-a4b4-bb805a36c5ab"],
+Cell[2194, 58, 379, 5, 35, "Text",ExpressionUUID->"bc58195c-8827-44f4-9a4a-8de31f8450cd"],
+Cell[2576, 65, 483, 8, 81, "Text",ExpressionUUID->"e876907b-d3a4-4a2e-a12a-e93a0aa0a8d9"]
+}, Open  ]],
+Cell[3074, 76, 99, 1, 22, "PageBreak",ExpressionUUID->"2d516e70-5825-41ef-bb57-78243a30f6a8",
+ PageBreakBelow->True],
+Cell[CellGroupData[{
+Cell[3198, 81, 159, 3, 51, "Section",ExpressionUUID->"8888dba8-0d51-49ea-a673-6f83745af645"],
+Cell[3360, 86, 464, 11, 35, "Text",ExpressionUUID->"871a2b57-4b1f-4ed1-be46-d2a35a2e1ed8"]
+}, Open  ]],
+Cell[3839, 100, 99, 1, 22, "PageBreak",ExpressionUUID->"20f93506-2758-4beb-ba14-5c9d981c5cee",
+ PageBreakBelow->True],
+Cell[CellGroupData[{
+Cell[3963, 105, 160, 3, 51, "Section",ExpressionUUID->"498e8e6a-69ad-424b-b3c4-fe86c158a239"],
+Cell[4126, 110, 574, 13, 58, "Text",ExpressionUUID->"9ba9af12-deac-4098-a616-9a98a48044cd"]
+}, Open  ]]
 }
 ]
 *)
