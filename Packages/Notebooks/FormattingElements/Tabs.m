@@ -181,7 +181,12 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True
       active = IDEData[nb, "ActiveTab"]
       },
     If[active =!= tabName,
-      If[saveCurrent, IDESave[nb, "AutoGenerateSave"->False]];
+      If[saveCurrent, 
+        IDESave[nb, 
+          "AutoGenerateSave"->False,
+          "HandleSavingAction"->False
+          ]
+        ];
       file = IDEData[nb, {"Tabs", tabName, "File"}];
       NotebookPutFile[nb, file];
       ideSetTab[nb, tabName];
@@ -207,7 +212,12 @@ NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]
         If[tabName == active,
           If[Length@tabs > 0,
             NotebookSwitchTab[nb, Keys[tabs][[1]]],
-            If[saveCurrent, NotebookSaveContents[nb, "AutoGenerateSave"->False]];
+            If[saveCurrent, 
+              NotebookSaveContents[nb, 
+                "AutoGenerateSave"->False,
+                "HandleSavingAction"->False
+                ]
+              ];
             NotebookPutContents[nb, Notebook[{}]];
             IDEData[nb, "ActiveTab"] = None;
             ]

@@ -6,8 +6,22 @@ WithNotebookPaused::usage="Pauses the notebook temporarily to execute code";
 PreemptiveQueued::usage="Evaluates preemptive code in a queued fashion";
 
 
-WithCurrentValueUpdating::usage="Executes with CurrentValue updating resumed";
-WithoutCurrentValueUpdating::usage="Executes with CurrentValue updating paused";
+WithFrontEndTracking::usage=
+  "Executes with FrontEnd tracking enabled";
+WithoutCurrentValueUpdating::usage=
+  "Executes with FrontEnd tracking disabled";
+WithCurrentValueUpdating::usage=
+  "Alias for WithFrontEndTracking";
+WithoutCurrentValueUpdating::usage=
+  "Alias for WithoutFrontEndTracking";
+
+
+WithoutDynamics::usage=
+  "Executes with DynamicUpdating paused";
+WithoutScreenUpdates::usage=
+  "Executes with DynamicUpdating paused";
+WithoutScreenUpdatesOrDynamics::usage=
+  "Turns of both screen updates and DynamicUpdating in a clean fashion";
 
 
 (* ::Text:: *)
@@ -146,6 +160,181 @@ $CurrentIDE := IDENotebookObject[$CurrentIDENotebook];
 
 
 
+(* ::Subsection:: *)
+(*Pausing*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutDynamics*)
+
+
+
+WithoutDynamics//Clear;
+WithoutDynamics[nb_NotebookObject, expr_]:=
+  Block[
+    {
+      dynamicsOff = If[TrueQ@dynamicsOff, True, False]
+      },
+      If[dynamicsOff,
+        expr,
+        Internal`WithLocalSettings[
+          SetOptions[nb, DynamicUpdating->False],
+          dynamicsOff = True;
+          expr,
+          SetOptions[nb, DynamicUpdating->Automatic]
+          ]
+        ]
+      ];
+WithoutDynamics[e:Except[_NotebookObject], expr_]:=
+  With[
+    {
+      nb=
+        Replace[e, 
+          n:_FrontEnd`InputNotebook|_FrontEnd`EvaluationNotebook:>FE`Evaluate[n]
+          ]
+      },
+    WithoutDynamics[nb, expr]/;MatchQ[nb, NotebookObject]
+    ];
+WithoutDynamics[expr_]:=
+  WithoutDynamics[$CurrentIDENotebook, expr];
+WithoutDynamics~SetAttributes~HoldAll;
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutScreenUpdates*)
+
+
+
+WithoutScreenUpdates//Clear;
+WithoutScreenUpdates[nb_NotebookObject, expr_]:=
+  Block[
+    {
+      noScreen = If[TrueQ@noScreen, True, False]
+      },
+      If[noScreen,
+        expr,
+        Internal`WithLocalSettings[
+          FrontEndExecute@
+            FrontEnd`NotebookSuspendScreenUpdates[nb],
+          noScreen = True;
+          expr,
+          FrontEndExecute@
+            FrontEnd`NotebookResumeScreenUpdates[nb]
+          ]
+        ]
+      ];
+WithoutScreenUpdates[e:Except[_NotebookObject], expr_]:=
+  With[
+    {
+      nb=
+        Replace[e, 
+          n:_FrontEnd`InputNotebook|_FrontEnd`EvaluationNotebook:>FE`Evaluate[n]
+          ]
+      },
+    WithoutScreenUpdates[nb, expr]/;MatchQ[nb, NotebookObject]
+    ];
+WithoutScreenUpdates[expr_]:=
+  WithoutScreenUpdates[$CurrentIDENotebook, expr];
+WithoutScreenUpdates~SetAttributes~HoldAll;
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutScreenUpdatesOrDynamics*)
+
+
+
+WithoutScreenUpdatesOrDynamics//Clear;
+WithoutScreenUpdatesOrDynamics[nb_NotebookObject, expr_]:=
+  Block[
+    {
+      noScreen = If[TrueQ@noScreen, True, False],
+      dynamicsOff = If[TrueQ@dynamicsOff, True, False]
+      },
+      Which[
+        noScreen && dynamicsOff,
+          expr,
+        noScreen,
+          WithoutDynamics[nb, expr],
+        dynamicsOff,
+          WithoutScreenUpdates[nb, expr],
+        True,
+          Internal`WithLocalSettings[
+            FrontEndExecute@{
+              FrontEnd`NotebookSuspendScreenUpdates[nb],
+              FrontEnd`SetOptions[nb, DynamicUpdating->False]
+              },
+            noScreen = True;
+            expr,
+            FrontEndExecute@{
+              FrontEnd`NotebookResumeScreenUpdates[nb],
+              FrontEnd`SetOptions[nb, DynamicUpdating->Automatic]
+              }
+            ]
+          ]
+      ];
+WithoutScreenUpdatesOrDynamics[e:Except[_NotebookObject], expr_]:=
+  With[
+    {
+      nb=
+        Replace[e, 
+          n:_FrontEnd`InputNotebook|_FrontEnd`EvaluationNotebook:>FE`Evaluate[n]
+          ]
+      },
+    WithoutScreenUpdatesOrDynamics[nb, expr]/;MatchQ[nb, NotebookObject]
+    ];
+WithoutScreenUpdatesOrDynamics[expr_]:=
+  WithoutScreenUpdatesOrDynamics[$CurrentIDENotebook, expr];
+WithoutScreenUpdatesOrDynamics~SetAttributes~HoldAll;
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithFrontEndTracking*)
+
+
+
+WithFrontEndTracking[expr_]:=
+  Block[
+    {
+      FrontEnd`$TrackingEnabled = True
+      },
+    expr
+    ];
+WithFrontEndTracking~SetAttributes~HoldRest
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutFrontEndTracking*)
+
+
+
+WithoutFrontEndTracking//Clear
+WithoutFrontEndTracking[expr_]:=
+  Block[
+    {
+      FrontEnd`$TrackingEnabled = False
+      },
+    expr
+    ];
+WithoutFrontEndTracking~SetAttributes~HoldRest
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithCurrentValueUpdating*)
+
+
+
+WithCurrentValueUpdating = WithFrontEndTracking;
+
+
+(* ::Subsubsection::Closed:: *)
+(*WithoutCurrentValueUpdating*)
+
+
+
+WithoutCurrentValueUpdating = WithoutFrontEndTracking;
+
+
 (* ::Subsubsection::Closed:: *)
 (*WithNotebookPaused*)
 
@@ -158,74 +347,30 @@ $CurrentIDE := IDENotebookObject[$CurrentIDENotebook];
 
 
 
+WithNotebookPaused//Clear;
 WithNotebookPaused[nb_NotebookObject, expr_]:=
-  Block[
-  {
-    paused = If[TrueQ@paused, True, False],
-    FrontEnd`$TrackingEnabled = False,
-    setDataCalls 
-      (* 
-	            Should I catch all of the ideSetNbData calls...? 
-	            I could batch them all up at once and maybe decrease the amount of processing time...
-	            *)
-    },
-    If[paused,
-      expr,
-      Internal`WithLocalSettings[
-        FrontEndExecute@
+  WithoutFrontEndTracking@
+    WithoutScreenUpdatesOrDynamics[nb, expr];
+WithNotebookPaused[e:Except[_NotebookObject], expr_]:=
+  With[
+    {
+      nb=
+        Replace[e, 
           {
-            FrontEnd`NotebookSuspendScreenUpdates[nb],
-            FrontEnd`SetOptions[nb, DynamicUpdating->False]
-            },
-        paused = True;
-        expr,
-        FrontEndExecute@
-          {
-            FrontEnd`SetOptions[nb, DynamicUpdating->Automatic],
-            FrontEnd`NotebookResumeScreenUpdates[nb]
+            n:_FrontEnd`InputNotebook|_FrontEnd`EvaluationNotebook:>FE`Evaluate[n]
             }
-        ]
-      ]
-    ];
-WithNotebookPaused~SetAttributes~HoldRest
-
-
-(* ::Subsubsection::Closed:: *)
-(*WithCurrentValueUpdating*)
-
-
-
-WithCurrentValueUpdating[expr_]:=
-  Block[
-    {
-      FrontEnd`$TrackingEnabled = True
+          ]
       },
-    expr
+    WithNotebookPaused[nb, expr]/;MatchQ[nb, NotebookObject]
     ];
-WithCurrentValueUpdating~SetAttributes~HoldRest
+WithNotebookPaused[expr_]:=
+  WithNotebookPaused[$CurrentIDENotebook, expr];
+WithNotebookPaused~SetAttributes~HoldAll;
 
 
-(* ::Subsubsection::Closed:: *)
-(*WithoutCurrentValueUpdating*)
+(* ::Subsection:: *)
+(*Preemptive*)
 
-
-
-(* ::Text:: *)
-(*
-	Helper function to suspend the screen while updating the nb
-*)
-
-
-
-WithoutCurrentValueUpdating//Clear
-WithoutCurrentValueUpdating[expr_]:=
-  Block[
-    {
-      FrontEnd`$TrackingEnabled = False
-      },
-    expr
-    ];
-WithoutCurrentValueUpdating~SetAttributes~HoldRest
 
 
 (* ::Subsubsection::Closed:: *)

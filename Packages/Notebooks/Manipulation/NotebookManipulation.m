@@ -347,8 +347,8 @@ setNbActions[nb_]:=
     (* reset the actions to start *)
     CurrentValue[nb, NotebookEventActions] = Inherited;
     (* pull the events from the stylesheet *)
-    nbActs = CurrentValue[nb, NotebookEventActions];
-    If[MemberQ[nbActs, {"MenuCommand", "Save"}],
+    nbActs = Global`blech = CurrentValue[nb, NotebookEventActions];
+    If[MemberQ[Keys@nbActs, {"MenuCommand", "Save"}],
       saveAction = 
         Extract[Association[nbActs],
           Key[{"MenuCommand", "Save"}],
@@ -425,9 +425,9 @@ NotebookPutFile[nb_NotebookObject, f_String]:=
       setNbFileStyle[nb, f];
       setNbFileToolbar[nb, f];
       NotebookPutContents[nb, nbExpr];
-      setAutoSave[nb];
-      setNbActions[nb];
       ];
+    setAutoSave[nb];
+    setNbActions[nb];
     ];
 
 
@@ -471,7 +471,8 @@ notebookHandleAutoSave[f_, nb_]:=
 NotebookSaveContents//Clear
 Options[NotebookSaveContents]=
   {
-    "AutoGenerateSave"->True
+    "AutoGenerateSave"->True,
+    "HandleSavingAction"->True
     };
 Module[{recurseProtect},
   NotebookSaveContents[nb_NotebookObject, 
@@ -492,7 +493,8 @@ Module[{recurseProtect},
             dir,
             nbExpr,
             nbObj,
-            ags = OptionValue["AutoGenerateSave"]
+            ags = TrueQ@OptionValue["AutoGenerateSave"],
+            sa = TrueQ@OptionValue["HandleSavingAction"]
             },
           If[f === Automatic,
             f = IDEPath[nb, Key["ActiveFile"]]
@@ -503,14 +505,17 @@ Module[{recurseProtect},
               "nb",
                 If[preemptive,
                   PreemptiveQueued[nb, notebookSaveNotebook[f, nb]],
-                   notebookSaveNotebook[f, nb]; (* would Put be better ? *)
+                   notebookSaveNotebook[f, nb];
                   ];
                 If[ags,
                   If[preemptive,
                     Function[Null, PreemptiveQueued[nb, #], HoldAllComplete],
                     #&
                     ]@notebookHandleAutoSave[f, nb]
-                  ],
+                  ];
+               If[sa,
+                 ReleaseHold@IDEData[nb, "SavingAction"]
+                 ],
               "m"|"wl",
                 If[preemptive,
                   nbExpr =GetNotebookExpression[nb];
@@ -640,6 +645,8 @@ IDEOpen[nb_NotebookObject, expr_Notebook]:=
   IDEOpen[nb, CreateProjectScratchFile[nb, expr]];
 IDEOpen[nb_IDENotebookObject, expr_Notebook]:=
   IDEOpen[nb["Notebook"], expr];
+IDEOpen[e:_String?FileExistsQ|_Notebook]:=
+  IDEOpen[$CurrentIDENotebook, e];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -651,7 +658,9 @@ IDESave//Clear
 IDESave[nb_NotebookObject, ops:OptionsPattern[]]:=
   NotebookSaveContents[nb, ops];
 IDESave[nb_IDENotebookObject, ops:OptionsPattern[]]:=
-  IDESave[nb["Notebook"], ops]
+  IDESave[nb["Notebook"], ops];
+IDESave[ops:OptionsPattern[]]:=
+  IDESave[$CurrentIDENotebook, ops];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -664,7 +673,9 @@ IDEClose[nb_NotebookObject, tabName_]:=
     NotebookCloseTab[nb, tabName]
     ];
 IDEClose[nb_IDENotebookObject, tabName_]:=
-  IDEClose[nb["Notebook"], tabName]
+  IDEClose[nb["Notebook"], tabName];
+IDEClose[tabName_]:=
+  IDEClose[$CurrentIDENotebook, tabName];
 
 
 End[];

@@ -1,287 +1,787 @@
-Notebook[{Cell[CellGroupData[{Cell["Helper Functions", "CodeSection"], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"WithNotebookPaused", "::", 
-              "usage"}], "=", 
-            "\"Pauses the notebook temporarily to execute code\""}], ";"}], 
-        "\n", RowBox[{RowBox[{RowBox[{"PreemptiveQueued", "::", "usage"}], 
-            "=", "\"Evaluates preemptive code in a queued fashion\""}], 
-          ";"}]}], "CodeInput"], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"WithCurrentValueUpdating", "::", 
-              "usage"}], "=", 
-            "\"Executes with CurrentValue updating resumed\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"WithoutCurrentValueUpdating", "::", 
-              "usage"}], "=", 
-            "\"Executes with CurrentValue updating paused\""}], ";"}]}], 
-      "CodeInput"], Cell["\[LeftCeiling]Consistent references to the current \
-IDE notebook\[RightFloor]", "Text", Evaluatable -> True], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"$CurrentIDENotebook", "::", 
-              "usage"}], "=", "\"\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"$CurrentIDE", "::", "usage"}], "=", 
-            "\"\""}], ";"}]}], "CodeInput"], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"iCurrentValue", "::", "usage"}], 
-            "=", "\"Just reimplements CurrentValue for when it's needed\""}], 
-          ";"}], "\n", RowBox[{RowBox[{RowBox[{"SetCurrentValue", "::", 
-              "usage"}], "=", "\"\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"SetCurrentValueDelayed", "::", "usage"}], 
-            "=", "\"\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"WithIDEData", "::", "usage"}], "=", 
-            "\"Reroutes CurrentValue to the EasyIDE path\""}], ";"}]}], 
-      "CodeInput"], Cell[BoxData[RowBox[
-        {RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-      "InputSection"], Cell[CellGroupData[
-       {Cell["\[LeftCeiling]CurrentValues\[RightFloor]", "CodeSubsection", 
-         Evaluatable -> True], Cell[BoxData[RowBox[
-           {RowBox[{"iCurrentValue", "[", "a___", "]"}], ":=", "\n", "  ", 
-            RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[{"c", "=", 
-                    RowBox[{"FrontEnd`CurrentValue", "[", "a", "]"}]}], 
-                  "}"}], ",", "\n", "  ", "  ", RowBox[{"Replace", "[", "\n", 
-                  "  ", "    ", RowBox[{RowBox[{"MathLink`CallFrontEnd", "[", 
-                      "\n", "  ", "  ", "    ", RowBox[{"FrontEnd`Value", 
-                        "[", RowBox[{"c", ",", " ", 
-                          "FrontEnd`$TrackingEnabled"}], "]"}], "]"}], ",", 
-                    "\n", "  ", "  ", "  ", RowBox[{"c", "\[Rule]", 
-                      "$Failed"}]}], "\n", "  ", "    ", "]"}]}], "\n", "  ", 
-              "  ", "]"}]}]], "CodeInput"], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]SetCurrentValue\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{"SetCurrentValue", "//", "Clear"}], "\n", 
-              RowBox[{RowBox[{"SetCurrentValue", "[", RowBox[{"nb_", ",", 
-                    " ", "k_", ",", " ", "value_"}], "]"}], ":=", "\n", "  ", 
-                RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[{"h", "=", 
-                        "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", 
-                    "  \t", RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", 
-                      "      ", RowBox[{"FrontEnd`SetValue", "[", "\n", 
-                        "\t\t\t\t\t", RowBox[{RowBox[{"FEPrivate`Set", "[", 
-                          "\n", "\t\t\t\t\t\t", RowBox[{RowBox[
-                          {"FrontEnd`CurrentValue", "[", RowBox[{"nb", ",", 
-                          " ", "k"}], "]"}], ",", " ", "\n", "          ", 
-                          "value"}], "\n", "\t\t\t\t\t\t", "]"}], ",", "\n", 
-                          "\t\t\t\t\t", "h"}], "\n", "\t\t\t\t\t", "]"}], 
-                      "\n", "      ", "]"}]}], "\n", "    ", "]"}]}]}], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]SetCurrentValueDelayed\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{"SetCurrentValueDelayed", "//", "Clear"}], 
-              "\n", RowBox[{RowBox[{"SetCurrentValueDelayed", "[", 
-                  RowBox[{"nb_", ",", " ", "k_", ",", " ", RowBox[{"Hold", 
-                      "[", "value_", "]"}]}], "]"}], ":=", "\n", "\t", 
-                RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[{"h", "=", 
-                        "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", 
-                    "  ", "\t", RowBox[{"MathLink`CallFrontEndHeld", "[", 
-                      "\n", "  ", "    ", RowBox[{"FrontEnd`SetValue", "[", 
-                        "\n", "        ", RowBox[{RowBox[
-                          {"FEPrivate`SetDelayed", "[", "\n", "          ", 
-                          RowBox[{RowBox[{"FrontEnd`CurrentValue", "[", 
-                          RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", 
-                          "\n", "          ", "value"}], "\n", "  ", 
-                          "        ", "]"}], ",", "\n", "  ", "      ", 
-                          "h"}], "\n", "  ", "      ", "]"}], "\n", "      ", 
-                      "]"}]}], "\n", "    ", "]"}]}]}], "CodeInput"]}, 
-          Closed]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]WithIDEData\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"WithIDEData", "[", 
-                    RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", 
-                  "  ", RowBox[{"Block", "[", "\n", "    ", RowBox[
-                     {RowBox[{"{", "\n", "      ", RowBox[{"CurrentValue", 
-                          ",", "\n", "      ", "FrontEnd`Options"}], "\n", 
-                        "      ", "}"}], ",", "\n", "    ", RowBox[
-                       {RowBox[{RowBox[{"CurrentValue", "[", RowBox[{"a_", 
-                          ",", " ", "b_", ",", " ", "c___"}], "]"}], ":=", 
-                          "\n", "      ", RowBox[{"Block", "[", RowBox[
-                          {RowBox[{"{", RowBox[{"CurrentValue", "=", 
-                          "iCurrentValue"}], "}"}], ",", "\n", "        ", 
-                          RowBox[{"IDEData", "[", RowBox[{"a", ",", " ", 
-                          RowBox[{"Flatten", "@", RowBox[{"{", RowBox[
-                          {"\"Options\"", ",", " ", "b"}], "}"}]}], ",", " ", 
-                          "c"}], "]"}]}], "\n", "        ", "]"}]}], ";", 
-                        "\n", "    ", RowBox[{"CurrentValue", "/:", "\n", 
-                          "      ", RowBox[{"(", RowBox[{RowBox[
-                          {"CurrentValue", "[", RowBox[{"a_", ",", " ", "b_", 
-                          ",", " ", "c___"}], "]"}], " ", "=", " ", "v_"}], 
-                          ")"}], ":=", "\n", "        ", RowBox[{"Block", 
-                          "[", RowBox[{RowBox[{"{", RowBox[{"CurrentValue", 
-                          "=", "iCurrentValue"}], "}"}], ",", "\n", 
-                          "          ", RowBox[{RowBox[{"IDEData", "[", 
-                          RowBox[{"a", ",", " ", RowBox[{"Flatten", "@", 
-                          RowBox[{"{", RowBox[{"\"Options\"", ",", " ", 
-                          "b"}], "}"}]}]}], "]"}], " ", "=", " ", "v"}]}], 
-                          "\n", "          ", "]"}]}], ";", "\n", "    ", 
-                        RowBox[{"CurrentValue", "/:", "\n", "      ", 
-                          RowBox[{"(", RowBox[{RowBox[{"CurrentValue", "[", 
-                          RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], 
-                          "]"}], " ", ":=", " ", "v_"}], ")"}], ":=", "\n", 
-                          "        ", RowBox[{"Block", "[", RowBox[{RowBox[
-                          {"{", RowBox[{"CurrentValue", "=", 
-                          "iCurrentValue"}], "}"}], ",", "\n", "          ", 
-                          RowBox[{RowBox[{"IDEData", "[", RowBox[{"a", ",", 
-                          " ", RowBox[{"Flatten", "@", RowBox[{"{", RowBox[
-                          {"\"Options\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
-                          " ", ":=", " ", "v"}]}], "\n", "          ", 
-                          "]"}]}], ";", "\n", "    ", RowBox[{RowBox[
-                          {"FrontEnd`Options", "[", "n_", "]"}], ":=", "\n", 
-                          "    \t", RowBox[{"Block", "[", "\n", "    \t\t", 
-                          RowBox[{RowBox[{"{", "\n", "    \t\t\t", RowBox[
-                          {"CurrentValue", "=", "\n", "    \t\t\t\t", RowBox[
-                          {RowBox[{"FrontEnd`Value", "[", RowBox[{RowBox[
-                          {"FrontEnd`CurrentValue", "[", "##", "]"}], ",", 
-                          " ", "FrontEnd`$TrackingEnabled"}], "]"}], "&"}]}], 
-                          "\n", "    \t\t\t", "}"}], ",", "\n", "    \t  ", 
-                          RowBox[{"IDEData", "[", RowBox[{"n", ",", " ", 
-                          "\"Options\""}], "]"}]}], "\n", "    \t  ", 
-                          "]"}]}], ";", "\n", "    ", RowBox[
-                         {"Internal`InheritedBlock", "[", RowBox[{RowBox[
-                          {"{", "NotebookGet", "}"}], ",", "\n", "    \t", 
-                          RowBox[{RowBox[{"Unprotect", "[", "NotebookGet", 
-                          "]"}], ";", "\n", "    \t", RowBox[{RowBox[
-                          {"NotebookGet", "[", "nb", "]"}], ":=", "\n", 
-                          "    \t  ", RowBox[{"Block", "[", "\n", 
-                          "    \t  \t", RowBox[{RowBox[{"{", "\n", 
-                          "    \t  \t\t", RowBox[{RowBox[{"NotebookGet", "=", 
-                          RowBox[{RowBox[{"MathLink`CallFrontEnd", "[", 
-                          RowBox[{"FrontEnd`NotebookGet", "[", "nb", "]"}], 
-                          "]"}], "&"}]}], ",", "\n", "    \t  \t\t", RowBox[
-                          {"CurrentValue", "=", "iCurrentValue"}]}], "\n", 
-                          "    \t  \t\t", "}"}], ",", "\n", "    \t\t\t", 
-                          RowBox[{"GetNotebookExpression", "[", "nb", 
-                          "]"}]}], "\n", "    \t\t\t", "]"}]}], ";", "\n", 
-                          " \t   ", "expr"}]}], "\n", " \t   ", "]"}]}]}], 
-                    "\n", "    ", "]"}]}], ";"}], "\n", RowBox[{
-                RowBox[{"WithIDEData", "~", "SetAttributes", "~", 
-                  "HoldRest"}], ";"}]}], "CodeInput"]}, Closed]]}, Open]], 
-     Cell[CellGroupData[{Cell["\[LeftCeiling]IDE Refs\[RightFloor]", 
-         "CodeSubsection", Evaluatable -> True], 
-        Cell[BoxData[{RowBox[{RowBox[{"$CurrentIDENotebook", " ", ":=", " ", 
-               RowBox[{"EvaluationNotebook", "[", "]"}]}], ";"}], "\n", 
-           RowBox[{RowBox[{"$CurrentIDE", " ", ":=", " ", RowBox[
-                {"IDENotebookObject", "[", "$CurrentIDENotebook", "]"}]}], 
-             ";"}]}], "CodeInput"]}, Open]], 
-     Cell[CellGroupData[{Cell["\[LeftCeiling]Helpers\[RightFloor]", 
-         "CodeSubsection", Evaluatable -> True], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]WithNotebookPaused\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], Cell["\[LeftCeiling]\n\
-\tHelper function to suspend the screen while updating the nb\n\[RightFloor]"\
-, "Text", Evaluatable -> True], Cell[BoxData[{RowBox[{RowBox[
-                 {RowBox[{"WithNotebookPaused", "[", RowBox[
-                     {"nb_NotebookObject", ",", " ", "expr_"}], "]"}], ":=", 
-                  "\n", "\t", RowBox[{"Block", "[", "\n", "\t", RowBox[
-                     {RowBox[{"{", "\n", "\t  ", RowBox[{RowBox[{"paused", 
-                          " ", "=", " ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"TrueQ", "@", "paused"}], ",", " ", "True", ",", 
-                          " ", "False"}], "]"}]}], ",", "\n", "\t  ", 
-                          RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", 
-                          "False"}], ",", "\n", "\t  ", "setDataCalls"}], 
-                        " ", "\n", "\t    ", RowBox[{"(*", " ", "\n", 
-                          "\t            ", RowBox[{RowBox[{RowBox[{RowBox[
-                          {RowBox[{"Should", " ", "I", " ", "catch", " ", 
-                          "all", " ", "of", " ", "the", " ", "ideSetNbData", 
-                          " ", "calls"}], "..."}], "?", " ", "\n", 
-                          "\t            ", "I"}], " ", "could", " ", 
-                          "batch", " ", "them", " ", "all", " ", "up", " ", 
-                          "at", " ", "once", " ", "and", " ", "maybe", " ", 
-                          "decrease", " ", "the", " ", "amount", " ", "of", 
-                          " ", "processing", " ", "time"}], "..."}], "\n", 
-                          "\t            ", "*)"}], "\n", "\t  ", "}"}], ",", 
-                      "\n", "\t\t", RowBox[{"If", "[", RowBox[{"paused", ",", 
-                          "\n", "\t\t\t", "expr", ",", "\n", "\t\t\t", 
-                          RowBox[{"Internal`WithLocalSettings", "[", "\n", 
-                          "\t\t\t\t", RowBox[{RowBox[{"FrontEndExecute", "@", 
-                          "\n", "\t\t\t\t\t", RowBox[{"{", "\n", 
-                          "\t\t\t\t\t  ", RowBox[{RowBox[{
-                          "FrontEnd`NotebookSuspendScreenUpdates", "[", "nb", 
-                          "]"}], ",", "\n", "\t\t\t\t\t  ", RowBox[
-                          {"FrontEnd`SetOptions", "[", RowBox[{"nb", ",", 
-                          " ", RowBox[{"DynamicUpdating", "\[Rule]", 
-                          "False"}]}], "]"}]}], "\n", "\t\t\t\t\t  ", 
-                          "}"}]}], ",", "\n", "\t\t\t\t", RowBox[{RowBox[
-                          {"paused", " ", "=", " ", "True"}], ";", "\n", 
-                          "\t\t\t\t", "expr"}], ",", "\n", "\t\t\t\t", 
-                          RowBox[{"FrontEndExecute", "@", "\n", "\t\t\t\t\t", 
-                          RowBox[{"{", "\n", "\t\t\t\t\t  ", RowBox[{RowBox[
-                          {"FrontEnd`SetOptions", "[", RowBox[{"nb", ",", 
-                          " ", RowBox[{"DynamicUpdating", "\[Rule]", 
-                          "Automatic"}]}], "]"}], ",", "\n", "\t\t\t\t\t  ", 
-                          RowBox[{"FrontEnd`NotebookResumeScreenUpdates", 
-                          "[", "nb", "]"}]}], "\n", "\t\t\t\t\t  ", 
-                          "}"}]}]}], "\n", "\t\t\t\t", "]"}]}], "\n", 
-                        "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], ";"}], 
-              "\n", RowBox[{"WithNotebookPaused", "~", "SetAttributes", "~", 
-                "HoldRest"}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]WithCurrentValueUpdating\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"WithCurrentValueUpdating", 
-                    "[", "expr_", "]"}], ":=", "\n", "\t", RowBox[{"Block", 
-                    "[", "\n", "\t  ", RowBox[{RowBox[{"{", "\n", "  \t  ", 
-                        RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", 
-                          "True"}], "\n", "  ", "\t  ", "}"}], ",", "\n", 
-                      "\t\t", "expr"}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
-              RowBox[{"WithCurrentValueUpdating", "~", "SetAttributes", "~", 
-                "HoldRest"}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]WithoutCurrentValueUpdating\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], Cell["\[LeftCeiling]\n\
-\tHelper function to suspend the screen while updating the nb\n\[RightFloor]"\
-, "Text", Evaluatable -> True], Cell[BoxData[
-             {RowBox[{"WithoutCurrentValueUpdating", "//", "Clear"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"WithoutCurrentValueUpdating", "[", 
-                    "expr_", "]"}], ":=", "\n", "\t", RowBox[{"Block", "[", 
-                    "\n", "\t  ", RowBox[{RowBox[{"{", "\n", "  \t  ", 
-                        RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", 
-                          "False"}], "\n", "  ", "\t  ", "}"}], ",", "\n", 
-                      "\t\t", "expr"}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
-              RowBox[{"WithoutCurrentValueUpdating", "~", "SetAttributes", 
-                "~", "HoldRest"}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]PreemptiveQueued\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"PreemptiveQueued", "[", 
-                    RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", 
-                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
-                         {"nnbb", "=", "nb"}], "}"}], ",", "\n", "  ", "\t", 
-                      RowBox[{"MessageDialog", "[", "\n", "  ", "\t\t", 
-                        RowBox[{RowBox[{"DynamicModule", "[", "\n", "  ", 
-                          "\t\t\t", RowBox[{RowBox[{"{", "}"}], ",", "\n", 
-                          "  ", "\t\t\t", "Null", ",", "\n", "  ", "\t\t\t", 
-                          RowBox[{"Initialization", "\[RuleDelayed]", RowBox[
-                          {"{", "\n", "  ", "\t\t\t\t", RowBox[
-                          {"Internal`WithLocalSettings", "[", "\n", "  ", 
-                          "\t\t\t\t\t", RowBox[{"Null", ",", "\n", "  ", 
-                          "\t\t\t\t\t", RowBox[{"Block", "[", "\n", "  ", 
-                          "\t\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", "  ", 
-                          "\t\t\t\t\t\t\t", RowBox[{"$CurrentIDENotebook", 
-                          "=", "nnbb"}], "\n", "  ", "\t\t\t\t\t\t\t", "}"}], 
-                          ",", "\n", "  ", "\t\t\t\t\t\t", "expr"}], "\n", 
-                          "  ", "\t\t\t\t\t\t", "]"}], ",", "\n", "  ", 
-                          "\t\t\t\t\t", RowBox[{"NotebookClose", "[", RowBox[
-                          {"EvaluationNotebook", "[", "]"}], "]"}]}], "\n", 
-                          "  ", "\t\t\t\t\t", "]"}], "\n", "  ", "\t\t\t\t", 
-                          "}"}]}], ",", "\n", "  ", "\t\t\t", RowBox[
-                          {"SynchronousInitialization", " ", "->", " ", 
-                          "False"}]}], "\n", "  ", "\t\t\t", "]"}], ",", 
-                          "\n", "  ", "\t\t", RowBox[{"Visible", "\[Rule]", 
-                          "False"}], ",", "\n", "  ", "\t\t", RowBox[
-                          {"Evaluator", "\[Rule]", RowBox[{"CurrentValue", 
-                          "[", RowBox[{"nb", ",", " ", "Evaluator"}], 
-                          "]"}]}]}], "\n", "  \t\t", "]"}]}], "\n", "    ", 
-                    "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {RowBox[{"PreemptiveQueued", "[", "expr_", "]"}], ":=", 
-                  "\n", "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", 
-                        RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], 
-                      ",", "\n", "  ", "  ", RowBox[{"PreemptiveQueued", "[", 
-                        RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "\n", 
-                    "    ", "]"}]}], ";"}], "\n", RowBox[{"PreemptiveQueued", 
-                "~", "SetAttributes", "~", "HoldAll"}]}], "CodeInput"]}, 
-          Closed]]}, Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], 
-         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
- WindowSize -> {808, 755}, WindowMargins -> {{112, Automatic}, 
-   {45, Automatic}}, TaggingRules -> 
-  {"UUIDButtons" -> 
-    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
- FrontEndVersion -> 
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Helper Functions", \
+"CodeSection",ExpressionUUID->"226e80cc-c0db-4ae3-8ed9-0c7df53d734f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithNotebookPaused", "::", "usage"}], "=", 
+   "\"\<Pauses the notebook temporarily to execute code\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PreemptiveQueued", "::", "usage"}], "=", 
+   "\"\<Evaluates preemptive code in a queued fashion\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"dd7414d2-58fb-4a21-a86c-9e29d6fcca91"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithFrontEndTracking", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Executes with FrontEnd tracking enabled\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutCurrentValueUpdating", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Executes with FrontEnd tracking disabled\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithCurrentValueUpdating", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Alias for WithFrontEndTracking\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutCurrentValueUpdating", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Alias for WithoutFrontEndTracking\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"2fe66cca-142b-4ed6-a382-481678f3d6bd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutDynamics", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Executes with DynamicUpdating paused\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdates", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Executes with DynamicUpdating paused\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdatesOrDynamics", "::", "usage"}], "=", "\n", 
+   "\t", "\"\<Turns of both screen updates and DynamicUpdating in a clean \
+fashion\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"be65df34-6bbf-4c01-9bc4-577f71d932c1"],
+
+Cell["\[LeftCeiling]Consistent references to the current IDE notebook\
+\[RightFloor]", "Text",
+ Evaluatable->True,ExpressionUUID->"a82ab2fb-2602-4518-8991-88f61920eae3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"$CurrentIDENotebook", "::", "usage"}], "=", "\"\<\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$CurrentIDE", "::", "usage"}], "=", "\"\<\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"93429bde-fcfb-402e-a5c7-c3a3b827f9e1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"iCurrentValue", "::", "usage"}], "=", 
+   "\"\<Just reimplements CurrentValue for when it's needed\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetCurrentValue", "::", "usage"}], "=", "\"\<\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetCurrentValueDelayed", "::", "usage"}], "=", "\"\<\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithIDEData", "::", "usage"}], "=", 
+   "\"\<Reroutes CurrentValue to the EasyIDE path\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"3adccde2-2c93-4903-8b7f-61512fd99887"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"619d75b4-e1b8-48dd-be2a-\
+2e0427a5dc9e"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]CurrentValues\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"914f065d-2689-4b66-b4ab-c11ca378cc60"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"iCurrentValue", "[", "a___", "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"c", "=", 
+      RowBox[{"FrontEnd`CurrentValue", "[", "a", "]"}]}], "}"}], ",", "\n", 
+    "  ", "  ", 
+    RowBox[{"Replace", "[", "\n", "  ", "    ", 
+     RowBox[{
+      RowBox[{"MathLink`CallFrontEnd", "[", "\n", "  ", "  ", "    ", 
+       RowBox[{"FrontEnd`Value", "[", 
+        RowBox[{"c", ",", " ", "FrontEnd`$TrackingEnabled"}], "]"}], "]"}], 
+      ",", "\n", "  ", "  ", "  ", 
+      RowBox[{"c", "\[Rule]", "$Failed"}]}], "\n", "  ", "    ", "]"}]}], 
+   "\n", "  ", "  ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"87c276ef-fd08-463e-b575-0f5393543a5d"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]SetCurrentValue\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"959a7892-530c-4dc7-9caa-19513e12b8ee"],
+
+Cell[BoxData[{
+ RowBox[{"SetCurrentValue", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{"SetCurrentValue", "[", 
+   RowBox[{"nb_", ",", " ", "k_", ",", " ", "value_"}], "]"}], ":=", "\n", 
+  "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", 
+    "  \t", 
+    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "      ", 
+     RowBox[{"FrontEnd`SetValue", "[", "\n", "\t\t\t\t\t", 
+      RowBox[{
+       RowBox[{"FEPrivate`Set", "[", "\n", "\t\t\t\t\t\t", 
+        RowBox[{
+         RowBox[{"FrontEnd`CurrentValue", "[", 
+          RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", "\n", "          ", 
+         "value"}], "\n", "\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t", 
+       "h"}], "\n", "\t\t\t\t\t", "]"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], \
+"CodeInput",ExpressionUUID->"4d4c09b9-6f62-4768-9ba1-07cd0b8213cb"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]SetCurrentValueDelayed\[RightFloor]", "CodeSubsubsection",
+ 
+ Evaluatable->True,ExpressionUUID->"0b3ed191-7553-4e50-9b33-40771b19b414"],
+
+Cell[BoxData[{
+ RowBox[{"SetCurrentValueDelayed", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{"SetCurrentValueDelayed", "[", 
+   RowBox[{"nb_", ",", " ", "k_", ",", " ", 
+    RowBox[{"Hold", "[", "value_", "]"}]}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"h", "=", "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", "  ", 
+    "\t", 
+    RowBox[{"MathLink`CallFrontEndHeld", "[", "\n", "  ", "    ", 
+     RowBox[{"FrontEnd`SetValue", "[", "\n", "        ", 
+      RowBox[{
+       RowBox[{"FEPrivate`SetDelayed", "[", "\n", "          ", 
+        RowBox[{
+         RowBox[{"FrontEnd`CurrentValue", "[", 
+          RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", "\n", "          ", 
+         "value"}], "\n", "  ", "        ", "]"}], ",", "\n", "  ", "      ", 
+       "h"}], "\n", "  ", "      ", "]"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], \
+"CodeInput",ExpressionUUID->"ae5de198-7f79-49ed-b379-413f9576a552"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithIDEData\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"e421c500-cd02-4472-8d8f-570570445220"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithIDEData", "[", 
+    RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"Block", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"CurrentValue", ",", "\n", "      ", "FrontEnd`Options"}], "\n",
+       "      ", "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"CurrentValue", "[", 
+        RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], ":=", "\n", 
+       "      ", 
+       RowBox[{"Block", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "        ", 
+         RowBox[{"IDEData", "[", 
+          RowBox[{"a", ",", " ", 
+           RowBox[{"Flatten", "@", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}], ",", " ", 
+           "c"}], "]"}]}], "\n", "        ", "]"}]}], ";", "\n", "    ", 
+      RowBox[{"CurrentValue", "/:", "\n", "      ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"CurrentValue", "[", 
+          RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], " ", "=", 
+         " ", "v_"}], ")"}], ":=", "\n", "        ", 
+       RowBox[{"Block", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "          ", 
+         RowBox[{
+          RowBox[{"IDEData", "[", 
+           RowBox[{"a", ",", " ", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
+          " ", "=", " ", "v"}]}], "\n", "          ", "]"}]}], ";", "\n", 
+      "    ", 
+      RowBox[{"CurrentValue", "/:", "\n", "      ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"CurrentValue", "[", 
+          RowBox[{"a_", ",", " ", "b_", ",", " ", "c___"}], "]"}], " ", ":=", 
+         " ", "v_"}], ")"}], ":=", "\n", "        ", 
+       RowBox[{"Block", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"CurrentValue", "=", "iCurrentValue"}], "}"}], ",", "\n", 
+         "          ", 
+         RowBox[{
+          RowBox[{"IDEData", "[", 
+           RowBox[{"a", ",", " ", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Options\>\"", ",", " ", "b"}], "}"}]}]}], "]"}], 
+          " ", ":=", " ", "v"}]}], "\n", "          ", "]"}]}], ";", "\n", 
+      "    ", 
+      RowBox[{
+       RowBox[{"FrontEnd`Options", "[", "n_", "]"}], ":=", "\n", "    \t", 
+       RowBox[{"Block", "[", "\n", "    \t\t", 
+        RowBox[{
+         RowBox[{"{", "\n", "    \t\t\t", 
+          RowBox[{"CurrentValue", "=", "\n", "    \t\t\t\t", 
+           RowBox[{
+            RowBox[{"FrontEnd`Value", "[", 
+             RowBox[{
+              RowBox[{"FrontEnd`CurrentValue", "[", "##", "]"}], ",", " ", 
+              "FrontEnd`$TrackingEnabled"}], "]"}], "&"}]}], "\n", 
+          "    \t\t\t", "}"}], ",", "\n", "    \t  ", 
+         RowBox[{"IDEData", "[", 
+          RowBox[{"n", ",", " ", "\"\<Options\>\""}], "]"}]}], "\n", 
+        "    \t  ", "]"}]}], ";", "\n", "    ", 
+      RowBox[{"Internal`InheritedBlock", "[", 
+       RowBox[{
+        RowBox[{"{", "NotebookGet", "}"}], ",", "\n", "    \t", 
+        RowBox[{
+         RowBox[{"Unprotect", "[", "NotebookGet", "]"}], ";", "\n", "    \t", 
+         
+         RowBox[{
+          RowBox[{"NotebookGet", "[", "nb", "]"}], ":=", "\n", "    \t  ", 
+          RowBox[{"Block", "[", "\n", "    \t  \t", 
+           RowBox[{
+            RowBox[{"{", "\n", "    \t  \t\t", 
+             RowBox[{
+              RowBox[{"NotebookGet", "=", 
+               RowBox[{
+                RowBox[{"MathLink`CallFrontEnd", "[", 
+                 RowBox[{"FrontEnd`NotebookGet", "[", "nb", "]"}], "]"}], 
+                "&"}]}], ",", "\n", "    \t  \t\t", 
+              RowBox[{"CurrentValue", "=", "iCurrentValue"}]}], "\n", 
+             "    \t  \t\t", "}"}], ",", "\n", "    \t\t\t", 
+            RowBox[{"GetNotebookExpression", "[", "nb", "]"}]}], "\n", 
+           "    \t\t\t", "]"}]}], ";", "\n", " \t   ", "expr"}]}], "\n", 
+       " \t   ", "]"}]}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WithIDEData", "~", "SetAttributes", "~", "HoldRest"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"6e191b94-feea-4d3e-9b56-6142840b47ab"]\
+
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDE Refs\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"376c02e5-98e7-4561-a6ca-ccebd2c0ecc7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$CurrentIDENotebook", " ", ":=", " ", 
+   RowBox[{"EvaluationNotebook", "[", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$CurrentIDE", " ", ":=", " ", 
+   RowBox[{"IDENotebookObject", "[", "$CurrentIDENotebook", "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"cd2cfea7-57e7-4ae3-8fc0-64fc9aab3ed7"]\
+
+}, Open  ]],
+
+Cell["\[LeftCeiling]Helpers\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"6f718d7b-0f5a-4ce3-846c-6b31a4c46a65"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Pausing\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"13aeb7fc-cb88-4bd7-8867-744d923df7fe"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithoutDynamics\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"9df4886c-c9ca-4985-9088-21da746b75a5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WithoutDynamics", "//", "Clear"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutDynamics", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "expr_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"Block", "[", "\n", "  \t", 
+    RowBox[{
+     RowBox[{"{", "\n", "  \t  ", 
+      RowBox[{"dynamicsOff", " ", "=", " ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"TrueQ", "@", "dynamicsOff"}], ",", " ", "True", ",", " ", 
+         "False"}], "]"}]}], "\n", "  ", "\t  ", "}"}], ",", "\n", "  ", 
+     "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+      "dynamicsOff", ",", "\n", "  ", "\t\t\t", "expr", ",", "\n", "  ", 
+       "\t\t\t", 
+       RowBox[{"Internal`WithLocalSettings", "[", "\n", "  ", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{"SetOptions", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"DynamicUpdating", "\[Rule]", "False"}]}], "]"}], ",", 
+         "\n", "  ", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"dynamicsOff", " ", "=", " ", "True"}], ";", "\n", "  ", 
+          "\t\t\t\t", "expr"}], ",", "\n", "  \t\t\t\t", 
+         RowBox[{"SetOptions", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"DynamicUpdating", "\[Rule]", "Automatic"}]}], "]"}]}], 
+        "\n", "  \t\t\t\t", "]"}]}], "\n", "  \t\t\t", "]"}]}], "\n", 
+    "  \t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutDynamics", "[", 
+    RowBox[{
+     RowBox[{"e", ":", 
+      RowBox[{"Except", "[", "_NotebookObject", "]"}]}], ",", " ", "expr_"}], 
+    "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"nb", "=", "\n", "        ", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"e", ",", " ", "\n", "          ", 
+         RowBox[{
+          RowBox[{"n", ":", 
+           RowBox[{
+           "_FrontEnd`InputNotebook", "|", "_FrontEnd`EvaluationNotebook"}]}],
+           "\[RuleDelayed]", 
+          RowBox[{"FE`Evaluate", "[", "n", "]"}]}]}], "\n", "          ", 
+        "]"}]}], "\n", "      ", "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{"WithoutDynamics", "[", 
+       RowBox[{"nb", ",", " ", "expr"}], "]"}], "/;", 
+      RowBox[{"MatchQ", "[", 
+       RowBox[{"nb", ",", " ", "NotebookObject"}], "]"}]}]}], "\n", "    ", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutDynamics", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"WithoutDynamics", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "expr"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WithoutDynamics", "~", "SetAttributes", "~", "HoldAll"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"d0bbc7d4-9304-4c0b-85a4-6f24740cf619"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithoutScreenUpdates\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"9dee3ea8-33a7-48a4-bbd5-a25dabc3875a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WithoutScreenUpdates", "//", "Clear"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdates", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "expr_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"Block", "[", "\n", "  \t", 
+    RowBox[{
+     RowBox[{"{", "\n", "  \t  ", 
+      RowBox[{"noScreen", " ", "=", " ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"TrueQ", "@", "noScreen"}], ",", " ", "True", ",", " ", 
+         "False"}], "]"}]}], "\n", "  ", "\t  ", "}"}], ",", "\n", "  \t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+      "noScreen", ",", "\n", "  \t\t\t", "expr", ",", "\n", "  \t\t\t", 
+       RowBox[{"Internal`WithLocalSettings", "[", "\n", "  \t\t\t\t", 
+        RowBox[{
+         RowBox[{"FrontEndExecute", "@", "\n", "  \t\t\t\t  ", 
+          RowBox[{"FrontEnd`NotebookSuspendScreenUpdates", "[", "nb", "]"}]}],
+          ",", "\n", "  \t\t\t\t", 
+         RowBox[{
+          RowBox[{"noScreen", " ", "=", " ", "True"}], ";", "\n", "  ", 
+          "\t\t\t\t", "expr"}], ",", "\n", "  \t\t\t\t", 
+         RowBox[{"FrontEndExecute", "@", "\n", "  \t\t\t\t  ", 
+          RowBox[{
+          "FrontEnd`NotebookResumeScreenUpdates", "[", "nb", "]"}]}]}], "\n", 
+        "  \t\t\t\t", "]"}]}], "\n", "  \t\t\t", "]"}]}], "\n", "  \t\t", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdates", "[", 
+    RowBox[{
+     RowBox[{"e", ":", 
+      RowBox[{"Except", "[", "_NotebookObject", "]"}]}], ",", " ", "expr_"}], 
+    "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"nb", "=", "\n", "        ", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"e", ",", " ", "\n", "          ", 
+         RowBox[{
+          RowBox[{"n", ":", 
+           RowBox[{
+           "_FrontEnd`InputNotebook", "|", "_FrontEnd`EvaluationNotebook"}]}],
+           "\[RuleDelayed]", 
+          RowBox[{"FE`Evaluate", "[", "n", "]"}]}]}], "\n", "          ", 
+        "]"}]}], "\n", "      ", "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{"WithoutScreenUpdates", "[", 
+       RowBox[{"nb", ",", " ", "expr"}], "]"}], "/;", 
+      RowBox[{"MatchQ", "[", 
+       RowBox[{"nb", ",", " ", "NotebookObject"}], "]"}]}]}], "\n", "    ", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdates", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"WithoutScreenUpdates", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "expr"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WithoutScreenUpdates", "~", "SetAttributes", "~", "HoldAll"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"beffad0f-f2f0-4691-8f93-caf684625ddb"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithoutScreenUpdatesOrDynamics\[RightFloor]", \
+"CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"0275d159-6b49-47fb-91cd-c4b45df44985"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WithoutScreenUpdatesOrDynamics", "//", "Clear"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdatesOrDynamics", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "expr_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"Block", "[", "\n", "  \t", 
+    RowBox[{
+     RowBox[{"{", "\n", "  \t  ", 
+      RowBox[{
+       RowBox[{"noScreen", " ", "=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"TrueQ", "@", "noScreen"}], ",", " ", "True", ",", " ", 
+          "False"}], "]"}]}], ",", "\n", "  \t  ", 
+       RowBox[{"dynamicsOff", " ", "=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"TrueQ", "@", "dynamicsOff"}], ",", " ", "True", ",", " ", 
+          "False"}], "]"}]}]}], "\n", "  \t  ", "}"}], ",", "\n", "  \t\t", 
+     RowBox[{"Which", "[", "\n", "  \t\t\t", 
+      RowBox[{
+       RowBox[{"noScreen", " ", "&&", " ", "dynamicsOff"}], ",", "\n", 
+       "\t  \t\t\t", "expr", ",", "\n", "\t\t\t\t", "noScreen", ",", "\n", 
+       "\t\t\t\t\t", 
+       RowBox[{"WithoutDynamics", "[", 
+        RowBox[{"nb", ",", " ", "expr"}], "]"}], ",", "\n", "\t\t\t\t", 
+       "dynamicsOff", ",", "\n", "\t\t\t\t\t", 
+       RowBox[{"WithoutScreenUpdates", "[", 
+        RowBox[{"nb", ",", " ", "expr"}], "]"}], ",", "\n", "\t\t\t\t", 
+       "True", ",", "\n", "  \t\t\t\t", 
+       RowBox[{"Internal`WithLocalSettings", "[", "\n", "\t  \t\t\t\t", 
+        RowBox[{
+         RowBox[{"FrontEndExecute", "@", 
+          RowBox[{"{", "\n", "\t  \t\t\t\t  ", 
+           RowBox[{
+            RowBox[{"FrontEnd`NotebookSuspendScreenUpdates", "[", "nb", "]"}],
+             ",", "\n", "\t  \t\t\t\t  ", 
+            RowBox[{"FrontEnd`SetOptions", "[", 
+             RowBox[{"nb", ",", " ", 
+              RowBox[{"DynamicUpdating", "\[Rule]", "False"}]}], "]"}]}], 
+           "\n", "\t  \t\t\t\t  ", "}"}]}], ",", "\n", "\t  \t\t\t\t", 
+         RowBox[{
+          RowBox[{"noScreen", " ", "=", " ", "True"}], ";", "\n", "\t", "  ", 
+          "\t\t\t\t", "expr"}], ",", "\n", "\t  \t\t\t\t", 
+         RowBox[{"FrontEndExecute", "@", 
+          RowBox[{"{", "\n", "\t  \t\t\t\t  ", 
+           RowBox[{
+            RowBox[{"FrontEnd`NotebookResumeScreenUpdates", "[", "nb", "]"}], 
+            ",", "\n", "\t  \t\t\t\t  ", 
+            RowBox[{"FrontEnd`SetOptions", "[", 
+             RowBox[{"nb", ",", " ", 
+              RowBox[{"DynamicUpdating", "\[Rule]", "Automatic"}]}], "]"}]}], 
+           "\n", "\t  \t\t\t\t  ", "}"}]}]}], "\n", "\t  \t\t\t\t", "]"}]}], 
+      "\n", "\t  \t\t\t", "]"}]}], "\n", "  \t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdatesOrDynamics", "[", 
+    RowBox[{
+     RowBox[{"e", ":", 
+      RowBox[{"Except", "[", "_NotebookObject", "]"}]}], ",", " ", "expr_"}], 
+    "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"nb", "=", "\n", "        ", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"e", ",", " ", "\n", "          ", 
+         RowBox[{
+          RowBox[{"n", ":", 
+           RowBox[{
+           "_FrontEnd`InputNotebook", "|", "_FrontEnd`EvaluationNotebook"}]}],
+           "\[RuleDelayed]", 
+          RowBox[{"FE`Evaluate", "[", "n", "]"}]}]}], "\n", "          ", 
+        "]"}]}], "\n", "      ", "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{"WithoutScreenUpdatesOrDynamics", "[", 
+       RowBox[{"nb", ",", " ", "expr"}], "]"}], "/;", 
+      RowBox[{"MatchQ", "[", 
+       RowBox[{"nb", ",", " ", "NotebookObject"}], "]"}]}]}], "\n", "    ", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutScreenUpdatesOrDynamics", "[", "expr_", "]"}], ":=", "\n", 
+   "  ", 
+   RowBox[{"WithoutScreenUpdatesOrDynamics", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "expr"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "WithoutScreenUpdatesOrDynamics", "~", "SetAttributes", "~", "HoldAll"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"aa85e83a-3ad2-4f58-b295-c912839e7e0d"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithFrontEndTracking\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"37042b3d-e65e-417d-9700-78a7f4d2107c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithFrontEndTracking", "[", "expr_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Block", "[", "\n", "\t  ", 
+    RowBox[{
+     RowBox[{"{", "\n", "  \t  ", 
+      RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", "True"}], "\n", 
+      "  ", "\t  ", "}"}], ",", "\n", "\t\t", "expr"}], "\n", "\t\t", "]"}]}],
+   ";"}], "\n", 
+ RowBox[{"WithFrontEndTracking", "~", "SetAttributes", "~", 
+  "HoldRest"}]}], \
+"CodeInput",ExpressionUUID->"690192c9-9eb0-4bde-92b5-78ef11e3c828"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithoutFrontEndTracking\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"9448d04a-f441-4c29-8643-80dd188e3924"],
+
+Cell[BoxData[{
+ RowBox[{"WithoutFrontEndTracking", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithoutFrontEndTracking", "[", "expr_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Block", "[", "\n", "\t  ", 
+    RowBox[{
+     RowBox[{"{", "\n", "  \t  ", 
+      RowBox[{"FrontEnd`$TrackingEnabled", " ", "=", " ", "False"}], "\n", 
+      "  ", "\t  ", "}"}], ",", "\n", "\t\t", "expr"}], "\n", "\t\t", "]"}]}],
+   ";"}], "\n", 
+ RowBox[{"WithoutFrontEndTracking", "~", "SetAttributes", "~", 
+  "HoldRest"}]}], \
+"CodeInput",ExpressionUUID->"658c701e-de0d-4468-9d3d-3c88007d9dab"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithCurrentValueUpdating\[RightFloor]", \
+"CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"298b9829-506e-4065-af45-3b1c4231d16e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WithCurrentValueUpdating", " ", "=", " ", "WithFrontEndTracking"}],
+   ";"}]], "CodeInput",ExpressionUUID->"017c47d0-2391-4bc4-8eff-6b6870dc5838"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithoutCurrentValueUpdating\[RightFloor]", \
+"CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"df245dcd-283c-4e40-b2f1-4aedc2fa742c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "WithoutCurrentValueUpdating", " ", "=", " ", "WithoutFrontEndTracking"}], 
+  ";"}]], "CodeInput",ExpressionUUID->"cb9be69c-e00e-494f-858f-0409bfd2bef3"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]WithNotebookPaused\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"383bbd36-bfdd-4b87-a67a-d4ccd6d76151"],
+
+Cell["\<\
+\[LeftCeiling]
+\tHelper function to suspend the screen while updating the nb
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"72c5006e-f98b-4df0-807d-be4e2eec8818"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WithNotebookPaused", "//", "Clear"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithNotebookPaused", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "expr_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"WithoutFrontEndTracking", "@", "\n", "\t  ", 
+    RowBox[{"WithoutScreenUpdatesOrDynamics", "[", 
+     RowBox[{"nb", ",", " ", "expr"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithNotebookPaused", "[", 
+    RowBox[{
+     RowBox[{"e", ":", 
+      RowBox[{"Except", "[", "_NotebookObject", "]"}]}], ",", " ", "expr_"}], 
+    "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{"nb", "=", "\n", "        ", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"e", ",", " ", "\n", "          ", 
+         RowBox[{"{", "\n", "          \t", 
+          RowBox[{
+           RowBox[{"n", ":", 
+            RowBox[{
+            "_FrontEnd`InputNotebook", "|", 
+             "_FrontEnd`EvaluationNotebook"}]}], "\[RuleDelayed]", 
+           RowBox[{"FE`Evaluate", "[", "n", "]"}]}], "\n", "          \t", 
+          "}"}]}], "\n", "          ", "]"}]}], "\n", "      ", "}"}], ",", 
+     "\n", "    ", 
+     RowBox[{
+      RowBox[{"WithNotebookPaused", "[", 
+       RowBox[{"nb", ",", " ", "expr"}], "]"}], "/;", 
+      RowBox[{"MatchQ", "[", 
+       RowBox[{"nb", ",", " ", "NotebookObject"}], "]"}]}]}], "\n", "    ", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WithNotebookPaused", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"WithNotebookPaused", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "expr"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WithNotebookPaused", "~", "SetAttributes", "~", "HoldAll"}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"3d258584-4912-4e30-a4fe-bb138328029d"]\
+
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Preemptive\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"553eba69-16d4-4080-b529-5aab09d83d82"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]PreemptiveQueued\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"9ed7a093-b0a8-4c5a-a1aa-c3e00750908d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"PreemptiveQueued", "[", 
+    RowBox[{"nb_", ",", " ", "expr_"}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"nnbb", "=", "nb"}], "}"}], ",", "\n", "  ", "\t", 
+     RowBox[{"MessageDialog", "[", "\n", "  ", "\t\t", 
+      RowBox[{
+       RowBox[{"DynamicModule", "[", "\n", "  ", "\t\t\t", 
+        RowBox[{
+         RowBox[{"{", "}"}], ",", "\n", "  ", "\t\t\t", "Null", ",", "\n", 
+         "  ", "\t\t\t", 
+         RowBox[{"Initialization", "\[RuleDelayed]", 
+          RowBox[{"{", "\n", "  ", "\t\t\t\t", 
+           RowBox[{
+           "Internal`WithLocalSettings", "[", "\n", "  ", "\t\t\t\t\t", 
+            RowBox[{"Null", ",", "\n", "  ", "\t\t\t\t\t", 
+             RowBox[{"Block", "[", "\n", "  ", "\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"{", "\n", "  ", "\t\t\t\t\t\t\t", 
+                RowBox[{"$CurrentIDENotebook", "=", "nnbb"}], "\n", "  ", 
+                "\t\t\t\t\t\t\t", "}"}], ",", "\n", "  ", "\t\t\t\t\t\t", 
+               "expr"}], "\n", "  ", "\t\t\t\t\t\t", "]"}], ",", "\n", "  ", 
+             "\t\t\t\t\t", 
+             RowBox[{"NotebookClose", "[", 
+              RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], "\n", "  ", 
+            "\t\t\t\t\t", "]"}], "\n", "  ", "\t\t\t\t", "}"}]}], ",", "\n", 
+         "  ", "\t\t\t", 
+         RowBox[{"SynchronousInitialization", " ", "->", " ", "False"}]}], 
+        "\n", "  ", "\t\t\t", "]"}], ",", "\n", "  ", "\t\t", 
+       RowBox[{"Visible", "\[Rule]", "False"}], ",", "\n", "  ", "\t\t", 
+       RowBox[{"Evaluator", "\[Rule]", 
+        RowBox[{"CurrentValue", "[", 
+         RowBox[{"nb", ",", " ", "Evaluator"}], "]"}]}]}], "\n", "  \t\t", 
+      "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PreemptiveQueued", "[", "expr_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "  ", 
+     "  ", 
+     RowBox[{"PreemptiveQueued", "[", 
+      RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "\n", "    ", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"PreemptiveQueued", "~", "SetAttributes", "~", 
+  "HoldAll"}]}], \
+"CodeInput",ExpressionUUID->"eb3cb9b8-479b-473f-a323-ca57c7d06a0c"]
+}, Closed]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"d25b110d-7a83-4b44-844e-\
+53fc9ff3f70f"]
+}, Open  ]],
+
+Cell["", "SectionSeparator",ExpressionUUID->"b1c199de-c663-4e5a-9924-\
+5cbd6043a0fa"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 167}, {41, Automatic}},
+TaggingRules->{
+ "UUIDButtons" -> {
+   "Active" -> {
+     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"BTools"}, "CodePackage.nb", CharacterEncoding -> 
+       "UTF-8"]]]}, WindowSize -> {808, 755}, 
+  WindowMargins -> {{Automatic, 260}, {Automatic, 24}}, FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
- StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
-   CharacterEncoding -> "UTF-8"]]
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+

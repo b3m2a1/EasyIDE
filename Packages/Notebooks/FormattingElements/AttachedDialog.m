@@ -179,23 +179,32 @@ normalizeInputField[a_Association]:=
       fname,
       fieldDescription,
       default,
+      fspec,
       ops
       },
     fid = 
-        Lookup[a, "ID",
-          Lookup[a, "Name", CreateUUID[]]
-          ];
+      Lookup[a, "ID",
+        Lookup[a, "Name", CreateUUID[]]
+        ];
     fname = 
       Lookup[a, "Name", fid];
     fieldDescription = 
       Lookup[a, "Description", None];
     default =
       Lookup[a, "Default", ""];
+    fspec = 
+      Replace[Lookup[a, "Type", InputField],
+       {
+         InputField->{InputField, String},
+         e_:>Flatten[{e}, 1]
+         }
+       ];
     ops =
       Lookup[a, "Options", {}];
     <|
       "ID"->fid,
       "Name"->fname,
+      "Type"->fspec,
       "Description"->fieldDescription,
       "Default"->default,
       "Options"->ops
@@ -206,11 +215,24 @@ normalizeInputField[e_]:=
 
 
 (* ::Subsubsubsection::Closed:: *)
-(*createInputFieldElement*)
+(*createInputFieldControl*)
 
 
 
-createInputFieldElement//Clear
+createInputFieldControl[Dynamic[var_], 
+  fieldID_, {argType_, ifo___}, ops___
+  ]:=
+  argType[
+    Dynamic[var[fieldID]],
+     ifo,
+     ops,
+     BoxID->fieldID
+     ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*createInputFieldElementName*)
+
 
 
 createInputFieldElementName[None]:=
@@ -219,14 +241,30 @@ createInputFieldElementName[fieldName_]:=
   Item[Row@{Spacer[15], fieldName, ":"}, 
     Alignment->Right
     ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*createInputFieldElementDescription*)
+
+
+
 createInputFieldElementDescription[fieldDescription_]:=
   fieldDescription;
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*createInputFieldElement*)
+
+
+
+createInputFieldElement//Clear
 
 
 createInputFieldElement[
   Dynamic[var_],
   fieldID_, 
   fieldName_,
+  fieldType_,
   fieldDescription_,
   default_,
   ops___
@@ -235,12 +273,7 @@ createInputFieldElement[
     {
       createInputFieldElementName[fieldName],
       var[fieldID]=default;
-      InputField[
-        Dynamic[var[fieldID]],
-        String,
-        ops,
-        BoxID->fieldID
-        ]
+      createInputFieldControl[Dynamic[var], fieldID, fieldType, ops]
      },
    If[fieldDescription=!=None,
      {"", createInputFieldElementDescription@fieldDescription},
@@ -277,6 +310,7 @@ createInputFieldElement[
       d,
       Lookup[a, "ID"],
       Lookup[a, "Name"],
+      Lookup[a, "Type"],
       Lookup[a, "Description"],
       Lookup[a, "Default"],
       Sequence@@Flatten@{Lookup[a, "Options"]}

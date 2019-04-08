@@ -1,5 +1,0 @@
-(* ::Package:: *)
-
-{
-	"ServerName" -> Automatic
-	}

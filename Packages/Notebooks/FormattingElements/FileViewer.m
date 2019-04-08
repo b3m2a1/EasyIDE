@@ -30,7 +30,7 @@ Begin["`Private`"];
 
 
 fileViewerFilter=
-  c__/;(Not@StringStartsQ[c, "."]||StringStartsQ[c, ".git"]);
+  c__/;(Not@StringStartsQ[c, "."]||StringStartsQ[c, ".git"|".scratch"]);
 
 
 (* ::Subsubsection::Closed:: *)

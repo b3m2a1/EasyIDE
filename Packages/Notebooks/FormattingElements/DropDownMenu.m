@@ -47,12 +47,12 @@ makeMenuCommand//Clear
 
 
 makeMenuCommand[s:Verbatim[Dynamic][state_], CancelButton]:=
-    Button[
-      "",
-      DestroyDropDownMenu[s],
-      BaseStyle->"CascadingMenuCloseButton",
-      Appearance->Inherited
-      ]
+  Button[
+    "",
+    DestroyDropDownMenu[s],
+    BaseStyle->"CascadingMenuCloseButton",
+    Appearance->Inherited
+    ]
 
 
 makeMenuCommand[s:Verbatim[Dynamic][state_], label_->list_List]:=
@@ -109,8 +109,13 @@ pruneMenu[s:Verbatim[Dynamic][state_], root_, pruneHead:True|False:True]:=
       kid
       },
     kid = state[root]["Submenu"];
-    (*WithNotebookPaused[
-			ParentNotebook@root,*)
+    Replace[ParentNotebook@root,
+      {
+        nb_NotebookObject:>
+          Function[Null, WithoutScreenUpdates[nb, #], HoldAllComplete],
+        _->Identity
+        }
+      ][
       If[Head[kid]===CellObject,
         pruneMenu[s, kid]
         ];
@@ -123,8 +128,8 @@ pruneMenu[s:Verbatim[Dynamic][state_], root_, pruneHead:True|False:True]:=
           state[root, "Submenu"]=.;
           state[root, "MenuBox"]=.;
           ]
-        ];(*
-			];*)
+        ];
+      ]
     ]
 
 
@@ -235,48 +240,56 @@ iMakeMenu[
   clickDest_,
   menuCommands_
   ]:=
-  Module[{align, pos},
-    align = pos = Replace[position,
+  Module[{align, pos, rootCell, posSpec, attachLR, attachTo, closeSpec},
+    align = pos = 
+      Replace[position,
         {
           Automatic:>If[attachCell||attachNb, Right, Left]
           }
          ]; (* this will need an update once I am able to get the box position *)
+    If[!AssociationQ[menuState], menuState=<||>];
     menuState["RootPosition"] = align;
     menuState["AttachToCell"] = attachCell;
     menuState["AttachToNotebook"] = attachNb;
     menuState["DestroyOnClick"] = clickDest;
-    Replace[
+    menuState["Root"] = box;
+    rootCell =
+      Cell[
+        BoxData@ToBoxes@
+          makeMenuExpr[
+            s, 
+            Prepend[menuCommands, CancelButton]
+            ]
+        ];
+   posSpec = 
+     Replace[align, 
+       {
+         Left->Automatic, 
+         Right->
+           If[attachCell, Offset[{-22, -1}, 0], Automatic]
+          }
+        ];
+   attachLR =
+     If[attachCell||attachNb, align, Replace[align, {Left->Right, Right->Left}]];
+   attachTo = 
+     Which[
+      TrueQ[attachNb],
+        ParentNotebook@box,
+      TrueQ[attachCell],
+        Nest[ParentCell, box, 2],
+      True,
+        box
+      ];
+    closeSpec = {(*"OutsideMouseClick",*)  (*"ParentChanged",*)  "EvaluatorQuit"};
+    menuState["RootCell"] = 
       FEAttachCell[
-        Which[
-          TrueQ[attachNb],
-            ParentNotebook@box,
-          TrueQ[attachCell],
-            ParentCell@box,
-          True,
-            box
-          ],
-        If[!AssociationQ[menuState], menuState=<||>];
-        menuState["Root"] = box;
-        Cell[
-          BoxData@ToBoxes@
-            makeMenuExpr[
-              s, 
-              Prepend[menuCommands, CancelButton]
-              ]
-          ],
-        Replace[align, 
-          {
-            Left->Automatic, 
-            Right->
-              If[attachCell, Offset[{-22, -1}, 0], Automatic]
-            }
-          ],
+        attachTo,
+        rootCell,
+        posSpec,
         {align, If[attachCell, Bottom, Top]},
-        {If[attachCell||attachNb, align, Replace[align, {Left->Right, Right->Left}]], Top},
-        {(*"OutsideMouseClick", *) (*"ParentChanged",*) "EvaluatorQuit"}
-        ],
-      c_CellObject:>(menuState["RootCell"] = c)
-      ]
+        {attachLR, Top},
+        closeSpec
+        ]
     ];
 
 

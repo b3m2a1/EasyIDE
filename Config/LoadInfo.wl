@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 {
 	"Mode" -> "Primary",
 	"Dependencies" -> {
@@ -16,9 +18,38 @@
 				"FrontEnd/Palettes"
 			}
 		},
-		{"InterfaceObjects`"},
-		{"SimpleDocs`"},
-		{"BugTracker`"}
+		{
+		  "InterfaceObjects`",
+		  "RemovePaths"->{
+		    ParentList,
+		    "Documentation",
+		    "Dependencies"
+		    }
+		  },
+		{
+		  "SimpleDocs`",
+		  "RemovePaths"->{
+		    ParentList,
+		    "Documentation",
+		    "Dependencies"
+		    }
+		  },
+		{
+		  "Ems`",
+		  "RemovePaths"->{
+		    ParentList,
+		    "Documentation",
+		    "Dependencies"
+		    }
+		  },
+		{
+		  "BugTracker`",
+		  "RemovePaths"->{
+	  	  ParentList,
+		    "Documentation",
+		    "Dependencies"
+		    }
+		  }
 	},
 	"DependencyContexts" -> {
 		"BTools`Paclets`",
@@ -28,7 +59,8 @@
 		"InterfaceObjects`",
 		"SimpleDocs`",
 		"SimpleDocs`Package`",
-		"BugTracker`Package`"
+		"BugTracker`Package`",
+		"Ems`"
 	},
 	"PreLoad" -> None,
 	"FEHidden" -> {},

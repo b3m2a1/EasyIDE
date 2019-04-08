@@ -1,5 +1,3 @@
-(* ::Package:: *)
-
 (* ::Title:: *)
 (*EasyIDE`*)
 
@@ -31,7 +29,7 @@ ClearAll[EasyIDE];
 EasyIDE::usage="EasyIDE is a manager head for the EasyIDE package";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*ContextPath*)
 
 
@@ -97,14 +95,14 @@ $AllowPackageRecoloring::usage="";
 $AllowPackageAutocompletions::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Constants`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Naming*)
 
 
@@ -120,7 +118,7 @@ $PackageName=
   "EasyIDE";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Load Specs*)
 
 
@@ -178,7 +176,7 @@ $PackageLoadSpecs=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Mode*)
 
 
@@ -187,7 +185,7 @@ $PackageLoadingMode=
   Lookup[$PackageLoadSpecs, "Mode", "Primary"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Dependencies*)
 
 
@@ -196,7 +194,7 @@ $PackageDependencies=
   Lookup[$PackageLoadSpecs, "Dependencies", {}];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*DependencyBase*)
 
 
@@ -205,7 +203,7 @@ $PackageDependencyBase=
   Lookup[$PackageLoadSpecs, "DependencyBase", {}];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Loading*)
 
 
@@ -238,7 +236,7 @@ $PackagePackagesDirectory=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Scoping*)
 
 
@@ -248,7 +246,7 @@ EasyIDE["PackageScopedSymbols"]:=$PackageScopedSymbols;
 $PackageScopedSymbols={};
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Allow flags*)
 
 
@@ -277,13 +275,11 @@ $AllowPackageAutocompletions=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Paths*)
 
@@ -292,14 +288,14 @@ PackageFilePath::usage="";
 PackageFEFile::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Paths`"]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFilePath*)
 
 
@@ -310,7 +306,7 @@ PackageFilePath[p__]:=
     }];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEFile*)
 
 
@@ -325,7 +321,7 @@ PackageFEFile[p___,f_]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackagePathSymbol*)
 
 
@@ -336,13 +332,11 @@ PackagePathSymbol[parts___String,sym_Symbol]:=
 PackagePathSymbol~SetAttributes~HoldRest;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Usages*)
 
@@ -350,14 +344,14 @@ End[]
 PackageAddUsage::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Paths`"]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageAddUsage*)
 
 
@@ -397,13 +391,11 @@ PackageAddUsage[call:(s_Symbol[___]|s_Symbol), description_]:=
 PackageAddUsage~SetAttributes~HoldFirst;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Loading*)
 
@@ -433,14 +425,14 @@ PackageEnsureLoadDependencies::usage="Predeclared...";
 PackageEnsureLoad::usage="Ensures everything is loaded";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Loading`"]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Constants*)
 
 
@@ -464,7 +456,7 @@ If[Not@ListQ@$LoadedPackages,
   ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFileContext*)
 
 
@@ -482,7 +474,7 @@ PackageFileContext[f_String?FileExistsQ]:=
   PackageFileContext[DirectoryName[f]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageExecute*)
 
 
@@ -501,7 +493,7 @@ PackageExecute[expr_]:=
 PackageExecute~SetAttributes~HoldFirst
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackagePullDeclarations*)
 
 
@@ -563,7 +555,7 @@ PackagePullDeclarations[pkgFile_]:=
       ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageLoadPackage*)
 
 
@@ -605,7 +597,7 @@ PackageLoadPackage[heldSym_, context_, pkgFile_->syms_]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageDeclarePackage*)
 
 
@@ -624,7 +616,7 @@ PackageDeclarePackage[pkgFile_->syms_]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageLoadDeclare*)
 
 
@@ -638,7 +630,7 @@ PackageLoadDeclare[pkgFile_String]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageAppLoad*)
 
 
@@ -700,7 +692,7 @@ PackageAppLoad[]:=
 PackageAppLoad~SetAttributes~Listable;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageAppGet*)
 
 
@@ -739,7 +731,7 @@ PackageAppGet[c_,f_]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageAppNeeds*)
 
 
@@ -763,7 +755,7 @@ PackageAppNeeds[pkg_String]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageScopeBlock*)
 
 
@@ -834,7 +826,7 @@ PackageScopeBlock[e_, scope_String:"Package"]/;Not@TrueQ[$AllowPackageRescoping]
 PackageScopeBlock~SetAttributes~HoldFirst;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageExposeContexts*)
 
 
@@ -844,7 +836,7 @@ PackageExposeContexts[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageEnsureLoad*)
 
 
@@ -856,7 +848,7 @@ PackageEnsureLoad[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageDecontext*)
 
 
@@ -881,7 +873,7 @@ PackageDecontext[
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageRecontext*)
 
 
@@ -900,13 +892,11 @@ PackageRecontext[
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Dependencies*)
 
@@ -927,14 +917,14 @@ PackageEnsureLoadDependencies::usage="Ensures all declared dependencies are load
 PackageExposeDependencies::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Dependencies`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageExtendContextPath*)
 
 
@@ -951,7 +941,7 @@ PackageExtendContextPath[cp:{__String}]:=
     )
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageInstallPackageDependency*)
 
 
@@ -1009,7 +999,7 @@ PackageInstallPackageDependency[dep_String, ops:OptionsPattern[]]:=
       ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageLoadPackageDependency*)
 
 
@@ -1040,7 +1030,7 @@ PackageLoadPackageDependency[dep_String, ops:OptionsPattern[]]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageCheckPacletDependency*)
 
 
@@ -1048,7 +1038,7 @@ PackageCheckPacletDependency[dep_]:=
   Length@PacletManager`PacletFind[StringDelete[dep, "`"]]>0
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageInstallPacletDependency*)
 
 
@@ -1122,7 +1112,7 @@ PackageInstallPacletDependency[
   ]:=First@PackageInstallPacletDependency[{dep}, ops]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageLoadPacletDependency*)
 
 
@@ -1155,7 +1145,7 @@ PackageLoadPacletDependency[dep_String?(StringEndsQ["`"]), ops:OptionsPattern[]]
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageUpdatePacletDependency*)
 
 
@@ -1220,7 +1210,7 @@ PackageUpdatePacletDependency[
   First@PackageUpdatePacletDependency[{dep}, ops]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageLoadResourceDependency*)
 
 
@@ -1242,17 +1232,34 @@ Options[PackageEnsureLoadDependency]=
 PackageEnsureLoadDependency[dep_, ops:OptionsPattern[]]:=
   Module[
     {
-      depsDir=
-        {
-          If[$PackageLoadingMode==="Dependency",
-            ParentDirectory@$PackageDirectory,
-            Nothing
-            ],
-          PackageFilePath["Dependencies"]
-          },
+      depsDir,
+      pfp,
       foundFile,
       bund=TrueQ@Quiet@OptionValue["Bundled"]
       },
+     depsDir=
+       If[$PackageLoadingMode==="Dependency",
+         DeleteDuplicates@Flatten@{
+          ParentDirectory@$PackageDirectory,
+          PackageFilePath["Dependencies"],
+          pfp = 
+            SplitBy[
+              FileNameSplit[$PackageDirectory],
+              #==="Dependencies"&
+              ];
+          Reap[
+            Fold[
+              If[#2==="Dependencies", 
+                Sow,
+                Identity
+                ]@
+                FileNameJoin@Flatten@{#, #2}&,
+              pfp
+              ]
+            ][[2]]
+         },
+        {PackageFilePath["Dependencies"]}
+        ];
      If[bund,
        If[AnyTrue[depsDir, DirectoryQ],
          foundFile=
@@ -1337,7 +1344,8 @@ PackageExposeDependencies[deps_, permanent:True|False:False]:=
       With[{ctx=#},
         SelectFirst[
           depCs,
-          Length@Join[Names[#<>ctx<>"*"], Names[#<>ctx<>"*`*"]]>0&,
+          Length@
+            Join[Names[#<>ctx<>"*"], Names[#<>ctx<>"*`*"]]>0&,
           ""
           ]<>#
         ]&/@deps;
@@ -1362,8 +1370,6 @@ PackageExposeDependencies[]:=
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Exceptions*)
 
@@ -1385,14 +1391,14 @@ PackageFailureException::usage="";
 PackageRaiseException::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Exceptions`Private`"]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageThrowException*)
 
 
@@ -1402,7 +1408,7 @@ PackageThrowException[f_Failure]:=
   Throw[f, f[[1]]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageCatchException*)
 
 
@@ -1430,7 +1436,7 @@ PackageCatchException[tag_String, callback_:Automatic]:=
 PackageCatchException~SetAttributes~HoldFirst
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageThrowMessage*)
 
 
@@ -1472,7 +1478,7 @@ PackageThrowMessage[
 PackageThrowMessage~SetAttributes~HoldAll
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageCatchMessage*)
 
 
@@ -1514,7 +1520,7 @@ PackageCatchMessage[
 PackageCatchMessage~SetAttributes~HoldAll;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFailureException*)
 
 
@@ -1554,7 +1560,7 @@ PackageFailureException[
 PackageFailureException~SetAttributes~HoldFirst
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageRaiseException*)
 
 
@@ -1615,7 +1621,7 @@ PackageRaiseException[
 PackageRaiseException~SetAttributes~HoldFirst
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageExceptionBlock*)
 
 
@@ -1664,13 +1670,11 @@ PackageExceptionBlock[Optional[Automatic, Automatic]]:=
 PackageExceptionBlock~SetAttributes~HoldFirst;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*Autocompletion*)
 
@@ -1678,14 +1682,14 @@ End[]
 PackageAddAutocompletions::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`Autocomplete`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Formats*)
 
 
@@ -1739,7 +1743,7 @@ $PackageAutoCompletionFormats=
     };
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Base*)
 
 
@@ -1759,7 +1763,7 @@ PackageAddAutocompletions[pat:(_String->{$PackageAutoCompletionFormats..})]/;
   PackageAddAutocompletions[{pat}];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Helpers*)
 
 
@@ -1800,7 +1804,7 @@ $PackageAutocompletionAliases=
     };
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Convenience*)
 
 
@@ -1856,7 +1860,7 @@ PackageAddAutocompletions[l_,v_]/;TrueQ[$AllowPackageAutocompletions]:=
   ]*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (* PackageSetAutocompletionData *)
 
 
@@ -1886,13 +1890,11 @@ PackageSetAutocompletionData[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
 End[]
-
-
 (* ::Subsection:: *)
 (*FrontEnd*)
 
@@ -1904,14 +1906,14 @@ PackageFEUnhidePackage::usage="";
 PackageFERehidePackage::usage="";
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Begin*)
 
 
 Begin["`FrontEnd`"]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEInstallStylesheets *)
 
 
@@ -1954,7 +1956,7 @@ PackageFEInstallStylesheets[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEInstallPalettes *)
 
 
@@ -1997,7 +1999,7 @@ PackageFEInstallPalettes[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEHiddenBlock*)
 
 
@@ -2064,7 +2066,7 @@ PackageFEHiddenBlock[expr_,
 PackageFEHiddenBlock~SetAttributes~HoldFirst
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEUnhideSymbols*)
 
 
@@ -2102,7 +2104,7 @@ PackageFEUnhideSymbols[names_String,
 PackageFEUnhideSymbols~SetAttributes~HoldAllComplete;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFERehideSymbols*)
 
 
@@ -2141,7 +2143,7 @@ PackageFERehideSymbols[names_String,
 PackageFERehideSymbols~SetAttributes~HoldAllComplete;
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFEUnhidePackage*)
 
 
@@ -2157,7 +2159,7 @@ PackageFEUnhidePackage[spec:_String|_List,a___]/;TrueQ[$AllowPackageRecoloring]:
   PackageFEUnhidePackage[PackageFilePath@Flatten@{"Packages",spec},a];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackageFERehidePackage*)
 
 
@@ -2173,7 +2175,7 @@ PackageFERehidePackage[spec:_String|_List,a___]/;TrueQ[$AllowPackageRecoloring]:
   PackageFERehidePackage[PackageFilePath@Flatten@{"Packages",spec},a];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
@@ -2197,7 +2199,7 @@ PackagePreemptShadowing::usage="";
 Begin["`PostProcess`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PrepFileName*)
 
 
@@ -2215,7 +2217,7 @@ PackagePostProcessFileNamePrep[fn_]:=
       }]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PrepSpecs*)
 
 
@@ -2257,7 +2259,7 @@ PackagePostProcessPrepSpecs[]:=
     );
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*ExposePackages*)
 
 
@@ -2294,7 +2296,7 @@ PackagePostProcessExposePackages[]/;TrueQ[$AllowPackageRecoloring]:=
 
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Rehide Packages*)
 
 
@@ -2307,7 +2309,7 @@ PackagePostProcessRehidePackages[]/;TrueQ[$AllowPackageRecoloring]:=
     ]&/@Keys@$DeclaredPackages
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Decontext*)
 
 
@@ -2352,7 +2354,7 @@ PackagePostProcessDecontextPackages[]/;TrueQ[$AllowPackageRecoloring]:=
 
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*ContextPathReassign*)
 
 
@@ -2376,7 +2378,7 @@ PackagePostProcessContextPathReassign[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*AttachMainAutocomplete*)
 
 
@@ -2400,7 +2402,7 @@ PackageAttachMainAutocomplete[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PreventShadowing*)
 
 
@@ -2423,7 +2425,7 @@ PackagePreemptShadowing[]:=
       ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PackagePrepPackageSymbol*)
 
 
@@ -2464,7 +2466,7 @@ If[`PackageScope`Private`$AllowPackageRecoloring,
   ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Basic Load*)
 
 
@@ -2482,7 +2484,7 @@ Protect["`PackageScope`Private`*"];
 Unprotect[`PackageScope`Private`$loadAbort];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Post-Process*)
 
 
@@ -2517,7 +2519,7 @@ System`Private`RestoreContextPath[]
 EndPackage[];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Cleanup*)
 
 

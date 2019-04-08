@@ -14,5 +14,12 @@
     ]:>
     FrontEnd`FileName[{"EasyIDE", "Extensions"},
       "FileViewer-Docs.nb"
+      ],
+  FrontEnd`FileName[{___}, 
+    _String?(StringEndsQ["-Markdown.nb"]),
+    ___
+    ]:>
+    FrontEnd`FileName[{"EasyIDE", "Extensions"},
+      "FileViewer-Docs.nb"
       ]
 }

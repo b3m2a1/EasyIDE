@@ -163,7 +163,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "\"CancelAction\"", ",", " ", "Automatic"}], 
                           "]"}]}], "\n", "        ", "}"}]}]}], "\n", 
                         "      ", "]"}], ",", "\n", "    ", "ops"}], "\n", 
-                    "    ", "]"}]}]], "CodeInput"]}, Open]]}, Open]], 
+                    "    ", "]"}]}]], "CodeInput"]}, Closed]]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -176,13 +176,13 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "\n", "      ", RowBox[{"fid", ",", "\n", "      ", 
                           "fname", ",", "\n", "      ", "fieldDescription", 
                           ",", "\n", "      ", "default", ",", "\n", 
-                          "      ", "ops"}], "\n", "      ", "}"}], ",", 
-                         "\n", "    ", RowBox[{RowBox[{"fid", " ", "=", " ", 
-                          "\n", "        ", RowBox[{"Lookup", "[", RowBox[
-                          {"a", ",", " ", "\"ID\"", ",", "\n", "  ", 
-                          "        ", RowBox[{"Lookup", "[", RowBox[{"a", 
-                          ",", " ", "\"Name\"", ",", " ", RowBox[
-                          {"CreateUUID", "[", "]"}]}], "]"}]}], "\n", "  ", 
+                          "      ", "fspec", ",", "\n", "      ", "ops"}], 
+                          "\n", "      ", "}"}], ",", "\n", "    ", RowBox[
+                          {RowBox[{"fid", " ", "=", " ", "\n", "      ", 
+                          RowBox[{"Lookup", "[", RowBox[{"a", ",", " ", 
+                          "\"ID\"", ",", "\n", "        ", RowBox[{"Lookup", 
+                          "[", RowBox[{"a", ",", " ", "\"Name\"", ",", " ", 
+                          RowBox[{"CreateUUID", "[", "]"}]}], "]"}]}], "\n", 
                           "        ", "]"}]}], ";", "\n", "    ", RowBox[
                           {"fname", " ", "=", " ", "\n", "      ", RowBox[
                           {"Lookup", "[", RowBox[{"a", ",", " ", "\"Name\"", 
@@ -193,14 +193,27 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "]"}]}], ";", "\n", "    ", RowBox[{"default", " ", 
                           "=", "\n", "      ", RowBox[{"Lookup", "[", RowBox[
                           {"a", ",", " ", "\"Default\"", ",", " ", "\"\""}], 
-                          "]"}]}], ";", "\n", "    ", RowBox[{"ops", " ", 
-                          "=", "\n", "      ", RowBox[{"Lookup", "[", RowBox[
-                          {"a", ",", " ", "\"Options\"", ",", " ", RowBox[
-                          {"{", "}"}]}], "]"}]}], ";", "\n", "    ", RowBox[
-                          {"<|", "\n", "      ", RowBox[{RowBox[{"\"ID\"", 
-                          "\[Rule]", "fid"}], ",", "\n", "      ", RowBox[
-                          {"\"Name\"", "\[Rule]", "fname"}], ",", "\n", 
-                          "      ", RowBox[{"\"Description\"", "\[Rule]", 
+                          "]"}]}], ";", "\n", "    ", RowBox[{"fspec", " ", 
+                          "=", " ", "\n", "      ", RowBox[{"Replace", "[", 
+                          RowBox[{RowBox[{"Lookup", "[", RowBox[{"a", ",", 
+                          " ", "\"Type\"", ",", " ", "InputField"}], "]"}], 
+                          ",", "\n", "       ", RowBox[{"{", "\n", 
+                          "         ", RowBox[{RowBox[{"InputField", "->", 
+                          RowBox[{"{", RowBox[{"InputField", ",", " ", 
+                          "String"}], "}"}]}], ",", "\n", "         ", RowBox[
+                          {"e_", "\[RuleDelayed]", RowBox[{"Flatten", "[", 
+                          RowBox[{RowBox[{"{", "e", "}"}], ",", " ", "1"}], 
+                          "]"}]}]}], "\n", "         ", "}"}]}], "\n", 
+                          "       ", "]"}]}], ";", "\n", "    ", RowBox[
+                          {"ops", " ", "=", "\n", "      ", RowBox[{"Lookup", 
+                          "[", RowBox[{"a", ",", " ", "\"Options\"", ",", 
+                          " ", RowBox[{"{", "}"}]}], "]"}]}], ";", "\n", 
+                          "    ", RowBox[{"<|", "\n", "      ", RowBox[
+                          {RowBox[{"\"ID\"", "\[Rule]", "fid"}], ",", "\n", 
+                          "      ", RowBox[{"\"Name\"", "\[Rule]", "fname"}], 
+                          ",", "\n", "      ", RowBox[{"\"Type\"", "->", 
+                          "fspec"}], ",", "\n", "      ", RowBox[
+                          {"\"Description\"", "\[Rule]", 
                           "fieldDescription"}], ",", "\n", "      ", RowBox[
                           {"\"Default\"", "\[Rule]", "default"}], ",", "\n", 
                           "      ", RowBox[{"\"Options\"", "\[Rule]", 
@@ -209,27 +222,48 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                   {RowBox[{"normalizeInputField", "[", "e_", "]"}], ":=", 
                    "\n", "  ", "e"}]}], "CodeInput"]}, Open]], 
            Cell[CellGroupData[
-             {Cell["\[LeftCeiling]createInputFieldElement\[RightFloor]", 
+             {Cell["\[LeftCeiling]createInputFieldControl\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{"createInputFieldElement", "//", "Clear"}]], 
-               "CodeInput"], Cell[BoxData[{RowBox[{RowBox[{RowBox[
-                      {"createInputFieldElementName", "[", "None", "]"}], 
-                     ":=", "\n", "  ", "Nothing"}], ";"}], "\n", 
-                 RowBox[{RowBox[{RowBox[{"createInputFieldElementName", "[", 
-                       "fieldName_", "]"}], ":=", "\n", "  ", RowBox[
+                RowBox[{RowBox[{RowBox[{"createInputFieldControl", "[", 
+                      RowBox[{RowBox[{"Dynamic", "[", "var_", "]"}], ",", 
+                        " ", "\n", "  ", "fieldID_", ",", " ", RowBox[
+                         {"{", RowBox[{"argType_", ",", " ", "ifo___"}], 
+                          "}"}], ",", " ", "ops___"}], "\n", "  ", "]"}], 
+                    ":=", "\n", "  ", RowBox[{"argType", "[", "\n", "    ", 
+                      RowBox[{RowBox[{"Dynamic", "[", RowBox[{"var", "[", 
+                          "fieldID", "]"}], "]"}], ",", "\n", "\t \t", "ifo", 
+                        ",", "\n", "\t \t", "ops", ",", "\n", "\t \t", 
+                        RowBox[{"BoxID", "\[Rule]", "fieldID"}]}], "\n", 
+                      "\t \t", "]"}]}], ";"}]], "CodeInput"]}, Open]], 
+           Cell[CellGroupData[
+             {Cell["\[LeftCeiling]createInputFieldElementName\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"createInputFieldElementName", "[", 
+                       "None", "]"}], ":=", "\n", "  ", "Nothing"}], ";"}], 
+                 "\n", RowBox[{RowBox[{RowBox[{"createInputFieldElementName", 
+                       "[", "fieldName_", "]"}], ":=", "\n", "  ", RowBox[
                       {"Item", "[", RowBox[{RowBox[{"Row", "@", RowBox[
                           {"{", RowBox[{RowBox[{"Spacer", "[", "15", "]"}], 
                           ",", " ", "fieldName", ",", " ", "\":\""}], 
                           "}"}]}], ",", " ", "\n", "    ", RowBox[
                           {"Alignment", "\[Rule]", "Right"}]}], "\n", "    ", 
-                       "]"}]}], ";"}], "\n", RowBox[{RowBox[{RowBox[
-                      {"createInputFieldElementDescription", "[", 
-                       "fieldDescription_", "]"}], ":=", "\n", "  ", 
-                     "fieldDescription"}], ";"}]}], "CodeInput"], 
-              Cell[BoxData[RowBox[{RowBox[{"createInputFieldElement", "[", 
-                    "\n", "  ", RowBox[{RowBox[{"Dynamic", "[", "var_", 
-                        "]"}], ",", "\n", "  ", "fieldID_", ",", " ", "\n", 
-                      "  ", "fieldName_", ",", "\n", "  ", 
+                       "]"}]}], ";"}]}], "CodeInput"]}, Closed]], 
+           Cell[CellGroupData[
+             {Cell[
+               "\[LeftCeiling]createInputFieldElementDescription\[RightFloor]\
+", "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[RowBox[
+                 {RowBox[{RowBox[{"createInputFieldElementDescription", "[", 
+                      "fieldDescription_", "]"}], ":=", "\n", "  ", 
+                    "fieldDescription"}], ";"}]], "CodeInput"]}, Closed]], 
+           Cell[CellGroupData[
+             {Cell["\[LeftCeiling]createInputFieldElement\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{"createInputFieldElement", "//", "Clear"}]], 
+               "CodeInput"], Cell[BoxData[RowBox[{RowBox[
+                   {"createInputFieldElement", "[", "\n", "  ", RowBox[
+                     {RowBox[{"Dynamic", "[", "var_", "]"}], ",", "\n", "  ", 
+                      "fieldID_", ",", " ", "\n", "  ", "fieldName_", ",", 
+                      "\n", "  ", "fieldType_", ",", "\n", "  ", 
                       "fieldDescription_", ",", "\n", "  ", "default_", ",", 
                       "\n", "  ", "ops___"}], "\n", "  ", "]"}], ":=", "\n", 
                   "  ", RowBox[{"{", "\n", "    ", RowBox[{RowBox[{"{", "\n", 
@@ -238,17 +272,14 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "]"}], ",", "\n", "      ", RowBox[{RowBox[
                           {RowBox[{"var", "[", "fieldID", "]"}], "=", 
                           "default"}], ";", "\n", "      ", RowBox[
-                          {"InputField", "[", "\n", "    \t\t", RowBox[
-                          {RowBox[{"Dynamic", "[", RowBox[{"var", "[", 
-                          "fieldID", "]"}], "]"}], ",", "\n", "  ", "  ", 
-                          "\t\t", "String", ",", "\n", "  ", "  ", "\t\t", 
-                          "ops", ",", "\n", "  ", "  ", "\t\t", RowBox[
-                          {"BoxID", "\[Rule]", "fieldID"}]}], "\n", 
-                          "    \t\t", "]"}]}]}], "\n", "     ", "}"}], ",", 
-                      "\n", "   ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"fieldDescription", "=!=", "None"}], ",", "\n", 
-                          "     ", RowBox[{"{", RowBox[{"\"\"", ",", " ", 
-                          RowBox[{"createInputFieldElementDescription", "@", 
+                          {"createInputFieldControl", "[", RowBox[{RowBox[
+                          {"Dynamic", "[", "var", "]"}], ",", " ", "fieldID", 
+                          ",", " ", "fieldType", ",", " ", "ops"}], 
+                          "]"}]}]}], "\n", "     ", "}"}], ",", "\n", "   ", 
+                      RowBox[{"If", "[", RowBox[{RowBox[{"fieldDescription", 
+                          "=!=", "None"}], ",", "\n", "     ", RowBox[
+                          {"{", RowBox[{"\"\"", ",", " ", RowBox[
+                          {"createInputFieldElementDescription", "@", 
                           "fieldDescription"}]}], "}"}], ",", "\n", "     ", 
                           "Nothing"}], "\n", "     ", "]"}]}], "\n", "   ", 
                     "}"}]}]], "CodeInput"], Cell[BoxData[
@@ -287,9 +318,11 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "\n", "      ", RowBox[{"Lookup", "[", RowBox[
                           {"a", ",", " ", "\"Name\""}], "]"}], ",", "\n", 
                           "      ", RowBox[{"Lookup", "[", RowBox[{"a", ",", 
-                          " ", "\"Description\""}], "]"}], ",", "\n", 
-                          "      ", RowBox[{"Lookup", "[", RowBox[{"a", ",", 
-                          " ", "\"Default\""}], "]"}], ",", "\n", "      ", 
+                          " ", "\"Type\""}], "]"}], ",", "\n", "      ", 
+                          RowBox[{"Lookup", "[", RowBox[{"a", ",", " ", 
+                          "\"Description\""}], "]"}], ",", "\n", "      ", 
+                          RowBox[{"Lookup", "[", RowBox[{"a", ",", " ", 
+                          "\"Default\""}], "]"}], ",", "\n", "      ", 
                           RowBox[{"Sequence", "@@", RowBox[{"Flatten", "@", 
                           RowBox[{"{", RowBox[{"Lookup", "[", RowBox[{"a", 
                           ",", " ", "\"Options\""}], "]"}], "}"}]}]}]}], 
@@ -318,7 +351,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                          {"GridBoxItemSize", "\[Rule]", "Inherited"}], ",", 
                         "\n", "    ", RowBox[{"BaseStyle", "\[Rule]", 
                           "\"AttachedDialogInput\""}]}], "\n", "    ", 
-                      "]"}]}], ";"}]], "CodeInput"]}, Open]], 
+                      "]"}]}], ";"}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[{Cell["\[LeftCeiling]prepState\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 {RowBox[{RowBox[{RowBox[{"prepState", "[", RowBox[{"s_", ",", 
@@ -331,7 +364,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "s", "]"}]}], "]"}], ";", "\n", "    ", "a"}]}], 
                        "\n", "    ", "]"}]}], ";"}], "\n", RowBox[
                   {"prepState", "~", "SetAttributes", "~", "HoldFirst"}]}], 
-               "CodeInput"]}, Open]], Cell[CellGroupData[
+               "CodeInput"]}, Closed]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]attachedDialogInputSpec\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"attachedDialogInputSpec", "[", "\n", "  ", 
@@ -409,7 +442,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           ",", "\n", "           ", "a"}], "\n", "  ", 
                           "       ", "}"}], ",", "\n", "       ", "First"}], 
                           "\n", "       ", "]"}]}], "\n", "     ", "]"}]}], 
-                    "\n", "   ", "]"}]}]], "CodeInput"]}, Open]], 
+                    "\n", "   ", "]"}]}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -832,10 +865,126 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                         "\"Notebook\"", "]"}], ",", " ", "expr", ",", " ", 
                       "args"}], "]"}]}], ";"}]}], "CodeInput"]}, Closed]]}, 
        Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
-      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
- WindowSize -> {808, 755}, WindowMargins -> {{Automatic, 212}, 
-   {-4, Automatic}}, TaggingRules -> 
-  {"UUIDButtons" -> 
+      "InputSection"]}, Open]], Cell["", "SectionSeparator"], 
+  Cell[BoxData[RowBox[{"CreateAttachedInputDialog", "["}]], "Input"], 
+  Cell[BoxData[RowBox[{"CellPrint", "@", "\[IndentingNewLine]", 
+      RowBox[{"Cell", "[", "\[IndentingNewLine]", 
+        RowBox[{RowBox[{"BoxData", "@", RowBox[{"ToBoxes", "@", 
+              "\[IndentingNewLine]", RowBox[{"AttachedDialogInputPanel", "[", 
+                "\[IndentingNewLine]", RowBox[{"<|", "\n", "        ", 
+                  RowBox[{RowBox[{"\"Header\"", "->", "\"Commit to Git\""}], 
+                    ",", "\n", "        ", RowBox[{"\"Fields\"", "->", 
+                      RowBox[{"{", "\n", "          ", RowBox[
+                         {"\"Provide a commit message\"", ",", "\n", 
+                          "          ", RowBox[{"<|", "\n", "            ", 
+                          RowBox[{RowBox[{"\"ID\"", "->", "\"Message\""}], 
+                          ",", "\n", "            ", RowBox[{"\"Name\"", 
+                          "->", "None"}], ",", "\n", "            ", RowBox[
+                          {"\"Default\"", "->", RowBox[{
+                          "\"Committed via EasyIDE @ ``\"", "~", 
+                          "TemplateApply", "~", "Now"}]}], ",", "\n", 
+                          "            ", RowBox[{"\"Options\"", "->", RowBox[
+                          {"{", "\n", "              ", RowBox[{RowBox[
+                          {"FieldSize", "->", RowBox[{"{", RowBox[{"25", ",", 
+                          " ", RowBox[{"{", RowBox[{"5", ",", " ", "25"}], 
+                          "}"}]}], "}"}]}], ",", "\n", "              ", 
+                          RowBox[{"FieldHint", "->", 
+                          "\"Commit message...\""}]}], "\n", 
+                          "              ", "}"}]}]}], "\n", "            ", 
+                          "|>"}]}], "\n", "          ", "}"}]}], ",", "\n", 
+                    "      ", RowBox[{"\"SubmitAction\"", "->", "\n", 
+                      "        ", RowBox[{"Function", "[", "\n", 
+                        "          ", RowBox[{RowBox[{"Git", "[", RowBox[
+                          {"\"Add\"", ",", " ", RowBox[{"IDEPath", "[", 
+                          "$CurrentIDENotebook", "]"}], ",", " ", RowBox[
+                          {"\"All\"", "->", "True"}]}], "]"}], ";", "\n", 
+                          "          ", RowBox[{"CreateMessagePopup", "[", 
+                          "\n", "            ", RowBox[
+                          {"$CurrentIDENotebook", ",", " ", "\n", 
+                          "            ", RowBox[{"StringForm", "[", RowBox[
+                          {"\"Committed to git: \\n``\"", ",", " ", "\n", 
+                          "              ", RowBox[{"Git", "[", RowBox[
+                          {"\"Commit\"", ",", " ", "\n", "                ", 
+                          RowBox[{"IDEPath", "[", "$CurrentIDENotebook", 
+                          "]"}], ",", "\n", "                ", RowBox[
+                          {"\"Message\"", "->", "#Message"}]}], "\n", 
+                          "                ", "]"}]}], "\n", 
+                          "              ", "]"}]}], "\n", "            ", 
+                          "]"}]}], "\n", "          ", "]"}]}]}], "\n", 
+                  "      ", "|>"}], "\[IndentingNewLine]", "]"}]}]}], ",", 
+          "\[IndentingNewLine]", RowBox[{"CellSize", "\[Rule]", 
+            RowBox[{"{", RowBox[{"500", ",", " ", "Automatic"}], "}"}]}]}], 
+        "\[IndentingNewLine]", "]"}]}]], "Input", CellLabel -> "In[47]:="], 
+  Cell[BoxData[RowBox[{RowBox[{"aaa", "=", 
+        RowBox[{"AttachedDialogInputPanel", "[", "\[IndentingNewLine]", 
+          RowBox[{"<|", "\n", "        ", RowBox[{RowBox[{"\"Header\"", "->", 
+                "\"Commit to Git\""}], ",", "\n", "        ", 
+              RowBox[{"\"Fields\"", "->", RowBox[{"{", "\n", "          ", 
+                  RowBox[{"\"Provide a commit message\"", ",", "\n", 
+                    "          ", RowBox[{"<|", "\n", "            ", 
+                      RowBox[{RowBox[{"\"ID\"", "->", "\"Message\""}], ",", 
+                        "\n", "            ", RowBox[{"\"Name\"", "->", 
+                          "None"}], ",", "\n", "            ", RowBox[
+                         {"\"Default\"", "->", RowBox[
+                          {"\"Committed via EasyIDE @ ``\"", "~", 
+                          "TemplateApply", "~", "Now"}]}], ",", "\n", 
+                        "            ", RowBox[{"\"Options\"", "->", RowBox[
+                          {"{", "\n", "              ", RowBox[{RowBox[
+                          {"FieldSize", "->", RowBox[{"{", RowBox[{"25", ",", 
+                          " ", RowBox[{"{", RowBox[{"5", ",", " ", "25"}], 
+                          "}"}]}], "}"}]}], ",", "\n", "              ", 
+                          RowBox[{"FieldHint", "->", 
+                          "\"Commit message...\""}]}], "\n", 
+                          "              ", "}"}]}]}], "\n", "            ", 
+                      "|>"}]}], "\n", "          ", "}"}]}], ",", "\n", 
+              "      ", RowBox[{"\"SubmitAction\"", "->", "\n", "        ", 
+                RowBox[{"Function", "[", "\n", "          ", RowBox[
+                   {RowBox[{"Git", "[", RowBox[{"\"Add\"", ",", " ", 
+                        RowBox[{"IDEPath", "[", "$CurrentIDENotebook", "]"}], 
+                        ",", " ", RowBox[{"\"All\"", "->", "True"}]}], "]"}], 
+                    ";", "\n", "          ", RowBox[{"CreateMessagePopup", 
+                      "[", "\n", "            ", RowBox[
+                       {"$CurrentIDENotebook", ",", " ", "\n", 
+                        "            ", RowBox[{"StringForm", "[", RowBox[
+                          {"\"Committed to git: \\n``\"", ",", " ", "\n", 
+                          "              ", RowBox[{"Git", "[", RowBox[
+                          {"\"Commit\"", ",", " ", "\n", "                ", 
+                          RowBox[{"IDEPath", "[", "$CurrentIDENotebook", 
+                          "]"}], ",", "\n", "                ", RowBox[
+                          {"\"Message\"", "->", "#Message"}]}], "\n", 
+                          "                ", "]"}]}], "\n", 
+                          "              ", "]"}]}], "\n", "            ", 
+                      "]"}]}], "\n", "          ", "]"}]}]}], "\n", "      ", 
+            "|>"}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input", 
+   CellLabel -> "In[48]:="], 
+  Cell[CellGroupData[
+    {Cell[BoxData[RowBox[{RowBox[{"aaa", "[", RowBox[
+            {"[", RowBox[{"1", ",", " ", "1", ",", " ", "2", ",", " ", "1"}], 
+             "]"}], "]"}], "//", "InputForm"}]], "Input", 
+      CellLabel -> "In[54]:="], Cell["Panel[Grid[{{Pane[\"Provide a commit \
+message\", BaseStyle -> \"AttachedDialog\"], SpanFromLeft}, \n   \
+{EasyIDE`Notebooks`FormattingElements`Private`createInputFieldControl[\n     \
+Dynamic[EasyIDE`Notebooks`FormattingElements`Private`state$59802], \
+\"Message\", None, \n     FieldHint -> \"Commit message...\"]}, \n   {\"\", \
+\"Committed via EasyIDE @ Mon 8 Apr 2019 13:49:27\"}}, GridBoxItemSize -> \
+Inherited, \n  BaseStyle -> \"AttachedDialogInput\"], BaseStyle -> \
+\"AttachedDialogBody\"]", "Output", CellLabel -> "Out[54]//InputForm="]}, 
+    Open]], Cell[BoxData[RowBox[{"CreateAttachedInputDialog", "[", "\n", 
+      "      ", RowBox[{"$CurrentIDENotebook", ",", "\n", "      ", ",", 
+        "\n", "    ", RowBox[{"<|", "\n", "      ", 
+          RowBox[{RowBox[{"\"Position\"", "->", RowBox[{"{", RowBox[
+                 {RowBox[{"-", "5"}], ",", " ", RowBox[{"-", "5"}]}], 
+                "}"}]}], ",", "\n", "      ", RowBox[{"\"Alignment\"", "->", 
+              RowBox[{"{", RowBox[{"Right", ",", " ", "Top"}], "}"}]}], ",", 
+            "\n", "      ", RowBox[{"\"Anchor\"", "->", RowBox[{"{", 
+                RowBox[{"Right", ",", " ", "Top"}], "}"}]}]}], "\n", 
+          "      ", "|>"}], ",", "\n", "    ", 
+        RowBox[{"CellSize", "->", RowBox[{"{", RowBox[{"350", ",", " ", 
+              "Automatic"}], "}"}]}], ",", "\n", "    ", 
+        RowBox[{"\"CreateCloseButton\"", "->", "False"}]}], "\n", "    ", 
+      "]"}]], "Input"]}, WindowSize -> {808, 755}, 
+ WindowMargins -> {{Automatic, 212}, {-4, Automatic}}, 
+ TaggingRules -> {"UUIDButtons" -> 
     {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
        "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
        "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 

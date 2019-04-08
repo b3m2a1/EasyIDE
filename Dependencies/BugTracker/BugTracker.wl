@@ -26,6 +26,8 @@ If[Temp`PackageScope`BugTrackerLoading`Private`$DependencyLoad,
     Get@FileNameJoin@{DirectoryName@$InputFileName, "BugTrackerLoader.wl"}
     ],
   If[!TrueQ[Evaluate[Symbol["BugTracker`PackageScope`Private`$LoadCompleted"]]],
-    <<BugTracker`BugTrackerLoader`
-    ]
+    <<BugTracker`BugTrackerLoader`,
+   BeginPackage["BugTracker`"];
+   EndPackage[];
+   ]
   ]

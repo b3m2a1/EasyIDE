@@ -1232,17 +1232,34 @@ Options[PackageEnsureLoadDependency]=
 PackageEnsureLoadDependency[dep_, ops:OptionsPattern[]]:=
   Module[
     {
-      depsDir=
-        {
-          If[$PackageLoadingMode==="Dependency",
-            ParentDirectory@$PackageDirectory,
-            Nothing
-            ],
-          PackageFilePath["Dependencies"]
-          },
+      depsDir,
+      pfp,
       foundFile,
       bund=TrueQ@Quiet@OptionValue["Bundled"]
       },
+     depsDir=
+       If[$PackageLoadingMode==="Dependency",
+         DeleteDuplicates@Flatten@{
+          ParentDirectory@$PackageDirectory,
+          PackageFilePath["Dependencies"],
+          pfp = 
+            SplitBy[
+              FileNameSplit[$PackageDirectory],
+              #==="Dependencies"&
+              ];
+          Reap[
+            Fold[
+              If[#2==="Dependencies", 
+                Sow,
+                Identity
+                ]@
+                FileNameJoin@Flatten@{#, #2}&,
+              pfp
+              ]
+            ][[2]]
+         },
+        {PackageFilePath["Dependencies"]}
+        ];
      If[bund,
        If[AnyTrue[depsDir, DirectoryQ],
          foundFile=
