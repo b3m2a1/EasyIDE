@@ -3,6 +3,7 @@
 BeginPackage["`MarkdownToolbar`"];
 insertYTLink;
 mdTemplates;
+saveMD;
 EndPackage[];
 
 
@@ -44,10 +45,10 @@ makeYTLinkBox[so_, handle_]:=
     ]
 
 
-insertYTLink[handle_]:= 
+insertYTLink[nb_, handle_]:= 
   With[{so=installYT[]},
     NotebookWrite[
-      InputNotebook[],
+      nb,
       Cell[
         TextData@{
             Cell[BoxData@makeYTLinkBox[so, handle]]
@@ -59,21 +60,26 @@ insertYTLink[handle_]:=
       ]
     ];
 insertYTLink[]:=
-  CreateAttachedInputDialog[
-    <|
-      "Header"->"YouTube Link",
-      "Fields"->{
-        "Provide a YouTube video handle. This is after 'v=' in a standard YouTube URL.",
-        <|
-          "ID"->"Handle",
-          "Name"->None
-          |>
-        },
-      "SubmitAction"->
-        Function[
-          If[StringLength[#Handle]>0, insertYTLink[#Handle]]
-          ]
-      |>
+  With[{nb=$CurrentIDENotebook},
+    CreateWindowedInputDialog[
+      <|
+        "Header"->"YouTube Link",
+        "Fields"->{
+          "Provide a YouTube video handle. This is after 'v=' in a standard YouTube URL.",
+          <|
+            "ID"->"Handle",
+            "Name"->None
+            |>
+          },
+        "SubmitAction"->
+          {
+            Function[
+              If[StringLength[#Handle]>0, insertYTLink[nb, #Handle]]
+              ],
+            Method->"Queued"
+            }
+        |>
+      ]
     ]
 
 
@@ -122,12 +128,24 @@ End[]
 
 {
   Button[
+   "Save Markdown",
+   With[{nb=$CurrentIDENotebook},
+     PreemptiveQueued[nb,
+       WithActiveNotebookPath[nb,
+         NotebookMarkdownSave[nb]
+         ]
+       ]
+     ],
+   Appearance->Inherited,
+   FrameMargins->{{10,10},{0,0}},
+   ImageSize->{Automatic,28}
+   ],
+  Button[
    "YouTube Link",
    insertYTLink[],
    Appearance->Inherited,
    FrameMargins->{{10,10},{0,0}},
-   ImageSize->{Automatic,28},
-   Method->"Queued"
+   ImageSize->{Automatic,28}
    ],
   ActionMenu[
     Button[

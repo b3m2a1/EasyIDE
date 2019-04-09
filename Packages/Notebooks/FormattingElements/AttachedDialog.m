@@ -376,8 +376,8 @@ attachedDialogInputSpec[
       {
         ids = Cases[fields, f_Association:>f["ID"]],
         remove = Lookup[a, "ClearState", Replace[Lookup[a, "State", True], _Dynamic:>False]],
-        submit = Lookup[a, "SubmitAction", None],
-        cancel = Lookup[a, "CancelAction", None],
+        submit = Flatten@List@Lookup[a, "SubmitAction", None],
+        cancel = Flatten@List@Lookup[a, "CancelAction", None],
         dest = Lookup[a, "DestroyOnClick", True]
         },
       Merge[
@@ -391,21 +391,23 @@ attachedDialogInputSpec[
              {
                Function[
                  Null,
-                 submit@prepState[#, ids, remove];
+                 submit[[1]]@prepState[#, ids, remove];
                  If[dest, destroyDialog[]],
                  HoldFirst
                  ],
-               ButtonData->s
+               ButtonData->s,
+               Sequence@@Rest[submit]
                },
            "CancelAction"->
              {
                Function[
                  Null,
-                 cancel@prepState[#, ids, remove];
+                 cancel[[1]]@prepState[#, ids, remove];
                  If[dest, destroyDialog[]],
                  HoldFirst
                  ],
-               ButtonData->s
+               ButtonData->s,
+               Sequence@@Rest[cancel]
                },
            a
          },
@@ -480,6 +482,7 @@ createAttachSpec[Automatic]:=
 
 insertCloseBox[panel_]:=
   ReplaceAll[
+    panel,
     Grid[
       {
         {Panel[h_, BaseStyle->"AttachedDialogHeader"]},
@@ -495,7 +498,8 @@ insertCloseBox[panel_]:=
                 {{
                   "",
                   h,
-                  RawBoxes@ButtonBox["", BaseStyle->"AttachedDialogCloseButton"]
+                  RawBoxes@
+                    ButtonBox["", BaseStyle->"AttachedDialogCloseButton"]
                   }},
                 BaseStyle->"AttachedDialogCloseButtonRow",
                 GridBoxItemSize->Inherited
@@ -525,7 +529,7 @@ attachables=
 CreateAttachedDialog//Clear
 Options[CreateAttachedDialog]=
   {
-    "CreateCloseButton"->True
+    "CreateCloseButton"->False
     };
 CreateAttachedDialog[
   nb:attachables, 
@@ -639,7 +643,7 @@ CreateAttachedInputDialog[
 CreateWindowedDialog//Clear
 Options[CreateWindowedDialog]=
   {
-    "CreateCloseButton"->True
+    "CreateCloseButton"->False
     };
 CreateWindowedDialog[
   nb:attachables, 
@@ -662,7 +666,7 @@ CreateWindowedDialog[
       panel=
         AttachedDialogPanel[expression]
     },
-    CreateDialog[
+    CreateDocument[
       Cell[
         panel//
           If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
@@ -692,9 +696,10 @@ CreateWindowedDialog[
             Sequence@@{},
             Infinity
             ],
-          StyleDefinitions->
-            (* maybe I should make this more extensible...? *)
-            FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Dialog"]
+          StyleDefinitions->(* need more flexibility here but ah well *)
+            With[{n=GetMainStylesheetName[nb]<>"-Dialog.nb"},
+              FrontEnd`FileName[{"EasyIDE", "Extensions"}, n]
+              ]
           },
         Options[Notebook]
         ]

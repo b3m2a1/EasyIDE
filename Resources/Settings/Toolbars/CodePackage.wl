@@ -46,12 +46,12 @@ loadPackage[]:=
       loadPackageFailures={},
       $ContextPath={"System`"},
       appExec=EasyIDE`Dependencies`BTools`Paclets`AppExecute,
-      fn=IDEPath[EvaluationNotebook[], Key["ActiveFile"]]
+      fn=IDEPath[$CurrentIDENotebook, Key["ActiveFile"]]
       },
     Catch[
       GeneralUtilities`WithMessageHandler[
         Replace[
-          appExec["GetAppName", fn],
+          StringSplit[appExec["GetAppName", fn], "-"][[1]],
           {
             Except[_String]:>(
               Get@StringReplace[fn,".nb"->".m"];
@@ -59,7 +59,7 @@ loadPackage[]:=
               ),
             a_:>
               (
-                Needs[a<>"`"];
+                Quiet@Needs[a<>"`"];
                 With[
                   {
                     appFile=

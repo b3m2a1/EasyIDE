@@ -154,7 +154,7 @@ loadSheetStyles[]:=
 
 
 getNbFileSSheet[nbFile_]:=
-  If[FileByteCount[nbFile]<1000000,
+  If[FileByteCount[nbFile]<1000000000,
     Module[{g=Get[nbFile], sd, sdFile},
       sd=FirstCase[Flatten@Apply[List, Rest[g]], (StyleDefinitions->s_):>s, "Default.nb"];
       sdFile=

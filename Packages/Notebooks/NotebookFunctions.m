@@ -92,7 +92,11 @@ CreateIDENotebook[dir_String]:=
   CreateIDENotebook[
     createIDENotebook[dir],
     dir
-    ]
+    ];
+
+
+CreateIDENotebook[]:=
+  CreateIDENotebook[EvaluationNotebook[]]
 
 
 End[];

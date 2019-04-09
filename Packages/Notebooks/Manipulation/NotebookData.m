@@ -219,9 +219,10 @@ IDEData[ide_IDENotebookObject, key_, default___]:=
 IDEData/:
   HoldPattern[
     IDEData[ide_?(MatchQ[#, _IDENotebookObject]&), 
-      key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)]~Set~val_
+      key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)
+      ]~Set~val_
     ]:=
-    Module[{nb=ide["Notebook"], res},
+    Module[{nb=Echo@ide["Notebook"], res},
       IDEData[nb, key]=val
       ];
 

@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     14751,        365]
-NotebookOptionsPosition[     11093,        276]
-NotebookOutlinePosition[     13898,        352]
-CellTagsIndexPosition[     13855,        349]
+NotebookDataLength[     15786,        388]
+NotebookOptionsPosition[     12520,        310]
+NotebookOutlinePosition[     14937,        375]
+CellTagsIndexPosition[     14894,        372]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
@@ -18,14 +18,15 @@ Cell[BoxData[{
   ";"}], "\n", 
  RowBox[{"insertYTLink", ";"}], "\n", 
  RowBox[{"mdTemplates", ";"}], "\n", 
+ RowBox[{"saveMD", ";"}], "\n", 
  RowBox[{
-  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",ExpressionUUID->"f8e66747-\
-185b-4b42-974c-f0c3d8296b5d"],
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",ExpressionUUID->"9253c03c-\
+185e-48a9-8540-0a96f7029b94"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",ExpressionU\
-UID->"3ce31660-e790-491a-a848-8ecca861cd2b"],
+UID->"29dc0060-792b-491e-9533-de890a9c8866"],
 
 Cell[BoxData[
  RowBox[{
@@ -42,7 +43,7 @@ Cell[BoxData[
       RowBox[{"PacletInstall", "[", "]"}]}], "\n", "      ", "]"}], ";", "\n",
      "    ", 
     RowBox[{"ServiceConnect", "[", "\"\<YouTube\>\"", "]"}]}], "\n", "    ", 
-   ")"}]}]], "Code",ExpressionUUID->"ad5c9510-7bec-491a-9945-404ca549787e"],
+   ")"}]}]], "Code",ExpressionUUID->"93c4fa5c-cf3c-41d6-b9c0-9a1873d42078"],
 
 Cell[BoxData[
  RowBox[{
@@ -93,21 +94,21 @@ Cell[BoxData[
        RowBox[{"\"\<EmbedIFrame\>\"", ",", 
         RowBox[{"\"\<id\>\"", "->", "handle"}]}], "]"}]}], "\n", "      ", 
      "}"}], ",", "\n", "    ", "\"\<MarkdownInterpretation\>\""}], "\n", 
-   "    ", "]"}]}]], "Code",ExpressionUUID->"4bfad4d3-667f-4a57-b91d-\
-6ae0066092c1"],
+   "    ", "]"}]}]], "Code",ExpressionUUID->"be5da045-d625-411d-9fce-\
+0e82afd98b9a"],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"insertYTLink", "[", "handle_", "]"}], ":=", " ", "\n", "  ", 
+   RowBox[{"insertYTLink", "[", 
+    RowBox[{"nb_", ",", " ", "handle_"}], "]"}], ":=", " ", "\n", "  ", 
    RowBox[{"With", "[", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{"so", "=", 
        RowBox[{"installYT", "[", "]"}]}], "}"}], ",", "\n", "    ", 
      RowBox[{"NotebookWrite", "[", "\n", "      ", 
-      RowBox[{
-       RowBox[{"InputNotebook", "[", "]"}], ",", "\n", "      ", 
+      RowBox[{"nb", ",", "\n", "      ", 
        RowBox[{"Cell", "[", "\n", "        ", 
         RowBox[{
          RowBox[{"TextData", "@", 
@@ -124,31 +125,42 @@ Cell[BoxData[{
          "]"}]}], "\n", "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"insertYTLink", "[", "]"}], ":=", "\n", "  ", 
-  RowBox[{"CreateAttachedInputDialog", "[", "\n", "    ", 
-   RowBox[{"<|", "\n", "      ", 
-    RowBox[{
-     RowBox[{"\"\<Header\>\"", "->", "\"\<YouTube Link\>\""}], ",", "\n", 
-     "      ", 
-     RowBox[{"\"\<Fields\>\"", "->", 
-      RowBox[{"{", "\n", "        ", 
-       RowBox[{
-       "\"\<Provide a YouTube video handle. This is after 'v=' in a standard \
-YouTube URL.\>\"", ",", "\n", "        ", 
-        RowBox[{"<|", "\n", "          ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "    ", 
+    RowBox[{"CreateWindowedInputDialog", "[", "\n", "      ", 
+     RowBox[{"<|", "\n", "        ", 
+      RowBox[{
+       RowBox[{"\"\<Header\>\"", "->", "\"\<YouTube Link\>\""}], ",", "\n", 
+       "        ", 
+       RowBox[{"\"\<Fields\>\"", "->", 
+        RowBox[{"{", "\n", "          ", 
          RowBox[{
-          RowBox[{"\"\<ID\>\"", "->", "\"\<Handle\>\""}], ",", "\n", 
-          "          ", 
-          RowBox[{"\"\<Name\>\"", "->", "None"}]}], "\n", "          ", 
-         "|>"}]}], "\n", "        ", "}"}]}], ",", "\n", "      ", 
-     RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "        ", 
-      RowBox[{"Function", "[", "\n", "          ", 
-       RowBox[{"If", "[", 
-        RowBox[{
+         "\"\<Provide a YouTube video handle. This is after 'v=' in a \
+standard YouTube URL.\>\"", ",", "\n", "          ", 
+          RowBox[{"<|", "\n", "            ", 
+           RowBox[{
+            RowBox[{"\"\<ID\>\"", "->", "\"\<Handle\>\""}], ",", "\n", 
+            "            ", 
+            RowBox[{"\"\<Name\>\"", "->", "None"}]}], "\n", "            ", 
+           "|>"}]}], "\n", "          ", "}"}]}], ",", "\n", "        ", 
+       RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "          ", 
+        RowBox[{"{", "\n", "            ", 
          RowBox[{
-          RowBox[{"StringLength", "[", "#Handle", "]"}], ">", "0"}], ",", " ", 
-         RowBox[{"insertYTLink", "[", "#Handle", "]"}]}], "]"}], "\n", 
-       "          ", "]"}]}]}], "\n", "      ", "|>"}], "\n", "    ", 
-   "]"}]}]}], "Code",ExpressionUUID->"6417543c-8b59-42ac-a2bb-1d05832f2d07"],
+          RowBox[{"Function", "[", "\n", "              ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringLength", "[", "#Handle", "]"}], ">", "0"}], ",", 
+             " ", 
+             RowBox[{"insertYTLink", "[", 
+              RowBox[{"nb", ",", " ", "#Handle"}], "]"}]}], "]"}], "\n", 
+           "              ", "]"}], ",", "\n", "            ", 
+          RowBox[{"Method", "->", "\"\<Queued\>\""}]}], "\n", "            ", 
+         "}"}]}]}], "\n", "        ", "|>"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], "Code",ExpressionUUID->"8f902027-ed8f-4dba-908f-\
+d2cdd08989e9"],
 
 Cell[BoxData[{
  RowBox[{
@@ -197,8 +209,8 @@ Cell[BoxData[{
     "\"\<license\>\"", ",", " ", "\n", "    ", 
      "\"\<http://img.shields.io/badge/license-MIT-blue.svg\>\"", ",", "\n", 
      "    ", "\"\<https://opensource.org/licenses/MIT\>\""}], "\n", "    ", 
-    "]"}]}], ";"}]}], "Code",ExpressionUUID->"5e47385a-4200-46c4-9116-\
-f9decf5ac4aa"],
+    "]"}]}], ";"}]}], "Code",ExpressionUUID->"cee3b9bd-026c-4369-8979-\
+6f5bfcf5371d"],
 
 Cell[BoxData[
  RowBox[{"mdTemplates", " ", "=", " ", 
@@ -207,14 +219,39 @@ Cell[BoxData[
     RowBox[{"\"\<VersionIcon\>\"", " ", "->", " ", "version"}], ",", "\n", 
     "  ", 
     RowBox[{"\"\<LicenseIcon\>\"", " ", "->", " ", "license"}]}], "\n", "  ", 
-   "}"}]}]], "Code",ExpressionUUID->"bf7413c8-ae36-47e0-b346-165fde9205ac"],
+   "}"}]}]], "Code",ExpressionUUID->"545acba5-3c98-481f-b6a6-b32060940768"],
 
 Cell[BoxData[
- RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"0f338143-7cf1-4cd2-b005-1f1c0f613075"],
+ RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"57b28862-409f-408d-84b0-215bca638b66"],
 
 Cell[BoxData[
  RowBox[{"{", "\n", "  ", 
   RowBox[{
+   RowBox[{"Button", "[", "\n", "   ", 
+    RowBox[{"\"\<Save Markdown\>\"", ",", "\n", "   ", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "     ", 
+       RowBox[{"PreemptiveQueued", "[", 
+        RowBox[{"nb", ",", "\n", "       ", 
+         RowBox[{"WithActiveNotebookPath", "[", 
+          RowBox[{"nb", ",", "\n", "         ", 
+           RowBox[{"NotebookMarkdownSave", "[", "nb", "]"}]}], "\n", 
+          "         ", "]"}]}], "\n", "       ", "]"}]}], "\n", "     ", 
+      "]"}], ",", "\n", "   ", 
+     RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "   ", 
+     RowBox[{"FrameMargins", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"10", ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "   ", 
+     RowBox[{"ImageSize", "->", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "   ", "]"}], ",", 
+   "\n", "  ", 
    RowBox[{"Button", "[", "\n", "   ", 
     RowBox[{"\"\<YouTube Link\>\"", ",", "\n", "   ", 
      RowBox[{"insertYTLink", "[", "]"}], ",", "\n", "   ", 
@@ -228,8 +265,7 @@ Cell[BoxData[
          RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "   ", 
      RowBox[{"ImageSize", "->", 
       RowBox[{"{", 
-       RowBox[{"Automatic", ",", "28"}], "}"}]}], ",", "\n", "   ", 
-     RowBox[{"Method", "->", "\"\<Queued\>\""}]}], "\n", "   ", "]"}], ",", 
+       RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "   ", "]"}], ",", 
    "\n", "  ", 
    RowBox[{"ActionMenu", "[", "\n", "    ", 
     RowBox[{
@@ -269,43 +305,30 @@ Cell[BoxData[
         "      ", "]"}], "&"}], "/@", "mdTemplates"}], ",", "\n", "    ", 
      RowBox[{"Appearance", "->", "None"}], ",", "\n", "    ", 
      RowBox[{"MenuAppearance", "->", "\"\<Dropdown\>\""}]}], "\n", "    ", 
-    "]"}]}], "\n", "  ", "}"}]], "Code",
- CellChangeTimes->{{3.763757644450872*^9, 
-  3.763757650883197*^9}},ExpressionUUID->"4d75d13d-c13b-43d7-86d0-\
-55588e2672f3"]
+    "]"}]}], "\n", "  ", "}"}]], "Code",ExpressionUUID->"c08abf68-0eff-4dd5-\
+9e23-340804676f04"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{875, 742},
-WindowMargins->{{177, Automatic}, {Automatic, 6}},
+WindowMargins->{{193, Automatic}, {Automatic, 53}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "PacletInfo" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/PacletInfo.m"}, 
-      "Post #27" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/WebPages/pelican/home/content/posts/Post #27.nb"}, 
-      "Markdown" -> {
+     "Markdown" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Markdown.wl"}, 
-      "README" -> {
+      "NotebookData" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/project/README.nb"}, 
-      "Docs" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}}, 
-    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/NotebookData.\
+nb"}}, "FileViewer" -> {"Visible" -> False}, 
+    "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
              PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
@@ -320,7 +343,7 @@ Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Docs.wl"}},
     "FileToolbar" -> "Package", 
     "Options" -> {
      WindowSize -> {808, 755}, 
-      WindowMargins -> {{4, Automatic}, {Automatic, 24}}, Visible -> False, 
+      WindowMargins -> {{Automatic, 76}, {36, Automatic}}, Visible -> False, 
       FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
       StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False, 
@@ -351,15 +374,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[430, 14, 305, 8, 113, "Code",ExpressionUUID->"f8e66747-185b-4b42-974c-f0c3d8296b5d"],
-Cell[738, 24, 148, 3, 49, "Code",ExpressionUUID->"3ce31660-e790-491a-a848-8ecca861cd2b"],
-Cell[889, 29, 586, 15, 176, "Code",ExpressionUUID->"ad5c9510-7bec-491a-9945-404ca549787e"],
-Cell[1478, 46, 2317, 50, 533, "Code",ExpressionUUID->"4bfad4d3-667f-4a57-b91d-6ae0066092c1"],
-Cell[3798, 98, 2334, 52, 680, "Code",ExpressionUUID->"6417543c-8b59-42ac-a2bb-1d05832f2d07"],
-Cell[6135, 152, 1950, 48, 701, "Code",ExpressionUUID->"5e47385a-4200-46c4-9116-f9decf5ac4aa"],
-Cell[8088, 202, 335, 7, 113, "Code",ExpressionUUID->"bf7413c8-ae36-47e0-b346-165fde9205ac"],
-Cell[8426, 211, 105, 1, 49, "Code",ExpressionUUID->"0f338143-7cf1-4cd2-b005-1f1c0f613075"],
-Cell[8534, 214, 2555, 60, 638, "Code",ExpressionUUID->"4d75d13d-c13b-43d7-86d0-55588e2672f3"]
+Cell[430, 14, 338, 9, 134, "Code",ExpressionUUID->"9253c03c-185e-48a9-8540-0a96f7029b94"],
+Cell[771, 25, 148, 3, 49, "Code",ExpressionUUID->"29dc0060-792b-491e-9533-de890a9c8866"],
+Cell[922, 30, 586, 15, 176, "Code",ExpressionUUID->"93c4fa5c-cf3c-41d6-b9c0-9a1873d42078"],
+Cell[1511, 47, 2317, 50, 533, "Code",ExpressionUUID->"be5da045-d625-411d-9fce-0e82afd98b9a"],
+Cell[3831, 99, 2816, 63, 70, "Code",ExpressionUUID->"8f902027-ed8f-4dba-908f-d2cdd08989e9"],
+Cell[6650, 164, 1950, 48, 70, "Code",ExpressionUUID->"cee3b9bd-026c-4369-8979-6f5bfcf5371d"],
+Cell[8603, 214, 335, 7, 70, "Code",ExpressionUUID->"545acba5-3c98-481f-b6a6-b32060940768"],
+Cell[8941, 223, 105, 1, 70, "Code",ExpressionUUID->"57b28862-409f-408d-84b0-215bca638b66"],
+Cell[9049, 226, 3467, 82, 70, "Code",ExpressionUUID->"c08abf68-0eff-4dd5-9e23-340804676f04"]
 }
 ]
 *)

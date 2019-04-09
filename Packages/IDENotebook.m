@@ -13,7 +13,8 @@ RegisterInterface[
   IDENotebookObject,
   {"Notebook", "Project"},
   "Constructor"->CreateIDENotebook,
-  "MutationFunctions"->{"Keys"}
+  "MutationFunctions"->{"Keys"},
+  "Protect"->True
   ]
 
 
@@ -88,6 +89,9 @@ InterfaceMethod[IDENotebookObject]@
 InterfaceMethod[IDENotebookObject]@
   g_IDENotebookObject["CreateMessage"][expr_, args___]:=
     IDECreateMessage[g, expr, args];
+InterfaceMethod[IDENotebookObject]@
+  g_IDENotebookObject["CreateDialog"][expr_, args___]:=
+    IDECreateDialog[g, expr, args];
 
 
 End[];

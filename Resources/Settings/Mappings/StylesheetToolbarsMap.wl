@@ -5,7 +5,7 @@
     "Docs",
   FrontEnd`FileName[{___, "BTools", ___}, "CodePackage.nb", ___]:>
     "CodePackage",
-  FrontEnd`FileName[{___, "BTools", ___}, "MarkdownNotebook.nb", ___]:>
+  FrontEnd`FileName[{___}, _String?(StringContainsQ["Markdown"]), ___]:>
     "Markdown",
   FrontEnd`FileName[{___, "BugTracker", ___}, "BugTracker.nb", ___]:>
     "BugTracker"
