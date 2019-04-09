@@ -123,7 +123,11 @@ End[]
 {
   Button[
    "YouTube Link",
-   insertYTLink[]
+   insertYTLink[],
+   Appearance->Inherited,
+   FrameMargins->{{10,10},{0,0}},
+   ImageSize->{Automatic,28},
+   Method->"Queued"
    ],
   ActionMenu[
     Button[
