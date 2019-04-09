@@ -1,9 +1,8 @@
 (* ::Package:: *)
 
 BeginPackage["`MarkdownToolbar`"];
-insertYTLink;
+mdEdits;
 mdTemplates;
-saveMD;
 EndPackage[];
 
 
@@ -123,6 +122,31 @@ mdTemplates = {
   }
 
 
+mdEdits = {
+  "Add Image Border" :> addImageBorder[],
+  "Add YouTube Link" :> insertYTLink[]
+  }
+
+
+addImageBorder[]:=
+  Replace[NotebookRead@$CurrentIDENotebook,{
+      g:GraphicsBox[TagBox[_RasterBox,___],___]:>
+        NotebookWrite[$CurrentIDENotebook,
+          ToBoxes@
+            ImagePad[
+              ImagePad[
+                ImagePad[
+                  ImagePad[ToExpression@g,1,Lighter@Gray],
+                  13,
+                  GrayLevel[.9]],
+                1,Lighter@Gray],
+              5,
+              GrayLevel[0,0]
+              ]
+          ]
+      }]
+
+
 End[]
 
 
@@ -140,13 +164,18 @@ End[]
    FrameMargins->{{10,10},{0,0}},
    ImageSize->{Automatic,28}
    ],
-  Button[
-   "YouTube Link",
-   insertYTLink[],
-   Appearance->Inherited,
-   FrameMargins->{{10,10},{0,0}},
-   ImageSize->{Automatic,28}
-   ],
+  ActionMenu[
+    Button[
+      "Edit",
+      BaseStyle->"PluginMenu",
+      Appearance->Inherited,
+      FrameMargins->{{10,10},{0,0}},
+      ImageSize->{Automatic,28}
+      ],
+    mdEdits,
+    Appearance->None,
+    MenuAppearance->"Dropdown"
+    ],
   ActionMenu[
     Button[
       "Insert",

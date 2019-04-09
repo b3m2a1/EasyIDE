@@ -38,6 +38,7 @@ $CurrentIDE::usage="";
 
 
 iCurrentValue::usage="Just reimplements CurrentValue for when it's needed";
+iSetOptions::usage="Reimplements SetOptions for when that is needed";
 SetCurrentValue::usage="";
 SetCurrentValueDelayed::usage="";
 WithIDEData::usage="Reroutes CurrentValue to the EasyIDE path";
@@ -51,13 +52,32 @@ Begin["`Private`"];
 
 
 
+(* ::Subsubsection::Closed:: *)
+(*iCurrentValue*)
+
+
+
 iCurrentValue[a___]:=
-  With[{c=FrontEnd`CurrentValue[a]},
-    Replace[
-      MathLink`CallFrontEnd[
-        FrontEnd`Value[c, FrontEnd`$TrackingEnabled]],
-      c->$Failed
+  Block[{FrontEnd`CurrentValue},
+    With[{c=FrontEnd`CurrentValue[a]},
+      Replace[
+        MathLink`CallFrontEnd[
+          FrontEnd`Value[c, FrontEnd`$TrackingEnabled]],
+        c->$Failed
+        ]
       ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*iSetOptions*)
+
+
+
+iSetOptions[o_, a___]:=
+  Block[{FrontEnd`SetOptions},
+    MathLink`CallFrontEnd@
+      FrontEnd`SetOptions[o, a]
     ]
 
 
@@ -113,24 +133,31 @@ WithIDEData[nb_, expr_]:=
       FrontEnd`Options
       },
     CurrentValue[a_, b_, c___]:=
-      Block[{CurrentValue=iCurrentValue},
-        IDEData[a, Flatten@{"Options", b}, c]
+      Block[{CurrentValue=iCurrentValue, k=Flatten@{"Options", b}},
+        IDEData[a, k, c]
         ];
     CurrentValue/:
       (CurrentValue[a_, b_, c___] = v_):=
         Block[{CurrentValue=iCurrentValue},
-          IDEData[a, Flatten@{"Options", b}] = v
+          With[{k=Flatten@{"Options", b}},
+            IDEData[a, k] = v
+            ]
           ];
     CurrentValue/:
       (CurrentValue[a_, b_, c___] := v_):=
         Block[{CurrentValue=iCurrentValue},
-          IDEData[a, Flatten@{"Options", b}] := v
+          With[{k=Flatten@{"Options", b}},
+            IDEData[a, k] := v
+            ]
           ];
     FrontEnd`Options[n_]:=
       Block[
         {
-          CurrentValue=
-            FrontEnd`Value[FrontEnd`CurrentValue[##], FrontEnd`$TrackingEnabled]&
+          iCurrentValue=
+            FrontEnd`Value[
+              FrontEnd`CurrentValue[##], 
+              FrontEnd`$TrackingEnabled
+              ]&
           },
         IDEData[n, "Options"]
         ];
@@ -157,11 +184,6 @@ WithIDEData~SetAttributes~HoldRest;
 
 $CurrentIDENotebook := EvaluationNotebook[];
 $CurrentIDE := IDENotebookObject[$CurrentIDENotebook];
-
-
-(* ::Subsection:: *)
-(*Helpers*)
-
 
 
 (* ::Subsection:: *)

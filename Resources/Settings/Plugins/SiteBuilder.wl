@@ -1,8 +1,18 @@
 (* ::Package:: *)
 
-{
-  "Initialize":>
-    CreateAttachedDialog[
+BeginPackage["`MarkdownPlugin`"];
+createNewSite;
+createNewPost;
+createNewPage;
+createNewMd;
+EndPackage[];
+
+
+Begin["`Private`"];
+
+
+createNewSite[]:=
+  CreateAttachedDialog[
       <|
         "Fields"->
           {
@@ -43,34 +53,65 @@
               ]
   				    ]
   				|>
-      ],
+      ]
+
+
+getWebSitePath[]:=
+  FileNameJoin@Flatten@
+    Replace[
+      SplitBy[
+         FileNameSplit[IDEPath[]],
+         #=="content"&
+         ],
+      {a___, {"content"}, _}:>{a}
+      ]
+
+
+createNewPost[]:=
+  Block[
+     {
+       NotebookOpen=IDEOpen,
+       SystemOpen=IDEOpen
+       },
+     Ems["NewPost", getWebSitePath[]]
+     ]
+
+
+createNewPage[]:=
+  Block[
+     {
+       NotebookOpen=IDEOpen,
+       SystemOpen=IDEOpen
+       },
+     Ems["NewPost", getWebSitePath[]]
+     ]
+
+
+createNewMd[]:=
+  Block[
+   {
+     NotebookOpen=IDEOpen,
+     SystemOpen=IDEOpen
+     },
+   Ems["NewPost", 
+     If[!DirectoryQ[#],
+       CreateDirectory[#, CreateIntermediateDirectories->True]
+       ]&@FileNameJoin@{IDEPath[".scratch"], "content", "posts"};
+     IDEPath[".scratch"]
+     ]
+   ];
+
+
+End[]
+
+
+{
+  "Initialize":>
+    createNewSite[],
    "New Post":>
-     Block[
-       {
-         NotebookOpen=IDEOpen
-         },
-       Ems["NewPost", 
-         SplitBy[
-           FileNameJoin@FileNameSplit[IDEPath[]],
-           #=="content"&
-           ]
-         ]
-       ],
+     createNewPost[],
    "New Page":>
-     IDEOpen[
-       Ems["NewPage", IDEPath[]]
-       ],
+     createNewPage[],
    "New Markdown":>
-     Block[
-       {
-         NotebookOpen=IDEOpen,
-         SystemOpen=IDEOpen
-         },
-       Ems["NewPost", 
-         If[!DirectoryQ[#],
-           CreateDirectory[#, CreateIntermediateDirectories->True]
-           ]&@FileNameJoin@{IDEPath[".scratch"], "content", "posts"};
-         IDEPath[".scratch"]
-         ]
-       ]
+     createNewMarkdown[]
 }

@@ -18,6 +18,7 @@ $CreatedDocsNotebookFile::usage="";
 
 
 WithDocsIDE::usage="";
+WithoutDocsIDE::usage="";
 OpenMetadataEditor::usage="";
 
 
@@ -102,7 +103,7 @@ catchCreateDocument//Clear
 catchCreateDocument[expr_]:=
   Block[
     {
-      CreateDocument=createDocsNotebook
+      CreateDocument=CreateDocsNotebook
       },
     expr
     ];

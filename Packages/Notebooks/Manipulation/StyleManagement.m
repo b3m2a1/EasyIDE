@@ -5,6 +5,7 @@
 GetMainStylesheet::usage="Gets a NotebookObject's stylesheet name";
 SetMainStylesheet::usage="Sets a NotebookObject's stylesheet";
 GetMainStylesheetName::usage="Gets just the name";
+GetCleanStylePath::usage="";
 
 
 AddNotebookStyles::usage="";
@@ -37,7 +38,7 @@ Begin["`Private`"];
 GetMainStylesheet[nb_]:=
   Module[
     {
-      s=CurrentValue[nb, StyleDefinitions]
+      s=iCurrentValue[nb, StyleDefinitions]
       },
     If[Head[s]===Notebook,
       FirstCase[s, Cell[StyleData[StyleDefinitions->f_, ___], ___]:>f, None, \[Infinity]],
@@ -55,10 +56,10 @@ SetMainStylesheet//Clear
 SetMainStylesheet[nb_, f_]:=
   Module[
     {
-      s=CurrentValue[nb, StyleDefinitions],
+      s=iCurrentValue[nb, StyleDefinitions],
       scell,
       nbo,
-      sPath = getCleanStylePath[nb, f]
+      sPath = GetCleanStylePath[nb, f]
       },
     If[Head[s]===Notebook,
       nbo = StyleSheetNotebookObject[nb];
@@ -77,17 +78,17 @@ SetMainStylesheet[nb_, f_]:=
           Cell[StyleData[StyleDefinitions->sPath]]
           ]
         ],
-      SetOptions[nb, StyleDefinitions->sPath]
+      iSetOptions[nb, StyleDefinitions->sPath]
       ]
     ]
 
 
 (* ::Subsubsection::Closed:: *)
-(*getCleanStylePath*)
+(*GetCleanStylePath*)
 
 
 
-getCleanStylePath[nb_, f_]:=
+GetCleanStylePath[nb_, f_]:=
   Replace[f,
     {
       s_String?(StringEndsQ[#, ".nb"]&&!StringStartsQ[#, "-"]&):>
@@ -130,12 +131,21 @@ getCleanStylePath[nb_, f_]:=
 
 
 GetMainStylesheetName//Clear
-GetMainStylesheetName[main:_String|_FrontEnd`FileName]:=
+GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
   (* this will definitely need to be robustified... *)
   Replace[main, 
     {
-      FrontEnd`FileName[_, fn_, ___]:>
-        StringSplit[fn, "."|"-"][[1]],
+      FrontEnd`FileName[p_, fn_, ___]:>
+        With[{bn=StringSplit[fn, "."|"-"][[1]]},
+          If[!StringQ@FrontEndExecute@
+            FrontEnd`FindFileOnPath[
+              ToFileName@FrontEnd`FileName[p, bn<>".nb"],
+              "StyleSheetPath"
+              ],
+            fallback,
+            bn
+            ]
+          ],
       s_String:>
         StringSplit[s, "."|"-"][[1]]
       }
@@ -224,16 +234,18 @@ AddNotebookStyles[nb_, styleData:_Cell, tag_]:=
       currDefs,
       defCells
       },
-    currDefs = CurrentValue[nb, StyleDefinitions];
+    currDefs = iCurrentValue[nb, StyleDefinitions];
     If[Head[currDefs] =!= Notebook,
-      CurrentValue[nb, StyleDefinitions]=
+      SetCurrentValue[nb, 
+        StyleDefinitions,
         Notebook[
           {
             Cell[StyleData[StyleDefinitions->currDefs]],
             styleData
             },
           StyleDefinitions->"PrivateStylesheetFormatting.nb"
-          ],
+          ]
+        ],
       nbo = StyleSheetNotebookObject[nb];
       defCells = Cells[nbo, CellTags->tag];
       If[Length@defCells === 0,

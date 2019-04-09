@@ -162,6 +162,12 @@ notebookObjectQ[nb_]:=
     MatchQ[FE`Evaluate@nb, _NotebookObject]
 
 
+getNbObj[nb_]:=
+  Replace[nb,
+    e:Except[_NotebookObject]:>FE`Evaluate[e]
+    ]
+
+
 (* ::Subsubsubsection::Closed:: *)
 (*Normal*)
 
@@ -187,7 +193,15 @@ IDEData/:
       key:(_String|_Symbol|{(_String|_Symbol)..})
       ]~Set~val_
     ]:=
-    ideSetNbData[FE`Evaluate@nb, key, val];
+    ideSetNbData[getNbObj@nb, key, val];
+IDEData/:
+  HoldPattern[ 
+    IDEData[
+      nb:_NotebookObject|_?notebookObjectQ, 
+      key:(_String|_Symbol|{(_String|_Symbol)..})
+      ]~SetDelayed~val_
+    ]:=
+    ideSetNbDataDelayed[getNbObj@nb, key, Hold[val]];
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -203,7 +217,7 @@ IDEData/:
   HoldPattern[
     IDEData[nb:_NotebookObject|_?notebookObjectQ, PrivateKey[key_]]~Set~val_
     ]:=
-    ideSetTmpData[FE`Evaluate@nb, key, val]
+    ideSetTmpData[getNbObj@nb, key, val];
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -222,8 +236,17 @@ IDEData/:
       key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)
       ]~Set~val_
     ]:=
-    Module[{nb=Echo@ide["Notebook"], res},
+    Module[{nb=ide["Notebook"], res},
       IDEData[nb, key]=val
+      ];
+IDEData/:
+  HoldPattern[
+    IDEData[ide_?(MatchQ[#, _IDENotebookObject]&), 
+      key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)
+      ]~SetDelayed~val_
+    ]:=
+    Module[{nb=ide["Notebook"], res},
+      IDEData[nb, key]:=val
       ];
 
 
@@ -239,6 +262,13 @@ IDEData/:
     IDEData[
       key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)
       ]~Set~val_
+    ]:=
+    IDEData[$CurrentIDENotebook, key]~Set~val;
+IDEData/:
+  HoldPattern[ 
+    IDEData[
+      key:(_String|_Symbol|{(_String|_Symbol)..}|_PrivateKey)
+      ]~SetDelayed~val_
     ]:=
     IDEData[$CurrentIDENotebook, key]~Set~val;
 
