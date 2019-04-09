@@ -1,8 +1,6 @@
-(* ::Package:: *)
-
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.3",
+  Version -> "1.0.4",
   Creator -> "b3m2a1 <b3m2a1@gmail.com>",
   URL -> "https://github.com/b3m2a1/EasyIDE",
   Description -> "An IDE for Mathematica written entirely within Mathematica",
@@ -10,18 +8,18 @@ Paclet[
     	{
      		"Kernel",
      		"Root" -> ".",
-     		"Context" -> "EasyIDE`"
+     		"Context" -> {"EasyIDE`"}
      	},
     	{
      		"FrontEnd",
      		"Prepend" -> True,
      		Prepend -> True
      	},
-     {
+    	{
      		"PacletServer",
-     		"Description" -> "An IDE for Mathematica. Supports tabbing, file browsing, plugins, \
-customizable stylesheets, extension specific tweaks and toolbars, and is reasonably customizable",
-        "License" -> "MIT"
+     		"Description" -> 
+      "An IDE for Mathematica. Supports tabbing, file browsing, plugins, customizable stylesheets, extension specific tweaks and toolbars, and is reasonably customizable",
+     		"License" -> "MIT"
      	},
     	{
      		"Resource",
@@ -78,8 +76,16 @@ customizable stylesheets, extension specific tweaks and toolbars, and is reasona
         				"Settings/Plugins/ProjectMenu.wl"
         			},
        			{
+        				"SiteBuilder",
+        				"Settings/Plugins/SiteBuilder.wl"
+        			},
+       			{
         				"CodePackage",
         				"Settings/Toolbars/CodePackage.wl"
+        			},
+       			{
+        				"Markdown",
+        				"Settings/Toolbars/Markdown.wl"
         			},
        			{
         				"Package",
@@ -106,7 +112,7 @@ customizable stylesheets, extension specific tweaks and toolbars, and is reasona
     	{
      		"Documentation",
      		"Language" -> "English",
-     		"MainPage" -> "Tutorials/GettingStarted"
+     		"MainPage" -> "English/SimpleDocsStyles"
      	}
     }
  ]
