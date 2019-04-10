@@ -144,33 +144,36 @@ WithDocsIDE~SetAttributes~HoldAll;
 
 
 OpenMetadataEditor[nb_]:=
-  CreateDialog[
-    Column[
-      {
-        Pane[$MetadataEditor, {500, {600, 1000}}],
-        Row@{
-            DefaultButton[
-              WithoutCurrentValueUpdating[
-                SetCurrentValue[nb, 
-                  {TaggingRules, "EasyIDE", "Options", TaggingRules, "Metadata"}, 
-                  CurrentValue[EvaluationNotebook[], {TaggingRules, "Metadata"}]
-                  ];
-                SetCurrentValue[nb, 
-                  {TaggingRules, "EasyIDE", "Options", TaggingRules, "ColorType"}, 
-                  CurrentValue[EvaluationNotebook[], {TaggingRules, "ColorType"}]
-                  ]
+  CreateWindowedDialog[
+    <|
+      "Header"->"Edit Metadata",
+      "Body"->
+        Framed[
+          Pane[$MetadataEditor, {500, {450, 1000}}],
+          FrameStyle->None,
+          FrameMargins->{{5, 5}, {0, 0}}
+          ],
+      "SubmitAction"->
+        Function[
+          With[{evnb = EvaluationNotebook[]},
+            WithoutCurrentValueUpdating[
+              SetCurrentValue[nb, 
+                {TaggingRules, "EasyIDE", "Options", TaggingRules, "Metadata"}, 
+                iCurrentValue[evnb, {TaggingRules, "Metadata"}]
                 ];
-              NotebookClose[EvaluationNotebook[]]
-              ],
-            CancelButton[]
-            }
-       }
-       ],
+              SetCurrentValue[nb, 
+                {TaggingRules, "EasyIDE", "Options", TaggingRules, "ColorType"}, 
+                iCurrentValue[evnb, {TaggingRules, "ColorType"}]
+                ]
+              ];
+            NotebookClose[EvaluationNotebook[]]
+            ]
+          ]
+      |>,
     TaggingRules->
       WithoutCurrentValueUpdating@
-        CurrentValue[nb, {TaggingRules, "EasyIDE", "Options", TaggingRules}],
-    WindowFloating->True,
-    Background->White
+        iCurrentValue[nb, {TaggingRules, "EasyIDE", "Options", TaggingRules}],
+    WindowSize->{500, All}
     ]
 
 

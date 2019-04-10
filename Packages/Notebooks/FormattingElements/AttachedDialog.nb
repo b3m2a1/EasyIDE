@@ -65,7 +65,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "Inherited"}], ",", "\n", "    ", RowBox[
                          {"Evaluator", "\[Rule]", "Inherited"}], ",", "\n", 
                         "    ", RowBox[{"Method", "\[Rule]", "Inherited"}]}], 
-                      "\n", "    ", "]"}]}], ";"}]], "CodeInput"]}, Open]], 
+                      "\n", "    ", "]"}]}], ";"}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]prepCancelButton\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -163,7 +163,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "\"CancelAction\"", ",", " ", "Automatic"}], 
                           "]"}]}], "\n", "        ", "}"}]}]}], "\n", 
                         "      ", "]"}], ",", "\n", "    ", "ops"}], "\n", 
-                    "    ", "]"}]}]], "CodeInput"]}, Open]]}, Open]], 
+                    "    ", "]"}]}]], "CodeInput"]}, Closed]]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -450,7 +450,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "\n", "           ", "a"}], "\n", "  ", "       ", 
                           "}"}], ",", "\n", "       ", "First"}], "\n", 
                           "       ", "]"}]}], "\n", "     ", "]"}]}], "\n", 
-                    "   ", "]"}]}]], "CodeInput"]}, Open]], 
+                    "   ", "]"}]}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -639,14 +639,20 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "        ", RowBox[{"Sequence", "@@", RowBox[{"{", 
                           "}"}]}], ",", "\n", "          ", "Infinity"}], 
                           "\n", "          ", "]"}], ",", "\n", "        ", 
-                          "ops"}], "\n", "        ", "]"}], ",", "\n", 
-                          "      ", RowBox[{"Offset", "[", RowBox[{RowBox[
-                          {"sepc", "[", "\"Position\"", "]"}], ",", " ", 
-                          "0"}], "]"}], ",", "\n", "  ", "    ", RowBox[
-                          {"sepc", "[", "\"Alignment\"", "]"}], ",", "\n", 
-                          "  ", "    ", RowBox[{"sepc", "[", "\"Anchor\"", 
-                          "]"}], ",", "\n", "  ", "    ", RowBox[{"sepc", 
-                          "[", "\"ClosingActions\"", "]"}]}], "\n", "      ", 
+                          RowBox[{"FilterRules", "[", "\n", "          ", 
+                          RowBox[{RowBox[{"{", RowBox[{"ops", ",", " ", 
+                          RowBox[{"CellSize", "\[Rule]", RowBox[{"{", RowBox[
+                          {"400", ",", " ", "Automatic"}], "}"}]}]}], "}"}], 
+                          ",", "\n", "          ", RowBox[{"Options", "[", 
+                          "Cell", "]"}]}], "\n", "          ", "]"}]}], "\n", 
+                          "        ", "]"}], ",", "\n", "      ", RowBox[
+                          {"Offset", "[", RowBox[{RowBox[{"sepc", "[", 
+                          "\"Position\"", "]"}], ",", " ", "0"}], "]"}], ",", 
+                          "\n", "  ", "    ", RowBox[{"sepc", "[", 
+                          "\"Alignment\"", "]"}], ",", "\n", "  ", "    ", 
+                          RowBox[{"sepc", "[", "\"Anchor\"", "]"}], ",", 
+                          "\n", "  ", "    ", RowBox[{"sepc", "[", 
+                          "\"ClosingActions\"", "]"}]}], "\n", "      ", 
                         "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
               RowBox[{RowBox[{"CreateAttachedDialog", "[", " ", "\n", "  ", 
                   RowBox[{RowBox[{"expression", ":", RowBox[{"Except", "[", 
@@ -661,7 +667,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                   RowBox[{"$CurrentIDENotebook", ",", "\n", "    ", 
                     "expression", ",", "\n", "    ", "cellType", ",", "\n", 
                     "    ", "a", ",", "\n", "    ", "ops"}], "\n", "    ", 
-                  "]"}]}]}], "CodeInput"]}, Closed]], 
+                  "]"}]}]}], "CodeInput"]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]CreateAttachedInputDialog\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -745,22 +751,30 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "Identity"}], "\n", "  ", "          ", "]"}]}], 
                           "//", "ToBoxes"}], "//", "BoxData"}], ",", "\n", 
                           "        ", "cellType", ",", "\n", "        ", 
-                          RowBox[{"FilterRules", "[", RowBox[{RowBox[{"{", 
-                          "ops", "}"}], ",", " ", RowBox[{"Options", "[", 
-                          "Cell", "]"}]}], "]"}]}], "\n", "        ", "]"}], 
-                          ",", "\n", "      ", RowBox[{"FilterRules", "[", 
-                          "\n", "        ", RowBox[{RowBox[{"{", "\n", 
-                          "          ", RowBox[{"ops", ",", "\n", 
-                          "          ", RowBox[{"FirstCase", "[", "\n", 
-                          "            ", RowBox[{"panel", ",", "\n", "  ", 
-                          "  ", "        ", RowBox[{RowBox[{"i", ":", RowBox[
-                          {"InputField", "[", RowBox[{"___", ",", " ", RowBox[
-                          {"BoxID", "\[Rule]", "boxID_"}], ",", " ", "___"}], 
-                          "]"}]}], ":>", "\n", "  ", "  ", "          ", 
-                          RowBox[{"(", " ", "\n", "  ", "  ", "            ", 
-                          RowBox[{"NotebookDynamicExpression", ":>", "\n", 
-                          "  ", "  ", "              ", RowBox[{"Refresh", 
-                          "[", "\n", "  ", "  ", "                ", RowBox[
+                          RowBox[{"FilterRules", "[", "\n", "          ", 
+                          RowBox[{RowBox[{"{", "\n", "            ", RowBox[
+                          {"ops", ",", "\n", "            ", RowBox[
+                          {"CellSize", "\[Rule]", RowBox[{"{", "\n", 
+                          "              ", RowBox[{RowBox[{"Scaled", "[", 
+                          "1", "]"}], ",", " ", "\n", "              ", 
+                          "Automatic"}], "\n", "              ", "}"}]}]}], 
+                          "\n", "            ", "}"}], ",", " ", "\n", 
+                          "          ", RowBox[{"CellSize", "|", "CellLabel", 
+                          "|", "CellTags"}]}], "\n", "          ", "]"}]}], 
+                          "\n", "        ", "]"}], ",", "\n", "      ", 
+                          RowBox[{"FilterRules", "[", "\n", "        ", 
+                          RowBox[{RowBox[{"{", "\n", "          ", RowBox[
+                          {"ops", ",", "\n", "          ", RowBox[
+                          {"FirstCase", "[", "\n", "            ", RowBox[
+                          {"panel", ",", "\n", "  ", "  ", "        ", RowBox[
+                          {RowBox[{"i", ":", RowBox[{"InputField", "[", 
+                          RowBox[{"___", ",", " ", RowBox[{"BoxID", 
+                          "\[Rule]", "boxID_"}], ",", " ", "___"}], "]"}]}], 
+                          ":>", "\n", "  ", "  ", "          ", RowBox[{"(", 
+                          " ", "\n", "  ", "  ", "            ", RowBox[
+                          {"NotebookDynamicExpression", ":>", "\n", "  ", 
+                          "  ", "              ", RowBox[{"Refresh", "[", 
+                          "\n", "  ", "  ", "                ", RowBox[
                           {RowBox[{"FE`Evaluate", "@", "\n", "  ", "  ", 
                           "                  ", RowBox[{
                           "FrontEnd`MoveCursorToInputField", "[", "\n", "  ", 
@@ -802,7 +816,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                   RowBox[{"$CurrentIDENotebook", ",", "\n", "    ", 
                     "expression", ",", "\n", "    ", "cellType", ",", "\n", 
                     "    ", "ops"}], "\n", "    ", "]"}]}]}], "CodeInput"]}, 
-          Closed]], Cell[CellGroupData[
+          Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]CreateWindowedInputDialog\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{"CreateWindowedInputDialog", "//", 

@@ -146,63 +146,73 @@ SimpleDocs into a regular documentation workflow\n\[RightFloor]", "Text",
                          {"nb", ",", " ", "#"}], "]"}], ",", " ", 
                       "HoldAllComplete"}], "]"}]}], ";"}], "\n", 
               RowBox[{RowBox[{"WithDocsIDE", "~", "SetAttributes", "~", 
-                  "HoldAll"}], ";"}]}], "CodeInput"]}, Open]]}, Open]], 
+                  "HoldAll"}], ";"}]}], "CodeInput"]}, Closed]]}, Open]], 
      Cell[CellGroupData[{Cell["\[LeftCeiling]Interfaces\[RightFloor]", 
          "CodeSubsection", Evaluatable -> True], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]OpenMetadataEditor\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{"OpenMetadataEditor", "[", "nb_", 
-                 "]"}], ":=", "\n", "  ", RowBox[{"CreateDialog", "[", "\n", 
-                 "    ", RowBox[{RowBox[{"Column", "[", "\n", "      ", 
-                     RowBox[{"{", "\n", "        ", RowBox[{RowBox[{"Pane", 
-                          "[", RowBox[{"$MetadataEditor", ",", " ", RowBox[
-                          {"{", RowBox[{"500", ",", " ", RowBox[{"{", RowBox[
-                          {"600", ",", " ", "1000"}], "}"}]}], "}"}]}], 
-                          "]"}], ",", "\n", "        ", RowBox[{"Row", "@", 
-                          RowBox[{"{", "\n", "            ", RowBox[
-                          {RowBox[{"DefaultButton", "[", "\n", 
-                          "              ", RowBox[{RowBox[{
-                          "WithoutCurrentValueUpdating", "[", "\n", 
-                          "                ", RowBox[{RowBox[{
-                          "SetCurrentValue", "[", RowBox[{"nb", ",", " ", 
-                          "\n", "                  ", RowBox[{"{", RowBox[
+                 "]"}], ":=", "\n", "  ", RowBox[{"CreateWindowedDialog", 
+                 "[", "\n", "    ", RowBox[{RowBox[{"<|", "\n", "      ", 
+                     RowBox[{RowBox[{"\"Header\"", "\[Rule]", 
+                         "\"Edit Metadata\""}], ",", "\n", "  ", "  ", "  ", 
+                       RowBox[{"\"Body\"", "->", "\n", "        ", RowBox[
+                          {"Framed", "[", "\n", "          ", RowBox[
+                          {RowBox[{"Pane", "[", RowBox[{"$MetadataEditor", 
+                          ",", " ", RowBox[{"{", RowBox[{"500", ",", " ", 
+                          RowBox[{"{", RowBox[{"450", ",", " ", "1000"}], 
+                          "}"}]}], "}"}]}], "]"}], ",", "\n", "          ", 
+                          RowBox[{"FrameStyle", "\[Rule]", "None"}], ",", 
+                          "\n", "          ", RowBox[{"FrameMargins", 
+                          "\[Rule]", RowBox[{"{", RowBox[{RowBox[{"{", RowBox[
+                          {"5", ",", " ", "5"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"0", ",", " ", "0"}], "}"}]}], 
+                          "}"}]}]}], "\n", "          ", "]"}]}], ",", "\n", 
+                       "      ", RowBox[{"\"SubmitAction\"", "->", "\n", 
+                         "        ", RowBox[{"Function", "[", "\n", 
+                          "          ", RowBox[{"With", "[", RowBox[
+                          {RowBox[{"{", RowBox[{"evnb", " ", "=", " ", RowBox[
+                          {"EvaluationNotebook", "[", "]"}]}], "}"}], ",", 
+                          "\n", "  ", "          ", RowBox[{RowBox[
+                          {"WithoutCurrentValueUpdating", "[", "\n", "  ", 
+                          "            ", RowBox[{RowBox[{"SetCurrentValue", 
+                          "[", RowBox[{"nb", ",", " ", "\n", "  ", "  ", 
+                          "  ", "          ", RowBox[{"{", RowBox[
                           {"TaggingRules", ",", " ", "\"EasyIDE\"", ",", " ", 
                           "\"Options\"", ",", " ", "TaggingRules", ",", " ", 
-                          "\"Metadata\""}], "}"}], ",", " ", "\n", 
-                          "                  ", RowBox[{"CurrentValue", "[", 
-                          RowBox[{RowBox[{"EvaluationNotebook", "[", "]"}], 
-                          ",", " ", RowBox[{"{", RowBox[{"TaggingRules", ",", 
-                          " ", "\"Metadata\""}], "}"}]}], "]"}]}], "\n", 
-                          "                  ", "]"}], ";", "\n", 
-                          "                ", RowBox[{"SetCurrentValue", "[", 
-                          RowBox[{"nb", ",", " ", "\n", "                  ", 
-                          RowBox[{"{", RowBox[{"TaggingRules", ",", " ", 
-                          "\"EasyIDE\"", ",", " ", "\"Options\"", ",", " ", 
-                          "TaggingRules", ",", " ", "\"ColorType\""}], "}"}], 
-                          ",", " ", "\n", "                  ", RowBox[
-                          {"CurrentValue", "[", RowBox[{RowBox[{
-                          "EvaluationNotebook", "[", "]"}], ",", " ", RowBox[
-                          {"{", RowBox[{"TaggingRules", ",", " ", 
-                          "\"ColorType\""}], "}"}]}], "]"}]}], "\n", 
-                          "                  ", "]"}]}], "\n", 
-                          "                ", "]"}], ";", "\n", 
-                          "              ", RowBox[{"NotebookClose", "[", 
-                          RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], 
-                          "\n", "              ", "]"}], ",", "\n", 
-                          "            ", RowBox[{"CancelButton", "[", 
-                          "]"}]}], "\n", "            ", "}"}]}]}], "\n", 
-                       "       ", "}"}], "\n", "       ", "]"}], ",", "\n", 
+                          "\"Metadata\""}], "}"}], ",", " ", "\n", "  ", 
+                          "              ", RowBox[{"iCurrentValue", "[", 
+                          RowBox[{"evnb", ",", " ", RowBox[{"{", RowBox[
+                          {"TaggingRules", ",", " ", "\"Metadata\""}], 
+                          "}"}]}], "]"}]}], "\n", "  ", "  ", "  ", 
+                          "          ", "]"}], ";", "\n", "  ", "  ", "  ", 
+                          "        ", RowBox[{"SetCurrentValue", "[", RowBox[
+                          {"nb", ",", " ", "\n", "  ", "  ", "  ", 
+                          "          ", RowBox[{"{", RowBox[{"TaggingRules", 
+                          ",", " ", "\"EasyIDE\"", ",", " ", "\"Options\"", 
+                          ",", " ", "TaggingRules", ",", " ", 
+                          "\"ColorType\""}], "}"}], ",", " ", "\n", "  ", 
+                          "              ", RowBox[{"iCurrentValue", "[", 
+                          RowBox[{"evnb", ",", " ", RowBox[{"{", RowBox[
+                          {"TaggingRules", ",", " ", "\"ColorType\""}], 
+                          "}"}]}], "]"}]}], "\n", "  ", "  ", "  ", 
+                          "          ", "]"}]}], "\n", "  ", "  ", "  ", 
+                          "        ", "]"}], ";", "\n", "  ", "  ", "  ", 
+                          "      ", RowBox[{"NotebookClose", "[", RowBox[
+                          {"EvaluationNotebook", "[", "]"}], "]"}]}]}], "\n", 
+                          "            ", "]"}], "\n", "          ", 
+                          "]"}]}]}], "\n", "      ", "|>"}], ",", "\n", 
                    "    ", RowBox[{"TaggingRules", "->", "\n", "      ", 
                      RowBox[{"WithoutCurrentValueUpdating", "@", "\n", 
-                       "        ", RowBox[{"CurrentValue", "[", RowBox[
+                       "        ", RowBox[{"iCurrentValue", "[", RowBox[
                           {"nb", ",", " ", RowBox[{"{", RowBox[
                           {"TaggingRules", ",", " ", "\"EasyIDE\"", ",", " ", 
                           "\"Options\"", ",", " ", "TaggingRules"}], "}"}]}], 
-                         "]"}]}]}], ",", "\n", "    ", RowBox[
-                    {"WindowFloating", "->", "True"}], ",", "\n", "    ", 
-                   RowBox[{"Background", "->", "White"}]}], "\n", "    ", 
-                 "]"}]}]], "CodeInput"]}, Closed]]}, Open]], 
+                         "]"}]}]}], ",", "\n", "    ", RowBox[{"WindowSize", 
+                     "\[Rule]", RowBox[{"{", RowBox[{"500", ",", " ", 
+                         "All"}], "}"}]}]}], "\n", "    ", "]"}]}]], 
+            "CodeInput"]}, Open]]}, Open]], 
      Cell[CellGroupData[{Cell["\[LeftCeiling]Batching\[RightFloor]", 
          "CodeSubsection", Evaluatable -> True], 
         Cell[CellGroupData[
@@ -444,7 +454,7 @@ SimpleDocs into a regular documentation workflow\n\[RightFloor]", "Text",
                           RowBox[{"Lookup", "[", RowBox[{"basic", ",", " ", 
                           "\"Contexts\""}], "]"}]}], "]"}]}]}]}], "\n", 
                           "          ", "]"}]}]}], "\n", "      ", "]"}]}]], 
-               "CodeInput"]}, Open]], Cell[CellGroupData[
+               "CodeInput"]}, Closed]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]CreateBatchSymbolPages\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 {RowBox[{RowBox[{RowBox[{"Options", "[", 
@@ -536,7 +546,7 @@ SimpleDocs into a regular documentation workflow\n\[RightFloor]", "Text",
                           "        ", RowBox[{"{", RowBox[{"cont", ",", " ", 
                           "contexts"}], "}"}]}], "\n", "        ", "]"}], 
                           ";"}]}], "\n", "      ", "]"}]}]}]}], 
-               "CodeInput"]}, Open]]}, Open]]}, Open]], 
+               "CodeInput"]}, Closed]]}, Open]]}, Open]], 
      Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
       "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
  WindowSize -> {808, 755}, WindowMargins -> {{103, Automatic}, 

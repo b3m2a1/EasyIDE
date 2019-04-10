@@ -572,7 +572,10 @@ CreateAttachedDialog[
           Sequence@@{},
           Infinity
           ],
-        ops
+        FilterRules[
+          {ops, CellSize->{400, Automatic}},
+          Options[Cell]
+          ]
         ],
       Offset[sepc["Position"], 0],
       sepc["Alignment"],
@@ -674,7 +677,16 @@ CreateWindowedDialog[
             Identity
             ]//ToBoxes//BoxData,
         cellType,
-        FilterRules[{ops}, Options[Cell]]
+        FilterRules[
+          {
+            ops,
+            CellSize->{
+              Scaled[1], 
+              Automatic
+              }
+            }, 
+          CellSize|CellLabel|CellTags
+          ]
         ],
       FilterRules[
         {

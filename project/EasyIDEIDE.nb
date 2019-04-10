@@ -10,278 +10,411 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14165,        339]
-NotebookOptionsPosition[      9861,        236]
-NotebookOutlinePosition[     12982,        318]
-CellTagsIndexPosition[     12939,        315]
+NotebookDataLength[     23602,        576]
+NotebookOptionsPosition[     15013,        368]
+NotebookOutlinePosition[     22720,        568]
+CellTagsIndexPosition[     22677,        565]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<`MarkdownToolbar`\>\"", "]"}], 
+  ";"}], "\n", 
+ RowBox[{"mdEdits", ";"}], "\n", 
+ RowBox[{"mdTemplates", ";"}], "\n", 
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",ExpressionUUID->"ad7d7ddb-\
+a85c-4da7-90d3-453ae2fb898e"],
 
-Cell[CellGroupData[{
-Cell["DocsPlug", "Section",ExpressionUUID->"4af8d731-4479-4df8-9d12-3f663b96b374"],
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",ExpressionU\
+UID->"8573558b-79b4-4663-898a-951583f2bc40"],
 
-Cell["Implements the stuff behind the Docs plugin commands", "Text",ExpressionUUID->"f8b32e6c-d8d9-4e17-9542-634d674330ae"],
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"installYT", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"(", "\n", "    ", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "PacletManager`PacletFind", "[", "\"\<ServiceConnection_YouTube\>\"", 
+        "]"}], "==", 
+       RowBox[{"{", "}"}]}], ",", "\n", "      ", 
+      RowBox[{"PacletInstall", "[", "]"}]}], "\n", "      ", "]"}], ";", "\n",
+     "    ", 
+    RowBox[{"ServiceConnect", "[", "\"\<YouTube\>\"", "]"}]}], "\n", "    ", 
+   ")"}]}]], "Code",ExpressionUUID->"6b2f4c5b-b26c-4a1f-86c0-ff8365b50f93"],
 
-Cell[CellGroupData[{
-
-Cell["Exposed", "Subsection",ExpressionUUID->"bcfb96c2-b523-4b6e-ac47-afda188c2b3e"],
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"makeYTLinkBox", "[", 
+   RowBox[{"so_", ",", " ", "handle_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"TemplateBox", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"{", "\n", "      ", 
+     RowBox[{
+      RowBox[{"ToBoxes", "@", "\n", "        ", 
+       RowBox[{"Hyperlink", "[", "\n", "          ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Image", "[", "\n", "            ", 
+            RowBox[{"#", ",", "\n", "            ", 
+             RowBox[{"ImageSize", "->", 
+              RowBox[{"ImageDimensions", "[", "#", "]"}]}]}], "\n", 
+            "            ", "]"}], "&"}], "@", 
+          RowBox[{"Import", "[", "\n", "              ", 
+           RowBox[{
+            RowBox[{"so", "[", 
+             RowBox[{"\"\<Search\>\"", ",", " ", 
+              RowBox[{"\"\<part\>\"", "->", "\"\<snippet\>\""}], ",", " ", 
+              RowBox[{"\"\<q\>\"", "->", "handle"}]}], "]"}], "[", "\n", 
+            "                ", 
+            RowBox[{
+            "\"\<items\>\"", ",", " ", "1", ",", " ", "\"\<snippet\>\"", ",", 
+             " ", "\"\<thumbnails\>\"", ",", " ", "\"\<high\>\"", ",", " ", 
+             "\"\<url\>\""}], "\n", "                ", "]"}], "\n", 
+           "              ", "]"}]}], ",", "\n", "          ", 
+         RowBox[{"URLBuild", "@", 
+          RowBox[{"<|", "\n", "              ", 
+           RowBox[{
+            RowBox[{"\"\<Scheme\>\"", "->", "\"\<https\>\""}], ",", "\n", 
+            "              ", 
+            RowBox[{"\"\<Domain\>\"", "->", "\"\<www.youtube.com\>\""}], ",", 
+            "\n", "              ", 
+            RowBox[{"\"\<Path\>\"", "->", 
+             RowBox[{"{", "\"\<watch\>\"", "}"}]}], ",", "\n", 
+            "              ", 
+            RowBox[{"\"\<Query\>\"", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<v\>\"", "->", "handle"}], "}"}]}]}], "\n", 
+           "              ", "|>"}]}]}], "\n", "          ", "]"}]}], ",", 
+      "\n", "      ", 
+      RowBox[{"so", "[", 
+       RowBox[{"\"\<EmbedIFrame\>\"", ",", 
+        RowBox[{"\"\<id\>\"", "->", "handle"}]}], "]"}]}], "\n", "      ", 
+     "}"}], ",", "\n", "    ", "\"\<MarkdownInterpretation\>\""}], "\n", 
+   "    ", "]"}]}]], "Code",ExpressionUUID->"df35b90d-1a9f-49ae-ac74-\
+461ecf3a46ba"],
 
 Cell[BoxData[{
- RowBox[{"BeginPackage", "[", "\"\<`DocsPlugin`\>\"", "]"}], "\n", 
- RowBox[{"docsPluginCommands", ";"}], "\n", 
- RowBox[{"EndPackage", "[", "]"}]}], "Code",ExpressionUUID->"e05a37b8-4b8a-\
-443b-9b41-f78f372b0b77"]
-}, Open  ]],
+ RowBox[{
+  RowBox[{
+   RowBox[{"insertYTLink", "[", 
+    RowBox[{"nb_", ",", " ", "handle_"}], "]"}], ":=", " ", "\n", "  ", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"so", "=", 
+       RowBox[{"installYT", "[", "]"}]}], "}"}], ",", "\n", "    ", 
+     RowBox[{"NotebookWrite", "[", "\n", "      ", 
+      RowBox[{"nb", ",", "\n", "      ", 
+       RowBox[{"Cell", "[", "\n", "        ", 
+        RowBox[{
+         RowBox[{"TextData", "@", 
+          RowBox[{"{", "\n", "            ", 
+           RowBox[{"Cell", "[", 
+            RowBox[{"BoxData", "@", 
+             RowBox[{"makeYTLinkBox", "[", 
+              RowBox[{"so", ",", " ", "handle"}], "]"}]}], "]"}], "\n", 
+           "            ", "}"}]}], ",", "\n", "        ", "\"\<Text\>\"", 
+         ",", "\n", "        ", 
+         RowBox[{"GeneratedCell", "->", "Inherited"}], ",", "\n", "        ", 
+         
+         RowBox[{"CellAutoOverwrite", "->", "Inherited"}]}], "\n", "        ",
+         "]"}]}], "\n", "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"insertYTLink", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "    ", 
+    RowBox[{"CreateWindowedInputDialog", "[", "\n", "      ", 
+     RowBox[{"<|", "\n", "        ", 
+      RowBox[{
+       RowBox[{"\"\<Header\>\"", "->", "\"\<YouTube Link\>\""}], ",", "\n", 
+       "        ", 
+       RowBox[{"\"\<Fields\>\"", "->", 
+        RowBox[{"{", "\n", "          ", 
+         RowBox[{
+         "\"\<Provide a YouTube video handle. This is after 'v=' in a \
+standard YouTube URL.\>\"", ",", "\n", "          ", 
+          RowBox[{"<|", "\n", "            ", 
+           RowBox[{
+            RowBox[{"\"\<ID\>\"", "->", "\"\<Handle\>\""}], ",", "\n", 
+            "            ", 
+            RowBox[{"\"\<Name\>\"", "->", "None"}]}], "\n", "            ", 
+           "|>"}]}], "\n", "          ", "}"}]}], ",", "\n", "        ", 
+       RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "          ", 
+        RowBox[{"{", "\n", "            ", 
+         RowBox[{
+          RowBox[{"Function", "[", "\n", "              ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringLength", "[", "#Handle", "]"}], ">", "0"}], ",", 
+             " ", 
+             RowBox[{"insertYTLink", "[", 
+              RowBox[{"nb", ",", " ", "#Handle"}], "]"}]}], "]"}], "\n", 
+           "              ", "]"}], ",", "\n", "            ", 
+          RowBox[{"Method", "->", "\"\<Queued\>\""}]}], "\n", "            ", 
+         "}"}]}]}], "\n", "        ", "|>"}], "\n", "      ", "]"}]}], "\n", 
+   "    ", "]"}]}]}], "Code",ExpressionUUID->"151e6662-ccd5-4782-bb45-\
+b2cb9f7fb87b"],
 
-Cell[CellGroupData[{
-
-Cell["Private", "Subsection",ExpressionUUID->"a3365895-d2f8-44d1-b8d9-acd65bb87802"],
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"lITemp", "[", 
+   RowBox[{"a_", ",", " ", "b_", ",", " ", "c_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"TemplateBox", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"{", "\n", "      ", 
+     RowBox[{"a", ",", "\n", "      ", "b"}], "\n", "      ", "}"}], ",", 
+    "\n", "    ", "\"\<MarkdownLinkedImage\>\""}], "\n", "    ", 
+   "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"linkedImageTemplate", "=", "\n", "  ", 
+   RowBox[{"lITemp", "[", 
+    RowBox[{
+    "\"\<altText\>\"", ",", " ", "\"\<http://img.link.usually.svg\>\""}], 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lILTemp", "[", 
+   RowBox[{"a_", ",", " ", "b_", ",", " ", "c_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"TemplateBox", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"a", ",", " ", "b", ",", " ", "c"}], "}"}], ",", "\n", "    ", 
+    "\"\<MarkdownLinkedImageLink\>\""}], "\n", "    ", "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"linkedImageLinkTemplate", "=", "\n", "  ", 
+   RowBox[{"lILTemp", "[", "\n", "    ", 
+    RowBox[{
+    "\"\<altText\>\"", ",", "\n", "    ", "\"\<http://img.usually.svg\>\"", 
+     ",", "\n", "    ", "\"\<http://link.to.a.thing\>\""}], "\n", "    ", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"version", "=", "\n", "  ", 
+   RowBox[{"lILTemp", "[", 
+    RowBox[{
+    "\"\<version\>\"", ",", " ", "\n", "    ", 
+     "\"\<http://img.shields.io/badge/version-a.b.c-orange.svg\>\"", ",", 
+     "\n", "    ", 
+     "\"\<http://github.com/user/repo/master/PacletInfo.m\>\""}], "\n", 
+    "    ", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"license", "=", "\n", "  ", 
+   RowBox[{"lITemp", "[", "\n", "    ", 
+    RowBox[{
+    "\"\<license\>\"", ",", " ", "\n", "    ", 
+     "\"\<http://img.shields.io/badge/license-MIT-blue.svg\>\"", ",", "\n", 
+     "    ", "\"\<https://opensource.org/licenses/MIT\>\""}], "\n", "    ", 
+    "]"}]}], ";"}]}], "Code",ExpressionUUID->"177adb2d-4337-43b3-9fff-\
+27f47ab5aad9"],
 
 Cell[BoxData[
- RowBox[{"Begin", "[", "\"\<`DocsPlugin`Private`\>\"", "]"}]], "Code",Expressi\
-onUUID->"65d28f13-a65c-4cd0-b29b-3193d8ae1f30"],
-
-Cell[CellGroupData[{
-
-Cell["Elements", "Subsubsection",ExpressionUUID->"9da98e81-53c7-4cc0-a5cb-ecb5cab6c01d"],
-
-Cell[BoxData[
- RowBox[{"docsPluginCommands", " ", "=", " ", 
+ RowBox[{"mdTemplates", " ", "=", " ", 
   RowBox[{"{", "\n", "  ", 
    RowBox[{
-    RowBox[{"\"\<Initialize\>\"", ":>", "\n", "    ", 
-     RowBox[{"Replace", "[", "\n", "      ", 
-      RowBox[{
-       RowBox[{"SimpleDocs", "@", 
-        RowBox[{"\"\<InitializeProject\>\"", "[", 
-         RowBox[{"IDEPath", "[", "$CurrentIDENotebook", "]"}], "]"}]}], ",", 
-       "\n", "      ", 
-       RowBox[{"{", "\n", "        ", 
-        RowBox[{
-         RowBox[{"s_String", ":>", "\n", "          ", 
-          RowBox[{"WithDocsIDE", "[", 
-           RowBox[{"SimpleDocs", "@", 
-            RowBox[{"\"\<OpenConfig\>\"", "[", 
-             RowBox[{"FileBaseName", "[", "s", "]"}], "]"}]}], "]"}]}], ",", 
-         "\n", "        ", 
-         RowBox[{"e_", ":>", "\n", "          ", 
-          RowBox[{"CreateMessagePopup", "[", "\n", "            ", 
-           RowBox[{"StringForm", "[", 
-            RowBox[{
-            "\"\<Failed to initialize docs. Got:\\n``\>\"", ",", "\n", 
-             "              ", "e"}], "\n", "              ", "]"}], "\n", 
-           "            ", "]"}]}]}], "\n", "        ", "}"}]}], "\n", 
-      "      ", "]"}]}], ",", "\n", "  ", 
-    RowBox[{"\"\<New Symbol\>\"", ":>", "\n", "    ", 
-     RowBox[{"WithDocsIDE", "@", 
-      RowBox[{"Module", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"{", "\n", "        ", 
-         RowBox[{
-          RowBox[{"p", "=", " ", 
-           RowBox[{"IDEPath", "[", "$CurrentIDENotebook", "]"}]}], ",", "\n", 
-          "        ", "fn"}], "\n", "        ", "}"}], ",", "\n", "        ", 
-        
-        RowBox[{
-         RowBox[{"fn", " ", "=", " ", 
-          RowBox[{"SystemDialogInput", "[", 
-           RowBox[{"\"\<FileSave\>\"", ",", " ", "\n", "          ", 
-            RowBox[{"ProjectSaveDirectory", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"SimpleDocs", "@", 
-                RowBox[{"\"\<EnsureLoadProject\>\"", "[", "p", "]"}]}], "//", 
-               "First"}], ",", " ", "\"\<Symbol\>\""}], "]"}], ",", "\n", 
-            "          ", 
-            RowBox[{"WindowTitle", "->", "\"\<Symbol Name\>\""}]}], "\n", 
-           "          ", "]"}]}], ";", "\n", "        ", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{"StringQ", "@", "fn"}], ",", "\n", "          ", 
-           RowBox[{
-            RowBox[{"$CreatedDocsNotebookFile", " ", "=", " ", "fn"}], ";", 
-            "\n", "          ", 
-            RowBox[{"Replace", "[", "\n", "            ", 
-             RowBox[{
-              RowBox[{"Names", "[", 
-               RowBox[{
-                RowBox[{"FileBaseName", "[", "p", "]"}], "<>", "\"\<`*\>\"", "<>", 
-                RowBox[{"FileBaseName", "[", "fn", "]"}]}], "]"}], ",", "\n", 
-              "            ", 
-              RowBox[{"{", "\n", "              ", 
-               RowBox[{
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"f_", ",", " ", "___"}], "}"}], ":>", "\n", 
-                 "                ", 
-                 RowBox[{"ToExpression", "[", 
-                  RowBox[{
-                  "f", ",", " ", "StandardForm", ",", "\n", 
-                   "                  ", 
-                   RowBox[{"Function", "[", 
-                    RowBox[{"Null", ",", " ", 
-                    RowBox[{"SimpleDocs", "@", 
-                    RowBox[{"\"\<TemplateNotebook\>\"", "[", "#", "]"}]}], 
-                    ",", " ", "HoldFirst"}], "]"}]}], "\n", 
-                  "                  ", "]"}]}], ",", "\n", "              ", 
-                
-                RowBox[{"_", ":>", "\n", "                ", 
-                 RowBox[{"ToExpression", "[", "\n", "                  ", 
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"StringDelete", "[", 
-                    RowBox[{
-                    RowBox[{"FileBaseName", "[", "p", "]"}], ",", " ", 
-                    RowBox[{"Except", "[", "WordCharacter", "]"}]}], "]"}], 
-                    "<>", "\"\<`\>\"", "<>", "\n", "                    ", 
-                    RowBox[{"FileBaseName", "[", "fn", "]"}]}], ",", " ", 
-                   "StandardForm", ",", "\n", "                  ", 
-                   RowBox[{"Function", "[", 
-                    RowBox[{"Null", ",", " ", 
-                    RowBox[{"SimpleDocs", "@", 
-                    RowBox[{"\"\<TemplateNotebook\>\"", "[", "#", "]"}]}], 
-                    ",", " ", "HoldFirst"}], "]"}]}], "\n", 
-                  "                  ", "]"}]}]}], "\n", "              ", 
-               "}"}]}], "\n", "            ", "]"}], ";"}]}], "\n", 
-          "          ", "]"}]}]}], "\n", "        ", "]"}]}]}], ",", "\n", 
+    RowBox[{"\"\<VersionIcon\>\"", " ", "->", " ", "version"}], ",", "\n", 
     "  ", 
-    RowBox[{"\"\<New Guide\>\"", ":>", "\n", "    ", 
-     RowBox[{"WithDocsIDE", "@", 
-      RowBox[{"Module", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"{", "\n", "        ", 
-         RowBox[{
-          RowBox[{"p", "=", " ", 
-           RowBox[{"LoadIDEDocsProject", "[", "$CurrentIDENotebook", "]"}]}], 
-          ",", "\n", "        ", "fn"}], "\n", "        ", "}"}], ",", "\n", 
-        "        ", 
-        RowBox[{
-         RowBox[{"fn", " ", "=", " ", 
-          RowBox[{"SystemDialogInput", "[", 
-           RowBox[{"\"\<FileSave\>\"", ",", " ", "\n", "          ", 
-            RowBox[{"ProjectSaveDirectory", "[", 
-             RowBox[{
-              RowBox[{"p", "//", "First"}], ",", " ", "\"\<Guide\>\""}], 
-             "]"}], ",", "\n", "          ", 
-            RowBox[{"WindowTitle", "->", "\"\<Guide Name\>\""}]}], "\n", 
-           "          ", "]"}]}], ";", "\n", "        ", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{"StringQ", "@", "fn"}], ",", "\n", "          ", 
-           RowBox[{
-            RowBox[{"$CreatedDocsNotebookFile", " ", "=", " ", "fn"}], ";", 
-            "\n", "          ", 
-            RowBox[{"SimpleDocs", "@", 
-             RowBox[{"\"\<TemplateNotebook\>\"", "[", 
-              RowBox[{"\"\<Guide\>\"", ",", " ", 
-               RowBox[{"FileBaseName", "[", "fn", "]"}]}], "]"}]}], ";"}]}], 
-          "\n", "          ", "]"}]}]}], "\n", "        ", "]"}]}]}], ",", 
-    "\n", "  ", 
-    RowBox[{"\"\<New Tutorial\>\"", ":>", "\n", "    ", 
-     RowBox[{"WithDocsIDE", "@", 
-      RowBox[{"Module", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"{", "\n", "        ", 
-         RowBox[{
-          RowBox[{"p", "=", " ", 
-           RowBox[{"LoadIDEDocsProject", "[", "$CurrentIDENotebook", "]"}]}], 
-          ",", "\n", "        ", "fn"}], "\n", "        ", "}"}], ",", "\n", 
-        "        ", 
-        RowBox[{
-         RowBox[{"fn", " ", "=", " ", 
-          RowBox[{"SystemDialogInput", "[", 
-           RowBox[{"\"\<FileSave\>\"", ",", " ", "\n", "          ", 
-            RowBox[{"ProjectSaveDirectory", "[", 
-             RowBox[{
-              RowBox[{"p", "//", "First"}], ",", " ", "\"\<Tutorial\>\""}], 
-             "]"}], ",", "\n", "          ", 
-            RowBox[{"WindowTitle", "->", "\"\<Tutorial Name\>\""}]}], "\n", 
-           "          ", "]"}]}], ";", "\n", "        ", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{"StringQ", "@", "fn"}], ",", "\n", "          ", 
-           RowBox[{
-            RowBox[{"$CreatedDocsNotebookFile", " ", "=", " ", "fn"}], ";", 
-            "\n", "          ", 
-            RowBox[{"SimpleDocs", "@", 
-             RowBox[{"\"\<TemplateNotebook\>\"", "[", 
-              RowBox[{"\"\<Tutorial\>\"", ",", " ", 
-               RowBox[{"FileBaseName", "[", "fn", "]"}]}], "]"}]}], ";"}]}], 
-          "\n", "          ", "]"}]}]}], "\n", "        ", "]"}]}]}]}], "\n", 
-   "  ", "}"}]}]], "Code",
- CellChangeTimes->{
-  3.7638411012400312`*^9},ExpressionUUID->"f465ea93-b6c1-442a-ac62-\
-83940505dc98"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Private", "Subsubsection",ExpressionUUID->"f1aaa837-4465-4ec8-a4f4-0abfa3654c0a"],
+    RowBox[{"\"\<LicenseIcon\>\"", " ", "->", " ", "license"}]}], "\n", "  ", 
+   "}"}]}]], "Code",ExpressionUUID->"ec36ada1-3272-4474-b4bf-73ec4929e27a"],
 
 Cell[BoxData[
- RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"1c7310b3-f330-48b9-8913-94223297b026"]
-}, Open  ]]
-}, Open  ]]
-}, Open  ]],
+ RowBox[{"mdEdits", " ", "=", " ", 
+  RowBox[{"{", "\n", "  ", 
+   RowBox[{
+    RowBox[{"\"\<Add Image Border\>\"", " ", ":>", " ", 
+     RowBox[{"addImageBorder", "[", "]"}]}], ",", "\n", "  ", 
+    RowBox[{"\"\<Add YouTube Link\>\"", " ", ":>", " ", 
+     RowBox[{"insertYTLink", "[", "]"}]}]}], "\n", "  ", "}"}]}]], "Code",Expr\
+essionUUID->"91f07641-6f8a-4cac-9089-bcaffaafb194"],
 
-Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"addImageBorder", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"Replace", "[", 
+   RowBox[{
+    RowBox[{"NotebookRead", "@", "$CurrentIDENotebook"}], ",", 
+    RowBox[{"{", "\n", "      ", 
+     RowBox[{
+      RowBox[{"g", ":", 
+       RowBox[{"GraphicsBox", "[", 
+        RowBox[{
+         RowBox[{"TagBox", "[", 
+          RowBox[{"_RasterBox", ",", "___"}], "]"}], ",", "___"}], "]"}]}], ":>",
+       "\n", "        ", 
+      RowBox[{"NotebookWrite", "[", 
+       RowBox[{"$CurrentIDENotebook", ",", "\n", "          ", 
+        RowBox[{"ToBoxes", "@", "\n", "            ", 
+         RowBox[{"ImagePad", "[", "\n", "              ", 
+          RowBox[{
+           RowBox[{"ImagePad", "[", "\n", "                ", 
+            RowBox[{
+             RowBox[{"ImagePad", "[", "\n", "                  ", 
+              RowBox[{
+               RowBox[{"ImagePad", "[", 
+                RowBox[{
+                 RowBox[{"ToExpression", "@", "g"}], ",", "1", ",", 
+                 RowBox[{"Lighter", "@", "Gray"}]}], "]"}], ",", "\n", 
+               "                  ", "13", ",", "\n", "                  ", 
+               RowBox[{"GrayLevel", "[", ".9", "]"}]}], "]"}], ",", "\n", 
+             "                ", "1", ",", 
+             RowBox[{"Lighter", "@", "Gray"}]}], "]"}], ",", "\n", 
+           "              ", "5", ",", "\n", "              ", 
+           RowBox[{"GrayLevel", "[", 
+            RowBox[{"0", ",", "0"}], "]"}]}], "\n", "              ", 
+          "]"}]}]}], "\n", "          ", "]"}]}], "\n", "      ", "}"}]}], 
+   "]"}]}]], "Code",ExpressionUUID->"30a8f4df-cbe8-4797-99b6-fbdf4897998d"],
 
-Cell["Exposed", "Section",ExpressionUUID->"7d65eb4f-43ae-4b34-9964-70d3989f855d"],
+Cell[BoxData[
+ RowBox[{"End", "[", "]"}]], "Code",ExpressionUUID->"8c3c42fd-cc00-440c-ab18-f7e70c37a54f"],
 
-Cell[BoxData["docsPluginCommands"], "Code",ExpressionUUID->"8c2e7cbc-a981-49dc-85a8-bd42c8c1b924"]
-}, Open  ]]
+Cell[BoxData[
+ RowBox[{"{", "\n", "  ", 
+  RowBox[{
+   RowBox[{"Button", "[", "\n", "   ", 
+    RowBox[{"\"\<Save Markdown\>\"", ",", "\n", "   ", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"nb", "=", "$CurrentIDENotebook"}], "}"}], ",", "\n", "     ", 
+       RowBox[{"PreemptiveQueued", "[", 
+        RowBox[{"nb", ",", "\n", "       ", 
+         RowBox[{"WithActiveNotebookPath", "[", 
+          RowBox[{"nb", ",", "\n", "         ", 
+           RowBox[{"NotebookMarkdownSave", "[", "nb", "]"}]}], "\n", 
+          "         ", "]"}]}], "\n", "       ", "]"}]}], "\n", "     ", 
+      "]"}], ",", "\n", "   ", 
+     RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "   ", 
+     RowBox[{"FrameMargins", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"10", ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "   ", 
+     RowBox[{"ImageSize", "->", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "   ", "]"}], ",", 
+   "\n", "  ", 
+   RowBox[{"ActionMenu", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"Button", "[", "\n", "      ", 
+      RowBox[{"\"\<Edit\>\"", ",", "\n", "      ", 
+       RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", "      ", 
+       RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
+       RowBox[{"FrameMargins", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"10", ",", "10"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", "]"}], 
+     ",", "\n", "    ", "mdEdits", ",", "\n", "    ", 
+     RowBox[{"Appearance", "->", "None"}], ",", "\n", "    ", 
+     RowBox[{"MenuAppearance", "->", "\"\<Dropdown\>\""}]}], "\n", "    ", 
+    "]"}], ",", "\n", "  ", 
+   RowBox[{"ActionMenu", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"Button", "[", "\n", "      ", 
+      RowBox[{"\"\<Insert\>\"", ",", "\n", "      ", 
+       RowBox[{"BaseStyle", "->", "\"\<PluginMenu\>\""}], ",", "\n", "      ", 
+       RowBox[{"Appearance", "->", "Inherited"}], ",", "\n", "      ", 
+       RowBox[{"FrameMargins", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"10", ",", "10"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "      ", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "28"}], "}"}]}]}], "\n", "      ", "]"}], 
+     ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"k", "=", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], ",", " ", 
+           RowBox[{"t", "=", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ",", "\n", "      ", 
+         RowBox[{"k", ":>", "\n", "        ", 
+          RowBox[{"FrontEndExecute", "@", "\n", "          ", 
+           RowBox[{"FrontEnd`NotebookWrite", "[", "\n", "            ", 
+            RowBox[{
+             RowBox[{"FrontEnd`InputNotebook", "[", "]"}], ",", "\n", 
+             "            ", "t"}], "\n", "            ", "]"}]}]}]}], "\n", 
+        "      ", "]"}], "&"}], "/@", "mdTemplates"}], ",", "\n", "    ", 
+     RowBox[{"Appearance", "->", "None"}], ",", "\n", "    ", 
+     RowBox[{"MenuAppearance", "->", "\"\<Dropdown\>\""}]}], "\n", "    ", 
+    "]"}]}], "\n", "  ", "}"}]], "Code",ExpressionUUID->"e8f3b90a-0945-4236-\
+84fa-7e4df52fc2c5"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{875, 742},
-WindowMargins->{{Automatic, 200}, {Automatic, 0}},
+WindowMargins->{{Automatic, 217}, {Automatic, 47}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
   "EasyIDE" -> {
    "Tabs" -> {
-     "DocsFunctions" -> {
+     "PacletInfo" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Docs/DocsFunctions.nb"}, 
-      "Docs" -> {
+Mathematica/Applications/EasyIDE/PacletInfo.m"}, 
+      "GettingStarted" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/Docs.wl"}, 
-      "HelperFunctions" -> {
+Mathematica/Applications/EasyIDE/project/docs/content/tutorial/GettingStarted.\
+nb"}, "config" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Utilities/HelperFunctions.\
-nb"}, "NotebookManipulation" -> {
+Mathematica/Applications/EasyIDE/project/docs/config.wl"}, 
+      "WithActiveNotebookPath" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/\
-NotebookManipulation.nb"}, 
-      "config" -> {
+Mathematica/Applications/EasyIDE/project/docs/content/ref/\
+WithActiveNotebookPath.nb"}, 
+      "Markdown" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/project/docs/config.wl"}}, 
-    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Markdown.wl"}}, 
+    "FileViewer" -> {"Visible" -> True}, 
+    "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
              PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
              "", BaseStyle -> "ToolbarShowButton", ButtonData -> "Package"]}},
             BaseStyle -> "ToolbarCell"]}}, BaseStyle -> "Toolbars"], 
-      "Tags" -> {}, "Cells" -> {"CodePackage" -> None}}, 
+      "Tags" -> {}, "Cells" -> {"Docs" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "Docs", "StyleSheet" -> 
+    "ActiveTab" -> "Markdown", "StyleSheet" -> 
     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"], 
     "FileToolbar" -> "Package", 
     "Options" -> {
      WindowSize -> {808, 755}, 
-      WindowMargins -> {{20, Automatic}, {-4, Automatic}}, Visible -> False, 
+      WindowMargins -> {{164, Automatic}, {Automatic, 4}}, Visible -> False, 
       FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
       StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False, 
@@ -299,8 +432,125 @@ StyleDefinitions->Notebook[{
    Cell[
     StyleData[
     StyleDefinitions -> 
-     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"]]]}, 
-  Visible -> False, 
+     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"]]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "FileViewerStyles", "Subsubsubsubsection", 
+       CellGroupingRules -> {"SectionGrouping", 200}, CellTags -> 
+       "FileViewerStyles"], 
+      Cell[
+       StyleData["Title"], CellMargins -> {{217, Inherited}, {10, 30}}], 
+      Cell[
+       StyleData["Chapter"], CellMargins -> {{217, Inherited}, {10, 15}}], 
+      Cell[
+       StyleData["Subchapter"], CellMargins -> {{253, Inherited}, {8, 20}}], 
+      Cell[
+       StyleData["Section"], CellMargins -> {{225, 10}, {0, 8}}], 
+      Cell[
+       StyleData["Subsection"], 
+       CellMargins -> {{240, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["Subsubsection"], 
+       CellMargins -> {{245, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["Subsubsubsection"], 
+       CellMargins -> {{256, Inherited}, {2, 10}}], 
+      Cell[
+       StyleData["Subsubsubsubsection"], 
+       CellMargins -> {{256, Inherited}, {2, 10}}], 
+      Cell[
+       StyleData["Input"], CellMargins -> {{256, 10}, {5, 8}}], 
+      Cell[
+       StyleData["Code"], CellMargins -> {{256, 10}, {10, 10}}], 
+      Cell[
+       StyleData["Output"], CellMargins -> {{256, 10}, {12, 5}}], 
+      Cell[
+       StyleData["Text"], CellMargins -> {{256, 10}, {7, 8}}], 
+      Cell[
+       StyleData["Item"], CellMargins -> {{271, 10}, {4, 8}}], 
+      Cell[
+       StyleData["ItemParagraph"], CellMargins -> {{271, 10}, {4, 1}}], 
+      Cell[
+       StyleData["Subitem"], CellMargins -> {{295, 12}, {4, 4}}], 
+      Cell[
+       StyleData["SubitemParagraph"], CellMargins -> {{295, 12}, {4, 1}}], 
+      Cell[
+       StyleData["Echo"], 
+       CellMargins -> {{256, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["Print"], 
+       CellMargins -> {{256, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["PrintTemporary"], 
+       CellMargins -> {{250, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["DeployedCell"], CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["WorkflowDockedCell"], CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["LinkTrail"], CellMargins -> {{190, 0}, {0, 0}}], 
+      Cell[
+       StyleData["LinkTrailSeparater"], CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["DockedLinkTrail"], CellMargins -> {{190, 0}, {0, 0}}], 
+      Cell[
+       StyleData["DockedLinkTrailSeparater"], 
+       CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["Subsubitem"], CellMargins -> {{319, 12}, {4, 4}}], 
+      Cell[
+       StyleData["PageBreak"], CellMargins -> {{240, 50}, {0, 0}}], 
+      Cell[
+       StyleData["UsageSection"], CellMargins -> {{190, 0}, {0, 8}}], 
+      Cell[
+       StyleData["UsageSectionFooter"], CellMargins -> {{190, 0}, {15, -2}}], 
+      
+      Cell[
+       StyleData["UsageInput"], CellMargins -> {{190, 0}, {0, 0}}], 
+      Cell[
+       StyleData["UsageText"], CellMargins -> {{190, 0}, {0, 0}}], 
+      Cell[
+       StyleData["TitleBar"], CellMargins -> {{240, 558}, {15, 0}}], 
+      Cell[
+       StyleData["RawMarkdown"], CellMargins -> {{256, 10}, {10, 10}}], 
+      Cell[
+       StyleData["RawPre"], CellMargins -> {{266, 10}, {7, 8}}], 
+      Cell[
+       StyleData["Program"], CellMargins -> {{256, 10}, {8, 8}}], 
+      Cell[
+       StyleData["Quote"], CellMargins -> {{256, 10}, {7, 8}}], 
+      Cell[
+       StyleData["Metadata"], CellMargins -> {{190, 0}, {0, -2}}], 
+      Cell[
+       StyleData["Footer"], CellMargins -> {{220, 10}, {25, 8}}], 
+      Cell[
+       StyleData["InlineInput"], CellMargins -> {{256, 10}, {5, 8}}], 
+      Cell[
+       StyleData["FormattedOutput"], CellMargins -> {{256, 10}, {12, 5}}], 
+      Cell[
+       StyleData["ExternalLanguage"], CellMargins -> {{256, 10}, {8, 8}}], 
+      Cell[
+       StyleData["FencedCode"], CellMargins -> {{256, 10}, {10, 10}}], 
+      Cell[
+       StyleData["MathematicaLanguageCode"], 
+       CellMargins -> {{256, 10}, {10, 10}}], 
+      Cell[
+       StyleData["DisplayFormula"], 
+       CellMargins -> {{256, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["DisplayFormulaNumbered"], 
+       CellMargins -> {{256, Inherited}, {Inherited, Inherited}}], 
+      Cell[
+       StyleData["InlineFormula"], CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["MarkdownLinkedImage"], CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["MarkdownLinkedImageLink"], 
+       CellMargins -> {{197, 3}, {4, 4}}], 
+      Cell[
+       StyleData["MarkdownInterpretation"], 
+       CellMargins -> {{197, 3}, {4, 4}}]}, Closed]]}, Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
@@ -317,30 +567,17 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[CellGroupData[{
-Cell[610, 23, 82, 0, 67, "Section",ExpressionUUID->"4af8d731-4479-4df8-9d12-3f663b96b374"],
-Cell[695, 25, 123, 0, 35, "Text",ExpressionUUID->"f8b32e6c-d8d9-4e17-9542-634d674330ae"],
-Cell[CellGroupData[{
-Cell[843, 29, 84, 0, 54, "Subsection",ExpressionUUID->"bcfb96c2-b523-4b6e-ac47-afda188c2b3e"],
-Cell[930, 31, 229, 4, 92, "Code",ExpressionUUID->"e05a37b8-4b8a-443b-9b41-f78f372b0b77"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[1196, 40, 84, 0, 54, "Subsection",ExpressionUUID->"a3365895-d2f8-44d1-b8d9-acd65bb87802"],
-Cell[1283, 42, 141, 2, 49, "Code",ExpressionUUID->"65d28f13-a65c-4cd0-b29b-3193d8ae1f30"],
-Cell[CellGroupData[{
-Cell[1449, 48, 88, 0, 45, "Subsubsection",ExpressionUUID->"9da98e81-53c7-4cc0-a5cb-ecb5cab6c01d"],
-Cell[1540, 50, 7830, 166, 1604, "Code",ExpressionUUID->"f465ea93-b6c1-442a-ac62-83940505dc98"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[9407, 221, 87, 0, 45, "Subsubsection",ExpressionUUID->"f1aaa837-4465-4ec8-a4f4-0abfa3654c0a"],
-Cell[9497, 223, 105, 1, 49, "Code",ExpressionUUID->"1c7310b3-f330-48b9-8913-94223297b026"]
-}, Open  ]]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[9663, 231, 81, 0, 67, "Section",ExpressionUUID->"7d65eb4f-43ae-4b34-9964-70d3989f855d"],
-Cell[9747, 233, 98, 0, 49, "Code",ExpressionUUID->"8c2e7cbc-a981-49dc-85a8-bd42c8c1b924"]
-}, Open  ]]
+Cell[588, 21, 300, 8, 113, "Code",ExpressionUUID->"ad7d7ddb-a85c-4da7-90d3-453ae2fb898e"],
+Cell[891, 31, 148, 3, 49, "Code",ExpressionUUID->"8573558b-79b4-4663-898a-951583f2bc40"],
+Cell[1042, 36, 586, 15, 176, "Code",ExpressionUUID->"6b2f4c5b-b26c-4a1f-86c0-ff8365b50f93"],
+Cell[1631, 53, 2317, 50, 533, "Code",ExpressionUUID->"df35b90d-1a9f-49ae-ac74-461ecf3a46ba"],
+Cell[3951, 105, 2816, 63, 785, "Code",ExpressionUUID->"151e6662-ccd5-4782-bb45-b2cb9f7fb87b"],
+Cell[6770, 170, 1950, 48, 70, "Code",ExpressionUUID->"177adb2d-4337-43b3-9fff-27f47ab5aad9"],
+Cell[8723, 220, 335, 7, 70, "Code",ExpressionUUID->"ec36ada1-3272-4474-b4bf-73ec4929e27a"],
+Cell[9061, 229, 398, 8, 70, "Code",ExpressionUUID->"91f07641-6f8a-4cac-9089-bcaffaafb194"],
+Cell[9462, 239, 1656, 35, 70, "Code",ExpressionUUID->"30a8f4df-cbe8-4797-99b6-fbdf4897998d"],
+Cell[11121, 276, 105, 1, 70, "Code",ExpressionUUID->"8c3c42fd-cc00-440c-ab18-f7e70c37a54f"],
+Cell[11229, 279, 3780, 87, 70, "Code",ExpressionUUID->"e8f3b90a-0945-4236-84fa-7e4df52fc2c5"]
 }
 ]
 *)
