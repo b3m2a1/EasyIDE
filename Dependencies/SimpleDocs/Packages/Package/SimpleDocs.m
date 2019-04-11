@@ -107,6 +107,17 @@ CreateDocumentationPaclet::usage="";
 BundlePaclet::usage="";
 
 
+(* ::Subsubsection::Closed:: *)
+(*Workbench Convert*)
+
+
+
+WorkbenchTemplateData::usage=
+  "Pulls data from the Workbench templates";
+FromWorkbenchTemplate::usage=
+  "Extracts Workbench template data and rebuilds as a SimpleDocs notebook";
+
+
 Begin["`Private`"];
 
 
@@ -3469,6 +3480,473 @@ CreateDocumentationPaclet[rootDir_, contexts_]:=
       ];
     targDir
     ]
+
+
+(* ::Subsection:: *)
+(*Workbench*)
+
+
+
+(* ::Subsubsection::Closed:: *)
+(*WorkbenchTemplateData*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*extractMetadata*)
+
+
+
+extractMetadata[cellData_, cellLabels_]:=
+  With[
+    {
+      basics=
+        AssociationThread[
+          cellLabels/.{
+            "Entity Type"->"Type",
+            "Paclet Name"->"Paclet"
+            },
+          cellData[[All, 1]]
+          ]
+      },
+    Normal@
+      Merge[
+        {
+          DeleteCases[
+            basics,
+            "XXXX"|Except[_String]
+            ],
+          "Label"->URLParse[basics["URI"], "Path"][[-1]]
+          },
+        First
+        ]//DocMetadata
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*styleConvert*)
+
+
+
+styleConvert//Clear;
+fallbackStyleConversions=
+  Dispatch@{
+      "TI":>Sequence@@{"InlineFormula", FontSlant->Italic},
+      "ModInfo"->"Text",
+      "Notes"->"Item",
+      "SeeAlso"->"Text",
+      "ObjectName"->"Section",
+      "GuideTitle"->"Section",
+      "MoreAbout"->"Text",
+      "Tutorials"->"Text",
+      "GuideAbstract"->"Text",
+      "InlineGuideFunction":>Sequence@@{"InlineFormula", "Input"},
+      "InlineFormula":>Sequence@@{"InlineFormula", "Input"},
+      "DisplayMath":>Sequence@@{"DisplayFormulaNumbered", TextAlignment->Center},
+      _String?(StringStartsQ["Related"])->"Text"
+      };
+styleConvert[s_String]:=
+  Sequence@@Flatten@List@Catch[
+        Scan[
+          If[StringEndsQ[s, #], Throw@#]&,
+          {
+            "Text",
+            "Link"
+            }
+          ];
+        KeyValueMap[
+          If[StringEndsQ[s, #], Throw[#2]]&,
+          Join[
+            <|
+              "Listing"->"Text",
+              "TableMod":>{"Input", "DetailsGrid"}
+              |>,
+            AssociationThread[
+              NestList[StringReplace["S"->"Subs"], "Section", 5],
+              NestList[StringReplace["S"->"Subs"], "Subsection", 5]
+              ]
+            ]
+          ];
+        Replace[s, fallbackStyleConversions]
+        ];
+styleConvert[e___]:=e
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*cellDataConvert*)
+
+
+
+convertUsageData//Clear;
+
+
+convertUsageData[TextData[l_List]]:=
+  Replace[
+    Join@@@Partition[
+      SplitBy[
+        Flatten@
+          Reap[
+            Replace[l,
+              {
+                Cell[a_, "InlineFormula", o___]:>
+                  Sow@Cell[a,"Code", "UsageInput", o],
+                e:Except[_Cell]:>Sow[e],
+                _->Nothing
+                },
+              1
+              ]
+            ][[2]],
+        Head[#]===Cell&
+        ],
+      2
+      ],
+    {
+      {c_Cell, s___}:>
+        ReplaceAll[
+          {
+            c, 
+            Cell[TextData[{s}], "Text","UsageText"]
+            },
+          {
+            r_String:>StringDelete[r, "\[LineSeparator]"|"\n"],
+            StyleBox[a_, style_String, b___]:>
+              RuleCondition[StyleBox[a, styleConvert[style], b], True]
+            }
+          ]
+      },
+    1
+    ];
+
+
+cleanUpInterpBoxes[InterpretationBox[a_, b_]]:=
+  a;
+
+
+cleanUpInterpBoxes[InterpretationBox[GridBox[{{a_, ___},___}, ___], b_]]:=
+  a;
+
+
+cellDataConvert//Clear
+cellDataConvert[Cell[data_, "Usage", o___]]:=
+  Sequence@@{
+    Cell[
+      CellGroupData[Flatten@{
+            Cell["", "UsageSection"],
+            convertUsageData[data],
+            Cell["", "UsageSectionFooter"]
+            }]
+      ],
+    Cell["Details", "Subsection"]
+    };
+cellDataConvert[Cell[data_, "ExampleDelimiter", o___]]:=
+  cellDataConvert@Cell["", "GuideDelimiter"]
+cellDataConvert[Cell[data_, _String?(StringEndsQ["Delimiter"]), o___]]:=
+  Cell["", "PageBreak", 
+    PageBreakWithin->False,
+    PageBreakBelow->False, 
+    PageBreakAbove->False
+    ];
+cellDataConvert[Cell[data_, k:"DisplayMath", o___]]:=
+  Cell[
+    FirstCase[data, f_FormBox:>BoxData[f], data, Infinity], 
+    styleConvert[k],
+    o
+    ]
+cellDataConvert[Cell[data_, s_String?(StringStartsQ["Example"]), o___]]:=
+  Cell[
+    data/.i_InterpretationBox:>cleanUpInterpBoxes[i],
+    styleConvert[s],
+    o
+    ];
+cellDataConvert[Cell["XXXX", ___]]:=
+  Nothing;
+cellDataConvert[Cell[data_, style_, o___]]:=
+  Cell[data/.{
+      c_Cell:>cellDataConvert[c],
+      StyleBox[a_, s_String, b___]:>
+        RuleCondition[StyleBox[a, styleConvert[s], b], True]
+      },
+     styleConvert[style], 
+    o
+    ];
+cellDataConvert~SetAttributes~Listable;
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*getStyleType*)
+
+
+
+getStyleType[sname_]:=
+  Catch[
+    If[StringStartsQ[sname, "Related"],
+      Throw[StringTrim[sname, "Section"]]
+      ];
+    KeyValueMap[
+      If[StringEndsQ[sname, #],Throw[#2]]&,
+      <|
+        "Title"|"ObjectName"->"Body",
+        "FunctionsSection"->"Body",
+        "ExampleSection"->"Examples",
+        "ExamplesSection"->"Examples",
+        "MoreAboutSection"->"RelatedGuides",
+        "TutorialsSection"->"RelatedTutorials",
+        "SeeAlsoSection"->"RelatedFunctions"
+        |>
+      ];
+    None
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*processCellSections*)
+
+
+
+processCellSections[data_]:=
+  Replace[
+    DeleteCases[
+      ReplaceAll[
+        cellDataConvert@Flatten@data,
+        c:Cell[
+          a_, 
+          s:Alternatives@@NestList[StringReplace["S"->"Subs"], "Section", 5], 
+          b___
+          ]:>
+          Quiet@Cell[
+              First@FrontEndExecute@ExportPacket[c, "PlainText"], 
+              s, 
+              b
+              ]
+        ],
+      Cell["XXXX", ___],
+      Infinity
+      ],
+    {_Cell}->Nothing
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*processBlankableSections*)
+
+
+
+processBlankableSections[data_]:=
+  data//.{
+    {a___, Cell[_, "Subsection", ___], b:Cell[_, "Subsection", ___], c___}:>
+      {a, b, c},
+    {a___, Cell[_, "Subsection", ___]}:>{a}
+    }
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*extractNotebookData*)
+
+
+
+extractNotebookData[nb_NotebookObject]:=
+  Module[
+    {
+      cells=Cells[nb],
+      cellData,
+      cellLabels,
+      meta,
+      ctag,
+      nbData
+      },
+    cellData=NotebookRead@cells;
+    cellLabels=CurrentValue[cells, CellLabel];
+    meta=
+      extractMetadata[Pick[cellData, #], Pick[cellLabels, #]]&@
+        Map[StringQ, cellLabels];
+    ctag="Preamble";
+    nbData=
+      GroupBy[
+        Reap[
+          Do[
+            Replace[
+              getStyleType@cell[[2]], 
+              s_String:>Set[ctag, s]
+              ];
+            Sow[cell, ctag],
+            {cell, cellData}
+            ],
+          _,
+          Rule
+          ][[2]],
+        First->Last,
+        processCellSections
+        ];
+    AssociationMap[
+      #[[1]]->
+        If[StringStartsQ[#[[1]], "Related"|"Examples"],
+          processBlankableSections[#[[2]]],
+          #[[2]]
+          ]&,
+      PrependTo[nbData, "Metadata"->meta]
+      ]
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*WorkbenchTemplateData*)
+
+
+
+WorkbenchTemplateData[nb_NotebookObject]:=
+  extractNotebookData[nb];
+WorkbenchTemplateData[f_String?FileExistsQ]:=
+  Module[{nb},
+    Internal`WithLocalSettings[
+      nb = NotebookOpen[f, Visible->False],
+      WorkbenchTemplateData[nb],
+      NotebookClose[nb]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*FromWorkbenchTemplate*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*rebuildNotebook*)
+
+
+
+rebuildNotebook[
+  data_Association,
+  projectName:_String|Automatic:Automatic,
+  projectDirectory:_String|_FrontEnd`FileName|Automatic:Automatic
+  ]:=
+  Module[
+    {
+      meta=Association@data["Metadata"],
+      projName,
+      projDir
+      },
+    projName=
+      Replace[projectName,
+        Automatic:>StringSplit[meta["context"], "`"][[1]]
+        ];
+    projDir=
+      Replace[projectDirectory,
+        Automatic:>
+          Replace[
+            PacletManager`PacletFind[projName],
+            {
+              p:{__}:>
+                SelectFirst[#["Location"]&/@p,
+                  Not@*StringStartsQ[PacletManager`$UserBasePacletsDirectory]
+                  ],
+              _:>
+                BTools`Paclets`AppExecute["Path", projName]
+              }
+            ]
+        ];
+    Notebook[
+      Flatten@{
+          Cell[projName<>" "<>Lookup[meta, "type", "Symbol"],"TitleBar"],
+          data["Body"],
+          Lookup[data,
+            {
+              "Examples",
+              "RelatedFunctions",
+              "RelatedGuides",
+              "RelatedLinks",
+              "RelatedDemonstrations"
+              }, 
+            Nothing
+            ],
+          Values@
+            KeyDrop[
+              KeySelect[data, StringStartsQ["Related"]],
+              {
+                "RelatedFunctions", "RelatedGuides",
+                "RelatedLinks","RelatedDemonstrations"
+                }
+              ]
+          },
+      TaggingRules->{
+          "Metadata"->Normal@meta,
+          "ColorType"->Lookup[meta, "type", "Symbol"]<>"Color",
+          "SimpleDocs"->{
+              "Project"->{
+                  "Name"->projName,
+                  "Directory"->projDir
+                  }
+              }
+          },
+      ScreenStyleEnvironment->"Editing",
+      StyleDefinitions->
+        FrontEnd`FileName[{"SimpleDocs"}, "SimpleDocs.nb"]
+      ]
+    ];
+rebuildNotebook[
+nb_NotebookObject,
+projectName:_String|Automatic:Automatic,
+projectDirectory:_String|_FrontEnd`FileName|Automatic:Automatic
+]:=
+rebuildNotebook[
+extractNotebookData@nb,
+projectName,
+projectDirectory
+];
+rebuildNotebook[
+f_String?FileExistsQ,
+projectName:_String|Automatic:Automatic,
+projectDirectory:_String|_FrontEnd`FileName|Automatic:Automatic
+]:=
+Module[{doopdoop},
+Internal`WithLocalSettings[
+doopdoop=NotebookOpen[f, Visible->False],
+rebuildNotebook[doopdoop, projectName, projectDirectory],
+NotebookClose[doopdoop]
+]
+]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*buildSimpleStyledDocs*)
+
+
+
+buildSimpleStyledDocs[a__]:=
+  Module[{nb},
+    Replace[
+      rebuildNotebook[a],
+      {
+        n_Notebook:>
+          Internal`WithLocalSettings[
+            nb=CreateDocument[n, Visible->False],
+            SimpleDocs@"SaveToProject"[nb],
+            NotebookClose[nb]
+            ],
+        _->$Failed
+        }
+      ]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*FromWorkbenchTemplate*)
+
+
+
+Options[FromWorkbenchTemplate]=
+  {
+    "Name"->Automatic,
+    "Directory"->Automatic
+    };
+FromWorkbenchTemplate[obj_,
+  ops:OptionsPattern[]
+  ]:=
+  buildSimpleStyledDocs[
+    obj,
+    OptionValue["Name"],
+    OptionValue["Directory"]
+    ];
 
 
 End[];

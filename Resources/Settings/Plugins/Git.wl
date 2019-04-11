@@ -2,8 +2,7 @@
 
 {
   "Commit":>
-    CreateAttachedInputDialog[
-      $CurrentIDENotebook,
+    CreateWindowedInputDialog[
       <|
         "Header"->"Commit to Git",
         "Fields"->{
@@ -32,12 +31,12 @@
             ]
           ]
       |>,
-    <|
+    (*<|
       "Position"->{-5, -5},
       "Alignment"->{Right, Top},
       "Anchor"->{Right, Top}
-      |>,
-    CellSize->{350, Automatic},
+      |>,*)
+    (*CellSize*)WindowSize->{350, All},
     "CreateCloseButton"->False
     ],
   "Push":>

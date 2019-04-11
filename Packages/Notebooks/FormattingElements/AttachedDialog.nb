@@ -667,7 +667,7 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                   RowBox[{"$CurrentIDENotebook", ",", "\n", "    ", 
                     "expression", ",", "\n", "    ", "cellType", ",", "\n", 
                     "    ", "a", ",", "\n", "    ", "ops"}], "\n", "    ", 
-                  "]"}]}]}], "CodeInput"]}, Open]], 
+                  "]"}]}]}], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]CreateAttachedInputDialog\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -721,9 +721,9 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                   RowBox[{"With", "[", "\n", "    ", RowBox[{RowBox[
                        {"{", "\n", "      ", RowBox[{RowBox[{"nbb", "=", 
                           "\n", "        ", RowBox[{"Replace", "[", RowBox[
-                          {"attachables", ",", " ", "\n", "          ", 
-                          RowBox[{"{", "\n", "            ", RowBox[{RowBox[
-                          {RowBox[{"nbos", ":", RowBox[{
+                          {"nb", ",", " ", "\n", "          ", RowBox[{"{", 
+                          "\n", "            ", RowBox[{RowBox[{RowBox[
+                          {"nbos", ":", RowBox[{
                           "_FrontEnd`EvaluationNotebook", "|", 
                           "_FrontEnd`InputNotebook", "|", "\n", "  ", 
                           "            ", "_FrontEnd`SelectedNotebook", "|", 
@@ -740,11 +740,17 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           RowBox[{"panel", "=", "\n", "        ", RowBox[
                           {"AttachedDialogPanel", "[", "expression", 
                           "]"}]}]}], "\n", "    ", "}"}], ",", "\n", "    ", 
-                      RowBox[{"CreateDocument", "[", "\n", "      ", 
-                        RowBox[{RowBox[{"Cell", "[", "\n", "        ", 
-                          RowBox[{RowBox[{RowBox[{RowBox[{"panel", "//", 
-                          "\n", "          ", RowBox[{"If", "[", RowBox[
-                          {RowBox[{"Quiet", "[", RowBox[{"TrueQ", "@", RowBox[
+                      RowBox[{RowBox[{RowBox[{"(", RowBox[{RowBox[
+                          {"SetSelectedNotebook", "[", "#", "]"}], ";", 
+                          "#"}], ")"}], "&"}], "@", "\n", "    ", RowBox[
+                         {"CreateDocument", "[", "\n", "      ", RowBox[
+                          {RowBox[{"Cell", "[", "\n", "        ", RowBox[
+                          {RowBox[{RowBox[{RowBox[{RowBox[{"ReplaceAll", "[", 
+                          RowBox[{"panel", ",", " ", RowBox[{RowBox[
+                          {"HoldPattern", "[", "$CurrentIDENotebook", "]"}], 
+                          "\[Rule]", "nbb"}]}], "]"}], "//", "\n", 
+                          "          ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"Quiet", "[", RowBox[{"TrueQ", "@", RowBox[
                           {"OptionValue", "[", "\"CreateCloseButton\"", 
                           "]"}]}], "]"}], ",", "\n", "  ", "          ", 
                           "insertCloseBox", ",", "\n", "  ", "          ", 
@@ -803,10 +809,10 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "]"}]}], "\n", "              ", "]"}]}]}], "\n", 
                           "          ", "}"}], ",", "\n", "        ", RowBox[
                           {"Options", "[", "Notebook", "]"}]}], "\n", 
-                          "        ", "]"}]}], "\n", "      ", "]"}]}], "\n", 
-                    "    ", "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {"CreateWindowedDialog", "[", "\n", "  ", RowBox[
-                   {RowBox[{"expression", ":", RowBox[{"Except", "[", 
+                          "        ", "]"}]}], "\n", "      ", "]"}]}]}], 
+                    "\n", "    ", "]"}]}], ";"}], "\n", RowBox[{
+                RowBox[{"CreateWindowedDialog", "[", "\n", "  ", 
+                  RowBox[{RowBox[{"expression", ":", RowBox[{"Except", "[", 
                         "attachables", "]"}]}], ",", " ", "\n", "  ", 
                     RowBox[{"cellType", ":", "_String", ":", 
                       "\"AttachedDialogCell\""}], ",", "\n", "  ", 

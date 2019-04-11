@@ -60,7 +60,10 @@ $map=
     "SaveNotebook"->CheckSaveNotebook,
     "SaveToDocumentation"->SaveNotebookToDocumentation,
     "SaveToMarkdown"->SaveNotebookMarkdown,
-    "SaveToProject"->SaveNotebookToProject
+    "SaveToProject"->SaveNotebookToProject,
+    (* Workbench related *)
+    "WorkbenchData"->WorkbenchTemplateData,
+    "FromWorkbench"->FromWorkbenchTemplate
     |>;
 
 
@@ -81,12 +84,16 @@ methodQ[arg_]:=
 SimpleDocs//Clear;
 SimpleDocs["<Method>", "Function"]~PackageAddUsage~
   "returns the function for the call into \"<Method>\" ";
+SimpleDocs["<Method>", "Options"]~PackageAddUsage~
+  "returns the Options for the call into \"<Method>\" ";
 SimpleDocs["<Method>", args..]~PackageAddUsage~
   "calls the function for \"<Method>\" on args";
 SimpleDocs["<Method>"[args...]]~PackageAddUsage~
   "calls the function for \"<Method>\" on args";
 SimpleDocs[k_String?methodQ, "Function"]:=
   $map[k];
+SimpleDocs[k_String?methodQ, "Function"]:=
+  Options@Evaluate@$map[k];
 SimpleDocs[k_String?methodQ, args__]:=
   With[{f=$map[k]},
     With[{r=PackageExceptionBlock["SimpleDocs"]@f[args]},

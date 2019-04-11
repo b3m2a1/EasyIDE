@@ -657,7 +657,7 @@ CreateWindowedDialog[
   With[
     {
       nbb=
-        Replace[attachables, 
+        Replace[nb, 
           {
             nbos:_FrontEnd`EvaluationNotebook|_FrontEnd`InputNotebook|
               _FrontEnd`SelectedNotebook|_FrontEnd`ParentNotebook|_FrontEnd`ButtonNotebook:>
@@ -669,9 +669,10 @@ CreateWindowedDialog[
       panel=
         AttachedDialogPanel[expression]
     },
+    (SetSelectedNotebook[#];#)&@
     CreateDocument[
       Cell[
-        panel//
+        ReplaceAll[panel, HoldPattern[$CurrentIDENotebook]->nbb]//
           If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
             insertCloseBox,
             Identity
