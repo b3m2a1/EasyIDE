@@ -1,6 +1,6 @@
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.7",
+  Version -> "1.0.8",
   Creator -> "b3m2a1 <b3m2a1@gmail.com>",
   URL -> "https://github.com/b3m2a1/EasyIDE",
   Description -> "An IDE for Mathematica written entirely within Mathematica",
