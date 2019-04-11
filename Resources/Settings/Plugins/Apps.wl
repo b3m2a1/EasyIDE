@@ -20,11 +20,7 @@ EndPackage[]
 Begin["`Private`"];
 
 
-(* ::Text:: *)
-(*I just pulled everything from the AppManagerPalette to integrate. Things will be updated bit by bit.*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PreConfig*)
 
 
@@ -114,7 +110,7 @@ openerSelector[label_, types_, path_String, depth_:4]:=
 		]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Formatting Objects*)
 
 
@@ -230,7 +226,7 @@ checkboxGrid[vars:{(_:>_)..}]:=
 	checkboxGrid[Thread[{vars}]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Functions*)
 
 
@@ -306,10 +302,10 @@ sysOpen[file_,app_:Automatic]:=
 							},
 						"ExitCode"
 						]=!=0,
-					SystemOpen[file]
+					IDEOpen[file]
 					],
 			_,
-				SystemOpen[file]
+				IDEOpen[file]
 			]
 		];
 
@@ -394,213 +390,42 @@ inputDialog[header_]:=
 		]
 
 
-(* ::Subsubsection:: *)
-(*Apps*)
-
-
-(*selAllAppsBox=
-	checkboxGrid@{
-		"Use All Apps":>$selectAllApps
-		};*)
-
-
-(*appOpener=
-	dynamicActionMenu["Open App",
-		Table[
-			With[{n=n},FileBaseName@n:>sysOpen@n],
-			{n,appList}
-			],
-		Enabled->(Length@appList>0),
-		TrackedSymbols:>{appList}
-		];*)
-
-
-(*appChooser=
-	With[{bpop=
-		GradientButtonPopupMenu[Dynamic@currentApp,{"apps"},
-			sysOpen@whichPacF["AppDirectory"]@#&,
-			ImageSize->$paletteWidth]
-			},
-		Dynamic[
-			Insert[bpop,
-				Enabled->(Length@appList>0),
-				{1,2,-1}]/.{
-					{"apps"}->(FileBaseName/@appList),
-					("apps"->"apps")->
-						RuleCondition[
-							Thread[(FileBaseName/@appList)->
-								(FileBaseName/@appList)],
-							True
-							]
-					},
-			TrackedSymbols:>{appList}
-			]
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Packages*)
-
-
-(*packageOpener=
-	With[{gather=fileNamesGather, format=formatFilePaths},
-		openerSelector["Packages",
-			Hold@
-				With[
-					{
-						bits=
-							Replace[
-								DeleteDuplicatesBy[If[AtomQ[#], RandomReal[], First@#]&]/@
-								{
-									format@
-										gather["*.nb"|"*.m"|"*.wl", "Packages"],
-									Select[AtomQ@#||First@#=!="init"&]@
-										format@
-											gather["*.m"|"*.wl", "Kernel"],
-									Select[!StringEndsQ[First@#, "Info"]&]@
-										format@
-											SortBy[
-												FileNames["*.m"|"*.wl", whichPacF["AppDirectory"][currentApp]],
-												{StringReverse@*FileExtension}
-												]
-									},
-								{}->Nothing,
-								1
-								]
-						},
-					Flatten@Riffle[bits, Delimiter]
-					],
-			Hold@
-				Join[
-					gather["*.nb"|"*.m"|"*.wl", "Packages"],
-					Select[FileBaseName@#=!="init"&]@gather["*.m"|"*.wl", "Kernel"],
-					Select[!StringEndsQ[FileBaseName@#, "Info"]&]@
-						FileNames["*.m"|"*.wl", whichPacF["AppDirectory"][currentApp]]
-					]
-			]
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*FE*)
-
-
-(*feOpener=
-	openerSelector["Front End", "*.nb", "FrontEnd", 4];*)
-
-
-(* ::Subsubsection:: *)
-(*Private Opener*)
-
-
-(*privateOpener=
-	openerSelector["Private", "*.nb"|"*.wl"|"*.m", "Private", 5];*)
-
-
-(* ::Subsubsection:: *)
-(*Template Opener*)
-
-
-(*templateOpener=
-	openerSelector["Resources", "*.nb"|"*.wl"|"*.m"|".tr", "Resources", 8];*)
-
-
-(* ::Subsubsection:: *)
-(*Config*)
-
-
-(*configOpener=
-	With[{gather=fileNamesGather, format=formatFilePaths},
-		openerSelector["Config",
-			Hold@
-				format@
-					SortBy[FileNameDepth]@
-						Join[
-							FileNames["*Info.m"|"*Info.wl",
-								whichPacF["AppDirectory"][currentApp]
-								],
-							gather["*.m"|"*.wl","Config"]
-							],
-			Hold@
-				Join[
-					FileNames["*.m"|"*.wl",whichPacF["AppDirectory"][currentApp]],
-					gather["*.m"|"*.wl","Config"]
-					]
-			]
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Project*)
-
-
-(*projOpener=
-	With[{gather=fileNamesGather, format=formatFilePaths},
-		openerSelector["Project",
-			Hold@
-				format@
-					SortBy[FileNameDepth]@
-						Join[
-							FileNames["README*",
-								whichPacF["AppDirectory"][currentApp]
-								],
-							FileNames[
-								"*.png"|"*.html"|"*.md"|"*.nb",
-								whichPacF["AppDirectory"][currentApp,"project"],
-								\[Infinity]
-								]
-							],
-			Hold@
-				Join[
-					FileNames["README*",
-						whichPacF["AppDirectory"][currentApp]
-						],
-					FileNames[
-						"*.png"|"*.html"|"*.md"|"*.nb",
-						whichPacF["AppDirectory"][currentApp,"project"],
-						\[Infinity]
-						]
-					]
-			]
-		]*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Regen*)
 
 
-(*regenMenu=
-	paletteActionMenu["Regenerate", {
-		"Loader":>
-			sysOpen@whichPacF["AppRegenerateInit"][currentApp],
-		"PacletInfo":>
-			(
-				sysOpen@whichPacF["AppRegeneratePacletInfo"][currentApp]
-				),
-		"Directories":>
-			(
-				whichPacF["AppRegenerateDirectories"][currentApp];
-				sysOpen@whichPacF["AppDirectory"]@currentApp
-				),
-		"LoadInfo":>
-			(
-				sysOpen@whichPacF["AppRegenerateLoadInfo"][currentApp]
-				)
-		}
-	];*)
+regenActions=
+	"Regenerate"->
+	  {
+  		"Loader":>
+  		  (
+         AppExecute["RegenerateLoaderFile", currentApp];
+         CreatePopupMessage["Regenerated"]
+         ),
+  		"PacletInfo":>
+  			(
+  				AppExecute["RegeneratePacletInfo", currentApp];
+  				CreatePopupMessage["Regenerated"];
+  				),
+  		"Directories":>
+  			(
+  				whichPacF["AppRegenerateDirectories"][currentApp];
+  				),
+     "Context Loaders":>
+       (
+         AppExecute["RegenerateContextLoaders", currentApp];
+         CreatePopupMessage["Regenerated"]
+         ),
+  		"LoadInfo":>
+  			(
+  				sysOpen@whichPacF["AppRegenerateLoadInfo"][currentApp]
+  				),
+    	"BundleInfo":>
+  			sysOpen@whichPacF["AppRegenerateBundleInfo"]@currentApp
+  		}
 
 
-(* ::Subsubsection:: *)
-(*AddDependency*)
-
-
-(*updateDeps=
-	paletteButton["Add Dependency",
-		whichPacF["AppAddDependency"][currentApp]
-		];*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*UpdateDependencies*)
 
 
@@ -615,1078 +440,15 @@ updateDeps[]:=
 	  ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*New*)
 
 
-(*newMenu=
-	paletteActionMenu["New Notebook",{
-		"Code":>
-			SetOptions[whichPacF["GenerateNewPackage"][],
-				StyleDefinitions\[Rule]
-					FrontEnd`FileName[
-						Evaluate@{whichPacF["$PackageName"]},
-						"CodeNotebook.nb"
-						]
-				],
-		"Package":>
-			whichPacF["GenerateNewPackage"][],
-		"Data":>
-			With[{old=Notebooks[]},
-				FrontEndTokenExecute["NewPackage"];
-				whichPacF["MakeIndentable"][
-					First@DeleteCases[Notebooks[], Alternatives@@old],
-					"Code"
-					]
-				],
-		"Text":>
-			FrontEndTokenExecute["NewText"],
-		"Script":>
-			FrontEndTokenExecute["NewScript"],
-		"Palette":>
-			whichPacF["PaletteTemplateNotebook"][],
-		"HTML"\[RuleDelayed]
-			whichPacF["HTMLTemplateNotebook"][],
-		"Service"\[RuleDelayed]
-			If[FileExistsQ@whichPacF["AppPath"][$appName, "Resources","Templates",
-						"ServiceConnectionTemplate.nb"],
-				Off[General::shdw];
-				System`CellFrameStyle;
-				On[General::shdw];
-				CreateDocument@
-					Import@
-						whichPacF["AppPath"][$appName, "Resources","Templates",
-							"ServiceConnectionTemplate.nb"
-							]
-				],
-		"Curated Data"\[RuleDelayed]
-			If[FileExistsQ@whichPacF["AppPath"][$appName, "Resources","Templates",
-						"CuratedDataTemplate.nb"],
-				Off[General::shdw];
-				System`CellFrameStyle;
-				On[General::shdw];
-				CreateDocument@
-					Import@
-						whichPacF["AppPath"][$appName, "Resources","Templates",
-							"CuratedDataTemplate.nb"
-							]
-				]
-		}];*)
+newPackage[]:=
+  IDEOpen[Notebook[{}, StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb"]]];
 
 
-(* ::Subsubsection:: *)
-(*Add*)
-
-
-(*overwriteBox=
-	Grid[{
-		{Checkbox@Dynamic@overwriteFlag,Style["Overwrite existing",Gray]}
-		},
-		Alignment->Bottom
-		];*)
-
-
-(*With[{currentApp=HoldPattern[currentApp]},
-addContent[loc_,cont:Except[True|False]:None,
-	name:_String|_List|None:None,allowOpen:True|False:True]:=
-	With[{
-			files=
-				Replace[cont,{
-					Directory:>
-						SystemDialogInput["Directory",".nb"],
-					None:>
-						SystemDialogInput["FileOpen",".nb"]
-					}]
-			},
-			With[{block=
-				Hold@
-					If[name===None,
-						whichPacF["AppAddContent"][ReleaseHold@currentApp,files,
-							Sequence@@Flatten@{loc},
-							OverwriteTarget\[Rule]TrueQ@overwriteFlag],
-						whichPacF["AppAddContent"][ReleaseHold@currentApp,files,
-							Sequence@@DeleteCases[
-								Flatten@{name,loc},
-								Except[_String]
-								],
-							OverwriteTarget\[Rule]TrueQ@overwriteFlag]
-						]
-				},
-				If[allowOpen,
-					ReleaseHold@block,
-					Block[{SystemOpen=Null},
-						ReleaseHold@block
-						]
-					]
-				];
-			With[{c=ReleaseHold@currentApp},
-				currentApp="";
-				currentApp=c
-				]
-			]
-	];*)
-
-
-(*currentExtensionPath[appBit_,nbo_:Automatic]:=
-	With[{nb=Replace[nbo,Automatic:>InputNotebook[]]},
-		With[{base=If[appBit===None,$Failed,Quiet@NotebookFileName@nb]},
-			If[base===$Failed,
-				Replace[
-					If[appBit===None,
-						Hold@Evaluate[WindowTitle/.AbsoluteOptions[nb,WindowTitle]],
-						WindowTitle/.AbsoluteOptions[nb,WindowTitle]
-						],{
-						Hold[s_]|
-							s_String?(StringMatchQ[""|("Untitled-"~~NumberString)]):>
-							Replace[
-								SystemDialogInput["FileSave",
-									whichPacF["AppDirectory"]@@
-										Flatten@{currentApp,
-											If[appBit===None,Nothing,appBit],
-											s<>
-												Replace[CurrentValue[nb,
-														StyleDefinitions],{
-														"Package.nb"|
-															Notebook[{
-																___,
-																Cell[
-																	StyleData[
-																		StyleDefinitions->"Package.nb"]],
-																___
-																},
-																___]->
-															".wl",
-														"Notepad.nb"|
-															Notebook[{
-																___,
-																Cell[
-																	StyleData[
-																		StyleDefinitions->"Notepad.nb"]],
-																___
-																},
-																___]->
-															".txt",
-														"Script.nb"|
-															Notebook[{
-																___,
-																Cell[
-																	StyleData[
-																		StyleDefinitions->"Script.nb"]],
-																___
-																},
-																___]->
-															".wls",
-														_->
-														".nb"
-													}]
-											}
-									],
-								f_String:>
-									If[StringMatchQ[f,whichPacF["AppDirectory"][currentApp]~~__],
-										RotateRight@FileNameSplit@
-											FileNameDrop[f,
-												FileNameDepth@whichPacF["AppDirectory"][currentApp]],
-										{FileNameTake[f]}
-										]
-								]
-						}],
-				{FileNameTake@base}
-				]
-			]
-		];*)
-
-
-(*addStuff=
-	paletteActionMenu["Add File",
-		{
-			"Package":>addContent["Packages"],
-			"Palette":>addContent["Palettes"],
-			"Stylesheet":>addContent["Stylesheets"],
-			Delimiter,
-			"Ref Page":>addContent["Symbols"],
-			"Guide":>addContent["Guides"],
-			"Tutorial":>addContent["Tutorials"],
-			Delimiter,
-			"Application":>
-				addContent[""],
-			"Misc"\[RuleDelayed]
-				addContent[{"Private","Misc"}],
-			"Private":>
-				addContent["Private"],
-			"Custom":>
-				Replace[SystemDialogInput["FileOpen",".nb"],
-					f_String?FileExistsQ:>
-						addContent["",FileNameTake@f,
-							Sequence@@Most@FileNameSplit@
-								FileNameDrop[
-									SystemDialogInput["FileSave",
-										whichPacF["AppDirectory"][currentApp]<>"."<>FileExtension@f],
-									FileNameDepth@whichPacF["AppDirectory"][currentApp]
-									]
-							]
-					]
-			},
-		Method\[Rule]"Queued",
-		ImageSize\[Rule]$paletteContentWidth
-		];*)
-
-
-(*addDir=
-	paletteActionMenu["Add Directory",
-		{
-			"Package":>addContent["Packages",Directory],
-			"Palette":>addContent["Palettes",Directory],
-			"Stylesheet":>addContent["Stylesheets",Directory],
-			Delimiter,
-			"Ref Page":>addContent["Symbols",Directory],
-			"Guide":>addContent["Guides",Directory],
-			"Tutorial":>addContent["Tutorials",Directory],
-			Delimiter,
-			"Application":>
-				addContent["",Directory],
-			"Misc"\[RuleDelayed]
-				addContent[{"Private","Misc"},Directory],
-			"Private":>
-				addContent["Private",Directory],
-			"Custom":>
-				Replace[SystemDialogInput["Directory",".nb"],
-					d_String?DirectoryQ:>
-						addContent[{},FileBaseName@d,
-							Sequence@@Most@FileNameSplit@
-								FileNameDrop[
-									SystemDialogInput["Directory",
-										whichPacF["AppDirectory"][currentApp]],
-									FileNameDepth@whichPacF["AppDirectory"][currentApp]
-									]
-							]
-					]
-			},
-		Method\[Rule]"Queued",
-		ImageSize\[Rule]$paletteContentWidth
-		];*)
-
-
-(*addNB=
-	paletteActionMenu["Add Current",
-		{
-			"Package":>
-				addContent["Packages",
-					InputNotebook[],
-					First@currentExtensionPath["Packages"]],
-			"Palette":>
-				addContent["Palettes",
-					InputNotebook[],
-					First@currentExtensionPath["Palettes"]],
-			"Stylesheet":>
-				addContent["Stylesheets",
-					InputNotebook[],
-					First@currentExtensionPath["Stylesheets"]],			
-			Delimiter,
-			"Ref Page":>
-				addContent["Symbols",
-					InputNotebook[],
-					First@currentExtensionPath["Symbols"]],
-			"Guide":>
-				addContent["Guides",
-					InputNotebook[],
-					First@currentExtensionPath["Guides"]],
-			"Tutorial":>
-				addContent["Tutorials",
-					InputNotebook[],
-					First@currentExtensionPath["Tutorials"]],
-			Delimiter,
-			"Application":>
-				addContent["",InputNotebook[],
-						First@currentExtensionPath[""]],
-			"Misc"\[RuleDelayed]
-				addContent[{"Private","Misc"},
-					InputNotebook[],
-					First@currentExtensionPath[{"Private","Misc"}]],
-			"Private":>
-				addContent[{"Private"},InputNotebook[],
-					First@currentExtensionPath["Private"]],
-			"Custom":>
-				addContent["",InputNotebook[],
-					currentExtensionPath[None]]
-			},
-		Method\[Rule]"Queued",
-		ImageSize\[Rule]$paletteContentWidth
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Docs Openers*)
-
-
-(*refOpener=
-	dynamicActionMenu["Open Ref Page",
-		Table[
-			With[{n=n},
-				StringJoin@Riffle[FileNameSplit@#,"\[VeryThinSpace]\[RightGuillemet]\[VeryThinSpace]"]&@
-				FileNameDrop[
-					FileNameJoin@{DirectoryName@n,FileBaseName@n},
-					FileNameDepth@whichPacF["AppDirectory"][currentApp,"ReferencePages"]
-				]:>sysOpen@n],
-			{n,FileNames["*.nb",
-				whichPacF["AppDirectory"][currentApp,"ReferencePages"],\[Infinity]]}],
-		Enabled->
-			(Length@FileNames["*.nb",
-				whichPacF["AppDirectory"][currentApp,"ReferencePages"],\[Infinity]]>0),
-		TrackedSymbols:>{currentApp}
-		];*)
-
-
-(*guideOpener=
-	dynamicActionMenu["Open Guide",
-			Table[
-				With[{n=n},
-					StringJoin@Riffle[FileNameSplit@#,"\[VeryThinSpace]\[RightGuillemet]\[VeryThinSpace]"]&@
-					FileNameDrop[
-						FileNameJoin@{DirectoryName@n,FileBaseName@n},
-						FileNameDepth@whichPacF["AppDirectory"][currentApp,"Guides"]
-					]:>sysOpen@n],
-				{n,FileNames["*.nb",whichPacF["AppDirectory"][currentApp,"Guides"],\[Infinity]]}],
-			Enabled->
-				(Length@FileNames["*.nb",whichPacF["AppDirectory"][currentApp,"Guides"],\[Infinity]]>0),
-		TrackedSymbols:>{currentApp}
-		];*)
-
-
-(*tutorialOpener=
-	dynamicActionMenu["Open Tutorial",
-			Table[
-				With[{n=n},
-					StringJoin@Riffle[FileNameSplit@#,"\[VeryThinSpace]\[RightGuillemet]\[VeryThinSpace]"]&@
-					FileNameDrop[
-						FileNameJoin@{DirectoryName@n,FileBaseName@n},
-						FileNameDepth@whichPacF["AppDirectory"][currentApp,"Tutorials"]
-					]:>sysOpen@n],
-				{n,FileNames["*.nb",whichPacF["AppDirectory"][currentApp,"Tutorials"],\[Infinity]]}],
-			Enabled->
-				(Length@FileNames["*.nb",whichPacF["AppDirectory"][currentApp,"Tutorials"],\[Infinity]]>0),
-		TrackedSymbols:>{currentApp}
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Doc Autogenerate*)
-
-
-(*docAutoButton=
-	paletteActionMenu["Autogenerate from App",
-		{
-			"Ref Page":>
-				Replace[NotebookRead@InputNotebook[],{
-					s_String:>
-						If[StringEndsQ[s,"`"],
-							whichPacF["DocGenGenerateSymbolPages"][s],
-							ToExpression[s,StandardForm,
-								whichPacF["DocGenGenerateSymbolPages"]
-								]
-							]
-					}],
-			"Guide Page":>
-				Replace[NotebookRead@InputNotebook[],
-					s_String:>whichPacF["DocGenGenerateGuide"][s]
-					],
-			"Docs Paclet":>
-				Replace[NotebookRead@InputNotebook[],
-					s_String:>
-						whichPacF["DocGenGenerateDocumentation"][s]
-					],
-			Delimiter,
-			"Ref Page HTML":>
-				Replace[NotebookRead@InputNotebook[],
-					s_String:>
-						With[{pages=
-							If[StringEndsQ[s,"`"],
-								whichPacF["DocGenGenerateSymbolPages"][s,Visible->False],
-								ToExpression[s,StandardForm,
-									Function[Null,
-										whichPacF["DocGenGenerateSymbolPages"][#,Visible->False],
-										HoldFirst
-										]
-									]
-								]
-							},
-							sysOpen@First@Flatten@List@
-								whichPacF["GenerateHTMLDocumentation"][s,
-									CloudDeploy->True,
-									"CopyAssets"->False
-									]
-							]
-					],
-			"Paclet HTML":>
-				Replace[NotebookRead@InputNotebook[],
-					s_String:>
-						Replace[
-							Lookup[
-								whichPacF["DocGenGenerateDocumentation"][
-									s,
-									False,
-									CloudDeploy->True,
-									"CopyAssets"->False
-									],
-								"HTML"
-								],
-							{___,c_CloudObject,___}:>sysOpen@c
-							]
-					]
-			}];*)
-
-
-(* ::Subsubsection:: *)
-(*Doc Buttons*)
-
-
-(*docTemp=
-	paletteActionMenu["Make Template",{
-		"Symbol Page":>
-			With[{s=NotebookRead@InputNotebook[]},
-				If[MatchQ[s,_String?(StringMatchQ[#,("$"|"`"|WordCharacter)..]&)],
-					CreateDocument@whichPacF["SymbolPageTemplate"]@{s},
-					CreateDocument@whichPacF["SymbolPageTemplate"]@{"Symbol"}
-					]
-				],
-		"Guide Page":>
-			With[{s=NotebookRead@InputNotebook[]},
-				If[MatchQ[s,_String],
-					CreateDocument@whichPacF["GuideTemplate"]@{s},
-					CreateDocument@whichPacF["GuideTemplate"]@{"Guide"}
-					]
-				],
-		"Tutorial Page":>
-			With[{s=NotebookRead@InputNotebook[]},
-				If[MatchQ[s,_String],
-					CreateDocument@whichPacF["TutorialTemplate"]@{s},
-					CreateDocument@whichPacF["TutorialTemplate"]@{"Tutorial"}
-					]
-				]
-		},
-		Method->"Queued"
-		];
-(*		"App Tutorial Template":>
-			paletteDialog[
-				With[{docs=(
-					Needs[currentApp<>"`"];
-					whichPacF["AppTutorialNotebook"]@(currentApp)
-					)},
-					CreateDocument@docs
-					],
-				"Generating tutorial template"
-				];*)
-docGen=
-	paletteActionMenu["Generate from Notebook",{
-		"Symbol Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					With[{s=NotebookRead@nb},
-						If[MatchQ[s,
-							_String?(StringMatchQ[#,"$"|"`"|WordCharacter..]&)],
-							Block[{$DocActive=currentApp},
-								ToExpression[s, StandardForm,
-									whichPacF["DocGenGenerateSymbolPages"]
-									]
-								],
-							Block[{$DocActive=currentApp},
-								whichPacF["DocGenGenerateSymbolPages"]@nb
-								]
-							]
-						],
-					"Generating symbol pages"
-					]
-				],
-		"Guide Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp},
-						whichPacF["DocGenGenerateGuide"]@nb
-						],
-					"Generating guide pages"
-					]
-				],
-		"Tutorial Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp},
-						whichPacF["DocGenGenerateTutorial"]@nb
-						],
-					"Generating tutorial pages"
-					]
-				]
-		},
-		Method->"Queued"
-		];
-docSave=
-	paletteActionMenu["Generate and Save",{
-		"Symbol Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp},
-						Quiet@
-							CreateDirectory[
-								whichPacF["AppDirectory"][currentApp,"Symbols"],
-								CreateIntermediateDirectories->True
-								];
-						whichPacF["DocGenSaveSymbolPages"][
-							nb,
-							whichPacF["AppDirectory"][currentApp,"Symbols"],
-							False
-							]
-						],
-					"Generating symbol pages"
-					]
-				],
-		"Guide Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp},
-						Quiet@
-							CreateDirectory[
-								whichPacF["AppDirectory"][currentApp,"Guides"],
-								CreateIntermediateDirectories->True
-								];
-						whichPacF["DocGenSaveGuide"][
-							nb,
-							whichPacF["AppDirectory"][currentApp,"Guides"],
-							False
-							]
-						],
-					"Generating guide pages"
-					]
-				],
-		"Tutorial Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp},
-						whichPacF["DocGenGenerateTutorial"][
-							nb,
-							whichPacF["AppDirectory"][currentApp,"Tutorials"],
-							False
-							]
-						],
-					"Generating tutorial pages"
-					]
-				],
-		Delimiter,
-		"Symbol Web Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					sysOpen@First@Flatten@List@
-						With[{s=NotebookRead@nb},
-							If[MatchQ[s,
-								_String?(StringMatchQ[#,"$"|"`"|WordCharacter..]&)],
-								Block[{$DocActive=currentApp},
-									ToExpression[s, StandardForm,
-										Function@
-										whichPacF["DocGenGenerateSymbolPages"][
-											#,
-											Visible->False,
-											"PostFunction"->
-												Function[page,
-													Function[NotebookClose[page];#]@
-													whichPacF["GenerateHTMLDocumentation"][page,
-														CloudDeploy->True,
-														"CopyAssets"->False
-														]
-													]
-											]
-										]
-									],
-								Block[{$DocActive=currentApp},
-									whichPacF["DocGenGenerateSymbolPages"][nb,
-										Visible->False,
-										"PostFunction"->
-											Function[page,
-												Function[NotebookClose[page];#]@
-												whichPacF["GenerateHTMLDocumentation"][page,
-													CloudDeploy->True,
-													"CopyAssets"->False
-													]
-												]
-										]
-									]
-								]
-							],
-					"Generating symbol web pages"
-					]
-				],
-		"Guide Web Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{
-						$DocActive=currentApp,
-						notebooks
-						},
-						sysOpen@First@Flatten@List@
-							whichPacF["DocGenGenerateGuide"][nb,
-								Visible->False,
-								"PostFunction"->
-									Function[page,
-										Function[NotebookClose[page];#]@
-										whichPacF["GenerateHTMLDocumentation"][page,
-											CloudDeploy->True,
-											"CopyAssets"->False
-											]
-										]
-								];
-						],
-					"Generating guide web pages"
-					]
-				],
-		"Tutorial Web Pages":>
-			With[{nb=InputNotebook[]},
-				paletteDialog[
-					Block[{$DocActive=currentApp,notebooks},
-						notebooks=
-							whichPacF["DocGenGenerateTutorial"][
-								nb,
-								whichPacF["AppDirectory"][currentApp,"Tutorials"],
-								False,
-								Visible->False
-								];
-						Function[
-							Map[NotebookClose,Flatten@{notebooks}];
-							sysOpen@First@Flatten@{#}
-							]@
-							whichPacF["GenerateHTMLDocumentation"][
-								notebooks,
-								CloudDeploy->True,
-								"CopyAssets"->False
-								]
-						],
-					"Generating tutorial pages"
-					]
-				]
-		},
-		Method->"Queued"
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*App Docs*)
-
-
-(*appDocs=
-	dynamicActionMenu["Application Symbols",
-		Join[
-			{
-				"Symbol Page Template":>
-					paletteDialog[
-						With[{docs=
-							whichPacF["AppSymbolNotebook"]@(currentApp)
-							},
-							CreateDocument@docs
-							],
-						"Creating symbol page template"
-						],
-				Delimiter
-				},
-			With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-				Map[
-					#<>" Symbol Page Template":>
-						paletteDialog[
-							CreateDocument@whichPacF["AppPackageSymbolNotebook"][currentApp,#],
-							"Creating doc template"
-							]&,
-					pkgs
-					]
-				],
-			{
-				Delimiter,
-				"Save All Pages":>
-					paletteDialog[
-						With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-							Map[
-								With[{nb=
-									CreateDocument[
-										whichPacF["AppPackageSymbolNotebook"][currentApp,#],
-										Visible->False
-										]
-									},
-									whichPacF["DocGenSaveSymbolPages"][
-										nb,
-										whichPacF["AppDirectory"][currentApp,"Symbols"],
-										False
-										];
-									NotebookClose[nb]
-									]&,
-								pkgs
-								]
-							],
-						"Creating ref pages"
-						],
-				Delimiter
-				},
-			With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-				Map[
-					"Save "<>#<>" Pages":>
-						paletteDialog[
-							With[{nb=
-								CreateDocument[
-									whichPacF["AppPackageSymbolNotebook"][currentApp,#],
-									Visible->False
-									]
-								},
-								whichPacF["DocGenSaveSymbolPages"][
-									nb,
-									whichPacF["AppDirectory"][currentApp,"Symbols"],
-									False
-									];
-								NotebookClose[nb]
-								],
-							"Creating ref pages"
-							]&,
-					pkgs
-					]
-				]
-			],
-			Enabled->(Length@whichPacF["AppPackages"][currentApp]>0),
-			Method->"Queued",
-			TrackedSymbols:>{currentApp}
-			];*)
-
-
-(*appGuides=
-	dynamicActionMenu["Application Guides",
-		Join[
-			{
-				"Guide Template":>
-					paletteDialog[
-						With[{docs=(
-							Needs[currentApp<>"`"];
-							whichPacF["AppGuideNotebook"]@(currentApp)
-							)},
-							CreateDocument@docs
-							],
-						"Creating guide template"
-						],
-				Delimiter
-				},
-			With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-				Map[
-					#<>" Guide":>
-						paletteDialog[
-							CreateDocument@whichPacF["AppGuideNotebook"][currentApp,#],
-							"Creating guide template"
-							]&,
-					pkgs
-					]
-				],
-			{
-				Delimiter,
-				"Save Guide":>
-					paletteDialog[
-						With[{nb=(
-							Needs[currentApp<>"`"];
-							CreateDocument[whichPacF["AppGuideNotebook"]@(currentApp),Visible->False]
-							)},
-							whichPacF["DocGenSaveGuide"][
-								nb,
-								whichPacF["AppDirectory"][currentApp,"Guides"],
-								False
-								];
-							NotebookClose[nb]
-							],
-						"Creating guide page"
-						],
-				"Save Package Guides":>
-					paletteDialog[
-						With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-							Map[
-								With[{nb=(
-									Needs[currentApp<>"`"];
-									CreateDocument[whichPacF["AppGuideNotebook"]@(currentApp),Visible->False]
-									)},
-									whichPacF["DocGenSaveGuide"][
-										nb,
-										whichPacF["AppPackageGuideNotebook"][currentApp,#],
-										False
-										];
-									NotebookClose[nb]
-									]&,
-								pkgs
-								]
-							],
-						"Creating guide pages"
-						],
-				Delimiter
-				},
-			With[{pkgs=FileBaseName/@whichPacF["AppPackages"][currentApp]},
-				Map[
-					"Save "<>#<>" Guide":>
-						paletteDialog[
-							Map[
-								addContent["Guides",#,
-									currentExtensionPath["Guides",#],
-									False]&,
-								Block[{$DocActive=currentApp},
-									whichPacF["DocGenGenerateGuide"]@
-										CreateDocument[
-											whichPacF["AppPackageGuideNotebook"][currentApp,#],
-											Visible->False
-											]
-									]
-								],
-							"Creating guide page"
-							]&,
-					pkgs
-					]
-				]
-			],
-			Enabled->(Length@whichPacF["AppPackages"][currentApp]>0),
-			Method->"Queued",
-			TrackedSymbols:>{currentApp}
-			];*)
-
-
-(*appTutorials=
-	dynamicActionMenu["Application Tutorial",
-		Join[
-			{
-				"Tutorial Template":>
-					paletteDialog[
-						With[{docs=(
-							Needs[currentApp<>"`"];
-							whichPacF["AppTutorialNotebook"]@(currentApp)
-							)},
-							CreateDocument@docs
-							],
-						"Creating Tutorial template"
-						],
-				Delimiter
-				},(*
-			With[{pkgs=FileBaseName/@AppPackages[currentApp]},
-				Map[
-					#<>" Tutorial":>
-						paletteDialog[
-							CreateDocument@AppPackageTutorialNotebook[currentApp,#],
-							"Creating tutorial template"
-							]&,
-					pkgs
-					]
-				],*)
-			{(*
-				Delimiter,*)
-				"Save Tutorial":>
-					paletteDialog[
-						With[{docs=(
-							Needs[currentApp<>"`"];
-							whichPacF["AppTutorialNotebook"]@(currentApp)
-							)},
-							Map[
-								addContent["Tutorials",#,
-									currentExtensionPath["Tutorials",#],
-									False]&,
-								Block[{$DocActive=currentApp},
-									whichPacF["DocGenGenerateTutorial"]@
-										CreateDocument[docs,
-											Visible->False
-											]
-									]
-								]
-							],
-						"Creating tutorial page"
-						](*,
-				Delimiter*)
-				}(*,
-			With[{pkgs=FileBaseName/@AppPackages[currentApp]},
-				Map[
-					"Save "<>#<>" Tutorial"\[RuleDelayed]
-						paletteDialog[
-							Map[
-								addContent["Tutorials",#,
-									currentExtensionPath["Tutorials",#],
-									False]&,
-								whichPacF["DocGenGenerateTutorial"]@
-									CreateDocument[
-										AppPackageTutorialNotebook[currentApp,#],
-										Visible\[Rule]False
-										]
-								],
-							"Creating Tutorial page"
-							]&,
-					pkgs
-					]
-				]*)
-			],
-			Enabled->(Length@whichPacF["AppPackages"][currentApp]>0),
-			Method->"Queued",
-			TrackedSymbols:>{currentApp}
-			];*)
-
-
-(* ::Subsubsection:: *)
-(*DocInfo*)
-
-
-(*docInfoM=
-	paletteButton["Regenerate DocInfo",
-		sysOpen@whichPacF["AppRegenerateDocInfo"][currentApp]
-		];
-indexDocs=
-	paletteButton["Index Documentation",
-		paletteDialog[
-			whichPacF["AppIndexDocs"]@currentApp,
-			"Indexing documentation"
-			]
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Copy*)
-
-
-(*copyURLLinks=
-	paletteActionMenu["Copy URL",{
-		"README":>
-			CopyToClipboard@
-				URLBuild@{
-					AppwhichPacF["PacletSiteURL"][currentApp],
-					"README"
-					},
-		"GitHub Repo":>
-			CopyToClipboard@
-				whichPacF["AppGitHubRepo"][currentApp,None]
-		}];*)
-
-
-(*copyZIPLinks=
-	paletteActionMenu["Copy ZIP URL",{
-		"Cloud":>
-			CopyToClipboard@First@
-				CloudObject@URLBuild@{
-					whichPacF["$AppCloudExtension"],
-					currentApp<>".zip"},
-		"Google Drive":>
-			CopyToClipboard@
-				FileNameJoin@{
-					whichPacF["SyncPath"]["Google Drive"],
-					whichPacF["$AppCloudExtension"],
-					currentApp<>".zip"
-					},
-		"DropBox":>
-			CopyToClipboard@
-				FileNameJoin@{
-					whichPacF["SyncPath"]["DropBox"],
-					whicPacF["$AppCloudExtension"],
-					currentApp<>".zip"
-					},
-		"OneDrive":>
-			CopyToClipboard@
-				FileNameJoin@{
-					whichPacF["SyncPath"]["OneDrive"],
-					whichPacF["$AppCloudExtension"],
-					currentApp<>".zip"
-					}
-		}];
-
-copyPacletURL=
-	paletteActionMenu["Copy Paclet URL",{
-		"Server":>
-			CopyToClipboard@
-				AppwhichPacF["PacletSiteURL"][
-					"ServerBase"\[Rule]Default,
-					"ServerName"\[Rule]Default,
-					"UploadInstallLink"\[Rule]Automatic
-					],
-		Delimiter,
-		"Paclet":>
-			CopyToClipboard@URLBuild@{
-				AppwhichPacF["PacletSiteURL"]@currentApp,
-				"Paclets",
-				StringJoin@{
-					Insert[
-						Lookup[whichPacF["AppPacletInfo"]@currentApp,{"Name","Version"}],
-						"-",2],
-					".paclet"
-					}
-				},
-		"Site":>
-			CopyToClipboard@AppwhichPacF["PacletSiteURL"]@currentApp,
-		"Installer":>
-			CopyToClipboard@whichPacF["AppPacletInstallerURL"]@currentApp,
-		"Uninstaller":>
-			CopyToClipboard@whichPacF["AppPacletUninstallerURL"]@currentApp,
-		Delimiter,
-		"Google Drive":>
-			CopyToClipboard@FileNameJoin@{
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"Google Drive"],
-				"paclets",
-				StringJoin@{
-					Insert[
-						Lookup[whichPacF["AppPacletInfo"]@currentApp,{"Name","Version"}],
-						"-",2],
-					".paclet"
-					}
-				},
-		"Site":>
-			CopyToClipboard@
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"Google Drive"],
-		"Installer":>
-			CopyToClipboard@
-				whichPacF["AppPacletInstallerURL"][currentApp,
-					"ServerBase"\[Rule]"Google Drive"],
-		"Uninstaller":>
-			CopyToClipboard@
-				whichPacF["AppPacletUninstallerURL"][currentApp,
-					"ServerBase"\[Rule]"Google Drive"],
-		Delimiter,
-		"DropBox":>
-			CopyToClipboard@FileNameJoin@{
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"DropBox"],
-				"paclets",
-				StringJoin@{
-					Insert[
-						Lookup[whichPacF["AppPacletInfo"]@currentApp,{"Name","Version"}],
-						"-",2],
-					".paclet"
-					}
-				},
-		"Site":>
-			CopyToClipboard@
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"DropBox"],
-		"Installer":>
-			CopyToClipboard@
-				whichPacF["AppPacletInstallerURL"][currentApp,
-					"ServerBase"\[Rule]"DropBox"],
-		"Uninstaller":>
-			CopyToClipboard@
-				whichPacF["AppPacletUninstallerURL"][currentApp,
-					"ServerBase"\[Rule]"DropBox"],
-		Delimiter,
-		"OneDrive":>
-			CopyToClipboard@FileNameJoin@{
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"OneDrive"],
-				"paclets",
-				StringJoin@{
-					Insert[
-						Lookup[whichPacF["AppPacletInfo"]@currentApp,{"Name","Version"}],
-						"-",2],
-					".paclet"
-					}
-				},
-		"Site":>
-			CopyToClipboard@
-				AppwhichPacF["PacletSiteURL"][currentApp,
-					"ServerBase"\[Rule]"OneDrive"],
-		"Installer":>
-			CopyToClipboard@
-				whichPacF["AppPacletInstallerURL"][currentApp,
-					"ServerBase"\[Rule]"OneDrive"],
-		"Uninstaller":>
-			CopyToClipboard@
-				whichPacF["AppPacletUninstallerURL"][currentApp,
-					"ServerBase"\[Rule]"v"]
-		}];*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Git*)
 
 
@@ -1786,7 +548,7 @@ gitBranch=
 	];*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*GitHub*)
 
 
@@ -1805,78 +567,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection:: *)
-(*Open*)
-
-
-(*uploadServerOpen=
-	paletteActionMenu["Open Server",{
-		"Primary":>
-			sysOpen@
-				URLBuild@{
-					whichPacF["PacletSiteURL"][
-						"ServerName"\[Rule]Default,
-						"ServerBase"\[Rule]Default
-						],
-					"main.html"
-					},
-		"Google Drive":>
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"GoogleDrive",
-					"ServerName"\[Rule]None
-					],
-		"DropBox":>
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"DropBox",
-					"ServerName"\[Rule]None
-					],
-		"OneDrive":>
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"OneDrive",
-					"ServerName"\[Rule]None
-					]
-		}];
-uploadCurrentOpen=
-	paletteActionMenu["Open App Server",{
-		"Primary"\[RuleDelayed]
-			sysOpen@
-				URLBuild@Append[
-					URLParse@
-						URLBuild@
-							{
-								whichPacF["PacletSiteURL"][
-									"ServerName"\[Rule]Default,
-									"ServerBase"\[Rule]Default
-									],
-								"main.html"
-								},
-					"Fragment"->currentApp
-					],
-		"Google Drive"\[RuleDelayed]
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"GoogleDrive",
-					"ServerName"\[Rule]currentApp
-					],
-		"DropBox"\[RuleDelayed]
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"DropBox",
-					"ServerName"\[Rule]currentApp
-					],
-		"OneDrive":>
-			sysOpen@
-				whichPacF["PacletSiteURL"][
-					"ServerBase"->"OneDrive",
-					"ServerName"\[Rule]currentApp
-					]
-		}];*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Paclet*)
 
 
@@ -1899,6 +590,7 @@ publishApp[]:=
   CreateAttachedInputDialog[
     <|
       "Header"->"Publish App",
+      "State"->Dynamic[publishAppState],
       "Fields"-> <|
         <|
           "ID"->"Settings",
@@ -1914,9 +606,9 @@ publishApp[]:=
             },
           "Default"->{
             If[gitPushFlag=!=False, "GH", Nothing],
-            pushToServerFlag=!=False,
-            updatePacletFlag=!=False,
-            TrueQ[publishServerFlag]
+            If[pushToServerFlag=!=False, "SV", Nothing],
+            If[updatePacletFlag=!=False, "PI", Nothing],
+            If[TrueQ[publishServerFlag], "PS", Nothing]
             }
           |>
         |>,
@@ -1933,7 +625,8 @@ publishApp[]:=
               CreateMessagePopup@
                 Row@{"Publishing", ProgressIndicator[Appearance->"Ellipsis"]};
             r=
-  		      		whichPacF["AppPublish"][
+  		      		AppExecute[
+  		      		  "Publish",
         					currentApp,
         					"PublishServer"->TrueQ[publishServerFlag],
         					"MakeSite"->TrueQ[makeSiteFlag],
@@ -1961,190 +654,51 @@ publishApp[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*CreateRelease*)
 
 
-(*createReleaseButton=
-	paletteButton["Publish Release",
-		paletteDialog[
-			With[{r=
-				whichPacF["AppGit"][
-					"GitHubCreateRelease",
-					currentApp
-					]
-				},
-				Quiet[
-					SystemOpen@r["HTMLURL"]
-					]
-				],
-			"Publishising release"
-			]
-		]*)
+createRelease[]:=
+  Module[{pop, r, url},
+    pop = CreatePopupMessage["Drafting release..."];
+    r = whichPacF["AppGit"]["GitHubCreateRelease", currentApp];
+    NotebookDelete[pop];
+    url = Replace[r["HTMLURL"], URL[s_]:>s];
+    If[StringQ@url,
+      CreatePopupMessage[StringForm["Created release at ``", url]],
+      CreatePopupMessage["Failed to create release"]
+      ];
+    ]
 
 
-(* ::Subsubsection:: *)
-(*Upload*)
-
-
-(*uploadHelpFiles=
-	paletteActionMenu["Upload File",{
-	"Default Server Page":>
-		sysOpen@
-			whichPacF["AppPacletServerPage"][
-				"ServerName"\[Rule]Default,
-				"ServerBase"\[Rule]Default
-				],
-	"Server Page":>
-		sysOpen@
-			whichPacF["AppPacletServerPage"][currentApp],
-	Delimiter,
-	"README":>
-		If[FileExistsQ@whichPacF["AppPath"][currentApp,"README.md"],
-			sysOpen@
-				whichPacF["AppDeployReadme"][currentApp]	
-			],
-	"Images":>
-		If[Length@FileNames["*",whichPacF["AppPath"][currentApp,"project","imgs"]]>0,
-			sysOpen@First@
-				AppDeployImages[currentApp]
-			],
-	"CSS":>
-		If[Length@FileNames["*",whichPacF["AppPath"][currentApp,"project","css"]]>0,
-			sysOpen@First@
-				AppDeployCSS[currentApp]
-			],
-	"HTML":>
-		If[Length@FileNames["*",whichPacF["AppPath"][currentApp,"project","css"]]>0,
-			sysOpen@First@
-				whichPacF["AppDeployHTML"][currentApp]
-			]
-		},
-		Enabled\[Rule]
-			Dynamic[
-				FileExistsQ@whichPacF["AppPath"][currentApp,"README.md"]||
-				Length@FileNames["*",whichPacF["AppPath"][currentApp,"project","imgs"]]>0
-				]
-		];*)
-
-
-(*uploadPaclet=
-	paletteActionMenu["Upload Paclet",{
-		"Upload to Server":>
-			paletteDialog[
-				whichPacF["AppPacletUpload"][
-					currentApp,
-					"ServerBase"\[Rule]Default,
-					"ServerName"\[Rule]Default
-					],
-				"Uploading paclet to default server"
-				],
-		"Upload to Cloud":>
-			paletteDialog[whichPacF["AppPacletUpload"]@currentApp,
-				"Uploading paclet to Wolfram Cloud"
-				],
-		"Upload to Drive":>
-			paletteDialog[
-				whichPacF["AppPacletUpload"][currentApp,
-					"ServerBase"\[Rule]"Google Drive"],
-				"Uploading paclet to Google Drive"
-				],
-		"Upload to DropBox":>
-			paletteDialog[
-				whichPacF["AppPacletUpload"][currentApp,
-					"ServerBase"\[Rule]"DropBox"],
-				"Uploading paclet to DropBox"
-				],
-		"Upload to OneDrive":>
-			paletteDialog[
-				whichPacF["AppPacletUpload"][currentApp,
-					"ServerBase"\[Rule]"OneDrive"],
-				"Uploading paclet to OneDrive"
-				],
-		Delimiter,
-		"Backup to Cloud":>
-			paletteDialog[
-				whichPacF["AppPacletBackup"][currentApp,
-					"Cloud"
-					],
-				"Backing up paclet to Wolfram Cloud"
-				],
-		"Backup to Drive":>
-			paletteDialog[
-				whichPacF["AppPacletBackup"][currentApp,
-					"GoogleDrive"
-					],
-				"Backing up paclet to Google Drive"
-				],
-		"Backup to DropBox":>
-			paletteDialog[
-				whichPacF["AppPacletBackup"][currentApp,
-					"DropBox"
-					],
-				"Backing up paclet to DropBox"
-				],
-		"Backup to OneDrive":>
-			paletteDialog[
-				whichPacF["AppPacletBackup"][currentApp,
-					"OneDrive"
-					],
-				"Backing up paclet to OneDrive"
-				]
-		},
-		Method\[Rule]"Queued"
-		];*)
-
-
-(* ::Subsubsection:: *)
-(*Upload Regen*)
-
-
-(*uploadRegen=
-	paletteActionMenu["Make Config File",
-	{
-		"PacletInfo":>
-			sysOpen@whichPacF["AppRegeneratePacletInfo"]@currentApp,
-		Delimiter,
-		"BundleInfo":>
-			sysOpen@whichPacF["AppRegenerateBundleInfo"]@currentApp,
-		"UploadInfo":>
-			sysOpen@whichPacF["AppRegenerateUploadInfo"]@currentApp
-		}];*)
-
-
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Toolbar*)
 
 
 addAppsToolbar[]:=CreateMessagePopup["Toolbar still in progress! Sorry!"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Exported*)
 
 
 appManagerPluginCommands =
-  { 
-  "Update Dependencies":>
-    updateDeps[],
-  "Regenerate Loader":>
-    (
-      AppExecute["RegenerateLoaderFile", currentApp];
-      CreateMessagePopup["Regenerated loader"]
-      ),
-  "Regenerate Layout":>
-    (
-      AppExecute["RegenerateDirectories", currentApp];
-      CreateMessagePopup["Rebuilt directory structure"]
-      ),
-  "Publish":>
-    publishApp[],
-   "Open Toolbar":>
-     addAppsToolbar[]
-  };
+  {
+    "Publish":>
+      publishApp[],
+    "Create Release":>
+      createRelease[],
+    "Update Dependencies":>
+      updateDeps[],
+     regenActions,
+     "New Package":>
+       newPackage[],
+     "Open Toolbar":>
+       addAppsToolbar[]
+    };
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 

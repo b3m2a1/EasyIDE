@@ -1,1453 +1,1497 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     71541,       1658]
+NotebookOptionsPosition[     63305,       1495]
+NotebookOutlinePosition[     66145,       1570]
+CellTagsIndexPosition[     66102,       1567]
+WindowTitle->EasyIDE: EasyIDE
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["CreateAttachedDialog", "CodeSection",
- Evaluatable->False,ExpressionUUID->"f37fe0e2-77bd-4abd-8df3-35785011122b"],
+Cell["BTools AppManager Plugin", "Section",ExpressionUUID->"8c35b845-111f-472c-98d8-fd09a7001b20"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"AttachedDialogPanel", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"AttachedDialogInputPanel", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateAttachedDialog", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateAttachedInputDialog", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"31ba9ffa-338c-4214-bbd9-31938c47f85b"],
+Cell[BoxData[
+ RowBox[{"BeginPackage", "[", "\"\<`AppManager`\>\"", "]"}]], "Code",Expressio\
+nUUID->"1a0f4058-8480-4c1f-963a-b8cc960793d3"],
 
-Cell[BoxData[{
+Cell[BoxData[
+ RowBox[{"appManagerPluginCommands", ";"}]], "Code",ExpressionUUID->"e6058365-4245-4a3b-b537-70d1a1cff448"],
+
+Cell[BoxData[
+ RowBox[{"EndPackage", "[", "]"}]], "Code",ExpressionUUID->"0ae7eec5-db0a-4824-82b7-794aa927eb81"],
+
+Cell[CellGroupData[{
+
+Cell["Private", "Subsection",ExpressionUUID->"f5d25046-d11d-4573-9b61-56c604739606"],
+
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"CreateWindowedDialog", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}], "\n", 
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",ExpressionU\
+UID->"bfae7633-55fe-49b2-ab3e-f0e5f188fac8"],
+
+Cell[CellGroupData[{
+
+Cell["PreConfig", "Subsubsection",ExpressionUUID->"e354c1f6-d66a-4e12-b3cb-85c1856ee8f8"],
+
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"CreateWindowedInputDialog", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"ea5fff2b-6db4-4661-9c87-2da719030083"],
+  RowBox[{"currentApp", ":=", 
+   RowBox[{"IDEPath", "[", "]"}]}], ";"}]], "Code",ExpressionUUID->"ec628545-\
+cd20-4bff-8ceb-58c3d93e6d81"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"IDECreateDialog", "::", "usage"}], "=", "\"\<\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"ff5a6b7c-1c86-4881-8419-076f5496c2e6"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"09240289-13be-4e24-872f-\
-405a5668f388"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogPanel\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"b08952b7-75d3-4014-9bce-06dc968370ba"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogPanel\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"15ba6b6b-b884-4136-8094-ad3fb79142f1"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogPanel\[RightFloor]", "CodeSubsubsubsection",
- 
- Evaluatable->True,ExpressionUUID->"ec7b0d0e-45e4-474f-83c2-d048590b5464"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"AttachedDialogPanel", "[", "\n", "  ", 
-    RowBox[{"expr_", ",", "\n", "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"Panel", "[", "\n", "    ", 
-    RowBox[{"expr", ",", "\n", "    ", 
-     RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialog\>\""}], ",", "\n", 
-     "    ", "ops"}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"a9d2c6be-298a-45ce-8888-5028000cd50b"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]destroyDialog\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"5320eb4e-0f43-4063-b9df-91e68e4bd020"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"destroyDialog", "[", "]"}], ":=", "\n", "  ", 
-  RowBox[{"Replace", "[", 
-   RowBox[{
-    RowBox[{"CurrentValue", "[", 
-     RowBox[{
-      RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
-      "StyleDefinitions"}], "]"}], ",", "\n", "  ", "  ", 
-    RowBox[{"{", "\n", "  ", "    ", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"FrontEnd`FileName", "[", 
-        RowBox[{"_", ",", " ", 
-         RowBox[{"_String", "?", 
-          RowBox[{"(", 
-           RowBox[{"StringEndsQ", "[", "\"\<-Dialog.nb\>\"", "]"}], ")"}]}], 
-         ",", " ", "___"}], "]"}], ":>", "\n", "  ", "      ", 
-       RowBox[{"NotebookClose", "[", 
-        RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], ",", "\n", "  ", 
-      "    ", 
-      RowBox[{"_", ":>", 
-       RowBox[{"NotebookDelete", "[", 
-        RowBox[{"EvaluationCell", "[", "]"}], "]"}]}]}], "\n", "  ", "    ", 
-     "}"}]}], "\n", "  ", "  ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"eb95a6ce-1d47-44f2-b431-4aa8f718df23"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]prepSubmitButton\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"c644de2c-c5d3-4008-83f4-c39cb598e439"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"prepSubmitButton", "[", 
-    RowBox[{"{", 
-     RowBox[{"label_", ",", " ", "action_", ",", " ", "ops___"}], "}"}], 
-    "]"}], ":=", "\n", "  ", 
-   RowBox[{"Button", "[", 
+   RowBox[{"undefF", "[", 
+    RowBox[{"s_", ",", " ", 
+     RowBox[{"h_:", "Identity"}], ",", " ", 
+     RowBox[{"c_:", "\"\<*\>\""}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"Replace", "[", "\n", "\t\t", 
     RowBox[{
-    "label", ",", " ", "action", ",", "\n", "    ", "ops", ",", "\n", "    ", 
-     
-     RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialogDefaultButton\>\""}], 
-     ",", "\n", "    ", 
-     RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", "\n", "    ", 
-     RowBox[{"Evaluator", "\[Rule]", "Inherited"}], ",", "\n", "    ", 
-     RowBox[{"Method", "\[Rule]", "Inherited"}]}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"86fd918d-12cf-4183-860c-cb23f8d1b658"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]prepCancelButton\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"924876e1-1c13-4f28-8c36-fd5625795e18"],
+     RowBox[{"Join", "[", 
+      RowBox[{
+       RowBox[{"Names", "[", 
+        RowBox[{"c", "<>", "\"\<`\>\"", "<>", "s"}], "]"}], ",", " ", 
+       RowBox[{"Names", "[", 
+        RowBox[{"c", "<>", "\"\<`*`\>\"", "<>", "s"}], "]"}], ",", 
+       RowBox[{"Names", "[", 
+        RowBox[{"c", "<>", "\"\<`*`*`\>\"", "<>", "s"}], "]"}]}], "]"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"f", ":", 
+       RowBox[{"{", "___", "}"}]}], ":>", "\n", "\t\t\t", 
+      RowBox[{"ToExpression", "[", "\n", "\t\t\t\t", 
+       RowBox[{
+        RowBox[{"SelectFirst", "[", 
+         RowBox[{"f", ",", " ", "\n", "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"ToExpression", "[", 
+            RowBox[{
+            "#", ",", " ", "StandardForm", ",", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"Function", "[", 
+              RowBox[{"Null", ",", "\n", "\t\t\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{"Length", "@", 
+                 RowBox[{"Join", "[", "\n", "\t\t\t\t\t\t\t\t", 
+                  RowBox[{
+                   RowBox[{"OwnValues", "[", "#", "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"DownValues", "[", "#", "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"UpValues", "[", "#", "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"SubValues", "[", "#", "]"}]}], "\n", 
+                  "\t\t\t\t\t\t\t\t", "]"}]}], ">", "0"}], ",", "\n", 
+               "\t\t\t\t\t\t\t", "HoldAllComplete"}], "\n", "\t\t\t\t\t\t\t", 
+              "]"}]}], "\n", "\t\t\t\t\t\t", "]"}], "&"}], ",", "\n", 
+          "\t\t\t\t\t", 
+          RowBox[{"f", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "\n", "\t\t\t\t\t", "]"}], ",", 
+        "\n", "\t\t\t\t", "StandardForm", ",", "\n", "\t\t\t\t", "h"}], "\n", 
+       "\t\t\t\t", "]"}]}]}], "\n", "\t\t", "]"}]}], ";"}]], "Code",Expression\
+UUID->"2c843a76-6a84-4f24-b887-4a1873b42e3b"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"prepCancelButton", "[", 
-   RowBox[{"{", 
-    RowBox[{"label_", ",", " ", "action_", ",", " ", "ops___"}], "}"}], "]"}],
-   ":=", "\n", "  ", 
+  RowBox[{
+   RowBox[{"whichPacF", "[", 
+    RowBox[{"s_", ",", " ", 
+     RowBox[{"h_:", "Identity"}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"ToExpression", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Names", "[", 
+       RowBox[{"\"\<EasyIDE`Dependencies`BTools`*\>\"", "<>", "s"}], "]"}], 
+      "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "    ", "StandardForm", ",", 
+     "\n", "    ", "h"}], "\n", "    ", "]"}]}], ";"}]], "Code",ExpressionUUID\
+->"9fda0e6e-3511-4440-85e1-b4f20635dbd2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"openerSelector", "//", "ClearAll"}], ";"}]], "Code",ExpressionUUID-\
+>"40e11cf4-9d40-477d-91d2-62616940e959"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"openerSelector", "[", 
+   RowBox[{"label_", ",", " ", 
+    RowBox[{"Hold", "[", "listingFunction_", "]"}], ",", " ", 
+    RowBox[{"Hold", "[", "counter_", "]"}]}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"flag", ",", " ", "listing"}], "}"}], ",", "\n", "\t\t", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"gather", "=", "fileNamesGather"}], ",", " ", 
+        RowBox[{"format", "=", "formatFilePaths"}]}], "}"}], ",", "\n", 
+      "\t\t\t\t", 
+      RowBox[{"EventHandler", "[", "\n", "\t\t\t\t\t", 
+       RowBox[{
+        RowBox[{"dynamicActionMenu", "[", 
+         RowBox[{"label", ",", "\n", "\t\t\t\t\t\t", 
+          RowBox[{
+          "flag", ";", "\n", "\t\t\t\t\t\t", "currentApp", ";", "\n", 
+           "\t\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ListQ", "@", "listing"}], "&&", 
+               RowBox[{
+                RowBox[{"listing", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], "==", "currentApp"}]}], ",", 
+              "\n", "\t\t\t\t\t\t\t", "listing", ",", "\n", "\t\t\t\t\t\t\t", 
+              
+              RowBox[{"listing", "=", 
+               RowBox[{"{", 
+                RowBox[{"currentApp", ",", " ", "listingFunction"}], 
+                "}"}]}]}], "\n", "\t\t\t\t\t\t\t", "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], ",", "\n", "\t\t\t\t\t\t", 
+          RowBox[{"Enabled", "->", "\n", "\t\t\t\t\t\t\t", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Length", "@", "\n", "\t\t\t\t\t\t\t\t", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"ListQ", "@", "listing"}], "&&", 
+                 RowBox[{
+                  RowBox[{"listing", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], "==", "currentApp"}]}], 
+                ",", "\n", "\t\t\t\t\t\t\t\t\t", 
+                RowBox[{"listing", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}], ",", "\n", 
+                "\t\t\t\t\t\t\t\t\t", "counter"}], "\n", "\t\t\t\t\t\t\t\t\t",
+                "]"}]}], ">", "0"}], ")"}]}], ",", "\n", "\t\t\t\t\t", 
+          RowBox[{"TrackedSymbols", ":>", 
+           RowBox[{"{", 
+            RowBox[{"flag", ",", " ", "currentApp"}], "}"}]}]}], "\n", 
+         "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
+        RowBox[{"{", "\n", "\t\t\t\t\t", 
+         RowBox[{
+          RowBox[{"\"\<MouseDown\>\"", ":>", 
+           RowBox[{"(", 
+            RowBox[{"flag", "=", 
+             RowBox[{"RandomReal", "[", "]"}]}], ")"}]}], ",", "\n", 
+          "\t\t\t\t\t", 
+          RowBox[{"PassEventsDown", "->", "True"}]}], "\n", "\t\t\t\t\t", 
+         "}"}]}], "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", 
+   "\t", "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"openerSelector", "[", 
+   RowBox[{"label_", ",", " ", "types_", ",", " ", "path_String", ",", " ", 
+    RowBox[{"depth_:", "4"}]}], "]"}], ":=", "\n", "\t", 
   RowBox[{"With", "[", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"act", "=", "\n", "    ", 
-      RowBox[{"If", "[", 
-       RowBox[{
-        RowBox[{"action", "===", "Automatic"}], ",", " ", "\n", "      ", 
-        RowBox[{
-         RowBox[{"destroyDialog", "[", "]"}], "&"}], ",", "\n", "      ", 
-        "action"}], "\n", "      ", "]"}]}], "}"}], ",", "\n", "    ", 
-    RowBox[{"Button", "[", 
      RowBox[{
-     "label", ",", " ", "\n", "      ", "act", ",", "\n", "      ", "ops", 
-      ",", "\n", "      ", 
-      RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialogCancelButton\>\""}], 
-      ",", "\n", "  ", "    ", 
-      RowBox[{"Appearance", "\[Rule]", "Inherited"}], ",", "\n", "  ", "    ", 
-      RowBox[{"Evaluator", "\[Rule]", "Inherited"}], ",", "\n", "  ", "    ", 
-      
-      RowBox[{"Method", "\[Rule]", "Inherited"}]}], "\n", "      ", "]"}]}], 
-   "\n", "    ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"29ca9e38-1cee-4197-851b-6aa84aef3a5a"]
+      RowBox[{"gather", "=", "fileNamesGather"}], ",", " ", 
+      RowBox[{"format", "=", "formatFilePaths"}]}], "}"}], ",", "\n", "\t\t", 
+    
+    RowBox[{"openerSelector", "[", 
+     RowBox[{"label", ",", "\n", "\t\t\t", 
+      RowBox[{"Hold", "[", "\n", "\t\t\t\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"DirectoryQ", "@", 
+          RowBox[{
+           RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+           RowBox[{"currentApp", ",", " ", "path"}], "]"}]}], ",", "\n", 
+         "\t\t\t\t\t\t", 
+         RowBox[{"format", "@", "\n", "\t\t\t\t\t\t\t", 
+          RowBox[{"gather", "[", 
+           RowBox[{"types", ",", " ", "path"}], "]"}]}], ",", "\n", 
+         "\t\t\t\t\t\t", 
+         RowBox[{"{", "}"}]}], "\n", "\t\t\t\t\t\t", "]"}], "\n", "\t\t\t\t", 
+       "]"}], ",", "\n", "\t\t\t", 
+      RowBox[{"Hold", "[", "\n", "\t\t\t\t", 
+       RowBox[{"FileNames", "[", "\n", "\t\t\t\t\t", 
+        RowBox[{"types", ",", "\n", "\t\t\t\t\t", 
+         RowBox[{
+          RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+          RowBox[{"currentApp", ",", " ", "path"}], "]"}], ",", "\n", 
+         "\t\t\t\t\t", "depth"}], "\n", "\t\t\t\t\t", "]"}], "\n", "\t\t\t\t",
+        "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}]}], "Code",Expr\
+essionUUID->"c2c547a2-9a31-4eeb-8322-d33a644b64b5"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]iAttachedDialogPanel\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"a182d532-558e-4209-928f-f74c54b16f85"],
+Cell["Formatting Objects", "Subsubsection",ExpressionUUID->"0f4916c8-cc72-4f21-9785-7e216d3ddb13"],
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$paletteWidth", "=", "200"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$paletteContentWidth", "=", "200"}], ";"}]}], "Code",ExpressionUUID\
+->"cb1299ce-ebe7-4b93-8f64-0e8ceb635583"],
+
+Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"iAttachedDialogPanel", "[", "\n", "  ", 
-    RowBox[{"header_", ",", "\n", "  ", "expr_", ",", "\n", "  ", 
-     RowBox[{"submitButton", ":", 
-      RowBox[{"{", 
-       RowBox[{"_", ",", " ", 
-        RowBox[{"_Function", "|", "None"}], ",", " ", "___"}], "}"}], ":", 
-      RowBox[{"{", 
-       RowBox[{"\"\<OK\>\"", ",", " ", "None"}], "}"}]}], ",", "\n", "  ", 
-     RowBox[{"closingButton", ":", 
-      RowBox[{"{", 
-       RowBox[{"_", ",", " ", 
-        RowBox[{"_Function", "|", "Automatic"}], ",", " ", "___"}], "}"}], 
-      ":", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Cancel\>\"", ",", " ", "Automatic"}], "}"}]}], ",", "\n", 
-     "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"AttachedDialogPanel", "[", "\n", "    ", 
+   RowBox[{"paletteButton", "[", 
+    RowBox[{"lbl_", ",", "cmd_", ",", "ops___"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"With", "[", "\n", "\t\t", 
     RowBox[{
-     RowBox[{"Grid", "[", "\n", "      ", 
+     RowBox[{"{", "\n", "\t\t\t", 
       RowBox[{
-       RowBox[{"{", "\n", "        ", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"Panel", "[", 
+       RowBox[{"uuid", "=", 
+        RowBox[{"CreateUUID", "[", "]"}]}], ",", "\n", "\t\t\t", 
+       RowBox[{"nab", "=", 
+        RowBox[{"Lookup", "[", 
+         RowBox[{
+          RowBox[{"{", "ops", "}"}], ",", " ", "Enabled", ",", " ", "True"}], 
+         "]"}]}]}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"GradientButton", "[", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"Replace", "[", 
+         RowBox[{"nab", ",", "\n", "\t\t\t\t", 
+          RowBox[{"{", "\n", "\t\t\t\t\t", 
            RowBox[{
-            RowBox[{"Pane", "[", "header", "]"}], ",", " ", 
             RowBox[{
-            "BaseStyle", "\[Rule]", "\"\<AttachedDialogHeader\>\""}]}], "]"}],
-           "}"}], ",", "\n", "        ", 
-         RowBox[{"{", 
-          RowBox[{"Panel", "[", 
-           RowBox[{"expr", ",", " ", 
-            RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialogBody\>\""}]}], 
-           "]"}], "}"}], ",", "\n", "        ", 
-         RowBox[{"{", "\n", "          ", 
-          RowBox[{"Panel", "[", "\n", "            ", 
-           RowBox[{
-            RowBox[{"Grid", "[", "\n", "  ", "            ", 
              RowBox[{
-              RowBox[{"{", "\n", "  ", "              ", 
-               RowBox[{"{", "\n", "  ", "                ", 
+              RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", 
+              RowBox[{"d_", ",", "e___"}], "]"}], ":>", "\n", "\t\t\t\t\t\t", 
+             
+             RowBox[{"Dynamic", "[", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"If", "[", 
                 RowBox[{
-                 RowBox[{"prepSubmitButton", "@", "submitButton"}], ",", " ", 
-                 "\n", "  ", "                ", 
-                 RowBox[{"prepCancelButton", "@", "closingButton"}]}], "\n", 
-                "  ", "                ", "}"}], "\n", "  ", "              ",
-                "}"}], ",", "\n", "  ", "            ", 
-              RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], "\n", 
-             "  ", "            ", "]"}], ",", " ", "\n", "  ", "          ", 
-            
-            RowBox[{
-            "BaseStyle", "\[Rule]", "\"\<AttachedDialogButtons\>\""}]}], "\n",
-            "            ", "]"}], "\n", "          ", "}"}]}], "\n", 
-        "        ", "}"}], ",", "\n", "      ", 
-       RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], "\n", "      ", 
-      "]"}], ",", "\n", "    ", "ops"}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"aa700c4b-f459-48b0-afc5-7e06f1a8b14a"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogPanel\[RightFloor]", "CodeSubsubsubsection",
- 
- Evaluatable->True,ExpressionUUID->"76fa7bd7-9865-4d43-baf7-21f245bc06fa"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"AttachedDialogPanel", "[", "\n", "  ", 
-   RowBox[{"a_Association", ",", "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  "  ", 
-  RowBox[{"iAttachedDialogPanel", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"Lookup", "[", 
-     RowBox[{"a", ",", " ", "\"\<Header\>\"", ",", " ", "\"\<\>\""}], "]"}], 
-    ",", "\n", "    ", 
-    RowBox[{"Lookup", "[", 
-     RowBox[{"a", ",", " ", "\"\<Body\>\""}], "]"}], ",", "\n", "    ", 
-    RowBox[{"Lookup", "[", 
-     RowBox[{
-     "a", ",", " ", "\"\<SubmitButton\>\"", ",", " ", "\n", "      ", 
-      RowBox[{"Flatten", "@", 
-       RowBox[{"{", "\n", "        ", 
-        RowBox[{"\"\<OK\>\"", ",", "\n", "        ", 
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<SubmitAction\>\"", ",", " ", "None"}], 
-          "]"}]}], "\n", "        ", "}"}]}]}], "\n", "      ", "]"}], ",", 
-    "\n", "    ", 
-    RowBox[{"Lookup", "[", 
-     RowBox[{
-     "a", ",", " ", "\"\<CancelButton\>\"", ",", " ", "\n", "      ", 
-      RowBox[{"Flatten", "@", 
-       RowBox[{"{", "\n", "        ", 
-        RowBox[{"\"\<Cancel\>\"", ",", "\n", "        ", 
-         RowBox[{"Lookup", "[", 
+                 RowBox[{"d", "===", "False"}], ",", " ", "\n", 
+                 "\t\t\t\t\t\t\t\t", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{"lbl", ",", " ", 
+                   RowBox[{"GrayLevel", "[", ".5", "]"}]}], "]"}], ",", "\n", 
+                 "\t\t\t\t\t\t\t\t", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{"lbl", ",", " ", 
+                   RowBox[{"GrayLevel", "[", ".2", "]"}]}], "]"}]}], "\n", 
+                "\t\t\t\t\t\t\t\t", "]"}], ",", " ", "\n", "\t\t\t\t\t\t\t", 
+               "e"}], "\n", "\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
+            "\t\t\t\t\t", 
+            RowBox[{"False", "->", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"Style", "[", 
+              RowBox[{"lbl", ",", " ", 
+               RowBox[{"GrayLevel", "[", ".5", "]"}]}], "]"}]}], ",", "\n", 
+            "\t\t\t\t\t", 
+            RowBox[{"_", "->", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"Style", "[", 
+              RowBox[{"lbl", ",", " ", 
+               RowBox[{"GrayLevel", "[", ".2", "]"}]}], "]"}]}]}], "\n", 
+           "\t\t\t\t\t", "}"}]}], "\n", "\t\t\t\t", "]"}], ",", "\n", 
+        "\t\t\t", 
+        RowBox[{
+         RowBox[{"Block", "[", 
           RowBox[{
-          "a", ",", " ", "\"\<CancelAction\>\"", ",", " ", "Automatic"}], 
-          "]"}]}], "\n", "        ", "}"}]}]}], "\n", "      ", "]"}], ",", 
-    "\n", "    ", "ops"}], "\n", "    ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"d8f67270-ec05-44a4-a668-3e1dea85426e"]
-}, Closed]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", \
-"CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"80da8d3b-6973-466e-b80e-c62951329098"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]normalizeInputField\[RightFloor]", "CodeSubsubsubsection",
- 
- Evaluatable->True,ExpressionUUID->"9c8c207f-31d9-451a-8dbb-0aacf68a8ccc"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"normalizeInputField", "[", "a_Association", "]"}], ":=", "\n", 
-   "  ", 
-   RowBox[{"Module", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"{", "\n", "      ", 
-      RowBox[{
-      "fid", ",", "\n", "      ", "fname", ",", "\n", "      ", 
-       "fieldDescription", ",", "\n", "      ", "default", ",", "\n", 
-       "      ", "fspec", ",", "\n", "      ", "ops"}], "\n", "      ", "}"}],
-      ",", "\n", "    ", 
-     RowBox[{
-      RowBox[{"fid", " ", "=", " ", "\n", "      ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<ID\>\"", ",", "\n", "        ", 
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<Name\>\"", ",", " ", 
-           RowBox[{"CreateUUID", "[", "]"}]}], "]"}]}], "\n", "        ", 
-        "]"}]}], ";", "\n", "    ", 
-      RowBox[{"fname", " ", "=", " ", "\n", "      ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<Name\>\"", ",", " ", "fid"}], "]"}]}], 
-      ";", "\n", "    ", 
-      RowBox[{"fieldDescription", " ", "=", " ", "\n", "      ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<Description\>\"", ",", " ", "None"}], 
-        "]"}]}], ";", "\n", "    ", 
-      RowBox[{"default", " ", "=", "\n", "      ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<Default\>\"", ",", " ", "\"\<\>\""}], 
-        "]"}]}], ";", "\n", "    ", 
-      RowBox[{"fspec", " ", "=", " ", "\n", "      ", 
-       RowBox[{"Replace", "[", 
-        RowBox[{
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<Type\>\"", ",", " ", "InputField"}], 
-          "]"}], ",", "\n", "       ", 
-         RowBox[{"{", "\n", "         ", 
+           RowBox[{"{", 
+            RowBox[{"$ContextPath", "=", 
+             RowBox[{"{", "\"\<System`\>\"", "}"}]}], "}"}], ",", " ", 
+           RowBox[{"Needs", "[", 
+            RowBox[{"$appName", "<>", "\"\<`\>\""}], "]"}]}], "]"}], ";", 
+         "\n", "\t\t\t", "cmd"}], ",", "\n", "\t\t\t", "ops", ",", "\n", 
+        "\t\t\t", 
+        RowBox[{"Method", "->", "\"\<Queued\>\""}], ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<UUID\>\"", "->", "Automatic"}], ",", "\n", "\t\t\t", 
+        RowBox[{"FrameMargins", "->", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{"InputField", "->", 
-            RowBox[{"{", 
-             RowBox[{"InputField", ",", " ", "String"}], "}"}]}], ",", "\n", 
-           "         ", 
-           RowBox[{"e_", "\[RuleDelayed]", 
-            RowBox[{"Flatten", "[", 
-             RowBox[{
-              RowBox[{"{", "e", "}"}], ",", " ", "1"}], "]"}]}]}], "\n", 
-          "         ", "}"}]}], "\n", "       ", "]"}]}], ";", "\n", "    ", 
-      RowBox[{"ops", " ", "=", "\n", "      ", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<Options\>\"", ",", " ", 
-         RowBox[{"{", "}"}]}], "]"}]}], ";", "\n", "    ", 
-      RowBox[{"<|", "\n", "      ", 
-       RowBox[{
-        RowBox[{"\"\<ID\>\"", "\[Rule]", "fid"}], ",", "\n", "      ", 
-        RowBox[{"\"\<Name\>\"", "\[Rule]", "fname"}], ",", "\n", "      ", 
-        RowBox[{"\"\<Type\>\"", "->", "fspec"}], ",", "\n", "      ", 
-        RowBox[{"\"\<Description\>\"", "\[Rule]", "fieldDescription"}], ",", 
-        "\n", "      ", 
-        RowBox[{"\"\<Default\>\"", "\[Rule]", "default"}], ",", "\n", 
-        "      ", 
-        RowBox[{"\"\<Options\>\"", "\[Rule]", "ops"}]}], "\n", "      ", 
-       "|>"}]}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+           RowBox[{"{", 
+            RowBox[{"5", ",", "5"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "\t\t\t", 
+        RowBox[{"ImageSize", "->", "$paletteContentWidth"}], ",", "\n", 
+        "\t\t\t", 
+        RowBox[{"Appearance", "->", "\"\<Palette\>\""}]}], "\n", "\t\t\t", 
+       "]"}], "/.", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{"a___", ",", "\n", "\t\t\t\t", 
+         RowBox[{"Appearance", "->", 
+          RowBox[{"{", "app__Rule", "}"}]}], ",", "\n", "\t\t\t\t", "b___"}], 
+        "]"}], ":>", "\n", "\t\t\t\t", 
+       RowBox[{"Button", "[", 
+        RowBox[{"a", ",", "\n", "\t\t\t\t\t", 
+         RowBox[{"Appearance", "->", 
+          RowBox[{"{", "\n", "\t\t\t\t\t\t", 
+           RowBox[{"app", ",", "\n", "\t\t\t\t\t\t", 
+            RowBox[{"Dynamic", "@", "\n", "\t\t\t\t\t\t\t", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"TrueQ", "@", 
+                RowBox[{"paletteButtonRunning", "[", "uuid", "]"}]}], ",", 
+               "\n", "\t\t\t\t\t\t\t\t", "\"\<Pressed\>\"", ",", "\n", 
+               "\t\t\t\t\t\t\t\t", "Automatic"}], "\n", "\t\t\t\t\t\t\t\t", 
+              "]"}]}]}], "}"}]}], ",", "\n", "\t\t\t\t\t", "b"}], "]"}]}]}]}],
+     "\n", "\t\t\t", "]"}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"normalizeInputField", "[", "e_", "]"}], ":=", "\n", "  ", 
-  "e"}]}], "CodeInput",ExpressionUUID->"9fe69a72-e643-4c92-ac4b-aa2e4afe9907"]\
-
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFieldControl\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"9daaf6c5-2f31-4f75-9a78-c321a6f6d75b"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"createInputFieldControl", "[", 
-    RowBox[{
-     RowBox[{"Dynamic", "[", "var_", "]"}], ",", " ", "\n", "  ", "fieldID_", 
-     ",", " ", 
-     RowBox[{"{", 
-      RowBox[{"argType_", ",", " ", "ifo___"}], "}"}], ",", " ", "ops___"}], 
-    "\n", "  ", "]"}], ":=", "\n", "  ", 
-   RowBox[{"argType", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"Dynamic", "[", 
-      RowBox[{"var", "[", "fieldID", "]"}], "]"}], ",", "\n", "\t \t", "ifo", 
-     ",", "\n", "\t \t", "ops", ",", "\n", "\t \t", 
-     RowBox[{"BoxID", "\[Rule]", "fieldID"}]}], "\n", "\t \t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"1805aff8-d93d-4ce1-98b9-48483eb650ab"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFieldElementName\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"be04c804-5a13-4ed2-a83c-caffdf8414c1"],
+  RowBox[{"paletteButton", "~", "SetAttributes", "~", "HoldRest"}], 
+  ";"}]}], "Code",ExpressionUUID->"faf0fc6d-08a5-42a6-a3c8-a36be0e94317"],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"createInputFieldElementName", "[", "None", "]"}], ":=", "\n", 
-   "  ", "Nothing"}], ";"}], "\n", 
+  RowBox[{"paletteDialog", "//", "ClearAll"}], ";"}], "\n", 
  RowBox[{
   RowBox[{
-   RowBox[{"createInputFieldElementName", "[", "fieldName_", "]"}], ":=", 
-   "\n", "  ", 
-   RowBox[{"Item", "[", 
-    RowBox[{
-     RowBox[{"Row", "@", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Spacer", "[", "15", "]"}], ",", " ", "fieldName", ",", " ", 
-        "\"\<:\>\""}], "}"}]}], ",", " ", "\n", "    ", 
-     RowBox[{"Alignment", "\[Rule]", "Right"}]}], "\n", "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"a0a4c219-aa1e-41f2-af79-17ede58c206a"]\
-
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFieldElementDescription\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"ad132b5c-bec3-4da8-a4c7-8934798ebc40"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{
-   "createInputFieldElementDescription", "[", "fieldDescription_", "]"}], ":=",
-    "\n", "  ", "fieldDescription"}], 
-  ";"}]], "CodeInput",ExpressionUUID->"d1efadd5-c521-4bbd-be83-f90bdc347952"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFieldElement\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"bb136ebe-0691-4417-8a30-57aa712063ce"],
-
-Cell[BoxData[
- RowBox[{"createInputFieldElement", "//", 
-  "Clear"}]], \
-"CodeInput",ExpressionUUID->"c7ce80a6-5441-488c-afb9-1ebced701f63"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"createInputFieldElement", "[", "\n", "  ", 
-   RowBox[{
-    RowBox[{"Dynamic", "[", "var_", "]"}], ",", "\n", "  ", "fieldID_", ",", 
-    " ", "\n", "  ", "fieldName_", ",", "\n", "  ", "fieldType_", ",", "\n", 
-    "  ", "fieldDescription_", ",", "\n", "  ", "default_", ",", "\n", "  ", 
-    "ops___"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
-  RowBox[{"{", "\n", "    ", 
-   RowBox[{
-    RowBox[{"{", "\n", "      ", 
-     RowBox[{
-      RowBox[{"createInputFieldElementName", "[", "fieldName", "]"}], ",", 
-      "\n", "      ", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"var", "[", "fieldID", "]"}], "=", "default"}], ";", "\n", 
-       "      ", 
-       RowBox[{"createInputFieldControl", "[", 
-        RowBox[{
-         RowBox[{"Dynamic", "[", "var", "]"}], ",", " ", "fieldID", ",", " ", 
-         "fieldType", ",", " ", "ops"}], "]"}]}]}], "\n", "     ", "}"}], ",",
-     "\n", "   ", 
-    RowBox[{"If", "[", 
-     RowBox[{
-      RowBox[{"fieldDescription", "=!=", "None"}], ",", "\n", "     ", 
-      RowBox[{"{", 
-       RowBox[{"\"\<\>\"", ",", " ", 
-        RowBox[{
-        "createInputFieldElementDescription", "@", "fieldDescription"}]}], 
-       "}"}], ",", "\n", "     ", "Nothing"}], "\n", "     ", "]"}]}], "\n", 
-   "   ", "}"}]}]], \
-"CodeInput",ExpressionUUID->"5df6edba-feec-462e-a1a3-7380b041ffac"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"createInputFieldElement", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"d", ":", 
-      RowBox[{
-       RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "var_", "]"}]}], ",", 
-     "\n", "  ", 
-     RowBox[{"e", ":", 
-      RowBox[{"Except", "[", 
-       RowBox[{"_Association", "|", "_List"}], "]"}]}]}], "\n", "  ", "]"}], ":=",
-    "\n", "  ", 
-   RowBox[{"{", "\n", "    ", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"Pane", "[", 
-       RowBox[{"e", ",", " ", 
-        RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialog\>\""}]}], "]"}], 
-      ",", " ", "SpanFromLeft"}], "}"}], "\n", "    ", "}"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"createInputFieldElement", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"d", ":", 
-      RowBox[{
-       RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "var_", "]"}]}], ",", 
-     "\n", "  ", "l_List"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
-   RowBox[{"Map", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Pane", "[", 
-       RowBox[{"#", ",", " ", 
-        RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialog\>\""}]}], "]"}], 
-      "&"}], ",", "\n", "    ", "l", ",", "\n", "    ", 
-     RowBox[{"{", "2", "}"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"createInputFieldElement", "[", "\n", "  ", 
-   RowBox[{
-    RowBox[{"d", ":", 
-     RowBox[{
-      RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", "var_", "]"}]}], ",", 
-    "\n", "  ", "a_Association"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
-  RowBox[{"Module", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"{", "\n", "      ", "f", "\n", "      ", "}"}], ",", "\n", 
-    "    ", 
-    RowBox[{"createInputFieldElement", "[", "\n", "      ", 
-     RowBox[{"d", ",", "\n", "      ", 
-      RowBox[{"Lookup", "[", 
-       RowBox[{"a", ",", " ", "\"\<ID\>\""}], "]"}], ",", "\n", "      ", 
-      RowBox[{"Lookup", "[", 
-       RowBox[{"a", ",", " ", "\"\<Name\>\""}], "]"}], ",", "\n", "      ", 
-      RowBox[{"Lookup", "[", 
-       RowBox[{"a", ",", " ", "\"\<Type\>\""}], "]"}], ",", "\n", "      ", 
-      RowBox[{"Lookup", "[", 
-       RowBox[{"a", ",", " ", "\"\<Description\>\""}], "]"}], ",", "\n", 
-      "      ", 
-      RowBox[{"Lookup", "[", 
-       RowBox[{"a", ",", " ", "\"\<Default\>\""}], "]"}], ",", "\n", "      ", 
-      RowBox[{"Sequence", "@@", 
-       RowBox[{"Flatten", "@", 
-        RowBox[{"{", 
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<Options\>\""}], "]"}], "}"}]}]}]}], 
-     "\n", "      ", "]"}]}], "\n", "    ", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"2718284e-9229-41ed-b047-b6c4837867a9"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFields\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"4a1c984d-4beb-4fec-b3d0-d63a086bfb7c"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"createInputFields", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"Dynamic", "[", "var_", "]"}], ",", "\n", "  ", "specs_"}], "\n",
-     "  ", "]"}], ":=", "\n", "  ", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"createInputFieldElement", "[", 
-      RowBox[{
-       RowBox[{"Dynamic", "[", "var", "]"}], ",", " ", "#"}], "]"}], "&"}], "/@",
-     "specs"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"babc79b6-d04e-4cfb-9f2a-a5417d0aeaa1"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createInputFieldDialog\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"4e87ca0c-6ec8-4560-8a6b-0be2447daf03"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"createInputFieldDialog", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"Dynamic", "[", "var_", "]"}], ",", "\n", "  ", "fields_"}], 
-    "\n", "  ", "]"}], ":=", "\n", "  ", 
-   RowBox[{"Grid", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"Join", "@@", 
-      RowBox[{"createInputFields", "[", 
-       RowBox[{
-        RowBox[{"Dynamic", "[", "var", "]"}], ",", " ", "fields"}], "]"}]}], 
-     ",", "\n", "    ", 
-     RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}], ",", "\n", "    ", 
-     RowBox[{"BaseStyle", "\[Rule]", "\"\<AttachedDialogInput\>\""}]}], "\n", 
-    "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"08356827-5ab0-4766-8a9e-9045c32fa55d"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]prepState\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"e4b8f7d8-2609-47e6-be04-70f69087c33a"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"prepState", "[", 
-    RowBox[{"s_", ",", " ", "ids_", ",", " ", "remove_"}], "]"}], ":=", "\n", 
-   "  ", 
+   RowBox[{"paletteDialog", "[", 
+    RowBox[{"expr_", ",", "msg_", ",", "ops___"}], "]"}], ":=", "\n", "\t", 
    RowBox[{"With", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"a", "=", 
-       RowBox[{"AssociationMap", "[", 
-        RowBox[{"s", ",", " ", "ids"}], "]"}]}], "}"}], ",", "\n", "    ", 
-     RowBox[{
-      RowBox[{"If", "[", 
-       RowBox[{"remove", ",", " ", 
-        RowBox[{"remove", "[", "s", "]"}]}], "]"}], ";", "\n", "    ", 
-      "a"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
- RowBox[{"prepState", "~", "SetAttributes", "~", 
-  "HoldFirst"}]}], \
-"CodeInput",ExpressionUUID->"80dd334b-8189-4c55-b49c-11da7ee86fa3"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]attachedDialogInputSpec\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"e618ce06-81bb-4925-adc6-f9239003a674"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-  "attachedDialogInputSpec", "[", "\n", "  ", "a_Association", "\n", "  ", 
-   "]"}], ":=", "\n", "  ", 
-  RowBox[{"Module", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"{", "\n", "      ", 
-     RowBox[{
-      RowBox[{"s", "=", 
-       RowBox[{"Lookup", "[", 
-        RowBox[{"a", ",", " ", "\"\<State\>\"", ",", " ", 
-         RowBox[{"Module", "[", 
-          RowBox[{
-           RowBox[{"{", "state", "}"}], ",", " ", 
-           RowBox[{"Dynamic", "[", "state", "]"}]}], "]"}]}], "]"}]}], ",", 
-      "\n", "      ", 
-      RowBox[{"fields", " ", "=", " ", 
-       RowBox[{"normalizeInputField", "/@", 
-        RowBox[{"Flatten", "@", 
-         RowBox[{"List", "@", 
-          RowBox[{"Lookup", "[", 
-           RowBox[{"a", ",", " ", "\"\<Fields\>\"", ",", " ", 
-            RowBox[{"{", "}"}]}], "]"}]}]}]}]}]}], "\n", "      ", "}"}], ",",
-     "\n", "    ", 
-    RowBox[{"With", "[", "\n", "      ", 
-     RowBox[{
-      RowBox[{"{", "\n", "        ", 
-       RowBox[{
-        RowBox[{"ids", " ", "=", " ", 
-         RowBox[{"Cases", "[", 
-          RowBox[{"fields", ",", " ", 
-           RowBox[{"f_Association", "\[RuleDelayed]", 
-            RowBox[{"f", "[", "\"\<ID\>\"", "]"}]}]}], "]"}]}], ",", "\n", 
-        "        ", 
-        RowBox[{"remove", " ", "=", " ", 
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<ClearState\>\"", ",", " ", 
-           RowBox[{"Replace", "[", 
-            RowBox[{
-             RowBox[{"Lookup", "[", 
-              RowBox[{"a", ",", " ", "\"\<State\>\"", ",", " ", "True"}], 
-              "]"}], ",", " ", 
-             RowBox[{"_Dynamic", "\[RuleDelayed]", "False"}]}], "]"}]}], 
-          "]"}]}], ",", "\n", "        ", 
-        RowBox[{"submit", " ", "=", " ", 
-         RowBox[{"Flatten", "@", 
-          RowBox[{"List", "@", 
-           RowBox[{"Lookup", "[", 
-            RowBox[{"a", ",", " ", "\"\<SubmitAction\>\"", ",", " ", "None"}],
-             "]"}]}]}]}], ",", "\n", "        ", 
-        RowBox[{"cancel", " ", "=", " ", 
-         RowBox[{"Flatten", "@", 
-          RowBox[{"List", "@", 
-           RowBox[{"Lookup", "[", 
-            RowBox[{"a", ",", " ", "\"\<CancelAction\>\"", ",", " ", "None"}],
-             "]"}]}]}]}], ",", "\n", "        ", 
-        RowBox[{"dest", " ", "=", " ", 
-         RowBox[{"Lookup", "[", 
-          RowBox[{"a", ",", " ", "\"\<DestroyOnClick\>\"", ",", " ", "True"}],
-           "]"}]}]}], "\n", "        ", "}"}], ",", "\n", "      ", 
-      RowBox[{"Merge", "[", "\n", "        ", 
-       RowBox[{
-        RowBox[{"{", "\n", "          ", 
-         RowBox[{
-          RowBox[{"\"\<Body\>\"", "->", "\n", "            ", 
-           RowBox[{"createInputFieldDialog", "[", "\n", "              ", 
-            RowBox[{"s", ",", "\n", "              ", "fields"}], "\n", 
-            "              ", "]"}]}], ",", "\n", "          ", 
-          RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "  ", "           ", 
-           RowBox[{"{", "\n", "               ", 
-            RowBox[{
-             RowBox[{"Function", "[", "\n", "                 ", 
-              RowBox[{"Null", ",", "\n", "                 ", 
-               RowBox[{
-                RowBox[{
-                 RowBox[{"submit", "[", 
-                  RowBox[{"[", "1", "]"}], "]"}], "@", 
-                 RowBox[{"prepState", "[", 
-                  RowBox[{"#", ",", " ", "ids", ",", " ", "remove"}], "]"}]}],
-                 ";", "\n", "  ", "               ", 
-                RowBox[{"If", "[", 
-                 RowBox[{"dest", ",", " ", 
-                  RowBox[{"destroyDialog", "[", "]"}]}], "]"}]}], ",", "\n", 
-               "                 ", "HoldFirst"}], "\n", "                 ", 
-              "]"}], ",", "\n", "               ", 
-             RowBox[{"ButtonData", "->", "s"}], ",", "\n", "               ", 
-             
-             RowBox[{"Sequence", "@@", 
-              RowBox[{"Rest", "[", "submit", "]"}]}]}], "\n", 
-            "               ", "}"}]}], ",", "\n", "           ", 
-          RowBox[{"\"\<CancelAction\>\"", "->", "\n", "             ", 
-           RowBox[{"{", "\n", "               ", 
-            RowBox[{
-             RowBox[{"Function", "[", "\n", "                 ", 
-              RowBox[{"Null", ",", "\n", "                 ", 
-               RowBox[{
-                RowBox[{
-                 RowBox[{"cancel", "[", 
-                  RowBox[{"[", "1", "]"}], "]"}], "@", 
-                 RowBox[{"prepState", "[", 
-                  RowBox[{"#", ",", " ", "ids", ",", " ", "remove"}], "]"}]}],
-                 ";", "\n", "  ", "               ", 
-                RowBox[{"If", "[", 
-                 RowBox[{"dest", ",", " ", 
-                  RowBox[{"destroyDialog", "[", "]"}]}], "]"}]}], ",", "\n", 
-               "                 ", "HoldFirst"}], "\n", "                 ", 
-              "]"}], ",", "\n", "               ", 
-             RowBox[{"ButtonData", "->", "s"}], ",", "\n", "               ", 
-             
-             RowBox[{"Sequence", "@@", 
-              RowBox[{"Rest", "[", "cancel", "]"}]}]}], "\n", 
-            "               ", "}"}]}], ",", "\n", "           ", "a"}], "\n",
-          "  ", "       ", "}"}], ",", "\n", "       ", "First"}], "\n", 
-       "       ", "]"}]}], "\n", "     ", "]"}]}], "\n", "   ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"cbdf2ad8-fa19-4ad4-8fcc-196e154b5991"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]AttachedDialogInputPanel\[RightFloor]", \
-"CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"0fbe8d7d-219b-40d3-825a-f2de2f2496f6"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"AttachedDialogInputPanel", "[", "\n", "  ", 
-   RowBox[{"a_Association", ",", "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  "  ", 
-  RowBox[{"AttachedDialogPanel", "[", "\n", "    ", 
-   RowBox[{
-    RowBox[{"attachedDialogInputSpec", "[", "a", "]"}], ",", "\n", "    ", 
-    "ops"}], "\n", "    ", 
-   "]"}]}]], \
-"CodeInput",ExpressionUUID->"d0349248-1c1c-4713-8ddc-9cef51d6909a"]
-}, Closed]]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateAttachedDialog\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"e30d8f18-94cb-4fdb-a86d-0ac4cddddcd1"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createAttachSpec\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"22bbf9ee-adce-4188-bfbf-3d2b7fe77dc2"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"attachSpecData", "=", "\n", "  ", 
-   RowBox[{"<|", "\n", "    ", 
-    RowBox[{
-     RowBox[{"\"\<Position\>\"", "\[Rule]", "\n", "  ", "    ", 
-      RowBox[{"<|", 
-       RowBox[{
-        RowBox[{"\"\<Pattern\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"_", "?", "NumberQ"}], "|", "_Scaled"}], ",", " ", 
-           RowBox[{
-            RowBox[{"_", "?", "NumberQ"}], "|", "_Scaled"}]}], "}"}]}], ",", 
-        " ", 
-        RowBox[{"\"\<Default\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", " ", "0"}], "}"}]}]}], "|>"}]}], ",", "\n", "  ", 
-     "  ", 
-     RowBox[{"\"\<Alignment\>\"", "\[Rule]", "\n", "  ", "    ", 
-      RowBox[{"<|", 
-       RowBox[{
-        RowBox[{"\"\<Pattern\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"Left", "|", "Center", "|", "Right"}], ",", " ", 
-           RowBox[{"Bottom", "|", "Center", "|", "Top"}]}], "}"}]}], ",", " ", 
-        RowBox[{"\"\<Default\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{"Center", ",", " ", "Center"}], "}"}]}]}], "|>"}]}], ",", 
-     "\n", "  ", "  ", 
-     RowBox[{"\"\<Anchor\>\"", "\[Rule]", "\n", "  ", "    ", 
-      RowBox[{"<|", 
-       RowBox[{
-        RowBox[{"\"\<Pattern\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"Left", "|", "Center", "|", "Right"}], ",", " ", 
-           RowBox[{"Bottom", "|", "Center", "|", "Top"}]}], "}"}]}], ",", " ", 
-        RowBox[{"\"\<Default\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{"Center", ",", " ", "Center"}], "}"}]}]}], "|>"}]}], ",", 
-     "\n", "  ", "  ", 
-     RowBox[{"\"\<ClosingActions\>\"", "->", "\n", "  ", "    ", 
-      RowBox[{"<|", 
-       RowBox[{
-        RowBox[{"\"\<Pattern\>\"", "->", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"(", 
-            RowBox[{
-            "\"\<MouseExit\>\"", "|", "\"\<OutsideMouseClick\>\"", "|", 
-             "\"\<EvaluatorQuit\>\""}], ")"}], ".."}], "}"}]}], ",", " ", 
-        "\n", "  ", "      ", 
-        RowBox[{"\"\<Default\>\"", "->", 
-         RowBox[{"{", "\"\<EvaluatorQuit\>\"", "}"}]}]}], "|>"}]}]}], "\n", 
-    "  ", "  ", "|>"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"a4c01431-47b1-4619-9a26-c16a10798adb"],
-
-Cell[BoxData[
- RowBox[{" ", 
-  RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"createAttachSpec", "[", "a_Association", "]"}], ":=", "\n", 
-     "  ", 
-     RowBox[{"Merge", "[", "\n", "    ", 
-      RowBox[{
-       RowBox[{"{", "\n", "      ", 
+      RowBox[{"nb", "=", "\n", "\t\t", 
+       RowBox[{"MessageDialog", "[", "\n", "\t\t\t", 
         RowBox[{
-         RowBox[{"KeyValueMap", "[", "\n", "        ", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"#", "->", "\n", "          ", 
-             RowBox[{"Replace", "[", 
-              RowBox[{"#2", ",", "\n", "            ", 
-               RowBox[{
-                RowBox[{"Except", "[", 
-                 RowBox[{"Lookup", "[", 
-                  RowBox[{
-                   RowBox[{"attachSpecData", "[", "#", "]"}], ",", " ", 
-                   "\"\<Pattern\>\""}], "]"}], "]"}], "->", "\n", 
-                "              ", 
-                RowBox[{"Lookup", "[", 
-                 RowBox[{
-                  RowBox[{"attachSpecData", "[", "#", "]"}], ",", " ", 
-                  "\"\<Default\>\""}], "]"}]}]}], "\n", "            ", 
-              "]"}]}], "&"}], ",", "\n", "        ", 
-           RowBox[{"KeyTake", "[", 
-            RowBox[{"a", ",", " ", 
-             RowBox[{"Keys", "[", "attachSpecData", "]"}]}], "]"}]}], "\n", 
-          "        ", "]"}], ",", "\n", "      ", 
-         RowBox[{
-          RowBox[{"#Default", "&"}], "/@", "attachSpecData"}]}], "\n", 
-        "      ", "}"}], ",", "\n", "    ", "First"}], "\n", "    ", "]"}]}], 
-    ";"}], "\n", 
-   RowBox[{
-    RowBox[{"createAttachSpec", "[", "Automatic", "]"}], ":=", "\n", "  ", 
-    RowBox[{"createAttachSpec", "[", 
-     RowBox[{"<|", "|>"}], 
-     "]"}]}]}]}]], \
-"CodeInput",ExpressionUUID->"ae9b1dfa-2b78-4f3a-a957-d28ac8c7b3aa"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]insertCloseBox\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"e7f6c1e5-cb29-43ff-9cf0-2492b4a95b8b"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"insertCloseBox", "[", "panel_", "]"}], ":=", "\n", "  ", 
-   RowBox[{"ReplaceAll", "[", "\n", "    ", 
-    RowBox[{"panel", ",", "\n", "    ", 
-     RowBox[{
-      RowBox[{"Grid", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"{", "\n", "        ", 
-         RowBox[{
+         RowBox[{"Row", "@", 
           RowBox[{"{", 
-           RowBox[{"Panel", "[", 
-            RowBox[{"h_", ",", " ", 
-             RowBox[{
-             "BaseStyle", "\[Rule]", "\"\<AttachedDialogHeader\>\""}]}], 
-            "]"}], "}"}], ",", "\n", "        ", "r___"}], "\n", "        ", 
-         "}"}], ",", "\n", "      ", "o___"}], "\n", "      ", "]"}], 
-      "\[RuleDelayed]", "\n", "      ", 
-      RowBox[{"Grid", "[", "\n", "        ", 
-       RowBox[{
-        RowBox[{"{", "\n", "          ", 
-         RowBox[{
-          RowBox[{"{", "\n", "            ", 
-           RowBox[{"Panel", "[", "\n", "              ", 
-            RowBox[{
-             RowBox[{"Grid", "[", "\n", "                ", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{"{", "\n", "                  ", 
-                 RowBox[{
-                 "\"\<\>\"", ",", "\n", "                  ", "h", ",", "\n", 
-                  "                  ", 
-                  RowBox[{"RawBoxes", "@", "\n", "                    ", 
-                   RowBox[{"ButtonBox", "[", 
-                    RowBox[{"\"\<\>\"", ",", " ", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", 
-                    "\"\<AttachedDialogCloseButton\>\""}]}], "]"}]}]}], "\n", 
-                 "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "}"}], 
-                "}"}], ",", "\n", "  ", "  ", "  ", "  ", "  ", "  ", "  ", 
-               "  ", 
-               RowBox[{
-               "BaseStyle", "->", "\"\<AttachedDialogCloseButtonRow\>\""}], 
-               ",", "\n", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", 
-               RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], "\n", 
-              "                ", "]"}], ",", "\n", "             ", 
-             RowBox[{
-             "BaseStyle", "\[Rule]", "\"\<AttachedDialogHeader\>\""}]}], "\n",
-             "             ", "]"}], "\n", "            ", "}"}], ",", "\n", 
-          "          ", "r"}], "\n", "          ", "}"}], ",", "\n", 
-        "        ", "o"}], "\n", "        ", "]"}]}]}], "\n", "    ", "]"}]}],
-   ";"}]], "CodeInput",ExpressionUUID->"668e2ad9-e174-432b-8b48-e61832585d58"]\
-
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateAttachedDialog\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"c4b1a531-d744-4d59-b5a1-1030bf47f08a"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"attachables", "=", "\n", "\t", 
-   RowBox[{
-   "_NotebookObject", "|", "_FrontEnd`EvaluationNotebook", "|", 
-    "_FrontEnd`InputNotebook", "|", "\n", "  ", "_FrontEnd`SelectedNotebook", 
-    "|", "_FrontEnd`ParentNotebook", "|", "_FrontEnd`ButtonNotebook", "|", 
-    "\n", "  ", "_CellObject", "|", "_FrontEnd`EvaluationCell", "|", 
-    "_FrontEnd`ParentCell", "|", "_FrontEnd`IndexedCell", "|", "\n", "  ", 
-    "_BoxObject", "|", "_FrontEnd`EvaluationBox", "|", 
-    "_FrontEnd`ParentBox"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"a996e393-6ba5-4c77-abde-038c5343ee79"],
-
-Cell[BoxData[{
- RowBox[{"CreateAttachedDialog", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Options", "[", "CreateAttachedDialog", "]"}], "=", "\n", "  ", 
-   RowBox[{"{", "\n", "    ", 
-    RowBox[{"\"\<CreateCloseButton\>\"", "\[Rule]", "False"}], "\n", "    ", 
-    "}"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateAttachedDialog", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"nb", ":", "attachables"}], ",", " ", "\n", "  ", "expression_", 
-     ",", " ", "\n", "  ", 
-     RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-     ",", "\n", "  ", 
-     RowBox[{"a", ":", 
-      RowBox[{"_Association", "|", "Automatic"}], ":", "Automatic"}], ",", 
-     "\n", "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"With", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"{", "\n", "      ", 
-      RowBox[{
-       RowBox[{"sepc", "=", 
-        RowBox[{"createAttachSpec", "[", "a", "]"}]}], ",", "\n", "      ", 
-       RowBox[{"panel", "=", "\n", "        ", 
-        RowBox[{"AttachedDialogPanel", "[", "expression", "]"}]}]}], "}"}], 
-     ",", "\n", "    ", 
-     RowBox[{"FEAttachCell", "[", "\n", "      ", 
-      RowBox[{"nb", ",", "\n", "      ", 
-       RowBox[{"Cell", "[", "\n", "        ", 
-        RowBox[{
-         RowBox[{
-          RowBox[{
-           RowBox[{"panel", "//", "\n", "          ", 
-            RowBox[{"If", "[", 
-             RowBox[{
-              RowBox[{"Quiet", "[", 
-               RowBox[{"TrueQ", "@", 
-                RowBox[{
-                "OptionValue", "[", "\"\<CreateCloseButton\>\"", "]"}]}], 
-               "]"}], ",", "\n", "  ", "          ", "insertCloseBox", ",", 
-              "\n", "  ", "          ", "Identity"}], "\n", "  ", 
-             "          ", "]"}]}], "//", "ToBoxes"}], "//", "BoxData"}], ",",
-          "\n", "        ", "cellType", ",", "\n", "        ", 
-         RowBox[{"FirstCase", "[", "\n", "          ", 
-          RowBox[{"panel", ",", "\n", "          ", 
-           RowBox[{
-            RowBox[{"i", ":", 
-             RowBox[{"InputField", "[", 
-              RowBox[{"___", ",", " ", 
-               RowBox[{"BoxID", "\[Rule]", "boxID_"}], ",", " ", "___"}], 
-              "]"}]}], ":>", "\n", "            ", 
-            RowBox[{"(", " ", "\n", "              ", 
-             RowBox[{
-             "CellDynamicExpression", ":>", "\n", "                ", 
-              RowBox[{"Refresh", "[", "\n", "                 ", 
-               RowBox[{
-                RowBox[{
-                 RowBox[{"SelectionMove", "[", 
-                  RowBox[{
-                   RowBox[{"EvaluationCell", "[", "]"}], ",", " ", "Next", 
-                   ",", " ", "Word", ",", "\n", "                   ", 
-                   RowBox[{"AutoScroll", "\[Rule]", "False"}]}], "\n", 
-                  "                   ", "]"}], ";", "\n", 
-                 "                  ", 
-                 RowBox[{"FE`Evaluate", "@", "\n", "                    ", 
-                  RowBox[{
-                  "FrontEnd`MoveCursorToInputField", "[", "\n", 
-                   "                \t\t\t ", 
-                   RowBox[{
-                    RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", "\n", 
-                    "  ", "            \t\t\t\t\t", "boxID"}], "\n", "  ", 
-                   "            \t\t\t\t\t", "]"}]}]}], ",", "\n", 
-                "            \t\t\t\t", "None"}], "\n", "            \t\t\t", 
-               "]"}]}], "\n", "              ", ")"}]}], ",", "\n", "  ", 
-           "        ", 
-           RowBox[{"Sequence", "@@", 
-            RowBox[{"{", "}"}]}], ",", "\n", "          ", "Infinity"}], "\n",
-           "          ", "]"}], ",", "\n", "        ", 
-         RowBox[{"FilterRules", "[", "\n", "          ", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"ops", ",", " ", 
-             RowBox[{"CellSize", "\[Rule]", 
-              RowBox[{"{", 
-               RowBox[{"400", ",", " ", "Automatic"}], "}"}]}]}], "}"}], ",", 
-           "\n", "          ", 
-           RowBox[{"Options", "[", "Cell", "]"}]}], "\n", "          ", 
-          "]"}]}], "\n", "        ", "]"}], ",", "\n", "      ", 
-       RowBox[{"Offset", "[", 
-        RowBox[{
-         RowBox[{"sepc", "[", "\"\<Position\>\"", "]"}], ",", " ", "0"}], 
-        "]"}], ",", "\n", "  ", "    ", 
-       RowBox[{"sepc", "[", "\"\<Alignment\>\"", "]"}], ",", "\n", "  ", 
-       "    ", 
-       RowBox[{"sepc", "[", "\"\<Anchor\>\"", "]"}], ",", "\n", "  ", "    ", 
-       
-       RowBox[{"sepc", "[", "\"\<ClosingActions\>\"", "]"}]}], "\n", "      ",
-       "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"CreateAttachedDialog", "[", " ", "\n", "  ", 
-   RowBox[{
-    RowBox[{"expression", ":", 
-     RowBox[{"Except", "[", "attachables", "]"}]}], ",", " ", "\n", "  ", 
-    RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-    ",", "\n", "  ", 
-    RowBox[{"a", ":", 
-     RowBox[{"_Association", "|", "Automatic"}], ":", "Automatic"}], ",", 
-    "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  "  ", 
-  RowBox[{"CreateAttachedDialog", "[", "\n", "    ", 
-   RowBox[{
-   "$CurrentIDENotebook", ",", "\n", "    ", "expression", ",", "\n", "    ", 
-    "cellType", ",", "\n", "    ", "a", ",", "\n", "    ", "ops"}], "\n", 
-   "    ", "]"}]}]}], \
-"CodeInput",ExpressionUUID->"bbc2e8da-3c25-4e45-9145-01496b61dad5"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateAttachedInputDialog\[RightFloor]", \
-"CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"ac6a061f-7a32-49bf-9cbd-45ead4a61d15"],
-
-Cell[BoxData[{
- RowBox[{"CreateAttachedInputDialog", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateAttachedInputDialog", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"nb", ":", "attachables"}], ",", " ", "\n", "  ", 
-     "fields_Association", ",", " ", "\n", "  ", 
-     RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-     ",", "\n", "  ", 
-     RowBox[{"a", ":", 
-      RowBox[{"_Association", "|", "Automatic"}], ":", "Automatic"}], ",", 
-     "\n", "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"CreateAttachedDialog", "[", "\n", "    ", 
-    RowBox[{"nb", ",", " ", "\n", "    ", 
-     RowBox[{"attachedDialogInputSpec", "[", "fields", "]"}], ",", "\n", 
-     "    ", "cellType", ",", "\n", "    ", "a", ",", "\n", "    ", "ops"}], 
-    "\n", "    ", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"CreateAttachedInputDialog", "[", " ", "\n", "  ", 
-   RowBox[{"fields_Association", ",", " ", "\n", "  ", 
-    RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-    ",", "\n", "  ", 
-    RowBox[{"a", ":", 
-     RowBox[{"_Association", "|", "Automatic"}], ":", "Automatic"}], ",", 
-    "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  
-  RowBox[{"CreateAttachedInputDialog", "[", "\n", "    ", 
-   RowBox[{
-   "$CurrentIDENotebook", ",", "\n", "    ", "fields", ",", "\n", "    ", 
-    "cellType", ",", "\n", "    ", "a", ",", "\n", "    ", "ops"}], "\n", 
-   "    ", "]"}]}]}], \
-"CodeInput",ExpressionUUID->"1607da6e-b7da-4f35-99cb-bde846ff6328"]
-}, Closed]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateDetachedDialog\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"86f5da79-b80e-4ce2-a5f4-0539837c78e6"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateWindowedDialog\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"e49147e5-79b7-4740-89af-d8dbaf30f643"],
-
-Cell[BoxData[{
- RowBox[{"CreateWindowedDialog", "//", "Clear"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Options", "[", "CreateWindowedDialog", "]"}], "=", "\n", "  ", 
-   RowBox[{"{", "\n", "    ", 
-    RowBox[{"\"\<CreateCloseButton\>\"", "\[Rule]", "False"}], "\n", "    ", 
-    "}"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CreateWindowedDialog", "[", "\n", "  ", 
-    RowBox[{
-     RowBox[{"nb", ":", "attachables"}], ",", " ", "\n", "  ", "expression_", 
-     ",", " ", "\n", "  ", 
-     RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-     ",", "\n", "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"With", "[", "\n", "    ", 
-    RowBox[{
-     RowBox[{"{", "\n", "      ", 
-      RowBox[{
-       RowBox[{"nbb", "=", "\n", "        ", 
-        RowBox[{"Replace", "[", 
-         RowBox[{"nb", ",", " ", "\n", "          ", 
-          RowBox[{"{", "\n", "            ", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"nbos", ":", 
-              RowBox[{
-              "_FrontEnd`EvaluationNotebook", "|", "_FrontEnd`InputNotebook", 
-               "|", "\n", "  ", "            ", "_FrontEnd`SelectedNotebook", 
-               "|", "_FrontEnd`ParentNotebook", "|", 
-               "_FrontEnd`ButtonNotebook"}]}], ":>", "\n", "              ", 
-             RowBox[{"MathLink`CallFrontEnd", "@", 
-              RowBox[{"FrontEnd`Value", "[", "nbos", "]"}]}]}], ",", "\n", 
-            "            ", 
-            RowBox[{
-             RowBox[{"e", ":", 
-              RowBox[{"Except", "[", "_NotebookObject", "]"}]}], ":>", "\n", 
-             "              ", 
-             RowBox[{"ParentNotebook", "[", "e", "]"}]}]}], "\n", 
-           "            ", "}"}]}], "\n", "          ", "]"}]}], ",", "\n", 
-       "      ", 
-       RowBox[{"panel", "=", "\n", "        ", 
-        RowBox[{"AttachedDialogPanel", "[", "expression", "]"}]}]}], "\n", 
-      "    ", "}"}], ",", "\n", "    ", 
+           RowBox[{"msg", ",", 
+            RowBox[{"ProgressIndicator", "[", 
+             RowBox[{"Appearance", "->", "\"\<Ellipsis\>\""}], "]"}]}], 
+           "}"}]}], ",", "\n", "\t\t\t", "ops", ",", "\n", "\t\t\t", 
+         RowBox[{"WindowTitle", "->", "msg"}]}], "]"}]}], "\n", "\t\t\t", 
+      "}"}], ",", "\n", "\t\t", 
      RowBox[{
       RowBox[{
        RowBox[{"(", 
         RowBox[{
-         RowBox[{"SetSelectedNotebook", "[", "#", "]"}], ";", "#"}], ")"}], 
-       "&"}], "@", "\n", "    ", 
-      RowBox[{"CreateDocument", "[", "\n", "      ", 
-       RowBox[{
-        RowBox[{"Cell", "[", "\n", "        ", 
-         RowBox[{
-          RowBox[{
-           RowBox[{
-            RowBox[{
-             RowBox[{"ReplaceAll", "[", 
-              RowBox[{"panel", ",", " ", 
-               RowBox[{
-                RowBox[{"HoldPattern", "[", "$CurrentIDENotebook", "]"}], 
-                "\[Rule]", "nbb"}]}], "]"}], "//", "\n", "          ", 
-             RowBox[{"If", "[", 
-              RowBox[{
-               RowBox[{"Quiet", "[", 
-                RowBox[{"TrueQ", "@", 
-                 RowBox[{
-                 "OptionValue", "[", "\"\<CreateCloseButton\>\"", "]"}]}], 
-                "]"}], ",", "\n", "  ", "          ", "insertCloseBox", ",", 
-               "\n", "  ", "          ", "Identity"}], "\n", "  ", 
-              "          ", "]"}]}], "//", "ToBoxes"}], "//", "BoxData"}], 
-          ",", "\n", "        ", "cellType", ",", "\n", "        ", 
-          RowBox[{"FilterRules", "[", "\n", "          ", 
-           RowBox[{
-            RowBox[{"{", "\n", "            ", 
-             RowBox[{"ops", ",", "\n", "            ", 
-              RowBox[{"CellSize", "\[Rule]", 
-               RowBox[{"{", "\n", "              ", 
-                RowBox[{
-                 RowBox[{"Scaled", "[", "1", "]"}], ",", " ", "\n", 
-                 "              ", "Automatic"}], "\n", "              ", 
-                "}"}]}]}], "\n", "            ", "}"}], ",", " ", "\n", 
-            "          ", 
-            RowBox[{"CellSize", "|", "CellLabel", "|", "CellTags"}]}], "\n", 
-           "          ", "]"}]}], "\n", "        ", "]"}], ",", "\n", 
-        "      ", 
-        RowBox[{"FilterRules", "[", "\n", "        ", 
-         RowBox[{
-          RowBox[{"{", "\n", "          ", 
-           RowBox[{"ops", ",", "\n", "          ", 
-            RowBox[{"FirstCase", "[", "\n", "            ", 
-             RowBox[{"panel", ",", "\n", "  ", "  ", "        ", 
-              RowBox[{
-               RowBox[{"i", ":", 
-                RowBox[{"InputField", "[", 
-                 RowBox[{"___", ",", " ", 
-                  RowBox[{"BoxID", "\[Rule]", "boxID_"}], ",", " ", "___"}], 
-                 "]"}]}], ":>", "\n", "  ", "  ", "          ", 
-               RowBox[{"(", " ", "\n", "  ", "  ", "            ", 
-                RowBox[{
-                "NotebookDynamicExpression", ":>", "\n", "  ", "  ", 
-                 "              ", 
-                 RowBox[{"Refresh", "[", "\n", "  ", "  ", "                ", 
-                  RowBox[{
-                   RowBox[{
-                   "FE`Evaluate", "@", "\n", "  ", "  ", "                  ", 
-                    RowBox[{
-                    "FrontEnd`MoveCursorToInputField", "[", "\n", "  ", "  ", 
-                    "              \t\t\t ", 
-                    RowBox[{
-                    RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", "\n", 
-                    "  ", "  ", "            \t\t\t\t\t", "boxID"}], "\n", 
-                    "  ", "  ", "            \t\t\t\t\t", "]"}]}], ",", "\n", 
-                   "  ", "  ", "          \t\t\t\t", "None"}], "\n", "  ", 
-                  "  ", "          \t\t\t", "]"}]}], "\n", "  ", "  ", 
-                "            ", ")"}]}], ",", "\n", "  ", "  ", "        ", 
-              RowBox[{"Sequence", "@@", 
-               RowBox[{"{", "}"}]}], ",", "\n", "  ", "  ", "        ", 
-              "Infinity"}], "\n", "            ", "]"}], ",", "\n", 
-            "          ", 
-            RowBox[{"StyleDefinitions", "\[Rule]", 
-             RowBox[{"(*", " ", 
-              RowBox[{
-              "need", " ", "more", " ", "flexibility", " ", "here", " ", 
-               "but", " ", "ah", " ", "well"}], " ", "*)"}], "\n", 
-             "            ", 
-             RowBox[{"With", "[", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{"n", "=", 
-                 RowBox[{
-                  RowBox[{"GetMainStylesheetName", "[", "nb", "]"}], "<>", 
-                  "\"\<-Dialog.nb\>\""}]}], "}"}], ",", "\n", 
-               "              ", 
-               RowBox[{"FrontEnd`FileName", "[", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"\"\<EasyIDE\>\"", ",", " ", "\"\<Extensions\>\""}],
-                   "}"}], ",", " ", "n"}], "]"}]}], "\n", "              ", 
-              "]"}]}]}], "\n", "          ", "}"}], ",", "\n", "        ", 
-          RowBox[{"Options", "[", "Notebook", "]"}]}], "\n", "        ", 
-         "]"}]}], "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}], "\n", 
+         RowBox[{"NotebookClose", "@", "nb"}], ";", "#"}], ")"}], "&"}], "@", 
+      
+      RowBox[{"CheckAbort", "[", 
+       RowBox[{"expr", ",", 
+        RowBox[{"NotebookClose", "@", "nb"}]}], "]"}]}]}], "\n", "\t\t", 
+    "]"}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"CreateWindowedDialog", "[", "\n", "  ", 
-   RowBox[{
-    RowBox[{"expression", ":", 
-     RowBox[{"Except", "[", "attachables", "]"}]}], ",", " ", "\n", "  ", 
-    RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-    ",", "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  "  ", 
-  RowBox[{"CreateWindowedDialog", "[", "\n", "    ", 
-   RowBox[{
-   "$CurrentIDENotebook", ",", "\n", "    ", "expression", ",", "\n", "    ", 
-    "cellType", ",", "\n", "    ", "ops"}], "\n", "    ", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"5f77967c-5a1f-4008-8e91-15b5642cfd21"]
-}, Open  ]],
+  RowBox[{"paletteDialog", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}]}], "Code",ExpressionUUID->"8b35c76e-7472-46a3-94aa-5f25d6987d18"],
 
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]CreateWindowedInputDialog\[RightFloor]", \
-"CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"6a6454aa-0419-44b1-bcd8-c541b085ac00"],
-
-Cell[BoxData[{
- RowBox[{"CreateWindowedInputDialog", "//", "Clear"}], "\n", 
+Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"CreateWindowedInputDialog", "[", "\n", "  ", 
+   RowBox[{"paletteActionMenu", "[", 
+    RowBox[{"lbl_", ",", "actions_", ",", "ops___"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"GradientActionMenu", "[", 
     RowBox[{
-     RowBox[{"nb", ":", "attachables"}], ",", " ", "\n", "  ", 
-     "fields_Association", ",", " ", "\n", "  ", 
-     RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-     ",", "\n", "  ", 
-     RowBox[{"ops", ":", 
-      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
-    "  ", 
-   RowBox[{"CreateWindowedDialog", "[", "\n", "    ", 
-    RowBox[{"nb", ",", " ", "\n", "    ", 
-     RowBox[{"attachedDialogInputSpec", "[", "fields", "]"}], ",", "\n", 
-     "    ", "cellType", ",", "\n", "    ", "ops"}], "\n", "    ", "]"}]}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{"CreateWindowedInputDialog", "[", " ", "\n", "  ", 
-   RowBox[{"fields_Association", ",", " ", "\n", "  ", 
-    RowBox[{"cellType", ":", "_String", ":", "\"\<AttachedDialogCell\>\""}], 
-    ",", "\n", "  ", 
-    RowBox[{"ops", ":", 
-     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
-  
-  RowBox[{"CreateWindowedInputDialog", "[", "\n", "    ", 
-   RowBox[{
-   "$CurrentIDENotebook", ",", "\n", "    ", "fields", ",", "\n", "    ", 
-    "cellType", ",", "\n", "    ", "ops"}], "\n", "    ", 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"5f6ea544-dde3-478c-bba8-c2622d734687"]
-}, Closed]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]IDECreateDialog\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"97b23e05-42da-4efc-a8aa-6146f1025794"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createDialogDispatcher\[RightFloor]", "CodeSubsubsection",
- 
- Evaluatable->True,ExpressionUUID->"b88d42ca-5df5-4d14-9c52-705544ef4821"],
+    "lbl", ",", "\n", "\t\t", "actions", ",", "\n", "\t\t", "ops", ",", "\n", 
+     "\t\t", 
+     RowBox[{"ImageSize", "->", "$paletteWidth"}], ",", "\n", "\t\t", 
+     RowBox[{"Appearance", "->", "\"\<Palette\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<UUID\>\"", "->", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"OptionValue", "[", "Method", "]"}], "===", 
+         "\"\<Queued\>\""}], ",", "Automatic", ",", "None"}], "]"}]}]}], "\n",
+     "\t\t", "]"}]}], ";"}]], "Code",ExpressionUUID->"7d2ecef8-b5b0-490b-ab92-\
+64e989204aa8"],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"createDialogDispatcher", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Attached\>\"", ",", " ", "\"\<Normal\>\""}], "}"}], "]"}], 
-   "=", "\n", "  ", "CreateAttachedDialog"}], ";"}], "\n", 
+   RowBox[{"dynamicActionMenu", "[", 
+    RowBox[{"lbl_", ",", "actions_", ",", "ops___"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"menu", "=", "\n", "\t\t\t", 
+        RowBox[{"paletteActionMenu", "[", 
+         RowBox[{"lbl", ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Label\>\"", ":>", "\"\<Result\>\""}], "}"}]}], 
+         "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{"dynOps", "=", 
+        RowBox[{"Cases", "[", 
+         RowBox[{
+          RowBox[{"Hold", "[", "ops", "]"}], ",", 
+          RowBox[{
+           RowBox[{"v", ":", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Alternatives", "@@", 
+                RowBox[{"Keys", "@", 
+                 RowBox[{"Options", "@", "Dynamic"}]}]}], ")"}], "->", "_"}], 
+             ")"}]}], ":>", "v"}]}], "]"}]}]}], "\n", "\t\t", "}"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"Dynamic", "[", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{"Insert", "[", "\n", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Insert", "[", "\n", "\t\t\t\t\t", 
+           RowBox[{"menu", ",", "\n", "\t\t\t\t\t", 
+            RowBox[{"FilterRules", "[", 
+             RowBox[{
+              RowBox[{"{", "ops", "}"}], ",", 
+              RowBox[{"Options", "@", "ActionMenu"}]}], "]"}], ",", "\n", 
+            "\t\t\t\t\t", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "2", ",", 
+              RowBox[{"-", "1"}]}], "}"}]}], "\n", "\t\t\t\t\t", "]"}], "/.", 
+          
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Label\>\"", ":>", "\"\<Result\>\""}], "}"}], ")"}], 
+           "->", "actions"}]}], ",", "\n", "\t\t\t\t", 
+         RowBox[{"FilterRules", "[", 
+          RowBox[{
+           RowBox[{"{", "ops", "}"}], ",", 
+           RowBox[{"Options", "@", "Button"}]}], "]"}], ",", "\n", "\t\t\t\t", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "}"}]}], "\n", "\t\t\t\t", "]"}], ",", "\n", 
+       "\t\t\t", "dynOps"}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], 
+  ";"}], "\n", 
  RowBox[{
-  RowBox[{
-   RowBox[{"createDialogDispatcher", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Attached\>\"", ",", " ", "\"\<Input\>\""}], "}"}], "]"}], 
-   "=", "\n", "  ", "CreateAttachedInputDialog"}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"createDialogDispatcher", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Detached\>\"", ",", " ", "\"\<Normal\>\""}], "}"}], "]"}], 
-   "=", "\n", "  ", "CreateWindowedDialog"}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"createDialogDispatcher", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Detached\>\"", ",", " ", "\"\<Input\>\""}], "}"}], "]"}], 
-   "=", "\n", "  ", "CreateWindowedInputDialog"}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"8fa31a46-88ab-43d8-9c1e-8e04dc6bb205"]\
+  RowBox[{"dynamicActionMenu", "~", "SetAttributes", "~", "HoldRest"}], 
+  ";"}]}], "Code",ExpressionUUID->"4ceadbcd-b02e-48b2-82d1-0f1ec0f17d24"],
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"checkboxGrid", "[", 
+    RowBox[{"vars", ":", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"_", ":>", "_"}], ")"}], ".."}], "}"}], ".."}], "}"}]}], 
+    "]"}], ":=", "\n", "\t", 
+   RowBox[{"Grid", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"ReplaceAll", "[", 
+      RowBox[{"vars", ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"tag_", ":>", "sym_"}], ")"}], ":>", "\n", "\t\t\t\t", 
+        RowBox[{"Sequence", "@@", 
+         RowBox[{"{", "\n", "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"Checkbox", "@", 
+            RowBox[{"Dynamic", "@", "sym"}]}], ",", "\n", "\t\t\t\t\t", 
+           RowBox[{"Style", "[", 
+            RowBox[{"tag", ",", " ", "Gray"}], "]"}]}], "\n", "\t\t\t\t\t", 
+          "}"}]}]}]}], "\n", "\t\t\t", "]"}], ",", "\n", "\t\t", 
+     RowBox[{"Alignment", "->", 
+      RowBox[{"{", 
+       RowBox[{"Left", ",", " ", "Bottom"}], "}"}]}]}], "\n", "\t\t", "]"}]}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"checkboxGrid", "[", 
+    RowBox[{"vars", ":", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"_", ":>", "_"}], ")"}], ".."}], "}"}]}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"checkboxGrid", "[", 
+    RowBox[{"Thread", "[", 
+     RowBox[{"{", "vars", "}"}], "]"}], "]"}]}], ";"}]}], "Code",ExpressionUUI\
+D->"b61c6841-a61f-432f-a2fc-793a48f9b89f"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["\[LeftCeiling]IDECreateDialog\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"706b7a41-4c16-438a-8e58-9ccecf0352aa"],
+Cell["Functions", "Subsubsection",ExpressionUUID->"00799408-8b02-4bf1-94b6-da6474695ba7"],
 
 Cell[BoxData[{
+ RowBox[{"fileNamesGather", "//", "Clear"}], "\n", 
  RowBox[{
   RowBox[{
-   RowBox[{"IDECreateDialog", "[", "\n", "  ", 
-    RowBox[{"nb_NotebookObject", ",", " ", "\n", "  ", 
-     RowBox[{"mode", ":", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"\"\<Attached\>\"", "|", "\"\<Detached\>\""}], ",", " ", 
-        RowBox[{"\"\<Normal\>\"", "|", "\"\<Input\>\""}]}], "}"}], ":", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Attached\>\"", ",", " ", "\"\<Normal\>\""}], "}"}]}], ",",
-      "\n", "  ", "expr_", ",", " ", "\n", "  ", "args___"}], "\n", "  ", 
-    "]"}], ":=", "\n", "  ", 
+   RowBox[{"fileNamesGather", "[", "zargs___", "]"}], ":=", "\n", "\t", 
    RowBox[{
-    RowBox[{"createDialogDispatcher", "[", "mode", "]"}], "[", 
-    RowBox[{"nb", ",", " ", "expr", ",", " ", "args"}], "]"}]}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"IDECreateDialog", "[", 
-    RowBox[{"ide_IDENotebookObject", ",", " ", "\n", "  ", 
-     RowBox[{"mode", ":", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"\"\<Attached\>\"", "|", "\"\<Detached\>\""}], ",", " ", 
-        RowBox[{"\"\<Normal\>\"", "|", "\"\<Input\>\""}]}], "}"}], ":", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Attached\>\"", ",", " ", "\"\<Normal\>\""}], "}"}]}], ",",
-      "\n", "  ", "expr_", ",", " ", "\n", "  ", "args___"}], "\n", "  ", 
-    "]"}], ":=", "\n", "  ", 
-   RowBox[{
-    RowBox[{"createDialogDispatcher", "[", "mode", "]"}], "[", 
-    RowBox[{
-     RowBox[{"ide", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "expr", ",", 
-     " ", "args"}], "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"87d71b3a-4ccd-44f7-b0a7-944730ac8660"]\
-
-}, Closed]]
-}, Open  ]],
+    RowBox[{"Function", "[", "\n", "\t\t", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"pat", "=", "#"}], ",", 
+         RowBox[{"path", "=", 
+          RowBox[{"{", "##2", "}"}]}], ",", 
+         RowBox[{"dir", "=", 
+          RowBox[{
+           RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+           RowBox[{"currentApp", ",", "##2"}], "]"}]}]}], "}"}], ",", "\n", 
+       "\t\t\t", 
+       RowBox[{"Flatten", "@", "\n", "\t\t\t\t", 
+        RowBox[{"Riffle", "[", "\n", "\t\t\t\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Map", "[", "\n", "\t\t\t\t\t\t", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"GatherBy", "[", "\n", "\t\t\t\t\t\t\t", 
+                RowBox[{"#", ",", "\n", "\t\t\t\t\t\t\t", 
+                 RowBox[{
+                  RowBox[{"FileNameTake", "[", 
+                   RowBox[{"#", ",", " ", 
+                    RowBox[{
+                    RowBox[{"FileNameDepth", "@", "dir"}], "+", "2"}]}], 
+                   "]"}], "&"}]}], "\n", "\t\t\t\t\t\t\t", "]"}], "&"}], ",", 
+              "\n", "\t\t\t\t\t\t", 
+              RowBox[{"GatherBy", "[", 
+               RowBox[{"#", ",", "\n", "\t\t\t\t\t\t\t", 
+                RowBox[{
+                 RowBox[{"FileNameTake", "[", 
+                  RowBox[{"#", ",", "\n", "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"{", "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"FileNameDepth", "@", "dir"}], ",", " ", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"Min", "@", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FileNameDepth", "@", "dir"}], "+", "1"}], ",", 
+                    " ", 
+                    RowBox[{
+                    RowBox[{"FileNameDepth", "@", "#"}], "-", "1"}]}], 
+                    "}"}]}]}], "\n", "\t\t\t\t\t\t\t\t\t", "}"}]}], "\n", 
+                  "\t\t\t\t\t\t\t\t", "]"}], "&"}]}], "\n", "\t\t\t\t\t\t\t", 
+               "]"}]}], "\n", "\t\t\t\t\t\t", "]"}], "&"}], "@", "\n", 
+           "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"SortBy", "[", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"{", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"FileNameDepth", "@", "#"}], "+", "\n", 
+                 "\t\t\t\t\t\t\t\t", 
+                 RowBox[{"30", "*", 
+                  RowBox[{"Boole", "@", "\n", "\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"StringContainsQ", "[", 
+                    RowBox[{"#", ",", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"\"\<__\>\"", "~~", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    "WordCharacter", "|", "\"\< \>\"", "|", "\"\<$\>\""}], 
+                    ")"}], ".."}], "~~", "\"\<__\>\""}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t", "]"}]}]}]}], "&"}], ",", "\n", 
+               "\t\t\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"FileNameSplit", "[", "#", "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"-", "2"}], "]"}], "]"}], "&"}], ",", "\n", 
+               "\t\t\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{"FileBaseName", "[", "#", "]"}], "&"}], ",", "\n", 
+               "\t\t\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{"StringReverse", "@", 
+                 RowBox[{"FileExtension", "[", "#", "]"}]}], "&"}]}], "\n", 
+              "\t\t\t\t\t\t\t", "}"}], "\n", "\t\t\t\t\t\t", "]"}], "@", "\n",
+             "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"Select", "[", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"StringContainsQ", "[", 
+                 RowBox[{
+                  RowBox[{"StringTrim", "[", 
+                   RowBox[{"#", ",", "dir"}], "]"}], ",", 
+                  "\"\<__Future__\>\""}], "]"}], "||", "\n", "\t\t\t\t\t\t\t", 
+                RowBox[{"Not", "@", "\n", "\t\t\t\t\t\t\t\t", 
+                 RowBox[{"StringContainsQ", "[", 
+                  RowBox[{
+                   RowBox[{"StringTrim", "[", 
+                    RowBox[{"#", ",", "dir"}], "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"\"\<__\>\"", "~~", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    "WordCharacter", "|", "\"\< \>\"", "|", "\"\<$\>\""}], 
+                    ")"}], ".."}], "~~", "\"\<__\>\""}]}], "]"}]}]}], "\n", 
+               "\t\t\t\t\t\t\t", "&"}], "]"}], "@", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"FileNames", "[", 
+              RowBox[{"#", ",", " ", "dir", ",", " ", "\[Infinity]"}], 
+              "]"}]}]}]}], ",", "\n", "\t\t\t\t\t", "Delimiter"}], "\n", 
+         "\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t", "]"}], "\n", "\t\t", "]"}], 
+    "[", "zargs", "]"}]}], ";"}]}], "Code",ExpressionUUID->"57d2c43c-7ee7-\
+4588-a75b-6647718dbb1f"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"828510f8-e4ae-43df-b8ca-\
-132f75556e7d"]
+  RowBox[{
+   RowBox[{"sysOpen", "[", 
+    RowBox[{"file_", ",", 
+     RowBox[{"app_:", "Automatic"}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"With", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t\t", 
+      RowBox[{"useApp", "=", "\n", "\t\t\t\t", 
+       RowBox[{"Switch", "[", 
+        RowBox[{
+         RowBox[{"ToLowerCase", "@", 
+          RowBox[{"FileExtension", "[", "file", "]"}]}], ",", "\n", 
+         "\t\t\t\t\t", "\"\<m\>\"", ",", "\n", "\t\t\t\t\t\t", 
+         "\"\<Mathematica\>\"", ",", "\n", "\t\t\t\t\t", "\"\<html\>\"", ",", 
+         "\n", "\t\t\t\t\t\t", "\"\<Atom\>\"", ",", "\n", "\t\t\t\t\t", 
+         RowBox[{
+         "\"\<mol\>\"", "|", "\"\<sdf\>\"", "|", "\"\<mol2\>\"", "|", 
+          "\"\<xyz\>\"", "|", "\"\<paclet\>\""}], ",", "\n", "\t\t\t\t\t\t", 
+         "\"\<TextWrangler\>\"", ",", "\n", "\t\t\t\t\t", "_", ",", "\n", 
+         "\t\t\t\t\t\t", "None"}], "\n", "\t\t\t\t\t", "]"}]}], "\n", 
+      "\t\t\t", "}"}], ",", "\n", "\t\t", 
+     RowBox[{"Switch", "[", 
+      RowBox[{
+      "$OperatingSystem", ",", "\n", "\t\t\t", "\"\<MacOSX\>\"", ",", "\n", 
+       "\t\t\t\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"StringQ", "[", "useApp", "]"}]}], "||", "\n", 
+          "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"RunProcess", "[", "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"{", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+              "\"\<open\>\"", ",", "\n", "\t\t\t\t\t\t\t", "file", ",", "\n", 
+               "\t\t\t\t\t\t\t", "\"\<-a\>\"", ",", "\n", "\t\t\t\t\t\t\t", 
+               "useApp"}], "\n", "\t\t\t\t\t\t\t", "}"}], ",", "\n", 
+             "\t\t\t\t\t\t", "\"\<ExitCode\>\""}], "\n", "\t\t\t\t\t\t", 
+            "]"}], "=!=", "0"}]}], ",", "\n", "\t\t\t\t\t", 
+         RowBox[{"IDEOpen", "[", "file", "]"}]}], "\n", "\t\t\t\t\t", "]"}], 
+       ",", "\n", "\t\t\t", "_", ",", "\n", "\t\t\t\t", 
+       RowBox[{"IDEOpen", "[", "file", "]"}]}], "\n", "\t\t\t", "]"}]}], "\n",
+     "\t\t", "]"}]}], ";"}]], "Code",ExpressionUUID->"786b945d-7464-466f-a9d2-9cbfebc40130"],
+
+Cell[BoxData[{
+ RowBox[{"formatFilePaths", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"formatFilePaths", "[", "zargs___", "]"}], ":=", "\n", "\t", 
+   RowBox[{
+    RowBox[{"Function", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"Function", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"#", ",", " ", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"#", "===", "Delimiter"}], ",", " ", "False", ",", " ", 
+            RowBox[{"Equal", "[", "##", "]"}]}], "]"}], "&"}]}], "]"}], "]"}],
+       "@", "\n", "\t\t", 
+      RowBox[{"Flatten", "@", "\n", "\t\t\t", 
+       RowBox[{"Table", "[", "\n", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"n", "=", "n"}], "}"}], ",", "\n", "\t\t\t\t\t", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"StringQ", "@", "n"}], ",", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"With", "[", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"{", "\n", "\t\t\t\t\t\t\t\t", 
+                RowBox[{"fp", "=", "\n", "\t\t\t\t\t\t\t\t\t", 
+                 RowBox[{"FileNameDrop", "[", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                  RowBox[{
+                   RowBox[{"FileNameJoin", "@", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"DirectoryName", "@", "n"}], ",", 
+                    RowBox[{"FileBaseName", "@", "n"}]}], "}"}]}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"FileNameDepth", "@", 
+                    RowBox[{
+                    RowBox[{"whichPacF", "[", "\"\<AppDirectory\>\"", "]"}], 
+                    "[", "currentApp", "]"}]}]}], "\n", 
+                  "\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t\t\t\t\t\t",
+                 "}"}], ",", "\n", "\t\t\t\t\t\t\t", 
+               RowBox[{"With", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"l", "=", 
+                   RowBox[{"FileNameDepth", "[", "fp", "]"}]}], "}"}], ",", 
+                 "\n", "\t\t\t\t\t\t\t\t", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"l", ">", "1"}], ",", "\n", "\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"MapIndexed", "[", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "===", 
+                    RowBox[{"l", "-", "1"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ">", "1"}], ",", " ", 
+                    RowBox[{"StringRepeat", "[", 
+                    RowBox[{"\"\<  \>\"", ",", " ", 
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", "1"}]}], "]"}], ",", 
+                    " ", "\"\<\>\""}], "]"}], "<>", "#"}], ":>", 
+                    RowBox[{"sysOpen", "[", "n", "]"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"p", "=", 
+                    RowBox[{"FileNameDrop", "[", 
+                    RowBox[{"n", ",", " ", 
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", "l", "+", "1"}]}], 
+                    "]"}]}], "}"}], ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ">", "1"}], ",", " ", 
+                    RowBox[{"StringRepeat", "[", 
+                    RowBox[{"\"\<  \>\"", ",", " ", 
+                    RowBox[{
+                    RowBox[{"#2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", "1"}]}], "]"}], ",", 
+                    " ", "\"\<\>\""}], "]"}], "<>", "#", "<>", 
+                    "\"\<\[RightGuillemet]\>\""}], ":>", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"sysOpen", "[", "p", "]"}]}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", "]"}], "&"}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"Rest", "@", 
+                    RowBox[{"FileNameSplit", "[", "fp", "]"}]}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t", "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"fp", ":>", 
+                    RowBox[{"sysOpen", "[", "n", "]"}]}]}], "\n", 
+                  "\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t\t\t\t\t", 
+                "]"}]}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", "\n", 
+             "\t\t\t\t\t\t", "n"}], "\n", "\t\t\t\t\t\t", "]"}]}], "\n", 
+          "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", " ", "#"}], "}"}]}], "\n", "\t\t\t\t", "]"}]}]}], 
+     "\n", "\t\t\t", "]"}], "[", "zargs", "]"}]}], ";"}]}], "Code",ExpressionU\
+UID->"a05228e5-fa66-4009-840b-f673daf7ad46"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"gitRepoQ", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{"TrueQ", "@", 
+   RowBox[{
+    RowBox[{"whichPacF", "[", "\"\<GitRepoQ\>\"", "]"}], "@", 
+    RowBox[{
+     RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "@", 
+     "currentApp"}]}]}]}]], "Code",ExpressionUUID->"e592f1b4-8389-4e06-b528-\
+708f79ebb737"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"loadGitBranches", "[", 
+   RowBox[{"forceReload", ":", 
+    RowBox[{"True", "|", "False"}], ":", "False"}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"If", "[", 
+   RowBox[{"forceReload", ",", "\n", "\t\t", 
+    RowBox[{"Set", "[", 
+     RowBox[{"$gitBranches", ",", "\n", "\t\t\t", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"gitRepoQ", "[", "]"}], ",", "\n", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{"whichPacF", "[", "\"\<GitListWithCurrentBranch\>\"", "]"}], 
+         "@", "\n", "\t\t\t\t\t", 
+         RowBox[{
+          RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "@", 
+          "currentApp"}]}], ",", "\n", "\t\t\t\t", 
+        RowBox[{"{", "}"}]}], "\n", "\t\t\t ", "]"}]}], "\n", " \t\t", "]"}], 
+    ",", "\n", "\t\t", 
+    RowBox[{"Replace", "[", 
+     RowBox[{"$gitBranches", ",", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{"Except", "[", "_List", "]"}], ":>", "\n", "\t \t\t", 
+       RowBox[{"loadGitBranches", "[", "True", "]"}]}]}], "\n", "\t \t", 
+     "]"}]}], "\n", "\t\t", "]"}]}]], "Code",ExpressionUUID->"57db0279-cd9e-\
+44f5-8e83-d3470d4f3545"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"inputDialog", "[", "header_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"DialogInput", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "var", "}"}], ",", "\n", "\t\t", 
+    RowBox[{"Column", "@", 
+     RowBox[{"Flatten", "@", 
+      RowBox[{"{", "\n", "\t\t\t", 
+       RowBox[{"header", ",", "\n", "\t\t\t", 
+        RowBox[{"EventHandler", "[", "\n", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"InputField", "[", 
+           RowBox[{
+            RowBox[{"Dynamic", "[", "var", "]"}], ",", " ", "String", ",", 
+            " ", 
+            RowBox[{"BoxID", "->", "\"\<input-field\>\""}]}], "]"}], ",", 
+          "\n", "\t\t\t\t", 
+          RowBox[{"{", 
+           RowBox[{"\"\<ReturnKeyDown\>\"", ":>", 
+            RowBox[{"DialogReturn", "[", "var", "]"}]}], "}"}]}], "\n", 
+         "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "}"}]}]}], ",", "\n", "\t\t", 
+    RowBox[{"NotebookDynamicExpression", ":>", "\n", "\t\t\t", 
+     RowBox[{"Refresh", "[", "\n", "\t\t\t\t", 
+      RowBox[{
+       RowBox[{"FrontEnd`MoveCursorToInputField", "[", "\n", "\t\t\t\t\t", 
+        RowBox[{
+         RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
+         "\"\<input-field\>\""}], "\n", "\t\t\t\t\t", "]"}], ",", "\n", 
+       "\t\t\t\t", "None"}], "\n", "\t\t\t\t", "]"}]}]}], "\n", "\t\t", 
+   "]"}]}]], "Code",ExpressionUUID->"f9ac7b07-5c40-4d36-848a-908872aa6d24"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Regen", "Subsubsection",ExpressionUUID->"936b509e-1c93-40d0-b0a7-b893c4bdaed1"],
+
+Cell[BoxData[
+ RowBox[{"regenActions", "=", "\n", "\t", 
+  RowBox[{"\"\<Regenerate\>\"", "->", "\n", "\t  ", 
+   RowBox[{"{", "\n", "  \t\t", 
+    RowBox[{
+     RowBox[{"\"\<Loader\>\"", ":>", "\n", "  \t\t  ", 
+      RowBox[{"(", "\n", "         ", 
+       RowBox[{
+        RowBox[{"AppExecute", "[", 
+         RowBox[{"\"\<RegenerateLoaderFile\>\"", ",", " ", "currentApp"}], 
+         "]"}], ";", "\n", "         ", 
+        RowBox[{"CreatePopupMessage", "[", "\"\<Regenerated\>\"", "]"}]}], 
+       "\n", "         ", ")"}]}], ",", "\n", "  \t\t", 
+     RowBox[{"\"\<PacletInfo\>\"", ":>", "\n", "  \t\t\t", 
+      RowBox[{"(", "\n", "  \t\t\t\t", 
+       RowBox[{
+        RowBox[{"AppExecute", "[", 
+         RowBox[{"\"\<RegeneratePacletInfo\>\"", ",", " ", "currentApp"}], 
+         "]"}], ";", "\n", "  \t\t\t\t", 
+        RowBox[{"CreatePopupMessage", "[", "\"\<Regenerated\>\"", "]"}], 
+        ";"}], "\n", "  \t\t\t\t", ")"}]}], ",", "\n", "  \t\t", 
+     RowBox[{"\"\<Directories\>\"", ":>", "\n", "  \t\t\t", 
+      RowBox[{"(", "\n", "  \t\t\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"whichPacF", "[", "\"\<AppRegenerateDirectories\>\"", "]"}], 
+         "[", "currentApp", "]"}], ";"}], "\n", "  \t\t\t\t", ")"}]}], ",", 
+     "\n", "     ", 
+     RowBox[{"\"\<Context Loaders\>\"", ":>", "\n", "       ", 
+      RowBox[{"(", "\n", "         ", 
+       RowBox[{
+        RowBox[{"AppExecute", "[", 
+         RowBox[{"\"\<RegenerateContextLoaders\>\"", ",", " ", "currentApp"}],
+          "]"}], ";", "\n", "         ", 
+        RowBox[{"CreatePopupMessage", "[", "\"\<Regenerated\>\"", "]"}]}], 
+       "\n", "         ", ")"}]}], ",", "\n", "  \t\t", 
+     RowBox[{"\"\<LoadInfo\>\"", ":>", "\n", "  \t\t\t", 
+      RowBox[{"(", "\n", "  \t\t\t\t", 
+       RowBox[{"sysOpen", "@", 
+        RowBox[{
+         RowBox[{"whichPacF", "[", "\"\<AppRegenerateLoadInfo\>\"", "]"}], 
+         "[", "currentApp", "]"}]}], "\n", "  \t\t\t\t", ")"}]}], ",", "\n", 
+     "    \t", 
+     RowBox[{"\"\<BundleInfo\>\"", ":>", "\n", "  \t\t\t", 
+      RowBox[{"sysOpen", "@", 
+       RowBox[{
+        RowBox[{"whichPacF", "[", "\"\<AppRegenerateBundleInfo\>\"", "]"}], 
+        "@", "currentApp"}]}]}]}], "\n", "  \t\t", "}"}]}]}]], "Code",Expressi\
+onUUID->"369b17b1-bdf9-426a-aa2f-24fe51fe1c61"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["UpdateDependencies", "Subsubsection",ExpressionUUID->"21edf1fb-7ecf-4c1e-a98c-b881bcd7aa70"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"updateDeps", "[", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"popup", ",", " ", "r"}], "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{"popup", " ", "=", " ", "\n", "      ", 
+       RowBox[{"CreateMessagePopup", "@", "\n", "        ", 
+        RowBox[{"Row", "@", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Updating dependencies\>\"", ",", " ", 
+           RowBox[{"ProgressIndicator", "[", 
+            RowBox[{"Appearance", "->", "\"\<Ellipsis\>\""}], "]"}]}], 
+          "}"}]}]}]}], ";", "\n", "\t  ", 
+      RowBox[{"AppExecute", "[", 
+       RowBox[{"\"\<UpdateDependencies\>\"", ",", " ", 
+        RowBox[{"IDEPath", "[", "$CurrentIDENotebook", "]"}]}], "]"}], ";", 
+      "\n", "\t  ", 
+      RowBox[{"NotebookDelete", "[", "popup", "]"}], ";", "\n", "\t  ", 
+      RowBox[{
+      "CreateMessagePopup", "[", "\"\<Dependencies updated\>\"", "]"}], 
+      ";"}]}], "\n", "\t  ", "]"}]}], ";"}]], "Code",ExpressionUUID->\
+"5c260160-75b7-4b2a-83c0-611ee72ff2d5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["New", "Subsubsection",ExpressionUUID->"e0524cdb-0ea3-47fd-9597-3ca7077ba3f9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"newPackage", "[", "]"}], ":=", "\n", "  ", 
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"Notebook", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", " ", 
+      RowBox[{"StyleDefinitions", "->", 
+       RowBox[{"FrontEnd`FileName", "[", 
+        RowBox[{
+         RowBox[{"{", "\"\<BTools\>\"", "}"}], ",", " ", 
+         "\"\<CodePackage.nb\>\""}], "]"}]}]}], "]"}], "]"}]}], ";"}]], "Code",\
+ExpressionUUID->"d2c41560-faee-42c5-b74f-d02f8eb35e4f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Git", "Subsubsection",ExpressionUUID->"93a9ba8a-ea8a-4c4c-b2f4-061667183427"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"gitCommit", "=", "\n", "\t", 
+    RowBox[{"paletteButton", "[", 
+     RowBox[{"\"\<Git Commit\>\"", ",", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"whichPacF", "[", "\"\<AppGitCommit\>\"", "]"}], "[", 
+       "currentApp", "]"}], ",", "\n", "\t\t", 
+      RowBox[{"Enabled", "->", "\n", "\t\t\t", 
+       RowBox[{"Dynamic", "[", "\n", "\t\t\t\t", 
+        RowBox[{
+         RowBox[{"gitRefresh", ";", 
+          RowBox[{"gitRepoQ", "[", "]"}]}], ",", " ", "\n", "\t\t\t\t", 
+         RowBox[{"TrackedSymbols", ":>", 
+          RowBox[{"{", 
+           RowBox[{"gitRefresh", ",", " ", "currentApp"}], "}"}]}]}], "\n", 
+        "\t\t\t\t", "]"}]}]}], "\n", "\t\t", "]"}]}], ";", "\n", 
+   RowBox[{"gitOps", "=", "\n", "\t", 
+    RowBox[{"paletteActionMenu", "[", 
+     RowBox[{"\"\<Git Actions\>\"", ",", "\n", "\t\t", 
+      RowBox[{"{", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"\"\<Init\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Quiet", "@", 
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppGitInit\>\"", "]"}], "[", 
+             "currentApp", "]"}]}], ";", 
+           RowBox[{"gitRefresh", "=", 
+            RowBox[{"RandomReal", "[", "]"}]}]}], ")"}]}], ",", "\n", 
+        "\t\t\t", "Delimiter", ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Edit README\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", "\n", "\t\t\t\t\t", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"FileExistsQ", "@", 
+             RowBox[{
+              RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+              RowBox[{"currentApp", ",", " ", "\"\<README.nb\>\""}], "]"}]}], 
+            ",", "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+             RowBox[{"currentApp", ",", " ", "\"\<README.nb\>\""}], "]"}], 
+            ",", "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+             RowBox[{"currentApp", ",", " ", "\"\<README.md\>\""}], "]"}]}], 
+           "\n", "\t\t\t\t\t\t", "]"}]}]}], ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Edit Ignore\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", 
+          RowBox[{
+           RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+           RowBox[{"currentApp", ",", " ", "\"\<.gitignore\>\""}], "]"}]}]}], 
+        ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Edit Exclude\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", 
+          RowBox[{
+           RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+           RowBox[{
+           "currentApp", ",", " ", "\"\<.git\>\"", ",", " ", "\"\<info\>\"", 
+            ",", " ", "\"\<exclude\>\""}], "]"}]}]}], ",", "\n", "\t\t\t", 
+        "Delimiter", ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Regenerate README\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", "\n", "\t\t\t\t\t", 
+          RowBox[{"CopyFile", "[", "\n", "\t\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+             RowBox[{
+             "\"\<BTools\>\"", ",", "\"\<Resources\>\"", ",", 
+              "\"\<Templates\>\"", ",", "\"\<README.nb\>\""}], "]"}], ",", 
+            "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "[", 
+             RowBox[{"currentApp", ",", "\"\<README.nb\>\""}], "]"}], ",", 
+            "\n", "\t\t\t\t\t\t", 
+            RowBox[{"OverwriteTarget", "->", "True"}]}], "\n", "\t\t\t\t\t\t",
+            "]"}]}]}], ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Regenerate Ignore\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", 
+          RowBox[{"Quiet", "@", "\n", "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"whichPacF", "[", "\"\<AppRegenerateGitIgnore\>\"", "]"}],
+             "[", "currentApp", "]"}]}]}]}], ",", "\n", "\t\t\t", 
+        RowBox[{"\"\<Regenerate Exclude\>\"", ":>", "\n", "\t\t\t\t", 
+         RowBox[{"sysOpen", "@", 
+          RowBox[{"Quiet", "@", "\n", "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{
+            "whichPacF", "[", "\"\<AppRegenerateGitExclude\>\"", "]"}], "[", 
+            "currentApp", "]"}]}]}]}]}], "\n", "\t\t\t", "}"}]}], "\n", 
+     "\t\t", "]"}]}], ";", "\n", 
+   RowBox[{"gitBranch", "=", "\n", "\t", 
+    RowBox[{"EventHandler", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"dynamicActionMenu", "[", "\n", "\t\t\t", 
+       RowBox[{"\"\<Switch Branches\>\"", ",", "\n", "\t\t\t", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"loadGitBranches", "[", "]"}], ",", "\n", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"l", ":", 
+            RowBox[{"{", "__", "}"}]}], ":>", "\n", "\t\t\t\t\t", 
+           RowBox[{"Join", "[", "\n", "\t\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{"First", "@", "l"}], ",", " ", "Bold", ",", " ", 
+                 "Italic"}], "]"}], ":>", "None"}], "}"}], ",", "\n", 
+             "\t\t\t\t\t\t", 
+             RowBox[{"Map", "[", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"Function", "[", "\n", "\t\t\t\t\t\t\t\t", 
+                RowBox[{"#", ":>", "\n", "\t\t\t\t\t\t\t\t\t", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"gitRepoQ", "[", "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{
+                   "CompoundExpression", "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    
+                    RowBox[{
+                    RowBox[{"Quiet", "@", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    "whichPacF", "[", "\"\<GitSwitchBranch\>\"", "]"}], "[", 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "@", 
+                    "currentApp"}], ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    "#"}], "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ";", 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"loadGitBranches", "[", "True", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
+                  "\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t\t\t\t\t\t",
+                 "]"}], ",", "\n", "\t\t\t\t\t\t\t", 
+               RowBox[{"Rest", "@", "l"}]}], "\n", "\t\t\t\t\t\t\t", "]"}], 
+             ",", " ", "\n", "\t\t\t\t\t\t", 
+             RowBox[{"{", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{"Delimiter", ",", " ", "\n", "\t\t\t\t\t\t\t", 
+               RowBox[{"\"\<New Branch\>\"", ":>", "\n", "\t\t\t\t\t\t\t\t", 
+                RowBox[{"Replace", "[", "\n", "\t\t\t\t\t\t\t\t\t", 
+                 RowBox[{
+                  RowBox[{
+                  "inputDialog", "[", 
+                   "\"\<Provide a name for the branch:\>\"", "]"}], ",", "\n",
+                   "\t\t\t\t\t\t\t\t\t", 
+                  RowBox[{"s_String", ":>", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                   RowBox[{"(", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"Quiet", "@", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    "whichPacF", "[", "\"\<GitSwitchBranch\>\"", "]"}], "[", 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"whichPacF", "[", "\"\<AppPath\>\"", "]"}], "@", 
+                    "currentApp"}], ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"StringDelete", "[", 
+                    RowBox[{"s", ",", " ", 
+                    RowBox[{"Except", "[", "WordCharacter", "]"}]}], "]"}]}], 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ";", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"loadGitBranches", "[", "True", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", ")"}]}]}], "\n", 
+                 "\t\t\t\t\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t\t\t\t\t", 
+              "}"}]}], "\n", "\t\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t\t\t", 
+         "]"}], ",", "\n", "\t\t\t", 
+        RowBox[{"Enabled", "->", "\n", "\t\t\t\t", 
+         RowBox[{"Dynamic", "[", "\n", "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"gitRefresh", ";", 
+            RowBox[{"gitRepoQ", "[", "]"}]}], ",", " ", "\n", "\t\t\t\t\t", 
+           RowBox[{"TrackedSymbols", ":>", 
+            RowBox[{"{", 
+             RowBox[{"gitRefresh", ",", " ", "currentApp"}], "}"}]}]}], "\n", 
+          "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t", 
+        RowBox[{"Method", "->", "\"\<Queued\>\""}], ",", "\n", "\t\t\t", 
+        RowBox[{"TrackedSymbols", ":>", 
+         RowBox[{"{", 
+          RowBox[{"currentApp", ",", " ", "$gitBranches"}], "}"}]}]}], "\n", 
+       "\t\t\t", "]"}], ",", "\n", "\t", 
+      RowBox[{"\"\<MouseEntered\>\"", ":>", "\n", "\t\t", 
+       RowBox[{"loadGitBranches", "[", "True", "]"}]}]}], "\n", "\t", "]"}]}],
+    ";"}], "*)"}]], "Code",ExpressionUUID->"aa1ef1f1-320a-4dac-b50d-\
+99250a2b29c4"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["GitHub", "Subsubsection",ExpressionUUID->"b3a94eb3-fdee-4bc2-89a3-cd4d744abb16"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"gitHubPush", "=", "\n", "\t", 
+    RowBox[{"paletteButton", "[", 
+     RowBox[{"\"\<Push to GitHub\>\"", ",", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"Quiet", "@", 
+        RowBox[{
+         RowBox[{"whichPacF", "[", "\"\<AppGitHubPush\>\"", "]"}], "[", 
+         "currentApp", "]"}]}], ";", "\n", "\t\t", 
+       RowBox[{"SystemOpen", "[", 
+        RowBox[{
+         RowBox[{"whichPacF", "[", "\"\<AppGitHubRepo\>\"", "]"}], "[", 
+         RowBox[{"currentApp", ",", "None"}], "]"}], "]"}]}]}], "\n", "\t\t", 
+     "]"}]}], ";", "\n", 
+   RowBox[{"gitHubConfigure", "=", "\n", "\t", 
+    RowBox[{"paletteButton", "[", 
+     RowBox[{"\"\<Create GitHub Repo\>\"", ",", "\n", "\t\t", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{
+        RowBox[{"whichPacF", "[", "\"\<AppGitHubConfigure\>\"", "]"}], "[", 
+        "currentApp", "]"}]}]}], "\n", "\t\t", "]"}]}], ";", "\n", 
+   RowBox[{"gitHubDelete", "=", "\n", "\t", 
+    RowBox[{"paletteButton", "[", 
+     RowBox[{"\"\<Delete GitHub Repo\>\"", ",", "\n", "\t\t", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{
+        RowBox[{"whichPacF", "[", "\"\<AppGitHubDelete\>\"", "]"}], "[", 
+        "currentApp", "]"}]}]}], "\n", "\t\t", "]"}]}], ";"}], "*)"}]], "Code",\
+ExpressionUUID->"7dfe91e4-5973-44f4-a3ae-758226b95d05"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Paclet", "Subsubsection",ExpressionUUID->"687f2c9f-fa83-44c8-9fb7-d13d1624709f"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"makePacletButton", "=", "\n", "\t", 
+    RowBox[{"paletteButton", "[", 
+     RowBox[{"\"\<Bundle Paclet\>\"", ",", "\n", "\t\t", 
+      RowBox[{"paletteDialog", "[", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"r", "=", 
+            RowBox[{
+             RowBox[{"whichPacF", "[", "\"\<AppPacletBundle\>\"", "]"}], "[", 
+             "currentApp", "]"}]}], "}"}], ",", "\n", "\t\t\t\t\t", 
+          RowBox[{"SystemOpen", "[", 
+           RowBox[{"DirectoryName", "[", "r", "]"}], "]"}]}], "\n", 
+         "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t", "\"\<Making Paclet\>\""}], 
+       "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], ";"}], "*)"}]], "Code",\
+ExpressionUUID->"8ee54e98-0fbc-4748-97d8-6c49354d9815"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Publish", "Subsubsection",ExpressionUUID->"af8abd76-8dd8-40d3-8cf7-211a73178d1a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"publishApp", "[", "]"}], ":=", "\n", "  ", 
+   RowBox[{"CreateAttachedInputDialog", "[", "\n", "    ", 
+    RowBox[{"<|", "\n", "      ", 
+     RowBox[{
+      RowBox[{"\"\<Header\>\"", "->", "\"\<Publish App\>\""}], ",", "\n", 
+      "      ", 
+      RowBox[{"\"\<State\>\"", "->", 
+       RowBox[{"Dynamic", "[", "publishAppState", "]"}]}], ",", "\n", 
+      "      ", 
+      RowBox[{"\"\<Fields\>\"", "->", " ", 
+       RowBox[{"<|", "\n", "        ", 
+        RowBox[{"<|", "\n", "          ", 
+         RowBox[{
+          RowBox[{"\"\<ID\>\"", "->", "\"\<Settings\>\""}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<Name\>\"", "->", "None"}], ",", "\n", "          ", 
+          RowBox[{"\"\<Type\>\"", "->", 
+           RowBox[{"{", 
+            RowBox[{"CheckboxBar", ",", " ", "\n", "            ", 
+             RowBox[{"{", "\n", "              ", 
+              RowBox[{
+               RowBox[{"\"\<GH\>\"", "->", "\"\<Push To GitHub\>\""}], ",", 
+               "\n", "              ", 
+               RowBox[{"\"\<SV\>\"", "->", "\"\<Push To Server\>\""}], ",", 
+               "\n", "              ", 
+               RowBox[{"\"\<PI\>\"", "->", "\"\<Update PacletInfo\>\""}], ",",
+                "\n", "              ", 
+               RowBox[{"\"\<PS\>\"", "->", "\"\<Publish Server\>\""}]}], "\n",
+               "              ", "}"}], ",", "\n", "            ", 
+             RowBox[{"Appearance", "->", 
+              RowBox[{"\"\<Horizontal\>\"", "->", 
+               RowBox[{"{", 
+                RowBox[{"Automatic", ",", " ", "2"}], "}"}]}]}]}], "\n", 
+            "            ", "}"}]}], ",", "\n", "          ", 
+          RowBox[{"\"\<Default\>\"", "->", 
+           RowBox[{"{", "\n", "            ", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"gitPushFlag", "=!=", "False"}], ",", " ", 
+               "\"\<GH\>\"", ",", " ", "Nothing"}], "]"}], ",", "\n", 
+             "            ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"pushToServerFlag", "=!=", "False"}], ",", " ", 
+               "\"\<SV\>\"", ",", " ", "Nothing"}], "]"}], ",", "\n", 
+             "            ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"updatePacletFlag", "=!=", "False"}], ",", " ", 
+               "\"\<PI\>\"", ",", " ", "Nothing"}], "]"}], ",", "\n", 
+             "            ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"TrueQ", "[", "publishServerFlag", "]"}], ",", " ", 
+               "\"\<PS\>\"", ",", " ", "Nothing"}], "]"}]}], "\n", 
+            "            ", "}"}]}]}], "\n", "          ", "|>"}], "\n", 
+        "        ", "|>"}]}], ",", "\n", "      ", 
+      RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "        ", 
+       RowBox[{"Function", "[", "\n", "          ", 
+        RowBox[{
+         RowBox[{"gitPushFlag", "=", 
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"#Settings", ",", " ", "\"\<GH\>\""}], "]"}]}], ";", "\n", 
+         "          ", 
+         RowBox[{"pushToServerFlag", "=", 
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"#Settings", ",", " ", "\"\<SV\>\""}], "]"}]}], ";", "\n", 
+         "          ", 
+         RowBox[{"updatePacletFlag", "=", 
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"#Settings", ",", " ", "\"\<PI\>\""}], "]"}]}], ";", "\n", 
+         "          ", 
+         RowBox[{"publishServerFlag", "=", 
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"#Settings", ",", " ", "\"\<PS\>\""}], "]"}]}], ";", "\n", 
+         "          ", 
+         RowBox[{"makeSiteFlag", "=", "False"}], ";", "\n", "          ", 
+         RowBox[{"backupFlag", "=", "False"}], ";", "\n", "          ", 
+         RowBox[{"Module", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"popup", ",", " ", "r"}], "}"}], ",", "\n", 
+           "            ", 
+           RowBox[{
+            RowBox[{"popup", " ", "=", " ", "\n", "              ", 
+             RowBox[{"CreateMessagePopup", "@", "\n", "                ", 
+              RowBox[{"Row", "@", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Publishing\>\"", ",", " ", 
+                 RowBox[{"ProgressIndicator", "[", 
+                  RowBox[{"Appearance", "->", "\"\<Ellipsis\>\""}], "]"}]}], 
+                "}"}]}]}]}], ";", "\n", "            ", 
+            RowBox[{"r", "=", "\n", "  \t\t      \t\t", 
+             RowBox[{"AppExecute", "[", "\n", "  \t\t      \t\t  ", 
+              RowBox[{
+              "\"\<Publish\>\"", ",", "\n", "        \t\t\t\t\t", 
+               "currentApp", ",", "\n", "        \t\t\t\t\t", 
+               RowBox[{"\"\<PublishServer\>\"", "->", 
+                RowBox[{"TrueQ", "[", "publishServerFlag", "]"}]}], ",", "\n",
+                "        \t\t\t\t\t", 
+               RowBox[{"\"\<MakeSite\>\"", "->", 
+                RowBox[{"TrueQ", "[", "makeSiteFlag", "]"}]}], ",", "\n", 
+               "        \t\t\t\t\t", 
+               RowBox[{"\"\<PushToGitHub\>\"", "->", 
+                RowBox[{"gitPushFlag", "=!=", "False"}]}], ",", "\n", 
+               "        \t\t\t\t\t", 
+               RowBox[{"\"\<PacletBackup\>\"", "->", 
+                RowBox[{"backupFlag", "=!=", "False"}]}], ",", "\n", 
+               "        \t\t\t\t\t", 
+               RowBox[{"\"\<PushToServer\>\"", "->", 
+                RowBox[{"pushToServerFlag", "=!=", "False"}]}], ",", "\n", 
+               "        \t\t\t\t\t", 
+               RowBox[{"\"\<UpdatePaclet\>\"", "->", 
+                RowBox[{"updatePacletFlag", "=!=", "False"}]}]}], "\n", 
+              "        \t\t\t\t\t", "]"}]}], ";", "\n", "            ", 
+            RowBox[{"NotebookDelete", "[", "popup", "]"}], ";", "\n", 
+            "            ", 
+            RowBox[{"CreateMessagePopup", "@", "\"\<Published\>\""}]}]}], 
+          "\n", "      \t\t\t ", 
+          RowBox[{"(*", 
+           RowBox[{"Quiet", "[", "\n", "      \t\t\t  ", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"gitPushFlag", "=!=", "False"}], ",", "\n", 
+               "      \t\t\t\t\t\t", 
+               RowBox[{"sysOpen", "@", 
+                RowBox[{
+                 RowBox[{"whichPacF", "[", "\"\<AppGitHubRepo\>\"", "]"}], 
+                 "[", "currentApp", "]"}]}]}], "\n", "      \t\t\t\t\t\t", 
+              "]"}], ";", "\n", "      \t\t\t\t\t", 
+             RowBox[{"If", "[", 
+              RowBox[{"publishServerFlag", ",", "\n", "      \t\t\t\t\t\t", 
+               RowBox[{"Replace", "[", "\n", "      \t\t\t\t\t\t\t", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                  "whichPacF", "[", "\"\<PacletServerDeploymentURL\>\"", 
+                   "]"}], "[", "]"}], ",", "\n", "      \t\t\t\t\t\t\t", 
+                 RowBox[{"s_String", "\[RuleDelayed]", 
+                  RowBox[{"sysOpen", "@", "s"}]}]}], "\n", 
+                "      \t\t\t\t\t\t\t", "]"}]}], "\n", "      \t\t\t\t\t\t", 
+              "]"}], ";"}], "\n", "      \t\t\t\t\t", "]"}], "*)"}], "\n", 
+          "      \t\t\t\t", "]"}]}], "\n", "          ", "]"}]}]}], "\n", 
+     "      ", "|>"}], "\n", "    ", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.763960101273469*^9, 
+  3.7639601112928123`*^9}},ExpressionUUID->"ff2b9182-f62c-47fc-962d-\
+36f5b293a1cb"]
 }, Open  ]],
 
-Cell["", "SectionSeparator",ExpressionUUID->"1c10d85c-30c9-447a-bfa7-\
-91c9677e0460"]
+Cell[CellGroupData[{
+
+Cell["CreateRelease", "Subsubsection",ExpressionUUID->"f6bbc7f0-bab0-4d6e-ae0c-76d721e68b21"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"createRelease", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"pop", ",", " ", "r", ",", " ", "url"}], "}"}], ",", "\n", 
+    "    ", 
+    RowBox[{
+     RowBox[{"pop", " ", "=", " ", 
+      RowBox[{
+      "CreatePopupMessage", "[", "\"\<Drafting release...\>\"", "]"}]}], ";", 
+     "\n", "    ", 
+     RowBox[{"r", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"whichPacF", "[", "\"\<AppGit\>\"", "]"}], "[", 
+       RowBox[{"\"\<GitHubCreateRelease\>\"", ",", " ", "currentApp"}], 
+       "]"}]}], ";", "\n", "    ", 
+     RowBox[{"NotebookDelete", "[", "pop", "]"}], ";", "\n", "    ", 
+     RowBox[{"url", " ", "=", " ", 
+      RowBox[{"Replace", "[", 
+       RowBox[{
+        RowBox[{"r", "[", "\"\<HTMLURL\>\"", "]"}], ",", " ", 
+        RowBox[{
+         RowBox[{"URL", "[", "s_", "]"}], ":>", "s"}]}], "]"}]}], ";", "\n", 
+     "    ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"StringQ", "@", "url"}], ",", "\n", "      ", 
+       RowBox[{"CreatePopupMessage", "[", 
+        RowBox[{"StringForm", "[", 
+         RowBox[{"\"\<Created release at ``\>\"", ",", " ", "url"}], "]"}], 
+        "]"}], ",", "\n", "      ", 
+       RowBox[{
+       "CreatePopupMessage", "[", "\"\<Failed to create release\>\"", "]"}]}],
+       "\n", "      ", "]"}], ";"}]}], "\n", "    ", "]"}]}]], "Code",Expressi\
+onUUID->"12fcdd33-6d40-4dfd-82e0-0064aba2d64b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Toolbar", "Subsubsection",ExpressionUUID->"b2971130-e758-454c-b001-e74467e3a756"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"addAppsToolbar", "[", "]"}], ":=", 
+   RowBox[{
+   "CreateMessagePopup", "[", "\"\<Toolbar still in progress! Sorry!\>\"", 
+    "]"}]}], ";"}]], "Code",ExpressionUUID->"a9d24071-917d-439b-9200-\
+fb00c87955eb"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Exported", "Subsubsection",ExpressionUUID->"c4778c05-dfdf-40c2-ad2e-f7671eaffe2f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"appManagerPluginCommands", " ", "=", "\n", "  ", 
+   RowBox[{"{", "\n", "    ", 
+    RowBox[{
+     RowBox[{"\"\<Publish\>\"", ":>", "\n", "      ", 
+      RowBox[{"publishApp", "[", "]"}]}], ",", "\n", "    ", 
+     RowBox[{"\"\<Create Release\>\"", ":>", "\n", "      ", 
+      RowBox[{"createRelease", "[", "]"}]}], ",", "\n", "    ", 
+     RowBox[{"\"\<Update Dependencies\>\"", ":>", "\n", "      ", 
+      RowBox[{"updateDeps", "[", "]"}]}], ",", "\n", "     ", "regenActions", 
+     ",", "\n", "     ", 
+     RowBox[{"\"\<New Package\>\"", ":>", "\n", "       ", 
+      RowBox[{"newPackage", "[", "]"}]}], ",", "\n", "     ", 
+     RowBox[{"\"\<Open Toolbar\>\"", ":>", "\n", "       ", 
+      RowBox[{"addAppsToolbar", "[", "]"}]}]}], "\n", "    ", "}"}]}], 
+  ";"}]], "Code",ExpressionUUID->"57a99c65-7120-4fe4-893d-782cbf6e2264"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["End", "Subsubsection",ExpressionUUID->"64a0efcb-af55-4180-aa27-2b6b473e3d96"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], ";"}]], "Code",ExpressionUUID->"1bea076e-8c31-4776-bb9f-a8a20ce83edb"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exports", "Subsection",ExpressionUUID->"33536f8c-bbc4-4ee4-8d8f-c65885bb2d37"],
+
+Cell[BoxData["appManagerPluginCommands"], "Code",ExpressionUUID->"4ab1520e-48b0-4cc3-bfc1-2a78284e143f"]
+}, Open  ]]
+}, Open  ]]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
@@ -1472,119 +1516,27 @@ Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/Apps.wl"},
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-AttachedDialog.nb"}, 
-      "Git" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/Git.wl"}}, 
-    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
+AttachedDialog.nb"}}, "FileViewer" -> {"Visible" -> False}, 
+    "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             GridBox[{{
-                StyleBox[
-                 ButtonBox[
-                 "\"Load Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ButtonBox[
-                 "\"Open Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ActionMenuBox[
-                  ButtonBox[
-                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                   FrameMargins -> {{10, 10}, {0, 0}}, 
-                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                  "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-              BaseStyle -> "ToolbarElementRow"], 
+             PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-              "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {"CodePackage"}, 
-      "Cells" -> {"CodePackage" -> GridBox[{{
-            GridBox[{{
-               StyleBox[
-                ButtonBox[
-                "\"Load Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ButtonBox[
-                "\"Open Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ActionMenuBox[
-                 ButtonBox[
-                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                  FrameMargins -> {{10, 10}, {0, 0}}, 
-                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                 "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-             BaseStyle -> "ToolbarElementRow"], 
-            ButtonBox[
-            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
+             "", BaseStyle -> "ToolbarShowButton", ButtonData -> "Package"]}},
+            BaseStyle -> "ToolbarCell"]}}, BaseStyle -> "Toolbars"], 
+      "Tags" -> {}, "Cells" -> {"CodePackage" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "AttachedDialog", "StyleSheet" -> 
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-CodePackage.nb"], 
-    "FileToolbar" -> "CodePackage", 
+    "ActiveTab" -> "Apps", "StyleSheet" -> 
+    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"], 
+    "FileToolbar" -> "Package", 
     "Options" -> {
      WindowSize -> {808, 755}, 
-      WindowMargins -> {{Automatic, 212}, {-4, Automatic}}, 
-      TaggingRules -> {
-       "UUIDButtons" -> {
-         "Active" -> {
-           "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-            "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-            "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+      WindowMargins -> {{124, Automatic}, {16, Automatic}}, Visible -> False, 
       FrontEndVersion -> 
       "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
-      StyleDefinitions -> 
-      FrontEnd`FileName[{"BTools"}, "CodePackage.nb", CharacterEncoding -> 
-        "UTF-8"]}, "AutoGeneratePackage" -> True, "SavingAction" -> None}, 
+      StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False, 
+    "SavingAction" -> None}, 
   "Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}, 
   "UUIDButtons" -> {
    "Active" -> {
@@ -1599,10 +1551,109 @@ StyleDefinitions->Notebook[{
    Cell[
     StyleData[
     StyleDefinitions -> 
-     FrontEnd`FileName[{"EasyIDE", "Extensions"}, 
-       "LightMode-CodePackage.nb"]]]}, Visible -> False, 
+     FrontEnd`FileName[{"EasyIDE", "Extensions"}, "LightMode-Package.nb"]]]}, 
+  Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[452, 16, 98, 0, 67, "Section",ExpressionUUID->"8c35b845-111f-472c-98d8-fd09a7001b20"],
+Cell[553, 18, 140, 2, 49, "Code",ExpressionUUID->"1a0f4058-8480-4c1f-963a-b8cc960793d3"],
+Cell[696, 22, 121, 1, 49, "Code",ExpressionUUID->"e6058365-4245-4a3b-b537-70d1a1cff448"],
+Cell[820, 25, 112, 1, 49, "Code",ExpressionUUID->"0ae7eec5-db0a-4824-82b7-794aa927eb81"],
+Cell[CellGroupData[{
+Cell[957, 30, 84, 0, 54, "Subsection",ExpressionUUID->"f5d25046-d11d-4573-9b61-56c604739606"],
+Cell[1044, 32, 148, 3, 49, "Code",ExpressionUUID->"bfae7633-55fe-49b2-ab3e-f0e5f188fac8"],
+Cell[CellGroupData[{
+Cell[1217, 39, 89, 0, 45, "Subsubsection",ExpressionUUID->"e354c1f6-d66a-4e12-b3cb-85c1856ee8f8"],
+Cell[1309, 41, 163, 4, 49, "Code",ExpressionUUID->"ec628545-cd20-4bff-8ceb-58c3d93e6d81"],
+Cell[1475, 47, 2239, 50, 512, "Code",ExpressionUUID->"2c843a76-6a84-4f24-b887-4a1873b42e3b"],
+Cell[3717, 99, 548, 14, 155, "Code",ExpressionUUID->"9fda0e6e-3511-4440-85e1-b4f20635dbd2"],
+Cell[4268, 115, 144, 3, 49, "Code",ExpressionUUID->"40e11cf4-9d40-477d-91d2-62616940e959"],
+Cell[4415, 120, 4535, 104, 974, "Code",ExpressionUUID->"c2c547a2-9a31-4eeb-8322-d33a644b64b5"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8987, 229, 98, 0, 37, "Subsubsection",ExpressionUUID->"0f4916c8-cc72-4f21-9785-7e216d3ddb13"],
+Cell[9088, 231, 211, 5, 71, "Code",ExpressionUUID->"cb1299ce-ebe7-4b93-8f64-0e8ceb635583"],
+Cell[9302, 238, 4447, 100, 995, "Code",ExpressionUUID->"faf0fc6d-08a5-42a6-a3c8-a36be0e94317"],
+Cell[13752, 340, 1240, 33, 70, "Code",ExpressionUUID->"8b35c76e-7472-46a3-94aa-5f25d6987d18"],
+Cell[14995, 375, 773, 18, 70, "Code",ExpressionUUID->"7d2ecef8-b5b0-490b-ab92-64e989204aa8"],
+Cell[15771, 395, 2405, 61, 70, "Code",ExpressionUUID->"4ceadbcd-b02e-48b2-82d1-0f1ec0f17d24"],
+Cell[18179, 458, 1475, 43, 70, "Code",ExpressionUUID->"b61c6841-a61f-432f-a2fc-793a48f9b89f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[19691, 506, 89, 0, 37, "Subsubsection",ExpressionUUID->"00799408-8b02-4bf1-94b6-da6474695ba7"],
+Cell[19783, 508, 5361, 118, 932, "Code",ExpressionUUID->"57d2c43c-7ee7-4588-a75b-6647718dbb1f"],
+Cell[25147, 628, 2178, 46, 70, "Code",ExpressionUUID->"786b945d-7464-466f-a9d2-9cbfebc40130"],
+Cell[27328, 676, 5691, 121, 70, "Code",ExpressionUUID->"a05228e5-fa66-4009-840b-f673daf7ad46"],
+Cell[33022, 799, 345, 9, 70, "Code",ExpressionUUID->"e592f1b4-8389-4e06-b528-708f79ebb737"],
+Cell[33370, 810, 1132, 26, 70, "Code",ExpressionUUID->"57db0279-cd9e-44f5-8e83-d3470d4f3545"],
+Cell[34505, 838, 1398, 30, 70, "Code",ExpressionUUID->"f9ac7b07-5c40-4d36-848a-908872aa6d24"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[35940, 873, 85, 0, 37, "Subsubsection",ExpressionUUID->"936b509e-1c93-40d0-b0a7-b893c4bdaed1"],
+Cell[36028, 875, 2311, 48, 638, "Code",ExpressionUUID->"369b17b1-bdf9-426a-aa2f-24fe51fe1c61"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[38376, 928, 98, 0, 37, "Subsubsection",ExpressionUUID->"21edf1fb-7ecf-4c1e-a98c-b881bcd7aa70"],
+Cell[38477, 930, 1081, 25, 218, "Code",ExpressionUUID->"5c260160-75b7-4b2a-83c0-611ee72ff2d5"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[39595, 960, 83, 0, 37, "Subsubsection",ExpressionUUID->"e0524cdb-0ea3-47fd-9597-3ca7077ba3f9"],
+Cell[39681, 962, 494, 13, 71, "Code",ExpressionUUID->"d2c41560-faee-42c5-b74f-d02f8eb35e4f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[40212, 980, 83, 0, 37, "Subsubsection",ExpressionUUID->"93a9ba8a-ea8a-4c4c-b2f4-061667183427"],
+Cell[40298, 982, 9513, 191, 2003, "Code",ExpressionUUID->"aa1ef1f1-320a-4dac-b50d-99250a2b29c4"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[49848, 1178, 86, 0, 37, "Subsubsection",ExpressionUUID->"b3a94eb3-fdee-4bc2-89a3-cd4d744abb16"],
+Cell[49937, 1180, 1329, 30, 302, "Code",ExpressionUUID->"7dfe91e4-5973-44f4-a3ae-758226b95d05"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[51303, 1215, 86, 0, 37, "Subsubsection",ExpressionUUID->"687f2c9f-fa83-44c8-9fb7-d13d1624709f"],
+Cell[51392, 1217, 844, 19, 218, "Code",ExpressionUUID->"8ee54e98-0fbc-4748-97d8-6c49354d9815"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[52273, 1241, 87, 0, 37, "Subsubsection",ExpressionUUID->"af8abd76-8dd8-40d3-8cf7-211a73178d1a"],
+Cell[52363, 1243, 7460, 151, 1415, "Code",ExpressionUUID->"ff2b9182-f62c-47fc-962d-36f5b293a1cb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59860, 1399, 93, 0, 45, "Subsubsection",ExpressionUUID->"f6bbc7f0-bab0-4d6e-ae0c-76d721e68b21"],
+Cell[59956, 1401, 1451, 36, 70, "Code",ExpressionUUID->"12fcdd33-6d40-4dfd-82e0-0064aba2d64b"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[61444, 1442, 87, 0, 37, "Subsubsection",ExpressionUUID->"b2971130-e758-454c-b001-e74467e3a756"],
+Cell[61534, 1444, 256, 7, 70, "Code",ExpressionUUID->"a9d24071-917d-439b-9200-fb00c87955eb"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[61827, 1456, 88, 0, 37, "Subsubsection",ExpressionUUID->"c4778c05-dfdf-40c2-ad2e-f7671eaffe2f"],
+Cell[61918, 1458, 873, 16, 70, "Code",ExpressionUUID->"57a99c65-7120-4fe4-893d-782cbf6e2264"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[62828, 1479, 83, 0, 37, "Subsubsection",ExpressionUUID->"64a0efcb-af55-4180-aa27-2b6b473e3d96"],
+Cell[62914, 1481, 123, 2, 70, "Code",ExpressionUUID->"1bea076e-8c31-4776-bb9f-a8a20ce83edb"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63086, 1489, 84, 0, 54, "Subsection",ExpressionUUID->"33536f8c-bbc4-4ee4-8d8f-c65885bb2d37"],
+Cell[63173, 1491, 104, 0, 49, "Code",ExpressionUUID->"4ab1520e-48b0-4cc3-bfc1-2a78284e143f"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

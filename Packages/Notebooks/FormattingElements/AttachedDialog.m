@@ -369,7 +369,7 @@ attachedDialogInputSpec[
   ]:=
   Module[
     {
-      s=Lookup[a, "State", Module[{state}, Dynamic[state]]],
+      s = Lookup[a, "State", Module[{state}, Dynamic[state]]],
       fields = normalizeInputField/@Flatten@List@Lookup[a, "Fields", {}]
       },
     With[
