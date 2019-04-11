@@ -92,7 +92,7 @@ SimpleDocs["<Method>"[args...]]~PackageAddUsage~
   "calls the function for \"<Method>\" on args";
 SimpleDocs[k_String?methodQ, "Function"]:=
   $map[k];
-SimpleDocs[k_String?methodQ, "Function"]:=
+SimpleDocs[k_String?methodQ, "Options"]:=
   Options@Evaluate@$map[k];
 SimpleDocs[k_String?methodQ, args__]:=
   With[{f=$map[k]},

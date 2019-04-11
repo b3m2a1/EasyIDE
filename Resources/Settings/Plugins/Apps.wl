@@ -613,43 +613,46 @@ publishApp[]:=
           |>
         |>,
       "SubmitAction"->
-        Function[
-          gitPushFlag=MemberQ[#Settings, "GH"];
-          pushToServerFlag=MemberQ[#Settings, "SV"];
-          updatePacletFlag=MemberQ[#Settings, "PI"];
-          publishServerFlag=MemberQ[#Settings, "PS"];
-          makeSiteFlag=False;
-          backupFlag=False;
-          Module[{popup, r},
-            popup = 
-              CreateMessagePopup@
-                Row@{"Publishing", ProgressIndicator[Appearance->"Ellipsis"]};
-            r=
-  		      		AppExecute[
-  		      		  "Publish",
-        					currentApp,
-        					"PublishServer"->TrueQ[publishServerFlag],
-        					"MakeSite"->TrueQ[makeSiteFlag],
-        					"PushToGitHub"->gitPushFlag=!=False,
-        					"PacletBackup"->backupFlag=!=False,
-        					"PushToServer"->pushToServerFlag=!=False,
-        					"UpdatePaclet"->updatePacletFlag=!=False
-        					];
-            NotebookDelete[popup];
-            CreateMessagePopup@"Published"
-      			 (*Quiet[
-      			  If[gitPushFlag=!=False,
-      						sysOpen@whichPacF["AppGitHubRepo"][currentApp]
-      						];
-      					If[publishServerFlag,
-      						Replace[
-      							whichPacF["PacletServerDeploymentURL"][],
-      							s_String\[RuleDelayed]sysOpen@s
-      							]
-      						];
-      					]*)
-      				]
-          ]
+        {
+          Function[
+            gitPushFlag=MemberQ[#Settings, "GH"];
+            pushToServerFlag=MemberQ[#Settings, "SV"];
+            updatePacletFlag=MemberQ[#Settings, "PI"];
+            publishServerFlag=MemberQ[#Settings, "PS"];
+            makeSiteFlag=False;
+            backupFlag=False;
+            Module[{popup, r},
+              popup = 
+                CreateMessagePopup@
+                  Row@{"Publishing", ProgressIndicator[Appearance->"Ellipsis"]};
+              r=
+    		      		AppExecute[
+    		      		  "Publish",
+          					currentApp,
+          					"PublishServer"->TrueQ[publishServerFlag],
+          					"MakeSite"->TrueQ[makeSiteFlag],
+          					"PushToGitHub"->gitPushFlag=!=False,
+          					"PacletBackup"->backupFlag=!=False,
+          					"PushToServer"->pushToServerFlag=!=False,
+          					"UpdatePaclet"->updatePacletFlag=!=False
+          					];
+              NotebookDelete[popup];
+              CreateMessagePopup@"Published"
+        			 (*Quiet[
+        			  If[gitPushFlag=!=False,
+        						sysOpen@whichPacF["AppGitHubRepo"][currentApp]
+        						];
+        					If[publishServerFlag,
+        						Replace[
+        							whichPacF["PacletServerDeploymentURL"][],
+        							s_String\[RuleDelayed]sysOpen@s
+        							]
+        						];
+        					]*)
+        				]
+            ],
+          Method->"Queued"
+          }
       |>
     ];
 

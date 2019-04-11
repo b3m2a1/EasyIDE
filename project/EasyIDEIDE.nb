@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     71541,       1658]
-NotebookOptionsPosition[     63305,       1495]
-NotebookOutlinePosition[     66145,       1570]
-CellTagsIndexPosition[     66102,       1567]
+NotebookDataLength[     72267,       1671]
+NotebookOptionsPosition[     64031,       1508]
+NotebookOutlinePosition[     66871,       1583]
+CellTagsIndexPosition[     66828,       1580]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
@@ -1303,95 +1303,108 @@ Cell[BoxData[
             "            ", "}"}]}]}], "\n", "          ", "|>"}], "\n", 
         "        ", "|>"}]}], ",", "\n", "      ", 
       RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "        ", 
-       RowBox[{"Function", "[", "\n", "          ", 
+       RowBox[{"{", "\n", "          ", 
         RowBox[{
-         RowBox[{"gitPushFlag", "=", 
-          RowBox[{"MemberQ", "[", 
-           RowBox[{"#Settings", ",", " ", "\"\<GH\>\""}], "]"}]}], ";", "\n", 
-         "          ", 
-         RowBox[{"pushToServerFlag", "=", 
-          RowBox[{"MemberQ", "[", 
-           RowBox[{"#Settings", ",", " ", "\"\<SV\>\""}], "]"}]}], ";", "\n", 
-         "          ", 
-         RowBox[{"updatePacletFlag", "=", 
-          RowBox[{"MemberQ", "[", 
-           RowBox[{"#Settings", ",", " ", "\"\<PI\>\""}], "]"}]}], ";", "\n", 
-         "          ", 
-         RowBox[{"publishServerFlag", "=", 
-          RowBox[{"MemberQ", "[", 
-           RowBox[{"#Settings", ",", " ", "\"\<PS\>\""}], "]"}]}], ";", "\n", 
-         "          ", 
-         RowBox[{"makeSiteFlag", "=", "False"}], ";", "\n", "          ", 
-         RowBox[{"backupFlag", "=", "False"}], ";", "\n", "          ", 
-         RowBox[{"Module", "[", 
+         RowBox[{"Function", "[", "\n", "            ", 
           RowBox[{
-           RowBox[{"{", 
-            RowBox[{"popup", ",", " ", "r"}], "}"}], ",", "\n", 
-           "            ", 
-           RowBox[{
-            RowBox[{"popup", " ", "=", " ", "\n", "              ", 
-             RowBox[{"CreateMessagePopup", "@", "\n", "                ", 
-              RowBox[{"Row", "@", 
-               RowBox[{"{", 
-                RowBox[{"\"\<Publishing\>\"", ",", " ", 
-                 RowBox[{"ProgressIndicator", "[", 
-                  RowBox[{"Appearance", "->", "\"\<Ellipsis\>\""}], "]"}]}], 
-                "}"}]}]}]}], ";", "\n", "            ", 
-            RowBox[{"r", "=", "\n", "  \t\t      \t\t", 
-             RowBox[{"AppExecute", "[", "\n", "  \t\t      \t\t  ", 
-              RowBox[{
-              "\"\<Publish\>\"", ",", "\n", "        \t\t\t\t\t", 
-               "currentApp", ",", "\n", "        \t\t\t\t\t", 
-               RowBox[{"\"\<PublishServer\>\"", "->", 
-                RowBox[{"TrueQ", "[", "publishServerFlag", "]"}]}], ",", "\n",
-                "        \t\t\t\t\t", 
-               RowBox[{"\"\<MakeSite\>\"", "->", 
-                RowBox[{"TrueQ", "[", "makeSiteFlag", "]"}]}], ",", "\n", 
-               "        \t\t\t\t\t", 
-               RowBox[{"\"\<PushToGitHub\>\"", "->", 
-                RowBox[{"gitPushFlag", "=!=", "False"}]}], ",", "\n", 
-               "        \t\t\t\t\t", 
-               RowBox[{"\"\<PacletBackup\>\"", "->", 
-                RowBox[{"backupFlag", "=!=", "False"}]}], ",", "\n", 
-               "        \t\t\t\t\t", 
-               RowBox[{"\"\<PushToServer\>\"", "->", 
-                RowBox[{"pushToServerFlag", "=!=", "False"}]}], ",", "\n", 
-               "        \t\t\t\t\t", 
-               RowBox[{"\"\<UpdatePaclet\>\"", "->", 
-                RowBox[{"updatePacletFlag", "=!=", "False"}]}]}], "\n", 
-              "        \t\t\t\t\t", "]"}]}], ";", "\n", "            ", 
-            RowBox[{"NotebookDelete", "[", "popup", "]"}], ";", "\n", 
-            "            ", 
-            RowBox[{"CreateMessagePopup", "@", "\"\<Published\>\""}]}]}], 
-          "\n", "      \t\t\t ", 
-          RowBox[{"(*", 
-           RowBox[{"Quiet", "[", "\n", "      \t\t\t  ", 
+           RowBox[{"gitPushFlag", "=", 
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"#Settings", ",", " ", "\"\<GH\>\""}], "]"}]}], ";", 
+           "\n", "  ", "          ", 
+           RowBox[{"pushToServerFlag", "=", 
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"#Settings", ",", " ", "\"\<SV\>\""}], "]"}]}], ";", 
+           "\n", "  ", "          ", 
+           RowBox[{"updatePacletFlag", "=", 
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"#Settings", ",", " ", "\"\<PI\>\""}], "]"}]}], ";", 
+           "\n", "  ", "          ", 
+           RowBox[{"publishServerFlag", "=", 
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"#Settings", ",", " ", "\"\<PS\>\""}], "]"}]}], ";", 
+           "\n", "  ", "          ", 
+           RowBox[{"makeSiteFlag", "=", "False"}], ";", "\n", "  ", 
+           "          ", 
+           RowBox[{"backupFlag", "=", "False"}], ";", "\n", "  ", 
+           "          ", 
+           RowBox[{"Module", "[", 
             RowBox[{
-             RowBox[{"If", "[", 
+             RowBox[{"{", 
+              RowBox[{"popup", ",", " ", "r"}], "}"}], ",", "\n", "  ", 
+             "            ", 
+             RowBox[{
+              RowBox[{"popup", " ", "=", " ", "\n", "  ", "              ", 
+               RowBox[{
+               "CreateMessagePopup", "@", "\n", "  ", "                ", 
+                RowBox[{"Row", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Publishing\>\"", ",", " ", 
+                   RowBox[{"ProgressIndicator", "[", 
+                    RowBox[{"Appearance", "->", "\"\<Ellipsis\>\""}], "]"}]}],
+                   "}"}]}]}]}], ";", "\n", "  ", "            ", 
+              RowBox[{"r", "=", "\n", "  ", "  \t\t      \t\t", 
+               RowBox[{"AppExecute", "[", "\n", "  ", "  \t\t      \t\t  ", 
+                RowBox[{
+                "\"\<Publish\>\"", ",", "\n", "  ", "        \t\t\t\t\t", 
+                 "currentApp", ",", "\n", "  ", "        \t\t\t\t\t", 
+                 RowBox[{"\"\<PublishServer\>\"", "->", 
+                  RowBox[{"TrueQ", "[", "publishServerFlag", "]"}]}], ",", 
+                 "\n", "  ", "        \t\t\t\t\t", 
+                 RowBox[{"\"\<MakeSite\>\"", "->", 
+                  RowBox[{"TrueQ", "[", "makeSiteFlag", "]"}]}], ",", "\n", 
+                 "  ", "        \t\t\t\t\t", 
+                 RowBox[{"\"\<PushToGitHub\>\"", "->", 
+                  RowBox[{"gitPushFlag", "=!=", "False"}]}], ",", "\n", "  ", 
+                 "        \t\t\t\t\t", 
+                 RowBox[{"\"\<PacletBackup\>\"", "->", 
+                  RowBox[{"backupFlag", "=!=", "False"}]}], ",", "\n", "  ", 
+                 "        \t\t\t\t\t", 
+                 RowBox[{"\"\<PushToServer\>\"", "->", 
+                  RowBox[{"pushToServerFlag", "=!=", "False"}]}], ",", "\n", 
+                 "  ", "        \t\t\t\t\t", 
+                 RowBox[{"\"\<UpdatePaclet\>\"", "->", 
+                  RowBox[{"updatePacletFlag", "=!=", "False"}]}]}], "\n", 
+                "  ", "        \t\t\t\t\t", "]"}]}], ";", "\n", "  ", 
+              "            ", 
+              RowBox[{"NotebookDelete", "[", "popup", "]"}], ";", "\n", "  ", 
+              "            ", 
+              RowBox[{"CreateMessagePopup", "@", "\"\<Published\>\""}]}]}], 
+            "\n", "  ", "      \t\t\t ", 
+            RowBox[{"(*", 
+             RowBox[{"Quiet", "[", "\n", "  ", "      \t\t\t  ", 
               RowBox[{
-               RowBox[{"gitPushFlag", "=!=", "False"}], ",", "\n", 
-               "      \t\t\t\t\t\t", 
-               RowBox[{"sysOpen", "@", 
+               RowBox[{"If", "[", 
                 RowBox[{
-                 RowBox[{"whichPacF", "[", "\"\<AppGitHubRepo\>\"", "]"}], 
-                 "[", "currentApp", "]"}]}]}], "\n", "      \t\t\t\t\t\t", 
-              "]"}], ";", "\n", "      \t\t\t\t\t", 
-             RowBox[{"If", "[", 
-              RowBox[{"publishServerFlag", ",", "\n", "      \t\t\t\t\t\t", 
-               RowBox[{"Replace", "[", "\n", "      \t\t\t\t\t\t\t", 
-                RowBox[{
-                 RowBox[{
+                 RowBox[{"gitPushFlag", "=!=", "False"}], ",", "\n", "  ", 
+                 "      \t\t\t\t\t\t", 
+                 RowBox[{"sysOpen", "@", 
                   RowBox[{
-                  "whichPacF", "[", "\"\<PacletServerDeploymentURL\>\"", 
-                   "]"}], "[", "]"}], ",", "\n", "      \t\t\t\t\t\t\t", 
-                 RowBox[{"s_String", "\[RuleDelayed]", 
-                  RowBox[{"sysOpen", "@", "s"}]}]}], "\n", 
-                "      \t\t\t\t\t\t\t", "]"}]}], "\n", "      \t\t\t\t\t\t", 
-              "]"}], ";"}], "\n", "      \t\t\t\t\t", "]"}], "*)"}], "\n", 
-          "      \t\t\t\t", "]"}]}], "\n", "          ", "]"}]}]}], "\n", 
-     "      ", "|>"}], "\n", "    ", "]"}]}], ";"}]], "Code",
- CellChangeTimes->{{3.763960101273469*^9, 
-  3.7639601112928123`*^9}},ExpressionUUID->"ff2b9182-f62c-47fc-962d-\
+                   RowBox[{"whichPacF", "[", "\"\<AppGitHubRepo\>\"", "]"}], 
+                   "[", "currentApp", "]"}]}]}], "\n", "  ", 
+                "      \t\t\t\t\t\t", "]"}], ";", "\n", "  ", 
+               "      \t\t\t\t\t", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                "publishServerFlag", ",", "\n", "  ", "      \t\t\t\t\t\t", 
+                 RowBox[{"Replace", "[", "\n", "  ", "      \t\t\t\t\t\t\t", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    "whichPacF", "[", "\"\<PacletServerDeploymentURL\>\"", 
+                    "]"}], "[", "]"}], ",", "\n", "  ", 
+                   "      \t\t\t\t\t\t\t", 
+                   RowBox[{"s_String", "\[RuleDelayed]", 
+                    RowBox[{"sysOpen", "@", "s"}]}]}], "\n", "  ", 
+                  "      \t\t\t\t\t\t\t", "]"}]}], "\n", "  ", 
+                "      \t\t\t\t\t\t", "]"}], ";"}], "\n", "  ", 
+              "      \t\t\t\t\t", "]"}], "*)"}], "\n", "        \t\t\t\t", 
+            "]"}]}], "\n", "            ", "]"}], ",", "\n", "          ", 
+         RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], "\n", 
+        "          ", "}"}]}]}], "\n", "      ", "|>"}], "\n", "    ", 
+    "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.763960101273469*^9, 3.7639601112928123`*^9}, {
+  3.763960234793108*^9, 
+  3.763960248257678*^9}},ExpressionUUID->"ff2b9182-f62c-47fc-962d-\
 36f5b293a1cb"]
 }, Open  ]],
 
@@ -1629,28 +1642,28 @@ Cell[51392, 1217, 844, 19, 218, "Code",ExpressionUUID->"8ee54e98-0fbc-4748-97d8-
 }, Closed]],
 Cell[CellGroupData[{
 Cell[52273, 1241, 87, 0, 37, "Subsubsection",ExpressionUUID->"af8abd76-8dd8-40d3-8cf7-211a73178d1a"],
-Cell[52363, 1243, 7460, 151, 1415, "Code",ExpressionUUID->"ff2b9182-f62c-47fc-962d-36f5b293a1cb"]
+Cell[52363, 1243, 8186, 164, 1478, "Code",ExpressionUUID->"ff2b9182-f62c-47fc-962d-36f5b293a1cb"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[59860, 1399, 93, 0, 45, "Subsubsection",ExpressionUUID->"f6bbc7f0-bab0-4d6e-ae0c-76d721e68b21"],
-Cell[59956, 1401, 1451, 36, 70, "Code",ExpressionUUID->"12fcdd33-6d40-4dfd-82e0-0064aba2d64b"]
+Cell[60586, 1412, 93, 0, 45, "Subsubsection",ExpressionUUID->"f6bbc7f0-bab0-4d6e-ae0c-76d721e68b21"],
+Cell[60682, 1414, 1451, 36, 70, "Code",ExpressionUUID->"12fcdd33-6d40-4dfd-82e0-0064aba2d64b"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[61444, 1442, 87, 0, 37, "Subsubsection",ExpressionUUID->"b2971130-e758-454c-b001-e74467e3a756"],
-Cell[61534, 1444, 256, 7, 70, "Code",ExpressionUUID->"a9d24071-917d-439b-9200-fb00c87955eb"]
+Cell[62170, 1455, 87, 0, 37, "Subsubsection",ExpressionUUID->"b2971130-e758-454c-b001-e74467e3a756"],
+Cell[62260, 1457, 256, 7, 70, "Code",ExpressionUUID->"a9d24071-917d-439b-9200-fb00c87955eb"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[61827, 1456, 88, 0, 37, "Subsubsection",ExpressionUUID->"c4778c05-dfdf-40c2-ad2e-f7671eaffe2f"],
-Cell[61918, 1458, 873, 16, 70, "Code",ExpressionUUID->"57a99c65-7120-4fe4-893d-782cbf6e2264"]
+Cell[62553, 1469, 88, 0, 37, "Subsubsection",ExpressionUUID->"c4778c05-dfdf-40c2-ad2e-f7671eaffe2f"],
+Cell[62644, 1471, 873, 16, 70, "Code",ExpressionUUID->"57a99c65-7120-4fe4-893d-782cbf6e2264"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[62828, 1479, 83, 0, 37, "Subsubsection",ExpressionUUID->"64a0efcb-af55-4180-aa27-2b6b473e3d96"],
-Cell[62914, 1481, 123, 2, 70, "Code",ExpressionUUID->"1bea076e-8c31-4776-bb9f-a8a20ce83edb"]
+Cell[63554, 1492, 83, 0, 37, "Subsubsection",ExpressionUUID->"64a0efcb-af55-4180-aa27-2b6b473e3d96"],
+Cell[63640, 1494, 123, 2, 70, "Code",ExpressionUUID->"1bea076e-8c31-4776-bb9f-a8a20ce83edb"]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[63086, 1489, 84, 0, 54, "Subsection",ExpressionUUID->"33536f8c-bbc4-4ee4-8d8f-c65885bb2d37"],
-Cell[63173, 1491, 104, 0, 49, "Code",ExpressionUUID->"4ab1520e-48b0-4cc3-bfc1-2a78284e143f"]
+Cell[63812, 1502, 84, 0, 54, "Subsection",ExpressionUUID->"33536f8c-bbc4-4ee4-8d8f-c65885bb2d37"],
+Cell[63899, 1504, 104, 0, 49, "Code",ExpressionUUID->"4ab1520e-48b0-4cc3-bfc1-2a78284e143f"]
 }, Open  ]]
 }, Open  ]]
 }
