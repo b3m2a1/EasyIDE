@@ -2092,7 +2092,8 @@ $ctnMap=
 
 
 CreateTemplateNotebook//ClearAll
-CreateTemplateNotebook[type:(Alternatives@@Keys[$ctnMap]), 
+CreateTemplateNotebook[
+  type:(Alternatives@@Keys[$ctnMap]), 
   thing_, ops:OptionsPattern[]
   ]:=
   CreateDocument[
@@ -2262,11 +2263,20 @@ formatRelatedSection[names_]:=
 
 
 
-splitUsageCalls[use_]:=
+splitUsageCalls[sname_, use_]:=
   StringSplit[use, 
-    k:((StartOfLine|StartOfString)~~a:Except["["]..~~"["~~b__~~"]")/;
-      StringCount[b, "["]==StringCount["b", "]"]:>
-      k
+    {
+      k:Shortest[
+        ((StartOfLine|StartOfString)~~a:Except["["]..~~"["~~b___~~"]")/;
+          (
+            StringContainsQ[a, sname]&&
+              StringCount[b, "["]==StringCount[b, "]"]
+            )
+        ]:>
+        k,
+      ((StartOfLine|StartOfString)~~sname~~" "):>
+       StringTrim[sname]
+     }
     ]
 
 
@@ -2284,7 +2294,7 @@ getUsageMessages[s_]:=
     ubase=s::usage;
     If[!StringQ@ubase,
       usplits=None,
-      usplits=StringTrim@splitUsageCalls[ubase];
+      usplits=StringTrim@splitUsageCalls[SymbolName[Unevaluated@s], ubase];
       If[Length@usplits>1,
         usplits=
           Replace[
@@ -2292,7 +2302,7 @@ getUsageMessages[s_]:=
             {a_}:>{a, ""},
             1
             ],
-        usplits=None
+        usplits=ubase
         ]
       ];
     usplits
@@ -2308,8 +2318,10 @@ getUsageMessages~SetAttributes~HoldFirst;
 SymbolNotebookTemplate//Clear
 Options[SymbolNotebookTemplate]=
   Options[Notebook];
-SymbolNotebookTemplate[s_Symbol, 
-  parent:Except[_?OptionQ]:None, ops:OptionsPattern[]
+SymbolNotebookTemplate[
+  s_Symbol, 
+  parent:Except[_?OptionQ]:None, 
+  ops:OptionsPattern[]
   ]:=
   Module[
     {
@@ -2331,11 +2343,14 @@ SymbolNotebookTemplate[s_Symbol,
     bits=GenerateFunctionInfo[s, "Keys"->keys];
     {use, deets, exams, similar}=
       If[Length@use1>0, Prepend[use1], Identity]@Lookup[bits, keys];
-    If[Length@use1===0, 
-      use=splitUsageCalls[use]
+    If[Length@use1===0,
+      use=splitUsageCalls[SymbolName[Unevaluated[s]], use];
+      If[StringQ@use1&&Length[use]===0,
+        use = {{SymbolName[Unevaluated[s]], use1}}
+        ]
       ];
     meta=AssociationThread[ToLowerCase@Flatten@Values@$MetadataMap, Automatic];
-    meta["label"]=SymbolName[s];
+    meta["label"]=SymbolName[Unevaluated@s];
     meta["context"]=Context[s];
     meta["type"]="Symbol";
     nb=
@@ -2370,7 +2385,8 @@ SymbolNotebookTemplate[s_Symbol,
             ]
           }
         ]
-    ]
+    ];
+SymbolNotebookTemplate~SetAttributes~HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)

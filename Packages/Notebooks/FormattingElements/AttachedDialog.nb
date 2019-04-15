@@ -742,79 +742,99 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           "]"}]}]}], "\n", "    ", "}"}], ",", "\n", "    ", 
                       RowBox[{RowBox[{RowBox[{"(", RowBox[{RowBox[
                           {"SetSelectedNotebook", "[", "#", "]"}], ";", 
-                          "#"}], ")"}], "&"}], "@", "\n", "    ", RowBox[
-                         {"CreateDocument", "[", "\n", "      ", RowBox[
-                          {RowBox[{"Cell", "[", "\n", "        ", RowBox[
-                          {RowBox[{RowBox[{RowBox[{RowBox[{"ReplaceAll", "[", 
-                          RowBox[{"panel", ",", " ", RowBox[{RowBox[
-                          {"HoldPattern", "[", "$CurrentIDENotebook", "]"}], 
-                          "\[Rule]", "nbb"}]}], "]"}], "//", "\n", 
-                          "          ", RowBox[{"If", "[", RowBox[{RowBox[
+                          "#"}], ")"}], "&"}], "@", "\n", "      ", RowBox[
+                         {"CreateDocument", "[", "\n", "        ", RowBox[
+                          {RowBox[{"Cell", "[", "\n", "  ", "        ", 
+                          RowBox[{RowBox[{RowBox[{RowBox[{RowBox[
+                          {"ReplaceAll", "[", RowBox[{"panel", ",", " ", 
+                          "\n", "            ", RowBox[{"{", "\n", 
+                          "              ", RowBox[{RowBox[{RowBox[{
+                          "Function", "[", "a_", "]"}], ":>", "\n", 
+                          "                ", RowBox[{"Function", "[", RowBox[
+                          {"Block", "[", RowBox[{RowBox[{"{", RowBox[{
+                          "$CurrentIDENotebook", "=", "nbb"}], "}"}], ",", 
+                          " ", "a"}], "]"}], "]"}]}], ",", "\n", 
+                          "              ", RowBox[{RowBox[{RowBox[{
+                          "Verbatim", "[", "Function", "]"}], "[", RowBox[
+                          {"b_", ",", " ", "a_", ",", " ", "c___"}], "]"}], 
+                          ":>", "\n", "                ", RowBox[{"Function", 
+                          "[", RowBox[{"b", ",", " ", RowBox[{"Block", "[", 
+                          RowBox[{RowBox[{"{", RowBox[{"$CurrentIDENotebook", 
+                          "=", "nbb"}], "}"}], ",", " ", "a"}], "]"}], ",", 
+                          " ", "c"}], "]"}]}], ",", "\n", "              ", 
+                          RowBox[{RowBox[{"HoldPattern", "[", 
+                          "$CurrentIDENotebook", "]"}], "\[Rule]", "nbb"}]}], 
+                          "\n", "              ", "}"}]}], "]"}], "//", "\n", 
+                          "            ", RowBox[{"If", "[", RowBox[{RowBox[
                           {"Quiet", "[", RowBox[{"TrueQ", "@", RowBox[
                           {"OptionValue", "[", "\"CreateCloseButton\"", 
-                          "]"}]}], "]"}], ",", "\n", "  ", "          ", 
-                          "insertCloseBox", ",", "\n", "  ", "          ", 
-                          "Identity"}], "\n", "  ", "          ", "]"}]}], 
-                          "//", "ToBoxes"}], "//", "BoxData"}], ",", "\n", 
-                          "        ", "cellType", ",", "\n", "        ", 
-                          RowBox[{"FilterRules", "[", "\n", "          ", 
-                          RowBox[{RowBox[{"{", "\n", "            ", RowBox[
-                          {"ops", ",", "\n", "            ", RowBox[
-                          {"CellSize", "\[Rule]", RowBox[{"{", "\n", 
-                          "              ", RowBox[{RowBox[{"Scaled", "[", 
-                          "1", "]"}], ",", " ", "\n", "              ", 
-                          "Automatic"}], "\n", "              ", "}"}]}]}], 
-                          "\n", "            ", "}"}], ",", " ", "\n", 
+                          "]"}]}], "]"}], ",", "\n", "  ", "  ", 
+                          "          ", "insertCloseBox", ",", "\n", "  ", 
+                          "  ", "          ", "Identity"}], "\n", "  ", "  ", 
+                          "          ", "]"}]}], "//", "ToBoxes"}], "//", 
+                          "BoxData"}], ",", "\n", "  ", "        ", 
+                          "cellType", ",", "\n", "  ", "        ", RowBox[
+                          {"FilterRules", "[", "\n", "  ", "          ", 
+                          RowBox[{RowBox[{"{", "\n", "  ", "            ", 
+                          RowBox[{"ops", ",", "\n", "  ", "            ", 
+                          RowBox[{"CellSize", "\[Rule]", RowBox[{"{", "\n", 
+                          "  ", "              ", RowBox[{RowBox[{"Scaled", 
+                          "[", "1", "]"}], ",", " ", "\n", "  ", 
+                          "              ", "Automatic"}], "\n", "  ", 
+                          "              ", "}"}]}]}], "\n", "  ", 
+                          "            ", "}"}], ",", " ", "\n", "  ", 
                           "          ", RowBox[{"CellSize", "|", "CellLabel", 
-                          "|", "CellTags"}]}], "\n", "          ", "]"}]}], 
-                          "\n", "        ", "]"}], ",", "\n", "      ", 
-                          RowBox[{"FilterRules", "[", "\n", "        ", 
-                          RowBox[{RowBox[{"{", "\n", "          ", RowBox[
-                          {"ops", ",", "\n", "          ", RowBox[
-                          {"FirstCase", "[", "\n", "            ", RowBox[
-                          {"panel", ",", "\n", "  ", "  ", "        ", RowBox[
-                          {RowBox[{"i", ":", RowBox[{"InputField", "[", 
-                          RowBox[{"___", ",", " ", RowBox[{"BoxID", 
-                          "\[Rule]", "boxID_"}], ",", " ", "___"}], "]"}]}], 
-                          ":>", "\n", "  ", "  ", "          ", RowBox[{"(", 
-                          " ", "\n", "  ", "  ", "            ", RowBox[
-                          {"NotebookDynamicExpression", ":>", "\n", "  ", 
-                          "  ", "              ", RowBox[{"Refresh", "[", 
-                          "\n", "  ", "  ", "                ", RowBox[
-                          {RowBox[{"FE`Evaluate", "@", "\n", "  ", "  ", 
-                          "                  ", RowBox[{
+                          "|", "CellTags"}]}], "\n", "  ", "          ", 
+                          "]"}]}], "\n", "  ", "        ", "]"}], ",", "\n", 
+                          "  ", "      ", RowBox[{"FilterRules", "[", "\n", 
+                          "  ", "        ", RowBox[{RowBox[{"{", "\n", "  ", 
+                          "          ", RowBox[{"ops", ",", "\n", "  ", 
+                          "          ", RowBox[{"FirstCase", "[", "\n", "  ", 
+                          "            ", RowBox[{"panel", ",", "\n", "  ", 
+                          "  ", "  ", "        ", RowBox[{RowBox[{"i", ":", 
+                          RowBox[{"InputField", "[", RowBox[{"___", ",", " ", 
+                          RowBox[{"BoxID", "\[Rule]", "boxID_"}], ",", " ", 
+                          "___"}], "]"}]}], ":>", "\n", "  ", "  ", "  ", 
+                          "          ", RowBox[{"(", " ", "\n", "  ", "  ", 
+                          "  ", "            ", RowBox[{
+                          "NotebookDynamicExpression", ":>", "\n", "  ", 
+                          "  ", "  ", "              ", RowBox[{"Refresh", 
+                          "[", "\n", "  ", "  ", "  ", "                ", 
+                          RowBox[{RowBox[{"FE`Evaluate", "@", "\n", "  ", 
+                          "  ", "  ", "                  ", RowBox[{
                           "FrontEnd`MoveCursorToInputField", "[", "\n", "  ", 
-                          "  ", "              \t\t\t ", RowBox[{RowBox[
+                          "  ", "  ", "              \t\t\t ", RowBox[{RowBox[
                           {"EvaluationNotebook", "[", "]"}], ",", " ", "\n", 
-                          "  ", "  ", "            \t\t\t\t\t", "boxID"}], 
-                          "\n", "  ", "  ", "            \t\t\t\t\t", 
-                          "]"}]}], ",", "\n", "  ", "  ", 
-                          "          \t\t\t\t", "None"}], "\n", "  ", "  ", 
-                          "          \t\t\t", "]"}]}], "\n", "  ", "  ", 
-                          "            ", ")"}]}], ",", "\n", "  ", "  ", 
-                          "        ", RowBox[{"Sequence", "@@", RowBox[{"{", 
-                          "}"}]}], ",", "\n", "  ", "  ", "        ", 
-                          "Infinity"}], "\n", "            ", "]"}], ",", 
-                          "\n", "          ", RowBox[{"StyleDefinitions", 
+                          "  ", "  ", "  ", "            \t\t\t\t\t", 
+                          "boxID"}], "\n", "  ", "  ", "  ", 
+                          "            \t\t\t\t\t", "]"}]}], ",", "\n", "  ", 
+                          "  ", "  ", "          \t\t\t\t", "None"}], "\n", 
+                          "  ", "  ", "  ", "          \t\t\t", "]"}]}], 
+                          "\n", "  ", "  ", "  ", "            ", ")"}]}], 
+                          ",", "\n", "  ", "  ", "  ", "        ", RowBox[
+                          {"Sequence", "@@", RowBox[{"{", "}"}]}], ",", "\n", 
+                          "  ", "  ", "  ", "        ", "Infinity"}], "\n", 
+                          "  ", "            ", "]"}], ",", "\n", "  ", 
+                          "          ", RowBox[{"StyleDefinitions", 
                           "\[Rule]", RowBox[{"(*", " ", RowBox[{"need", " ", 
                           "more", " ", "flexibility", " ", "here", " ", 
                           "but", " ", "ah", " ", "well"}], " ", "*)"}], "\n", 
-                          "            ", RowBox[{"With", "[", RowBox[{RowBox[
-                          {"{", RowBox[{"n", "=", RowBox[{RowBox[{
-                          "GetMainStylesheetName", "[", "nb", "]"}], "<>", 
-                          "\"-Dialog.nb\""}]}], "}"}], ",", "\n", 
+                          "  ", "            ", RowBox[{"With", "[", RowBox[
+                          {RowBox[{"{", RowBox[{"n", "=", RowBox[{RowBox[
+                          {"GetMainStylesheetName", "[", "nb", "]"}], "<>", 
+                          "\"-Dialog.nb\""}]}], "}"}], ",", "\n", "  ", 
                           "              ", RowBox[{"FrontEnd`FileName", "[", 
                           RowBox[{RowBox[{"{", RowBox[{"\"EasyIDE\"", ",", 
                           " ", "\"Extensions\""}], "}"}], ",", " ", "n"}], 
-                          "]"}]}], "\n", "              ", "]"}]}]}], "\n", 
-                          "          ", "}"}], ",", "\n", "        ", RowBox[
-                          {"Options", "[", "Notebook", "]"}]}], "\n", 
-                          "        ", "]"}]}], "\n", "      ", "]"}]}]}], 
-                    "\n", "    ", "]"}]}], ";"}], "\n", RowBox[{
-                RowBox[{"CreateWindowedDialog", "[", "\n", "  ", 
-                  RowBox[{RowBox[{"expression", ":", RowBox[{"Except", "[", 
-                        "attachables", "]"}]}], ",", " ", "\n", "  ", 
-                    RowBox[{"cellType", ":", "_String", ":", 
+                          "]"}]}], "\n", "  ", "              ", "]"}]}]}], 
+                          "\n", "  ", "          ", "}"}], ",", "\n", "  ", 
+                          "        ", RowBox[{"Options", "[", "Notebook", 
+                          "]"}]}], "\n", "  ", "        ", "]"}]}], "\n", 
+                          "  ", "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
+                ";"}], "\n", RowBox[{RowBox[{"CreateWindowedDialog", "[", 
+                  "\n", "  ", RowBox[{RowBox[{"expression", ":", RowBox[
+                       {"Except", "[", "attachables", "]"}]}], ",", " ", 
+                    "\n", "  ", RowBox[{"cellType", ":", "_String", ":", 
                       "\"AttachedDialogCell\""}], ",", "\n", "  ", 
                     RowBox[{"ops", ":", RowBox[{"OptionsPattern", "[", 
                         "]"}]}]}], "\n", "  ", "]"}], ":=", "\n", "  ", 

@@ -1294,7 +1294,7 @@ PackageEnsureLoadDependency[dep_, ops:OptionsPattern[]]:=
      ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*PackageEnsureLoadDependencies*)
 
 
@@ -1344,7 +1344,8 @@ PackageExposeDependencies[deps_, permanent:True|False:False]:=
       With[{ctx=#},
         SelectFirst[
           depCs,
-          Length@Join[Names[#<>ctx<>"*"], Names[#<>ctx<>"*`*"]]>0&,
+          Length@
+            Join[Names[#<>ctx<>"*"], Names[#<>ctx<>"*`*"]]>0&,
           ""
           ]<>#
         ]&/@deps;

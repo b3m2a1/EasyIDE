@@ -108,7 +108,7 @@ TabObject[tabName_String, file_]:=
         List@{
           MouseAppearance[
             RawBoxes@ButtonBox[
-              ToBoxes@Pane[tabName, BaseStyle->"TabName"],
+              ToBoxes@Tooltip[Pane[tabName, BaseStyle->"TabName"], file],
               BaseStyle->"TabName",
               ButtonData->tabName
               ],

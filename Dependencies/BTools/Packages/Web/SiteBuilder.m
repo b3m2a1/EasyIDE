@@ -1491,13 +1491,14 @@ webSiteTemplatePreProcessSplitOutput[pc_, cc_, head_, c_, tail_]:=
       Sequence@@
         Flatten@{
           If[Length@splits==0||StringQ@splits[[1, 1]],
-            webSiteTemplatePreProcessProcessSplitString[firstSplit, 
+            webSiteTemplatePreProcessProcessSplitString[
+              firstSplit, 
               pc, cc, head, {}
               ],
             With[{sp=splits[[1]]},
               splits=Rest@splits;
               webSiteTemplatePreProcessProcessSplitString[firstSplit, 
-                pc, cc, Join[head, sp]
+                pc, cc, Join[head, sp], {}
                 ]
               ]
             ],
@@ -1842,8 +1843,8 @@ WebSiteTemplateGatherArgs[fileContent_, args_]:=
               WebSiteBuildLogError[fp, "BadContent", e];
               PackageThrowMessage[
                 "SiteBuilder",
-                Evaluate[WebSiteBuild::nocnt],
-                Short[e]
+                Evaluate@WebSiteBuild::nocnt,
+                "MessageParameters":>{Short[e]}
                 ]
               )
           }
@@ -2451,8 +2452,8 @@ WebSiteContentStackPrep[ops:OptionsPattern[]]:=
                       SortBy[order]@
                         $WebSiteBuildAggStack["SelectObjects"][pageType]
                     },
-                  With[{pos=FirstPosition[sorted[[All, "SourceFile"]], self][[1]]},
-                    If[TrueQ[pos<=Length@sorted],
+                  With[{pos=FirstPosition[sorted, self][[1]]+1},
+                    If[pos<=Length@sorted//TrueQ,
                       sorted[[pos]],
                       None
                       ]
@@ -2472,9 +2473,7 @@ WebSiteContentStackPrep[ops:OptionsPattern[]]:=
                   {
                     sorted=
                       SortBy[order]@
-                      $WebSiteBuildAggStack["SelectObjects"][
-                        pageType
-                        ]
+                        $WebSiteBuildAggStack["SelectObjects"][pageType]
                     },
                   With[{pos=FirstPosition[sorted, self][[1]]-1},
                     If[pos>0//TrueQ,

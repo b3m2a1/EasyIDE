@@ -1,14 +1,23 @@
 (* ::Package:: *)
 
+(* ::Section:: *)
+(*SiteBuilder/Markdown Plugin*)
+
+
 BeginPackage["`MarkdownPlugin`"];
-createNewSite;
-createNewPost;
-createNewPage;
-createNewMd;
+siteBuilderCommands;
 EndPackage[];
 
 
+(* ::Subsection:: *)
+(*Private*)
+
+
 Begin["`Private`"];
+
+
+(* ::Subsubsection::Closed:: *)
+(*createNewSite*)
 
 
 createNewSite[]:=
@@ -56,6 +65,10 @@ createNewSite[]:=
       ]
 
 
+(* ::Subsubsection::Closed:: *)
+(*getWebSitePath*)
+
+
 getWebSitePath[]:=
   FileNameJoin@Flatten@
     Replace[
@@ -65,6 +78,10 @@ getWebSitePath[]:=
          ],
       {a___, {"content"}, _}:>{a}
       ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*createNewPost*)
 
 
 createNewPost[]:=
@@ -77,6 +94,10 @@ createNewPost[]:=
      ]
 
 
+(* ::Subsubsection::Closed:: *)
+(*createNewPage*)
+
+
 createNewPage[]:=
   Block[
      {
@@ -85,6 +106,10 @@ createNewPage[]:=
        },
      Ems["NewPost", getWebSitePath[]]
      ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*createNewMd*)
 
 
 createNewMd[]:=
@@ -102,16 +127,136 @@ createNewMd[]:=
    ];
 
 
+(* ::Subsubsection::Closed:: *)
+(*openSite*)
+
+
+openSite[]:=
+  Ems["Open", getWebSitePath[]]
+
+
+(* ::Subsubsection::Closed:: *)
+(*buildSite*)
+
+
+buildSite[]:=
+  CreateWindowedInputDialog[
+    <|
+      "Header"->"Build Site",
+      "State"->Dynamic[buildSiteState],
+      "Fields"-> <|
+        <|
+          "ID"->"Settings",
+          "Name"->None,
+          "Type"->{CheckboxBar, 
+            {
+              "GC"->"Generate Content",
+              "GA"->"Generate Aggregations",
+              "GI"->"Generate Index",
+              "GS"->"Generate Search",
+              "CT"->"Copy Theme",
+              "UC"->"Use Cache",
+              "OP"->"Open on Build",
+              "BS"->"Build Silently",
+              "RA"->"Rebuild All"
+              },
+            Appearance->"Horizontal"->{Automatic, 2}
+            },
+          "Default"->{
+            If[$generatContentFlag=!=False, "GC", Nothing],
+            If[$generateAggregationsFlag=!=False, "GA", Nothing],
+            If[$generatIndexFlag=!=False, "GI", Nothing],
+            If[$generateSearchFlag=!=False, "GS", Nothing],
+            If[$copyThemeFlag=!=False, "CT", Nothing],
+            If[$useCacheFlag=!=False, "UC", Nothing],
+            If[$buildSilentFlag//TrueQ, "BS", Nothing],
+            If[$openOnGenerateFlag//TrueQ, "OP", Nothing],
+            If[$rebuildAllFlag//TrueQ, "RA", Nothing]
+            }
+          |>
+        |>,
+      "SubmitAction"->
+        {
+          Function[
+            $generatContentFlag=MemberQ[#Settings, "GC"];
+            $generateAggregationsFlag=MemberQ[#Settings, "GA"];
+            $generatIndexFlag=MemberQ[#Settings, "GI"];
+            $generateSearchFlag=MemberQ[#Settings, "GS"];
+            $copyThemeFlag=MemberQ[#Settings, "CT"];
+            $useCacheFlag=MemberQ[#Settings, "UC"];
+            $buildSilentFlag=MemberQ[#Settings, "BS"];
+            $openOnGenerateFlag=MemberQ[#Settings, "OP"];
+            $rebuildAllFlag=MemberQ[#Settings, "RA"];
+            Module[{popup, r},
+              popup = 
+                CreateMessagePopup@
+                  Row@{"Building site", ProgressIndicator[Appearance->"Ellipsis"]};
+              r=
+    		      		Ems["Build",
+              			getWebSitePath[],
+              			Monitor->TrueQ@Not@$buildSilentFlag,
+              			"GenerateAggregations"->
+              				$generateAggregationsFlag=!=False,
+              			"GenerateIndex"->
+              				$generatIndexFlag=!=False,
+              			"GenerateContent"->
+              				$generatContentFlag=!=False,
+              			"CopyTheme"->
+              				$copyThemeFlag=!=False,
+              			"GenerateSearchPage"->
+              				$generateSearchFlag=!=False,
+              			"UseCache"->
+              				$useCacheFlag=!=False,
+              			If[TrueQ@$rebuildAllFlag,
+              				"LastBuild"->None,
+              				Sequence@@{}
+              				]
+              			];
+              		If[$openOnGenerateFlag=!=False,
+              			Ems["Open", getWebSitePath[]]
+              			];
+              NotebookDelete[popup];
+              CreateMessagePopup@"Site built"
+        				]
+            ],
+          Method->"Queued"
+          }
+      |>
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*commands*)
+
+
+siteBuilderCommands=
+  {
+    "Initialize":>
+      createNewSite[],
+     "New"->{
+        "Post":>
+         createNewPost[],
+       "Page":>
+         createNewPage[],
+       "Markdown":>
+         createNewMarkdown[]
+         },
+     "Open Site":>
+       openSite[],
+     "Build Site":>
+       buildSite[]
+    };
+
+
+(* ::Subsubsection::Closed:: *)
+(*End*)
+
+
 End[]
 
 
-{
-  "Initialize":>
-    createNewSite[],
-   "New Post":>
-     createNewPost[],
-   "New Page":>
-     createNewPage[],
-   "New Markdown":>
-     createNewMarkdown[]
-}
+(* ::Subsection:: *)
+(*Exports*)
+
+
+siteBuilderCommands

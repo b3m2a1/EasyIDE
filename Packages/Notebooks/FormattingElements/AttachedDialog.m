@@ -670,53 +670,60 @@ CreateWindowedDialog[
         AttachedDialogPanel[expression]
     },
     (SetSelectedNotebook[#];#)&@
-    CreateDocument[
-      Cell[
-        ReplaceAll[panel, HoldPattern[$CurrentIDENotebook]->nbb]//
-          If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
-            insertCloseBox,
-            Identity
-            ]//ToBoxes//BoxData,
-        cellType,
+      CreateDocument[
+        Cell[
+          ReplaceAll[panel, 
+            {
+              Function[a_]:>
+                Function[Block[{$CurrentIDENotebook=nbb}, a]],
+              Verbatim[Function][b_, a_, c___]:>
+                Function[b, Block[{$CurrentIDENotebook=nbb}, a], c],
+              HoldPattern[$CurrentIDENotebook]->nbb
+              }]//
+            If[Quiet[TrueQ@OptionValue["CreateCloseButton"]],
+              insertCloseBox,
+              Identity
+              ]//ToBoxes//BoxData,
+          cellType,
+          FilterRules[
+            {
+              ops,
+              CellSize->{
+                Scaled[1], 
+                Automatic
+                }
+              }, 
+            CellSize|CellLabel|CellTags
+            ]
+          ],
         FilterRules[
           {
             ops,
-            CellSize->{
-              Scaled[1], 
-              Automatic
-              }
-            }, 
-          CellSize|CellLabel|CellTags
+            FirstCase[
+              panel,
+              i:InputField[___, BoxID->boxID_, ___]:>
+                ( 
+                  NotebookDynamicExpression:>
+                    Refresh[
+                      FE`Evaluate@
+                        FrontEnd`MoveCursorToInputField[
+                           EvaluationNotebook[], 
+                            boxID
+                            ],
+                        None
+                      ]
+                  ),
+              Sequence@@{},
+              Infinity
+              ],
+            StyleDefinitions->(* need more flexibility here but ah well *)
+              With[{n=GetMainStylesheetName[nb]<>"-Dialog.nb"},
+                FrontEnd`FileName[{"EasyIDE", "Extensions"}, n]
+                ]
+            },
+          Options[Notebook]
           ]
-        ],
-      FilterRules[
-        {
-          ops,
-          FirstCase[
-            panel,
-            i:InputField[___, BoxID->boxID_, ___]:>
-              ( 
-                NotebookDynamicExpression:>
-                  Refresh[
-                    FE`Evaluate@
-                      FrontEnd`MoveCursorToInputField[
-                         EvaluationNotebook[], 
-                          boxID
-                          ],
-                      None
-                    ]
-                ),
-            Sequence@@{},
-            Infinity
-            ],
-          StyleDefinitions->(* need more flexibility here but ah well *)
-            With[{n=GetMainStylesheetName[nb]<>"-Dialog.nb"},
-              FrontEnd`FileName[{"EasyIDE", "Extensions"}, n]
-              ]
-          },
-        Options[Notebook]
         ]
-      ]
     ];
 CreateWindowedDialog[
   expression:Except[attachables], 
