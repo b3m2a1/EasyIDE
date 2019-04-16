@@ -125,9 +125,14 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
               FrontEnd`FileName[{path}, f2],
               FrontEnd`FileName[{path, "Extensions"}, bn],
               FrontEnd`FileName[{path, "Extensions"}, f2],
-                If[Length[Hold[path]]>0,
+                If[Length[Hold[path]]>0&&
+                  Hold[path]=!=Hold["EasyIDE", "Extensions"]
+                  (* this is a clear dud path *),
                   Replace[Hold[path],
-                    Hold[p1__, p2_]:>FrontEnd`FileName[{p1}, p2]
+                    {
+                      Hold[p1__, p2_]:>FrontEnd`FileName[{p1}, p2],
+                      _->Nothing
+                      }
                     ],
                   Nothing
                   ]
@@ -143,8 +148,11 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
             ]
         }
       ];
-GetMainStylesheetName[nb_NotebookObject, fallback_:"LightMode"]:=
-  GetMainStylesheetName[GetMainStylesheet[nb]]
+GetMainStylesheetName[nb_NotebookObject, fallback_:Automatic]:=
+  GetMainStylesheetName[
+    GetMainStylesheet[nb],
+    Replace[fallback, Automatic:>IDEData[nb, "MainStyleName", "LightMode"]]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)

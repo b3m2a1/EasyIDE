@@ -717,8 +717,8 @@ CreateWindowedDialog[
               Infinity
               ],
             StyleDefinitions->(* need more flexibility here but ah well *)
-              With[{n=GetMainStylesheetName[nb]<>"-Dialog.nb"},
-                FrontEnd`FileName[{"EasyIDE", "Extensions"}, n]
+              With[{n=GetMainStylesheetName[nb]},
+                FrontEnd`FileName[{"EasyIDE", "Extensions", n}, "Dialog.nb"]
                 ]
             },
           Options[Notebook]

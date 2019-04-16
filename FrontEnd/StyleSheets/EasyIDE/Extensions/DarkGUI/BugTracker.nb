@@ -1,0 +1,930 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     39214,        922]
+NotebookOptionsPosition[     31932,        792]
+NotebookOutlinePosition[     32391,        810]
+CellTagsIndexPosition[     32348,        807]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{"EasyIDE"}, 
+  "DarkGUI.nb"]],ExpressionUUID->"56c3b829-3e87-4fca-b174-674893c27589"],
+
+Cell[BoxData[
+ RowBox[{"<<", "BTools`All`"}]], "Input",
+ CellChangeTimes->{{3.738634512357458*^9, 3.738634515096326*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"65bcd6ef-2002-4e21-a39e-36c399a9f9cb"],
+
+Cell[CellGroupData[{
+
+Cell["Notebook", "Subsection",
+ CellChangeTimes->{{3.738531738136786*^9, 
+  3.7385317564063*^9}},ExpressionUUID->"d8080cc9-fa19-4627-a217-7fdba74e8f4b"],
+
+Cell[StyleData["Notebook"],
+ BackgroundAppearance->
+  FrontEnd`FileName[{"BugTracker"}, 
+   "BeetleBackgroundBorder.png"],ExpressionUUID->"19236d12-48c3-4b33-b3dc-\
+13eddf370b11"],
+
+Cell[CellGroupData[{
+
+Cell["DockedCell", "Subsubsection",
+ CellChangeTimes->{{3.738531738136786*^9, 
+  3.7385317591424007`*^9}},ExpressionUUID->"e0769d2d-f8f7-49b2-b117-\
+2d41e379e018"],
+
+Cell[BoxData[
+ RowBox[{"<<", "BugTracker`"}]], "Input",
+ CellChangeTimes->{{3.738898357332815*^9, 3.738898360394644*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"9618f491-6573-4442-b963-b39072ee801f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Edit", "Subsubsection",
+ CellChangeTimes->{{3.739052729076578*^9, 
+  3.739052730330724*^9}},ExpressionUUID->"46b53542-56ee-4e00-bf8b-\
+7736d3862a22"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Notebook\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"DockedCells", "\[Rule]", "Inherited"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "System`BackgroundAppearance", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"FrontEnd`FileName", "[", 
+       RowBox[{
+        RowBox[{"{", "\"\<BugTracker\>\"", "}"}], ",", " ", 
+        "\"\<BeetleBackgroundBorder.png\>\""}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CounterAssignments", "\[Rule]", "Inherited"}]}], 
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.738628308056692*^9, 3.738628328078*^9}, 
+   3.738628812848021*^9, {3.7386859762774754`*^9, 3.738685998318987*^9}, {
+   3.738686473947446*^9, 3.7386865031184397`*^9}, {3.738686534932658*^9, 
+   3.738686536353166*^9}, {3.7386890699692*^9, 3.738689074433763*^9}, {
+   3.738689436256538*^9, 3.7386894999514427`*^9}, {3.73872477864185*^9, 
+   3.7387247805684767`*^9}, {3.73873347268132*^9, 3.738733473961687*^9}, {
+   3.738734150489354*^9, 3.73873415566533*^9}, 3.7387342413052807`*^9, {
+   3.739052741366395*^9, 3.739052742932661*^9}, 3.739054104954146*^9, {
+   3.7390697547694883`*^9, 3.739069776799506*^9}, {3.739076455341825*^9, 
+   3.739076575608491*^9}, {3.73907661068286*^9, 3.7390766142317133`*^9}, {
+   3.7390767179290543`*^9, 3.739076720861786*^9}, {3.739077389645417*^9, 
+   3.739077392833069*^9}, {3.739077746229869*^9, 3.739077748455256*^9}, {
+   3.7390778267700377`*^9, 3.739077830678835*^9}, {3.7393001536615763`*^9, 
+   3.7393001540974493`*^9}, {3.753512830075376*^9, 3.753512831197116*^9}, {
+   3.7634523748305283`*^9, 
+   3.7634523783893127`*^9}},ExpressionUUID->"8bc3d30a-9f44-4576-a565-\
+e144ac9d5184"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["InlineCellEditing", "Subsection",
+ CellChangeTimes->{{3.738734438412141*^9, 
+  3.738734441843955*^9}},ExpressionUUID->"94c8b668-2703-4a5c-9ceb-\
+4e4b239b2152"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<InlineCellEditing\>\"", "]"}]], "Input",
+ CellChangeTimes->{3.738734446282144*^9},
+ CellLabel->
+  "In[597]:=",ExpressionUUID->"04b7cab9-839d-4a2a-abf4-82d87a6e2020"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["InlineCellEditing"],
+ Background->None,ExpressionUUID->"6c6ccb26-c3e4-45b8-aa73-388411920473"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<InlineCellEditing\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"Background", "\[Rule]", "None"}], "\[IndentingNewLine]", "}"}]}],
+   "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.738734446282144*^9, 3.738734461552548*^9}},
+ CellLabel->
+  "In[598]:=",ExpressionUUID->"d44f84a2-4dbb-4feb-bf08-0a5dfba4456f"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Shared Thingies", "Subsection",
+ CellChangeTimes->{{3.739046566119843*^9, 
+  3.7390465686222353`*^9}},ExpressionUUID->"0ac086ac-f85a-447c-b534-\
+10f69aca2fae"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$bugCellMargins", "=", "\[IndentingNewLine]", 
+   RowBox[{"ReplacePart", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"StyleSheetValue", "[", 
+       RowBox[{
+       "$DefaultStyleSheetNotebook", ",", " ", "\"\<Text\>\"", ",", " ", 
+        "CellMargins"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", " ", "1"}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"2", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", " ", "0"}], "}"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7390465694313602`*^9, 3.739046573328033*^9}},
+ CellLabel->"In[47]:=",ExpressionUUID->"e42866c1-d7e6-4ac5-a92b-0bb198cbcd78"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugTitle", "Subsection",
+ CellChangeTimes->{{3.738634485120021*^9, 
+  3.738634489856724*^9}},ExpressionUUID->"83f00778-2c76-44f2-8d27-\
+40cf5aaa39e7"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugTitle\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 
+  3.738689225303746*^9}},ExpressionUUID->"912c0b2b-c254-4fea-b35c-\
+c1058e4df78a"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugTitle"],
+ CellDingbat->StyleBox[
+   RowBox[{"(", 
+     CounterBox["BugTitle"], ")"}], FontFamily -> FrontEnd`CurrentValue[
+     FrontEnd`EvaluationNotebook[], {
+     StyleDefinitions, "Subsection", FontFamily}], FontSize -> 
+   FrontEnd`CurrentValue[
+     FrontEnd`EvaluationNotebook[], {
+     StyleDefinitions, "Subsection", FontSize}]],
+ AllowReverseGroupClose->False,
+ ShowCellLabel->True,
+ CellFrameLabels->{{None, None}, {None, 
+    PaneBox[
+     RowBox[{
+       PaneBox["", ImageSize -> {
+          FEPrivate`Part[
+           FEPrivate`Part[
+            FrontEnd`CurrentValue[
+             FrontEnd`EvaluationCell[], CellMargins], 1], 1], 1}], 
+       StyleBox[
+        FEPrivate`Part[
+         FrontEnd`CurrentValue[
+          FrontEnd`EvaluationCell[], CellTags], 2], "Text"]}], ImageSize -> 
+     FEPrivate`Part[
+       FrontEnd`AbsoluteCurrentValue[
+        FrontEnd`EvaluationNotebook[], WindowSize], 1], Alignment -> Left]}},
+ CounterIncrements->{
+  "BugTitle"},ExpressionUUID->"7e7f8212-c74c-4013-b752-43ddc46f05a8"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<BugTitle\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ShowCellLabel", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"CellLabel", "\[Rule]", "Inherited"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellFrameLabels", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"None", ",", " ", "None"}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"None", ",", "\[IndentingNewLine]", 
+          RowBox[{"PaneBox", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"RowBox", "@", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"PaneBox", "[", "\[IndentingNewLine]", 
+                RowBox[{"\"\<\>\"", ",", "\[IndentingNewLine]", 
+                 RowBox[{"ImageSize", "\[Rule]", "\[IndentingNewLine]", 
+                  RowBox[{"{", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"FEPrivate`Part", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"FEPrivate`Part", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{
+                    "FrontEnd`CurrentValue", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"FrontEnd`EvaluationCell", "[", "]"}], ",", " ", 
+                    "\[IndentingNewLine]", "CellMargins"}], 
+                    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                    "1"}], "\[IndentingNewLine]", "]"}], ",", 
+                    "\[IndentingNewLine]", "1"}], "\[IndentingNewLine]", 
+                    "]"}], ",", " ", "\[IndentingNewLine]", "1"}], 
+                   "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", 
+                "]"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"StyleBox", "[", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"FEPrivate`Part", "[", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{
+                   "FrontEnd`CurrentValue", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"FrontEnd`EvaluationCell", "[", "]"}], ",", " ", 
+                    "\[IndentingNewLine]", "CellTags"}], 
+                    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                   "2"}], "\[IndentingNewLine]", "]"}], ",", 
+                 "\[IndentingNewLine]", "\"\<Text\>\""}], 
+                "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+              "}"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"ImageSize", "\[Rule]", "\[IndentingNewLine]", 
+             RowBox[{"FEPrivate`Part", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+               "FrontEnd`AbsoluteCurrentValue", "[", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+                 "\[IndentingNewLine]", "WindowSize"}], "\[IndentingNewLine]",
+                 "]"}], ",", "\[IndentingNewLine]", "1"}], 
+              "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Alignment", "\[Rule]", "Left"}]}], "\[IndentingNewLine]",
+            "]"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+       "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"StyleBox", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"RowBox", "@", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"\"\<(\>\"", ",", 
+           RowBox[{"CounterBox", "[", "\"\<BugTitle\>\"", "]"}], ",", 
+           "\"\<)\>\""}], "\[IndentingNewLine]", "}"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"FontFamily", "\[Rule]", "\[IndentingNewLine]", 
+         RowBox[{"FrontEnd`CurrentValue", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+            "StyleDefinitions", ",", " ", "\"\<Subsection\>\"", ",", " ", 
+             "FontFamily"}], "}"}]}], "\[IndentingNewLine]", "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"FontSize", "\[Rule]", "\[IndentingNewLine]", 
+         RowBox[{"FrontEnd`CurrentValue", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+            "StyleDefinitions", ",", " ", "\"\<Subsection\>\"", ",", " ", 
+             "FontSize"}], "}"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+       "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"CellFrameLabels", "\[Rule]", "Inherited"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AllowReverseGroupClose", "\[Rule]", "False"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CounterIncrements", "\[Rule]", 
+      RowBox[{"{", "\"\<BugTitle\>\"", "}"}]}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.738689218506218*^9, 3.738689245745101*^9}, {
+   3.738689324683889*^9, 3.7386894328323097`*^9}, {3.7386895023270206`*^9, 
+   3.73868998469284*^9}, 3.7387239023562593`*^9, {3.738723933623124*^9, 
+   3.7387239704970503`*^9}, {3.738724017169879*^9, 3.738724737273776*^9}, {
+   3.738724795348157*^9, 3.7387248011279907`*^9}, 3.738725502402997*^9, {
+   3.7387279024722958`*^9, 3.7387279087302322`*^9}},
+ CellLabel->
+  "In[491]:=",ExpressionUUID->"e9faef2b-0e8d-4e68-a782-e68bc678978b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugPackage", "Subsection",
+ CellChangeTimes->{{3.738726650743033*^9, 3.738726651134254*^9}, 
+   3.7387268194535646`*^9, {3.739046296227274*^9, 
+   3.73904629729741*^9}},ExpressionUUID->"aebe3a83-d28b-4a76-9a1e-\
+6666a362b5db"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugPackage\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+   3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+   3.738690033520176*^9}, {3.7387268519676037`*^9, 3.7387268736802797`*^9}, 
+   3.73904629892968*^9},
+ CellLabel->"In[30]:=",ExpressionUUID->"fc74e60a-06ae-43c8-9e1e-2fac80d673b1"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugPackage"],
+ CellDingbat->PaneBox[
+   StyleBox["package:", "Text", "BugKeywords", FontSize -> 10], 
+   ImageSize -> {
+    55, Automatic}],ExpressionUUID->"8734215f-b445-4d62-8ec5-3490179b7b8f"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugPackage\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"PaneBox", "[", 
+       RowBox[{
+        RowBox[{"StyleBox", "[", 
+         RowBox[{
+         "\"\<package:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", 
+          "\"\<BugKeywords\>\"", ",", " ", 
+          RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7387266004756813`*^9, 3.7387266416322527`*^9}, {
+   3.738726853265298*^9, 3.738726857408798*^9}, {3.738727721105042*^9, 
+   3.738727722332315*^9}, {3.739045746873454*^9, 3.7390457910033693`*^9}, {
+   3.739045959864489*^9, 3.7390460012477818`*^9}, 3.739046222936585*^9, {
+   3.7390462713561172`*^9, 3.739046325138117*^9}, {3.739046369386738*^9, 
+   3.739046410189097*^9}, {3.739046449047329*^9, 3.739046464987956*^9}, 
+   3.739046525930978*^9, 3.7390465799958467`*^9, 3.7390778641161947`*^9},
+ CellLabel->
+  "In[404]:=",ExpressionUUID->"ba8cad6b-5472-454a-b803-defe66c190a3"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugKeywords", "Subsection",
+ CellChangeTimes->{{3.738726650743033*^9, 3.738726651134254*^9}, 
+   3.7387268194535646`*^9},ExpressionUUID->"7fad58f5-8df5-4e70-aa71-\
+8a44445efe2f"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugKeywords\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}, {3.7387268519676037`*^9, 3.7387268736802797`*^9}},
+ CellLabel->
+  "In[381]:=",ExpressionUUID->"bada6cd3-15cf-4f67-b5f0-c777c85f2b12"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugKeywords"],
+ CellDingbat->PaneBox[
+   StyleBox["keywords:", "Text", "BugKeywords", FontSize -> 10], 
+   ImageSize -> {
+    55, Automatic}],ExpressionUUID->"175b1d8d-3493-4a91-8fd8-fcf830d02c30"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugKeywords\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"PaneBox", "[", 
+       RowBox[{
+        RowBox[{"StyleBox", "[", 
+         RowBox[{
+         "\"\<keywords:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", 
+          "\"\<BugKeywords\>\"", ",", " ", 
+          RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7387266004756813`*^9, 3.7387266416322527`*^9}, {
+   3.738726853265298*^9, 3.738726857408798*^9}, {3.738727721105042*^9, 
+   3.738727722332315*^9}, {3.739045746873454*^9, 3.7390457910033693`*^9}, {
+   3.739045959864489*^9, 3.7390460012477818`*^9}, 3.739046222936585*^9, 
+   3.7390462713561172`*^9, {3.7390465407721252`*^9, 3.73904655116117*^9}, {
+   3.73904658413105*^9, 3.739046587295904*^9}, 3.739077858467998*^9},
+ CellLabel->
+  "In[403]:=",ExpressionUUID->"d6d5fe73-6386-4792-ba2d-5aec5e980337"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugID", "Subsection",
+ CellChangeTimes->{{3.738634485120021*^9, 3.738634489856724*^9}, {
+   3.738690022361518*^9, 3.7386900237518063`*^9}, 3.7387266574352083`*^9, {
+   3.739048991383013*^9, 
+   3.739048991973557*^9}},ExpressionUUID->"ae07beb7-6968-443e-b357-\
+04415a0807bf"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugID\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}, {3.739046718206263*^9, 3.739046719171021*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"c50250bb-5d27-4ccc-b90b-9e4bc7a6617a"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugID"],
+ Editable->True,
+ CellDingbat->PaneBox[
+   StyleBox["ID:", "Text", "BugID", FontSize -> 10], 
+   ImageSize -> {55, Automatic}],
+ GeneratedCell->False,
+ CellAutoOverwrite->
+  False,ExpressionUUID->"13f96269-1666-4bd0-af5d-a82986d7d0a6"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugID\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"PaneBox", "[", 
+       RowBox[{
+        RowBox[{"StyleBox", "[", 
+         RowBox[{
+         "\"\<ID:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", "\"\<BugID\>\"", 
+          ",", " ", 
+          RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7387266004756813`*^9, 3.7387266416322527`*^9}, {
+  3.7387277049663877`*^9, 3.738727715702202*^9}, {3.73904601183007*^9, 
+  3.739046015023397*^9}, {3.7390462132640753`*^9, 3.7390462135980062`*^9}, {
+  3.739046590119689*^9, 3.73904659350352*^9}, {3.73904663077626*^9, 
+  3.739046639412356*^9}, {3.739046724039771*^9, 3.73904674245547*^9}, {
+  3.739048927384687*^9, 3.739048929978345*^9}, {3.739049004657086*^9, 
+  3.7390490062622137`*^9}, {3.73904908797113*^9, 3.739049089772606*^9}, {
+  3.7390778469840393`*^9, 3.7390778487904367`*^9}},
+ CellLabel->
+  "In[402]:=",ExpressionUUID->"3397e292-ca2d-4d52-ac7b-b3feafa388ad"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugOwner", "Subsection",
+ CellChangeTimes->{{3.738634485120021*^9, 3.738634489856724*^9}, {
+   3.738690022361518*^9, 3.7386900237518063`*^9}, 3.7387266574352083`*^9, {
+   3.739048991383013*^9, 3.739048991973557*^9}, {3.753485354777586*^9, 
+   3.753485373607781*^9}},ExpressionUUID->"3ae2b624-1839-4d5e-959c-\
+a29a6599eb80"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugOwner\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+   3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+   3.738690033520176*^9}, {3.739046718206263*^9, 3.739046719171021*^9}, 
+   3.753485357656537*^9},
+ CellLabel->"In[27]:=",ExpressionUUID->"a7a83b23-b056-4f71-9f71-53fd930f7f13"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugOwner"],
+ CellDingbat->PaneBox[
+   StyleBox["owner:", "Text", "BugOwner", FontSize -> 10], 
+   ImageSize -> {
+    55, Automatic}],ExpressionUUID->"c8c231ff-c7e1-4299-b511-1e77a6f48106"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugOwner\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+      RowBox[{"PaneBox", "[", 
+       RowBox[{
+        RowBox[{"StyleBox", "[", 
+         RowBox[{
+         "\"\<owner:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", 
+          "\"\<BugOwner\>\"", ",", " ", 
+          RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", "Inherited"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7387266004756813`*^9, 3.7387266416322527`*^9}, {
+  3.7387277049663877`*^9, 3.738727715702202*^9}, {3.73904601183007*^9, 
+  3.739046015023397*^9}, {3.7390462132640753`*^9, 3.7390462135980062`*^9}, {
+  3.739046590119689*^9, 3.73904659350352*^9}, {3.73904663077626*^9, 
+  3.739046639412356*^9}, {3.739046724039771*^9, 3.73904674245547*^9}, {
+  3.739048927384687*^9, 3.739048929978345*^9}, {3.739049004657086*^9, 
+  3.7390490062622137`*^9}, {3.73904908797113*^9, 3.739049089772606*^9}, {
+  3.7390778469840393`*^9, 3.7390778487904367`*^9}, {3.753485358872307*^9, 
+  3.753485370058565*^9}},
+ CellLabel->"In[29]:=",ExpressionUUID->"5a45983c-06ba-47e1-bbd7-02b305f5660b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugAnnotation", "Subsection",
+ CellChangeTimes->{{3.739049071845312*^9, 
+  3.7390490780760803`*^9}},ExpressionUUID->"719c2ca5-da8b-4c26-ad6d-\
+7d0e575ac3a7"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", 
+  RowBox[{"\"\<BugAnnotation\>\"", "\[Rule]", "\"\<Message\>\""}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.739049079849061*^9, 3.739049084916147*^9}},
+ CellLabel->
+  "In[118]:=",ExpressionUUID->"de539401-a670-4cfd-b3a5-c89a0b0b9690"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugAnnotation", StyleDefinitions -> StyleData["Message"]],
+ Editable->True,
+ CellMargins->{{121, 10}, {0, 0}},
+ CellGroupingRules->{"ItemGrouping", 60},
+ GeneratedCell->False,
+ CellAutoOverwrite->
+  False,ExpressionUUID->"14b62a9b-97a5-488e-8ae1-24b4e46f2a11"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugAnnotation\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Editable", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GeneratedCell", "\[Rule]", "False"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellAutoOverwrite", "\[Rule]", "False"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"55", "+", "66"}], ",", " ", "10"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellGroupingRules", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<ItemGrouping\>\"", ",", " ", "60"}], "}"}]}]}], 
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.73904909100066*^9, 3.739049100989396*^9}, {
+  3.739077869984501*^9, 3.73907791506746*^9}, {3.753507667477336*^9, 
+  3.7535076773366613`*^9}},
+ CellLabel->"In[93]:=",ExpressionUUID->"6b36cb9e-505a-4250-967a-ae24dd730f93"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugTimestamp", "Subsection",
+ CellChangeTimes->{{3.738634485120021*^9, 3.738634489856724*^9}, {
+   3.738690022361518*^9, 3.7386900237518063`*^9}, 
+   3.7387266574352083`*^9},ExpressionUUID->"696dcfd8-3e67-447e-8018-\
+641457e17e0b"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugTimestamp\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}},
+ CellLabel->
+  "In[309]:=",ExpressionUUID->"d3d9ebfb-74ca-447d-ac9d-49413123fa87"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugTimestamp"],
+ Editable->True,
+ GeneratedCell->False,
+ CellAutoOverwrite->
+  False,ExpressionUUID->"0c732051-63b6-4052-b8f4-4d56be9daf4a"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugTimestamp\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Editable", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GeneratedCell", "\[Rule]", "False"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellAutoOverwrite", "\[Rule]", "False"}]}], 
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7387266004756813`*^9, 3.7387266416322527`*^9}, {
+  3.7387277049663877`*^9, 3.738727715702202*^9}, {3.73904601183007*^9, 
+  3.739046015023397*^9}, {3.7390462132640753`*^9, 3.7390462135980062`*^9}, {
+  3.739046590119689*^9, 3.73904659350352*^9}, {3.73904663077626*^9, 
+  3.739046639412356*^9}, {3.7390489936154127`*^9, 3.7390489967353*^9}, {
+  3.739077932489667*^9, 
+  3.739077935532669*^9}},ExpressionUUID->"c3d5f0d6-1e74-434f-aeb3-\
+c5d31945ca5f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["BugCreated", "Subsubsection",
+ CellChangeTimes->{
+  3.739046185065473*^9},ExpressionUUID->"12b57ab3-7606-44ae-85b0-\
+caf583f7b9e7"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugCreated\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}, {3.739046178115952*^9, 
+  3.739046201015233*^9}},ExpressionUUID->"234f145d-63bd-4723-a284-\
+992a510b0073"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugCreated"],
+ CellDingbat->PaneBox[
+   StyleBox["created:", "Text", "BugKeywords", FontSize -> 10], 
+   ImageSize -> {
+    55, Automatic}],ExpressionUUID->"242df594-15df-465e-b60c-a8dd5bb6677c"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugCreated\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+     RowBox[{"PaneBox", "[", 
+      RowBox[{
+       RowBox[{"StyleBox", "[", 
+        RowBox[{
+        "\"\<created:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", 
+         "\"\<BugKeywords\>\"", ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.739046216425695*^9, 3.739046220606818*^9}, 
+   3.739046267731956*^9},
+ CellLabel->"In[28]:=",ExpressionUUID->"54310223-1083-43ee-aad5-936db7f2dd57"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["BugResolved", "Subsubsection",
+ CellChangeTimes->{3.739046185065473*^9, 
+  3.753477485776657*^9},ExpressionUUID->"4da9b6f7-2c9a-4935-8c71-\
+b998f152dba6"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugResolved\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}, {3.739046178115952*^9, 3.739046194351199*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"4744ac71-dab1-4cf4-9b26-359576c1426e"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugResolved"],
+ CellDingbat->PaneBox[
+   StyleBox["resolved:", "Text", "BugKeywords", FontSize -> 10], 
+   ImageSize -> {
+    55, Automatic}],ExpressionUUID->"a1c9ae5a-38be-4508-971e-3d118a8a3ad0"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugResolved\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellDingbat", "\[Rule]", "\[IndentingNewLine]", 
+     RowBox[{"PaneBox", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"StyleBox", "[", 
+        RowBox[{
+        "\"\<resolved:\>\"", ",", " ", "\"\<Text\>\"", ",", " ", 
+         "\"\<BugKeywords\>\"", ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", " ", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"55", ",", " ", "Automatic"}], "}"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.739046235346287*^9, 3.7390462637714167`*^9}, 
+   3.739046694903409*^9, {3.75347749627005*^9, 3.7534775706482553`*^9}, 
+   3.7534776382730103`*^9},ExpressionUUID->"bf0f5064-7678-4ae0-a5ad-\
+2c5bc09fef74"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugDescription", "Subsection",
+ CellChangeTimes->{{3.7387276453246183`*^9, 
+  3.738727650176752*^9}},ExpressionUUID->"cc58a2c9-7445-4f66-8ee5-\
+3f4b0695b705"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugDescription\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+   3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+   3.738690033520176*^9}, 
+   3.738727799129171*^9},ExpressionUUID->"c22daab3-ce35-44a5-b5e4-\
+3901329b090f"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugDescription"],ExpressionUUID->"af9eaadc-b803-4a90-aa24-d2ddc9f92ab1"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugDescription\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellDingbat", "\[Rule]", "Inherited"}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{
+  3.738727803539584*^9, {3.739046249421451*^9, 3.7390462583023853`*^9}, {
+   3.739046655624421*^9, 3.739046656756423*^9}},
+ CellLabel->"In[54]:=",ExpressionUUID->"f1c24f51-96e0-4331-bdf1-6eecdc36a872"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BugExamples", "Subsection",
+ CellChangeTimes->{{3.7387276453246183`*^9, 3.738727650176752*^9}, {
+  3.738727820017926*^9, 
+  3.738727830671892*^9}},ExpressionUUID->"abb2f922-ca3d-41b2-b675-\
+d0d6941b0cbd"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<BugExamples\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.738634491083591*^9, 3.7386345318319607`*^9}, {
+  3.7386892251358023`*^9, 3.738689225303746*^9}, {3.738690030823926*^9, 
+  3.738690033520176*^9}, {3.738727799129171*^9, 3.7387278247983303`*^9}},
+ CellLabel->
+  "In[386]:=",ExpressionUUID->"64e1115c-af88-42f5-b248-7a015e815604"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BugExamples"],ExpressionUUID->"6994658f-5350-45d1-8d87-849a3f5d7503"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<BugExamples\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.738727803539584*^9, 
+  3.738727825583769*^9}},ExpressionUUID->"0716a851-cbff-4b4a-ac1f-\
+ee4b91348424"]
+}, Open  ]]
+}, Closed]]
+},
+Saveable->True,
+WindowSize->{798, 781},
+WindowMargins->{{207, Automatic}, {Automatic, 0}},
+TaggingRules->{"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"PrivateStylesheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 139, 1, 36, 84, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"56c3b829-3e87-4fca-b174-674893c27589"],
+Cell[700, 23, 200, 3, 30, "Input",ExpressionUUID->"65bcd6ef-2002-4e21-a39e-36c399a9f9cb"],
+Cell[CellGroupData[{
+Cell[925, 30, 152, 2, 45, "Subsection",ExpressionUUID->"d8080cc9-fa19-4627-a217-7fdba74e8f4b"],
+Cell[1080, 34, 179, 4, 36, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"19236d12-48c3-4b33-b3dc-13eddf370b11"],
+Cell[CellGroupData[{
+Cell[1284, 42, 163, 3, 44, "Subsubsection",ExpressionUUID->"e0769d2d-f8f7-49b2-b117-2d41e379e018"],
+Cell[1450, 47, 200, 3, 30, "Input",ExpressionUUID->"9618f491-6573-4442-b963-b39072ee801f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1687, 55, 155, 3, 44, "Subsubsection",ExpressionUUID->"46b53542-56ee-4e00-bf8b-7736d3862a22"],
+Cell[1845, 60, 1822, 32, 178, "Input",ExpressionUUID->"8bc3d30a-9f44-4576-a565-e144ac9d5184"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3716, 98, 165, 3, 45, "Subsection",ExpressionUUID->"94c8b668-2703-4a5c-9ceb-4e4b239b2152"],
+Cell[3884, 103, 215, 4, 30, "Input",ExpressionUUID->"04b7cab9-839d-4a2a-abf4-82d87a6e2020"],
+Cell[CellGroupData[{
+Cell[4124, 111, 110, 1, 36, 36, 0, "StyleData", "InlineCellEditing", "All",ExpressionUUID->"6c6ccb26-c3e4-45b8-aa73-388411920473"],
+Cell[4237, 114, 425, 8, 115, "Input",ExpressionUUID->"d44f84a2-4dbb-4feb-bf08-0a5dfba4456f"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4711, 128, 165, 3, 29, "Subsection",ExpressionUUID->"0ac086ac-f85a-447c-b534-10f69aca2fae"],
+Cell[4879, 133, 729, 17, 115, "Input",ExpressionUUID->"e42866c1-d7e6-4ac5-a92b-0bb198cbcd78"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5645, 155, 156, 3, 29, "Subsection",ExpressionUUID->"83f00778-2c76-44f2-8d27-40cf5aaa39e7"],
+Cell[5804, 160, 260, 5, 30, "Input",ExpressionUUID->"912c0b2b-c254-4fea-b35c-c1058e4df78a"],
+Cell[CellGroupData[{
+Cell[6089, 169, 1048, 27, 56, 27, 0, "StyleData", "BugTitle", "All",ExpressionUUID->"7e7f8212-c74c-4013-b752-43ddc46f05a8",
+ CounterIncrements->{"BugTitle"}],
+Cell[7140, 198, 5898, 111, 1543, "Input",ExpressionUUID->"e9faef2b-0e8d-4e68-a782-e68bc678978b"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[13087, 315, 232, 4, 29, "Subsection",ExpressionUUID->"aebe3a83-d28b-4a76-9a1e-6666a362b5db"],
+Cell[13322, 321, 407, 6, 30, "Input",ExpressionUUID->"fc74e60a-06ae-43c8-9e1e-2fac80d673b1"],
+Cell[CellGroupData[{
+Cell[13754, 331, 211, 4, 36, 29, 0, "StyleData", "BugPackage", "All",ExpressionUUID->"8734215f-b445-4d62-8ec5-3490179b7b8f"],
+Cell[13968, 337, 1399, 27, 178, "Input",ExpressionUUID->"ba8cad6b-5472-454a-b803-defe66c190a3"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[15416, 370, 184, 3, 29, "Subsection",ExpressionUUID->"7fad58f5-8df5-4e70-aa71-8a44445efe2f"],
+Cell[15603, 375, 385, 6, 30, "Input",ExpressionUUID->"bada6cd3-15cf-4f67-b5f0-c777c85f2b12"],
+Cell[CellGroupData[{
+Cell[16013, 385, 213, 4, 36, 30, 0, "StyleData", "BugKeywords", "All",ExpressionUUID->"175b1d8d-3493-4a91-8fd8-fcf830d02c30"],
+Cell[16229, 391, 1325, 26, 178, "Input",ExpressionUUID->"d6d5fe73-6386-4792-ba2d-5aec5e980337"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[17603, 423, 280, 5, 29, "Subsection",ExpressionUUID->"ae07beb7-6968-443e-b357-04415a0807bf"],
+Cell[17886, 430, 371, 5, 30, "Input",ExpressionUUID->"c50250bb-5d27-4ccc-b90b-9e4bc7a6617a"],
+Cell[CellGroupData[{
+Cell[18282, 439, 260, 7, 36, 24, 0, "StyleData", "BugID", "All",ExpressionUUID->"13f96269-1666-4bd0-af5d-a82986d7d0a6"],
+Cell[18545, 448, 1427, 28, 178, "Input",ExpressionUUID->"3397e292-ca2d-4d52-ac7b-b3feafa388ad"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[20021, 482, 329, 5, 29, "Subsection",ExpressionUUID->"3ae2b624-1839-4d5e-959c-a29a6599eb80"],
+Cell[20353, 489, 402, 6, 30, "Input",ExpressionUUID->"a7a83b23-b056-4f71-9f71-53fd930f7f13"],
+Cell[CellGroupData[{
+Cell[20780, 499, 204, 4, 36, 27, 0, "StyleData", "BugOwner", "All",ExpressionUUID->"c8c231ff-c7e1-4299-b511-1e77a6f48106"],
+Cell[20987, 505, 1481, 28, 178, "Input",ExpressionUUID->"5a45983c-06ba-47e1-bbd7-02b305f5660b"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[22517, 539, 163, 3, 29, "Subsection",ExpressionUUID->"719c2ca5-da8b-4c26-ad6d-7d0e575ac3a7"],
+Cell[22683, 544, 281, 6, 30, "Input",ExpressionUUID->"de539401-a670-4cfd-b3a5-c89a0b0b9690"],
+Cell[CellGroupData[{
+Cell[22989, 554, 276, 6, 29, 74, 0, "StyleData", "BugAnnotation", "All",ExpressionUUID->"14b62a9b-97a5-488e-8ae1-24b4e46f2a11"],
+Cell[23268, 562, 1173, 26, 199, "Input",ExpressionUUID->"6b36cb9e-505a-4250-967a-ae24dd730f93"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[24490, 594, 237, 4, 29, "Subsection",ExpressionUUID->"696dcfd8-3e67-447e-8018-641457e17e0b"],
+Cell[24730, 600, 336, 6, 30, "Input",ExpressionUUID->"d3d9ebfb-74ca-447d-ac9d-49413123fa87"],
+Cell[CellGroupData[{
+Cell[25091, 610, 156, 4, 36, 31, 0, "StyleData", "BugTimestamp", "All",ExpressionUUID->"0c732051-63b6-4052-b8f4-4d56be9daf4a"],
+Cell[25250, 616, 929, 17, 157, "Input",ExpressionUUID->"c3d5f0d6-1e74-434f-aeb3-c5d31945ca5f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26216, 638, 137, 3, 44, "Subsubsection",ExpressionUUID->"12b57ab3-7606-44ae-85b0-caf583f7b9e7"],
+Cell[26356, 643, 357, 6, 30, "Input",ExpressionUUID->"234f145d-63bd-4723-a284-992a510b0073"],
+Cell[CellGroupData[{
+Cell[26738, 653, 211, 4, 36, 29, 0, "StyleData", "BugCreated", "All",ExpressionUUID->"242df594-15df-465e-b60c-a8dd5bb6677c"],
+Cell[26952, 659, 886, 19, 178, "Input",ExpressionUUID->"54310223-1083-43ee-aad5-936db7f2dd57"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27887, 684, 160, 3, 44, "Subsubsection",ExpressionUUID->"4da9b6f7-2c9a-4935-8c71-b998f152dba6"],
+Cell[28050, 689, 377, 5, 30, "Input",ExpressionUUID->"4744ac71-dab1-4cf4-9b26-359576c1426e"],
+Cell[CellGroupData[{
+Cell[28452, 698, 213, 4, 36, 30, 0, "StyleData", "BugResolved", "All",ExpressionUUID->"a1c9ae5a-38be-4508-971e-3d118a8a3ad0"],
+Cell[28668, 704, 966, 20, 199, "Input",ExpressionUUID->"bf0f5064-7678-4ae0-a5ad-2c5bc09fef74"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[29695, 731, 164, 3, 29, "Subsection",ExpressionUUID->"cc58a2c9-7445-4f66-8ee5-3f4b0695b705"],
+Cell[29862, 736, 340, 6, 30, "Input",ExpressionUUID->"c22daab3-ce35-44a5-b5e4-3901329b090f"],
+Cell[CellGroupData[{
+Cell[30227, 746, 88, 0, 36, 33, 0, "StyleData", "BugDescription", "All",ExpressionUUID->"af9eaadc-b803-4a90-aa24-d2ddc9f92ab1"],
+Cell[30318, 748, 503, 9, 115, "Input",ExpressionUUID->"f1c24f51-96e0-4331-bdf1-6eecdc36a872"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[30870, 763, 210, 4, 29, "Subsection",ExpressionUUID->"abb2f922-ca3d-41b2-b675-d0d6941b0cbd"],
+Cell[31083, 769, 383, 6, 30, "Input",ExpressionUUID->"64e1115c-af88-42f5-b248-7a015e815604"],
+Cell[CellGroupData[{
+Cell[31491, 779, 85, 0, 36, 30, 0, "StyleData", "BugExamples", "All",ExpressionUUID->"6994658f-5350-45d1-8d87-849a3f5d7503"],
+Cell[31579, 781, 325, 7, 94, "Input",ExpressionUUID->"0716a851-cbff-4b4a-ac1f-ee4b91348424"]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+

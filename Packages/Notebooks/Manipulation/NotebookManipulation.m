@@ -219,7 +219,8 @@ setNbFileStyle[nb_, file_]:=
     targ = getFileStylesheet[nb, file];
     IDEData[nb, "StyleSheet"] = targ;
     If[targ =!= None,
-      SetMainStylesheet[nb, targ]
+      SetMainStylesheet[nb, targ];
+      IDEData[nb, "MainStyleName"] = GetMainStylesheetName[nb];
       ];
     ]
 

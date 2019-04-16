@@ -98,7 +98,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           "     ", RowBox[{RowBox[{"IDEData", "[", RowBox[
                           {"ideNb", ",", " ", "\"Options\""}], "]"}], " ", 
                           "=", " ", "ops"}], ";"}]}], "\n", "     ", "]"}], 
-                     ";"}]}], "\n", "   ", "]"}]}]], "CodeInput"]}, Open]], 
+                     ";"}]}], "\n", "   ", "]"}]}]], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[{Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[CellGroupData[
@@ -195,7 +195,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                      "nbFile_", "]"}], ":=", "\n", "\t", RowBox[
                     {RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}], "/.", 
                      "\n", "\t\t", RowBox[{"loadSheetStyles", "[", 
-                       "]"}]}]}]}], "CodeInput"]}, Open]], 
+                       "]"}]}]}]}], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]getFileStylesheet\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -214,7 +214,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           RowBox[{"getStylesheetStylesheet", "[", "file", 
                           "]"}], ",", " ", "None"}], "]"}]}]}], "\n", 
                           "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", 
-                    "\t\t", "]"}]}]], "CodeInput"]}, Open]], 
+                    "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -233,10 +233,14 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           " ", "\"StyleSheet\""}], "]"}], " ", "=", " ", 
                           "targ"}], ";", "\n", "\t\t", RowBox[{"If", "[", 
                           RowBox[{RowBox[{"targ", " ", "=!=", " ", "None"}], 
-                          ",", "\n", "\t\t\t", RowBox[{"SetMainStylesheet", 
-                          "[", RowBox[{"nb", ",", " ", "targ"}], "]"}]}], 
-                          "\n", "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
-                    "]"}]}]], "CodeInput"]}, Open]]}, Open]], 
+                          ",", "\n", "\t\t\t", RowBox[{RowBox[
+                          {"SetMainStylesheet", "[", RowBox[{"nb", ",", " ", 
+                          "targ"}], "]"}], ";", "\n", "\t\t\t", RowBox[
+                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
+                          "\"MainStyleName\""}], "]"}], " ", "=", " ", RowBox[
+                          {"GetMainStylesheetName", "[", "nb", "]"}]}], 
+                          ";"}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", 
+                    "\t\t", "]"}]}]], "CodeInput"]}, Open]]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 

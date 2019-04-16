@@ -16,18 +16,20 @@ EndPackage[];
 Begin["`Private`"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createNewSite*)
 
 
 createNewSite[]:=
-  CreateAttachedDialog[
+  CreateAttachedInputDialog[
       <|
+        "Header"->"Create a New Site",
         "Fields"->
           {
 				    	"Provide a name for the site:",
 				    	<|
-				    	  "Name"->"SiteName"
+				    	  "ID"->"SiteName",
+				    	  "Name"->None
 				    	  |>,
     					"Pick a template for the site:",
     					With[
@@ -39,7 +41,8 @@ createNewSite[]:=
                      ]
   					 			},
   					 		<|
-  					 		  "Name"->"SiteTemplate",
+  					 		  "ID"->"SiteTemplate",
+  					 		  "Name"->None,
   					 		  "Type"->{RadioButtonBar, ops},
   					 		  "Default"->First@ops,
   					 		  "Options"->{
@@ -50,14 +53,10 @@ createNewSite[]:=
   					 },
   				"SubmitAction"->
   				  Function[
-  				    CreatePopupMessage[
+  				    CreateMessagePopup[
   				      StringForm[
     				      "Created new site in ``",
-                Ems["New",
-                  IDEPath[],
-                  #SiteName,
-                  #SiteTemplate
-                  ]
+                Ems["New", FileNameJoin@{IDEPath[], #SiteName}, #SiteTemplate]
                 ]
               ]
   				    ]
