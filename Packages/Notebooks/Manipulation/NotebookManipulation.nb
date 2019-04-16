@@ -227,13 +227,14 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           ",", "\n", "\t\t\t", "mainName", ",", "\n", 
                           "\t\t\t", "targ"}], "\n", "\t\t\t", "}"}], ",", 
                       "\n", "\t\t", RowBox[{RowBox[{"targ", " ", "=", " ", 
-                          RowBox[{"getFileStylesheet", "[", RowBox[{"nb", 
-                          ",", " ", "file"}], "]"}]}], ";", "\n", "\t\t", 
-                        RowBox[{RowBox[{"IDEData", "[", RowBox[{"nb", ",", 
-                          " ", "\"StyleSheet\""}], "]"}], " ", "=", " ", 
-                          "targ"}], ";", "\n", "\t\t", RowBox[{"If", "[", 
-                          RowBox[{RowBox[{"targ", " ", "=!=", " ", "None"}], 
-                          ",", "\n", "\t\t\t", RowBox[{RowBox[
+                          RowBox[{"Global`meh", " ", "=", " ", RowBox[
+                          {"getFileStylesheet", "[", RowBox[{"nb", ",", " ", 
+                          "file"}], "]"}]}]}], ";", "\n", "\t\t", RowBox[
+                         {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
+                          "\"StyleSheet\""}], "]"}], " ", "=", " ", "targ"}], 
+                        ";", "\n", "\t\t", RowBox[{"If", "[", RowBox[
+                          {RowBox[{"targ", " ", "=!=", " ", "None"}], ",", 
+                          "\n", "\t\t\t", RowBox[{RowBox[
                           {"SetMainStylesheet", "[", RowBox[{"nb", ",", " ", 
                           "targ"}], "]"}], ";", "\n", "\t\t\t", RowBox[
                           {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 

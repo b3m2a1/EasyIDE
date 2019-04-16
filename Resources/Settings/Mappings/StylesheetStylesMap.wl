@@ -2,11 +2,13 @@
 
 {
   FrontEnd`FileName[{___, "SimpleDocs", ___}, "SimpleDocs.nb", ___]:>
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "-Docs.nb"],
-  FrontEnd`FileName[{___, "BTools", ___}, "CodePackage.nb", ___]:>
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "-CodePackage.nb"],
+    "Docs",
+  FrontEnd`FileName[{___, "BTools", ___}, s_String?(StringContainsQ["CodePackage"]), ___]:>
+    "CodePackage",
+  FrontEnd`FileName[{___, "BTools", ___}, s_String?(StringContainsQ["CodeNotebook"]), ___]:>
+    "CodeNotebook",
   FrontEnd`FileName[{__}, _String?(StringContainsQ["Markdown"]), ___]:>
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "-Markdown.nb"],
+    "Markdown",
   FrontEnd`FileName[{___, "BugTracker", ___}, "BugTracker.nb", ___]:>
-    FrontEnd`FileName[{"EasyIDE", "Extensions"}, "-BugTracker.nb"]
+    "BugTracker"
 }

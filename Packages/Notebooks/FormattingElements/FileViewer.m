@@ -193,7 +193,13 @@ FileViewerPane[
       Verbatim[Dynamic][refresh_]:>
         Dynamic[
           refresh;
-          fileViewerCell[Dynamic[stt], root, styles],
+          Grid[
+            {
+              {fileViewerCell[Dynamic[stt], root, styles]},
+              {Spacer[{25, 25}]}
+            },
+          Alignment->Left
+          ],
           TrackedSymbols:>{refresh}
           ]
       ]
