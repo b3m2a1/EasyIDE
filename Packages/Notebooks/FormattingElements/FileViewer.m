@@ -288,31 +288,36 @@ FileEntryContextMenu[file_]:=
 
 fileStyleFunction[nb_]:= 
   Function[
-    Style[
-      EventHandler[
-        Panel[
-          MouseAppearance[
-            FileNameTake[#], 
-            "LinkHand"
-            ],
-          Appearance->{"Default"->None},
-          DefaultBaseStyle->"FileViewerFile",
-          ContentPadding->None,
-          FrameMargins->0,
-          BaseStyle->"FileViewerFile"
-          ],
-        {
-          "MouseClicked":>
-            If[!CurrentValue["ControlKey"]&&CurrentValue["MouseClickCount"]==2,
-              IDEOpen[nb, #]
+    Grid[List@
+      {
+        Invisible[Opener[]],
+        Style[
+          EventHandler[
+            Panel[
+              MouseAppearance[
+                FileNameTake[#], 
+                "LinkHand"
+                ],
+              Appearance->{"Default"->None},
+              DefaultBaseStyle->"FileViewerFile",
+              ContentPadding->None,
+              FrameMargins->0,
+              BaseStyle->"FileViewerFile"
               ],
-          PassEventsUp->True,
-          PassEventsDown->True
-          }
-        ],
-    "FileViewerFile",
-    ContextMenu->FileEntryContextMenu[#]
-    ]
+            {
+              "MouseClicked":>
+                If[!CurrentValue["ControlKey"]&&CurrentValue["MouseClickCount"]==2,
+                  IDEOpen[nb, #]
+                  ],
+              PassEventsUp->True,
+              PassEventsDown->True
+              }
+            ],
+        "FileViewerFile",
+        ContextMenu->FileEntryContextMenu[#]
+        ]
+      }
+      ]
   ];
 
 

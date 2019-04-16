@@ -127,7 +127,7 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
               FrontEnd`FileName[{path, "Extensions"}, f2],
                 If[Length[Hold[path]]>0,
                   Replace[Hold[path],
-                    Hold[{p1__, p2_}]:>FrontEnd`FileName[{p1}, p2]
+                    Hold[p1__, p2_]:>FrontEnd`FileName[{p1}, p2]
                     ],
                   Nothing
                   ]
@@ -143,7 +143,7 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
             ]
         }
       ];
-GetMainStylesheetName[nb_NotebookObject]:=
+GetMainStylesheetName[nb_NotebookObject, fallback_:"LightMode"]:=
   GetMainStylesheetName[GetMainStylesheet[nb]]
 
 

@@ -128,7 +128,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "\"-\""}], "]"}], "<>", "\".nb\""}], "]"}]}], 
                           "]"}]}]}], "\n", "  \t\t\t", "}"}]}], "\n", 
                      "  \t\t", "]"}]}], "\n", "   ", "]"}]}]], "CodeInput", 
-            CellID -> 1505203465]}, Open]], 
+            CellID -> 1505203465]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]GetMainStylesheetName\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 597274595], 
@@ -182,13 +182,12 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "[", "path", "]"}], "]"}], ">", "0"}], ",", "\n", 
                           "  ", "\t\t\t\t        ", RowBox[{"Replace", "[", 
                           RowBox[{RowBox[{"Hold", "[", "path", "]"}], ",", 
-                          "\n", "  ", "\t\t\t\t          ", RowBox[{RowBox[
-                          {"Hold", "[", RowBox[{"{", RowBox[{"p1__", ",", 
-                          " ", "p2_"}], "}"}], "]"}], ":>", RowBox[{
-                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
-                          "p1", "}"}], ",", " ", "p2"}], "]"}]}]}], "\n", 
-                          "  ", "\t\t\t\t          ", "]"}], ",", "\n", 
-                          "  \t\t\t\t        ", "Nothing"}], "\n", 
+                          "\n", "  \t\t\t\t          ", RowBox[{RowBox[
+                          {"Hold", "[", RowBox[{"p1__", ",", " ", "p2_"}], 
+                          "]"}], ":>", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", "p1", "}"}], ",", " ", "p2"}], 
+                          "]"}]}]}], "\n", "  ", "\t\t\t\t          ", "]"}], 
+                          ",", "\n", "  \t\t\t\t        ", "Nothing"}], "\n", 
                           "  \t\t\t\t        ", "]"}]}], "\n", 
                           "  \t\t\t\t      ", "}"}], ",", "\n", 
                           "  \t\t\t\t    ", "sheetExistsQ", ",", "\n", "  ", 
@@ -203,8 +202,9 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "\n", "  ", "\t\t\t\t  ", "]"}]}]}], "\n", "  ", 
                           "\t\t\t", "}"}]}], "\n", "  ", "\t\t", "]"}]}]}], 
                 ";"}], "\n", RowBox[{RowBox[{"GetMainStylesheetName", "[", 
-                  "nb_NotebookObject", "]"}], ":=", "\n", "\t", 
-                RowBox[{"GetMainStylesheetName", "[", RowBox[
+                  RowBox[{"nb_NotebookObject", ",", " ", RowBox[
+                     {"fallback_:", "\"LightMode\""}]}], "]"}], ":=", "\n", 
+                "\t", RowBox[{"GetMainStylesheetName", "[", RowBox[
                    {"GetMainStylesheet", "[", "nb", "]"}], "]"}]}]}], 
             "CodeInput", CellID -> 1055552087]}, Closed]], 
         Cell[CellGroupData[{Cell["\[LeftCeiling]sheetExistsQ\[RightFloor]", 
@@ -629,14 +629,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
             CellID -> 794287009]}, Closed]]}, Open]], 
      Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], "InputSection", 
       CellID -> 823410511]}, Open]], Cell["", "SectionSeparator", 
-   CellID -> 675837109], 
-  Cell[BoxData[RowBox[
-     {"EasyIDE`Notebooks`Manipulation`Private`getFileStylesheet", "[", 
-      "\[IndentingNewLine]", RowBox[{RowBox[{"EvaluationNotebook", "[", 
-          "]"}], ",", "\[IndentingNewLine]", "\"/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/NotebookMani\
-pulation.nb\""}], "\[IndentingNewLine]", "]"}]], "Input", 
-   CellLabel -> "In[117]:="]}, ScreenStyleEnvironment -> "Editing", 
+   CellID -> 675837109]}, ScreenStyleEnvironment -> "Editing", 
  WindowSize -> {808, 755}, WindowMargins -> {{284, Automatic}, 
    {Automatic, 24}}, TaggingRules -> 
   {"UUIDButtons" -> 
