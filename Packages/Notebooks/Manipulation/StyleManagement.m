@@ -89,40 +89,17 @@ SetMainStylesheet[nb_, f_]:=
 
 
 GetCleanStylePath[nb_, f_]:=
-  Replace[f,
-    {
-      s_String?(StringEndsQ[#, ".nb"]&&!StringStartsQ[#, "-"]&):>
-          s,
-      s:FrontEnd`FileName[_, 
-        _String?(StringEndsQ[#, ".nb"]&&!StringStartsQ[#, "-"]&), 
-        ___
-        ]:>
-        s,
-      s_String?(StringEndsQ[".nb"]&&StringStartsQ["-"]):>
-        cleanStylesheetName[
-          GetMainStylesheetName[nb],
-          s
-          ],
-      fn:FrontEnd`FileName[_, 
-            _String?(StringEndsQ[#, ".nb"]&&StringStartsQ[#, "-"]&), 
-            ___
-            ]:>
-        cleanStylesheetName[
-          GetMainStylesheetName[nb],
-          fn
-          ],
-      s_String?(!StringEndsQ[#, ".nb"]&):>
-        cleanStylesheetName[
-          GetMainStylesheetName[nb],
-          "-"<>StringTrim[s, "-"]<>".nb"
-          ],
-      FrontEnd`FileName[p_, s_String?(Not@*StringEndsQ[".nb"]), ___]:>
-        cleanStylesheetName[
-          GetMainStylesheetName[nb],
+  cleanStylesheetName[
+    GetMainStylesheetName[nb],
+    Replace[f,
+      {
+        s_String?(!StringEndsQ[#, ".nb"]&):>
+          "-"<>StringTrim[s, "-"]<>".nb",
+        FrontEnd`FileName[p_, s_String?(Not@*StringEndsQ[".nb"]), ___]:>
           FrontEnd`FileName[p, Evaluate["-"<>StringTrim[s, "-"]<>".nb"]]
-          ]
-      }
-    ]
+        }
+      ]
+   ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -133,25 +110,52 @@ GetCleanStylePath[nb_, f_]:=
 GetMainStylesheetName//Clear
 GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
   (* this will definitely need to be robustified... *)
-  Replace[main, 
-    {
-      FrontEnd`FileName[p_, fn_, ___]:>
-        With[{bn=StringSplit[fn, "."|"-"][[1]]},
-          If[!StringQ@FrontEndExecute@
-            FrontEnd`FindFileOnPath[
-              ToFileName@FrontEnd`FileName[p, bn<>".nb"],
-              "StyleSheetPath"
-              ],
-            fallback,
-            bn
+  StringSplit[Replace[#, FrontEnd`FileName[_, s_, ___]:>s], "."|"-"][[1]]&@
+    Replace[main, 
+      {
+        FrontEnd`FileName[{path___}, fn_, ___]:>
+          With[
+            {
+              bn=StringSplit[fn, "."|"-"][[1]], 
+              f2=StringTrim[fn, ".nb"]
+              },
+            SelectFirst[
+              {
+              FrontEnd`FileName[{path}, bn],
+              FrontEnd`FileName[{path}, f2],
+              FrontEnd`FileName[{path, "Extensions"}, bn],
+              FrontEnd`FileName[{path, "Extensions"}, f2],
+                If[Length[Hold[path]]>0,
+                  Replace[Hold[path],
+                    Hold[{p1__, p2_}]:>FrontEnd`FileName[{p1}, p2]
+                    ],
+                  Nothing
+                  ]
+                },
+              sheetExistsQ,
+              fallback
+              ]
+            ],
+        s_String:>
+          GetMainStylesheetName[
+            FrontEnd`FileName[{}, s],
+            fallback
             ]
-          ],
-      s_String:>
-        StringSplit[s, "."|"-"][[1]]
-      }
-    ];
+        }
+      ];
 GetMainStylesheetName[nb_NotebookObject]:=
   GetMainStylesheetName[GetMainStylesheet[nb]]
+
+
+(* ::Subsubsection::Closed:: *)
+(*sheetExistsQ*)
+
+
+
+sheetExistsQ[s_String]:=
+  FrontEndExecute@FrontEnd`FindFileOnPath[s, "StyleSheetPath"]=!=$Failed;
+sheetExistsQ[f_FrontEnd`FileName]:=
+  FrontEndExecute@FrontEnd`FindFileOnPath[ToFileName[f], "StyleSheetPath"]=!=$Failed;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -162,14 +166,47 @@ GetMainStylesheetName[nb_NotebookObject]:=
 cleanStylesheetName[mainName_, sheet_]:=
   Replace[sheet,
     {
-      FrontEnd`FileName[p_, s_String?(StringStartsQ["-"]), r___]:>
-        With[{tt=mainName<>s},
-          FrontEnd`FileName[p, tt, r]
+      FrontEnd`FileName[{path___}, s_String?(StringStartsQ["-"]), r___]:>
+        With[{tt=StringTrim[StringTrim[s, "-"], ".nb"]<>".nb"},
+          SelectFirst[
+            {
+            FrontEnd`FileName[{path, mainName}, tt],
+            FrontEnd`FileName[{path}, Evaluate[mainName<>"-"<>tt]],
+            FrontEnd`FileName[{path}, tt],
+            FrontEnd`FileName[{path}, s]
+             },
+            sheetExistsQ,
+            FrontEnd`FileName[{path}, s]
+            ]
           ],
       s_String?(StringStartsQ["-"]):>
-        With[{mn=mainName<>s}, FrontEnd`FileName[{"EasyIDE", "Extensions"}, mn]],
+        cleanStylesheetName[mainName, FrontEnd`FileName[{"EasyIDE", "Extensions"}, s]],
+      sht_String:>
+        With[{s=StringTrim[sht, ".nb"]<>".nb"},
+          SelectFirst[
+            {
+            FrontEnd`FileName[{"EasyIDE", "Extensions", mainName}, s],
+            FrontEnd`FileName[{"EasyIDE", "Extensions"}, s],
+            FrontEnd`FileName[{"EasyIDE"}, s],
+            FrontEnd`FileName[{"EasyIDE", "Extensions"}, Evaluate[mainName<>"-"<>s]],
+             s
+             },
+            sheetExistsQ,
+            s
+            ]
+         ],
       None:>
-        With[{mn=mainName<>".nb"}, FrontEnd`FileName[{"EasyIDE"}, mn]]
+        With[{mn=mainName<>".nb"},
+          SelectFirst[
+            {
+            FrontEnd`FileName[{"EasyIDE"}, mn],
+            mn,
+            FrontEnd`FileName[{"EasyIDE", "Extensions"}, mn]
+             },
+            sheetExistsQ,
+            FrontEnd`FileName[{"EasyIDE"}, mn]
+            ]
+          ]
       }
     ]
 

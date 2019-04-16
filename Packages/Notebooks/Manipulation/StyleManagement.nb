@@ -50,7 +50,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "\[RuleDelayed]", "f"}], ",", " ", "None", ",", 
                           " ", "\[Infinity]"}], "]"}], ",", "\n", "\t\t\t", 
                        "s"}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
-                 "]"}]}]], "CodeInput", CellID -> 261100018]}, Open]], 
+                 "]"}]}]], "CodeInput", CellID -> 261100018]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]SetMainStylesheet\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 998911705], 
@@ -99,76 +99,36 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                          {"iSetOptions", "[", RowBox[{"nb", ",", " ", RowBox[
                           {"StyleDefinitions", "\[Rule]", "sPath"}]}], 
                           "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
-                  "]"}]}]}], "CodeInput", CellID -> 1829357336]}, Open]], 
+                  "]"}]}]}], "CodeInput", CellID -> 1829357336]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]GetCleanStylePath\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 485372053], 
            Cell[BoxData[RowBox[{RowBox[{"GetCleanStylePath", "[", 
                  RowBox[{"nb_", ",", " ", "f_"}], "]"}], ":=", "\n", "\t", 
-               RowBox[{"Replace", "[", RowBox[{"f", ",", "\n", "\t\t", 
-                   RowBox[{"{", "\n", "\t\t\t", RowBox[{RowBox[{RowBox[
-                          {"s_String", "?", RowBox[{"(", RowBox[{RowBox[
-                          {RowBox[{"StringEndsQ", "[", RowBox[{"#", ",", " ", 
-                          "\".nb\""}], "]"}], "&&", RowBox[{"!", RowBox[
-                          {"StringStartsQ", "[", RowBox[{"#", ",", " ", 
-                          "\"-\""}], "]"}]}]}], "&"}], ")"}]}], ":>", "\n", 
-                         "\t\t\t\t\t", "s"}], ",", "\n", "\t\t\t", RowBox[
-                        {RowBox[{"s", ":", RowBox[{"FrontEnd`FileName", "[", 
-                          RowBox[{"_", ",", " ", "\n", "\t\t\t\t", RowBox[
-                          {"_String", "?", RowBox[{"(", RowBox[{RowBox[
-                          {RowBox[{"StringEndsQ", "[", RowBox[{"#", ",", " ", 
-                          "\".nb\""}], "]"}], "&&", RowBox[{"!", RowBox[
-                          {"StringStartsQ", "[", RowBox[{"#", ",", " ", 
-                          "\"-\""}], "]"}]}]}], "&"}], ")"}]}], ",", " ", 
-                          "\n", "\t\t\t\t", "___"}], "\n", "\t\t\t\t", 
-                          "]"}]}], ":>", "\n", "\t\t\t\t", "s"}], ",", "\n", 
-                       "\t\t\t", RowBox[{RowBox[{"s_String", "?", RowBox[
-                          {"(", RowBox[{RowBox[{"StringEndsQ", "[", 
-                          "\".nb\"", "]"}], "&&", RowBox[{"StringStartsQ", 
-                          "[", "\"-\"", "]"}]}], ")"}]}], ":>", "\n", 
-                         "\t\t\t\t", RowBox[{"cleanStylesheetName", "[", 
-                          "\n", "\t\t\t\t\t", RowBox[{RowBox[
-                          {"GetMainStylesheetName", "[", "nb", "]"}], ",", 
-                          "\n", "\t\t\t\t\t", "s"}], "\n", "\t\t\t\t\t", 
-                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{RowBox[
-                          {"fn", ":", RowBox[{"FrontEnd`FileName", "[", 
-                          RowBox[{"_", ",", " ", "\n", "\t\t\t\t\t\t", RowBox[
-                          {"_String", "?", RowBox[{"(", RowBox[{RowBox[
-                          {RowBox[{"StringEndsQ", "[", RowBox[{"#", ",", " ", 
-                          "\".nb\""}], "]"}], "&&", RowBox[{"StringStartsQ", 
-                          "[", RowBox[{"#", ",", " ", "\"-\""}], "]"}]}], 
-                          "&"}], ")"}]}], ",", " ", "\n", "\t\t\t\t\t\t", 
-                          "___"}], "\n", "\t\t\t\t\t\t", "]"}]}], ":>", "\n", 
-                         "\t\t\t\t", RowBox[{"cleanStylesheetName", "[", 
-                          "\n", "\t\t\t\t\t", RowBox[{RowBox[
-                          {"GetMainStylesheetName", "[", "nb", "]"}], ",", 
-                          "\n", "\t\t\t\t\t", "fn"}], "\n", "\t\t\t\t\t", 
-                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{RowBox[
-                          {"s_String", "?", RowBox[{"(", RowBox[{RowBox[
-                          {"!", RowBox[{"StringEndsQ", "[", RowBox[{"#", ",", 
-                          " ", "\".nb\""}], "]"}]}], "&"}], ")"}]}], ":>", 
-                         "\n", "\t\t\t\t", RowBox[{"cleanStylesheetName", 
-                          "[", "\n", "\t\t\t\t\t", RowBox[{RowBox[
-                          {"GetMainStylesheetName", "[", "nb", "]"}], ",", 
-                          "\n", "\t\t\t\t\t", RowBox[{"\"-\"", "<>", RowBox[
+               RowBox[{"cleanStylesheetName", "[", "\n", "\t  ", 
+                 RowBox[{RowBox[{"GetMainStylesheetName", "[", "nb", "]"}], 
+                   ",", "\n", "\t  ", RowBox[{"Replace", "[", RowBox[
+                      {"f", ",", "\n", "\t  \t", RowBox[{"{", "\n", 
+                         "  \t\t\t", RowBox[{RowBox[{RowBox[{"s_String", "?", 
+                          RowBox[{"(", RowBox[{RowBox[{"!", RowBox[
+                          {"StringEndsQ", "[", RowBox[{"#", ",", " ", 
+                          "\".nb\""}], "]"}]}], "&"}], ")"}]}], ":>", "\n", 
+                          "  ", "\t\t\t\t", RowBox[{"\"-\"", "<>", RowBox[
                           {"StringTrim", "[", RowBox[{"s", ",", " ", 
-                          "\"-\""}], "]"}], "<>", "\".nb\""}]}], "\n", 
-                          "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t", 
-                       RowBox[{RowBox[{"FrontEnd`FileName", "[", RowBox[
-                          {"p_", ",", " ", RowBox[{"s_String", "?", RowBox[
-                          {"(", RowBox[{"Not", "@*", RowBox[{"StringEndsQ", 
-                          "[", "\".nb\"", "]"}]}], ")"}]}], ",", " ", 
-                          "___"}], "]"}], ":>", "\n", "\t\t\t\t", RowBox[
-                          {"cleanStylesheetName", "[", "\n", "\t\t\t\t\t", 
-                          RowBox[{RowBox[{"GetMainStylesheetName", "[", "nb", 
-                          "]"}], ",", "\n", "\t\t\t\t\t", RowBox[
+                          "\"-\""}], "]"}], "<>", "\".nb\""}]}], ",", "\n", 
+                          "  ", "\t\t\t", RowBox[{RowBox[
+                          {"FrontEnd`FileName", "[", RowBox[{"p_", ",", " ", 
+                          RowBox[{"s_String", "?", RowBox[{"(", RowBox[
+                          {"Not", "@*", RowBox[{"StringEndsQ", "[", 
+                          "\".nb\"", "]"}]}], ")"}]}], ",", " ", "___"}], 
+                          "]"}], ":>", "\n", "  ", "\t\t\t\t", RowBox[
                           {"FrontEnd`FileName", "[", RowBox[{"p", ",", " ", 
                           RowBox[{"Evaluate", "[", RowBox[{"\"-\"", "<>", 
                           RowBox[{"StringTrim", "[", RowBox[{"s", ",", " ", 
                           "\"-\""}], "]"}], "<>", "\".nb\""}], "]"}]}], 
-                          "]"}]}], "\n", "\t\t\t\t\t", "]"}]}]}], "\n", 
-                     "\t\t\t", "}"}]}], "\n", "\t\t", "]"}]}]], "CodeInput", 
-            CellID -> 1505203465]}, Closed]], 
+                          "]"}]}]}], "\n", "  \t\t\t", "}"}]}], "\n", 
+                     "  \t\t", "]"}]}], "\n", "   ", "]"}]}]], "CodeInput", 
+            CellID -> 1505203465]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]GetMainStylesheetName\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 597274595], 
@@ -180,39 +140,87 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                   "\t", RowBox[{"(*", " ", RowBox[{RowBox[{"this", " ", 
                         "will", " ", "definitely", " ", "need", " ", "to", 
                         " ", "be", " ", "robustified"}], "..."}], " ", 
-                    "*)"}], "\n", "\t", RowBox[{"Replace", "[", RowBox[
-                     {"main", ",", " ", "\n", "\t\t", RowBox[{"{", "\n", 
-                        "\t\t\t", RowBox[{RowBox[{RowBox[
-                          {"FrontEnd`FileName", "[", RowBox[{"p_", ",", " ", 
-                          "fn_", ",", " ", "___"}], "]"}], "\[RuleDelayed]", 
-                          "\n", "\t\t\t\t", RowBox[{"With", "[", RowBox[
-                          {RowBox[{"{", RowBox[{"bn", "=", RowBox[{RowBox[
-                          {"StringSplit", "[", RowBox[{"fn", ",", " ", RowBox[
-                          {"\".\"", "|", "\"-\""}]}], "]"}], "[", RowBox[
-                          {"[", "1", "]"}], "]"}]}], "}"}], ",", "\n", 
-                          "\t\t\t\t  ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"!", RowBox[{"StringQ", "@", RowBox[{
-                          "FrontEndExecute", "@", "\n", "\t\t\t\t    ", 
-                          RowBox[{"FrontEnd`FindFileOnPath", "[", "\n", 
-                          "  \t\t\t\t    ", RowBox[{RowBox[{"ToFileName", 
-                          "@", RowBox[{"FrontEnd`FileName", "[", RowBox[{"p", 
-                          ",", " ", RowBox[{"bn", "<>", "\".nb\""}]}], 
-                          "]"}]}], ",", "\n", "  ", "\t\t\t\t    ", 
-                          "\"StyleSheetPath\""}], "\n", "  \t\t\t\t    ", 
-                          "]"}]}]}]}], ",", "\n", "  \t\t\t\t  ", "fallback", 
-                          ",", "\n", "  \t\t\t\t  ", "bn"}], "\n", 
-                          "  \t\t\t\t  ", "]"}]}], "\n", "\t\t\t\t  ", 
-                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{"s_String", 
-                          ":>", "\n", "\t\t\t\t", RowBox[{RowBox[
-                          {"StringSplit", "[", RowBox[{"s", ",", " ", RowBox[
-                          {"\".\"", "|", "\"-\""}]}], "]"}], "[", RowBox[
-                          {"[", "1", "]"}], "]"}]}]}], "\n", "\t\t\t", 
-                        "}"}]}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{"GetMainStylesheetName", "[", 
+                    "*)"}], "\n", "\t", RowBox[{RowBox[{RowBox[{RowBox[
+                         {"StringSplit", "[", RowBox[{RowBox[{"Replace", "[", 
+                          RowBox[{"#", ",", " ", RowBox[{RowBox[
+                          {"FrontEnd`FileName", "[", RowBox[{"_", ",", " ", 
+                          "s_", ",", " ", "___"}], "]"}], "\[RuleDelayed]", 
+                          "s"}]}], "]"}], ",", " ", RowBox[{"\".\"", "|", 
+                          "\"-\""}]}], "]"}], "[", RowBox[{"[", "1", "]"}], 
+                        "]"}], "&"}], "@", "\n", "\t  ", RowBox[{"Replace", 
+                      "[", RowBox[{"main", ",", " ", "\n", "  ", "\t\t", 
+                        RowBox[{"{", "\n", "  ", "\t\t\t", RowBox[{RowBox[
+                          {RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
+                          {"{", "path___", "}"}], ",", " ", "fn_", ",", " ", 
+                          "___"}], "]"}], "\[RuleDelayed]", "\n", 
+                          "  \t\t\t\t", RowBox[{"With", "[", "\n", 
+                          "  \t\t\t\t  ", RowBox[{RowBox[{"{", "\n", 
+                          "  \t\t\t\t    ", RowBox[{RowBox[{"bn", "=", RowBox[
+                          {RowBox[{"StringSplit", "[", RowBox[{"fn", ",", 
+                          " ", RowBox[{"\".\"", "|", "\"-\""}]}], "]"}], "[", 
+                          RowBox[{"[", "1", "]"}], "]"}]}], ",", " ", "\n", 
+                          "  \t\t\t\t    ", RowBox[{"f2", "=", RowBox[
+                          {"StringTrim", "[", RowBox[{"fn", ",", " ", 
+                          "\".nb\""}], "]"}]}]}], "\n", "  \t\t\t\t    ", 
+                          "}"}], ",", "\n", "  \t\t\t\t  ", RowBox[
+                          {"SelectFirst", "[", "\n", "  \t\t\t\t    ", RowBox[
+                          {RowBox[{"{", "\n", "              ", RowBox[
+                          {RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
+                          {"{", "path", "}"}], ",", " ", "bn"}], "]"}], ",", 
+                          "\n", "              ", RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          "path", "}"}], ",", " ", "f2"}], "]"}], ",", "\n", 
+                          "              ", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", RowBox[{"path", ",", " ", 
+                          "\"Extensions\""}], "}"}], ",", " ", "bn"}], "]"}], 
+                          ",", "\n", "              ", RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          RowBox[{"path", ",", " ", "\"Extensions\""}], 
+                          "}"}], ",", " ", "f2"}], "]"}], ",", "\n", 
+                          "  \t\t\t\t      ", RowBox[{"If", "[", RowBox[
+                          {RowBox[{RowBox[{"Length", "[", RowBox[{"Hold", 
+                          "[", "path", "]"}], "]"}], ">", "0"}], ",", "\n", 
+                          "  ", "\t\t\t\t        ", RowBox[{"Replace", "[", 
+                          RowBox[{RowBox[{"Hold", "[", "path", "]"}], ",", 
+                          "\n", "  ", "\t\t\t\t          ", RowBox[{RowBox[
+                          {"Hold", "[", RowBox[{"{", RowBox[{"p1__", ",", 
+                          " ", "p2_"}], "}"}], "]"}], ":>", RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          "p1", "}"}], ",", " ", "p2"}], "]"}]}]}], "\n", 
+                          "  ", "\t\t\t\t          ", "]"}], ",", "\n", 
+                          "  \t\t\t\t        ", "Nothing"}], "\n", 
+                          "  \t\t\t\t        ", "]"}]}], "\n", 
+                          "  \t\t\t\t      ", "}"}], ",", "\n", 
+                          "  \t\t\t\t    ", "sheetExistsQ", ",", "\n", "  ", 
+                          "\t\t\t\t    ", "fallback"}], "\n", "  ", 
+                          "\t\t\t\t    ", "]"}]}], "\n", "  ", "\t\t\t\t  ", 
+                          "]"}]}], ",", "\n", "  ", "\t\t\t", RowBox[
+                          {"s_String", ":>", "\n", "  ", "\t\t\t\t", RowBox[
+                          {"GetMainStylesheetName", "[", "\n", "  ", 
+                          "\t\t\t\t  ", RowBox[{RowBox[{"FrontEnd`FileName", 
+                          "[", RowBox[{RowBox[{"{", "}"}], ",", " ", "s"}], 
+                          "]"}], ",", "\n", "  ", "\t\t\t\t  ", "fallback"}], 
+                          "\n", "  ", "\t\t\t\t  ", "]"}]}]}], "\n", "  ", 
+                          "\t\t\t", "}"}]}], "\n", "  ", "\t\t", "]"}]}]}], 
+                ";"}], "\n", RowBox[{RowBox[{"GetMainStylesheetName", "[", 
                   "nb_NotebookObject", "]"}], ":=", "\n", "\t", 
                 RowBox[{"GetMainStylesheetName", "[", RowBox[
                    {"GetMainStylesheet", "[", "nb", "]"}], "]"}]}]}], 
             "CodeInput", CellID -> 1055552087]}, Closed]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]sheetExistsQ\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"sheetExistsQ", "[", 
+                    "s_String", "]"}], ":=", "\n", "  ", RowBox[
+                   {RowBox[{"FrontEndExecute", "@", RowBox[
+                       {"FrontEnd`FindFileOnPath", "[", RowBox[{"s", ",", 
+                          " ", "\"StyleSheetPath\""}], "]"}]}], "=!=", 
+                    "$Failed"}]}], ";"}], "\n", RowBox[{RowBox[
+                 {RowBox[{"sheetExistsQ", "[", "f_FrontEnd`FileName", "]"}], 
+                  ":=", "\n", "  ", RowBox[{RowBox[{"FrontEndExecute", "@", 
+                      RowBox[{"FrontEnd`FindFileOnPath", "[", RowBox[
+                         {RowBox[{"ToFileName", "[", "f", "]"}], ",", " ", 
+                          "\"StyleSheetPath\""}], "]"}]}], "=!=", 
+                    "$Failed"}]}], ";"}]}], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]cleanStylesheetName\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 301518342], 
@@ -221,32 +229,90 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                "\n", "\t", RowBox[{"Replace", "[", RowBox[{"sheet", ",", 
                    "\n", "\t\t", RowBox[{"{", "\n", "\t\t\t", RowBox[
                       {RowBox[{RowBox[{"FrontEnd`FileName", "[", RowBox[
-                          {"p_", ",", " ", RowBox[{"s_String", "?", RowBox[
-                          {"(", RowBox[{"StringStartsQ", "[", "\"-\"", "]"}], 
-                          ")"}]}], ",", " ", "r___"}], "]"}], ":>", "\n", 
-                         "\t\t\t\t", RowBox[{"With", "[", RowBox[{RowBox[
-                          {"{", RowBox[{"tt", "=", RowBox[{"mainName", "<>", 
-                          "s"}]}], "}"}], ",", "\n", "\t\t\t\t\t", RowBox[
-                          {"FrontEnd`FileName", "[", RowBox[{"p", ",", " ", 
-                          "tt", ",", " ", "r"}], "]"}]}], "\n", "\t\t\t\t\t", 
-                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{RowBox[
+                          {RowBox[{"{", "path___", "}"}], ",", " ", RowBox[
                           {"s_String", "?", RowBox[{"(", RowBox[
                           {"StringStartsQ", "[", "\"-\"", "]"}], ")"}]}], 
-                         ":>", "\n", "\t\t\t\t", RowBox[{"With", "[", RowBox[
-                          {RowBox[{"{", RowBox[{"mn", "=", RowBox[
-                          {"mainName", "<>", "s"}]}], "}"}], ",", " ", 
+                          ",", " ", "r___"}], "]"}], ":>", "\n", "\t\t\t\t", 
+                         RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                          {"tt", "=", RowBox[{RowBox[{"StringTrim", "[", 
+                          RowBox[{RowBox[{"StringTrim", "[", RowBox[{"s", 
+                          ",", " ", "\"-\""}], "]"}], ",", " ", "\".nb\""}], 
+                          "]"}], "<>", "\".nb\""}]}], "}"}], ",", "\n", 
+                          "\t\t\t\t\t", RowBox[{"SelectFirst", "[", "\n", 
+                          "  \t\t\t    ", RowBox[{RowBox[{"{", "\n", 
+                          "            ", RowBox[{RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          RowBox[{"path", ",", " ", "mainName"}], "}"}], ",", 
+                          " ", "tt"}], "]"}], ",", "\n", "            ", 
+                          RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
+                          {"{", "path", "}"}], ",", " ", RowBox[{"Evaluate", 
+                          "[", RowBox[{"mainName", "<>", "\"-\"", "<>", 
+                          "tt"}], "]"}]}], "]"}], ",", "\n", "            ", 
+                          RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
+                          {"{", "path", "}"}], ",", " ", "tt"}], "]"}], ",", 
+                          "\n", "            ", RowBox[{"FrontEnd`FileName", 
+                          "[", RowBox[{RowBox[{"{", "path", "}"}], ",", " ", 
+                          "s"}], "]"}]}], "\n", "  \t\t\t     ", "}"}], ",", 
+                          "\n", "  \t\t\t    ", "sheetExistsQ", ",", "\n", 
+                          "  \t\t\t    ", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", "path", "}"}], ",", " ", 
+                          "s"}], "]"}]}], "\n", "  \t\t\t    ", "]"}]}], 
+                          "\n", "\t\t\t\t\t", "]"}]}], ",", "\n", "\t\t\t", 
+                       RowBox[{RowBox[{"s_String", "?", RowBox[{"(", RowBox[
+                          {"StringStartsQ", "[", "\"-\"", "]"}], ")"}]}], 
+                         ":>", "\n", "\t\t\t\t", RowBox[
+                          {"cleanStylesheetName", "[", RowBox[{"mainName", 
+                          ",", " ", RowBox[{"FrontEnd`FileName", "[", RowBox[
+                          {RowBox[{"{", RowBox[{"\"EasyIDE\"", ",", " ", 
+                          "\"Extensions\""}], "}"}], ",", " ", "s"}], 
+                          "]"}]}], "]"}]}], ",", "\n", "\t\t\t", RowBox[
+                        {"sht_String", ":>", "\n", "\t\t\t  ", RowBox[
+                          {"With", "[", RowBox[{RowBox[{"{", RowBox[{"s", 
+                          "=", RowBox[{RowBox[{"StringTrim", "[", RowBox[
+                          {"sht", ",", " ", "\".nb\""}], "]"}], "<>", 
+                          "\".nb\""}]}], "}"}], ",", "\n", "  ", "\t\t\t  ", 
+                          RowBox[{"SelectFirst", "[", "\n", "  \t\t\t    ", 
+                          RowBox[{RowBox[{"{", "\n", "            ", RowBox[
+                          {RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
+                          {"{", RowBox[{"\"EasyIDE\"", ",", " ", 
+                          "\"Extensions\"", ",", " ", "mainName"}], "}"}], 
+                          ",", " ", "s"}], "]"}], ",", "\n", "            ", 
                           RowBox[{"FrontEnd`FileName", "[", RowBox[{RowBox[
                           {"{", RowBox[{"\"EasyIDE\"", ",", " ", 
-                          "\"Extensions\""}], "}"}], ",", " ", "mn"}], 
-                          "]"}]}], "]"}]}], ",", "\n", "\t\t\t", RowBox[
-                        {"None", "\[RuleDelayed]", "\n", "\t\t\t\t", RowBox[
-                          {"With", "[", RowBox[{RowBox[{"{", RowBox[{"mn", 
-                          "=", RowBox[{"mainName", "<>", "\".nb\""}]}], 
-                          "}"}], ",", " ", RowBox[{"FrontEnd`FileName", "[", 
+                          "\"Extensions\""}], "}"}], ",", " ", "s"}], "]"}], 
+                          ",", "\n", "            ", RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          "\"EasyIDE\"", "}"}], ",", " ", "s"}], "]"}], ",", 
+                          "\n", "            ", RowBox[{"FrontEnd`FileName", 
+                          "[", RowBox[{RowBox[{"{", RowBox[{"\"EasyIDE\"", 
+                          ",", " ", "\"Extensions\""}], "}"}], ",", " ", 
+                          RowBox[{"Evaluate", "[", RowBox[{"mainName", "<>", 
+                          "\"-\"", "<>", "s"}], "]"}]}], "]"}], ",", "\n", 
+                          "  \t\t\t     ", "s"}], "\n", "  \t\t\t     ", 
+                          "}"}], ",", "\n", "  \t\t\t    ", "sheetExistsQ", 
+                          ",", "\n", "  \t\t\t    ", "s"}], "\n", 
+                          "  \t\t\t    ", "]"}]}], "\n", "         ", 
+                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{"None", 
+                         "\[RuleDelayed]", "\n", "\t\t  \t", RowBox[{"With", 
+                          "[", RowBox[{RowBox[{"{", RowBox[{"mn", "=", RowBox[
+                          {"mainName", "<>", "\".nb\""}]}], "}"}], ",", "\n", 
+                          "  ", "\t\t\t  ", RowBox[{"SelectFirst", "[", "\n", 
+                          "    \t\t\t  ", RowBox[{RowBox[{"{", "\n", 
+                          "            ", RowBox[{RowBox[{
+                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
+                          "\"EasyIDE\"", "}"}], ",", " ", "mn"}], "]"}], ",", 
+                          "\n", "            ", "mn", ",", "\n", 
+                          "            ", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", RowBox[{"\"EasyIDE\"", ",", 
+                          " ", "\"Extensions\""}], "}"}], ",", " ", "mn"}], 
+                          "]"}]}], "\n", "  \t\t\t     ", "}"}], ",", "\n", 
+                          "  \t\t\t    ", "sheetExistsQ", ",", "\n", 
+                          "  \t\t\t    ", RowBox[{"FrontEnd`FileName", "[", 
                           RowBox[{RowBox[{"{", "\"EasyIDE\"", "}"}], ",", 
-                          " ", "mn"}], "]"}]}], "]"}]}]}], "\n", "\t\t\t", 
-                     "}"}]}], "\n", "\t\t", "]"}]}]], "CodeInput", 
-            CellID -> 1704850721]}, Closed]], 
+                          " ", "mn"}], "]"}]}], "\n", "  ", "\t\t\t    ", 
+                          "]"}]}], "\n", "\t\t\t    ", "]"}]}]}], "\n", 
+                     "\t\t\t", "}"}]}], "\n", "\t\t", "]"}]}]], "CodeInput", 
+            CellID -> 1704850721]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]getStylesheetDefsSection\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 1699249573], 
@@ -357,7 +423,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                       " ", RowBox[{"getStylesheetDefsSection", "[", RowBox[
                          {"styleData", ",", " ", "tag"}], "]"}], ",", " ", 
                       "tag"}], "]"}]}], ";"}]}], "CodeInput", 
-            CellID -> 207098242]}, Open]], 
+            CellID -> 207098242]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]AddNotebookStylesheet\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 1776645154], 
@@ -421,7 +487,8 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "}"}], "\n", "  \t\t\t\t", "]"}], ",", "\n", "  ", 
                           "\t\t\t", "defCells"}], "\n", "  ", "\t\t\t", 
                           "]"}]}]}]}]}], "\n", "\t\t", "]"}]}]], "CodeInput", 
-            CellID -> 30954744]}, Open]], Cell[CellGroupData[
+            CellID -> 30954744]}, Closed]], 
+        Cell[CellGroupData[
           {Cell["\[LeftCeiling]RemoveNotebookStylesheet\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 565339834], 
            Cell[BoxData[{RowBox[{"RemoveNotebookStylesheet", "//", "Clear"}], 
@@ -562,7 +629,14 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
             CellID -> 794287009]}, Closed]]}, Open]], 
      Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], "InputSection", 
       CellID -> 823410511]}, Open]], Cell["", "SectionSeparator", 
-   CellID -> 675837109]}, ScreenStyleEnvironment -> "Editing", 
+   CellID -> 675837109], 
+  Cell[BoxData[RowBox[
+     {"EasyIDE`Notebooks`Manipulation`Private`getFileStylesheet", "[", 
+      "\[IndentingNewLine]", RowBox[{RowBox[{"EvaluationNotebook", "[", 
+          "]"}], ",", "\[IndentingNewLine]", "\"/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/NotebookMani\
+pulation.nb\""}], "\[IndentingNewLine]", "]"}]], "Input", 
+   CellLabel -> "In[117]:="]}, ScreenStyleEnvironment -> "Editing", 
  WindowSize -> {808, 755}, WindowMargins -> {{284, Automatic}, 
    {Automatic, 24}}, TaggingRules -> 
   {"UUIDButtons" -> 

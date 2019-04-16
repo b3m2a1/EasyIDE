@@ -149,7 +149,11 @@ loadSheetStyles[]:=
             ],
         First
         ],
-    _->FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]
+    _->None
+      (*GetStylesheetName[
+		    $CurrentIDENotebook,
+  		  FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]
+       ]*)
     ];
 
 

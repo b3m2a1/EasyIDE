@@ -20,7 +20,7 @@ EndPackage[];
 Begin["`Private`"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*initRepo*)
 
 
@@ -32,7 +32,7 @@ initRepo[]:=
     ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*commitRepo*)
 
 
@@ -75,7 +75,7 @@ commitRepo[]:=
   ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*gitPush*)
 
 
@@ -87,7 +87,7 @@ gitPush[]:=
     ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*gitPull*)
 
 
@@ -99,7 +99,7 @@ gitPull[]:=
     ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createGitIgnore*)
 
 
@@ -175,7 +175,7 @@ gitPluginCommands=
   }
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*End*)
 
 

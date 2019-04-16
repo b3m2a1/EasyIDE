@@ -136,13 +136,17 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           "$IDESettingsPath"}], "]"}]}], "\n", "\t", "\t", 
                           "\t\t\t\t", "]"}]}], ",", "\n", "\t", "\t\t\t", 
                           "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", 
-                        "\n", "\t\t", RowBox[{"_", "\[Rule]", RowBox[
-                          {"FrontEnd`FileName", "[", RowBox[{RowBox[{"{", 
-                          "\"EasyIDE\"", "}"}], ",", " ", 
-                          "\"LightMode.nb\""}], "]"}]}]}], "\n", "\t\t", 
-                      "]"}]}], ";"}]], "CodeInput"], Cell[BoxData[
-                {RowBox[{RowBox[{RowBox[{"getNbFileSSheet", "[", "nbFile_", 
-                       "]"}], ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
+                        "\n", "\t\t", RowBox[{"_", "\[Rule]", "None"}]}], 
+                      "\n", "\t\t  ", RowBox[{"(*", RowBox[
+                         {"GetStylesheetName", "[", "\n", "\t\t    ", 
+                          RowBox[{"$CurrentIDENotebook", ",", "\n", 
+                          "  \t\t  ", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", "\"EasyIDE\"", "}"}], ",", 
+                          " ", "\"LightMode.nb\""}], "]"}]}], "\n", 
+                          "       ", "]"}], "*)"}], "\n", "\t\t", "]"}]}], 
+                  ";"}]], "CodeInput"], Cell[BoxData[{RowBox[
+                  {RowBox[{RowBox[{"getNbFileSSheet", "[", "nbFile_", "]"}], 
+                     ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
                         {RowBox[{RowBox[{"FileByteCount", "[", "nbFile", 
                           "]"}], "<", "1000000000"}], ",", "\n", "\t\t", 
                          RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[
@@ -191,7 +195,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                      "nbFile_", "]"}], ":=", "\n", "\t", RowBox[
                     {RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}], "/.", 
                      "\n", "\t\t", RowBox[{"loadSheetStyles", "[", 
-                       "]"}]}]}]}], "CodeInput"]}, Closed]], 
+                       "]"}]}]}]}], "CodeInput"]}, Open]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]getFileStylesheet\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -210,7 +214,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           RowBox[{"getStylesheetStylesheet", "[", "file", 
                           "]"}], ",", " ", "None"}], "]"}]}]}], "\n", 
                           "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", 
-                    "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
+                    "\t\t", "]"}]}]], "CodeInput"]}, Open]], 
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
@@ -232,7 +236,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           ",", "\n", "\t\t\t", RowBox[{"SetMainStylesheet", 
                           "[", RowBox[{"nb", ",", " ", "targ"}], "]"}]}], 
                           "\n", "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
-                    "]"}]}]], "CodeInput"]}, Closed]]}, Open]], 
+                    "]"}]}]], "CodeInput"]}, Open]]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -409,7 +413,7 @@ ActionMenu\n\[RightFloor]", "Text", Evaluatable -> True], Cell[BoxData[
                           {"EvaluationOrder", "\[Rule]", "After"}]}], "\n", 
                           "  \t        ", "}"}]}], "\n", "    \t   ", 
                           "]"}]}]}], "\n", "      ", "]"}]}]}], "\n", "\t  ", 
-                 "]"}]}]], "CodeInput"]}, Open]], 
+                 "]"}]}]], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]GetNotebookExpression\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -468,7 +472,7 @@ ActionMenu\n\[RightFloor]", "Text", Evaluatable -> True], Cell[BoxData[
                           {RowBox[{"setAutoSave", "[", "nb", "]"}], ";", 
                           "\n", "  ", "\t\t", RowBox[{"setNbActions", "[", 
                           "nb", "]"}], ";"}]}], "\n", "     ", "]"}]}]}], 
-                   "\n", "\t\t", "]"}]}], ";"}]], "CodeInput"]}, Open]], 
+                   "\n", "\t\t", "]"}]}], ";"}]], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]notebookSaveNotebook\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 

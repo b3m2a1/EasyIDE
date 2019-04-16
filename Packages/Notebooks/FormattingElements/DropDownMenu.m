@@ -266,7 +266,7 @@ iMakeMenu[
        {
          Left->Automatic, 
          Right->
-           If[attachCell, Offset[{-22, -1}, 0], Automatic]
+           If[attachCell, Offset[{-15, -1}, 0], Automatic]
           }
         ];
    attachLR =
