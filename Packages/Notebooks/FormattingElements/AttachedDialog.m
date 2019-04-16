@@ -52,7 +52,7 @@ AttachedDialogPanel[
 destroyDialog[]:=
   Replace[CurrentValue[EvaluationNotebook[], StyleDefinitions],
     {
-      FrontEnd`FileName[_, _String?(StringEndsQ["-Dialog.nb"]), ___]:>
+      FrontEnd`FileName[_, _String?(StringEndsQ["Dialog.nb"]), ___]:>
         NotebookClose[EvaluationNotebook[]],
       _:>NotebookDelete[EvaluationCell[]]
       }
