@@ -1493,11 +1493,92 @@ Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/SiteBuilder.wl"}},
      "FileViewer" -> {"Visible" -> False}, 
     "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             PaneBox["", ImageSize -> {0, 15}], 
+             GridBox[{{
+                StyleBox[
+                 ButtonBox[
+                 "\"Load Package\"", ButtonFunction :> 
+                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
+                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], "ToolbarElement"], 
+                StyleBox[
+                 ButtonBox[
+                 "\"Open Package\"", ButtonFunction :> 
+                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
+                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], "ToolbarElement"], 
+                StyleBox[
+                 ActionMenuBox[
+                  ButtonBox[
+                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                   FrameMargins -> {{10, 10}, {0, 0}}, 
+                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                  "\"Package\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], {
+                    Cell["Package Name", "CodeSection"], 
+                    Cell[
+                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
+                    "Text", Evaluatable -> True], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+                    "InputSection"], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
+                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
+                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
+              BaseStyle -> "ToolbarElementRow"], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarShowButton", ButtonData -> 
+             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
               "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {}, "Cells" -> {"CodePackage" -> None}}, 
+        "Toolbars"], "Tags" -> {"CodePackage"}, 
+      "Cells" -> {"CodePackage" -> GridBox[{{
+            GridBox[{{
+               StyleBox[
+                ButtonBox[
+                "\"Load Package\"", ButtonFunction :> 
+                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
+                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
+                "ToolbarElement"], 
+               StyleBox[
+                ButtonBox[
+                "\"Open Package\"", ButtonFunction :> 
+                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
+                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
+                "ToolbarElement"], 
+               StyleBox[
+                ActionMenuBox[
+                 ButtonBox[
+                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                  FrameMargins -> {{10, 10}, {0, 0}}, 
+                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                 "\"Package\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], {
+                    Cell["Package Name", "CodeSection"], 
+                    Cell[
+                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
+                    "Text", Evaluatable -> True], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+                    "InputSection"], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
+                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
+                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
+             BaseStyle -> "ToolbarElementRow"], 
+            ButtonBox[
+            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
