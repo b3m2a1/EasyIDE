@@ -64,7 +64,7 @@ createNewSite[]:=
       ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getWebSitePath*)
 
 
@@ -79,7 +79,7 @@ getWebSitePath[]:=
       ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createNewPost*)
 
 
@@ -93,7 +93,7 @@ createNewPost[]:=
      ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createNewPage*)
 
 
@@ -103,11 +103,11 @@ createNewPage[]:=
        NotebookOpen=IDEOpen,
        SystemOpen=IDEOpen
        },
-     Ems["NewPost", getWebSitePath[]]
+     Ems["NewPage", getWebSitePath[]]
      ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createNewMd*)
 
 
@@ -126,7 +126,7 @@ createNewMd[]:=
    ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*openSite*)
 
 
@@ -134,7 +134,7 @@ openSite[]:=
   Ems["Open", getWebSitePath[]]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*buildSite*)
 
 
@@ -224,7 +224,7 @@ buildSite[]:=
     ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*commands*)
 
 
@@ -247,7 +247,7 @@ siteBuilderCommands=
     };
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*End*)
 
 

@@ -9,6 +9,13 @@
       "CodePackage.nb"
       ],
   FrontEnd`FileName[{___}, 
+    _String?(StringEndsQ["CodeNotebook.nb"]),
+    ___
+    ]:>
+    FrontEnd`FileName[{"EasyIDE", "Extensions", "FileViewer"},
+      "CodePackage.nb"
+      ],
+  FrontEnd`FileName[{___}, 
     _String?(StringEndsQ["Docs.nb"]),
     ___
     ]:>

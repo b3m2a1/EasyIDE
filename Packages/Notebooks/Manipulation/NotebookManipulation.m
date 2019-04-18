@@ -27,6 +27,9 @@ IDESave::usage="Save the active IDE notebook file";
 IDEClose::usage="Close the IDE notebook";
 
 
+$SaveNotebookMethod::usage="The method to use when saving notebooks";
+
+
 Begin["`Private`"];
 
 
@@ -74,31 +77,51 @@ nbPut2[enb_NotebookObject, nb_Notebook]:=
          FrontEnd`SelectionMove[enb, All, Notebook],
          FrontEnd`SetOptions[NotebookSelection[enb], Deletable->True],
          FrontEnd`NotebookDelete[enb]
-         },
-     ops=Options[enb]
+         }
     },
     MathLink`CallFrontEnd@{
      mcells,
      FrontEnd`SelectionMove[enb, Before, Notebook],
-     FrontEnd`NotebookWrite[enb, nb[[1]], None,
-      AutoScroll->False
-      ]
+     FrontEnd`NotebookWrite[enb, nb[[1]], None, AutoScroll->False]
      }
    ]
 
 
-NotebookPutContents[ideNb_NotebookObject, nb_Notebook]:=
+nbPut3[enb_NotebookObject, nb_Notebook]:=
+  MathLink`CallFrontEnd@{
+     FrontEnd`NotebookWrite[enb, nb[[1]], None,
+      AutoScroll->False
+      ]
+     }
+
+
+NotebookPutContents//Clear
+NotebookPutContents[ideNb_NotebookObject, nb_Notebook,
+  mode:(NotebookWrite|NotebookPut|Automatic):Automatic
+  ]:=
   Module[
     {
       ops=Options[nb],
-      c=Cells[ideNb]
+      c,
+      m
       },
+    m = 
+      Replace[mode, 
+        Automatic:>(
+          c=Cells[ideNb];
+          If[Length@c>100000, NotebookPut, NotebookWrite]
+          )
+        ];
     WithNotebookPaused[
       ideNb,
-     If[Length@c>100000,
-       nbPut1[ideNb, nb],
-       nbPut2[ideNb, nb]
-       ];
+      If[m===NotebookWrite,
+        If[!ListQ[c], c=Cells[ideNb]];
+        If[Length@c==0,
+          nbPut3[ideNb, nb],
+          nbPut2[ideNb, nb]
+          ],
+        nbPut1[ideNb, nb]
+        ];
      IDEData[ideNb, "Options"] = ops;
      ];
    ]
@@ -216,7 +239,7 @@ setNbFileStyle[nb_, file_]:=
       mainName,
       targ
       },
-    targ = Global`meh = getFileStylesheet[nb, file];
+    targ = getFileStylesheet[nb, file];
     IDEData[nb, "StyleSheet"] = targ;
     If[targ =!= None,
       SetMainStylesheet[nb, targ];
@@ -446,8 +469,19 @@ NotebookPutFile[nb_NotebookObject, f_String]:=
 
 
 
+If[!ValueQ[$SaveNotebookMethod], $SaveNotebookMethod = notebookSaveNotebook];
+
+
+$poisonBoxes = _GraphicsBox|_Graphics3DBox|_Raster3DBox|_RasterBox;
+
+
 notebookSaveNotebook[f_, nb_]:=
-  Put[GetNotebookExpression[nb], f]
+  With[{expr=GetNotebookExpression[nb]},
+    If[!FreeQ[expr[[1]], $poisonBoxes],
+      Export[f, expr, "Notebook"],
+      Put[expr, f]
+      ]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -515,7 +549,7 @@ Module[{recurseProtect},
               "nb",
                 If[preemptive,
                   PreemptiveQueued[nb, notebookSaveNotebook[f, nb]],
-                   notebookSaveNotebook[f, nb];
+                   $SaveNotebookMethod[f, nb];
                   ];
                 If[ags,
                   If[preemptive,

@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 Paclet[
   Name -> "EasyIDE",
   Version -> "1.0.10",
