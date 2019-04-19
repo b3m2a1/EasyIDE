@@ -51,7 +51,8 @@ createNotebookDockedCell[nb_]:=
                         GridBoxItemSize->Inherited
                         ]
                       },
-                    BaseStyle->"MainMenuTwoRow"
+                    BaseStyle->"MainMenuTwoRow",
+                GridBoxItemSize->Inherited
                     ],
                   BaseStyle->"MainMenuTwoRow"
                   ]},
@@ -81,7 +82,8 @@ createNotebookDockedCell[nb_]:=
                 ]},
             {PanelBox[toolbars, BaseStyle->"MainMenuOneRowToolbars"]}
             },
-          BaseStyle->"MainMenu"
+          BaseStyle->"MainMenu",
+          GridBoxItemSize->Inherited
           ]
         ],
       "MainMenuCell"

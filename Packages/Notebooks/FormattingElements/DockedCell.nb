@@ -1,244 +1,153 @@
-Notebook[{
-
-Cell[CellGroupData[{
-Cell["DockedCell Menu", \
-"CodeSection",ExpressionUUID->"9f8ab4b6-1736-4dca-a305-48916810b9dd"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"GetNotebookMenu", "::", "usage"}], "=", 
-   "\"\<Gets the menu used in the IDENotebookObjects\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"beb94f01-f9a8-47cd-ba40-047e48b926c8"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"e9a5aeb9-0a46-46b4-ae9f-\
-1b3b892ac3bb"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]createNotebookDockedCell\[RightFloor]", \
-"CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"b77bf137-492f-43ee-a862-6ca2e11842c5"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"createNotebookDockedCell", "[", "nb_", "]"}], ":=", "\n", "\t", 
-   RowBox[{"With", "[", "\n", "\t\t", 
-    RowBox[{
-     RowBox[{"{", "\n", "\t\t\t", 
-      RowBox[{
-       RowBox[{"tabRowRefresh", " ", "=", " ", 
-        RowBox[{"Unique", "[", "tabRowRefresh", "]"}]}], ",", "\n", "\t", 
-       "\t\t", 
-       RowBox[{"toolbarRefresh", " ", "=", " ", 
-        RowBox[{"Unique", "[", "toolbarRefresh", "]"}]}]}], "\n", "\t\t\t", 
-      "}"}], ",", "\n", "\t\t", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", 
-         RowBox[{"PrivateKey", "[", "\"\<TabsRefreshHandle\>\"", "]"}]}], 
-        "]"}], "=", 
-       RowBox[{"Hold", "[", "tabRowRefresh", "]"}]}], ";", "\n", "\t\t", 
-      RowBox[{
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", 
-         RowBox[{"PrivateKey", "[", "\"\<ToolbarRefreshHandle\>\"", "]"}]}], 
-        "]"}], "=", 
-       RowBox[{"Hold", "[", "toolbarRefresh", "]"}]}], ";", "\n", "\t\t", 
-      RowBox[{"Module", "[", "\n", "\t\t\t", 
-       RowBox[{
-        RowBox[{"{", "\n", "\t\t\t\t", 
-         RowBox[{
-          RowBox[{"tabs", "=", "\n", "\t\t\t\t\t", 
-           RowBox[{"CreateTabRow", "[", "tabRowRefresh", "]"}]}], ",", "\n", 
-          "\t\t\t\t", 
-          RowBox[{"toolbars", "=", "\n", "\t\t\t\t\t", 
-           RowBox[{"CreateToolbarsBox", "[", "toolbarRefresh", "]"}]}], ",", 
-          "\n", "\t\t\t\t", 
-          RowBox[{"menus", "=", "\n", "\t\t\t\t\t", 
-           RowBox[{"Values", "@", 
-            RowBox[{"GetPluginsMenus", "[", "nb", "]"}]}]}], ",", "\n", 
-          "\t\t\t\t", 
-          RowBox[{"viewer", "=", "\n", "\t\t\t\t\t", 
-           RowBox[{"ToggleFileViewerButton", "[", "]"}]}]}], "\n", "\t\t\t\t",
-          "}"}], ",", "\n", "\t\t\t", 
-        RowBox[{"Cell", "[", "\n", "\t\t\t\t", 
-         RowBox[{
-          RowBox[{"BoxData", "@", "\n", "\t\t\t\t\t", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"Length", "@", 
-               RowBox[{"menus", "[", 
-                RowBox[{"[", "2", "]"}], "]"}]}], ">", "3"}], ",", "\n", 
-             "\t\t\t\t\t\t", 
-             RowBox[{"GridBox", "[", "\n", "\t\t\t\t\t\t\t", 
-              RowBox[{
-               RowBox[{"{", "\n", "\t\t\t\t\t\t\t\t", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"ToBoxes", "@", 
-                   RowBox[{"Panel", "[", "\n", "\t", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{
-                    "Column", "[", "\n", "\t", "\t", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{"{", "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{
-                    "Grid", "[", "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"menus", "[", 
-                    RowBox[{"[", "2", "]"}], "]"}], "//", "List"}], ",", " ", 
-                    "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuTwoRowTop\>\""}], 
-                    ",", "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
-                    RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
-                    "]"}], ",", "\n", "\t", "\t", "\t", "\t", "\t", 
-                    "\t\t\t\t\t\t", 
-                    RowBox[{
-                    "Grid", "[", "\n", "\t", "\t", "\t", "\t", "\t", 
-                    "\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"{", 
-                    RowBox[{"viewer", ",", " ", "tabs", ",", " ", 
-                    RowBox[{"menus", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "}"}], ",", "\n",
-                     "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuTwoRowBottom\>\""}], 
-                    ",", "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
-                    RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", "]"}]}],
-                     "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", "}"}], 
-                    ",", "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuTwoRow\>\""}]}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t", "]"}], 
-                    ",", "\n", "\t", "\t", "\t", "\t", "\t", "\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuTwoRow\>\""}]}], 
-                    "\n", "\t\t\t\t\t\t\t\t\t", "]"}]}], "}"}], ",", "\n", 
-                 "\t\t\t\t\t\t\t", 
-                 RowBox[{"{", 
-                  RowBox[{"PanelBox", "[", 
-                   RowBox[{"toolbars", ",", " ", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", 
-                    "\"\<MainMenuTwoRowToolbars\>\""}]}], "]"}], "}"}]}], 
-                "\n", "\t\t\t\t\t\t\t", "}"}], ",", "\n", "\t\t\t\t\t\t", 
-               RowBox[{"BaseStyle", "\[Rule]", "\"\<MainMenu\>\""}]}], "\n", 
-              "\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t", 
-             RowBox[{"GridBox", "[", "\n", "\t\t\t\t\t\t", 
-              RowBox[{
-               RowBox[{"{", "\n", "\t\t\t\t\t\t\t", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"ToBoxes", "@", 
-                   RowBox[{"Panel", "[", "\n", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{"Grid", "[", "\n", "\t", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{"{", "\n", "\t", "\t\t\t\t\t\t\t\t\t", 
-                    RowBox[{"{", "\n", "\t", "\t\t\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    "viewer", ",", "\n", "\t", "\t", "\t", "\t", 
-                    "\t\t\t\t\t\t\t", "tabs", ",", "\n", "\t", "\t", "\t", 
-                    "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    "Grid", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"Append", "[", 
-                    RowBox[{
-                    RowBox[{"menus", "[", 
-                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
-                    RowBox[{"menus", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "}"}], ",", "\n",
-                     "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuOneRowPlugins\>\""}],
-                     ",", "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", 
-                    RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", "]"}]}],
-                     "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", "}"}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t", "}"}], ",", 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuOneRow\>\""}], ",", 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t", 
-                    RowBox[{"GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t", "]"}], ",", 
-                    "\n", "\t", "\t", "\t", "\t", "\t\t\t\t", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", "\"\<MainMenuOneRow\>\""}]}], 
-                    "\n", "\t\t\t\t\t\t\t\t", "]"}]}], "}"}], ",", "\n", 
-                 "\t\t\t\t\t\t", 
-                 RowBox[{"{", 
-                  RowBox[{"PanelBox", "[", 
-                   RowBox[{"toolbars", ",", " ", 
-                    RowBox[{
-                    "BaseStyle", "\[Rule]", 
-                    "\"\<MainMenuOneRowToolbars\>\""}]}], "]"}], "}"}]}], 
-                "\n", "\t\t\t\t\t\t", "}"}], ",", "\n", "\t\t\t\t\t", 
-               RowBox[{"BaseStyle", "\[Rule]", "\"\<MainMenu\>\""}]}], "\n", 
-              "\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t", "]"}]}], ",", "\n", 
-          "\t\t\t", "\"\<MainMenuCell\>\""}], "\n", "\t\t\t", "]"}]}], "\n", 
-       "\t\t", "]"}]}]}], "\n", "\t", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"ee07b601-4da1-4cf0-b847-bcfe95161e57"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]GetNotebookMenu\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"436f23a5-a053-4927-abaa-eb724e1b983f"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"GetNotebookMenu", "[", 
-    RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\n", "\t", 
-   RowBox[{"createNotebookDockedCell", "@", "\n", "\t\t", 
-    RowBox[{"Replace", "[", 
-     RowBox[{"nb", ",", " ", 
-      RowBox[{"Automatic", ":>", 
-       RowBox[{"EvaluationNotebook", "[", "]"}]}]}], "]"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"5c2d0726-db21-4326-a8b1-125f03767963"]
-}, Open  ]]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"49c7f707-12b4-4d44-bf67-\
-c8dd1a07a340"]
-}, Open  ]],
-
-Cell["", "SectionSeparator",ExpressionUUID->"384a4e07-d52d-41d0-ab6f-\
-7cf00393bac3"]
-},
-WindowSize->{808, 755},
-WindowMargins->{{166, Automatic}, {Automatic, 0}},
-TaggingRules->{
- "UUIDButtons" -> {
-   "Active" -> {
-     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
-FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
-2018)",
-StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
-  CharacterEncoding -> "UTF-8"]
-]
-
+Notebook[{Cell[CellGroupData[{Cell["DockedCell Menu", "CodeSection"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"GetNotebookMenu", "::", "usage"}], 
+           "=", "\"Gets the menu used in the IDENotebookObjects\""}], ";"}]], 
+      "CodeInput"], Cell[CellGroupData[
+       {Cell[BoxData[RowBox[{RowBox[{"Begin", "[", "\"`Private`\"", "]"}], 
+            ";"}]], "InputSection"], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]createNotebookDockedCell\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"createNotebookDockedCell", 
+                   "[", "nb_", "]"}], ":=", "\n", "\t", RowBox[{"With", "[", 
+                   "\n", "\t\t", RowBox[{RowBox[{"{", "\n", "\t\t\t", 
+                       RowBox[{RowBox[{"tabRowRefresh", " ", "=", " ", 
+                          RowBox[{"Unique", "[", "tabRowRefresh", "]"}]}], 
+                         ",", "\n", "\t", "\t\t", RowBox[{"toolbarRefresh", 
+                          " ", "=", " ", RowBox[{"Unique", "[", 
+                          "toolbarRefresh", "]"}]}]}], "\n", "\t\t\t", "}"}], 
+                     ",", "\n", "\t\t", RowBox[{RowBox[{RowBox[{"IDEData", 
+                          "[", RowBox[{"nb", ",", " ", RowBox[{"PrivateKey", 
+                          "[", "\"TabsRefreshHandle\"", "]"}]}], "]"}], "=", 
+                         RowBox[{"Hold", "[", "tabRowRefresh", "]"}]}], ";", 
+                       "\n", "\t\t", RowBox[{RowBox[{"IDEData", "[", RowBox[
+                          {"nb", ",", " ", RowBox[{"PrivateKey", "[", 
+                          "\"ToolbarRefreshHandle\"", "]"}]}], "]"}], "=", 
+                         RowBox[{"Hold", "[", "toolbarRefresh", "]"}]}], ";", 
+                       "\n", "\t\t", RowBox[{"Module", "[", "\n", "\t\t\t", 
+                         RowBox[{RowBox[{"{", "\n", "\t\t\t\t", RowBox[
+                          {RowBox[{"tabs", "=", "\n", "\t\t\t\t\t", RowBox[
+                          {"CreateTabRow", "[", "tabRowRefresh", "]"}]}], 
+                          ",", "\n", "\t\t\t\t", RowBox[{"toolbars", "=", 
+                          "\n", "\t\t\t\t\t", RowBox[{"CreateToolbarsBox", 
+                          "[", "toolbarRefresh", "]"}]}], ",", "\n", 
+                          "\t\t\t\t", RowBox[{"menus", "=", "\n", 
+                          "\t\t\t\t\t", RowBox[{"Values", "@", RowBox[
+                          {"GetPluginsMenus", "[", "nb", "]"}]}]}], ",", 
+                          "\n", "\t\t\t\t", RowBox[{"viewer", "=", "\n", 
+                          "\t\t\t\t\t", RowBox[{"ToggleFileViewerButton", 
+                          "[", "]"}]}]}], "\n", "\t\t\t\t", "}"}], ",", "\n", 
+                          "\t\t\t", RowBox[{"Cell", "[", "\n", "\t\t\t\t", 
+                          RowBox[{RowBox[{"BoxData", "@", "\n", "\t\t\t\t\t", 
+                          RowBox[{"If", "[", RowBox[{RowBox[{RowBox[
+                          {"Length", "@", RowBox[{"menus", "[", RowBox[{"[", 
+                          "2", "]"}], "]"}]}], ">", "3"}], ",", "\n", 
+                          "\t\t\t\t\t\t", RowBox[{"GridBox", "[", "\n", 
+                          "\t\t\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", 
+                          "\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"{", RowBox[
+                          {"ToBoxes", "@", RowBox[{"Panel", "[", "\n", "\t", 
+                          "\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"Column", "[", 
+                          "\n", "\t", "\t", "\t\t\t\t\t\t\t\t", RowBox[
+                          {RowBox[{"{", "\n", "\t", "\t", 
+                          "\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"Grid", "[", 
+                          "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t", RowBox[
+                          {RowBox[{RowBox[{"menus", "[", RowBox[{"[", "2", 
+                          "]"}], "]"}], "//", "List"}], ",", " ", "\n", "\t", 
+                          "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", RowBox[
+                          {"BaseStyle", "\[Rule]", "\"MainMenuTwoRowTop\""}], 
+                          ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+                          "\t\t\t\t\t\t\t", RowBox[{"GridBoxItemSize", 
+                          "\[Rule]", "Inherited"}]}], "\n", "\t", "\t", "\t", 
+                          "\t", "\t", "\t\t\t\t\t\t\t", "]"}], ",", "\n", 
+                          "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t", 
+                          RowBox[{"Grid", "[", "\n", "\t", "\t", "\t", "\t", 
+                          "\t", "\t\t\t\t\t\t\t", RowBox[{RowBox[{"{", RowBox[
+                          {"{", RowBox[{"viewer", ",", " ", "tabs", ",", " ", 
+                          RowBox[{"menus", "[", RowBox[{"[", "1", "]"}], 
+                          "]"}]}], "}"}], "}"}], ",", "\n", "\t", "\t", "\t", 
+                          "\t", "\t", "\t\t\t\t\t\t\t", RowBox[{"BaseStyle", 
+                          "\[Rule]", "\"MainMenuTwoRowBottom\""}], ",", "\n", 
+                          "\t", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t", 
+                          RowBox[{"GridBoxItemSize", "\[Rule]", 
+                          "Inherited"}]}], "\n", "\t", "\t", "\t", "\t", 
+                          "\t\t\t\t\t\t\t\t", "]"}]}], "\n", "\t", "\t", 
+                          "\t", "\t", "\t\t\t\t\t\t\t", "}"}], ",", "\n", 
+                          "\t", "\t", "\t", "\t", "\t\t\t\t\t\t", RowBox[
+                          {"BaseStyle", "\[Rule]", "\"MainMenuTwoRow\""}], 
+                          ",", "\n", "\t              ", RowBox[{
+                          "GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
+                          "\n", "\t\t\t\t\t\t\t\t\t\t", "]"}], ",", "\n", 
+                          "\t\t\t\t\t\t\t\t\t", RowBox[{"BaseStyle", 
+                          "\[Rule]", "\"MainMenuTwoRow\""}]}], "\n", 
+                          "\t\t\t\t\t\t\t\t\t", "]"}]}], "}"}], ",", "\n", 
+                          "\t\t\t\t\t\t\t", RowBox[{"{", RowBox[{"PanelBox", 
+                          "[", RowBox[{"toolbars", ",", " ", RowBox[{
+                          "BaseStyle", "\[Rule]", 
+                          "\"MainMenuTwoRowToolbars\""}]}], "]"}], "}"}]}], 
+                          "\n", "\t\t\t\t\t\t\t", "}"}], ",", "\n", 
+                          "\t\t\t\t\t\t", RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"MainMenu\""}]}], "\n", "\t\t\t\t\t\t", "]"}], 
+                          ",", "\n", "\t\t\t\t\t", RowBox[{"GridBox", "[", 
+                          "\n", "\t\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", 
+                          "\t\t\t\t\t\t\t", RowBox[{RowBox[{"{", RowBox[
+                          {"ToBoxes", "@", RowBox[{"Panel", "[", "\n", 
+                          "\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"Grid", "[", 
+                          "\n", "\t", "\t\t\t\t\t\t\t\t", RowBox[{RowBox[
+                          {"{", "\n", "\t", "\t\t\t\t\t\t\t\t\t", RowBox[
+                          {"{", "\n", "\t", "\t\t\t\t\t\t\t\t\t\t", RowBox[
+                          {"viewer", ",", "\n", "\t", "\t", "\t", "\t", 
+                          "\t\t\t\t\t\t\t", "tabs", ",", "\n", "\t", "\t", 
+                          "\t", "\t\t\t\t\t\t\t\t", RowBox[{"Grid", "[", 
+                          "\n", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t\t", 
+                          RowBox[{RowBox[{"{", RowBox[{"Append", "[", RowBox[
+                          {RowBox[{"menus", "[", RowBox[{"[", "2", "]"}], 
+                          "]"}], ",", " ", RowBox[{"menus", "[", RowBox[{"[", 
+                          "1", "]"}], "]"}]}], "]"}], "}"}], ",", "\n", "\t", 
+                          "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", RowBox[{
+                          "BaseStyle", "\[Rule]", 
+                          "\"MainMenuOneRowPlugins\""}], ",", "\n", "\t", 
+                          "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", RowBox[{
+                          "GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
+                          "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t\t\t\t", 
+                          "]"}]}], "\n", "\t", "\t", "\t", "\t", 
+                          "\t\t\t\t\t\t\t", "}"}], "\n", "\t", "\t", "\t", 
+                          "\t", "\t\t\t\t\t\t", "}"}], ",", "\n", "\t", "\t", 
+                          "\t", "\t", "\t\t\t\t\t", RowBox[{"BaseStyle", 
+                          "\[Rule]", "\"MainMenuOneRow\""}], ",", "\n", "\t", 
+                          "\t", "\t", "\t", "\t\t\t\t\t", RowBox[{
+                          "GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
+                          "\n", "\t", "\t", "\t", "\t", "\t\t\t\t\t", "]"}], 
+                          ",", "\n", "\t", "\t", "\t", "\t", "\t\t\t\t", 
+                          RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"MainMenuOneRow\""}]}], "\n", "\t\t\t\t\t\t\t\t", 
+                          "]"}]}], "}"}], ",", "\n", "\t\t\t\t\t\t", RowBox[
+                          {"{", RowBox[{"PanelBox", "[", RowBox[{"toolbars", 
+                          ",", " ", RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"MainMenuOneRowToolbars\""}]}], "]"}], "}"}]}], 
+                          "\n", "\t\t\t\t\t\t", "}"}], ",", "\n", 
+                          "\t\t\t\t\t", RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"MainMenu\""}], ",", "\n", "\t\t\t\t\t", RowBox[
+                          {"GridBoxItemSize", "\[Rule]", "Inherited"}]}], 
+                          "\n", "\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t", 
+                          "]"}]}], ",", "\n", "\t\t\t", "\"MainMenuCell\""}], 
+                          "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}]}], 
+                   "\n", "\t", "]"}]}], ";"}]], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]GetNotebookMenu\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"GetNotebookMenu", "[", 
+                   RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\n", "\t", 
+                 RowBox[{"createNotebookDockedCell", "@", "\n", "\t\t", 
+                   RowBox[{"Replace", "[", RowBox[{"nb", ",", " ", RowBox[
+                        {"Automatic", ":>", RowBox[{"EvaluationNotebook", 
+                          "[", "]"}]}]}], "]"}]}]}], ";"}]], "CodeInput"]}, 
+          Open]]}, Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], 
+         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+ WindowSize -> {808, 755}, WindowMargins -> {{166, Automatic}, 
+   {Automatic, 0}}, TaggingRules -> 
+  {"UUIDButtons" -> 
+    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+ FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+   CharacterEncoding -> "UTF-8"]]

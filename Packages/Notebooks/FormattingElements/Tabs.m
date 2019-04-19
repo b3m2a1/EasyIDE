@@ -87,10 +87,13 @@ CreateTabRow[refresh_]:=
       },
     Dynamic[
       refresh;
-      Pane[
-        Grid@List@MapThread[TabObject, tns], 
-        BaseStyle->"TabbingRow"
-        ],
+      Panel[
+       Pane[
+          Grid@List@MapThread[TabObject, tns], 
+          BaseStyle->"TabbingRow"
+          ],
+       BaseStyle->"TabbingRow"
+      ],
       TrackedSymbols:>{refresh}
       ]/.cv->CurrentValue
     ]
