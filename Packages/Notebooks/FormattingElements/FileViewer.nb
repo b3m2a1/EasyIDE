@@ -590,15 +590,20 @@ Notebook[{Cell[CellGroupData[{Cell["FileViewer Pane", "CodeSection"],
            Cell[BoxData[{RowBox[{"ToggleFileViewerButton", "//", "Clear"}], 
               "\n", RowBox[{RowBox[{"ToggleFileViewerButton", "[", 
                   RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\n", "\t", 
-                RowBox[{"Button", "[", "\n", "\t\t", RowBox[
-                   {"\"\[Congruent]\"", ",", "\n", "\t\t", RowBox[
-                     {"NotebookToggleFileViewer", "[", RowBox[{"Replace", 
-                        "[", RowBox[{"nb", ",", " ", RowBox[{"Automatic", 
+                RowBox[{"Pane", "[", "\n", "\t  ", RowBox[{RowBox[{"Button", 
+                      "[", "\n", "  \t\t", RowBox[{"\"\[Congruent]\"", ",", 
+                        "\n", "  ", "\t\t", RowBox[
+                         {"NotebookToggleFileViewer", "[", RowBox[{"Replace", 
+                          "[", RowBox[{"nb", ",", " ", RowBox[{"Automatic", 
                           ":>", RowBox[{"EvaluationNotebook", "[", "]"}]}]}], 
-                        "]"}], "]"}], ",", "\n", "\t\t", RowBox[{"BaseStyle", 
-                      "\[Rule]", "\"FileViewerToggleButton\""}], ",", "\n", 
-                    "\t\t", RowBox[{"Appearance", "\[Rule]", "Inherited"}]}], 
-                  "\n", "\t\t", "]"}]}]}], "CodeInput"]}, Closed]]}, Open]], 
+                          "]"}], "]"}], ",", "\n", "  ", "\t\t", RowBox[
+                         {"BaseStyle", "\[Rule]", 
+                          "\"FileViewerToggleButton\""}], ",", "\n", "  ", 
+                        "\t\t", RowBox[{"Appearance", "\[Rule]", 
+                          "Inherited"}]}], "\n", "  \t\t", "]"}], ",", "\n", 
+                    "    ", RowBox[{"BaseStyle", "\[Rule]", 
+                      "\"FileViewerToggleButton\""}]}], "\n", "    ", 
+                  "]"}]}]}], "CodeInput"]}, Open]]}, Open]], 
      Cell[CellGroupData[{Cell["\[LeftCeiling]IDE\[RightFloor]", 
          "CodeSubsection", Evaluatable -> True], 
         Cell[CellGroupData[

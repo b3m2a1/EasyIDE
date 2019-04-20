@@ -34,22 +34,21 @@ createNotebookDockedCell[nb_]:=
         },
       Cell[
         BoxData@
-          If[Length@menus[[2]]>3,
+          If[Length@menus[[2]]>0,
             GridBox[
               {
                 {ToBoxes@Panel[
-                  Column[
+                  Grid[
                     {
-                      Grid[
-                        menus[[2]]//List, 
-                        BaseStyle->"MainMenuTwoRowTop",
-                        GridBoxItemSize->Inherited
-                        ],
-                      Grid[
-                        {{viewer, tabs, menus[[1]]}},
-                        BaseStyle->"MainMenuTwoRowBottom",
-                        GridBoxItemSize->Inherited
-                        ]
+                      {
+                        viewer, 
+                        Grid[
+                          {Append[menus[[2]], menus[[1]]]},
+                          BaseStyle->"MainMenuTwoRowPlugins",
+                          GridBoxItemSize->Inherited
+                          ]
+                    }, 
+                      {SpanFromAbove, Style[tabs, "MainMenuTwoRowTabs"]}
                       },
                     BaseStyle->"MainMenuTwoRow",
                 GridBoxItemSize->Inherited
@@ -67,7 +66,7 @@ createNotebookDockedCell[nb_]:=
                   {
                     {
                       viewer,
-                      tabs,
+                      Style[tabs, "MainMenuOneRowTabs"],
                       Grid[
                         {Append[menus[[2]], menus[[1]]]},
                         BaseStyle->"MainMenuOneRowPlugins",

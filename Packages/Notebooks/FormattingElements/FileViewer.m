@@ -486,11 +486,14 @@ NotebookToggleFileViewer[nb_]:=
 
 ToggleFileViewerButton//Clear
 ToggleFileViewerButton[nb_:Automatic]:=
-  Button[
-    "\[Congruent]",
-    NotebookToggleFileViewer[Replace[nb, Automatic:>EvaluationNotebook[]]],
-    BaseStyle->"FileViewerToggleButton",
-    Appearance->Inherited
+  Pane[
+    Button[
+      "\[Congruent]",
+      NotebookToggleFileViewer[Replace[nb, Automatic:>EvaluationNotebook[]]],
+      BaseStyle->"FileViewerToggleButton",
+      Appearance->Inherited
+      ],
+    BaseStyle->"FileViewerToggleButton"
     ]
 
 
