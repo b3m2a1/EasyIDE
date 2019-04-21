@@ -189,7 +189,7 @@ NewPost[
   ops:OptionsPattern[]
   ]:=
   With[{r=WebSiteNewContent[dir, "posts", name, content, ops]},
-    r/;Quiet[FileExistsQ@r]
+    r/;Quiet[StringQ[r]&&FileExistsQ[r]]
     ]
 
 

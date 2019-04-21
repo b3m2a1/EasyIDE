@@ -2206,12 +2206,13 @@ WebSiteTemplateExport[
               },
           If[
             !FileExistsQ[fil]||(* to preserve the modification date *)
-              (html=!=System`Convert`TextDump`PlaintextImport[fil][[2]]),
+              (
+                html=!=Quiet[ReadString[fil]]
+                  (*System`Convert`TextDump`PlaintextImport[fil][[2]] ]*)
+                ),
             Quiet@Close[fil];
             If[!DirectoryQ@DirectoryName[fil],
-              CreateDirectory[DirectoryName[fil], 
-                CreateIntermediateDirectories->True
-                ]
+              CreateDirectory[DirectoryName[fil], CreateIntermediateDirectories->True]
               ];
             Export[fil, html, "Text"]
             ]
