@@ -68,7 +68,7 @@ makeIDEToolbarGrid[nb_, tags_]:=
     If[Length@data===0,
       None,
       GridBox[
-        Thread[{data}],
+        Thread[{Cases[data, _GridBox]}],
         BaseStyle->"Toolbars"
         ]
       ]
@@ -177,7 +177,7 @@ AddNotebookToolbar[nb_, toolbar_, tag_]:=
         ];
       If[updateNeeded || (IDEData[nb, {"Toolbars", "Cells", tag}] =!= tools),
         updateNeeded = True;
-        IDEData[nb, {"Toolbars", "Cells"}] = {};
+        (*IDEData[nb, {"Toolbars", "Cells"}] = {};*)
         IDEData[nb, {"Toolbars", "Cells", tag}] = tools;
         ];
       ];

@@ -1,0 +1,33 @@
+<*
+  $$["SideBarSocialLinks"]=
+    Replace[
+      #SocialLinks,
+      {
+        None->{},
+        Except[_List]:>
+          Replace[
+            Quiet@Import[FileNameJoin@{"include", "config", "social_links.m"}],
+            Except[_List]->{}
+            ]
+        }
+      ];
+  *>
+
+<wolfram:if test='Length@$$["SideBarSocialLinks"]>0'>
+<!-- Sidebar/Social Links -->
+<li class="list-group-item">
+  <h4>Social</h4>
+  <*
+    $$templateLib["makeSiteLinkList"][
+      <|
+        "ListClass"->"list-group",
+        "ItemClass"->"list-group-item",
+        "ListID"->"social"
+        |>,
+      $$["SideBarSocialLinks"],
+      #
+      ]
+    *>
+</li>
+<!-- End Sidebar/Social Links -->
+</wolfram:if>

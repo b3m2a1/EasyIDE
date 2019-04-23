@@ -17,6 +17,12 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
             "\"\""}], ";"}], "\n", RowBox[
          {RowBox[{RowBox[{"RemoveNotebookStylesheet", "::", "usage"}], "=", 
             "\"\""}], ";"}]}], "CodeInput", CellID -> 1065601412], 
+     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"SetNotebookStyleTheme", "::", 
+              "usage"}], "=", "\"\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"GetThemedStylesheet", "::", "usage"}], "=", 
+            "\"\""}], ";"}], "\n", RowBox[
+         {RowBox[{RowBox[{"SetThemedStylesheet", "::", "usage"}], "=", 
+            "\"\""}], ";"}]}], "CodeInput"], 
      Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDEAddStyles", "::", "usage"}], 
             "=", "\"Adds styles to the IDE notebook\""}], ";"}], "\n", 
         RowBox[{RowBox[{RowBox[{"IDERemoveStyles", "::", "usage"}], "=", 
@@ -222,7 +228,79 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
                           "\"MainStyleName\"", ",", " ", "\"LightMode\""}], 
                           "]"}]}]}], "]"}]}], "\n", "\t  ", "]"}]}]}], 
-            "CodeInput", CellID -> 1055552087]}, Open]], 
+            "CodeInput", CellID -> 1055552087]}, Closed]], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]SetNotebookStyleTheme\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"SetNotebookStyleTheme", "[", 
+                 RowBox[{"nb_NotebookObject", ",", " ", "themeName_String"}], 
+                 "]"}], ":=", "\n", "  ", RowBox[{"With", "[", RowBox[
+                  {RowBox[{"{", RowBox[{"gs", "=", RowBox[
+                        {"GetMainStylesheet", "[", "nb", "]"}]}], "}"}], ",", 
+                   "\n", "  ", "  ", RowBox[{"With", "[", RowBox[
+                      {RowBox[{"{", RowBox[{"tname", "=", RowBox[
+                          {"GetMainStylesheetName", "[", "gs", "]"}]}], 
+                         "}"}], ",", "\n", "  ", "    ", RowBox[{"If", "[", 
+                         RowBox[{RowBox[{"tname", "=!=", "themeName"}], ",", 
+                          "\n", "  ", "      ", RowBox[{RowBox[{RowBox[
+                          {"IDEData", "[", RowBox[{"nb", ",", " ", 
+                          "\"MainStyleName\""}], "]"}], " ", "=", " ", 
+                          "themeName"}], ";", "\n", "  ", "      ", RowBox[
+                          {"SetOptions", "[", RowBox[{"nb", ",", " ", RowBox[
+                          {RowBox[{"StyleDefinitions", "\[Rule]", "gs"}], 
+                          "/.", RowBox[{"tname", "\[Rule]", 
+                          "themeName"}]}]}], "]"}]}]}], "\n", "        ", 
+                         "]"}]}], "\n", "      ", "]"}]}], "\n", "    ", 
+                 "]"}]}]], "CodeInput"]}, Closed]], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]GetThemedStylesheet\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"loadSheetStyles", "[", 
+                   "]"}], ":=", "\n", "\t", RowBox[{"Append", "[", "\n", 
+                   "\t\t", RowBox[{RowBox[{"Normal", "@", "\n", "\t\t\t", 
+                       RowBox[{"Merge", "[", "\n", "\t\t\t\t", RowBox[
+                          {RowBox[{"Get", "/@", "\n", "\t", "\t", "\t\t\t", 
+                          RowBox[{"FileNames", "[", "\n", "\t", "\t", 
+                          "\t\t\t\t", RowBox[{"\"StylesheetStylesMap.wl\"", 
+                          ",", "\n", "\t", "\t\t\t\t\t", RowBox[{"FileNames", 
+                          "[", RowBox[{"\"Mappings\"", ",", " ", 
+                          "$IDESettingsPath"}], "]"}]}], "\n", "\t", "\t", 
+                          "\t\t\t\t", "]"}]}], ",", "\n", "\t", "\t\t\t", 
+                          "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", 
+                     "\n", "\t\t", RowBox[{"_", "\[Rule]", "None"}]}], "\n", 
+                   "\t\t  ", RowBox[{"(*", RowBox[{"GetStylesheetName", "[", 
+                       "\n", "\t\t    ", RowBox[{"$CurrentIDENotebook", ",", 
+                         "\n", "  \t\t  ", RowBox[{"FrontEnd`FileName", "[", 
+                          RowBox[{RowBox[{"{", "\"EasyIDE\"", "}"}], ",", 
+                          " ", "\"LightMode.nb\""}], "]"}]}], "\n", 
+                       "       ", "]"}], "*)"}], "\n", "\t\t", "]"}]}], 
+               ";"}]], "CodeInput"], Cell[BoxData[RowBox[{RowBox[
+                {"GetThemedStylesheet", "[", "sheet_", "]"}], ":=", "\n", 
+               "\t", RowBox[{"sheet", "/.", RowBox[{"loadSheetStyles", "[", 
+                   "]"}]}]}]], "CodeInput"]}, Closed]], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]SetThemedStylesheet\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"SetThemedStylesheet", "[", 
+                 RowBox[{"nb_", ",", " ", "targ_"}], "]"}], ":=", "\n", "  ", 
+               RowBox[{"Module", "[", "\n", "\t\t", RowBox[
+                  {RowBox[{"{", "\n", "\t\t\t", RowBox[{RowBox[
+                        {"currentStyles", " ", "=", " ", RowBox[{"IDEData", 
+                          "[", RowBox[{"nb", ",", " ", "\"StyleSheet\"", ",", 
+                          " ", "None"}], "]"}]}], ",", "\n", "\t\t\t", 
+                       "mainName"}], "\n", "\t\t\t", "}"}], ",", "\n", 
+                   "\t\t", RowBox[{RowBox[{RowBox[{"IDEData", "[", RowBox[
+                          {"nb", ",", " ", "\"StyleSheet\""}], "]"}], " ", 
+                       "=", " ", "targ"}], ";", "\n", "\t\t", RowBox[
+                      {"If", "[", RowBox[{RowBox[{"targ", " ", "=!=", " ", 
+                          "None"}], ",", "\n", "\t\t\t", RowBox[{RowBox[
+                          {"SetMainStylesheet", "[", RowBox[{"nb", ",", " ", 
+                          "targ"}], "]"}], ";", "\n", "\t\t\t", RowBox[
+                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
+                          "\"MainStyleName\""}], "]"}], " ", "=", " ", 
+                          RowBox[{"GetMainStylesheetName", "[", "nb", 
+                          "]"}]}], ";"}]}], "\n", "\t\t\t", "]"}], ";"}]}], 
+                 "\n", "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[{Cell["\[LeftCeiling]sheetExistsQ\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"sheetExistsQ", "[", 

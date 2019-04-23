@@ -129,7 +129,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           RowBox[{"ideNb", ",", " ", "\"Options\""}], "]"}], 
                           " ", "=", " ", "ops"}], ";"}]}], "\n", "     ", 
                         "]"}], ";"}]}], "\n", "   ", "]"}]}]}], 
-            "CodeInput"]}, Open]], Cell[CellGroupData[
+            "CodeInput"]}, Closed]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[CellGroupData[
@@ -155,32 +155,11 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]getNbFileSSheet\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{RowBox[{"loadSheetStyles", "[", "]"}], ":=", 
-                    "\n", "\t", RowBox[{"Append", "[", "\n", "\t\t", 
-                      RowBox[{RowBox[{"Normal", "@", "\n", "\t\t\t", RowBox[
-                          {"Merge", "[", "\n", "\t\t\t\t", RowBox[{RowBox[
-                          {"Get", "/@", "\n", "\t", "\t", "\t\t\t", RowBox[
-                          {"FileNames", "[", "\n", "\t", "\t", "\t\t\t\t", 
-                          RowBox[{"\"StylesheetStylesMap.wl\"", ",", "\n", 
-                          "\t", "\t\t\t\t\t", RowBox[{"FileNames", "[", 
-                          RowBox[{"\"Mappings\"", ",", " ", 
-                          "$IDESettingsPath"}], "]"}]}], "\n", "\t", "\t", 
-                          "\t\t\t\t", "]"}]}], ",", "\n", "\t", "\t\t\t", 
-                          "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", 
-                        "\n", "\t\t", RowBox[{"_", "\[Rule]", "None"}]}], 
-                      "\n", "\t\t  ", RowBox[{"(*", RowBox[
-                         {"GetStylesheetName", "[", "\n", "\t\t    ", 
-                          RowBox[{"$CurrentIDENotebook", ",", "\n", 
-                          "  \t\t  ", RowBox[{"FrontEnd`FileName", "[", 
-                          RowBox[{RowBox[{"{", "\"EasyIDE\"", "}"}], ",", 
-                          " ", "\"LightMode.nb\""}], "]"}]}], "\n", 
-                          "       ", "]"}], "*)"}], "\n", "\t\t", "]"}]}], 
-                  ";"}]], "CodeInput"], Cell[BoxData[{RowBox[
-                  {RowBox[{RowBox[{"getNbFileSSheet", "[", "nbFile_", "]"}], 
-                     ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
-                        {RowBox[{RowBox[{"FileByteCount", "[", "nbFile", 
+                RowBox[{RowBox[{RowBox[{"getNbFileSSheet", "[", "nbFile_", 
+                      "]"}], ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
+                       {RowBox[{RowBox[{"FileByteCount", "[", "nbFile", 
                           "]"}], "<", "1000000000"}], ",", "\n", "\t\t", 
-                         RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[
+                        RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[
                           {RowBox[{"g", "=", RowBox[{"Get", "[", "nbFile", 
                           "]"}]}], ",", " ", "sd", ",", " ", "sdFile"}], 
                           "}"}], ",", "\n", "\t", "\t\t", RowBox[{RowBox[
@@ -208,26 +187,25 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           {"StringQ", "@", "sdFile"}], "&&", RowBox[{RowBox[
                           {"FileNameDepth", "[", "sdFile", "]"}], ">", 
                           "1"}]}], ",", "\n", "\t\t\t\t", RowBox[{"sdFile", 
-                          " ", "=", " ", RowBox[{RowBox[{RowBox[{
-                          "FrontEnd`FileName", "[", RowBox[{RowBox[{"#", "[", 
-                          RowBox[{"[", RowBox[{";;", RowBox[{"-", "2"}]}], 
-                          "]"}], "]"}], ",", " ", RowBox[{"#", "[", RowBox[
-                          {"[", RowBox[{"-", "1"}], "]"}], "]"}]}], "]"}], 
-                          "&"}], "@", RowBox[{"FileNameSplit", "[", "sdFile", 
-                          "]"}]}]}]}], "\n", "\t\t\t\t", "]"}], ";", "\n", 
-                          "\t\t\t", RowBox[{"(*", RowBox[{"Replace", "[", 
-                          RowBox[{"sdFile", ",", "\n", "\t\t\t\t", RowBox[
-                          {"f_FrontEnd`FileName", "\[RuleDelayed]", RowBox[
-                          {"ToFileName", "[", "f", "]"}]}]}], "\n", 
-                          "\t\t\t\t", "]"}], "*)"}], "\n", "\t\t\t", 
-                          "sdFile"}]}], "\n", "\t\t\t", "]"}], ",", "\n", 
-                         "\t\t", "$Failed"}], "\n", "\t\t", "]"}]}], ";"}], 
-                 "\n", RowBox[{RowBox[{"getStylesheetStylesheet", "[", 
-                     "nbFile_", "]"}], ":=", "\n", "\t", RowBox[
-                    {RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}], "/.", 
-                     "\n", "\t\t", RowBox[{"loadSheetStyles", "[", 
-                       "]"}]}]}]}], "CodeInput"]}, Closed]], 
-           Cell[CellGroupData[
+                          " ", "=", " ", RowBox[{RowBox[{RowBox[
+                          {"FrontEnd`FileName", "[", RowBox[{RowBox[{"#", 
+                          "[", RowBox[{"[", RowBox[{";;", RowBox[{"-", 
+                          "2"}]}], "]"}], "]"}], ",", " ", RowBox[{"#", "[", 
+                          RowBox[{"[", RowBox[{"-", "1"}], "]"}], "]"}]}], 
+                          "]"}], "&"}], "@", RowBox[{"FileNameSplit", "[", 
+                          "sdFile", "]"}]}]}]}], "\n", "\t\t\t\t", "]"}], 
+                          ";", "\n", "\t\t\t", RowBox[{"(*", RowBox[
+                          {"Replace", "[", RowBox[{"sdFile", ",", "\n", 
+                          "\t\t\t\t", RowBox[{"f_FrontEnd`FileName", 
+                          "\[RuleDelayed]", RowBox[{"ToFileName", "[", "f", 
+                          "]"}]}]}], "\n", "\t\t\t\t", "]"}], "*)"}], "\n", 
+                          "\t\t\t", "sdFile"}]}], "\n", "\t\t\t", "]"}], ",", 
+                        "\n", "\t\t", "$Failed"}], "\n", "\t\t", "]"}]}], 
+                  ";"}]], "CodeInput"], Cell[BoxData[RowBox[
+                 {RowBox[{"getStylesheetStylesheet", "[", "nbFile_", "]"}], 
+                  ":=", "\n", "\t", RowBox[{"GetThemedStylesheet", "@", 
+                    RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}]}]}]], 
+               "CodeInput"]}, Closed]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]getFileStylesheet\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"getFileStylesheet", "[", RowBox[{"nb_", ",", 
@@ -249,33 +227,14 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
            Cell[CellGroupData[
              {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"setNbFileStyle", "[", RowBox[{"nb_", ",", 
-                      " ", "file_"}], "]"}], ":=", "\n", "\t", RowBox[
-                   {"Module", "[", "\n", "\t\t", RowBox[{RowBox[{"{", "\n", 
-                        "\t\t\t", RowBox[{RowBox[{"currentStyles", " ", "=", 
-                          " ", RowBox[{"IDEData", "[", RowBox[{"nb", ",", 
-                          " ", "\"StyleSheet\"", ",", " ", "None"}], "]"}]}], 
-                          ",", "\n", "\t\t\t", "mainName", ",", "\n", 
-                          "\t\t\t", "targ"}], "\n", "\t\t\t", "}"}], ",", 
-                      "\n", "\t\t", RowBox[{RowBox[{"targ", " ", "=", " ", 
-                          RowBox[{"getFileStylesheet", "[", RowBox[{"nb", 
-                          ",", " ", "file"}], "]"}]}], ";", "\n", "\t\t", 
-                        RowBox[{RowBox[{"IDEData", "[", RowBox[{"nb", ",", 
-                          " ", "\"StyleSheet\""}], "]"}], " ", "=", " ", 
-                          "targ"}], ";", "\n", "\t\t", RowBox[{"If", "[", 
-                          RowBox[{RowBox[{"targ", " ", "=!=", " ", "None"}], 
-                          ",", "\n", "\t\t\t", RowBox[{RowBox[
-                          {"SetMainStylesheet", "[", RowBox[{"nb", ",", " ", 
-                          "targ"}], "]"}], ";", "\n", "\t\t\t", RowBox[
-                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          "\"MainStyleName\""}], "]"}], " ", "=", " ", RowBox[
-                          {"GetMainStylesheetName", "[", "nb", "]"}]}], 
-                          ";"}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", 
-                    "\t\t", "]"}]}]], "CodeInput"]}, Closed]]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[CellGroupData[
+                RowBox[{RowBox[{RowBox[{"setNbFileStyle", "[", RowBox[
+                       {"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "  ", 
+                    RowBox[{"SetThemedStylesheet", "[", RowBox[{"nb", ",", 
+                        " ", RowBox[{"getFileStylesheet", "[", RowBox[{"nb", 
+                          ",", " ", "file"}], "]"}]}], "]"}]}], ";"}]], 
+               "CodeInput"]}, Closed]]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]\
+", "CodeSubsubsection", Evaluatable -> True], Cell[CellGroupData[
              {Cell["\[LeftCeiling]getFExtToolbar\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"loadExtToolbars", "[", "]"}], ":=", "\n", 
@@ -866,16 +825,7 @@ ActionMenu\n\[RightFloor]", "Text", Evaluatable -> True], Cell[BoxData[
                    {"IDEClose", "[", RowBox[{"$CurrentIDENotebook", ",", " ", 
                       "tabName"}], "]"}]}], ";"}]}], "CodeInput"]}, 
           Closed]]}, Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], 
-         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"], 
-  Cell[BoxData[TemplateBox[{"Name", "shdw", "\"Symbol \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"Name\\\\\\\"\\\"}]\\) appears in multiple \
-contexts \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"\\\\\\\"PacletManager`Private`\\\\\\\"\\\", \\\",\\\", \
-\\\"\\\\\\\"Global`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"PacletManager`Private`\\\\\\\"\\\"}]\\) may \
-shadow or be shadowed by other definitions.\"", 2, 107, 13, 
-      28125926752770042036, "Local", "PacletManager`Private`Name"}, 
-     "MessageTemplate2"]], "Message", "MSG", CellLabel -> ""]}, 
+         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
  WindowSize -> {808, 755}, WindowMargins -> {{244, Automatic}, 
    {Automatic, 24}}, TaggingRules -> 
   {"UUIDButtons" -> 

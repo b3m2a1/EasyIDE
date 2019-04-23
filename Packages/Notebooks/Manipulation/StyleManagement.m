@@ -14,6 +14,11 @@ AddNotebookStylesheet::usage="";
 RemoveNotebookStylesheet::usage="";
 
 
+SetNotebookStyleTheme::usage="";
+GetThemedStylesheet::usage="";
+SetThemedStylesheet::usage="";
+
+
 IDEAddStyles::usage="Adds styles to the IDE notebook";
 IDERemoveStyles::usage="Removes styles from the IDE notebook";
 
@@ -152,6 +157,69 @@ GetMainStylesheetName[nb_NotebookObject, fallback_:Automatic]:=
   GetMainStylesheetName[
     GetMainStylesheet[nb],
     Replace[fallback, Automatic:>IDEData[nb, "MainStyleName", "LightMode"]]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*SetNotebookStyleTheme*)
+
+
+
+SetNotebookStyleTheme[nb_NotebookObject, themeName_String]:=
+  With[{gs=GetMainStylesheet[nb]},
+    With[{tname=GetMainStylesheetName[gs]},
+      If[tname=!=themeName,
+        IDEData[nb, "MainStyleName"] = themeName;
+        SetOptions[nb, StyleDefinitions->gs/.tname->themeName]
+        ]
+      ]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*GetThemedStylesheet*)
+
+
+
+loadSheetStyles[]:=
+  Append[
+    Normal@
+      Merge[
+        Get/@
+          FileNames[
+            "StylesheetStylesMap.wl",
+            FileNames["Mappings", $IDESettingsPath]
+            ],
+        First
+        ],
+    _->None
+      (*GetStylesheetName[
+		    $CurrentIDENotebook,
+  		  FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]
+       ]*)
+    ];
+
+
+GetThemedStylesheet[sheet_]:=
+  sheet/.loadSheetStyles[]
+
+
+(* ::Subsubsection::Closed:: *)
+(*SetThemedStylesheet*)
+
+
+
+SetThemedStylesheet[nb_, targ_]:=
+  Module[
+    {
+      currentStyles = IDEData[nb, "StyleSheet", None],
+      mainName
+      },
+    IDEData[nb, "StyleSheet"] = targ;
+    If[targ =!= None,
+      SetMainStylesheet[nb, targ];
+      IDEData[nb, "MainStyleName"] = GetMainStylesheetName[nb];
+      ];
     ]
 
 

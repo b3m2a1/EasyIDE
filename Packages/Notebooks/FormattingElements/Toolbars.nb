@@ -73,12 +73,13 @@ Notebook[{Cell[CellGroupData[{Cell["Toolbars", "CodeSection"],
                         {RowBox[{RowBox[{"Length", "@", "data"}], "===", 
                           "0"}], ",", "\n", "\t\t\t", "None", ",", "\n", 
                          "\t\t\t", RowBox[{"GridBox", "[", "\n", "\t\t\t\t", 
-                          RowBox[{RowBox[{"Thread", "[", RowBox[{"{", "data", 
-                          "}"}], "]"}], ",", "\n", "\t\t\t\t", RowBox[
-                          {"BaseStyle", "\[Rule]", "\"Toolbars\""}]}], "\n", 
-                          "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}]}], 
-                 "\n", "\t\t", "]"}]}]], "CodeInput"]}, Open]], 
-        Cell[CellGroupData[
+                          RowBox[{RowBox[{"Thread", "[", RowBox[{"{", RowBox[
+                          {"Cases", "[", RowBox[{"data", ",", " ", 
+                          "_GridBox"}], "]"}], "}"}], "]"}], ",", "\n", 
+                          "\t\t\t\t", RowBox[{"BaseStyle", "\[Rule]", 
+                          "\"Toolbars\""}]}], "\n", "\t\t\t\t", "]"}]}], 
+                       "\n", "\t\t\t", "]"}]}]}], "\n", "\t\t", "]"}]}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]CreateToolbarsBox\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{"CreateToolbarsBox", "[", 
@@ -235,13 +236,14 @@ Notebook[{Cell[CellGroupData[{Cell["Toolbars", "CodeSection"],
                           "tag"}], "}"}]}], "]"}], " ", "=!=", " ", 
                           "tools"}], ")"}]}], ",", "\n", "\t\t\t  ", RowBox[
                           {RowBox[{"updateNeeded", " ", "=", " ", "True"}], 
-                          ";", "\n", "\t\t\t\t", RowBox[{RowBox[{"IDEData", 
-                          "[", RowBox[{"nb", ",", " ", RowBox[{"{", RowBox[
-                          {"\"Toolbars\"", ",", " ", "\"Cells\""}], "}"}]}], 
-                          "]"}], " ", "=", " ", RowBox[{"{", "}"}]}], ";", 
-                          "\n", "\t\t\t\t", RowBox[{RowBox[{"IDEData", "[", 
-                          RowBox[{"nb", ",", " ", RowBox[{"{", RowBox[
-                          {"\"Toolbars\"", ",", " ", "\"Cells\"", ",", " ", 
+                          ";", "\n", "\t\t\t\t", RowBox[{"(*", RowBox[{RowBox[
+                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
+                          RowBox[{"{", RowBox[{"\"Toolbars\"", ",", " ", 
+                          "\"Cells\""}], "}"}]}], "]"}], " ", "=", " ", 
+                          RowBox[{"{", "}"}]}], ";"}], "*)"}], "\n", 
+                          "\t\t\t\t", RowBox[{RowBox[{"IDEData", "[", RowBox[
+                          {"nb", ",", " ", RowBox[{"{", RowBox[{
+                          "\"Toolbars\"", ",", " ", "\"Cells\"", ",", " ", 
                           "tag"}], "}"}]}], "]"}], " ", "=", " ", "tools"}], 
                           ";"}]}], "\n", "\t\t\t\t", "]"}], ";"}]}], "\n", 
                           "\t\t\t", "]"}], ";", "\n", "\t\t", RowBox[
@@ -307,7 +309,7 @@ Notebook[{Cell[CellGroupData[{Cell["Toolbars", "CodeSection"],
                     " ", "tag_String"}], "]"}], ":=", "\n", "\t", 
                 RowBox[{"IDEAddToolbar", "[", RowBox[{RowBox[{"ide", "[", 
                       "\"Notebook\"", "]"}], ",", " ", "tag"}], "]"}]}]}], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]IDERemoveToolbar\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDERemoveToolbar", "[", 

@@ -1,2561 +1,612 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[         0,          0]
-NotebookDataLength[    127538,       2660]
-NotebookOptionsPosition[    123197,       2552]
-NotebookOutlinePosition[    126593,       2643]
-CellTagsIndexPosition[    126550,       2640]
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30527,        757]
+NotebookOptionsPosition[     23437,        603]
+NotebookOutlinePosition[     27216,        701]
+CellTagsIndexPosition[     27173,        698]
 WindowTitle->EasyIDE: EasyIDE
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[
- RowBox[{"EasyIDE`Dependencies`BTools`BTools", "[", 
-  RowBox[{"\"\<Get\>\"", ",", " ", "\"\<Web/NotebookToMarkdown\>\""}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.764801453869337*^9, 3.764801469708304*^9}},
- CellLabel->"In[14]:=",ExpressionUUID->"de02c304-e960-4312-9302-58fc1b0e699d"],
+
+Cell[CellGroupData[{
+Cell["Authoring Toolbar", "Section",
+ CellChangeTimes->{{3.764996517981336*^9, 
+  3.764996521965848*^9}},ExpressionUUID->"05557baf-813a-437d-b44e-\
+5e941bb26037"],
+
+Cell["\<\
+Basically just a superset of the standard Markdown stuff, but in this case we\
+\[CloseCurlyQuote]re set up explicitly to go to book format\
+\>", "Text",
+ CellChangeTimes->{{3.7649965288418837`*^9, 
+  3.7649965740118923`*^9}},ExpressionUUID->"98377889-5033-484e-bb0e-\
+2c81d4db3e49"],
 
 Cell[BoxData[
- RowBox[{"<<", "BTools`All`"}]], "Input",
- CellChangeTimes->{{3.764629609608528*^9, 3.76462961170197*^9}},
- CellLabel->
-  "In[360]:=",ExpressionUUID->"4285cf7b-39e2-4574-aaae-13e60a7767a7"],
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<`AuthoringToolbar`\>\"", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.764996577843952*^9, 
+  3.764996590331512*^9}},ExpressionUUID->"2633c5d1-a2e6-4eb7-bddd-\
+d5b9422ea59b"],
+
+Cell[BoxData[{
+ RowBox[{"initBook", ";"}], "\n", 
+ RowBox[{"newSection", ";"}], "\n", 
+ RowBox[{"newChapter", ";"}], "\n", 
+ RowBox[{"createTOC", ";"}], "\n", 
+ RowBox[{"createBooklet", ";"}]}], "Code",
+ CellChangeTimes->{{3.764996846873412*^9, 3.76499685629725*^9}, {
+  3.764997397517995*^9, 
+  3.7649974034857197`*^9}},ExpressionUUID->"3dfab5c4-6b5a-40ec-b706-\
+35d974c60188"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.7649965878046093`*^9, 
+  3.7649965892132053`*^9}},ExpressionUUID->"2be9ae3d-84a5-4759-9939-\
+87dc432d6316"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
- RowBox[{"FEResourceBrowse", "[", "\"\<Tab\>\"", "]"}]], "Input",
- CellChangeTimes->{{3.764629612551717*^9, 3.764629622333914*^9}},
- CellLabel->
-  "In[363]:=",ExpressionUUID->"7247946e-5778-43e1-b2c4-b7ac2fe4ef5e"],
+Cell["Private", "Subsection",
+ CellChangeTimes->{{3.76499659253976*^9, 
+  3.7649965940188427`*^9}},ExpressionUUID->"edc2cecb-d08a-48e5-9065-\
+3aa63aa2dc64"],
 
 Cell[BoxData[
- InterpretationBox[
-  PaneBox[
-   TagBox[GridBox[{
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                 
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                 
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}]}], "}"}],
-           "\"GrayTabLeftNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "GrayTabLeftNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabLeftNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                 True], "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                 "], 
-                 "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Pressed" -> Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                 "], 
-                 "Byte", ColorSpace -> "RGB", Interleaving -> True]}] -> (
-            Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabLeftNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                  True], "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                  "],
-                   "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Pressed" -> Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                  "],
-                   "Byte", ColorSpace -> "RGB", Interleaving -> True]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabLeftNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-           "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-             "], 
-             "Byte", ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-           Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-             "], 
-             "Byte", ColorSpace -> "RGB", Interleaving -> True]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                 
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                 
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", "\<\"Pressed\"\>"}], 
-            "}"}],
-           "\"GrayTabLeftPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "GrayTabLeftPressedNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabLeftPressedNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                 True], "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                 "], 
-                 "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Pressed" -> Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                 "], 
-                 "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Pressed"}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabLeftPressedNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                  True], "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-                  "],
-                   "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Pressed" -> Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-                  "],
-                   "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Pressed"}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabLeftPressedNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-           "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-             "], 
-             "Byte", ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-           Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-             "], 
-             "Byte", ColorSpace -> "RGB", Interleaving -> True], "Pressed"}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                 "], {{0, 32}, {7, 0}}, {0, 
-                 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{7, 32},
-               PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                 "], {{0, 32}, {7, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{7, 32},
-               PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}]}], "}"}],
-           "\"GrayTabCenterNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "GrayTabCenterNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabCenterNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                 "], "Byte", ColorSpace -> 
-                 "RGB", Interleaving -> True], "Hover" -> 
-               Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                 "], "Byte", ColorSpace -> "RGB", 
-                 Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                 True]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabCenterNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                  "], "Byte", ColorSpace -> 
-                  "RGB", Interleaving -> True], "Hover" -> 
-                Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                  "], "Byte", ColorSpace -> "RGB", 
-                  Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> 
-                  True]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabCenterNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-             "], "Byte", ColorSpace -> "RGB",
-              Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-             "], "Byte", ColorSpace -> "RGB", 
-             Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                 "], {{0, 32}, {7, 0}}, {0, 
-                 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{7, 32},
-               PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                 "], {{0, 32}, {7, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{7, 32},
-               PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                 "], {{0, 32}, {10, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{10, 32},
-               PlotRange->{{0, 10}, {0, 32}}]}], ",", "\<\"Pressed\"\>"}], 
-            "}"}],
-           "\"GrayTabCenterPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "GrayTabCenterPressedNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabCenterPressedNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                 "], "Byte", ColorSpace -> 
-                 "RGB", Interleaving -> True], "Hover" -> 
-               Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                 "], "Byte", ColorSpace -> "RGB", 
-                 Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Pressed"}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabCenterPressedNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-                  "], "Byte", ColorSpace -> 
-                  "RGB", Interleaving -> True], "Hover" -> 
-                Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-                  "], "Byte", ColorSpace -> "RGB", 
-                  Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                 "Pressed"}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabCenterPressedNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-             "], "Byte", ColorSpace -> "RGB",
-              Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-             "], "Byte", ColorSpace -> "RGB", 
-             Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-           "Pressed"}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                 "], {{0, 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                 "], {{0, 
-                 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                 "], {{0, 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}]}], "}"}],
-           "\"GrayTabRightNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "GrayTabRightNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabRightNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                 "], "Byte", 
-                 ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-               Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}] -> (
-            Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabRightNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                  "], "Byte",
-                   ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-                Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabRightNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], "Hover" -> 
-           Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-             "], "Byte", 
-             ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-           Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                 "], {{0, 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                 "], {{0, 
-                 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                 "], {{0, 32}, {9, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSizeRaw->{9, 32},
-               PlotRange->{{0, 9}, {0, 32}}]}], ",", "\<\"Pressed\"\>"}], 
-            "}"}],
-           "\"GrayTabRightPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "GrayTabRightPressedNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["GrayTabRightPressedNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                 "], "Byte", 
-                 ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-               Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                 "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-               "Pressed"}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "GrayTabRightPressedNinePatchAppearance" -> {
-               "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-                  "], "Byte",
-                   ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-                Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-                  "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-                "Pressed"}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "GrayTabRightPressedNinePatchAppearance" -> {
-          "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], "Hover" -> 
-           Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-             "], "Byte", 
-             ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-           Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-             "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-           "Pressed"}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzllbFqwlAUhkPboZt9hQ59h67d2tVSCt2UWuliQYXicxT6FO1gJFOWhKIO
-7gaSKRBNYjRIigSkcHv+S6RRanI7Vg/8Obnn/N9JBuM5LT8VHw4kSWoc06VY
-er6o10ut6xM63NQaj9Va5f6q1qxUK/Xz8iEVz0gF0pGUGyzf8hOKolx2Op02
-ySGxJLdR38aoqlqQZfm11+sxz/NYHMcMgYwz6ujDt/lONPvFMAy2XC5ZFEUs
-DEM2nU55xhl19OFLszTvDnMXiwX3bxP63W4X/O2KpfsP3/czuZXw/uTXUuxc
-hINmsxnYecLinteDIMgVfPCnWRFupV1gJ5OJsPadxe9ZVLvA4rsU1b6zrusK
-65+z/P/ZcRwhbjQagf1M7wXLsth4PM6VaZprewH7SNd1PjOLQ1/TtLV9lPDv
-g8Egk0WfuLfNHYq9SvU+5g6HQ2bbNvcj45w8r//b/k09v0kel/SV7H1kF/VN
-byrYH8TjGzODXv8=
-                 "], {{0, 37}, {15, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->Magnification[1],
-               ImageSizeRaw->{15, 37},
-               PlotRange->{{0, 15}, {0, 37}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzNlbFOwlAUhht1cMNXcPAdXN10xRgTN4hIXDApJsbnMPE9gDCxlEjHroSl
-TA3QQqGlQNsQcr1/Q7U2oT3DHbzJx+0953wXUob/vPxSfDqSJKl+yj+Kpbcr
-WS69357xw12t/lytVR5vaq+VakW+LB/z4gWnwDmRchfLH/ld7Xb7utVqNTgG
-h+33BuqHnE6nU2g2m5+qqrLRaMTW6zXb7XbRjjPq6GMu/Zv43R/9fp9tt1sW
-hiELguAHnFFHH3NJl9/3gHsx4/v+QdDv9Xrw72OXP39ZlpXpxZimCVdJuM5q
-tSK5mMP83sUz22w2ZDD/H1z8j1REunh/VES6nueRSbvL5ZKMSNd1XTIiXcdx
-yIh0F4sFGZHufD4nk3Zt2yYj0p3NZmREutPplIxA15lMJiQPc3zeS+bCcDhk
-yIY8dF3/kwvIo263G+VFloc+5pJ5FOegpmmZLvrpHEzmr6IobDAYMMMwou/B
-jjPqh/I3XoncH+9zf5yX+/E7JxKtb8+1ew0=
-                 "], {{0, 37}, {15, 
-                 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->Magnification[1],
-               ImageSizeRaw->{15, 37},
-               PlotRange->{{0, 15}, {0, 37}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJytlU1Og0AYhom6cFev4MI7uHWn2xpj4q6NtXGDCTUxPYeJ92gJKzYmcAK4
-QflroS1Q2m7HeQnohNjyLWaSp8PMfM+EFjrvZf+t+3KiKMronH90ex83mtYb
-31/wwYM6eh2qg+c79X0wHGjX/VM+ecXpcM6U1sbaS/6aYRi3uq5POD6HVf0E
-84cc0zQ70+n0y7ZtNpvNWJqmbL/flz3GmMc66pr3xPf+dF2XbTYbliQJm8/n
-LAzDsscY81hHnejy/Z6w73q9ZlEUHQTrlmXBf6xdfm35vn/Uq/E8D+535eI6
-w71RXNShXnDZYrEo59tAHepFl+LVNF3sR0WmG8cxGZku3h0qMt3lcklGprta
-rcg0XfxHqMh0cT5QabpZlpGR6eZ5Tkami3OQiky3KAoyMt3tdktGcHG2Z3hu
-FK/6nQsxF4IgYLvdrhXUCbnwm0fY95iH9WYe1TnoOM5RF+vNHPwvf/H9kb/o
-2/K3bkLuR1XuR225Xz8vImX7AT3lcL0=
-                 "], {{0, 37}, {15, 0}}, {0, 
-                 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->Magnification[1],
-               ImageSizeRaw->{15, 37},
-               PlotRange->{{0, 15}, {0, 37}}]}]}], "}"}],
-           "\"TabNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "TabNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabNinePatchAppearance" -> {
-              "Default" -> Image[CompressedData["
-1:eJzllbFqwlAUhkPboZt9hQ59h67d2tVSCt2UWuliQYXicxT6FO1gJFOWhKIO
-7gaSKRBNYjRIigSkcHv+S6RRanI7Vg/8Obnn/N9JBuM5LT8VHw4kSWoc06VY
-er6o10ut6xM63NQaj9Va5f6q1qxUK/Xz8iEVz0gF0pGUGyzf8hOKolx2Op02
-ySGxJLdR38aoqlqQZfm11+sxz/NYHMcMgYwz6ujDt/lONPvFMAy2XC5ZFEUs
-DEM2nU55xhl19OFLszTvDnMXiwX3bxP63W4X/O2KpfsP3/czuZXw/uTXUuxc
-hINmsxnYecLinteDIMgVfPCnWRFupV1gJ5OJsPadxe9ZVLvA4rsU1b6zrusK
-65+z/P/ZcRwhbjQagf1M7wXLsth4PM6VaZprewH7SNd1PjOLQ1/TtLV9lPDv
-g8Egk0WfuLfNHYq9SvU+5g6HQ2bbNvcj45w8r//b/k09v0kel/SV7H1kF/VN
-byrYH8TjGzODXv8=
-                 "], "Byte", ColorSpace -> "RGB", ImageSize -> 
-                 All, Interleaving -> True], "Hover" -> Image[CompressedData["
-
-1:eJzNlbFOwlAUhht1cMNXcPAdXN10xRgTN4hIXDApJsbnMPE9gDCxlEjHroSl
-TA3QQqGlQNsQcr1/Q7U2oT3DHbzJx+0953wXUob/vPxSfDqSJKl+yj+Kpbcr
-WS69357xw12t/lytVR5vaq+VakW+LB/z4gWnwDmRchfLH/ld7Xb7utVqNTgG
-h+33BuqHnE6nU2g2m5+qqrLRaMTW6zXb7XbRjjPq6GMu/Zv43R/9fp9tt1sW
-hiELguAHnFFHH3NJl9/3gHsx4/v+QdDv9Xrw72OXP39ZlpXpxZimCVdJuM5q
-tSK5mMP83sUz22w2ZDD/H1z8j1REunh/VES6nueRSbvL5ZKMSNd1XTIiXcdx
-yIh0F4sFGZHufD4nk3Zt2yYj0p3NZmREutPplIxA15lMJiQPc3zeS+bCcDhk
-yIY8dF3/kwvIo263G+VFloc+5pJ5FOegpmmZLvrpHEzmr6IobDAYMMMwou/B
-jjPqh/I3XoncH+9zf5yX+/E7JxKtb8+1ew0=
-                 "], "Byte", ColorSpace -> 
-                 "RGB", ImageSize -> All, Interleaving -> True], "Pressed" -> 
-               Image[CompressedData["
-1:eJytlU1Og0AYhom6cFev4MI7uHWn2xpj4q6NtXGDCTUxPYeJ92gJKzYmcAK4
-QflroS1Q2m7HeQnohNjyLWaSp8PMfM+EFjrvZf+t+3KiKMronH90ex83mtYb
-31/wwYM6eh2qg+c79X0wHGjX/VM+ecXpcM6U1sbaS/6aYRi3uq5POD6HVf0E
-84cc0zQ70+n0y7ZtNpvNWJqmbL/flz3GmMc66pr3xPf+dF2XbTYbliQJm8/n
-LAzDsscY81hHnejy/Z6w73q9ZlEUHQTrlmXBf6xdfm35vn/Uq/E8D+535eI6
-w71RXNShXnDZYrEo59tAHepFl+LVNF3sR0WmG8cxGZku3h0qMt3lcklGprta
-rcg0XfxHqMh0cT5QabpZlpGR6eZ5Tkami3OQiky3KAoyMt3tdktGcHG2Z3hu
-FK/6nQsxF4IgYLvdrhXUCbnwm0fY95iH9WYe1TnoOM5RF+vNHPwvf/H9kb/o
-2/K3bkLuR1XuR225Xz8vImX7AT3lcL0=
-                 "], "Byte", ColorSpace -> 
-                 "RGB", ImageSize -> All, Interleaving -> True]}] -> (Replace[
-            
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabNinePatchAppearance" -> {"Default" -> Image[CompressedData["
-1:eJzllbFqwlAUhkPboZt9hQ59h67d2tVSCt2UWuliQYXicxT6FO1gJFOWhKIO
-7gaSKRBNYjRIigSkcHv+S6RRanI7Vg/8Obnn/N9JBuM5LT8VHw4kSWoc06VY
-er6o10ut6xM63NQaj9Va5f6q1qxUK/Xz8iEVz0gF0pGUGyzf8hOKolx2Op02
-ySGxJLdR38aoqlqQZfm11+sxz/NYHMcMgYwz6ujDt/lONPvFMAy2XC5ZFEUs
-DEM2nU55xhl19OFLszTvDnMXiwX3bxP63W4X/O2KpfsP3/czuZXw/uTXUuxc
-hINmsxnYecLinteDIMgVfPCnWRFupV1gJ5OJsPadxe9ZVLvA4rsU1b6zrusK
-65+z/P/ZcRwhbjQagf1M7wXLsth4PM6VaZprewH7SNd1PjOLQ1/TtLV9lPDv
-g8Egk0WfuLfNHYq9SvU+5g6HQ2bbNvcj45w8r//b/k09v0kel/SV7H1kF/VN
-byrYH8TjGzODXv8=
-                  "], "Byte", ColorSpace -> "RGB", ImageSize -> 
-                  All, Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJzNlbFOwlAUhht1cMNXcPAdXN10xRgTN4hIXDApJsbnMPE9gDCxlEjHroSl
-TA3QQqGlQNsQcr1/Q7U2oT3DHbzJx+0953wXUob/vPxSfDqSJKl+yj+Kpbcr
-WS69357xw12t/lytVR5vaq+VakW+LB/z4gWnwDmRchfLH/ld7Xb7utVqNTgG
-h+33BuqHnE6nU2g2m5+qqrLRaMTW6zXb7XbRjjPq6GMu/Zv43R/9fp9tt1sW
-hiELguAHnFFHH3NJl9/3gHsx4/v+QdDv9Xrw72OXP39ZlpXpxZimCVdJuM5q
-tSK5mMP83sUz22w2ZDD/H1z8j1REunh/VES6nueRSbvL5ZKMSNd1XTIiXcdx
-yIh0F4sFGZHufD4nk3Zt2yYj0p3NZmREutPplIxA15lMJiQPc3zeS+bCcDhk
-yIY8dF3/kwvIo263G+VFloc+5pJ5FOegpmmZLvrpHEzmr6IobDAYMMMwou/B
-jjPqh/I3XoncH+9zf5yX+/E7JxKtb8+1ew0=
-                  "], "Byte", ColorSpace -> 
-                  "RGB", ImageSize -> All, Interleaving -> True], "Pressed" -> 
-                Image[CompressedData["
-1:eJytlU1Og0AYhom6cFev4MI7uHWn2xpj4q6NtXGDCTUxPYeJ92gJKzYmcAK4
-QflroS1Q2m7HeQnohNjyLWaSp8PMfM+EFjrvZf+t+3KiKMronH90ex83mtYb
-31/wwYM6eh2qg+c79X0wHGjX/VM+ecXpcM6U1sbaS/6aYRi3uq5POD6HVf0E
-84cc0zQ70+n0y7ZtNpvNWJqmbL/flz3GmMc66pr3xPf+dF2XbTYbliQJm8/n
-LAzDsscY81hHnejy/Z6w73q9ZlEUHQTrlmXBf6xdfm35vn/Uq/E8D+535eI6
-w71RXNShXnDZYrEo59tAHepFl+LVNF3sR0WmG8cxGZku3h0qMt3lcklGprta
-rcg0XfxHqMh0cT5QabpZlpGR6eZ5Tkami3OQiky3KAoyMt3tdktGcHG2Z3hu
-FK/6nQsxF4IgYLvdrhXUCbnwm0fY95iH9WYe1TnoOM5RF+vNHPwvf/H9kb/o
-2/K3bkLuR1XuR225Xz8vImX7AT3lcL0=
-                  "], "Byte", ColorSpace -> 
-                  "RGB", ImageSize -> All, Interleaving -> True]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First["TabNinePatchAppearance" -> {"Default" -> Image[CompressedData["
-
-1:eJzllbFqwlAUhkPboZt9hQ59h67d2tVSCt2UWuliQYXicxT6FO1gJFOWhKIO
-7gaSKRBNYjRIigSkcHv+S6RRanI7Vg/8Obnn/N9JBuM5LT8VHw4kSWoc06VY
-er6o10ut6xM63NQaj9Va5f6q1qxUK/Xz8iEVz0gF0pGUGyzf8hOKolx2Op02
-ySGxJLdR38aoqlqQZfm11+sxz/NYHMcMgYwz6ujDt/lONPvFMAy2XC5ZFEUs
-DEM2nU55xhl19OFLszTvDnMXiwX3bxP63W4X/O2KpfsP3/czuZXw/uTXUuxc
-hINmsxnYecLinteDIMgVfPCnWRFupV1gJ5OJsPadxe9ZVLvA4rsU1b6zrusK
-65+z/P/ZcRwhbjQagf1M7wXLsth4PM6VaZprewH7SNd1PjOLQ1/TtLV9lPDv
-g8Egk0WfuLfNHYq9SvU+5g6HQ2bbNvcj45w8r//b/k09v0kel/SV7H1kF/VN
-byrYH8TjGzODXv8=
-             "], "Byte", ColorSpace -> "RGB", ImageSize -> 
-             All, Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJzNlbFOwlAUhht1cMNXcPAdXN10xRgTN4hIXDApJsbnMPE9gDCxlEjHroSl
-TA3QQqGlQNsQcr1/Q7U2oT3DHbzJx+0953wXUob/vPxSfDqSJKl+yj+Kpbcr
-WS69357xw12t/lytVR5vaq+VakW+LB/z4gWnwDmRchfLH/ld7Xb7utVqNTgG
-h+33BuqHnE6nU2g2m5+qqrLRaMTW6zXb7XbRjjPq6GMu/Zv43R/9fp9tt1sW
-hiELguAHnFFHH3NJl9/3gHsx4/v+QdDv9Xrw72OXP39ZlpXpxZimCVdJuM5q
-tSK5mMP83sUz22w2ZDD/H1z8j1REunh/VES6nueRSbvL5ZKMSNd1XTIiXcdx
-yIh0F4sFGZHufD4nk3Zt2yYj0p3NZmREutPplIxA15lMJiQPc3zeS+bCcDhk
-yIY8dF3/kwvIo263G+VFloc+5pJ5FOegpmmZLvrpHEzmr6IobDAYMMMwou/B
-jjPqh/I3XoncH+9zf5yX+/E7JxKtb8+1ew0=
-             "], "Byte", ColorSpace -> 
-             "RGB", ImageSize -> All, Interleaving -> True], "Pressed" -> 
-           Image[CompressedData["
-1:eJytlU1Og0AYhom6cFev4MI7uHWn2xpj4q6NtXGDCTUxPYeJ92gJKzYmcAK4
-QflroS1Q2m7HeQnohNjyLWaSp8PMfM+EFjrvZf+t+3KiKMronH90ex83mtYb
-31/wwYM6eh2qg+c79X0wHGjX/VM+ecXpcM6U1sbaS/6aYRi3uq5POD6HVf0E
-84cc0zQ70+n0y7ZtNpvNWJqmbL/flz3GmMc66pr3xPf+dF2XbTYbliQJm8/n
-LAzDsscY81hHnejy/Z6w73q9ZlEUHQTrlmXBf6xdfm35vn/Uq/E8D+535eI6
-w71RXNShXnDZYrEo59tAHepFl+LVNF3sR0WmG8cxGZku3h0qMt3lcklGprta
-rcg0XfxHqMh0cT5QabpZlpGR6eZ5Tkami3OQiky3KAoyMt3tdktGcHG2Z3hu
-FK/6nQsxF4IgYLvdrhXUCbnwm0fY95iH9WYe1TnoOM5RF+vNHPwvf/H9kb/o
-2/K3bkLuR1XuR225Xz8vImX7AT3lcL0=
-             "], "Byte", ColorSpace -> "RGB",
-              ImageSize -> All, Interleaving -> True]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D1v2kAYB3Cr6dCxQ6I2WapI/RBds6VDOyTKkBFUGqUDSFCp6kfpVKlL
-lw5g3rYoEpQwIQSYIQuOYl7Ni8RLhRvsy/NYNkKtDzjjgeFO+mNh3f147mwk
-+w79oZOPTwRBiDyDjxPfl6Nw2Pf19Dl8OQtGLi+CgQ9vg58DF4HwG/8OnDyG
-7EKeChs3YmXtFo1GD0RR/AT5CZEhf+PxOHHKMieVSu1Bn++0sSwe1PAO0sQ+
-yWRSq1QqudFo9FvX9XtCiEYozWnu4Hyzf69UKuVns5lMG7/Kw7rQSSQSs1ar
-dY19DMMg0+mUDIdD0u/3Sbfb/S+applZ9MB4CV4HPdvCPoPBwNFY5eH1Q6tc
-Lt9gTZPJZKVD86C2V/baw5o3WCwnD6wQepIkZfE8i0XxfqEH90SetuaM3h16
-4/G4x2pRPA09uJa6qqqENQ6eef/2ej1ma5mHtXvgzf/Pbizucc8rr9PpuAr3
-uLeNXrvddhXucW8bPXjOdRV8vsZwj3vb5DWbTVfhHve2yMP3wRF6iqJ44omi
-eIterVbzqj7zfb9arT40Gg3CGgfP3I/I5XITLzx7vwSOuizLG3vWGpr7OZlM
-xvDCS6fT++CpaBYKBSbTybPW8b01b1IsFtc2aZ417/l+Hc4d76FNPGyxWOwc
-vD92rdls1pAkycBrVa/XmT3LfAG1Xi3uZy4L9DVo1j/ua+j/A/orkAeaBUfd
-YTjZMMIjfaLHlw==
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2Dtv2lAch2Gr6dAxQ6K2WaJI+RBdu7VDO1B1yJgoJGoHIpFKVT9Kp0pd
-unQAc9uqDkAygZkQnQK1Uu73mzG2+/sbgxDCBB97QdjSCwIdPxxfhOAcnV15
-Lh5xHHf9BA+e088v/f7TL+928eK97/rDpc97/tr3yXvp9b8428Gbr9AeeszZ
-3jSjtbdAIHDA8/xH9APdoVEoFNKWtcqJRqP7GPPNbF8rHubwBv2jMZFIRBIE
-IVmtVhODweAvkobDoTafoih6y44dztfp56VSqdter3e3uP+6Hs2LnHA4PBZF
-8fdDzioPxjN4ZfKsWGYeXT+y0un0Dc6RZqVFD3M7nJ77fr9/b9eDdUVeJpOJ
-W7VMvJ/k1Wq1Wwc8ujfy5HU6nZpDnkQe7jXFIU8P14Kp8Xis53rOeri+TLne
-xOt2u0y53sTD9xVTm+q1222mZFnW23av1Woxtales9lkyvUmXqPRYGo0Gult
-u1ev15naVA+/x5lyvYmH/7hMSZKkt+1epVJhyvVCHfKKxaIjHs/zf8grFApa
-uVy23II3+7+fy+Vkhzx9PSKZTPac8KbrJXhWRFG07c2v58TjcdUJLxaLPYdX
-IVMQBEvmMs84j2+N46a1HbVUKmnrZOYZxz1br6Njz+fztjzagsHgCbz+dK6J
-RELNZrMq3Z90z1v1DPMp5vprfj1zVRirmlkL7jHGf8d4EclmFp6VJbtrNuP+
-AzsQGHk=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingRightNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "TabAbuttingRightNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingRightNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRight-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRight-Hover.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingRightNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRight-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRight-Hover.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingRightNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRight-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRight-Hover.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2DEKwjAYhuGgDo4OXsBbuLrpWvEALdbiUiEVxHv1TGma5gDJFENBUZz6
-p0LA74c3kAwPyZpVdklOE8ZYNfdLkt42nKf3/cJvDmV1Lsr8uCuveZHzdTb1
-h1vf0jdjX+OIfUxd126Mfu2FzvPtI3uv+2qtSVlr++D9l9d1HSl48OAN95RS
-pODBi9Fr25YUPHgxelJKUsaYPnjwYvKapiEFDx684Z4QghQ8eAFe9P+nb+MC
-Yw8cbaUI
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2LsKwjAYhuGgDo4O3oB34eqmq+IFKFZxqVAF8b56Uz2fzy01pCiK26cF
-Q/PDE/gzvJA1k+1pue8RQs5Deiw315mibG6rEV3W8vl4kKXdQr5IB0mZbvv0
-ck6NqQH5mBr0Nqqq1r/QUu+5p2kKqaqKeby/q70kSSCix0cvjmNIWZaM6P22
-F0URRPSaXhiGENFrekEQQHjt+b4PKYqC6XrP8zwIrz3XdSGi1/Qcx4Hkec50
-vWfbNoTXnmVZENFreqZpQrIsY7reMwwDInrt9HRdh4geHz1N0yCc9f79//R1
-6i+RO7QM9d4=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingLeftRightNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "TabAbuttingLeftRightNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftRightNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRight-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRight-Hover.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftRightNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRight-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRight-Hover.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftRightNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRight-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRight-Hover.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D1LQlEYB/BLNTQ2SW0FfYjWthpsMFralExqsNAg+ihNQUstF/ENtyZ1
-URQHpUHQC1e9vosvqQk+nSOe21Wvb/fcSc4Df7k6/M7j0el/ZHkw3W5xHOfc
-RS8m8/Opw2F+udxDb67szjub3Xpzbn+y2qyOE8s2+vAMxYCyw80MzImm8Xq9
-sCQtlG+Px/OBch8IBA50ctXyxvO8YRV33gwGA2i1WiCKIkSjUfD7/cSW0P5G
-FRJWcaen3W5DJBKRd0f26yK3UqmoplqtQr1eh2azCb1eD4bD4chPp9Pg8/mI
-bVzXnQ4+o9/vy/bYLaEz9mlckk6nM9od3/nY+NTDJXa325V/S5fLdaiHi4Pv
-JBaLkZ0f9XJrtRrk83lyz/zYBVoXp9FoEEeYdsvlsuYQF+37q6eL/+PE0dPF
-YS5zN9EtlUpUYS5zN9EtFotUYS5zN9GVJIkqzGXuJrqFQoEqzGUucyej6DVm
-egIaVxAE4pBeQ+5h8Jlak0qlyL68nm44HCb7zvRGWk18B4t6Lq1uMBgku6r2
-clrMeDxOzIqiF6ZyE4mE3HuiXHD/o8nNZDLK7760p53n5HI5yGazkEwmIRQK
-KXf8QeY1NzsT7jpB3peil1WdFZ0Bioie391u9/Eib87+NJHnD7NsbKA=
-                 
-                 "], {{0, 72}, {22, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{11., 36.},
-               ImageSizeRaw->{22, 72},
-               PlotRange->{{0, 22}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D1PwkAYwPFGHRydiG6a+CFc3XTAAePiBhGJDmjAxPhRnExcdGkIb2Fz
-AxJggQUYgQ4FymuhQB3OO8LVAuWAXnUgd8mfiCQ/HooJ+By5Hhy3WxzH+Xfh
-jcP5fOrzOV8u9+CdK6//zuN135x7n9wet+/EtQ1/eQazwXa4uQMWZOqEw2Gw
-JBlWCIVCH7D7WCx2YJFr1BvP87ZVXFVVDRsMBqDVaoFSqQTS6TSIRqPYFuH8
-dgMSrOLO1m63QSqV0maH9ivJHQ6HxEaj0TjsF4tFEIlEsG03684+B7Ynbg0+
-x76Ri67jOmFfd00+rXCx3e12tfcyEAgcWuGi0MyZTAbP/GiViyqXy/g68xMX
-WOGiv72JU7LSVRQFz6vOuugxmrDD3P91+/0+Vcwlu71ejyrmkl1ZlqnaFBd9
-/tHEXLLb6XSo2hQXfbegiblkF/1vQhNzyW6z2aRqU9xGo0EVc8muJElUMZfs
-1ut1qpj7d26tVhsbRnsC9JjZKpUKdvBeg7PCLRQKeF7eSjeZTOJ55/ZGZk1B
-EIh7LrNuPB7Hsxru5cyY2WwWm5JuLzzlVqvVtcrlctreE3bB/R5TLtoD6177
-0j3tIkcUxfE+L5/Pg0QioZ9RgeY1N3+m3HWC3pduL2t4VnS+YQL8+T0YDB6T
-vAXz06SdH+Eiv+8=
-                 "], {{0, 72}, {22, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{11., 36.},
-               ImageSizeRaw->{22, 72},
-               PlotRange->{{0, 22}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingLeftNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "TabAbuttingLeftNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeft-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeft-Hover.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeft-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeft-Hover.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeft-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeft-Hover.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D1PwkAYwPGLOjg6aGJcjN/C1U0HF4wfACISHSABEuNHcXJ0cSC8zQ4q
-zgV2jKaFlrdAgFYKj89DJCHagndA0oS75E9Cc/1xPTo0PQhEfJdrjLHYJn74
-/DdH0aj/9mwLv5yHY1ehcPDiJBwPhoLRw8A6HjzGtrENJjzgV/8eiURiL5lM
-XmMPWAn7SqVS4NQ0J5vN7uCce7dzeTxcwymm0ZxMJmMVCoXXdrv9MhgMPgDA
-ApfhdO3o3I1/T1GUN9u2S27nz/JoXeSk02m7XC4/0ZzhcAimaUKr1YJ6vQ7V
-avVPvV5v1KSHxi56Onljy7IsaDQajsYsj/4/svL5fI7W1Ol0ZjpuHq5tf7z3
-uOcqj+XkoRUhr1gsPtM18lgu3iN5eE/k3Pacw6N74508PPZpGAbw1u12R014
-FnnNZtNckDeqVqtxW9M82otFeiKW9FbX03VdKOlJz4tepVIRSnrS86KHz6VC
-0fMiJT3pecnTNE0o6UlPevyeqqpCSW+lPOb0blAk9jOW5fX7/blaljcxYM7Y
-N82GMVM=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2LtOwlAYwPETdXB00MS4GN/C1U0HF4wPALESHSApJMZHcXJ0cSDcZgdv
-U4E3wNhoWq4t0Bsm9Tu0TQhplX6FoeGc5E8CaX+cUyAcOEhlE5drhJDcJtwk
-kjdHPJ+8PduCO+eZ3FU6w12cZPJcmuMPU+vw4DG0DW0Q9LBnmnsUCoW9YrF4
-DT1ATcgqlUq2X3851Wp1B465Dzo3jAdzOIW+6TGVSsWs1+uv7Xb7Rdf1T8g0
-DMP2y2/t4Nx5zycIwvtoNGoGnf+fR+dFnXK5/COK4tO8jmVZk6Y9MHbBk6kX
-xgry6OtHrVqt9gbXyA7TrAdz2/euvaZpX1E9sLLUazQaz2GtAO+Rep1OJ/Ra
-fTz63vigHqxVXJBnup6xIM92PVTMczz47KMyTXPSqnvD4RAV8xxvMBigYp7j
-qaqKaub7PDaeoiio4ur1+31UzHO8Xq+HKq5et9tF5e2zVt2D/TMq5jke/CZF
-xTzHa7VaqLx9/qp7siyjYl48PEmSUMXMI37/DWIi7liWNx6PI7Usb2rYESO/
-LfJ6YQ==
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt17tOwlAYwPFGHRwdNDEuxrdwddPBBeMDQESiAyRAYnwUJ0cXBwKE2cFL
-6QuwNTWW3riVcmuNSf1Oaw0hFOlHB5uek/xJWtpfTw9hOAepXOJyjWGYwiZ8
-JJI3R/l88vZsCw7Os4WrTDZ9cZItpjPp/GFqHU4eQ9vQBoMe9kxLj1KptFcu
-l6+hB0iAPiuVij2vRU6tVtuBa+797g3iwRxOIZlcU61WLZZlX3mef2k2mx+S
-JFmQPd1oNHKa9+7g3HnPA4cVRVGYvX9Zj8zrZ05fjUbj6S9nkQfGLnga8YJY
-fh75/YhVr9ffZFm2gzTrwdz2vbWHNZdW9cDKEY/juOeglo/3SDxBEAK/q4/3
-TjxYWzEkzyIefGeG4P3+XxRFQUU911NVFdV4PHaiXriepmmoouq1Wi1U1HO9
-druNajKZOEXN63Q6qKjnet1uF1VUvV6vh8o0Tae4e7quo4qq1+/3UVHP9QzD
-QEU91xsMBqgsy3KKuzccDlFRz/W8fWLQ4ub57af/ocdMe94+AltEvOlhrxjz
-DQpSdBM=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingRightBottomNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "TabAbuttingRightBottomNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingRightBottomNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Pressed.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingRightBottomNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Pressed.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingRightBottomNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Pressed.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D1PwkAYwPGLOjg6aGJcjN/C1U0HF4wfACISHSABEuNHcXJ0cSC8zQ4q
-zgV2jKaFlrdAgFYKj89DJCHagndA0oS75E9Cc/1xPTo0PQhEfJdrjLHYJn74
-/DdH0aj/9mwLv5yHY1ehcPDiJBwPhoLRw8A6HjzGtrENJjzgV/8eiURiL5lM
-XmMPWAn7SqVS4NQ0J5vN7uCce7dzeTxcwymm0ZxMJmMVCoXXdrv9MhgMPgDA
-ApfhdO3o3I1/T1GUN9u2S27nz/JoXeSk02m7XC4/0ZzhcAimaUKr1YJ6vQ7V
-avVPvV5v1KSHxi56Onljy7IsaDQajsYsj/4/svL5fI7W1Ol0ZjpuHq5tf7z3
-uOcqj+XkoRUhr1gsPtM18lgu3iN5eE/k3Pacw6N74508PPZpGAbw1u12R014
-FnnNZtNckDeqVqtxW9M82otFeiKW9FbX03VdKOlJz4tepVIRSnrS86KHz6VC
-0fMiJT3pecnTNE0o6UlPevyeqqpCSW+lPOb0blAk9jOW5fX7/blaljcxYM7Y
-N82GMVM=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2LtOwlAYwPETdXB00MS4GN/C1U0HF4wPALESHSApJMZHcXJ0cSDcZgdv
-U4E3wNhoWq4t0Bsm9Tu0TQhplX6FoeGc5E8CaX+cUyAcOEhlE5drhJDcJtwk
-kjdHPJ+8PduCO+eZ3FU6w12cZPJcmuMPU+vw4DG0DW0Q9LBnmnsUCoW9YrF4
-DT1ATcgqlUq2X3851Wp1B465Dzo3jAdzOIW+6TGVSsWs1+uv7Xb7Rdf1T8g0
-DMP2y2/t4Nx5zycIwvtoNGoGnf+fR+dFnXK5/COK4tO8jmVZk6Y9MHbBk6kX
-xgry6OtHrVqt9gbXyA7TrAdz2/euvaZpX1E9sLLUazQaz2GtAO+Rep1OJ/Ra
-fTz63vigHqxVXJBnup6xIM92PVTMczz47KMyTXPSqnvD4RAV8xxvMBigYp7j
-qaqKaub7PDaeoiio4ur1+31UzHO8Xq+HKq5et9tF5e2zVt2D/TMq5jke/CZF
-xTzHa7VaqLx9/qp7siyjYl48PEmSUMXMI37/DWIi7liWNx6PI7Usb2rYESO/
-LfJ6YQ==
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt17tOwlAYwPFGHRwdNDEuxrdwddPBBeMDQESiAyRAYnwUJ0cXBwKE2cFL
-6QuwNTWW3riVcmuNSf1Oaw0hFOlHB5uek/xJWtpfTw9hOAepXOJyjWGYwiZ8
-JJI3R/l88vZsCw7Os4WrTDZ9cZItpjPp/GFqHU4eQ9vQBoMe9kxLj1KptFcu
-l6+hB0iAPiuVij2vRU6tVtuBa+797g3iwRxOIZlcU61WLZZlX3mef2k2mx+S
-JFmQPd1oNHKa9+7g3HnPA4cVRVGYvX9Zj8zrZ05fjUbj6S9nkQfGLnga8YJY
-fh75/YhVr9ffZFm2gzTrwdz2vbWHNZdW9cDKEY/juOeglo/3SDxBEAK/q4/3
-TjxYWzEkzyIefGeG4P3+XxRFQUU911NVFdV4PHaiXriepmmoouq1Wi1U1HO9
-druNajKZOEXN63Q6qKjnet1uF1VUvV6vh8o0Tae4e7quo4qq1+/3UVHP9QzD
-QEU91xsMBqgsy3KKuzccDlFRz/W8fWLQ4ub57af/ocdMe94+AltEvOlhrxjz
-DQpSdBM=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", "\<\"Pressed\"\>"}], 
-            "}"}],
-           "\"TabAbuttingRightBottomPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "TabAbuttingRightBottomPressedNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingRightBottomPressedNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingRightBottom-Pressed.9.png"], "Pressed"}] -> (
-            Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingRightBottomPressedNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingRightBottom-Pressed.9.png"], "Pressed"}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingRightBottomPressedNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingRightBottom-Pressed.9.png"], "Pressed"}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D8KwjAUx/GgDo4OXsBbuLrpWvEALcbiEiEVxHvlTG3a5gDpVEPBfzj1
-pYWAvwffQDt8SNa3Si7RacIYy+buiOLbRsr4vl+4j4PIzqngx5248pTLdTJ1
-P7eupWvGfqYl9jVKqXaIxvZ85/n2gb3XfY0xpJqm6YIXtlfXNSl48OD196qq
-IgUPXoheWZak4MEL0dNak7LWdsGDF5JXFAUpePDg9ffyPCcF76+84PeT3ovE
-9z5xFO9jWs/YA5BorBY=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2DsKwkAQgOFFLSwtvIC3sLXTVvEAijHYREgE8V65VN7vd0JcdlEUuzEB
-F2fgX5gtPth2Z/vz+jgghGhjeqx314Wq7m6bCV22inaSFemwUi6SLKnz/ZBe
-LmlT2oh8TAvsbXRdb7uoJ++553n+VY/3/5rXNA2rby/LMlDoieGlaQqqrmvW
-v3tJkoBCj3txHINCj3tRFIFCj3thGIKqqoolmhcEAShRPd/3QaHHPc/zQJVl
-yRLNc10XFHrccxwHFHrcs20bVFEUrH/3LMsChR73TNMEhZ4YnmEYoATzfv1/
-krQdTV/ey7RfRu4ok/oo
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJztz0lKA0EUxvFCs8jShRfwFtm6i9uIB0iwDdm00BHEe/WZep4neqLbsgol
-JrvPCCn6PfgXvLf4Qd1tXlcvV4yx/Zw/q/X7vWGsPx5v+PKk73dbXXt+0N+0
-rWYsNtf8uOTd8mbsZEawX2Oa5niO/sn72S3LgqrrWvT9/6l6tm1DkaeG5zgO
-FHnSc10XqmkaEXnn9TzPg1LV830fijzpBUEApaoXhiFU27aiqXtRFEGp6sVx
-DEWe9JIkgeq6TqSal6YpFHnSy7IMijzp5XkO1fe9aOpeURRQ5EmvLEso8i7W
-Y4deVVVQRx4bhmH86lK9gxn/GPsEGq7uuA==
-                 "], {{0, 72}, {20, 
-                 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingLeftRightBottomNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "TabAbuttingLeftRightBottomNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftRightBottomNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Pressed.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftRightBottomNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Pressed.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftRightBottomNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Pressed.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2D8KwjAUx/GgDo4OXsBbuLrpWvEALcbiEiEVxHvlTG3a5gDpVEPBfzj1
-pYWAvwffQDt8SNa3Si7RacIYy+buiOLbRsr4vl+4j4PIzqngx5248pTLdTJ1
-P7eupWvGfqYl9jVKqXaIxvZ85/n2gb3XfY0xpJqm6YIXtlfXNSl48OD196qq
-IgUPXoheWZak4MEL0dNak7LWdsGDF5JXFAUpePDg9ffyPCcF76+84PeT3ovE
-9z5xFO9jWs/YA5BorBY=
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2DsKwkAQgOFFLSwtvIC3sLXTVvEAijHYREgE8V65VN7vd0JcdlEUuzEB
-F2fgX5gtPth2Z/vz+jgghGhjeqx314Wq7m6bCV22inaSFemwUi6SLKnz/ZBe
-LmlT2oh8TAvsbXRdb7uoJ++553n+VY/3/5rXNA2rby/LMlDoieGlaQqqrmvW
-v3tJkoBCj3txHINCj3tRFIFCj3thGIKqqoolmhcEAShRPd/3QaHHPc/zQJVl
-yRLNc10XFHrccxwHFHrcs20bVFEUrH/3LMsChR73TNMEhZ4YnmEYoATzfv1/
-krQdTV/ey7RfRu4ok/oo
-                 "], {{0, 72}, {20, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJztz0lKA0EUxvFCs8jShRfwFtm6i9uIB0iwDdm00BHEe/WZep4neqLbsgol
-JrvPCCn6PfgXvLf4Qd1tXlcvV4yx/Zw/q/X7vWGsPx5v+PKk73dbXXt+0N+0
-rWYsNtf8uOTd8mbsZEawX2Oa5niO/sn72S3LgqrrWvT9/6l6tm1DkaeG5zgO
-FHnSc10XqmkaEXnn9TzPg1LV830fijzpBUEApaoXhiFU27aiqXtRFEGp6sVx
-DEWe9JIkgeq6TqSal6YpFHnSy7IMijzp5XkO1fe9aOpeURRQ5EmvLEso8i7W
-Y4deVVVQRx4bhmH86lK9gxn/GPsEGq7uuA==
-                 "], {{0, 72}, {20, 
-                 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{10., 36.},
-               ImageSizeRaw->{20, 72},
-               PlotRange->{{0, 20}, {0, 72}}]}], ",", "\<\"Pressed\"\>"}], 
-            "}"}],
-           "\"TabAbuttingLeftRightBottomPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, 
-           "TabAbuttingLeftRightBottomPressedNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftRightBottomPressedNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftRightBottom-Pressed.9.png"], "Pressed"}] -> (
-            Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftRightBottomPressedNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftRightBottom-Pressed.9.png"], "Pressed"}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftRightBottomPressedNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftRightBottom-Pressed.9.png"], "Pressed"}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"\<\"Default\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2b9OwkAcwPFGHRydiG76Fq5uOrBgfACIleiABkyMj+LkqEtDAm14CJrO
-DiwmBEqhf9JCAJvw8470GoMUkTtCQn6/5EvSDp9erp2Ok9x95mZHkqTSPvnJ
-ZJ/OisXs8+UBubgqlG7zBfn6ovAo5+XiaW6X3DwnpUh70q+BhFaaarUKfxSQ
-PiqVyhvprlarHQly5/WqKEpqGTdpwjCEIAig2WyCruugaRqzTbL+9BwSlnFn
-p9/vQ71ej9dO7JdFbq/Xm5tt2+C6Lvi+D6PRCCaTydRvNBqgqiqz0/91Z6PP
-GI/HsR25FnnGIY/LGgwG07XTPY+MdxEus4fDYfwuy+XysQiXRvfEMAy25gdR
-ruM40Gq12D4rkRt/L91ud+U8z2PO5zpcst4vkS79xpkj0qWhi+4mXcuyuEIX
-3W10O50OV+iiu42uaZpcoYvuNrrtdpsrdNFFd/MuPfPgCV10F7irnisnJkWz
-LpeeR4ts3e6PSfqfYdni+QbxONm3
-                 "], {{0, 72}, {22, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{11., 36.},
-               ImageSizeRaw->{22, 72},
-               PlotRange->{{0, 22}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2b9OwkAcwPFGHRydiG76Fq5uOrBgfACIleiABkyMj+LkqEtDAiV9h8ID
-yFgm29Lyp9BCGc4702sIlhP7Owab+yVfEkry6eVowp+elO4LNzuSJNX28UOh
-+HRWrRafLw/wk6tK7bZcka8vKo9yWa6elnbxwXNcDrcn/Ri0plTTbDbRL3m4
-j0aj8Ya70zTtiJOb1KuiKLlN3DAMEwuCAA0GA2QYBmq326jValH7E68/n0Ci
-TdzVhsMh0nU9Xju2X1jubDZjNp/Pv6N+t9tFqqpSO5/WXT0HtSPXwuc4THLJ
-Pv4l6i/tyTsPl9rj8Th+L+v1+jEPl0TW3Ol06JofeLmkXq9H91mJXMTDJdde
-5Bg8Xd/36XrDVZe8Bok6wk12p9MpKOGy3clkAkq4bNfzPFDCZbvk8w9SVtzR
-aAQqKy75DgBJuGyX/IaAlBXXdV1QwmW7juOAEi7b7ff7oITLdm3bBiVctmtZ
-FijhZss1TRPUP3fT/q+8NimabbmLxQLxbNvu0qy7z7Bp8XwBpaIrJg==
-                 
-                 "], {{0, 72}, {22, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{11., 36.},
-               ImageSizeRaw->{22, 72},
-               PlotRange->{{0, 22}, {0, 72}}]}], ",", 
-             RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-              GraphicsBox[
-               TagBox[RasterBox[CompressedData["
-1:eJzt2T1Lw0AYwPGgDo5ORTf9Fq5uOnSp+AFarEWHKK0gfhQnR11CoUnaL5IQ
-1wxtk/QtL00Hl/MO7kKp6Vn6nIjhHvgHksAvxyVbTmr3lZsdRVFa+/hQqT6d
-NZvV58sDfHKltm4bav36Qn2sN+rN09ouvniOK+H2lG+D1rTV6LqOfijBfXQ6
-nTfcXa/XOxLk5vWqaVppE3cwGOQ2HA6R53mo3+8j27ZRt9tltofXX84h0Sbu
-auQZlmVla8f2iwiX5bouMk2T2WVRLrOpGxiGcZjnkn3cJrLn1HgX6fq+n73L
-drt9LMolOY7D1vwg0iXRfdZEumQvqOOKdMk3Tdf7Sd3s+yb3IDFHuvkueaeQ
-pPs3bhAEoIrijkYjUNLlu+PxGFRR3MlkAkq6fHc6nYIqijubzUBJl++GYQiq
-KG4URaCky3fjOAYlXb6bJAko6fLd+XwOSrp8N01TUNL9966y7C4WC1ArroLo
-QF02v+0uzbr/DJuWzRdz3iGu
-                 "], {{0, 72}, {22, 0}}, {0, 255},
-                 ColorFunction->RGBColor],
-                BoxForm`ImageTag[
-                "Byte", ColorSpace -> "RGB", Interleaving -> True],
-                Selectable->False],
-               DefaultBaseStyle->"ImageGraphics",
-               ImageSize->{11., 36.},
-               ImageSizeRaw->{22, 72},
-               PlotRange->{{0, 22}, {0, 72}}]}]}], "}"}],
-           "\"TabAbuttingLeftBottomNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "TabAbuttingLeftBottomNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftBottomNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftBottom-Default.9.png"], "Hover" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftBottom-Hover.9.png"], "Pressed" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftBottom-Pressed.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftBottomNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftBottom-Default.9.png"], "Hover" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftBottom-Hover.9.png"], "Pressed" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftBottom-Pressed.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftBottomNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftBottom-Default.9.png"], "Hover" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftBottom-Hover.9.png"], "Pressed" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftBottom-Pressed.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{"\<\"Default\"\>", "\[Rule]", 
-             GraphicsBox[
-              TagBox[RasterBox[CompressedData["
-1:eJzt2T1Lw0AYwPGgDo5ORTf9Fq5uOnSp+AFarEWHKK0gfhQnR11CoUnaL5IQ
-1wxtk/QtL00Hl/MO7kKp6Vn6nIjhHvgHksAvxyVbTmr3lZsdRVFa+/hQqT6d
-NZvV58sDfHKltm4bav36Qn2sN+rN09ouvniOK+H2lG+D1rTV6LqOfijBfXQ6
-nTfcXa/XOxLk5vWqaVppE3cwGOQ2HA6R53mo3+8j27ZRt9tltofXX84h0Sbu
-auQZlmVla8f2iwiX5bouMk2T2WVRLrOpGxiGcZjnkn3cJrLn1HgX6fq+n73L
-drt9LMolOY7D1vwg0iXRfdZEumQvqOOKdMk3Tdf7Sd3s+yb3IDFHuvkueaeQ
-pPs3bhAEoIrijkYjUNLlu+PxGFRR3MlkAkq6fHc6nYIqijubzUBJl++GYQiq
-KG4URaCky3fjOAYlXb6bJAko6fLd+XwOSrp8N01TUNL9966y7C4WC1ArroLo
-QF02v+0uzbr/DJuWzRdz3iGu
-                "], {{0, 72}, {22, 0}}, {0, 255},
-                ColorFunction->RGBColor],
-               BoxForm`ImageTag[
-               "Byte", ColorSpace -> "RGB", Interleaving -> True],
-               Selectable->False],
-              DefaultBaseStyle->"ImageGraphics",
-              ImageSize->{11., 36.},
-              ImageSizeRaw->{22, 72},
-              PlotRange->{{0, 22}, {0, 72}}]}], "}"}],
-           "\"TabAbuttingLeftBottomPressedNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          
-          Annotation[#, "TabAbuttingLeftBottomPressedNinePatchAppearance", 
-           "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabAbuttingLeftBottomPressedNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabAbuttingLeftBottom-Pressed.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabAbuttingLeftBottomPressedNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, 
-                  "TabAbuttingLeftBottom-Pressed.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabAbuttingLeftBottomPressedNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, 
-             "TabAbuttingLeftBottom-Pressed.9.png"]}]]},
-      {
-       InterpretationBox[
-        ButtonBox[
-         TagBox[
-          TooltipBox[
-           RowBox[{"{", 
-            RowBox[{"\<\"Default\"\>", "\[Rule]", 
-             GraphicsBox[
-              TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UNALiNmAmIUBDv5DMTJA55Mjjs3cUfFR8VHxUfFR8ZEtzrB58+b/yBgmiUv8
-PxQQK47NfgDj98s2
-                "], {{0, 74}, {6, 0}}, {0, 255},
-                ColorFunction->RGBColor],
-               BoxForm`ImageTag[
-               "Byte", ColorSpace -> "RGB", Interleaving -> True],
-               Selectable->False],
-              DefaultBaseStyle->"ImageGraphics",
-              ImageSize->{3., 37.},
-              ImageSizeRaw->{6, 74},
-              PlotRange->{{0, 6}, {0, 74}}]}], "}"}],
-           "\"TabEmptyNinePatchAppearance\"",
-           TooltipStyle->"TextStyling"],
-          Annotation[#, "TabEmptyNinePatchAppearance", "Tooltip"]& ],
-         Appearance->"Frameless",
-         ButtonFunction:>Print[
-          First["TabEmptyNinePatchAppearance" -> {
-              "Default" -> 
-               FrontEnd`FileName[{"Ribbons", "Common"}, 
-                 "TabEmpty.9.png"]}] -> (Replace[
-             BTools`Utilities`FEFormatResource[#], $Failed :> #]& )[
-             Last[
-             "TabEmptyNinePatchAppearance" -> {
-               "Default" -> 
-                FrontEnd`FileName[{"Ribbons", "Common"}, "TabEmpty.9.png"]}]]],
-         Evaluator->Automatic,
-         Method->"Preemptive"],
-        First[
-        "TabEmptyNinePatchAppearance" -> {
-          "Default" -> 
-           FrontEnd`FileName[{"Ribbons", "Common"}, "TabEmpty.9.png"]}]]}
-     },
-     AllowScriptLevelChange->True,
-     AllowedDimensions->Automatic,
-     BaseStyle->{},
-     BaselinePosition->Automatic,
-     DefaultBaseStyle->"Column",
-     DeleteWithContents->True,
-     Editable->Automatic,
-     FrameStyle->GrayLevel[0],
-     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-     GridBoxBackground->{"Columns" -> {{None}}},
-     GridBoxDividers->{
-      "RowsIndexed" -> {
-        2 -> GrayLevel[0], 3 -> GrayLevel[0], 4 -> GrayLevel[0], 5 -> 
-         GrayLevel[0], 6 -> GrayLevel[0], 7 -> GrayLevel[0], 8 -> 
-         GrayLevel[0], 9 -> GrayLevel[0], 10 -> GrayLevel[0], 11 -> 
-         GrayLevel[0], 12 -> GrayLevel[0], 13 -> GrayLevel[0], 14 -> 
-         GrayLevel[0], 15 -> GrayLevel[0], 16 -> GrayLevel[0], 17 -> 
-         GrayLevel[0]}},
-     GridBoxFrame->{"Columns" -> None, "Rows" -> None},
-     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
-     GridBoxItemStyle->{"Columns" -> {{None}}, "Rows" -> {{None}}},
-     GridBoxSpacings->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
-     GridDefaultElement->"\[Placeholder]",
-     Selectable->Automatic],
-    "Column"],
-   Alignment->{Left, Baseline},
-   Appearance->Automatic,
-   AppearanceElements->None,
-   BaseStyle->{},
-   BaselinePosition->Automatic,
-   ContentPadding->True,
-   DefaultBaseStyle->"Column",
-   Enabled->Automatic,
-   FrameMargins->{{0, -1}, {1, 1}},
-   ImageMargins->0,
-   ImageSize->{Automatic, {Automatic, 250}},
-   ImageSizeAction->"Scrollable",
-   ScrollPosition->{0., 0.},
-   Scrollbars->{False, Automatic},
-   StripOnInput->False],
-  Part[{"GrayTabLeftNinePatchAppearance" -> {
-     "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-      "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-      Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True]}, 
-    "GrayTabLeftPressedNinePatchAppearance" -> {
-     "Default" -> Image[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-      "Hover" -> Image[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-      Image[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True], "Pressed"}, 
-    "GrayTabCenterNinePatchAppearance" -> {"Default" -> Image[CompressedData["
-
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-        "], "Byte", ColorSpace -> "RGB", 
-        Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-        "], "Byte", ColorSpace -> "RGB", 
-        Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}, 
-    "GrayTabCenterPressedNinePatchAppearance" -> {
-     "Default" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-        "], "Byte", ColorSpace -> "RGB", 
-        Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-        "], "Byte", ColorSpace -> "RGB", 
-        Interleaving -> True], "Pressed" -> Image[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], 
-      "Pressed"}, 
-    "GrayTabRightNinePatchAppearance" -> {"Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], "Hover" -> 
-      Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-      Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True]}, 
-    "GrayTabRightPressedNinePatchAppearance" -> {
-     "Default" -> Image[CompressedData["
-1:eJzFlMsKgkAUhodqUbseod6ibcu2RvuUTNoYaBAR9FD6CILQa2jg/Yqup5lI
-sPG4cDF04BuY4eMcZnH+pXQWjiOEkD4lhyBe15om3rZzctmp+klR5cNGvciK
-rK2kMXlcEGaECfop3KJTpmlihqdhGPufBkxlWYZt28bEezR9i6LAbaqqwnVd
-035eM591KGVZfuY2Tp7nIDwc+g8IHk6apiA8nCRJQIY6cRyD8HCiKALh4YRh
-CDLUCYIA5E8O8n0fsziOQ51Xn+O6LrYsi+7yvXGATPC+u96XK52MeQOzgDta
-
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], "Hover" -> 
-      Image[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiDmBmIUBBfxHwhhg8+bN/9HwyU2bNiWgGIAG3r9////YsWP/gerqYOZ+
-//79PzL++fPn/2/fvoHMew6zH10NCP/48QNsL0wNSA82PFBqvn79ihXTQs2X
-L1+wYlqo+fz5M1ZMCzWfPn3Cimmh5uPHj1gxLdR8+PABKx4gNQygfImOX758
-CVLzBJcakPzRo0dBebkapgZLmfAcmtdxlSsYZQwA/pxHqA==
-        "], "Byte", 
-        ColorSpace -> "RGB", Interleaving -> True], "Pressed" -> 
-      Image[CompressedData["
-1:eJyVlLtKA0EUhhcV0c5H0LewtbSN+AAJxmATIRHEXhAEuyQvkG6bFIEkkN3c
-7/fr5gUEwZcY9ztml9Gk2YEv+89//tlzpsheRB5D9weGYSRP3J9Q+PkqkQi/
-3Jy5m9t48iEWj95dx5+isWjiMnLomucupy5Hxs5Su9bvSqfT6h+fLq+maR57
-mUKhoEqlkk8+n1fZbJbsm/fucrmsbNv2YV8sFsl8e5lKpaJqtZqq1+sCe8uy
-pO82I36z2VStVktAV6vVP5lGo6Ha7bbqdDoCOTw9w7lut6t6vZ5ADk/PcI5a
-v98X0HhBM8xCbTAYCGg8PUN/asPhUEDjBc1wJ2qj0UhA4+kZZqQ2Ho8FNJ6e
-YUZqk8lEQOMFzTAjtel0KqDx9AwzUpvNZgIaT88wI7X5fC6g8fQM/aktFgsB
-jRc0w4zUlsulgMbTM8yIv1qtBDRe0Az3oMd6vRbQeHqGGTnvOI6AxguYMehP
-j81mI6C3d/f/g5zB5x08uXcul1OZTObdy+z5JnylUqkP/ZvgzbUHWT/IEuwZ
-
-        "], "Byte", ColorSpace -> "RGB", Interleaving -> True], "Pressed"}, 
-    "TabNinePatchAppearance" -> {"Default" -> Image[CompressedData["
-1:eJzllbFqwlAUhkPboZt9hQ59h67d2tVSCt2UWuliQYXicxT6FO1gJFOWhKIO
-7gaSKRBNYjRIigSkcHv+S6RRanI7Vg/8Obnn/N9JBuM5LT8VHw4kSWoc06VY
-er6o10ut6xM63NQaj9Va5f6q1qxUK/Xz8iEVz0gF0pGUGyzf8hOKolx2Op02
-ySGxJLdR38aoqlqQZfm11+sxz/NYHMcMgYwz6ujDt/lONPvFMAy2XC5ZFEUs
-DEM2nU55xhl19OFLszTvDnMXiwX3bxP63W4X/O2KpfsP3/czuZXw/uTXUuxc
-hINmsxnYecLinteDIMgVfPCnWRFupV1gJ5OJsPadxe9ZVLvA4rsU1b6zrusK
-65+z/P/ZcRwhbjQagf1M7wXLsth4PM6VaZprewH7SNd1PjOLQ1/TtLV9lPDv
-g8Egk0WfuLfNHYq9SvU+5g6HQ2bbNvcj45w8r//b/k09v0kel/SV7H1kF/VN
-byrYH8TjGzODXv8=
-        "], "Byte", ColorSpace -> "RGB", ImageSize -> All, 
-        Interleaving -> True], "Hover" -> Image[CompressedData["
-1:eJzNlbFOwlAUhht1cMNXcPAdXN10xRgTN4hIXDApJsbnMPE9gDCxlEjHroSl
-TA3QQqGlQNsQcr1/Q7U2oT3DHbzJx+0953wXUob/vPxSfDqSJKl+yj+Kpbcr
-WS69357xw12t/lytVR5vaq+VakW+LB/z4gWnwDmRchfLH/ld7Xb7utVqNTgG
-h+33BuqHnE6nU2g2m5+qqrLRaMTW6zXb7XbRjjPq6GMu/Zv43R/9fp9tt1sW
-hiELguAHnFFHH3NJl9/3gHsx4/v+QdDv9Xrw72OXP39ZlpXpxZimCVdJuM5q
-tSK5mMP83sUz22w2ZDD/H1z8j1REunh/VES6nueRSbvL5ZKMSNd1XTIiXcdx
-yIh0F4sFGZHufD4nk3Zt2yYj0p3NZmREutPplIxA15lMJiQPc3zeS+bCcDhk
-yIY8dF3/kwvIo263G+VFloc+5pJ5FOegpmmZLvrpHEzmr6IobDAYMMMwou/B
-jjPqh/I3XoncH+9zf5yX+/E7JxKtb8+1ew0=
-        "], "Byte", ColorSpace -> "RGB", 
-        ImageSize -> All, Interleaving -> True], "Pressed" -> 
-      Image[CompressedData["
-1:eJytlU1Og0AYhom6cFev4MI7uHWn2xpj4q6NtXGDCTUxPYeJ92gJKzYmcAK4
-QflroS1Q2m7HeQnohNjyLWaSp8PMfM+EFjrvZf+t+3KiKMronH90ex83mtYb
-31/wwYM6eh2qg+c79X0wHGjX/VM+ecXpcM6U1sbaS/6aYRi3uq5POD6HVf0E
-84cc0zQ70+n0y7ZtNpvNWJqmbL/flz3GmMc66pr3xPf+dF2XbTYbliQJm8/n
-LAzDsscY81hHnejy/Z6w73q9ZlEUHQTrlmXBf6xdfm35vn/Uq/E8D+535eI6
-w71RXNShXnDZYrEo59tAHepFl+LVNF3sR0WmG8cxGZku3h0qMt3lcklGprta
-rcg0XfxHqMh0cT5QabpZlpGR6eZ5Tkami3OQiky3KAoyMt3tdktGcHG2Z3hu
-FK/6nQsxF4IgYLvdrhXUCbnwm0fY95iH9WYe1TnoOM5RF+vNHPwvf/H9kb/o
-2/K3bkLuR1XuR225Xz8vImX7AT3lcL0=
-        "], "Byte", ColorSpace -> "RGB", 
-        ImageSize -> All, Interleaving -> True]}, 
-    "TabAbuttingRightNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRight-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRight-Hover.9.png"]}, 
-    "TabAbuttingLeftRightNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRight-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRight-Hover.9.png"]}, 
-    "TabAbuttingLeftNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeft-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeft-Hover.9.png"]}, 
-    "TabAbuttingRightBottomNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Pressed.9.png"]}, 
-    "TabAbuttingRightBottomPressedNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Hover.9.png"], "Pressed" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingRightBottom-Pressed.9.png"], "Pressed"}, 
-    "TabAbuttingLeftRightBottomNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Pressed.9.png"]}, 
-    "TabAbuttingLeftRightBottomPressedNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Hover.9.png"], "Pressed" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftRightBottom-Pressed.9.png"], "Pressed"}, 
-    "TabAbuttingLeftBottomNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftBottom-Default.9.png"], "Hover" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftBottom-Hover.9.png"], "Pressed" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftBottom-Pressed.9.png"]}, 
-    "TabAbuttingLeftBottomPressedNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, 
-        "TabAbuttingLeftBottom-Pressed.9.png"]}, 
-    "TabEmptyNinePatchAppearance" -> {
-     "Default" -> 
-      FrontEnd`FileName[{"Ribbons", "Common"}, "TabEmpty.9.png"]}}, All, 
-   1]]], "Output",
- CellChangeTimes->{3.7646296208196383`*^9, 3.7646296875383787`*^9},
- CellLabel->
-  "Out[363]=",ExpressionUUID->"8caf9142-408a-4915-9e2f-1ef1c788fb58"],
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`AuthoringToolbar`Private`\>\"", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.7649965964625063`*^9, 
+  3.764996604355487*^9}},ExpressionUUID->"a7399861-a154-4e47-b0f1-\
+370fb26d5578"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
- RowBox[{"\<\"GrayTabLeftNinePatchAppearance\"\>", "\[Rule]", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"\<\"Default\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJzNlMsKgkAUhqVaRKseod6ibcu2RvuUTNoYaBAR9Ba+iD6CIPQaGuT9hq5P
-YxR4ObkQBvrhG5jhmwOzmH/OH9n9gGEYZUwWljsvZZm7rKdks5GUgygJu5V0
-EkRBXvBDcjgjTAgjBg00qEXTtK2u63cCVFFVFSrOzTRNiOMYmvl4b5fcexZF
-AXmeQ5qmNSree36WZS0H85IkQaHtlW/FoO1FUYRC2wvDEKWvFwQBCm3P930U
-2p7neSh9Pdd1Uf7AK//5w7IscBynRdUjvXE1DANs2+70vh1T9kdXD/3os9qc
-Fw+rjp4=
-        "], {{0, 32}, {10, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{10, 32},
-      PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-    RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJzNlDsKwkAQhhe1ECuPoLewtbSN2JtgDDYREkFE8Ba5SHKGBLyHIKnyflXj
-JChs4mi3kIFvYZdv/27+uXKU9gPGmDnGQ5LPS8OQL+spXja6edB0dbfST6qm
-GgtliI8zZIKMGDnQoTW2bW8dx7kjwGNZFnDOzfM8CIIAuvP2Ghf/PfM8h6qq
-oCiKFpzX5Jdl+eVQXp1H0RcvyzIS0V6apiSivSRJSER7cRyTiPaiKCIR7YVh
-SNIDr97zh+/7TR904T3sjavrukC5vPfpmLo//vXQjz5r5bwAJzSa7A==
-        "], {{0, 
-        32}, {10, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{10, 32},
-      PlotRange->{{0, 10}, {0, 32}}]}], ",", 
-    RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJydlMtKQlEYhQ8VEY16hHqLpg2bGj2AkkkTAw2ieeDImT6BszNxIKjg/X6/
-6/EFgqCX2O3vR6V+qME58Onaay33+c8B91XoOfB45DhO/Mx+BIKvN7FY8O3u
-wi7uo/GnSDT8cBt9CUfCsevQsTUvLeeWE+fPy+z4dbmue5pOp98tHxaj2fes
-TmQyGZPL5UyxWDyQz+f3PbPrfRUKBVMqlUylUjnAWvVMuVw21WrVNBoNoV6v
-y/pHT3StVjOtVsu0220BTV/3ms2m5N1uV+h0OuLpHr8n7/f7Qq/XE0/32It8
-MBgIaDy/PeYhHw6HAhpP95iNfDQaCWg8vz2ej3w8HgtoPN1jbvLJZCKg8XSP
-ucmn06mAxvPbY27y2WwmoPF0j7nJ5/O5gMbTPeYmXywWAhpP95iHfLlcCmg8
-vz3mJl+tVgIaT/eYm2y9XgtoPL89no/7bTYbAY2ne8zNPp7nCWg8Hz35n/MO
-uN92uxXQzKh6iWw2K++BnP341vtxDqVSqaT1Pv87h9RZppHrGy+UP2Y=
-        "], {{0, 
-        32}, {10, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{10, 32},
-      PlotRange->{{0, 10}, {0, 32}}]}]}], "}"}]}]], "Print",
- CellChangeTimes->{3.764629694159668*^9},
- CellLabel->"",ExpressionUUID->"2721e1e3-a47a-4f13-b743-5c7d33ab2b5c"],
+Cell["initBook", "Subsubsection",
+ CellChangeTimes->{
+  3.764997442943499*^9},ExpressionUUID->"f5ada5d9-fc97-4ba7-a72a-\
+dca572efa3fd"],
 
 Cell[BoxData[
- RowBox[{"\<\"GrayTabCenterPressedNinePatchAppearance\"\>", "\[Rule]", 
-  RowBox[{"{", 
+ RowBox[{
+  RowBox[{"initBook", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"Replace", "[", "\n", "    ", 
    RowBox[{
-    RowBox[{"\<\"Default\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+OPHjyiYWLkPHz6gYGrIvX//
-HgVTQ+7du3comBpyb9++RcHEyr158wYFU0Pu9evXKJgacq9evULBxMq9fPkS
-BdNa7sWLFyiYSDm8eQUtf8HFAeDpZrs=
-        "], {{0, 32}, {7, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{7, 32},
-      PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-    RowBox[{"\<\"Hover\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
-UFABiNmBmIUBBfxHwnCwefPm/+gYrgENQOXA+Pv37yiYWLlv376hYFrLff36
-FQVTQ+7Lly8omBpynz9/RsHUkPv06RMKpobcx48fUTA15D58+ICCaS33/v17
-FEykHN68gpa/4OIAsOdvBw==
-        "], {{0, 32}, {7, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{7, 32},
-      PlotRange->{{0, 7}, {0, 32}}]}], ",", 
-    RowBox[{"\<\"Pressed\"\>", "\[Rule]", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-        "], {{0, 32}, {10, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{10, 32},
-      PlotRange->{{0, 10}, {0, 32}}]}], ",", "\<\"Pressed\"\>"}], 
-   "}"}]}]], "Print",
- CellChangeTimes->{3.764629713503858*^9},
- CellLabel->"",ExpressionUUID->"b104dec4-9940-43a9-86c3-91b60d0f6d4f"]
+    RowBox[{"getBookRoot", "[", "]"}], ",", " ", "\n", "    ", 
+    RowBox[{"None", "\[RuleDelayed]", 
+     RowBox[{"Ems", "[", 
+      RowBox[{"\"\<New\>\"", ",", " ", 
+       RowBox[{"FileNameJoin", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"IDEPath", "[", "]"}], ",", " ", "\"\<book\>\""}], "}"}]}], 
+       ",", " ", "\"\<book\>\""}], "]"}]}]}], "\n", "    ", "]"}]}]], "Code",
+ CellChangeTimes->{{3.764997444120469*^9, 3.764997480653775*^9}, {
+  3.764997786108035*^9, 3.764997795042807*^9}, {3.764998520647233*^9, 
+  3.764998526957396*^9}, {3.765000067317113*^9, 3.765000068732579*^9}, {
+  3.7650001327561407`*^9, 3.765000133138316*^9}, {3.76500017627709*^9, 
+  3.765000177321869*^9}, {3.765000266910063*^9, 
+  3.765000311884129*^9}},ExpressionUUID->"04a07492-5077-416b-b087-\
+9db6e5b8603f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["getBookRoot", "Subsubsection",
+ CellChangeTimes->{{3.7649974092363367`*^9, 
+  3.7649974116924*^9}},ExpressionUUID->"f40317e7-7c30-4bc2-a36d-efc92a110952"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getBookRoot", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"SelectFirst", "[", 
+   RowBox[{
+    RowBox[{"FileNames", "[", 
+     RowBox[{"\"\<content\>\"", ",", " ", 
+      RowBox[{"IDEPath", "[", "]"}], ",", " ", "5"}], "]"}], ",", " ", 
+    "DirectoryQ", ",", " ", "None"}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.764997413655512*^9, 3.7649974316928873`*^9}, {
+  3.764997468319633*^9, 3.7649974714430027`*^9}, {3.764997729875718*^9, 
+  3.764997730793817*^9}},ExpressionUUID->"f58413eb-f054-4c96-a48d-\
+83a40c97fed3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["getPostsRoot", "Subsubsection",
+ CellChangeTimes->{{3.764997745305853*^9, 
+  3.764997750185018*^9}},ExpressionUUID->"829f9e13-fbf1-491b-b67b-\
+371b717579e9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getPostsRoot", "[", "]"}], ":=", "\n", "  ", 
+   RowBox[{"FileNameJoin", "@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"getBookRoot", "[", "]"}], ",", " ", "\"\<posts\>\""}], 
+     "}"}]}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.764997751475914*^9, 
+  3.764997764329089*^9}},ExpressionUUID->"7287be83-ac9a-49db-8ee9-\
+8a5fae2be8e5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["getChapters", "Subsubsection",
+ CellChangeTimes->{{3.764996981424375*^9, 3.764996984216435*^9}, {
+  3.7649970466229877`*^9, 3.764997047886579*^9}, {3.764997732698101*^9, 
+  3.764997733489094*^9}},ExpressionUUID->"2f37be08-1696-4aaa-9af3-\
+b73e826582cb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getChapters", "[", "]"}], ":=", "\n", "  ", 
+   RowBox[{
+    RowBox[{"Select", "[", "DirectoryQ", "]"}], "@", 
+    RowBox[{"FileNames", "[", 
+     RowBox[{"\"\<*\>\"", ",", " ", 
+      RowBox[{"getPostsRoot", "[", "]"}]}], "]"}]}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.76499705302815*^9, 3.764997053975279*^9}, 
+   3.764997262254751*^9, {3.764997418136291*^9, 3.764997434437605*^9}, {
+   3.764997503950831*^9, 3.76499751269573*^9}, 
+   3.764997766725051*^9},ExpressionUUID->"6ce76e51-d117-487d-a15a-\
+2be74b00cdf3"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["getSections", "Subsubsection",
+ CellChangeTimes->{{3.764997057979878*^9, 
+  3.764997059303114*^9}},ExpressionUUID->"02c77aa1-e64d-4327-9f68-\
+c4911955b01e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getSections", "[", "]"}], ":=", "\n", "  ", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*.nb\>\"", ",", " ", 
+     RowBox[{"getChapters", "[", "]"}]}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.764996987795401*^9, 3.764997042401505*^9}, {
+  3.764997237856536*^9, 
+  3.764997249294467*^9}},ExpressionUUID->"3b92c068-018a-4593-9e9b-\
+b93b6b0a03e7"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["makeNewChapter", "Subsubsection",
+ CellChangeTimes->{
+  3.7649976580296173`*^9},ExpressionUUID->"5a416f13-b0b8-4bf3-80f3-\
+c32e4cfaaf5e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"makeNewChapter", "[", "name_", "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"root", "=", 
+       RowBox[{"initBook", "[", "]"}]}], ",", " ", 
+      RowBox[{"chaps", "=", 
+       RowBox[{"getChapters", "[", "]"}]}]}], "}"}], ",", "\n", "    ", 
+    RowBox[{"CreateDirectory", "[", "\n", "      ", 
+     RowBox[{"FileNameJoin", "@", 
+      RowBox[{"{", "\n", "        ", 
+       RowBox[{
+       "root", ",", "\n", "        ", "\"\<posts\>\"", ",", "\n", "        ", 
+        
+        RowBox[{"TemplateApply", "[", 
+         RowBox[{"\"\<``-``\>\"", ",", "\n", "  ", "  ", "      ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"ToString", "[", 
+             RowBox[{
+              RowBox[{"Length", "[", "chaps", "]"}], "+", "1"}], "]"}], ",", 
+            " ", "name"}], "}"}]}], "\n", "          ", "]"}]}], "\n", 
+       "        ", "}"}]}], "\n", "      ", "]"}]}], "\n", "    ", 
+   "]"}]}]], "Code",
+ CellChangeTimes->{{3.7649975680130043`*^9, 3.764997653962091*^9}, {
+  3.765000383674464*^9, 
+  3.765000385569097*^9}},ExpressionUUID->"e2d64a0f-9424-4c99-abb3-\
+f637ebb35eb4"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["makeNewSection", "Subsubsection",
+ CellChangeTimes->{{3.7649976580296173`*^9, 3.764997680976119*^9}, {
+  3.764999646615498*^9, 
+  3.764999646972337*^9}},ExpressionUUID->"23861177-f2b9-4510-b8c8-\
+2c3f280b847f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"makeNewSection", "[", 
+   RowBox[{"chap_", ",", " ", "name_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"secs", "=", 
+       RowBox[{"FileNames", "[", 
+        RowBox[{"\"\<*.nb\>\"", ",", " ", "chap"}], "]"}]}], ",", " ", 
+      RowBox[{"num", "=", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{
+          RowBox[{"FileBaseName", "[", "chap", "]"}], ",", " ", "\"\<-\>\""}],
+          "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}]}], "}"}], ",", "\n", "    ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Pause", "[", ".1", "]"}], ";", 
+        RowBox[{"IDEOpen", "[", "#", "]"}]}], ")"}], "&"}], "@", "\n", 
+     "      ", 
+     RowBox[{"Export", "[", "\n", "        ", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "@", 
+        RowBox[{"{", "\n", "  ", "        ", 
+         RowBox[{"chap", ",", "\n", "  ", "        ", 
+          RowBox[{"TemplateApply", "[", 
+           RowBox[{"\"\<``-``-``\>\"", ",", "\n", "  ", "          ", 
+            RowBox[{"{", 
+             RowBox[{"num", ",", " ", 
+              RowBox[{"ToString", "[", 
+               RowBox[{
+                RowBox[{"Length", "[", "secs", "]"}], "+", "1"}], "]"}], ",", 
+              " ", 
+              RowBox[{
+               RowBox[{"FileBaseName", "@", "name"}], "<>", "\"\<.nb\>\""}]}],
+              "}"}]}], "\n", "  ", "          ", "]"}]}], "\n", "  ", 
+         "        ", "}"}]}], ",", "\n", "  ", "      ", 
+       RowBox[{"Notebook", "[", "\n", "  ", "        ", 
+        RowBox[{
+         RowBox[{"{", "\n", "  ", "          ", 
+          RowBox[{
+           RowBox[{"Cell", "[", "\n", "  ", "            ", 
+            RowBox[{
+             RowBox[{"BoxData", "@", 
+              RowBox[{"MathLink`CallFrontEnd", "@", 
+               RowBox[{
+               "FrontEnd`ReparseBoxStructurePacket", "@", "\n", 
+                "                ", 
+                RowBox[{"PrettyString", "[", 
+                 RowBox[{"<|", "\n", "                  ", 
+                  RowBox[{
+                   RowBox[{"\"\<Title\>\"", "->", 
+                    RowBox[{"FileBaseName", "@", "name"}]}], ",", "\n", 
+                   "                  ", 
+                   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+                    RowBox[{"num", "<>", "\"\<.\>\"", "<>", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "secs", "]"}], "+", "1"}], 
+                    "]"}]}]}], ",", "\n", "                  ", 
+                   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+                    RowBox[{"DateString", "[", "Now", "]"}]}], ",", "\n", 
+                   "                  ", 
+                   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+                    RowBox[{"{", "}"}]}], ",", "\n", "                  ", 
+                   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+                    RowBox[{"{", "}"}]}], ",", "\n", "                  ", 
+                   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+                    RowBox[{"{", "}"}]}]}], "\n", "                  ", 
+                  "|>"}], "]"}]}]}]}], ",", "\n", "              ", 
+             "\"\<Metadata\>\""}], "\n", "  ", "            ", "]"}], ",", 
+           "\n", "  ", "          ", 
+           RowBox[{"Cell", "[", 
+            RowBox[{
+             RowBox[{"FileBaseName", "@", "name"}], ",", " ", 
+             "\"\<Section\>\""}], "]"}]}], "\n", "  ", "          ", "}"}], 
+         ",", "\n", "  ", "        ", 
+         RowBox[{"StyleDefinitions", "\[Rule]", 
+          RowBox[{"FrontEnd`FileName", "[", 
+           RowBox[{
+            RowBox[{"{", "\"\<BTools\>\"", "}"}], ",", " ", 
+            "\"\<MarkdownNotebook.nb\>\""}], "]"}]}]}], "\n", "  ", 
+        "        ", "]"}]}], "\n", "  ", "      ", "]"}]}]}], "\n", "    ", 
+   "]"}]}]], "Code",
+ CellChangeTimes->{{3.7649975680130043`*^9, 3.764997653962091*^9}, {
+  3.764999648503751*^9, 3.764999652381728*^9}, {3.764999715546777*^9, 
+  3.764999991158636*^9}, {3.7650005580101213`*^9, 3.765000558496393*^9}, {
+  3.765000683949834*^9, 
+  3.765000723467664*^9}},ExpressionUUID->"2bed46a2-4613-4c6d-8a83-\
+afdcb64e4fd1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["newChapter", "Subsubsection",
+ CellChangeTimes->{{3.7649975254993753`*^9, 
+  3.764997526762266*^9}},ExpressionUUID->"62182d8e-f080-43e4-bee2-\
+a4265df4a154"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"newChapter", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"CreateAttachedInputDialog", "[", "\n", "    ", 
+   RowBox[{"<|", "\n", "      ", 
+    RowBox[{
+     RowBox[{"\"\<Header\>\"", "\[Rule]", "\"\<New Chapter\>\""}], ",", "\n", 
+     "      ", 
+     RowBox[{"\"\<Fields\>\"", "\[Rule]", 
+      RowBox[{"{", "\n", "        ", 
+       RowBox[{
+       "\"\<Provide a name for the chapter\>\"", ",", "\n", "        ", 
+        RowBox[{"<|", "\n", "          ", 
+         RowBox[{
+          RowBox[{"\"\<Name\>\"", "\[Rule]", "None"}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<Name\>\""}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<Default\>\"", "\[Rule]", "\"\<New Chapter\>\""}]}], 
+         "\n", "          ", "|>"}]}], "\n", "        ", "}"}]}], ",", "\n", 
+     "      ", 
+     RowBox[{"\"\<SubmitAction\>\"", "->", "\n", "        ", 
+      RowBox[{"Function", "[", 
+       RowBox[{"makeNewChapter", "[", "#Name", "]"}], "]"}]}]}], "\n", 
+    "      ", "|>"}], "\n", "    ", "]"}]}]], "Code",
+ CellChangeTimes->{{3.7649966881899242`*^9, 3.7649967336417418`*^9}, {
+  3.764996800290778*^9, 3.764996807009783*^9}, {3.764996960971184*^9, 
+  3.764996979561719*^9}, {3.764997278543118*^9, 3.764997286853759*^9}, {
+  3.764997332407988*^9, 3.76499736273428*^9}, {3.764997528889598*^9, 
+  3.7649975612756977`*^9}, {3.7649976611241283`*^9, 
+  3.764997668978116*^9}},ExpressionUUID->"cb5c53b6-9f41-40df-83a9-\
+55da31d8f42e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["newSection", "Subsubsection",
+ CellChangeTimes->{{3.764996684523946*^9, 
+  3.764996686331356*^9}},ExpressionUUID->"06ecfd46-cc07-42d5-8fec-\
+9eaa1034ac05"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"newSection", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"CreateAttachedInputDialog", "[", "\n", "    ", 
+   RowBox[{"<|", "\n", "      ", 
+    RowBox[{
+     RowBox[{"\"\<Header\>\"", "\[Rule]", "\"\<New Section\>\""}], ",", "\n", 
+     "      ", 
+     RowBox[{"\"\<Fields\>\"", "\[Rule]", 
+      RowBox[{"{", "\n", "        ", 
+       RowBox[{
+       "\"\<Provide a chapter and name for the section\>\"", ",", "\n", 
+        "        ", 
+        RowBox[{"<|", "\n", "          ", 
+         RowBox[{
+          RowBox[{"\"\<Name\>\"", "\[Rule]", "None"}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<Chapter\>\""}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<Type\>\"", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"PopupMenu", ",", " ", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "->", 
+                RowBox[{"FileBaseName", "[", "#", "]"}]}], "&"}], "/@", 
+              RowBox[{"getChapters", "[", "]"}]}]}], "}"}]}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<Default\>\"", "\[Rule]", 
+           RowBox[{
+            RowBox[{"getChapters", "[", "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}]}], "\n", "          ", "|>"}], 
+        ",", "\n", "        ", 
+        RowBox[{"<|", "\n", "          ", 
+         RowBox[{
+          RowBox[{"\"\<Name\>\"", "\[Rule]", "None"}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<Name\>\""}], ",", "\n", 
+          "          ", 
+          RowBox[{"\"\<Default\>\"", "\[Rule]", "\"\<Section\>\""}]}], "\n", 
+         "          ", "|>"}]}], "\n", "        ", "}"}]}], ",", "\n", 
+     "      ", 
+     RowBox[{"\"\<SubmitAction\>\"", "\[Rule]", 
+      RowBox[{"Function", "[", 
+       RowBox[{"makeNewSection", "[", 
+        RowBox[{"#Chapter", ",", " ", "#Name"}], "]"}], "]"}]}]}], "\n", 
+    "      ", "|>"}], "\n", "    ", "]"}]}]], "Code",
+ CellChangeTimes->{{3.7649966881899242`*^9, 3.7649967336417418`*^9}, {
+  3.764996800290778*^9, 3.764996807009783*^9}, {3.764996960971184*^9, 
+  3.764996979561719*^9}, {3.764997278543118*^9, 3.764997286853759*^9}, {
+  3.764997332407988*^9, 3.76499736273428*^9}, {3.764999669278406*^9, 
+  3.764999698060669*^9}, {3.765000475955442*^9, 
+  3.765000504407305*^9}},ExpressionUUID->"1cd91fb2-8f0e-46ef-a309-\
+14f0a8050747"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["createTOC", "Subsubsection",
+ CellChangeTimes->{{3.765001158361847*^9, 
+  3.76500116004151*^9}},ExpressionUUID->"889f5e1c-688c-472a-bf5d-\
+a2be944f2899"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"createTOC", "[", "]"}], ":=", "\n", "  ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"secs", "=", 
+       RowBox[{"getSections", "[", "]"}]}], ",", " ", "chaps"}], "}"}], ",", 
+    "\n", "    ", 
+    RowBox[{
+     RowBox[{"secs", " ", "=", " ", 
+      RowBox[{"KeySort", "@", 
+       RowBox[{"GroupBy", "[", 
+        RowBox[{"secs", ",", " ", "DirectoryName", ",", " ", "Sort"}], 
+        "]"}]}]}], ";", "\n", "    ", 
+     RowBox[{"chaps", " ", "=", " ", 
+      RowBox[{"Keys", "[", "secs", "]"}]}], ";", "\n", "    ", 
+     RowBox[{"IDEOpen", "@", 
+      RowBox[{"Export", "[", "\n", "      ", 
+       RowBox[{
+        RowBox[{"FileNameJoin", "@", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"DirectoryName", "@", 
+            RowBox[{"First", "@", "chaps"}]}], ",", " ", "\"\<toc.nb\>\""}], 
+          "}"}]}], ",", "\n", "      ", 
+        RowBox[{"Notebook", "[", "\n", "        ", 
+         RowBox[{
+          RowBox[{"Flatten", "@", 
+           RowBox[{"{", "\n", "         ", 
+            RowBox[{
+             RowBox[{"Cell", "[", 
+              RowBox[{
+              "\"\<Table of Contents\>\"", ",", " ", "\"\<Section\>\""}], 
+              "]"}], ",", "\n", "         ", 
+             RowBox[{"KeyValueMap", "[", "\n", "           ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"{", "\n", "             ", 
+                 RowBox[{
+                  RowBox[{"Cell", "[", 
+                   RowBox[{
+                    RowBox[{"FileBaseName", "@", "#"}], ",", " ", 
+                    "\"\<Subsection\>\""}], "]"}], ",", "\n", "             ", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Cell", "[", "\n", "               ", 
+                    RowBox[{
+                    RowBox[{"BoxData", "@", 
+                    RowBox[{"ToBoxes", "@", "\n", "                 ", 
+                    RowBox[{"Hyperlink", "[", "\n", "                   ", 
+                    RowBox[{
+                    RowBox[{"FileBaseName", "[", "#", "]"}], ",", " ", "\n", 
+                    "                   ", 
+                    RowBox[{"FileNameTake", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"-", "2"}]}], "]"}], ",", "\n", 
+                    "                   ", 
+                    RowBox[{"BaseStyle", "\[Rule]", 
+                    RowBox[{
+                    "{", "\n", "                     ", "\"\<Text\>\"", "\n", 
+                    "                     ", "}"}]}], ",", "\n", 
+                    "                   ", 
+                    RowBox[{"Evaluator", "\[Rule]", "Automatic"}], ",", "\n", 
+                    "                   ", 
+                    RowBox[{"ButtonData", "->", 
+                    RowBox[{"FileNameTake", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"-", "2"}]}], "]"}]}], ",", "\n", 
+                    "                   ", 
+                    RowBox[{"ButtonFunction", "\[Rule]", 
+                    RowBox[{"Function", "[", "\n", "                     ", 
+                    RowBox[{
+                    "SystemOpen", "[", "\n", "                       ", 
+                    RowBox[{"FileNameJoin", "@", 
+                    RowBox[{"Flatten", "@", 
+                    RowBox[{"{", "\n", "                         ", 
+                    RowBox[{
+                    RowBox[{"DirectoryName", "@", 
+                    RowBox[{"IDEPath", "[", 
+                    RowBox[{"Key", "[", "\"\<ActiveFile\>\"", "]"}], "]"}]}], 
+                    ",", " ", "\n", "                         ", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "\n", 
+                    "                         ", "}"}]}]}], "\n", 
+                    "                      ", "]"}], "\n", 
+                    "                    ", "]"}]}]}], "\n", 
+                    "                  ", "]"}]}]}], ",", "\n", 
+                    "               ", "\"\<Item\>\""}], "\n", 
+                    "               ", "]"}], "&"}], "/@", "#2"}]}], "\n", 
+                 "             ", "}"}], "&"}], ",", "\n", "           ", 
+               "secs"}], "\n", "           ", "]"}]}], "\n", "         ", 
+            "}"}]}], ",", "\n", "        ", 
+          RowBox[{"StyleDefinitions", "\[Rule]", 
+           RowBox[{"FrontEnd`FileName", "[", 
+            RowBox[{
+             RowBox[{"{", "\"\<BTools\>\"", "}"}], ",", " ", 
+             "\"\<MarkdownNotebook.nb\>\""}], "]"}]}]}], "\n", "        ", 
+         "]"}]}], "\n", "      ", "]"}]}]}]}], "\n", "    ", "]"}]}]], "Code",\
+
+ CellChangeTimes->{{3.765001161997354*^9, 3.765001229603997*^9}, 
+   3.765001318383617*^9, {3.765001356191407*^9, 3.765001541507278*^9}, {
+   3.765001589718864*^9, 3.765001639095739*^9}, {3.765001692018771*^9, 
+   3.765001784975843*^9}, {3.765001932172924*^9, 3.76500196412858*^9}, {
+   3.7650020869177933`*^9, 3.765002087632881*^9}, {3.765002162512398*^9, 
+   3.7650021705174303`*^9}, {3.765002209424943*^9, 3.765002304889407*^9}, {
+   3.7650023537410727`*^9, 3.765002410922282*^9}, {3.765002448868423*^9, 
+   3.7650024549861803`*^9}},ExpressionUUID->"743b358f-03f7-445f-a9f3-\
+eef29b6894b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["End", "Subsubsection",
+ CellChangeTimes->{{3.764996609115593*^9, 
+  3.764996609355221*^9}},ExpressionUUID->"9e2369c7-9308-44e5-a630-\
+6e99bc735945"],
+
+Cell[BoxData[
+ RowBox[{"End", "[", "]"}]], "Code",
+ CellChangeTimes->{{3.764996605332879*^9, 
+  3.764996605916193*^9}},ExpressionUUID->"a8f2107c-8622-4fb3-90c1-\
+aeaf38899104"]
 }, Open  ]]
 }, Open  ]],
 
-Cell[BoxData[
- RowBox[{"Binarize", "[", 
-  GraphicsBox[
-   TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-     "], {{0, 32}, {10, 0}}, {0, 255},
-     ColorFunction->RGBColor],
-    BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-    Selectable->False],
-   DefaultBaseStyle->"ImageGraphics",
-   ImageSizeRaw->{10, 32},
-   PlotRange->{{0, 10}, {0, 32}}], "]"}]], "Input",
- CellLabel->
-  "In[366]:=",ExpressionUUID->"4dc24741-8f11-4b7b-b2e9-81a3682269d6"],
+Cell[CellGroupData[{
+
+Cell["Expose Toolbar", "Subsection",
+ CellChangeTimes->{{3.764996611402927*^9, 
+  3.764996614075057*^9}},ExpressionUUID->"a7e0159b-b2db-4393-a8c3-\
+87e5f686b7a5"],
 
 Cell[BoxData[
- RowBox[{"Blend", "[", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"Binarize", "[", 
-     GraphicsBox[
-      TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-        "], {{0, 32}, {10, 0}}, {0, 255},
-        ColorFunction->RGBColor],
-       BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-       Selectable->False],
-      DefaultBaseStyle->"ImageGraphics",
-      ImageSizeRaw->{10, 32},
-      PlotRange->{{0, 10}, {0, 32}}], "]"}], ",", " ", "Black"}], "}"}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[370]:=",ExpressionUUID->"1700b59e-f3b7-41fe-bc2f-f3cfa2afc08b"],
-
-Cell[BoxData[
- RowBox[{"SetAlphaChannel", "[", 
+ RowBox[{"{", "\n", "  ", 
   RowBox[{
-   GraphicsBox[
-    TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-      "], {{0, 32}, {10, 0}}, {0, 255},
-      ColorFunction->RGBColor],
-     BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-     Selectable->False],
-    DefaultBaseStyle->"ImageGraphics",
-    ImageSizeRaw->{10, 32},
-    PlotRange->{{0, 10}, {0, 32}}], ",", " ", 
-   RowBox[{"ColorNegate", "@", 
-    RowBox[{"Blend", "[", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Binarize", "[", 
-        GraphicsBox[
-         TagBox[RasterBox[CompressedData["
-1:eJydlEtKA1EQRR/qQBy5BN2FU4dOIy4gwRicREgEcSFZSzqEhPz///9unn0e
-qaIIUaQbKsU9Of36NoHcZz5SbxfOueJ1/JFKfz0WCunv59s4vOSL77l89vUp
-/5nNZQsPmcsY3sVzE8+VO3v589i5Uqnk/xrxyuWyj6LIVyoVHTL86AW3Wq36
-Wq3m6/W6DhluPXij0fDNZtO3Wq2wyXDrwdvttu92u77X64VNhluPM8Tp9/vq
-wq3HvXw/GAz8cDgMmwy3XqfTUWc0GqkLT+CFLuKMx2N14dajtziTyURdeBKP
-dxNnOp2qC7cencWZzWbqwq1HZ3Hm87m68CQencVZLBbqwq1HZ3GWy6W6cOvR
-WZzVaqUu3Hp0EWe9XqsLT+A5Oouz2WzUhVuPznCc7XYbNhmexOPdeBbObrcL
-mwy3Hp05A2e/34dNhifx6MKzcA6HQ9hk+Ol50k3OI5+e99//Ifldfplw/QAY
-ykvw
-           "], {{0, 32}, {10, 0}}, {0, 255},
-           ColorFunction->RGBColor],
-          BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-          
-          Selectable->False],
-         DefaultBaseStyle->"ImageGraphics",
-         ImageSizeRaw->{10, 32},
-         PlotRange->{{0, 10}, {0, 32}}], "]"}], ",", " ", 
-       RowBox[{"GrayLevel", "[", ".2", "]"}]}], "}"}], "]"}]}]}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.764629764014164*^9, 3.764629826938631*^9}},
- CellLabel->
-  "In[374]:=",ExpressionUUID->"e8836a30-481c-488d-bedf-aa2fbc8edc21"]
+   RowBox[{"\"\<Initialize Book\>\"", ":>", 
+    RowBox[{"initBook", "[", "]"}]}], ",", "\n", "  ", 
+   RowBox[{"\"\<New Chapter\>\"", "\[RuleDelayed]", 
+    RowBox[{"newChapter", "[", "]"}]}], ",", "\n", "  ", 
+   RowBox[{"\"\<New Section\>\"", "\[RuleDelayed]", 
+    RowBox[{"newSection", "[", "]"}]}], ",", "\n", "  ", 
+   RowBox[{"\"\<Create TOC\>\"", "\[RuleDelayed]", 
+    RowBox[{"createTOC", "[", "]"}]}], ",", "\n", "  ", 
+   RowBox[{"\"\<Create Booklet\>\"", "\[RuleDelayed]", 
+    RowBox[{"createBooklet", "[", "]"}]}]}], "\n", "  ", "}"}]], "Code",
+ CellChangeTimes->{{3.7649966187162867`*^9, 3.7649966660919456`*^9}, {
+  3.765000007870308*^9, 3.765000023996353*^9}, {3.7650005140893373`*^9, 
+  3.765000514816689*^9}},ExpressionUUID->"970c9d3b-dcaf-4c63-906c-\
+56589ddc7aeb"]
+}, Open  ]]
+}, Open  ]]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
     EvaluationNotebook[]], PassEventsDown -> True, EvaluationOrder -> After},
 Selectable->True,
 WindowSize->{884, 781},
-WindowMargins->{{195, Automatic}, {Automatic, 0}},
+WindowMargins->{{84, Automatic}, {Automatic, 25}},
 WindowTitle->"EasyIDE: EasyIDE",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
@@ -2565,53 +616,59 @@ TaggingRules->{
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/PacletInfo.m"}, 
+      "README" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/project/README.nb"}, 
+      "WindowMenu" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/WindowMenu.wl"}, 
+      "StyleManagement" -> {
+       "File" -> 
+        "/Users/Mark/Documents/Wolfram \
+Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/\
+StyleManagement.nb"}, 
       "NotebookManipulation" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/Manipulation/\
 NotebookManipulation.nb"}, 
-      "SiteBuilder" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Resources/Settings/Plugins/SiteBuilder.wl"}, 
-      "Tabs" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/Tabs.\
-nb"}, "scratch" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/.scratch/scratch.nb"}, 
-      "DockedCell" -> {
+      "AttachedDialog" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-DockedCell.nb"}, 
+AttachedDialog.nb"}, 
       "Toolbars" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
 Toolbars.nb"}, 
-      "FileViewer" -> {
+      "Authoring" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/Packages/Notebooks/FormattingElements/\
-FileViewer.nb"}, 
-      "README" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/EasyIDE/project/README.nb"}}, 
-    "FileViewer" -> {"Visible" -> False}, 
-    "Toolbars" -> {
-     "Column" -> None, "Tags" -> {}, "Cells" -> {"CodePackage" -> None}}, 
+Mathematica/Applications/EasyIDE/Resources/Settings/Toolbars/Authoring.wl"}}, 
+    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
+          GridBox[{{
+             PaneBox["", ImageSize -> {0, 15}], 
+             ButtonBox[
+             "", BaseStyle -> "ToolbarShowButton", ButtonData -> "Package"]}},
+            BaseStyle -> "ToolbarCell"]}}, BaseStyle -> "Toolbars"], 
+      "Tags" -> {}, 
+      "Cells" -> {
+       "CodePackage" -> None, "Docs" -> None, "BugTracker" -> None, 
+        "Authoring" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram Mathematica/Applications/EasyIDE/"}, 
-    "ActiveTab" -> "scratch", "StyleSheet" -> 
-    FrontEnd`FileName[{"EasyIDE"}, "DarkGUI.nb"], "FileToolbar" -> None, 
+    "ActiveTab" -> "Authoring", "StyleSheet" -> 
+    FrontEnd`FileName[{"EasyIDE", "Extensions", "DarkGUI"}, "Package.nb"], 
+    "FileToolbar" -> "Package", 
     "Options" -> {
-     FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
-      StyleDefinitions -> "Default.nb"}, "AutoGeneratePackage" -> False, 
+     WindowSize -> {808, 755}, 
+      WindowMargins -> {{36, Automatic}, {-4, Automatic}}, Visible -> False, 
+      FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
+      StyleDefinitions -> "Package.nb"}, "AutoGeneratePackage" -> False, 
     "SavingAction" -> None, "MainStyleName" -> "DarkGUI", "BaseStyleName" -> 
     "LightMode"}, "Bugs" -> {"SearchInterface" -> {"SearchText" -> ""}}, 
   "UUIDButtons" -> {
@@ -2625,8 +682,9 @@ FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
-    StyleDefinitions -> FrontEnd`FileName[{"EasyIDE"}, "DarkGUI.nb"]]]}, 
-  Visible -> False, 
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"EasyIDE", "Extensions", "DarkGUI"}, "Package.nb"]]]},
+   Visible -> False, 
   TaggingRules -> {"EasyIDE" -> {"FileViewer" -> {"Visible" -> False}}}, 
   FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
@@ -2642,19 +700,65 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[430, 14, 302, 5, 30, "Input",ExpressionUUID->"de02c304-e960-4312-9302-58fc1b0e699d"],
-Cell[735, 21, 203, 4, 30, "Input",ExpressionUUID->"4285cf7b-39e2-4574-aaae-13e60a7767a7"],
 Cell[CellGroupData[{
-Cell[963, 29, 228, 4, 30, "Input",ExpressionUUID->"7247946e-5778-43e1-b2c4-b7ac2fe4ef5e"],
-Cell[1194, 35, 112780, 2296, 269, "Output",ExpressionUUID->"8caf9142-408a-4915-9e2f-1ef1c788fb58"],
+Cell[610, 23, 162, 3, 67, "Section",ExpressionUUID->"05557baf-813a-437d-b44e-5e941bb26037"],
+Cell[775, 28, 292, 6, 35, "Text",ExpressionUUID->"98377889-5033-484e-bb0e-2c81d4db3e49"],
+Cell[1070, 36, 236, 6, 49, "Code",ExpressionUUID->"2633c5d1-a2e6-4eb7-bddd-d5b9422ea59b"],
+Cell[1309, 44, 378, 9, 134, "Code",ExpressionUUID->"3dfab5c4-6b5a-40ec-b706-35d974c60188"],
+Cell[1690, 55, 205, 5, 49, "Code",ExpressionUUID->"2be9ae3d-84a5-4759-9939-87dc432d6316"],
 Cell[CellGroupData[{
-Cell[113999, 2335, 2605, 57, 42, "Print",ExpressionUUID->"2721e1e3-a47a-4f13-b743-5c7d33ab2b5c"],
-Cell[116607, 2394, 2375, 53, 42, "Print",ExpressionUUID->"b104dec4-9940-43a9-86c3-91b60d0f6d4f"]
+Cell[1920, 64, 156, 3, 54, "Subsection",ExpressionUUID->"edc2cecb-d08a-48e5-9065-3aa63aa2dc64"],
+Cell[2079, 69, 239, 6, 49, "Code",ExpressionUUID->"a7399861-a154-4e47-b0f1-370fb26d5578"],
+Cell[CellGroupData[{
+Cell[2343, 79, 135, 3, 45, "Subsubsection",ExpressionUUID->"f5ada5d9-fc97-4ba7-a72a-dca572efa3fd"],
+Cell[2481, 84, 947, 20, 134, "Code",ExpressionUUID->"04a07492-5077-416b-b087-9db6e5b8603f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3465, 109, 160, 2, 45, "Subsubsection",ExpressionUUID->"f40317e7-7c30-4bc2-a36d-efc92a110952"],
+Cell[3628, 113, 549, 12, 71, "Code",ExpressionUUID->"f58413eb-f054-4c96-a48d-83a40c97fed3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4214, 130, 163, 3, 45, "Subsubsection",ExpressionUUID->"829f9e13-fbf1-491b-b67b-371b717579e9"],
+Cell[4380, 135, 386, 11, 71, "Code",ExpressionUUID->"7287be83-ac9a-49db-8ee9-8a5fae2be8e5"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4803, 151, 259, 4, 37, "Subsubsection",ExpressionUUID->"2f37be08-1696-4aaa-9af3-b73e826582cb"],
+Cell[5065, 157, 565, 13, 71, "Code",ExpressionUUID->"6ce76e51-d117-487d-a15a-2be74b00cdf3"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5667, 175, 162, 3, 37, "Subsubsection",ExpressionUUID->"02c77aa1-e64d-4327-9f68-c4911955b01e"],
+Cell[5832, 180, 402, 10, 71, "Code",ExpressionUUID->"3b92c068-018a-4593-9e9b-b93b6b0a03e7"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[6271, 195, 143, 3, 37, "Subsubsection",ExpressionUUID->"5a416f13-b0b8-4bf3-80f3-c32e4cfaaf5e"],
+Cell[6417, 200, 1198, 30, 281, "Code",ExpressionUUID->"e2d64a0f-9424-4c99-abb3-f637ebb35eb4"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7652, 235, 216, 4, 37, "Subsubsection",ExpressionUUID->"23861177-f2b9-4510-b8c8-2c3f280b847f"],
+Cell[7871, 241, 4285, 94, 659, "Code",ExpressionUUID->"2bed46a2-4613-4c6d-8a83-afdcb64e4fd1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12193, 340, 163, 3, 45, "Subsubsection",ExpressionUUID->"62182d8e-f080-43e4-bee2-a4265df4a154"],
+Cell[12359, 345, 1511, 31, 365, "Code",ExpressionUUID->"cb5c53b6-9f41-40df-83a9-55da31d8f42e"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[13907, 381, 161, 3, 37, "Subsubsection",ExpressionUUID->"06ecfd46-cc07-42d5-8fec-9eaa1034ac05"],
+Cell[14071, 386, 2404, 53, 470, "Code",ExpressionUUID->"1cd91fb2-8f0e-46ef-a309-14f0a8050747"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[16512, 444, 159, 3, 37, "Subsubsection",ExpressionUUID->"889f5e1c-688c-472a-bf5d-a2be944f2899"],
+Cell[16674, 449, 5312, 109, 890, "Code",ExpressionUUID->"743b358f-03f7-445f-a9f3-eef29b6894b8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22023, 563, 154, 3, 45, "Subsubsection",ExpressionUUID->"9e2369c7-9308-44e5-a630-6e99bc735945"],
+Cell[22180, 568, 176, 4, 49, "Code",ExpressionUUID->"a8f2107c-8622-4fb3-90c1-aeaf38899104"]
 }, Open  ]]
 }, Open  ]],
-Cell[119009, 2451, 954, 21, 47, "Input",ExpressionUUID->"4dc24741-8f11-4b7b-b2e9-81a3682269d6"],
-Cell[119966, 2474, 1074, 25, 47, "Input",ExpressionUUID->"1700b59e-f3b7-41fe-bc2f-f3cfa2afc08b"],
-Cell[121043, 2501, 2150, 49, 47, "Input",ExpressionUUID->"e8836a30-481c-488d-bedf-aa2fbc8edc21"]
+Cell[CellGroupData[{
+Cell[22405, 578, 162, 3, 54, "Subsection",ExpressionUUID->"a7e0159b-b2db-4393-a8c3-87e5f686b7a5"],
+Cell[22570, 583, 839, 16, 176, "Code",ExpressionUUID->"970c9d3b-dcaf-4c63-906c-56589ddc7aeb"]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)

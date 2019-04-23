@@ -360,6 +360,28 @@ prepState~SetAttributes~HoldFirst
 
 
 (* ::Subsubsubsection::Closed:: *)
+(*getStateSym*)
+
+
+
+getStateSym[]:=
+  feSym[];(*Module[{state}, ClearAll[state];Dynamic[state]]*)
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*feSym*)
+
+
+
+feSym[]:=
+  Module[{state}, Dynamic[feSym[state]]];
+feSym[s_][val_]:=
+  MathLink`CallFrontEnd@FrontEnd`Value[s[val], True];
+feSym/:(feSym[s_][key_]=val_):=
+  MathLink`CallFrontEnd@FrontEnd`SetValue[FEPrivate`Set[s[key], val]];
+
+
+(* ::Subsubsubsection::Closed:: *)
 (*attachedDialogInputSpec*)
 
 
@@ -369,7 +391,7 @@ attachedDialogInputSpec[
   ]:=
   Module[
     {
-      s = Lookup[a, "State", Module[{state}, Dynamic[state]]],
+      s = Lookup[a, "State", getStateSym[]],
       fields = normalizeInputField/@Flatten@List@Lookup[a, "Fields", {}]
       },
     With[

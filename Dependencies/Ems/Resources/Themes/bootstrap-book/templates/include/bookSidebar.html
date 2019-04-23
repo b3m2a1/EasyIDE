@@ -1,0 +1,109 @@
+<!--  Navigation List on LHS -->
+<nav
+  class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top sidebar"
+  style="z-index:3;width:250px"
+  id="accSidebar"
+  >
+
+  <div class="w3-container w3-display-container w3-padding-16">
+    <div
+      onclick="acc_close()"
+      class="fa fa-remove w3-hide-large w3-button w3-display-topright"
+      id="menu-thumb"
+      >
+    </div>
+  </div>
+
+  <h3 class="w3-wide w3-bar-item">
+    <wolfram:expr>
+      $$templateLib["makeSiteHyperlink"][
+        {
+          <|
+            "href"->
+              Replace[#SiteExtension,
+                Except[_String]:>
+                  Nothing
+                ],
+            "body"->
+              "Home"
+            |>
+          },
+        #
+        ]
+    </wolfram:expr>
+    <wolfram:get path="include/lib/templates/varTrueBlock.html">
+      <wolfram:slot id="var">EnableSearch</wolfram:slot>
+      <wolfram:slot id="if">
+        <wolfram:get path="include/search.html"></wolfram:get>
+      </wolfram:slot>
+    </wolfram:get>
+  </h3>
+
+  <div class="w3-large w3-text-grey">
+
+    <div class="w3-bar-block">
+      <wolfram:expr>
+        $$templateLib["makeSiteLinkList"][
+          Replace[#PageLinks,
+            {
+              Except[_List]:>
+                Import[FileNameJoin@{"include","config","page_links.m"}]
+              }
+            ],
+          Append[
+            #,
+            "class"->"nav-bar-link w3-bar-item w3-medium w3-button"
+            ]
+          ]
+      </wolfram:expr>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <wolfram:if test='StringQ[#URL]&&!StringEndsQ[#URL, "toc.html"]'>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <ul>
+    <wolfram:sequence
+      values='
+        SortBy[ToExpression@StringSplit[#["ID"], "."]&]@
+        Select[AssociationQ[#]&&KeyMemberQ[#, "ID"]&]@
+          #Articles
+          '
+      slot="IndexItem"
+      >
+      <wolfram:if
+        test='StringMatchQ[#IndexItem["ID"], NumberString~~".1.1"]'
+        >
+        <h4 class="w3-bar-item index-section">
+          <wolfram:expr>
+              URLParse[#IndexItem["Path"], "Path"][[1]]
+          </wolfram:expr>
+        </h4>
+      </wolfram:if>
+      <wolfram:if
+        test='StringMatchQ[#IndexItem["ID"], NumberString~~"."~~NumberString~~".1"]'
+        >
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          <wolfram:expr>
+              URLParse[#IndexItem["Path"], "Path"][[2]]
+          </wolfram:expr>
+        </h5>
+      </wolfram:if>
+      <a
+        href='<wolfram:slot id="SiteURL"/>/<wolfram:expr>#IndexItem["URL"]</wolfram:expr>'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            <wolfram:if test="#URL=!=#IndexItem[\"URL\"]"> w3-lightgray </wolfram:if>'
+         >
+        <wolfram:expr>
+            #IndexItem["Title"]
+        </wolfram:expr>
+      </a>
+    </wolfram:sequence>
+    </ul>
+  </div>
+  </wolfram:if>
+
+</nav>

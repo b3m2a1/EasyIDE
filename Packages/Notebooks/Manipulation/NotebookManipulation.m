@@ -161,25 +161,6 @@ getFExtStylesheet[fExt_]:=
 
 
 
-loadSheetStyles[]:=
-  Append[
-    Normal@
-      Merge[
-        Get/@
-          FileNames[
-            "StylesheetStylesMap.wl",
-            FileNames["Mappings", $IDESettingsPath]
-            ],
-        First
-        ],
-    _->None
-      (*GetStylesheetName[
-		    $CurrentIDENotebook,
-  		  FrontEnd`FileName[{"EasyIDE"}, "LightMode.nb"]
-       ]*)
-    ];
-
-
 getNbFileSSheet[nbFile_]:=
   If[FileByteCount[nbFile]<1000000000,
     Module[{g=Get[nbFile], sd, sdFile},
@@ -203,9 +184,10 @@ getNbFileSSheet[nbFile_]:=
       ],
     $Failed
     ];
+
+
 getStylesheetStylesheet[nbFile_]:=
-  getNbFileSSheet[nbFile]/.
-    loadSheetStyles[]
+  GetThemedStylesheet@getNbFileSSheet[nbFile]
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -233,19 +215,7 @@ getFileStylesheet[nb_, file_]:=
 
 
 setNbFileStyle[nb_, file_]:=
-  Module[
-    {
-      currentStyles = IDEData[nb, "StyleSheet", None],
-      mainName,
-      targ
-      },
-    targ = getFileStylesheet[nb, file];
-    IDEData[nb, "StyleSheet"] = targ;
-    If[targ =!= None,
-      SetMainStylesheet[nb, targ];
-      IDEData[nb, "MainStyleName"] = GetMainStylesheetName[nb];
-      ];
-    ]
+  SetThemedStylesheet[nb, getFileStylesheet[nb, file]];
 
 
 (* ::Subsubsection::Closed:: *)
