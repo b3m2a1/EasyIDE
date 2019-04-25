@@ -89,10 +89,9 @@ nbPut2[enb_NotebookObject, nb_Notebook]:=
 
 nbPut3[enb_NotebookObject, nb_Notebook]:=
   MathLink`CallFrontEnd@{
-     FrontEnd`NotebookWrite[enb, nb[[1]], None,
-      AutoScroll->False
-      ]
-     }
+   FrontEnd`SelectionMove[enb, Before, Notebook],
+   FrontEnd`NotebookWrite[enb, nb[[1]], None, AutoScroll->False]
+   }
 
 
 NotebookPutContents//Clear
@@ -116,7 +115,7 @@ NotebookPutContents[ideNb_NotebookObject, nb_Notebook,
       ideNb,
       If[m===NotebookWrite,
         If[!ListQ[c], c=Cells[ideNb]];
-        If[Length@c==0,
+        If[Length@c===0,
           nbPut3[ideNb, nb],
           nbPut2[ideNb, nb]
           ],

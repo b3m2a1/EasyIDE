@@ -26,30 +26,46 @@
 <wolfram:slot id="PrimaryContent">
   <section id="content">
     <article>
-      <h1 class="entry-title">`Title`</h1>
       <div class="entry-content">
-        <div class="panel">
-          <div class="panel-body">
-            <wolfram:get path="include/article_info.html">
-              <wolfram:slot id="Article">
-                <*
-                  <|
-                    "Date"->#Date, "Modified"->#Modified,
-                    "Authors"->#Authors,
-                    "Categories"->#Categories, "Tags"->#Tags
-                    |>
-                *></wolfram:slot>
-            </wolfram:get>
-          </div>
-        </div>
         `Content`
       </div>
       <!-- /.entry-content -->
     </article>
   </section>
+
+  <wolfram:expr>
+    $$templateLib["nextPreviousButtons"][
+      Append[#,
+        "SortingFunction"->
+          Function[
+            ToExpression@
+              StringSplit[
+                Replace[#ID, Except[_String]:>"0.0"],
+                "."
+                ]
+            ]
+        ]
+      ]
+  </wolfram:expr>
+
 </wolfram:slot>
 
 <wolfram:slot id="ContentFooter">
+  <div class="panel">
+    <div class="panel-heading">Article Information</div>
+    <div class="panel-body">
+      <wolfram:get path="include/article_info.html">
+        <wolfram:slot id="Article">
+          <*
+            <|
+              "Date"->#Date, "Modified"->#Modified,
+              "Authors"->#Authors,
+              "Categories"->#Categories, "Tags"->#Tags
+              |>
+          *></wolfram:slot>
+      </wolfram:get>
+    </div>
+  </div>
   <* If[TrueQ[#EmbedNotebook||#EmbedNotebook=="True"], $$templateLib["embedNotebook"]["Height"->500]] *>
   <wolfram:get path="include/related-posts.html"/>
   <wolfram:get path="include/comments.html"/>

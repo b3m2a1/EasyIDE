@@ -1,0 +1,1953 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     90381,       1945]
+NotebookOptionsPosition[     80792,       1805]
+NotebookOutlinePosition[     81166,       1821]
+CellTagsIndexPosition[     81123,       1818]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> "Default.nb"],ExpressionUUID->"aecf22cc-eddb-48b7-93a3-64c6454b54ed"],
+
+Cell[CellGroupData[{
+
+Cell["Notebook", "Subsection",
+ CellChangeTimes->{{3.765167745533296*^9, 
+  3.765167746533072*^9}},ExpressionUUID->"44f26137-7428-4b93-9262-\
+eef375f8427a"],
+
+Cell[StyleData["Notebook"],
+ CellInsertionPointCell->Cell[
+   BoxData[
+    PaneBox[
+     TooltipBox[
+      ActionMenuBox[
+       PaneBox[
+        DynamicBox[
+         FEPrivate`ImportImage[
+          FrontEnd`FileName[{"Misc"}, "CellInsertionPointBitmap.png"]]], 
+        BaselinePosition -> (Center -> Center)], {GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionMath.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource[
+              "CellInsertionMenu", "MathematicaInput"]], "CellInsertionMenu"], 
+            StyleBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "CellInsertionMenu", "MathematicaInput2"]], 
+              "CellInsertionMenuDefaultLabel"], 
+             "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "Style", "Input"], Delimiter, GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionFreeform.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource[
+              "CellInsertionMenu", "FreeformInput"]], "CellInsertionMenu"], 
+            StyleBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "CellInsertionMenu", "FreeformInput2"]], 
+              "CellInsertionMenuShortcut"], "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "Style", "WolframAlphaShort"], GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionAlpha.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"]], 
+             "CellInsertionMenu"], 
+            StyleBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery2"]], 
+              "CellInsertionMenuShortcut"], "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "Style", "WolframAlphaLong"], GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionExternal.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource[
+              "CellInsertionMenu", "ExternalLanguageInput"]], 
+             "CellInsertionMenu"], 
+            StyleBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "CellInsertionMenu", "ExternalLanguageInput2"]], 
+              "CellInsertionMenuShortcut"], "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "Style", "ExternalLanguage"], Delimiter, 
+        GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionText.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"]], 
+             "CellInsertionMenu"], 
+            StyleBox[
+             PaneSelectorBox[{True -> StyleBox[
+                 DynamicBox[
+                  FEPrivate`FrontEndResource[
+                  "CellInsertionMenu", "TextStyle2Mac"]], 
+                 "CellInsertionMenuStyleShortcutLabel"], False -> StyleBox[
+                 DynamicBox[
+                  FEPrivate`FrontEndResource[
+                  "CellInsertionMenu", "TextStyle2"]], 
+                 "CellInsertionMenuStyleShortcutLabel"]}, False, 
+              ImageSize -> {Automatic, Automatic}], 
+             "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "Style", "Text"], GridBox[{{
+            PaneBox[
+             DynamicBox[
+              FEPrivate`ImportImage[
+               FrontEnd`FileName[{"Misc"}, "InsertionOther.png"]]], 
+             FrameMargins -> {{0, 0}, {2, 0}}], 
+            StyleBox[
+             DynamicBox[
+              FEPrivate`FrontEndResource["CellInsertionMenu", "OtherStyle"]], 
+             "CellInsertionMenu"], 
+            StyleBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "CellInsertionMenu", "OtherStyle2"]], 
+              "CellInsertionMenuShortcut"], "CellInsertionMenuShortcut"]}}, 
+          GridBoxAlignment -> {
+           "Columns" -> {Center, Left, Right}, "Rows" -> {{Baseline}}}, 
+          AutoDelete -> False, GridBoxItemSize -> {"Columns" -> {2, 
+              FEPrivate`First[
+               FEPrivate`StringWidth[{
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "MathematicaInput"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "FreeformInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "WAQuery"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "ExternalLanguageInput"], 
+                 FEPrivate`FrontEndResource["CellInsertionMenu", "TextStyle"], 
+                 FEPrivate`FrontEndResource[
+                 "CellInsertionMenu", "OtherStyle"]}, "CellInsertionMenu"]], 
+              FEPrivate`First[
+               FEPrivate`StringWidth[
+                FEPrivate`FrontEndResource[
+                "CellInsertionMenu", "ShortcutColumnMaxStringLen"], 
+                "CellInsertionMenuDefaultLabel"]]}, "Rows" -> {{Automatic}}}, 
+          GridBoxSpacings -> {
+           "Columns" -> {{0}}, "ColumnsIndexed" -> {2 -> 0.3, 3 -> 0.5}, 
+            "Rows" -> {{0}}}] :> FrontEndTokenExecute[
+          EvaluationNotebook[], "StyleOther"]}, Appearance -> None], 
+      StyleBox[
+       DynamicBox[
+        FEPrivate`FrontEndResource["CellInsertionMenu", "Tooltip"]], 
+       "CellInsertionMenu"]], BaselinePosition -> (Top -> Baseline)]], 
+   "CellInsertionPointCell"],
+ NotebookDynamicExpression:>If[Head[
+     Quiet[
+      NotebookRead[
+       BookReader`Private`$$sidebars[
+        Part[
+         EvaluationNotebook[], 2]]]]] =!= Cell, 
+   BookReader`Private`$$sidebars[
+     Part[
+      EvaluationNotebook[], 2]] = FrontEndExecute[
+     FrontEnd`AttachCell[
+      EvaluationNotebook[], 
+      Cell[
+       BoxData[
+        PanelBox[
+         PaneBox[
+          GridBox[
+           Prepend[{
+             ButtonBox[
+              ToBoxes["Title Page"], ButtonData -> "Title", 
+              BaseStyle -> {"BookNavBarChapter"}]}][
+            Prepend[{
+              ButtonBox[
+               ToBoxes["Table of Contents"], ButtonData -> "TableOfContents", 
+               BaseStyle -> {"BookNavBarChapter"}]}][
+             KeyValueMap[{
+               PaneSelectorBox[{False -> GridBox[{{
+                    ButtonBox[
+                    ToBoxes[
+                    StringReplace[#, "-" -> ". ", 1]], ButtonData -> #, 
+                    BaseStyle -> {"BookNavBarChapterOpener"}]}}, 
+                   BaseStyle -> {"BookNavBarOpener"}], True -> GridBox[
+                   Prepend[{
+                    ButtonBox[
+                    ToBoxes[
+                    StringReplace[#, "-" -> ". ", 1]], ButtonData -> #, 
+                    BaseStyle -> {"BookNavBarChapterOpener"}]}][
+                    Map[{
+                    ButtonBox[
+                    ToBoxes[
+                    StringReplace[#, "-" -> ". ", 2]], ButtonData -> #, 
+                    BaseStyle -> {"BookNavBarSection"}]}& , #2]], 
+                   BaseStyle -> {"BookNavBarOpener"}]}, 
+                FEPrivate`SameQ[
+                 FrontEnd`CurrentValue[
+                  FrontEnd`EvaluationNotebook[], {
+                  TaggingRules, "ChapterOpeners", #}, False], True], 
+                ImageSize -> {150, Automatic}, 
+                ImageMargins -> {{0, 0}, {0, -1}}]}& , 
+              CurrentValue[
+               EvaluationNotebook[], {TaggingRules, "ChapterSectionData"}, 
+               Association[]]]]], BaseStyle -> {"BookNavBar"}], 
+          BaseStyle -> {"BookNavBar"}], BaseStyle -> {"BookNavBar"}]], 
+       "DockedCell", CellSize -> {150, Automatic}], {1, {Left, Top}}, {
+      Left, Top}, "ClosingActions" -> {}]]],
+ DockedCells->Cell[
+   BoxData[
+    PanelBox[
+     PaneSelectorBox[{False -> GridBox[{{
+           TemplateBox[{"\"\[ThickSpace]\[ThickSpace]\[ThickSpace]\"", 
+             
+             DynamicModuleBox[{$CellContext`cells$$ = {}, \
+$CellContext`tagFind$$ = False}, 
+              TemplateBox[{150, 25}, "Spacer2"], DynamicModuleValues :> {}]}, 
+            "RowDefault"], 
+           StyleBox[
+            RowBox[{
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0j0KwkAQBeCgFpYBL6A32NJSSztR7BMxik2UKIjd3MH8J+ARc4TxDUzh
+X7HpLCy+zM5beISQ0fqw2HYcxzn18Vj4l2kU+deli2UVnva7MNjMwnOwC6Lx
+uotwoHrAzH8/pK5rFwjMlzsDR9uuqqqOwEBvuYFG7yZWXWVJwDKfMgON5nfb
+9yqLgoBl6j6HRjPrHlHkOQHrNHoWrXpEnmUErNPoWbTvSlMClqm7p7to1Zcl
+CQHLfMo8zYR1XxrHBCzzLfc0F1b/RHK7DeEOH/8qsrneuW2/3d+rBzchG+g=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJydlDuLGmEUhockRcpAEAKpUnu/36+oEFG8kUqbXTSSxttGQwpFvNUiIiJr
+uX9CsBDBwsJCsJDFYquA1f6Dk3k/ZgaVLFktHs+cd848fN/HOF9uC4nvbziO
+u3vP/yRufnnL5ZvfyQ988y1/9yOXz2a+5n9mc9my5fYtH34UeMdDRJxcLv/M
+88DzxEMX8CQ8h+fh+cRz8Hq9FI1GKZlMUiKReBWRSIQ8Hg+cB8HzgB6eUChE
+wWCQAoEA+f3+/4I5zNvtdhLWdwiHwyyD0+VykdPpfDWYB8LanuFHD/812Gw2
+uJ4BzkrMgM/no1qtxs5OzESQVSqVk8xqtUout9stZaBardJisaB6vS5lAJ7p
+dMrupdNpKbdYLJLL4XCQ2Wwmk8nEgGO5XLIqZvF4nGazGct7vZ6UA6PR+KKr
+0WjQarViFX0mk6H5fM6yfr9/4jl34azEDDSbTVqv16ziPcI1GAwG0swxBoNB
+cmHP6PV6PaPVatFms2EVe8M1GA6H0sw5ogtnh16n0zHa7TZtt1tW0RcKBdaD
+0WgkzR0junBW6LVaLaPT6dBut2NVzIrFIsvAeDyWchHRhT1rNBpSq9WMbrdL
++/2eVTEDpVKJ5SCVSp3ce8mF/8FkMqFYLHYyD3K5HLuH9/Efrj84d/Qqlepq
+4OG5h0epVJJCobgK4Vt2zyMTnJd8A8/B8zLhuyoTvI8XOh6P1sP9BTTKkNg=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageFirst"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipFirstSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0T0KwkAQhuGgFpaCJ/AWtpZ2IWK/Ca7BJoZEELvcIX+7SWCPOn4L09hm
+GosUz8BO8Razh+QZ3VdBEJRbjCh+n4oi/lx2eFyz8pFm+nbOXjrVxTFZY7ln
+GyCixZ+bpimEXNoZx1EBeaLOMCgg5uZ2BmsVEJvdscaEQGx2xzN9nwMxJb25
+6ToHxMS9vm0dEBP3uqZxQJ605bV1XYHoDxa/vkPWMv0=
+                    "], {{0, 
+                    19}, {19, 0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJyd1LlqAkEYwPElSZEyEAIBq9Te93orqBBRhJU8gOJGArqKRsK+gaWIhXiU
+PolgYWEhWIhYWAlWvsGX+YbZxWPFo/gp38z4Z3cKP3Jl4fuB47jaM/kQsn+R
+ajUrZ17I8CXVfgqSmP+UfsWCWOVzj2TxlXki9Ho90hFDYk3ADdbsdzrWeSe2
+kUgE0uk0ZDIZEAThKqlUCsLhMDa3rDPEGTuJRALi8TjEYjGIRqMX4Tk87/P5
+gD3fNplM0jVsBoNBCAQCV8PziD3bDvs4Y/8eXq8XWzuEd6WsnZPP56Fer2vu
+eTwetRUKhdQ1LaVSCUajEaW1z/O82vL7/eB2u8Hlcp0oFoswHo+pZrOpecbp
+dF5sSZIEk8mEarVamp3jFt6VsqYQRRGm0ynVbrcP9o45HA61he+Ms91uV8my
+DLPZjCqXywd7WpQW3h3ONpvtQKfTgfl8TmHveH+f0sK7wtlqtZ7odruwWCyo
+SqWieQYpLXxni8UCZrNZU6/Xg9VqRZ07c20LNRoNGAwGl1obvHecTSbT3bBD
+9LFjNBrBYDDchf2X9Yk31rzlP/DYhnU49o3d5Y2N5d7zcP+US2zq
+                    
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPagePrevious"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipPreviousSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzlzDsKwlAQheGgFpYXXIE7sLTU0laxN8EYbCIkgriKkPfrhizBJWQJd0nj
+iVhMm5tGsPgG5hT/0rrtLxPDMPw5zt58bD3PfB4EnqPrXx3XPu/cu+3Y3tqa
+Ylx8zYCI/lbTNAF0cBrdkpKYUT0ppQJitHt1XQtQQIx+r6oEKCBGu1eVpQAF
+xGj3yqIQoICYlW6vyPMWiNkMbmSZAAXEtEM7eZoKUEDM4E6WJAIUEDO400vj
+uANitDqfVhQRo93pJWH4AoJgTOcXvAFIByMs
+                    "], {{0, 19}, {19, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJyVlEtrGlEUgKXNostCCRSy6tr3+/1EhYoijGTlKqE2FHQKplC69yeIiI64
+CiKCIIggiAiCCxcuBBcSBINIwFX+wek94d7LjI+mLr4ZzmO+ufdwuV9ufwrf
+36lUqvsP5CHc/A7m8zd/Uh9JcC3e/7gTM9++ir8yd5m84/Y9SX6iXBDUajVy
+RXggPBHgDJ7od1fU85mwCwaDkEwmIZVKgSAI/0UikYBAIIDOHfU8YIyeWCwG
+0WgUIpEIhMPhN8E+7He73UDXt4vH4685dPp8PvB6vVAoFECSJMjlcq/xKbAf
+oWt7QT/G6GcMh0NONptV1PZxuVzoekFwVizHaDQaMBqNOOiT1+U4nU7u8vv9
+PMcIhULQbDZhPB5zcL/yHobD4eAuj8cDdrsdbDabAvxHq9WCyWTCwfXt91mt
+1jddzNdut2E6nXJEUTzpwlmx3DHQ1+l0YDabcfB8sbrFYuEu3DPGZrP5JKVS
+CebzOSedTivqzIWzw9hkMh2A++/1erBYLDjlcvmgj7lwVhgbjUYF6On3+7Bc
+LjmVSuWgD2Eu3LPBYAC9Xs/BMzIYDGC1WnGq1aqiR86/XN1uF9brNadWq530
+yFzPOHeMdTodZ7PZcOr1uqJ2DPQQJPRotVrQaDQcPKPb7RaKxaIifwx6l0mE
+S+o85w7c55l6VPSN3sczHY+y9aj+AriDojw=
+                    "], {{0, 19}, {19, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageNext"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipNextSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0jsKwkAUheGgFpYDrsAdTGk5lnai2CfBGGyiREFchUXeD8gSXEKWkKVk
+CdcTuEUQhUlnYfGFmX/gVJnbp81hZBjGZYrPxrotfd+6bwUuO+9ydD1nv/Ku
+juv4C3uMOGMTIKK/H1KWpYLzl7czrHW3iqKogaB665J7rb2V5yYQq3pdcdPe
+6uRZZgKxipvi+6CtTpamJhB7gOLz4K00SSS0QPAExedBW2kcS2iBoAEBiu/a
+W0kUSWiBoAHBXXHT3orDsAaCBkSvS+7aW1EQmFCB+PDW9Y//8d8wL+OcHbA=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJydlDuLGlEYhiVJkTIQAoGtUnu/32+gQkTxRhq12UWzBGSE2UhI4S+wUKxX
+EEEQEcRGEOwEEQULwUIWi60WrPYffJn3MGfQBMmuxTPO9843D+d8I+fLTTn9
+/Y1Kpbp7L13S17+Conj9O/NBKr4Jdz9uhWLhq/CzeFsUHTdvpfCjzDsJtVoN
+riS6Eo8S9Aoe5feuiAiezxKHYDBIiUSCMpkMpdPpFxGPxykQCMB5kD1d1PBE
+o1GKRCIUDocpFAr9F/Sh3+12k7y+QywWYxmcPp+PvF7vi0E/kNf2DD9q+C/B
+5XLB9QwwK56BfD5PlUpFqY9BXigUTjKn06m4/H6/koF2u02z2Yzq9bqSAXwX
+5Hh+nDscDsXl8XjIbreTzWZjlEolms/njEajoeTZbJZlnU5HyYDVaj3rAoIg
+0HK5ZDSbTZblcjlWd7vdsy7MimfHlMtlWq/XjFqtxly47/V6J30Wi0VxYc+o
+zWbzCalUihaLBW02GzYjuHDf7/f/6eUuzA61yWRSgGe1WtF2u6XxeEyYA1yo
+B4PBSS/gLswKtdFoZMCDvex2O5pMJsyDHC5kw+FQ6eVwF/ZsMBhIr9czRqMR
+7fd7mk6n7L/C82QyyXI85xnnnEsURWq1WiceDvJqtXrO9YS5o9bpdBcDj8Q9
+PFqtljQazUXIZ9m9xCfZ+Zoz8G+eZI9K/oX34ZWOB74enKt/AMjCkgc=
+                    
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageLast"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipLastSlide"]]]}], 
+            ButtonBoxOptions -> {Alignment -> {Automatic, 
+                FEPrivate`If[
+                 FEPrivate`SameQ[
+                 FEPrivate`$OperatingSystem, "Unix"], -0.4, -0.5]}, 
+              Appearance -> None, ButtonFunction :> (FEPrivate`FrontEndExecute[
+                FrontEnd`FrontEndToken[
+                 FrontEnd`ButtonNotebook[], #]]& ), Evaluator -> None, 
+              FrameMargins -> 0, ImageMargins -> 0, ImageSize -> Medium}], 
+           TemplateBox[{
+             PaneSelectorBox[{False -> PaneBox[
+                 TooltipBox[
+                  ButtonBox[
+                   
+                   PaneSelectorBox[{
+                    False -> PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAYiOWBmAWI////P4oHD05Gw/TSy0CmHmqZM1jsRg9DYjC1/ADSL00CplaY
+jdo9ajet7R7IPDZYypaBsHug6pJhjQHf7Q2Q
+                    "], {{0, 19}, {31, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", 
+                    ImageSizeRaw -> {31, 19}, PlotRange -> {{0, 31}, {0, 19}},
+                     ImageSize -> Magnification[1]], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzNljtLA0EUhYNaWAoiCBZinSKQ9/udECFJsSGEhDxQjGITIQrif0mptV3e
+/8TKShQLsbC9zgl7hyzM6rqwYPGFvSdzz7kzs8UenV5p5xsul+t6W/xoJ7eZ
+4fDkrrYjivrg+vJi0D87Htz0L/rD8OmmEHcFh4ItARG53G73geBB8CwgB/kS
+PCJPz90XvBUKBarX69RqtajZbDpCo9GgXC6HGd713Id8Pr/SNU2jarVKlUqF
+yuWyI8A7mUySfs5vtVptlVkqlahYLBLOYLlcGoBmlZ962R+5gg/MAw3nwSwW
+C0NtF5VPNptF9gfAfllj0LNe20Xlk8lkZDb2zBozn88Nz39F5cOk02mZjT2n
+UqnVO6BiNptRr9ezDNabeYFEIvFvsllTAa9ut2sZrDfzAvF4XGbjrllTYSfb
+zAvEYjGZjftnTcV0OqVOp2MZrDfzAtFoVGbjvWNNBbza7bZlsN7MC0QiEZmN
+u0YdDoclk8nE8PxXVD5MKBSS2bhr1hj0rNd2UfkEg0HOfsF5s8aMx2NDbReV
+TyAQQPaLYOTz+Va13++XoGed9f9+47dej8eD7JFgDzOg9nq9hDmcRM99Ra7+
+/bCnz/Hk8HfLp+Cec78Bnr9jeQ==
+                    "], {{0, 19}, {31, 0}}, {0, 
+                    255}, ColorFunction -> RGBColor], DefaultBaseStyle -> 
+                    "ImageGraphics", ImageSizeRaw -> {31, 19}, 
+                    PlotRange -> {{0, 31}, {0, 19}}, ImageSize -> 
+                    Magnification[1]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0], True -> 
+                    PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAYiOWBmAWI////P4oHD05Gw/TSy0CmHmqZM9jsjgXiZiCWQROXgYrH0tAP
+nEBcgGY/zN4CqDy10hsh+y3oaC+6/T10tncg7R6oMKdXWhvIPDbYyhZ62j1Q
+dcmwxgDN0weU
+                    "], {{0, 19}, {31, 0}}, {0, 255}, 
+                    ColorFunction -> RGBColor], DefaultBaseStyle -> 
+                    "ImageGraphics", ImageSizeRaw -> {31, 19}, 
+                    PlotRange -> {{0, 31}, {0, 19}}, ImageSize -> 
+                    Magnification[1]], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJy1lr2LGkEYxiVJkTIQDgIpQmoLwe/v709QixURtZA9Yo40BrxASCH+I1fm
+wEJIp6Ci/4TaXONVR44UR4q0b+YZdoZdWdw9YYvfDs8zvO8zOzMs+/Hyq/L5
+hcvlun7NHor6PTMcqj8ab5hoDq6/XA36nyqDb/2r/jB8+ZKZbxkfGK8YRORy
+u93vGbeMewY5yD/GL+Rpue8Yj4VCgZrNJnU6HWq3247QarUol8thDX+03Nt8
+Ps99RVGoXq9TrVajarXqCOidTCZJ2+fHRqPBM8vlMhWLRcIerFYrA/DscqpW
+9Ecu4wnrgYf9ECyXS4M+F7M+2WwW2U8A7ys8AWr0+lzM+mQyGZmNdxaeYLFY
+GDSYTqe03+9JVVWDDw0f88c1Zn3S6bTMxjunUil+B05RqVRos9nQbrejXq/H
+PYzQ8DFv1QMkEolnZx/nj8fjZ+eaZQvPDrgfyDscDnyEtlsL4vG4zMZZC88O
+pVLJkA1ttxbEYjGZjfMXnhW4l+v1mu/1aDTiIzR8O/UgGo3KbNw74Z0C3wSR
+2+12uYdR5GPeqgeIRCIyG2cNHQ6HJfP53KDBZDKh7XbLv/l6Hxo+5o9rzPqE
+QiGZjbMWngA1en0uZn2CwaDIfsB+C08wm80M+lzM+gQCAWQ/MG58Ph/Xfr9f
+gho9+jkrrGo9Hg+ybxgXWAO01+slrMNJtNzfyNX+Hy60ddw5/N/yl/FT5P4H
+NSVJPA==
+                    "], {{0, 19}, {31, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", 
+                    ImageSizeRaw -> {31, 19}, PlotRange -> {{0, 31}, {0, 19}},
+                     ImageSize -> Magnification[1]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0]}, 
+                    Dynamic[FrontEnd`CurrentValue[
+                    EvaluationNotebook[], WindowSize] === {Full, Full}]], 
+                   ButtonFunction :> (
+                    FEPrivate`NotebookToggleFullScreen[]; {}), Alignment -> 
+                   Center, Alignment -> {Automatic, 
+                    FEPrivate`If[
+                    FEPrivate`SameQ[
+                    FEPrivate`$OperatingSystem, "Unix"], -0.4, -0.5]}, 
+                   ImageSize -> Medium, Evaluator -> None, ImageMargins -> 0, 
+                   FrameMargins -> 0, Appearance -> None, 
+                   ButtonFunction :> (FEPrivate`FrontEndExecute[
+                    FrontEnd`FrontEndToken[
+                    FrontEnd`ButtonNotebook[], #]]& ), Method -> 
+                   "Preemptive"], 
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "SlideshowToolbarText", "TooltipToggleFullScreen"]]], 
+                 Alignment -> Right, ImageSize -> 128]}, 
+              Dynamic[
+               FrontEnd`CurrentValue["HasSystemFullScreenButton"]], ImageSize -> 
+              All], "\"\[ThickSpace]\[ThickSpace]\[ThickSpace]\""}, 
+            "RowDefault"]}}, AutoDelete -> False, 
+         GridBoxItemSize -> {"Columns" -> {Automatic, Fit, Automatic}}], True -> 
+       GridBox[{{"\"\"", "\"\"", "\"\""}, {
+           TemplateBox[{"\"\[ThickSpace]\[ThickSpace]\[ThickSpace]\"", 
+             
+             DynamicModuleBox[{$CellContext`cells$$ = {}, \
+$CellContext`tagFind$$ = False}, 
+              TemplateBox[{150, 25}, "Spacer2"], DynamicModuleValues :> {}]}, 
+            "RowDefault"], 
+           StyleBox[
+            RowBox[{
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0j0KwkAQBeCgFpYBL6A32NJSSztR7BMxik2UKIjd3MH8J+ARc4TxDUzh
+X7HpLCy+zM5beISQ0fqw2HYcxzn18Vj4l2kU+deli2UVnva7MNjMwnOwC6Lx
+uotwoHrAzH8/pK5rFwjMlzsDR9uuqqqOwEBvuYFG7yZWXWVJwDKfMgON5nfb
+9yqLgoBl6j6HRjPrHlHkOQHrNHoWrXpEnmUErNPoWbTvSlMClqm7p7to1Zcl
+CQHLfMo8zYR1XxrHBCzzLfc0F1b/RHK7DeEOH/8qsrneuW2/3d+rBzchG+g=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJydlDuLGmEUhockRcpAEAKpUnu/36+oEFG8kUqbXTSSxttGQwpFvNUiIiJr
+uX9CsBDBwsJCsJDFYquA1f6Dk3k/ZgaVLFktHs+cd848fN/HOF9uC4nvbziO
+u3vP/yRufnnL5ZvfyQ988y1/9yOXz2a+5n9mc9my5fYtH34UeMdDRJxcLv/M
+88DzxEMX8CQ8h+fh+cRz8Hq9FI1GKZlMUiKReBWRSIQ8Hg+cB8HzgB6eUChE
+wWCQAoEA+f3+/4I5zNvtdhLWdwiHwyyD0+VykdPpfDWYB8LanuFHD/812Gw2
+uJ4BzkrMgM/no1qtxs5OzESQVSqVk8xqtUout9stZaBardJisaB6vS5lAJ7p
+dMrupdNpKbdYLJLL4XCQ2Wwmk8nEgGO5XLIqZvF4nGazGct7vZ6UA6PR+KKr
+0WjQarViFX0mk6H5fM6yfr9/4jl34azEDDSbTVqv16ziPcI1GAwG0swxBoNB
+cmHP6PV6PaPVatFms2EVe8M1GA6H0sw5ogtnh16n0zHa7TZtt1tW0RcKBdaD
+0WgkzR0junBW6LVaLaPT6dBut2NVzIrFIsvAeDyWchHRhT1rNBpSq9WMbrdL
++/2eVTEDpVKJ5SCVSp3ce8mF/8FkMqFYLHYyD3K5HLuH9/Efrj84d/Qqlepq
+4OG5h0epVJJCobgK4Vt2zyMTnJd8A8/B8zLhuyoTvI8XOh6P1sP9BTTKkNg=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageFirst"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipFirstSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0T0KwkAQhuGgFpaCJ/AWtpZ2IWK/Ca7BJoZEELvcIX+7SWCPOn4L09hm
+GosUz8BO8Razh+QZ3VdBEJRbjCh+n4oi/lx2eFyz8pFm+nbOXjrVxTFZY7ln
+GyCixZ+bpimEXNoZx1EBeaLOMCgg5uZ2BmsVEJvdscaEQGx2xzN9nwMxJb25
+6ToHxMS9vm0dEBP3uqZxQJ605bV1XYHoDxa/vkPWMv0=
+                    "], {{0, 
+                    19}, {19, 0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJyd1LlqAkEYwPElSZEyEAIBq9Te93orqBBRhJU8gOJGArqKRsK+gaWIhXiU
+PolgYWEhWIhYWAlWvsGX+YbZxWPFo/gp38z4Z3cKP3Jl4fuB47jaM/kQsn+R
+ajUrZ17I8CXVfgqSmP+UfsWCWOVzj2TxlXki9Ho90hFDYk3ADdbsdzrWeSe2
+kUgE0uk0ZDIZEAThKqlUCsLhMDa3rDPEGTuJRALi8TjEYjGIRqMX4Tk87/P5
+gD3fNplM0jVsBoNBCAQCV8PziD3bDvs4Y/8eXq8XWzuEd6WsnZPP56Fer2vu
+eTwetRUKhdQ1LaVSCUajEaW1z/O82vL7/eB2u8Hlcp0oFoswHo+pZrOpecbp
+dF5sSZIEk8mEarVamp3jFt6VsqYQRRGm0ynVbrcP9o45HA61he+Ms91uV8my
+DLPZjCqXywd7WpQW3h3ONpvtQKfTgfl8TmHveH+f0sK7wtlqtZ7odruwWCyo
+SqWieQYpLXxni8UCZrNZU6/Xg9VqRZ07c20LNRoNGAwGl1obvHecTSbT3bBD
+9LFjNBrBYDDchf2X9Yk31rzlP/DYhnU49o3d5Y2N5d7zcP+US2zq
+                    
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPagePrevious"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipPreviousSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzlzDsKwlAQheGgFpYXXIE7sLTU0laxN8EYbCIkgriKkPfrhizBJWQJd0nj
+iVhMm5tGsPgG5hT/0rrtLxPDMPw5zt58bD3PfB4EnqPrXx3XPu/cu+3Y3tqa
+Ylx8zYCI/lbTNAF0cBrdkpKYUT0ppQJitHt1XQtQQIx+r6oEKCBGu1eVpQAF
+xGj3yqIQoICYlW6vyPMWiNkMbmSZAAXEtEM7eZoKUEDM4E6WJAIUEDO400vj
+uANitDqfVhQRo93pJWH4AoJgTOcXvAFIByMs
+                    "], {{0, 19}, {19, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJyVlEtrGlEUgKXNostCCRSy6tr3+/1EhYoijGTlKqE2FHQKplC69yeIiI64
+CiKCIIggiAiCCxcuBBcSBINIwFX+wek94d7LjI+mLr4ZzmO+ufdwuV9ufwrf
+36lUqvsP5CHc/A7m8zd/Uh9JcC3e/7gTM9++ir8yd5m84/Y9SX6iXBDUajVy
+RXggPBHgDJ7od1fU85mwCwaDkEwmIZVKgSAI/0UikYBAIIDOHfU8YIyeWCwG
+0WgUIpEIhMPhN8E+7He73UDXt4vH4685dPp8PvB6vVAoFECSJMjlcq/xKbAf
+oWt7QT/G6GcMh0NONptV1PZxuVzoekFwVizHaDQaMBqNOOiT1+U4nU7u8vv9
+PMcIhULQbDZhPB5zcL/yHobD4eAuj8cDdrsdbDabAvxHq9WCyWTCwfXt91mt
+1jddzNdut2E6nXJEUTzpwlmx3DHQ1+l0YDabcfB8sbrFYuEu3DPGZrP5JKVS
+CebzOSedTivqzIWzw9hkMh2A++/1erBYLDjlcvmgj7lwVhgbjUYF6On3+7Bc
+LjmVSuWgD2Eu3LPBYAC9Xs/BMzIYDGC1WnGq1aqiR86/XN1uF9brNadWq530
+yFzPOHeMdTodZ7PZcOr1uqJ2DPQQJPRotVrQaDQcPKPb7RaKxaIifwx6l0mE
+S+o85w7c55l6VPSN3sczHY+y9aj+AriDojw=
+                    "], {{0, 19}, {19, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageNext"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipNextSlide"]]], 
+              "\[InvisibleSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+              TooltipBox[
+               ButtonBox[
+                StyleBox[
+                 PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzt0jsKwkAUheGgFpYDrsAdTGk5lnai2CfBGGyiREFchUXeD8gSXEKWkKVk
+CdcTuEUQhUlnYfGFmX/gVJnbp81hZBjGZYrPxrotfd+6bwUuO+9ydD1nv/Ku
+juv4C3uMOGMTIKK/H1KWpYLzl7czrHW3iqKogaB665J7rb2V5yYQq3pdcdPe
+6uRZZgKxipvi+6CtTpamJhB7gOLz4K00SSS0QPAExedBW2kcS2iBoAEBiu/a
+W0kUSWiBoAHBXXHT3orDsAaCBkSvS+7aW1EQmFCB+PDW9Y//8d8wL+OcHbA=
+
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJydlDuLGlEYhiVJkTIQAoGtUnu/32+gQkTxRhq12UWzBGSE2UhI4S+wUKxX
+EEEQEcRGEOwEEQULwUIWi60WrPYffJn3MGfQBMmuxTPO9843D+d8I+fLTTn9
+/Y1Kpbp7L13S17+Conj9O/NBKr4Jdz9uhWLhq/CzeFsUHTdvpfCjzDsJtVoN
+riS6Eo8S9Aoe5feuiAiezxKHYDBIiUSCMpkMpdPpFxGPxykQCMB5kD1d1PBE
+o1GKRCIUDocpFAr9F/Sh3+12k7y+QywWYxmcPp+PvF7vi0E/kNf2DD9q+C/B
+5XLB9QwwK56BfD5PlUpFqY9BXigUTjKn06m4/H6/koF2u02z2Yzq9bqSAXwX
+5Hh+nDscDsXl8XjIbreTzWZjlEolms/njEajoeTZbJZlnU5HyYDVaj3rAoIg
+0HK5ZDSbTZblcjlWd7vdsy7MimfHlMtlWq/XjFqtxly47/V6J30Wi0VxYc+o
+zWbzCalUihaLBW02GzYjuHDf7/f/6eUuzA61yWRSgGe1WtF2u6XxeEyYA1yo
+B4PBSS/gLswKtdFoZMCDvex2O5pMJsyDHC5kw+FQ6eVwF/ZsMBhIr9czRqMR
+7fd7mk6n7L/C82QyyXI85xnnnEsURWq1WiceDvJqtXrO9YS5o9bpdBcDj8Q9
+PFqtljQazUXIZ9m9xCfZ+Zoz8G+eZI9K/oX34ZWOB74enKt/AMjCkgc=
+                    
+                    "], {{0, 19}, {19, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", ImageSize -> 
+                    Magnification[1], ImageSizeRaw -> {19, 19}, 
+                    PlotRange -> {{0, 19}, {0, 19}}]}, 
+                  Dynamic[
+                   CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                  Automatic], FontSize -> 25], ButtonData -> 
+                "ScrollPageLast"], 
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "SlideshowToolbarText", "TooltipLastSlide"]]]}], 
+            ButtonBoxOptions -> {Alignment -> {Automatic, 
+                FEPrivate`If[
+                 FEPrivate`SameQ[
+                 FEPrivate`$OperatingSystem, "Unix"], -0.4, -0.5]}, 
+              Appearance -> None, ButtonFunction :> (FEPrivate`FrontEndExecute[
+                FrontEnd`FrontEndToken[
+                 FrontEnd`ButtonNotebook[], #]]& ), Evaluator -> None, 
+              FrameMargins -> 0, ImageMargins -> 0, ImageSize -> Medium}], 
+           TemplateBox[{
+             PaneSelectorBox[{False -> PaneBox[
+                 TooltipBox[
+                  ButtonBox[
+                   
+                   PaneSelectorBox[{
+                    False -> PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAYiOWBmAWI////P4oHD05Gw/TSy0CmHmqZM1jsRg9DYjC1/ADSL00CplaY
+jdo9ajet7R7IPDZYypaBsHug6pJhjQHf7Q2Q
+                    "], {{0, 19}, {31, 
+                    0}}, {0, 255}, ColorFunction -> RGBColor], 
+                    DefaultBaseStyle -> "ImageGraphics", 
+                    ImageSizeRaw -> {31, 19}, PlotRange -> {{0, 31}, {0, 19}},
+                     ImageSize -> Magnification[1]], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJzNljtLA0EUhYNaWAoiCBZinSKQ9/udECFJsSGEhDxQjGITIQrif0mptV3e
+/8TKShQLsbC9zgl7hyzM6rqwYPGFvSdzz7kzs8UenV5p5xsul+t6W/xoJ7eZ
+4fDkrrYjivrg+vJi0D87Htz0L/rD8OmmEHcFh4ItARG53G73geBB8CwgB/kS
+PCJPz90XvBUKBarX69RqtajZbDpCo9GgXC6HGd713Id8Pr/SNU2jarVKlUqF
+yuWyI8A7mUySfs5vtVptlVkqlahYLBLOYLlcGoBmlZ962R+5gg/MAw3nwSwW
+C0NtF5VPNptF9gfAfllj0LNe20Xlk8lkZDb2zBozn88Nz39F5cOk02mZjT2n
+UqnVO6BiNptRr9ezDNabeYFEIvFvsllTAa9ut2sZrDfzAvF4XGbjrllTYSfb
+zAvEYjGZjftnTcV0OqVOp2MZrDfzAtFoVGbjvWNNBbza7bZlsN7MC0QiEZmN
+u0YdDoclk8nE8PxXVD5MKBSS2bhr1hj0rNd2UfkEg0HOfsF5s8aMx2NDbReV
+TyAQQPaLYOTz+Va13++XoGed9f9+47dej8eD7JFgDzOg9nq9hDmcRM99Ra7+
+/bCnz/Hk8HfLp+Cec78Bnr9jeQ==
+                    "], {{0, 19}, {31, 0}}, {0, 
+                    255}, ColorFunction -> RGBColor], DefaultBaseStyle -> 
+                    "ImageGraphics", ImageSizeRaw -> {31, 19}, 
+                    PlotRange -> {{0, 31}, {0, 19}}, ImageSize -> 
+                    Magnification[1]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0], True -> 
+                    PaneSelectorBox[{False -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAYiOWBmAWI////P4oHD05Gw/TSy0CmHmqZM9jsjgXiZiCWQROXgYrH0tAP
+nEBcgGY/zN4CqDy10hsh+y3oaC+6/T10tncg7R6oMKdXWhvIPDbYyhZ62j1Q
+dcmwxgDN0weU
+                    "], {{0, 19}, {31, 0}}, {0, 255}, 
+                    ColorFunction -> RGBColor], DefaultBaseStyle -> 
+                    "ImageGraphics", ImageSizeRaw -> {31, 19}, 
+                    PlotRange -> {{0, 31}, {0, 19}}, ImageSize -> 
+                    Magnification[1]], True -> GraphicsBox[
+                    RasterBox[CompressedData["
+1:eJy1lr2LGkEYxiVJkTIQDgIpQmoLwe/v709QixURtZA9Yo40BrxASCH+I1fm
+wEJIp6Ci/4TaXONVR44UR4q0b+YZdoZdWdw9YYvfDs8zvO8zOzMs+/Hyq/L5
+hcvlun7NHor6PTMcqj8ab5hoDq6/XA36nyqDb/2r/jB8+ZKZbxkfGK8YRORy
+u93vGbeMewY5yD/GL+Rpue8Yj4VCgZrNJnU6HWq3247QarUol8thDX+03Nt8
+Ps99RVGoXq9TrVajarXqCOidTCZJ2+fHRqPBM8vlMhWLRcIerFYrA/DscqpW
+9Ecu4wnrgYf9ECyXS4M+F7M+2WwW2U8A7ys8AWr0+lzM+mQyGZmNdxaeYLFY
+GDSYTqe03+9JVVWDDw0f88c1Zn3S6bTMxjunUil+B05RqVRos9nQbrejXq/H
+PYzQ8DFv1QMkEolnZx/nj8fjZ+eaZQvPDrgfyDscDnyEtlsL4vG4zMZZC88O
+pVLJkA1ttxbEYjGZjfMXnhW4l+v1mu/1aDTiIzR8O/UgGo3KbNw74Z0C3wSR
+2+12uYdR5GPeqgeIRCIyG2cNHQ6HJfP53KDBZDKh7XbLv/l6Hxo+5o9rzPqE
+QiGZjbMWngA1en0uZn2CwaDIfsB+C08wm80M+lzM+gQCAWQ/MG58Ph/Xfr9f
+gho9+jkrrGo9Hg+ybxgXWAO01+slrMNJtNzfyNX+Hy60ddw5/N/yl/FT5P4H
+NSVJPA==
+                    "], {{0, 19}, {31, 0}}, {0, 255}, ColorFunction -> 
+                    RGBColor], DefaultBaseStyle -> "ImageGraphics", 
+                    ImageSizeRaw -> {31, 19}, PlotRange -> {{0, 31}, {0, 19}},
+                     ImageSize -> Magnification[1]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0]}, 
+                    Dynamic[FrontEnd`CurrentValue[
+                    EvaluationNotebook[], WindowSize] === {Full, Full}]], 
+                   ButtonFunction :> (
+                    FEPrivate`NotebookToggleFullScreen[]; {}), Alignment -> 
+                   Center, Alignment -> {Automatic, 
+                    FEPrivate`If[
+                    FEPrivate`SameQ[
+                    FEPrivate`$OperatingSystem, "Unix"], -0.4, -0.5]}, 
+                   ImageSize -> Medium, Evaluator -> None, ImageMargins -> 0, 
+                   FrameMargins -> 0, Appearance -> None, 
+                   ButtonFunction :> (FEPrivate`FrontEndExecute[
+                    FrontEnd`FrontEndToken[
+                    FrontEnd`ButtonNotebook[], #]]& ), Method -> 
+                   "Preemptive"], 
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "SlideshowToolbarText", "TooltipToggleFullScreen"]]], 
+                 Alignment -> Right, ImageSize -> 128]}, 
+              Dynamic[
+               FrontEnd`CurrentValue["HasSystemFullScreenButton"]], ImageSize -> 
+              All], "\"\[ThickSpace]\[ThickSpace]\[ThickSpace]\""}, 
+            "RowDefault"]}}, AutoDelete -> False, 
+         GridBoxItemSize -> {
+          "Columns" -> {Automatic, Fit, Automatic}, "Rows" -> {{Automatic}}, 
+           "RowsIndexed" -> {1 -> 1}}]}, 
+      Dynamic[
+       FEPrivate`And[
+        FrontEnd`CurrentValue["HasSystemFullScreenButton"], 
+        FEPrivate`Or[
+         FEPrivate`SameQ[
+          FrontEnd`CurrentValue[
+           EvaluationNotebook[], WindowSize], {Full, Full}], 
+         FEPrivate`SameQ[
+          FrontEnd`CurrentValue[
+           EvaluationNotebook[], WindowSize], {Full}], 
+         FEPrivate`SameQ[
+          FrontEnd`CurrentValue[
+           EvaluationNotebook[], WindowSize], Full]]]], ImageSize -> Full], 
+     Appearance -> Image[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAaikFsa2oDq0EPLKkNLKgNzKkNTKkNTKgNjKkNjKgNDKgN9KkN9KgNdKgN
+tKkNNKkNNKgN1KgNVKkNVKgNlKkNlKgNFKgN5Ac9kKM2kKU2AADgQ4V7
+       "], "Byte", 
+       ColorSpace -> "RGB", Interleaving -> True], ImageSize -> {
+       Scaled[1], Automatic}]], "SystemDockedCell", CellFrame -> 0.01],
+ ScrollingOptions->{"PagewiseDisplay"->True},
+ PageHeaders->None,
+ PageFooters->{{None, 
+    Cell[
+     TextData[{
+       CounterBox["Page"]}], "PageNumber"], None}, {None, 
+    Cell[
+     TextData[{
+       CounterBox["Page"]}], "PageNumber"], None}},
+ PrintingOptions->{"FirstPageFooter"->True,
+ "FirstPageHeader"->False,
+ "RestPagesFooter"->True,
+ "RestPagesHeader"->
+  False},ExpressionUUID->"e8233f2b-e58b-4101-ae5b-37a5527f3a51"],
+
+Cell[CellGroupData[{
+
+Cell["attachedCell", "Subsubsection",
+ CellChangeTimes->{{3.765166748085696*^9, 3.765166750414214*^9}, 
+   3.7651668822293053`*^9},ExpressionUUID->"c82f3ee6-ec35-41d2-9d28-\
+5bd84995b36d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"attachedCell", "=", "\[IndentingNewLine]", 
+   RowBox[{"Hold", "@", "\[IndentingNewLine]", 
+    RowBox[{"Cell", "[", "\n", "    ", 
+     RowBox[{
+      RowBox[{"BoxData", "@", "\n", "      ", 
+       RowBox[{"PanelBox", "[", "\n", "        ", 
+        RowBox[{
+         RowBox[{"PaneBox", "[", "\n", "          ", 
+          RowBox[{
+           RowBox[{"GridBox", "[", "\n", "            ", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Prepend", "[", "\n", "              ", 
+               RowBox[{"List", "@", 
+                RowBox[{"ButtonBox", "[", "\n", "                ", 
+                 RowBox[{
+                  RowBox[{"ToBoxes", "@", "\"\<Title Page\>\""}], ",", " ", 
+                  "\n", "                ", 
+                  RowBox[{"ButtonData", "->", "\"\<Title\>\""}], ",", "\n", 
+                  "                ", 
+                  RowBox[{"BaseStyle", "->", 
+                   RowBox[{"{", "\"\<BookNavBarChapter\>\"", "}"}]}]}], "\n", 
+                 "                ", "]"}]}], "\n", "              ", "]"}], 
+              "@", "\n", "            ", 
+              RowBox[{
+               RowBox[{"Prepend", "[", "\n", "              ", 
+                RowBox[{"{", "\n", "                ", 
+                 RowBox[{"ButtonBox", "[", "\n", "                  ", 
+                  RowBox[{
+                   RowBox[{"ToBoxes", "@", "\"\<Table of Contents\>\""}], ",",
+                    " ", "\n", "                  ", 
+                   RowBox[{"ButtonData", "->", "\"\<TableOfContents\>\""}], 
+                   ",", "\n", "                  ", 
+                   RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarChapter\>\"", "}"}]}]}], "\n",
+                   "                  ", "]"}], "\n", "                ", 
+                 "}"}], "\n", "              ", "]"}], "@", "\n", 
+               "            ", 
+               RowBox[{"KeyValueMap", "[", "\n", "              ", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"{", "\n", "               ", 
+                   RowBox[{
+                   "PaneSelectorBox", "[", "\n", "                 ", 
+                    RowBox[{
+                    RowBox[{"{", "\n", "                    ", 
+                    RowBox[{
+                    RowBox[{"False", "->", "\n", "                      ", 
+                    RowBox[{"GridBox", "[", 
+                    RowBox[{
+                    RowBox[{"List", "@", "\n", "  ", "                      ", 
+                    RowBox[{"{", "\n", "  ", "                        ", 
+                    RowBox[{
+                    "ButtonBox", "[", "\n", "  ", 
+                    "                          ", 
+                    RowBox[{
+                    RowBox[{"ToBoxes", "@", 
+                    RowBox[{"StringReplace", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"\"\<-\>\"", "->", "\"\<. \>\""}], ",", " ", 
+                    "1"}], "]"}]}], ",", " ", "\n", 
+                    "                            ", 
+                    RowBox[{"ButtonData", "->", "#"}], ",", "\n", 
+                    "                            ", 
+                    RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarChapterOpener\>\"", "}"}]}]}],
+                     "\n", "  ", "                          ", "]"}], "\n", 
+                    "  ", "                        ", "}"}]}], ",", "\n", 
+                    "  ", "                      ", 
+                    RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarOpener\>\"", "}"}]}]}], "\n", 
+                    "  ", "                      ", "]"}]}], ",", "\n", "  ", 
+                    "                  ", 
+                    RowBox[{
+                    "True", "->", "\n", "  ", "                    ", 
+                    RowBox[{
+                    "GridBox", "[", "\n", "  ", "                      ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{"{", "\n", "  ", "                        ", 
+                    RowBox[{"ButtonBox", "[", "\n", "  ", 
+                    "                          ", 
+                    RowBox[{
+                    RowBox[{"ToBoxes", "@", 
+                    RowBox[{"StringReplace", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"\"\<-\>\"", "->", "\"\<. \>\""}], ",", " ", 
+                    "1"}], "]"}]}], ",", " ", "\n", 
+                    "                            ", 
+                    RowBox[{"ButtonData", "->", "#"}], ",", "\n", 
+                    "                            ", 
+                    RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarChapterOpener\>\"", "}"}]}]}],
+                     "\n", "  ", "                          ", "]"}], "\n", 
+                    "  ", "                        ", "}"}], "]"}], "@", "\n",
+                     "  ", "                       ", 
+                    RowBox[{
+                    "Map", "[", "\n", "  ", "                         ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"{", "\n", "  ", "                           ", 
+                    RowBox[{
+                    "ButtonBox", "[", "\n", "  ", 
+                    "                             ", 
+                    RowBox[{
+                    RowBox[{"ToBoxes", "@", 
+                    RowBox[{"StringReplace", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"\"\<-\>\"", "->", "\"\<. \>\""}], ",", " ", 
+                    "2"}], "]"}]}], ",", " ", "\n", 
+                    "                               ", 
+                    RowBox[{"ButtonData", "->", "#"}], ",", "\n", 
+                    "                               ", 
+                    RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarSection\>\"", "}"}]}]}], "\n",
+                     "  ", "                             ", "]"}], "\n", "  ",
+                     "                           ", "}"}], "&"}], ",", "\n", 
+                    "  ", "                         ", "#2"}], "\n", "  ", 
+                    "                         ", "]"}]}], ",", " ", "\n", 
+                    "  ", "                      ", 
+                    RowBox[{"BaseStyle", "->", 
+                    RowBox[{"{", "\"\<BookNavBarOpener\>\"", "}"}]}]}], "\n", 
+                    "  ", "                      ", "]"}]}]}], "\n", "  ", 
+                    "                  ", "}"}], ",", "\n", "  ", 
+                    "                ", 
+                    RowBox[{
+                    "FEPrivate`SameQ", "[", "\n", "  ", "                  ", 
+                    
+                    RowBox[{
+                    RowBox[{
+                    "FrontEnd`CurrentValue", "[", "\n", "  ", 
+                    "                    ", 
+                    RowBox[{
+                    RowBox[{"FrontEnd`EvaluationNotebook", "[", "]"}], ",", 
+                    " ", "\n", "  ", "                    ", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "TaggingRules", ",", " ", "\"\<ChapterOpeners\>\"", ",", 
+                    " ", "#"}], "}"}], ",", " ", "\n", 
+                    "                      ", "False"}], "\n", "  ", 
+                    "                    ", "]"}], ",", "\n", 
+                    "                    ", "True"}], "\n", 
+                    "                    ", "]"}]}], "\n", 
+                    "                  ", "]"}], "\n", "                ", 
+                   "}"}], "&"}], ",", "\n", "              ", 
+                 RowBox[{"CurrentValue", "[", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    "TaggingRules", ",", " ", "\"\<ChapterSectionData\>\""}], 
+                    "}"}], ",", "\[IndentingNewLine]", 
+                   RowBox[{"<|", "|>"}]}], "\[IndentingNewLine]", "]"}]}], 
+                "\n", "              ", "]"}]}]}], ",", "\n", "            ", 
+             
+             RowBox[{"BaseStyle", "->", 
+              RowBox[{"{", "\"\<BookNavBar\>\"", "}"}]}]}], "\n", 
+            "            ", "]"}], ",", "\n", "          ", 
+           RowBox[{"BaseStyle", "->", 
+            RowBox[{"{", "\"\<BookNavBar\>\"", "}"}]}]}], "\n", "          ", 
+          "]"}], ",", "\n", "        ", 
+         RowBox[{"BaseStyle", "->", 
+          RowBox[{"{", "\"\<BookNavBar\>\"", "}"}]}]}], "\n", "        ", 
+        "]"}]}], ",", "\n", "    ", "\"\<DockedCell\>\""}], "\n", "    ", 
+     "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7651667514728603`*^9, 3.765166878663187*^9}, {
+  3.765167924502397*^9, 
+  3.765167941204885*^9}},ExpressionUUID->"18d37e16-5302-46b3-8281-\
+ea74a95384fe"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["attachCellThing", "Subsubsection",
+ CellChangeTimes->{{3.765166884371839*^9, 3.765166886898788*^9}, {
+  3.765167071913004*^9, 
+  3.7651670724236727`*^9}},ExpressionUUID->"bf535489-427a-4057-b43c-\
+8a51b78224e9"],
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", "\[IndentingNewLine]", 
+  RowBox[{"attachedCell", ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Hold", "[", "a_", "]"}], ":>", "\[IndentingNewLine]", 
+    RowBox[{"StyleSheetEdit", "[", 
+     RowBox[{"\"\<Notebook\>\"", ",", "\[IndentingNewLine]", 
+      RowBox[{"NotebookDynamicExpression", ":>", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Head", "[", 
+           RowBox[{"Quiet", "@", 
+            RowBox[{"NotebookRead", "[", 
+             RowBox[{"BookReader`Private`$$sidebars", "[", 
+              RowBox[{
+               RowBox[{"EvaluationNotebook", "[", "]"}], "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "]"}], "=!=", 
+          "Cell"}], ",", "\n", "        ", 
+         RowBox[{
+          RowBox[{"BookReader`Private`$$sidebars", "[", 
+           RowBox[{
+            RowBox[{"EvaluationNotebook", "[", "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "=", "\n", "          ", 
+          RowBox[{"FrontEndExecute", "@", "\n", "            ", 
+           RowBox[{"FrontEnd`AttachCell", "[", "\n", "              ", 
+            RowBox[{
+             RowBox[{"EvaluationNotebook", "[", "]"}], ",", "\n", 
+             "              ", "a", ",", "\n", "              ", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"Left", ",", " ", "Top"}], "}"}]}], "}"}], ",", "\n", 
+             "              ", 
+             RowBox[{"{", 
+              RowBox[{"Left", ",", " ", "Top"}], "}"}], ",", "\n", 
+             "              ", 
+             RowBox[{"\"\<ClosingActions\>\"", "->", 
+              RowBox[{"{", "}"}]}]}], "\n", "              ", "]"}]}]}]}], 
+        "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.765166950033867*^9, 3.765166987082471*^9}, {
+  3.765167039052493*^9, 3.76516704315368*^9}},
+ CellLabel->
+  "In[209]:=",ExpressionUUID->"a2ae51da-a770-4891-a0be-799434704874"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Basic Edits", "Subsubsection",
+ CellChangeTimes->{{3.765168640574325*^9, 
+  3.7651686428701143`*^9}},ExpressionUUID->"f276bdf2-e97a-4500-8e48-\
+556dec6d8e19"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Notebook\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"PrintingOptions", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"\"\<FirstPageFooter\>\"", "\[Rule]", "True"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<FirstPageHeader\>\"", "\[Rule]", "False"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<RestPagesFooter\>\"", "\[Rule]", "True"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<RestPagesHeader\>\"", "\[Rule]", "False"}]}], 
+       "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PageFooters", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"None", ",", " ", 
+          RowBox[{"Cell", "[", 
+           RowBox[{
+            RowBox[{"TextData", "[", 
+             RowBox[{"{", 
+              RowBox[{"CounterBox", "[", "\"\<Page\>\"", "]"}], "}"}], "]"}], 
+            ",", "\"\<PageNumber\>\""}], "]"}], ",", " ", "None"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"None", ",", " ", 
+          RowBox[{"Cell", "[", 
+           RowBox[{
+            RowBox[{"TextData", "[", 
+             RowBox[{"{", 
+              RowBox[{"CounterBox", "[", "\"\<Page\>\"", "]"}], "}"}], "]"}], 
+            ",", "\"\<PageNumber\>\""}], "]"}], ",", " ", "None"}], "}"}]}], 
+       "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PageHeaders", "\[Rule]", "None"}]}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.765168620866294*^9, 3.765168637614769*^9}},
+ CellLabel->
+  "In[217]:=",ExpressionUUID->"e2d58438-c52f-4cc5-bed6-8c1b7274fe7c"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["DockedCell", "Subsection",
+ CellChangeTimes->{
+  3.7651677349840403`*^9},ExpressionUUID->"56f84856-7eca-4033-8952-\
+960457372c3e"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["DockedCell"],
+ CellFrame->{{0, 0}, {0, 0}},
+ CellMargins->0,
+ CellFrameMargins->{{-1, -10}, {-1, -1}},
+ CellFrameStyle->GrayLevel[
+  0],ExpressionUUID->"44a0e11a-1607-4ed2-897e-7534bc3c914b"],
+
+Cell[BoxData[
+ RowBox[{"SetOptions", "[", 
+  RowBox[{"\"\<DockedCell\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"CellSize", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"150", ",", " ", "Automatic"}], "}"}]}]}], "\[IndentingNewLine]",
+   "]"}]], "Input",
+ CellChangeTimes->{{3.765167942075357*^9, 3.765167956016519*^9}, {
+  3.765168013187361*^9, 3.765168013568717*^9}},
+ CellLabel->
+  "In[212]:=",ExpressionUUID->"2c530501-7c58-4934-a5d0-b34fa438985b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["CellInsertionPointCell", "Subsection",
+ CellChangeTimes->{{3.765167805846092*^9, 
+  3.765167809540114*^9}},ExpressionUUID->"cc2baff8-4fc9-4741-8baa-\
+01b07f240340"],
+
+Cell[StyleData["CellInsertionPointCell"],
+ CellMargins->{{167, 0}, {0, 
+  0}},ExpressionUUID->"1ac49477-089a-43d1-9c4a-110df4dbb5cc"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Hyperlink", "Subsection",
+ CellChangeTimes->{{3.765167815539412*^9, 
+  3.76516781748409*^9}},ExpressionUUID->"52e13d49-deda-43de-8114-\
+d2fc2e5317a5"],
+
+Cell[StyleData["Hyperlink"],
+ FontFamily->FrontEnd`CurrentValue[
+   FrontEnd`EvaluationNotebook[], {StyleDefinitions, "Text", FontFamily}],
+ ButtonBoxOptions->{ButtonFunction:>(If[
+   StringQ[
+    Part[#, 1]], 
+   SelectionMove[
+    First[
+     Cells[
+      EvaluationNotebook[], CellTags -> StringReplace[
+        Part[#, 1], Whitespace -> "-"]]], After, Cell], 
+   SystemOpen[
+    Part[#, 1]]]& ),
+ Evaluator->Automatic},ExpressionUUID->"02cf6faf-ecb3-4219-bab6-a795c8bc6d8c"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BookNav", "Subsection",
+ CellChangeTimes->{{3.765167820006206*^9, 
+  3.765167823379345*^9}},ExpressionUUID->"53c9cc58-7f58-4a27-ba92-\
+35999a40a423"],
+
+Cell[CellGroupData[{
+
+Cell["BookNavBar", "Subsubsection",
+ CellChangeTimes->{{3.765167825403303*^9, 3.765167827619739*^9}, {
+  3.76516789668983*^9, 
+  3.765167896897821*^9}},ExpressionUUID->"2555607b-997f-4c7a-8777-\
+17177918a19b"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["BookNavBar", StyleDefinitions -> StyleData["Text"]],
+ LineBreakWithin->False,
+ Magnification->1,
+ ButtonBoxOptions->{Alignment->Left,
+ Appearance->{"Default" -> Image[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAKiNmAmAWI/0MBiInEBYPz58+jYJgaEPvbt29gjC7+9etXMKZU/MuXL2BM
+rPinT5/AGF388+fPYEysOC5zcIl//PgRjIkV//DhAxgTK/7+/Xswprf4u3fv
+wJiQOLZ0ggzQ0xUAbDTDgg==
+     "], "Byte", ColorSpace -> "RGB", 
+     ImageSize -> {6., 26.}, Interleaving -> True], "Hover" -> 
+   Image[CompressedData["
+1:eJzt2L0OgjAQB/BGHRx9BF18BldHV4wPABGJCyZgYnzVvkdpgQFb4yWAxkg4
+6ZH0kj8NX8evHTqwCi7eacIYS+f64Pm3bZL49/1Cnxzi9BzF4XEXX8MoTDbB
+VF9c6qx1Zuytqh8zSHHOK0qB+ZdlSSrgKoqCVJyLhivP82cwXNDLVj65bJva
+ca5xupRSzmXRZfphRErZ8NVdWN9wrmFcdR+4bJraLjNScbV9zjVuV5ZlqC4z
+T4wIIRourL59Y9bLjNRcECwXzLPL/W/vgMs806c3VRf2XkFtn4C8XFT/mzBY
+tw75ez0AOiy/6A==
+     "], "Byte", ColorSpace -> "RGB", 
+     ImageSize -> {38., 32.}, Interleaving -> True], "Pressed" -> 
+   Image[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAKiNmAmAWI/0MBiInEBYPz58+jYJgaEPvbt29gjC7+9etXMKZU/MuXL2BM
+rPinT5/AGF388+fPYEysOC5zcIl//PgRjIkV//DhAxgTK/7+/Xswprf4u3fv
+wJiQOLZ0ggzQ0xUAbDTDgg==
+     "], "Byte", ColorSpace -> "RGB", 
+     ImageSize -> {6., 26.}, Interleaving -> True]},
+ ButtonFunction:>(Quiet[
+   SelectionMove[
+    First[
+     Cells[
+      EvaluationNotebook[], CellTags -> StringReplace[#, Whitespace -> "-"]]],
+     After, Cell]]& ),
+ Evaluator->Automatic,
+ ImageSize->{Inherited, 50},
+ Tooltip->None},
+ PanelBoxOptions->{Appearance->{"Default" -> Image[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBAkBOaF5xZnpeaopnXklqemqRRRIz
+UFAKiNmAmAWI/0MBiInEBYPz58+jYJgaEPvbt29gjC7+9etXMKZU/MuXL2BM
+rPinT5/AGF388+fPYEysOC5zcIl//PgRjIkV//DhAxgTK/7+/Xswprf4u3fv
+wJiQOLZ0ggzQ0xUAbDTDgg==
+     "], "Byte", ColorSpace -> "RGB", 
+     ImageSize -> {6., 26.}, Interleaving -> True]},
+ ImageSize->{150, 
+   FEPrivate`Part[
+    FrontEnd`AbsoluteCurrentValue[
+     FrontEnd`EvaluationNotebook[], WindowSize], 2]}},
+ PaneSelectorBoxOptions->{ImageMargins->{{0, 0}, {0, -1}},
+ ImageSize->{150, Automatic}},
+ GridBoxOptions->{GridBoxSpacings->{"Columns" -> {
+     Offset[0.27999999999999997`], {
+      Offset[0.5599999999999999]}, 
+     Offset[0.27999999999999997`]}, "Rows" -> {
+     Offset[0.2], {
+      Offset[0.]}, 
+     Offset[0.2]}}},ExpressionUUID->"0d4592b4-c4db-4826-ac96-1343baf90edf"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<BookNavBar\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"PaneSelectorBoxOptions", "\[Rule]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"150", ",", " ", "Automatic"}], "}"}]}], ",", 
+       "\[IndentingNewLine]", " ", 
+       RowBox[{"ImageMargins", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", 
+            RowBox[{"-", "1"}]}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+      "}"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.765167966314701*^9, 3.765167987392902*^9}},
+ CellLabel->
+  "In[211]:=",ExpressionUUID->"148064ea-bea4-4bed-a546-1e0c8020824a"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BookNavBarChapter", "Subsubsection",
+ CellChangeTimes->{{3.765167831755105*^9, 
+  3.765167834898815*^9}},ExpressionUUID->"d6045f0f-c4bf-48b8-9466-\
+77910e4bcdcd"],
+
+Cell[StyleData["BookNavBarChapter", StyleDefinitions -> StyleData[
+ "BookNavBar"]],
+ FontSize->18,
+ Magnification->1,
+ FontColor->Hue[0, 0.5, 0.5],
+ ButtonBoxOptions->{FrameMargins->{{5, 0}, {0, 0}},
+ ImageSize->{150, 35}},ExpressionUUID->"3f8f6b14-d7b8-4581-9064-af4bc9d6a961"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BookNavBarChapterOpener", "Subsubsection",
+ CellChangeTimes->{{3.765167837491078*^9, 
+  3.765167842819686*^9}},ExpressionUUID->"6592cbf0-c657-4908-9a3e-\
+abb171f0b551"],
+
+Cell[StyleData["BookNavBarChapterOpener", StyleDefinitions -> StyleData[
+ "BookNavBarChapter"]],
+ ButtonBoxOptions->{ButtonFunction:>((CurrentValue[
+    EvaluationNotebook[], {TaggingRules, "ChapterOpeners", #}] = Not[
+    TrueQ[
+     CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ChapterOpeners", #}, 
+      False]]])& )},ExpressionUUID->"b324ccb5-97ca-4305-9e63-3b0bcc75b3de"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BookNavBarSection", "Subsubsection",
+ CellChangeTimes->{{3.7651678453548183`*^9, 
+  3.7651678488993807`*^9}},ExpressionUUID->"489b6008-38f6-41dd-8572-\
+39a2a21b7e42"],
+
+Cell[StyleData["BookNavBarSection", StyleDefinitions -> StyleData[
+ "BookNavBar"]],
+ FontSize->14,
+ Magnification->1,
+ FontColor->GrayLevel[0.3],
+ ButtonBoxOptions->{FrameMargins->{{15, 0}, {0, 0}},
+ ImageSize->{150, 25}},ExpressionUUID->"4ec8385e-575d-46b5-9465-b9846040f0dc"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BookNavBarOpener", "Subsubsection",
+ CellChangeTimes->{{3.765167850938834*^9, 
+  3.765167854577845*^9}},ExpressionUUID->"5da564fd-4d2d-4cc6-a31a-\
+6bf56c3f22bf"],
+
+Cell[StyleData["BookNavBarOpener", StyleDefinitions -> StyleData["BookNavBar"]
+ ],
+ TemplateBoxOptions->{
+ DisplayFunction->(PaneSelectorBox[{False -> RowBox[{#2}], True -> GridBox[{
+       SlotSequence[2]}, BaseStyle -> {"BookNavBarOpener"}]}, 
+   FEPrivate`SameQ[
+    FrontEnd`CurrentValue[
+     FrontEnd`EvaluationNotebook[], {TaggingRules, "ChapterOpeners", #}, 
+     False], True]]& \
+)},ExpressionUUID->"081733b2-d044-40b3-8285-bb4664a5b105"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cell Styling", "Section",
+ CellChangeTimes->{{3.765204856013219*^9, 
+  3.765204857957423*^9}},ExpressionUUID->"8e9e0901-c184-4888-984f-\
+4454af671396"],
+
+Cell[CellGroupData[{
+
+Cell["$cellStyling", "Subsubsection",ExpressionUUID->"c1d9608b-3f03-45e5-b117-ba28c2b0ea7b"],
+
+Cell[BoxData[
+ RowBox[{"$cellStyling", "=", "\n", "  ", 
+  RowBox[{"<|", "\n", "    ", 
+   RowBox[{
+    RowBox[{"\"\<Title\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{
+       RowBox[{"FontColor", "->", 
+        RowBox[{"Hue", "[", 
+         RowBox[{"0", ",", " ", ".5", ",", " ", ".5"}], "]"}]}], ",", "\n", 
+       "      ", 
+       RowBox[{"TextAlignment", "->", "Center"}], ",", "\n", "      ", 
+       RowBox[{"ShowCellBracket", "->", "False"}]}], "\n", "      ", "|>"}]}],
+     ",", "\n", "    ", 
+    RowBox[{"\"\<Subtitle\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{
+       RowBox[{"FontColor", "->", "Black"}], ",", "\n", "      ", 
+       RowBox[{"TextAlignment", "->", "Center"}], ",", "\n", "      ", 
+       RowBox[{"ShowCellBracket", "->", "False"}]}], "\n", "      ", "|>"}]}],
+     ",", "\n", "    ", 
+    RowBox[{"\"\<Chapter\>\"", "\[Rule]", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{"PageBreakAbove", "->", "True"}], "\n", "      ", "|>"}]}], ",",
+     "\n", "    ", 
+    RowBox[{"\"\<Section\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{
+       RowBox[{"FontColor", "->", "Black"}], ",", "\n", "      ", 
+       RowBox[{"CellFrame", "->", "None"}]}], "\n", "      ", "|>"}]}], ",", 
+    "\n", "    ", 
+    RowBox[{"\"\<Subsection\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{"FontColor", "->", 
+       RowBox[{"GrayLevel", "[", ".2", "]"}]}], "\n", "      ", "|>"}]}], ",",
+     "\n", "    ", 
+    RowBox[{"\"\<Subsubsection\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{"FontColor", "->", 
+       RowBox[{"GrayLevel", "[", ".3", "]"}]}], "\n", "      ", "|>"}]}], ",",
+     "\n", "    ", 
+    RowBox[{"\"\<Item\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{"CellDingbat", "->", "\"\<\[FilledSmallCircle]\>\""}], "\n", 
+      "      ", "|>"}]}], ",", "\n", "    ", 
+    RowBox[{"\"\<Subitem\>\"", "->", 
+     RowBox[{"<|", "\n", "      ", 
+      RowBox[{"CellDingbat", "->", "\"\<\[FilledSmallCircle]\>\""}], "\n", 
+      "      ", "|>"}]}]}], "\n", "    ", "|>"}]}]], "Code",
+ CellChangeTimes->{{3.765204861261866*^9, 
+  3.765204876893765*^9}},ExpressionUUID->"6a144a60-adc5-494e-8bad-\
+efd9e7f12bdd"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Basic Styles", "Section",
+ CellChangeTimes->{{3.765168092822356*^9, 
+  3.765168094454834*^9}},ExpressionUUID->"b5b5d0dc-37dc-465e-8c3d-\
+1cf998b60f01"],
+
+Cell[CellGroupData[{
+
+Cell["Shifted by npx", "Subsection",
+ CellChangeTimes->{{3.765167868018461*^9, 3.765167880107108*^9}, {
+  3.7651680528388042`*^9, 
+  3.765168053335595*^9}},ExpressionUUID->"fce6de87-a788-4564-acc4-\
+c7fc322b33c7"],
+
+Cell[StyleData["Title"],
+ ShowCellBracket->False,
+ CellMargins->{{177, Inherited}, {10, 30}},
+ TextAlignment->Center,
+ FontColor->Hue[
+  0, 0.5, 0.5],ExpressionUUID->"5ad64282-5383-4df2-8101-5d81a602b9f8"],
+
+Cell[StyleData["Chapter"],
+ CellMargins->{{177, Inherited}, {10, 15}},
+ PageBreakAbove->True,ExpressionUUID->"de4d482d-4a22-45b3-b0cc-7bf4059d4438"],
+
+Cell[StyleData["Subchapter"],
+ CellMargins->{{213, Inherited}, {8, 
+   20}},ExpressionUUID->"6822f35c-24bd-46a5-897a-3129b6442d7b"],
+
+Cell[StyleData["Section"],
+ CellFrame->None,
+ CellMargins->{{177, Inherited}, {8, 18}},
+ FontColor->GrayLevel[
+  0],ExpressionUUID->"a74bef48-0c56-4bf3-a4c9-19de5b8e3d75"],
+
+Cell[StyleData["Subsection"],
+ CellMargins->{{200.34765625, 3.}, {8., 20.}},
+ FontColor->GrayLevel[
+  0.2],ExpressionUUID->"cb631277-0d1b-43fa-b34b-6d8c4b37ed6c"],
+
+Cell[StyleData["Subsubsection"],
+ CellMargins->{{216, Inherited}, {8, 12}},
+ FontColor->GrayLevel[
+  0.3],ExpressionUUID->"d9336bb0-a808-4b17-9888-6b3dbbc6c567"],
+
+Cell[StyleData["Subsubsubsection"],
+ CellMargins->{{216, Inherited}, {2, 
+   10}},ExpressionUUID->"6e154669-df56-432c-bb44-0cb35a69ebab"],
+
+Cell[StyleData["Subsubsubsubsection"],
+ CellMargins->{{216, Inherited}, {2, 
+   10}},ExpressionUUID->"b29b0098-a39c-4149-b99c-1210d4095463"],
+
+Cell[StyleData["Text"],
+ CellMargins->{{216, 10}, {7, 
+  8}},ExpressionUUID->"fdcdf6eb-55a4-4509-8ff7-f9dc5b6c9525"],
+
+Cell[StyleData["Item"],
+ CellDingbat->"\[FilledSmallCircle]",
+ CellMargins->{{231, 10}, {4, 
+  8}},ExpressionUUID->"63b05e1c-0ac2-4c85-802e-ab04a87f0e46"],
+
+Cell[StyleData["ItemParagraph"],
+ CellMargins->{{231, 10}, {4, 
+  1}},ExpressionUUID->"a5848159-610e-4341-bc77-52072d96fb46"],
+
+Cell[StyleData["Subitem"],
+ CellDingbat->"\[FilledSmallCircle]",
+ CellMargins->{{255, 12}, {4, 
+  4}},ExpressionUUID->"56e38433-6090-4baa-8670-9edcc556cc49"],
+
+Cell[StyleData["SubitemParagraph"],
+ CellMargins->{{255, 12}, {4, 
+  1}},ExpressionUUID->"e1d5dcdb-8a97-44ad-8534-562c68ea921a"],
+
+Cell[StyleData["Input"],
+ CellMargins->{{216, 10}, {5, 
+  8}},ExpressionUUID->"9600fe65-1aef-466b-a1b3-6c7d7b6fb51f"],
+
+Cell[StyleData["Code"],
+ CellMargins->{{216, 10}, {10, 
+  10}},ExpressionUUID->"b8755084-e3b3-4e6c-a647-fe84293b466a"],
+
+Cell[StyleData["Output"],
+ CellMargins->{{216, 10}, {12, 
+  5}},ExpressionUUID->"c478d592-b075-415a-a3f4-7f6003203410"],
+
+Cell[StyleData["Echo"],
+ CellMargins->{{216, Inherited}, {
+   Inherited, 
+    Inherited}},ExpressionUUID->"5235bd1b-e13c-4704-aad4-528fa9599ac9"],
+
+Cell[StyleData["Print"],
+ CellMargins->{{216, Inherited}, {
+   Inherited, 
+    Inherited}},ExpressionUUID->"96baa757-1ae5-4a05-804e-c2069a10e58d"],
+
+Cell[StyleData["Msg"],
+ CellMargins->{{157, 3}, {4, 
+  4}},ExpressionUUID->"912ce7bc-8fb2-4273-932e-f87d5e107673"],
+
+Cell[StyleData["DisplayFormula"],
+ CellMargins->{{216, Inherited}, {
+   Inherited, 
+    Inherited}},ExpressionUUID->"24626cbf-3597-49fc-8216-8d362e4c5f44"],
+
+Cell[StyleData["DisplayFormulaNumbered"],
+ CellMargins->{{216, Inherited}, {
+   Inherited, 
+    Inherited}},ExpressionUUID->"b278d347-49a0-4398-9d81-3c5a372c3e47"],
+
+Cell[StyleData["ItemNumbered"],
+ CellMargins->{{231, 10}, {4, 
+  8}},ExpressionUUID->"ccede211-7a35-4dd4-b481-252f8d0cc602"],
+
+Cell[StyleData["SubitemNumbered"],
+ CellMargins->{{255, 12}, {4, 
+  4}},ExpressionUUID->"f685ff1a-2e3f-4e61-9871-c36c1c22186b"],
+
+Cell[StyleData["Program"],
+ CellMargins->{{216, 10}, {8, 
+  8}},ExpressionUUID->"7afae7a6-438f-48a2-bd11-9a6a5d2080c3"],
+
+Cell[StyleData["Subtitle"],
+ ShowCellBracket->False,
+ CellMargins->{{177, Inherited}, {20, 2}},
+ TextAlignment->Center,
+ FontColor->GrayLevel[
+  0],ExpressionUUID->"0f93749b-6297-4ded-b018-7b81f9de002d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Delimiter", "Subsection",
+ CellChangeTimes->{{3.765168098270871*^9, 
+  3.765168099510806*^9}},ExpressionUUID->"5e852aee-40fe-4f59-bb79-\
+2e13f757bd4f"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Delimiter\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.76516810094302*^9, 3.7651681064149427`*^9}},
+ CellLabel->
+  "In[213]:=",ExpressionUUID->"0c6eb410-80e8-4fa4-9eab-913db1e34faf"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Delimiter"],
+ CellFrame->{{0, 0}, {0, 1}},
+ CellMargins->{{165, 15}, {0, 0}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameStyle->GrayLevel[0.5],
+ CellSize->{
+  Automatic, 1},ExpressionUUID->"c31b0654-dedc-4328-ba42-0979c12c8bbd"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Delimiter\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CellFrame", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "1"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellFrameStyle", "\[Rule]", "Gray"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellMargins", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"165", ",", " ", "15"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"CellElementSpacings", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{"\"\<CellMinHeight\>\"", "\[Rule]", "1"}], 
+       "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"CellSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", " ", "1"}], "}"}]}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7651681093134413`*^9, 3.765168174951693*^9}},
+ CellLabel->
+  "In[214]:=",ExpressionUUID->"1236f794-ae9d-48b6-8656-e3251ed07ded"],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", 
+  RowBox[{"\"\<PageBreak\>\"", "->", "\"\<Delimiter\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.76516810094302*^9, 3.7651681064149427`*^9}, {
+  3.7651682033189373`*^9, 3.7651682056690807`*^9}},
+ CellLabel->
+  "In[215]:=",ExpressionUUID->"0212ef0f-da2f-4035-9830-fde65f44cd8c"]
+}, Open  ]],
+
+Cell[StyleData["PageBreak", StyleDefinitions -> StyleData["Delimiter"]],ExpressionUUID->"4f6770fa-40eb-4a44-af64-1d63db984255"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Printing Styles", "Section",
+ CellChangeTimes->{{3.765168740371841*^9, 
+  3.76516874358027*^9}},ExpressionUUID->"3f6f3760-1f81-4dd1-83f0-\
+65bfac0a7204"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Delimiter/Printout\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.765168758126719*^9, 3.765168760587516*^9}},
+ CellLabel->
+  "In[219]:=",ExpressionUUID->"e0ff4b0d-b8b5-42a9-97dc-f8d3136c9942"],
+
+Cell[StyleData["Delimiter", "Printout"],
+ CellMargins->{{15, 15}, {0, 
+  0}},ExpressionUUID->"ee10315b-1f5e-45fd-8a55-0e12e5af3d01"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Delimiter/Printout\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellMargins", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"15", ",", " ", "15"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", " ", "0"}], "}"}]}], "}"}]}], "\[IndentingNewLine]",
+     "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.765168713973695*^9, 3.765168751495503*^9}},
+ CellLabel->
+  "In[220]:=",ExpressionUUID->"d27975c4-5c0d-4309-820e-33916a45432a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Itemsss/Printout\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.765168815782564*^9, 3.765168820795232*^9}, {
+  3.765168914723518*^9, 
+  3.765168916153812*^9}},ExpressionUUID->"103f4f06-1d10-4541-9fd9-\
+e33a3ff7a4e0"],
+
+Cell[StyleData["Item", "Printout"],
+ CellDingbat->
+  "\[FilledSmallCircle]",ExpressionUUID->"84fc8c82-783b-4ea4-a795-\
+e68e0d6f18c6"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Itemsss/Printout\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellDingbat", "\[Rule]", "\"\<\[FilledSmallCircle]\>\""}], 
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.7651688283183413`*^9, 3.765168834987968*^9}, {
+  3.7651688672765827`*^9, 3.765168872425748*^9}, {3.765168903878043*^9, 
+  3.765168920769753*^9}},
+ CellLabel->
+  "In[228]:=",ExpressionUUID->"7a226bd0-ec9f-4bca-b838-d68e134eb6e8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StyleSheetNew", "[", "\"\<Subitem/Printout\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.765168850786166*^9, 3.76516885121882*^9}},
+ CellLabel->
+  "In[225]:=",ExpressionUUID->"ca73dc77-6fb9-4f06-9440-2ea50e286df2"],
+
+Cell[StyleData["Subitem", "Printout"],
+ CellDingbat->
+  "\[EmptySmallCircle]",ExpressionUUID->"24b4a792-c885-4ff4-aab8-\
+cb454384000d"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"StyleSheetEdit", "[", 
+  RowBox[{"\"\<Subitem/Printout\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"CellDingbat", "\[Rule]", "\"\<\[EmptySmallCircle]\>\""}], 
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.76516885472482*^9, 3.765168894017797*^9}, {
+  3.765168945393405*^9, 3.765168958963278*^9}},
+ CellLabel->
+  "In[229]:=",ExpressionUUID->"1d3c3829-7374-4c7c-9720-57c87b1b5602"]
+}, Closed]]
+},
+Saveable->True,
+WindowSize->{808, 755},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"PrivateStylesheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 104, 0, 36, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"aecf22cc-eddb-48b7-93a3-64c6454b54ed"],
+Cell[CellGroupData[{
+Cell[687, 24, 156, 3, 45, "Subsection",ExpressionUUID->"44f26137-7428-4b93-9262-eef375f8427a"],
+Cell[846, 29, 45863, 892, 36, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"e8233f2b-e58b-4101-ae5b-37a5527f3a51"],
+Cell[CellGroupData[{
+Cell[46734, 925, 188, 3, 44, "Subsubsection",ExpressionUUID->"c82f3ee6-ec35-41d2-9d28-5bd84995b36d"],
+Cell[46925, 930, 9134, 172, 1774, "Input",ExpressionUUID->"18d37e16-5302-46b3-8281-ea74a95384fe"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[56096, 1107, 217, 4, 28, "Subsubsection",ExpressionUUID->"bf535489-427a-4057-b43c-8a51b78224e9"],
+Cell[56316, 1113, 2107, 44, 430, "Input",ExpressionUUID->"a2ae51da-a770-4891-a0be-799434704874"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[58460, 1162, 164, 3, 28, "Subsubsection",ExpressionUUID->"f276bdf2-e97a-4500-8e48-556dec6d8e19"],
+Cell[58627, 1167, 1824, 41, 325, "Input",ExpressionUUID->"e2d58438-c52f-4cc5-bed6-8c1b7274fe7c"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[60500, 1214, 136, 3, 29, "Subsection",ExpressionUUID->"56f84856-7eca-4033-8952-960457372c3e"],
+Cell[CellGroupData[{
+Cell[60661, 1221, 207, 5, 26, 29, 0, "StyleData", "DockedCell", "All",ExpressionUUID->"44a0e11a-1607-4ed2-897e-7534bc3c914b"],
+Cell[60871, 1228, 453, 10, 73, "Input",ExpressionUUID->"2c530501-7c58-4934-a5d0-b34fa438985b"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[61373, 1244, 170, 3, 29, "Subsection",ExpressionUUID->"cc2baff8-4fc9-4741-8baa-01b07f240340"],
+Cell[61546, 1249, 133, 2, 28, 41, 0, "StyleData", "CellInsertionPointCell", "All",ExpressionUUID->"1ac49477-089a-43d1-9c4a-110df4dbb5cc"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[61716, 1256, 156, 3, 29, "Subsection",ExpressionUUID->"52e13d49-deda-43de-8114-d2fc2e5317a5"],
+Cell[61875, 1261, 478, 13, 36, 28, 0, "StyleData", "Hyperlink", "All",ExpressionUUID->"02cf6faf-ecb3-4219-bab6-a795c8bc6d8c"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[62390, 1279, 155, 3, 29, "Subsection",ExpressionUUID->"53c9cc58-7f58-4a27-ba92-35999a40a423"],
+Cell[CellGroupData[{
+Cell[62570, 1286, 209, 4, 44, "Subsubsection",ExpressionUUID->"2555607b-997f-4c7a-8777-17177918a19b"],
+Cell[CellGroupData[{
+Cell[62804, 1294, 2409, 55, 50, 68, 0, "StyleData", "BookNavBar", "All",ExpressionUUID->"0d4592b4-c4db-4826-ac96-1343baf90edf",
+ Magnification->1],
+Cell[65216, 1351, 981, 23, 199, "Input",ExpressionUUID->"148064ea-bea4-4bed-a546-1e0c8020824a"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[66246, 1380, 168, 3, 28, "Subsubsection",ExpressionUUID->"d6045f0f-c4bf-48b8-9466-77910e4bcdcd"],
+Cell[66417, 1385, 278, 6, 54, 83, 1, "StyleData", "BookNavBarChapter", "All",ExpressionUUID->"3f8f6b14-d7b8-4581-9064-af4bc9d6a961",
+ Magnification->1]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[66732, 1396, 174, 3, 28, "Subsubsection",ExpressionUUID->"6592cbf0-c657-4908-9a3e-abb171f0b551"],
+Cell[66909, 1401, 390, 7, 54, 96, 1, "StyleData", "BookNavBarChapterOpener", "All",ExpressionUUID->"b324ccb5-97ca-4305-9e63-3b0bcc75b3de"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[67336, 1413, 172, 3, 28, "Subsubsection",ExpressionUUID->"489b6008-38f6-41dd-8572-39a2a21b7e42"],
+Cell[67511, 1418, 277, 6, 49, 83, 1, "StyleData", "BookNavBarSection", "All",ExpressionUUID->"4ec8385e-575d-46b5-9465-b9846040f0dc",
+ Magnification->1]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[67825, 1429, 167, 3, 28, "Subsubsection",ExpressionUUID->"5da564fd-4d2d-4cc6-a31a-6bf56c3f22bf"],
+Cell[67995, 1434, 448, 9, 50, 82, 1, "StyleData", "BookNavBarOpener", "All",ExpressionUUID->"081733b2-d044-40b3-8285-bb4664a5b105"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68492, 1449, 157, 3, 49, "Section",ExpressionUUID->"8e9e0901-c184-4888-984f-4454af671396"],
+Cell[CellGroupData[{
+Cell[68674, 1456, 92, 0, 44, "Subsubsection",ExpressionUUID->"c1d9608b-3f03-45e5-b117-ba28c2b0ea7b"],
+Cell[68769, 1458, 2238, 51, 642, "Code",ExpressionUUID->"6a144a60-adc5-494e-8bad-efd9e7f12bdd"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71056, 1515, 157, 3, 49, "Section",ExpressionUUID->"b5b5d0dc-37dc-465e-8c3d-1cf998b60f01"],
+Cell[CellGroupData[{
+Cell[71238, 1522, 213, 4, 45, "Subsection",ExpressionUUID->"fce6de87-a788-4564-acc4-c7fc322b33c7"],
+Cell[71454, 1528, 205, 5, 113, 24, 0, "StyleData", "Title", "All",ExpressionUUID->"5ad64282-5383-4df2-8101-5d81a602b9f8"],
+Cell[71662, 1535, 148, 2, 84, 26, 0, "StyleData", "Chapter", "All",ExpressionUUID->"de4d482d-4a22-45b3-b0cc-7bf4059d4438"],
+Cell[71813, 1539, 131, 2, 63, 29, 0, "StyleData", "Subchapter", "All",ExpressionUUID->"6822f35c-24bd-46a5-897a-3129b6442d7b"],
+Cell[71947, 1543, 171, 4, 63, 26, 0, "StyleData", "Section", "All",ExpressionUUID->"a74bef48-0c56-4bf3-a4c9-19de5b8e3d75"],
+Cell[72121, 1549, 162, 3, 53, 29, 0, "StyleData", "Subsection", "All",ExpressionUUID->"cb631277-0d1b-43fa-b34b-6d8c4b37ed6c"],
+Cell[72286, 1554, 161, 3, 52, 32, 0, "StyleData", "Subsubsection", "All",ExpressionUUID->"d9336bb0-a808-4b17-9888-6b3dbbc6c567"],
+Cell[72450, 1559, 137, 2, 41, 35, 0, "StyleData", "Subsubsubsection", "All",ExpressionUUID->"6e154669-df56-432c-bb44-0cb35a69ebab"],
+Cell[72590, 1563, 140, 2, 40, 38, 0, "StyleData", "Subsubsubsubsection", "All",ExpressionUUID->"b29b0098-a39c-4149-b99c-1210d4095463"],
+Cell[72733, 1567, 116, 2, 46, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"fdcdf6eb-55a4-4509-8ff7-f9dc5b6c9525"],
+Cell[72852, 1571, 154, 3, 47, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"63b05e1c-0ac2-4c85-802e-ab04a87f0e46"],
+Cell[73009, 1576, 125, 2, 40, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"a5848159-610e-4341-bc77-52072d96fb46"],
+Cell[73137, 1580, 157, 3, 42, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"56e38433-6090-4baa-8670-9edcc556cc49"],
+Cell[73297, 1585, 128, 2, 39, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"e1d5dcdb-8a97-44ad-8534-562c68ea921a"],
+Cell[73428, 1589, 117, 2, 42, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"9600fe65-1aef-466b-a1b3-6c7d7b6fb51f"],
+Cell[73548, 1593, 118, 2, 64, 23, 0, "StyleData", "Code", "All",ExpressionUUID->"b8755084-e3b3-4e6c-a647-fe84293b466a"],
+Cell[73669, 1597, 119, 2, 46, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"c478d592-b075-415a-a3f4-7f6003203410"],
+Cell[73791, 1601, 145, 3, 36, 23, 0, "StyleData", "Echo", "All",ExpressionUUID->"5235bd1b-e13c-4704-aad4-528fa9599ac9"],
+Cell[73939, 1606, 146, 3, 36, 24, 0, "StyleData", "Print", "All",ExpressionUUID->"96baa757-1ae5-4a05-804e-c2069a10e58d"],
+Cell[74088, 1611, 114, 2, 36, 22, 0, "StyleData", "Msg", "All",ExpressionUUID->"912ce7bc-8fb2-4273-932e-f87d5e107673"],
+Cell[74205, 1615, 155, 3, 42, 33, 0, "StyleData", "DisplayFormula", "All",ExpressionUUID->"24626cbf-3597-49fc-8216-8d362e4c5f44"],
+Cell[74363, 1620, 163, 3, 42, 41, 0, "StyleData", "DisplayFormulaNumbered", "All",ExpressionUUID->"b278d347-49a0-4398-9d81-3c5a372c3e47"],
+Cell[74529, 1625, 124, 2, 47, 31, 0, "StyleData", "ItemNumbered", "All",ExpressionUUID->"ccede211-7a35-4dd4-b481-252f8d0cc602"],
+Cell[74656, 1629, 127, 2, 42, 34, 0, "StyleData", "SubitemNumbered", "All",ExpressionUUID->"f685ff1a-2e3f-4e61-9871-c36c1c22186b"],
+Cell[74786, 1633, 119, 2, 65, 26, 0, "StyleData", "Program", "All",ExpressionUUID->"7afae7a6-438f-48a2-bd11-9a6a5d2080c3"],
+Cell[74908, 1637, 203, 5, 68, 27, 0, "StyleData", "Subtitle", "All",ExpressionUUID->"0f93749b-6297-4ded-b018-7b81f9de002d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75148, 1647, 157, 3, 29, "Subsection",ExpressionUUID->"5e852aee-40fe-4f59-bb79-2e13f757bd4f"],
+Cell[75308, 1652, 232, 4, 30, "Input",ExpressionUUID->"0c6eb410-80e8-4fa4-9eab-913db1e34faf"],
+Cell[CellGroupData[{
+Cell[75565, 1660, 255, 6, 10, 28, 0, "StyleData", "Delimiter", "All",ExpressionUUID->"c31b0654-dedc-4328-ba42-0979c12c8bbd"],
+Cell[75823, 1668, 1344, 33, 241, "Input",ExpressionUUID->"1236f794-ae9d-48b6-8656-e3251ed07ded"],
+Cell[77170, 1703, 325, 6, 30, "Input",ExpressionUUID->"0212ef0f-da2f-4035-9830-fde65f44cd8c"]
+}, Open  ]],
+Cell[77510, 1712, 127, 0, 10, 72, 0, "StyleData", "PageBreak", "All",ExpressionUUID->"4f6770fa-40eb-4a44-af64-1d63db984255"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77686, 1718, 159, 3, 49, "Section",ExpressionUUID->"3f6f3760-1f81-4dd1-83f0-65bfac0a7204"],
+Cell[CellGroupData[{
+Cell[77870, 1725, 240, 4, 30, "Input",ExpressionUUID->"e0ff4b0d-b8b5-42a9-97dc-f8d3136c9942"],
+Cell[78113, 1731, 132, 2, 28, 40, 0, "StyleData", "Delimiter", "Printout",ExpressionUUID->"ee10315b-1f5e-45fd-8a55-0e12e5af3d01"]
+}, Open  ]],
+Cell[78260, 1736, 610, 14, 115, "Input",ExpressionUUID->"d27975c4-5c0d-4309-820e-33916a45432a"],
+Cell[CellGroupData[{
+Cell[78895, 1754, 264, 5, 30, "Input",ExpressionUUID->"103f4f06-1d10-4541-9fd9-e33a3ff7a4e0"],
+Cell[79162, 1761, 133, 3, 36, 35, 0, "StyleData", "Item", "Printout",ExpressionUUID->"84fc8c82-783b-4ea4-a795-e68e0d6f18c6"]
+}, Open  ]],
+Cell[79310, 1767, 553, 10, 115, "Input",ExpressionUUID->"7a226bd0-ec9f-4bca-b838-d68e134eb6e8"],
+Cell[CellGroupData[{
+Cell[79888, 1781, 237, 4, 30, "Input",ExpressionUUID->"ca73dc77-6fb9-4f06-9440-2ea50e286df2"],
+Cell[80128, 1787, 135, 3, 36, 38, 0, "StyleData", "Subitem", "Printout",ExpressionUUID->"24b4a792-c885-4ff4-aab8-cb454384000d"]
+}, Open  ]],
+Cell[80278, 1793, 498, 9, 115, "Input",ExpressionUUID->"1d3c3829-7374-4c7c-9720-57c87b1b5602"]
+}, Closed]]
+}
+]
+*)
+

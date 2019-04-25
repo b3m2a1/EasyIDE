@@ -102,12 +102,12 @@
 <div class="navbar <wolfram:which><wolfram:if test='TrueQ[#NavbarInvert]'>navbar-inverse</wolfram:if><wolfram:else>navbar-default</wolfram:else></wolfram:which> navbar-fixed-top" role="navigation">
   <div class="container<wolfram:if test='TrueQ[#ContentFluid]'>-fluid</wolfram:if>">
     <div class="navbar-header">
-      <wolfram:if test='Length[$$templateLib["getSiteLinks"][]]>0'>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-        </button>
-      </wolfram:if>
+      <a href="javascript:void(0)"
+        class="w3-bar-item w3-button tocbar-opener"
+        onclick="acc_open()" id="tocopener"
+        >
+        <i class="fa fa-bars"></i>
+      </a>
       <wolfram:expr>
         $$templateLib["makeSiteHyperlink"][
           {
@@ -178,6 +178,8 @@
     </div>
 </div> <!-- /.navbar -->
 
+<wolfram:get path="include/tocbar.html"></wolfram:get>
+
 <!-- Banner -->
 <wolfram:if test='StringQ@#BannerImage'>
   <wolfram:get path="include/banner.html"/>
@@ -226,13 +228,17 @@ Which[
     </div>
   </div>
   <wolfram:get path="include/pagination.html"/>
-  `ContentFooter`
+  <div class="main-footer">
+    `ContentFooter`
+  </div>
 </div>
 
 <!-- End Content Container -->
 
 
-<wolfram:get path="include/footer.html"/>
+<div class="bottom-footer">
+  <wolfram:get path="include/footer.html"/>
+</div>
 
 <script src="`SiteURL`/theme/js/jquery.min.js"></script>
 
@@ -247,7 +253,7 @@ Which[
   <script src="`SiteURL`/theme/js/bodypadding.js"></script>
 </wolfram:if>
 
-<script src="`SiteURL/theme/js/accordion.js`"></script>
+<script src="`SiteURL`/theme/js/accordion.js"></script>
 
 <wolfram:get path="include/analytics.html"/>
 

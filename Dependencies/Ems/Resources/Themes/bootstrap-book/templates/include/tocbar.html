@@ -1,0 +1,49 @@
+<!--  Navigation List on LHS -->
+<nav
+  class="w3-sidebar w3-bar-block w3-top tocbar"
+  id="tocbar"
+  >
+
+  <wolfram:if test='StringQ[#URL]&&!StringEndsQ[#URL, "toc.html"]'>
+  <div class="tocbar-heading">
+    <ul>
+    <wolfram:sequence
+      values='
+        SortBy[ToExpression@StringSplit[#["ID"], "."]&]@
+        Select[AssociationQ[#]&&KeyMemberQ[#, "ID"]&]@
+          #Articles
+          '
+      slot="IndexItem"
+      >
+      <wolfram:if
+        test='StringMatchQ[#IndexItem["ID"], NumberString~~".1"]'
+        >
+        <h4 class="w3-bar-item index-section tocbar-h4">
+          <wolfram:expr>
+              StringSplit[
+                URLParse[#IndexItem["URL"], "Path"][[1]],
+                "-",
+                2
+                ][[2]]
+          </wolfram:expr>
+        </h4>
+      </wolfram:if>
+      <a
+        href='<wolfram:slot id="SiteURL"/>/<wolfram:expr>StringReplace[#IndexItem["URL"], Whitespace->"-"]</wolfram:expr>'
+        class=
+          'w3-bar-item w3-bar-block tocbar-entry tocbar-a
+            <wolfram:if test="#URL===#IndexItem[\"URL\"]"> tocbar-a-active </wolfram:if>'
+         >
+        <wolfram:expr>
+            #IndexItem["Title"]
+        </wolfram:expr>
+      </a>
+    </wolfram:sequence>
+    </ul>
+  </div>
+  </wolfram:if>
+
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="acc_close()" style="cursor:pointer" title="close side menu" id="tocoverlay"></div>

@@ -82,12 +82,14 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
             "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"nbPut3", "[", 
                  RowBox[{"enb_NotebookObject", ",", " ", "nb_Notebook"}], 
                  "]"}], ":=", "\n", "\t", RowBox[{"MathLink`CallFrontEnd", 
-                 "@", RowBox[{"{", "\n", "     ", RowBox[
-                    {"FrontEnd`NotebookWrite", "[", RowBox[{"enb", ",", " ", 
-                       RowBox[{"nb", "[", RowBox[{"[", "1", "]"}], "]"}], 
-                       ",", " ", "None", ",", "\n", "      ", RowBox[
-                        {"AutoScroll", "->", "False"}]}], "\n", "      ", 
-                     "]"}], "\n", "     ", "}"}]}]}]], "CodeInput"], 
+                 "@", RowBox[{"{", "\n", "\t ", RowBox[{RowBox[
+                      {"FrontEnd`SelectionMove", "[", RowBox[{"enb", ",", 
+                         " ", "Before", ",", " ", "Notebook"}], "]"}], ",", 
+                     "\n", "   ", RowBox[{"FrontEnd`NotebookWrite", "[", 
+                       RowBox[{"enb", ",", " ", RowBox[{"nb", "[", RowBox[
+                          {"[", "1", "]"}], "]"}], ",", " ", "None", ",", 
+                         " ", RowBox[{"AutoScroll", "->", "False"}]}], 
+                       "]"}]}], "\n", "   ", "}"}]}]}]], "CodeInput"], 
            Cell[BoxData[{RowBox[{"NotebookPutContents", "//", "Clear"}], 
               "\n", RowBox[{RowBox[{"NotebookPutContents", "[", RowBox[
                    {"ideNb_NotebookObject", ",", " ", "nb_Notebook", ",", 
@@ -118,7 +120,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           RowBox[{"c", "=", RowBox[{"Cells", "[", "ideNb", 
                           "]"}]}]}], "]"}], ";", "\n", "\t\t\t  ", RowBox[
                           {"If", "[", RowBox[{RowBox[{RowBox[{"Length", "@", 
-                          "c"}], "\[Equal]", "0"}], ",", "\n", "\t\t\t    ", 
+                          "c"}], "===", "0"}], ",", "\n", "\t\t\t    ", 
                           RowBox[{"nbPut3", "[", RowBox[{"ideNb", ",", " ", 
                           "nb"}], "]"}], ",", "\n", "\t\t\t    ", RowBox[
                           {"nbPut2", "[", RowBox[{"ideNb", ",", " ", "nb"}], 
@@ -129,7 +131,7 @@ methods\[RightFloor]", "Text", Evaluatable -> True],
                           RowBox[{"ideNb", ",", " ", "\"Options\""}], "]"}], 
                           " ", "=", " ", "ops"}], ";"}]}], "\n", "     ", 
                         "]"}], ";"}]}], "\n", "   ", "]"}]}]}], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[CellGroupData[

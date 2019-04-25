@@ -413,8 +413,8 @@ attachedDialogInputSpec[
              {
                Function[
                  Null,
-                 submit[[1]]@prepState[#, ids, remove];
-                 If[dest, destroyDialog[]],
+                 If[dest, destroyDialog[]];
+                 submit[[1]]@prepState[#, ids, remove];,
                  HoldFirst
                  ],
                ButtonData->s,

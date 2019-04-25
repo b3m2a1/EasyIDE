@@ -1,7 +1,22 @@
-<wolfram:get path="article_list.html">
+<wolfram:get path="base.html">
 
-<wolfram:slot id="PageSelfLink">
-  <link rel="canonical" href="`SiteURL`">
+<wolfram:slot id="PrimaryContent">
+
+  <!-- About Section -->
+  <wolfram:get path="include/lib/templates/pageLocalizedBlock.html">
+    <wolfram:slot id="page">pages/about.html</wolfram:slot>
+    <wolfram:slot id="block">
+        <div class="about-block w3-container w3-padding-32" id="about">
+          <div class="content">
+            <wolfram:expr>
+              $$templateLib["extractBody"]@
+                #ContentData["pages/about.html"]["RawXML"]
+            </wolfram:expr>
+          </div>
+        </div>
+    </wolfram:slot>
+  </wolfram:get>
+
 </wolfram:slot>
 
 </wolfram:get>
