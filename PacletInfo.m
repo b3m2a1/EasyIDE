@@ -1,6 +1,6 @@
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.12",
+  Version -> "1.0.13",
   Creator -> "b3m2a1 <b3m2a1@gmail.com>",
   URL -> "https://github.com/b3m2a1/EasyIDE",
   Description -> "An IDE for Mathematica written entirely within Mathematica",
@@ -78,6 +78,18 @@ Paclet[
        			{
         				"SiteBuilder",
         				"Settings/Plugins/SiteBuilder.wl"
+        			},
+       			{
+        				"WindowMenu",
+        				"Settings/Plugins/WindowMenu.wl"
+        			},
+       			{
+        				"Authoring",
+        				"Settings/Toolbars/Authoring.wl"
+        			},
+       			{
+        				"BookReader",
+        				"Settings/Toolbars/BookReader.nb"
         			},
        			{
         				"CodePackage",

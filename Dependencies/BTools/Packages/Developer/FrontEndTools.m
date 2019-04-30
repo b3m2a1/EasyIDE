@@ -1330,7 +1330,7 @@ FESetSymbolColoring~SetAttributes~HoldAllComplete;
 
 $FEExportFormats=
   {
-    "PlainText", "InputText",
+    "PlainText", "InputText", "DefaultText",
    "PostScript", "InputForm", "GIF",
    "BoundingBox", "NotebookString",
    "EnhancedMetafile", "Metafile", "MGF", 
@@ -1355,7 +1355,7 @@ FEExport[
   thing_, 
   fmt:Alternatives@@$FEExportFormats:"PlainText"
   ]:=
-  First@FrontEndExecute@ExportPacket[FEExportPrep@thing, fmt];
+    First@FrontEndExecute@ExportPacket[FEExportPrep@thing, fmt];
 
 
 PackageAddAutocompletions[

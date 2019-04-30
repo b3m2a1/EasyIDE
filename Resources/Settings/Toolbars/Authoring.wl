@@ -29,7 +29,7 @@ EndPackage[];
 Begin["`AuthoringToolbar`Private`"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*initBook*)
 
 
@@ -59,7 +59,7 @@ initBook[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getBookRoot*)
 
 
@@ -67,7 +67,7 @@ getBookRoot[]:=
   SelectFirst[FileNames["content", IDEPath[], 5], DirectoryQ, None]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getPostsRoot*)
 
 
@@ -75,7 +75,7 @@ getPostsRoot[]:=
   FileNameJoin@{getBookRoot[], "posts"};
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getChapters*)
 
 
@@ -83,7 +83,7 @@ getChapters[]:=
   Select[DirectoryQ]@FileNames["*", getPostsRoot[]];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getSections*)
 
 
@@ -91,7 +91,7 @@ getSections[]:=
   FileNames["*.nb", getChapters[]];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*makeNewChapter*)
 
 
@@ -109,7 +109,7 @@ makeNewChapter[name_]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*makeMetaCell*)
 
 
@@ -137,7 +137,7 @@ makeMetaCell[params_]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*makeNewSection*)
 
 
@@ -170,7 +170,7 @@ makeNewSection[chap_, name_]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*newChapter*)
 
 
@@ -192,7 +192,7 @@ newChapter[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*newSection*)
 
 
@@ -219,7 +219,7 @@ newSection[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createTOC*)
 
 
@@ -258,7 +258,7 @@ createTOC[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createTitlePage*)
 
 
@@ -290,7 +290,7 @@ createTitlePage[sections_]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*getStyleNotebook*)
 
 
@@ -362,7 +362,7 @@ createBookNotebook[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*createBooklet*)
 
 
@@ -375,7 +375,8 @@ createBooklet[]:=
     dir = DirectoryName@getBookRoot[];
     Export[
       FileNameJoin@{dir, ToString@title<>".pdf"},
-      nb
+      nb,
+      "PDF"
       ]
     ]
 
@@ -397,5 +398,5 @@ End[]
   "New Section":>newSection[],
   "Create TOC":>IDEOpen@createTOC[],
   "Create Book":>CreateDocument@createBookNotebook[],
-  "Create PDF":>createBooklet[]
+  "Create PDF":>{SystemOpen@createBooklet[], Method->"Queued"}
   }
