@@ -62,7 +62,7 @@ checkTabCache[fileName_]:=
 
 
 loadTabCacheData[fileName_String]:=
-  Replace[checkTabCache[fileName], s_String:>Import[s]];
+  Replace[checkTabCache[fileName], s_String:>Quiet@Import[s]];
 loadTabCacheData[e_]:=
   None;
 

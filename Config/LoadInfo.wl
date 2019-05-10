@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 {
 	"Mode" -> "Primary",
 	"Dependencies" -> {

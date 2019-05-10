@@ -72,10 +72,10 @@ Notebook[{Cell[CellGroupData[{Cell["Tabbing", "CodeSection"],
                     "fileName_String", "]"}], ":=", "\n", "  ", RowBox[
                    {"Replace", "[", RowBox[{RowBox[{"checkTabCache", "[", 
                         "fileName", "]"}], ",", " ", RowBox[{"s_String", 
-                        "\[RuleDelayed]", RowBox[{"Import", "[", "s", 
-                          "]"}]}]}], "]"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"loadTabCacheData", "[", "e_", "]"}], 
-                  ":=", "\n", "  ", "None"}], ";"}]}], "CodeInput"], 
+                        "\[RuleDelayed]", RowBox[{"Quiet", "@", RowBox[
+                          {"Import", "[", "s", "]"}]}]}]}], "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"loadTabCacheData", "[", "e_", 
+                    "]"}], ":=", "\n", "  ", "None"}], ";"}]}], "CodeInput"], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"setTabCacheData", "[", 
                     RowBox[{"fileName_String", ",", " ", "data_"}], "]"}], 
                   ":=", "\n", "  ", RowBox[{"Export", "[", RowBox[

@@ -30,6 +30,10 @@ IDEClose::usage="Close the IDE notebook";
 $SaveNotebookMethod::usage="The method to use when saving notebooks";
 
 
+EnsureNotebookUpdated::usage=
+  "Checks to make sure the notebook file and the current notebook state aren't out-of-sync";
+
+
 Begin["`Private`"];
 
 
@@ -402,6 +406,13 @@ GetNotebookExpression[nb_]:=
 
 
 
+(* ::Text:: *)
+(*
+	Should make use of the tab cache to find some way to check if I need to reload from disk...
+*)
+
+
+
 NotebookPutFile//Clear
 NotebookPutFile[nb_NotebookObject, f_String, data:_Notebook|None:None]:=
   Module[
@@ -488,12 +499,13 @@ NotebookSaveContents//Clear
 Options[NotebookSaveContents]=
   {
     "AutoGenerateSave"->True,
-    "HandleSavingAction"->True
+    "HandleSavingAction"->True,
+    "ClearCache"->True,
+    "Preemptive"->False
     };
 Module[{recurseProtect},
   NotebookSaveContents[nb_NotebookObject, 
     file:_String|Automatic:Automatic,
-    preempt:True|False:False,
     ops:OptionsPattern[]
     ]:=
     Block[
@@ -581,14 +593,23 @@ Module[{recurseProtect},
               ]
             ]
           ];
+        If[OptionValue["ClearCache"],
+          ClearCachedTabData[nb]
+          ]
         ]
-      ]
-    ]
+      ];
+    ];
+NotebookSaveContents[nb_NotebookObject, 
+    file:_String|Automatic:Automatic,
+    preempt:True|False,
+    ops:OptionsPattern[]
+    ]:=
+    NotebookSaveContents[nb, file, "Preemptive"->preempt, ops]
 
 
 (* ::Subsubsection::Closed:: *)
 (*NotebookPutScratch*)
-
+ 
 
 
 NotebookPutScratch[nb_, expr_Notebook]:=
@@ -598,6 +619,66 @@ NotebookPutScratch[nb_, expr_Notebook]:=
 (* ::Subsection:: *)
 (*File Operations*)
 
+
+
+(* ::Subsubsection::Closed:: *)
+(*EnsureNotebookUpdated*)
+
+
+
+EnsureNotebookUpdated[nb_NotebookObject, openDialog:True|False:True]:=
+  Module[
+    {
+      nbDate = 
+        FromAbsoluteTime[Lookup[NotebookInformation[nb], "MemoryModificationTime"], TimeZone->0],
+      buffer = Quantity[3, "Seconds"],
+      active = IDEPath[nb, Key["ActiveFile"]],
+      needsUpdate,
+      hasDeclined
+      },
+    needsUpdate = Quiet[TrueQ[FileDate[active]>nbDate+buffer]];
+    If[needsUpdate&&openDialog,
+      hasDeclined = IDEData[nb, PrivateKey["CheckUpdateData"]];
+      If[!AssociationQ@hasDeclined,
+        hasDeclined = <|"Tab"->active, "InUpdate"->False, "HasDeclined"->False|>
+        ];
+      If[(!TrueQ[hasDeclined["InUpdate"]]&&!TrueQ[hasDeclined["HasDeclined"]])||
+          hasDeclined["Tab"]=!=active,
+        With[{active=active, hasDeclined=hasDeclined},
+          IDEData[nb, PrivateKey["CheckUpdateData"]] = 
+            <|"Tab"->active, "InUpdate"->True, "HasDeclined"->hasDeclined["HasDeclined"]|>;
+          CreateAttachedDialog[
+            nb,
+            <|
+              "Header"->"Update from Disk?",
+              "Body"->"File changed on disk. Would you like to reload?",
+              "SubmitButton"->
+                {
+                  "Reload",
+                  Function[
+                    NotebookDelete[EvaluationCell[]];
+                    NotebookPutFile[nb, active];
+                    IDEData[nb, PrivateKey["CheckUpdateData"]] = 
+                      Append[hasDeclined, "HasDeclined"->False];
+                    needsUpdate = False
+                    ]
+                  },
+              "CancelButton"->
+                {
+                  "Cancel",
+                  Function[
+                    NotebookDelete[EvaluationCell[]];
+                    IDEData[nb, PrivateKey["CheckUpdateData"]] = 
+                      Append[hasDeclined, "HasDeclined"->True];
+                    ]
+                  }
+              |>
+            ]
+          ]
+        ]
+      ];
+    !needsUpdate
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
