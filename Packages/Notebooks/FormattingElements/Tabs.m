@@ -62,7 +62,7 @@ checkTabCache[fileName_]:=
 
 
 loadTabCacheData[fileName_String]:=
-  Replace[checkTabCache[fileName], s_String:>Get[s]];
+  Replace[checkTabCache[fileName], s_String:>Import[s]];
 loadTabCacheData[e_]:=
   None;
 
@@ -73,12 +73,29 @@ setTabCacheData[e__]:=
   $Failed;
 
 
-LoadCachedTabData[nb_, tabName_]:=
+LoadCachedTabData//Clear
+LoadCachedTabData[nb_, tabName_String]:=
   loadTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}]];
-CacheTabData[nb_, tabName_, data_]:=
+LoadCachedTabData[nb_]:=
+  LoadCachedTabData[nb, IDEData[nb, "ActiveTab"]];
+
+
+CacheTabData//Clear
+CacheTabData[nb_, tabName_String, data_]:=
   setTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}], data];
+CacheTabData[nb_, tabName_String]:=
+  CacheTabData[nb, tabName, GetNotebookExpression[nb]];
+CacheTabData[nb_]:=
+  CacheTabData[nb, IDEData[nb, "ActiveTab"]];
+CacheTabData[e___]:=
+  $Failed;
+
+
+ClearCachedTabData//Clear;
 ClearCachedTabData[nb_, tabName_]:=
   Quiet[DeleteFile@tabCacheFile@IDEData[nb, {"Tabs", tabName, "File"}]];
+ClearCachedTabData[nb_]:=
+  ClearCachedTabData[nb, IDEData[nb, "ActiveTab"]];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -231,10 +248,11 @@ NotebookCreateTab[nb_NotebookObject, tabName_String, tabData_]:=
 
 
 
+NotebookSwitchTab//Clear;
 Options[NotebookSwitchTab]=
   {
     "UseCache"->True,
-    "SaveCurrent"->True
+    "SaveCurrent"->False
     };
 NotebookSwitchTab[nb_NotebookObject, tabName_String, 
   ops:OptionsPattern[]
@@ -253,14 +271,11 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
           ]
         ];
       If[OptionValue["UseCache"],
-        CacheTabData[file, active, GetNotebookExpression[nb]];
+        CacheTabData[nb, active, GetNotebookExpression[nb]];
         cached = LoadCachedTabData[nb, tabName];
         ];
       file = IDEData[nb, {"Tabs", tabName, "File"}];
-      If[Head[cached]===Notebook,
-        NotebookPutFile[nb, file, cached],
-        NotebookPutFile[nb, file]
-        ];
+      NotebookPutFile[nb, file, Replace[cached, Except[_Notebook]->None]];
       ideSetTab[nb, tabName];
       ]
     ];
@@ -273,6 +288,7 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
 
 
 
+NotebookCloseTab//Clear
 Options[NotebookCloseTab]=
   {
     "ClearCache"->True,
@@ -292,14 +308,14 @@ NotebookCloseTab[nb_NotebookObject, tabName_String, ops:OptionsPattern[]]:=
           ClearCachedTabData[nb, tabName]
           ];
         If[tabName == active,
-          If[Length@tabs > 0,
-            NotebookSwitchTab[nb, Keys[tabs][[1]]],
-            If[OptionValue["SaveCurrent"], 
-              NotebookSaveContents[nb, 
+          If[OptionValue["SaveCurrent"], 
+            NotebookSaveContents[nb, 
                 "AutoGenerateSave"->False,
                 "HandleSavingAction"->False
                 ]
               ];
+          If[Length@tabs > 0,
+            NotebookSwitchTab[nb, Keys[tabs][[1]], "SaveCurrent"->False],
             NotebookPutContents[nb, Notebook[{}]];
             IDEData[nb, "ActiveTab"] = None;
             ]

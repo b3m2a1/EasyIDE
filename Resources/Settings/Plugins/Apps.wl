@@ -20,7 +20,7 @@ EndPackage[]
 Begin["`Private`"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*PreConfig*)
 
 
@@ -110,7 +110,7 @@ openerSelector[label_, types_, path_String, depth_:4]:=
 		]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Formatting Objects*)
 
 
@@ -226,7 +226,7 @@ checkboxGrid[vars:{(_:>_)..}]:=
 	checkboxGrid[Thread[{vars}]];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Functions*)
 
 
@@ -390,7 +390,7 @@ inputDialog[header_]:=
 		]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Regen*)
 
 
@@ -425,7 +425,7 @@ regenActions=
   		}
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*UpdateDependencies*)
 
 
@@ -469,7 +469,7 @@ newPackage[]:=
   IDEOpen[Notebook[{}, StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb"]]];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Git*)
 
 
@@ -569,7 +569,7 @@ gitBranch=
 	];*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*GitHub*)
 
 
@@ -588,7 +588,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Paclet*)
 
 
@@ -603,7 +603,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Publish*)
 
 
@@ -678,7 +678,7 @@ publishApp[]:=
     ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*CreateRelease*)
 
 
@@ -695,7 +695,7 @@ createRelease[]:=
     ]
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Toolbar*)
 
 
@@ -726,7 +726,7 @@ appManagerPluginCommands =
     };
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*End*)
 
 
