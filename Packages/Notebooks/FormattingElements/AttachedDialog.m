@@ -353,7 +353,7 @@ createInputFieldDialog[
 
 prepState[s_, ids_, remove_]:=
   With[{a=AssociationMap[s, ids]},
-    If[remove, remove[s]];
+    If[remove, Quiet@Remove[s]];
     a
     ];
 prepState~SetAttributes~HoldFirst
@@ -379,6 +379,8 @@ feSym[s_][val_]:=
   MathLink`CallFrontEnd@FrontEnd`Value[s[val], True];
 feSym/:(feSym[s_][key_]=val_):=
   MathLink`CallFrontEnd@FrontEnd`SetValue[FEPrivate`Set[s[key], val]];
+feSym/:(Remove|Clear)[feSym[s_]]:=
+  MathLink`CallFrontEnd@FrontEnd`SetValue[FEPrivate`Set[s, Null]];
 
 
 (* ::Subsubsubsection::Closed:: *)

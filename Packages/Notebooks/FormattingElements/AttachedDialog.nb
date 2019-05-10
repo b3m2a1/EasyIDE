@@ -360,12 +360,12 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                           RowBox[{"a", "=", RowBox[{"AssociationMap", "[", 
                           RowBox[{"s", ",", " ", "ids"}], "]"}]}], "}"}], 
                          ",", "\n", "    ", RowBox[{RowBox[{"If", "[", 
-                          RowBox[{"remove", ",", " ", RowBox[{"remove", "[", 
-                          "s", "]"}]}], "]"}], ";", "\n", "    ", "a"}]}], 
-                       "\n", "    ", "]"}]}], ";"}], "\n", RowBox[
-                  {"prepState", "~", "SetAttributes", "~", "HoldFirst"}]}], 
-               "CodeInput"]}, Closed]], Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getStateSym\[RightFloor]", 
+                          RowBox[{"remove", ",", " ", RowBox[{"Quiet", "@", 
+                          RowBox[{"Remove", "[", "s", "]"}]}]}], "]"}], ";", 
+                          "\n", "    ", "a"}]}], "\n", "    ", "]"}]}], 
+                   ";"}], "\n", RowBox[{"prepState", "~", "SetAttributes", 
+                   "~", "HoldFirst"}]}], "CodeInput"]}, Open]], 
+           Cell[CellGroupData[{Cell["\[LeftCeiling]getStateSym\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{RowBox[{RowBox[{"getStateSym", "[", "]"}], 
                       ":=", "\n", "  ", RowBox[{"feSym", "[", "]"}]}], ";"}], 
@@ -392,8 +392,14 @@ Notebook[{Cell[CellGroupData[{Cell["CreateAttachedDialog", "CodeSection",
                        RowBox[{"FrontEnd`SetValue", "[", RowBox[
                           {"FEPrivate`Set", "[", RowBox[{RowBox[{"s", "[", 
                           "key", "]"}], ",", " ", "val"}], "]"}], "]"}]}]}], 
-                   ";"}]}], "CodeInput"]}, Open]], 
-           Cell[CellGroupData[
+                   ";"}], "\n", RowBox[{RowBox[{"feSym", "/:", RowBox[
+                      {RowBox[{"(", RowBox[{"Remove", "|", "Clear"}], ")"}], 
+                       "[", RowBox[{"feSym", "[", "s_", "]"}], "]"}], ":=", 
+                     "\n", "  ", RowBox[{"MathLink`CallFrontEnd", "@", 
+                       RowBox[{"FrontEnd`SetValue", "[", RowBox[
+                          {"FEPrivate`Set", "[", RowBox[{"s", ",", " ", 
+                          "Null"}], "]"}], "]"}]}]}], ";"}]}], "CodeInput"]}, 
+             Open]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]attachedDialogInputSpec\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"attachedDialogInputSpec", "[", "\n", "  ", 

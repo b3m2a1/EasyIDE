@@ -440,7 +440,28 @@ updateDeps[]:=
 	  ];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
+(*newApp*)
+
+
+newApp[]:=
+  CreateWindowedInputDialog[
+    <|
+      "Header"->"New App Name",
+      "Fields"->{
+        <|
+         "Name"->"Name"
+         |>
+        },
+      "SubmitAction"->
+        Function[
+          AppExecute["Configure", #Name]
+          ]
+      |>
+    ]
+
+
+(* ::Subsubsection:: *)
 (*New*)
 
 
@@ -681,7 +702,7 @@ createRelease[]:=
 addAppsToolbar[]:=CreateMessagePopup["Toolbar still in progress! Sorry!"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Exported*)
 
 
@@ -689,13 +710,17 @@ appManagerPluginCommands =
   {
     "Publish":>
       publishApp[],
-    "Create Release":>
-      createRelease[],
     "Update Dependencies":>
       updateDeps[],
      regenActions,
-     "New Package":>
-       newPackage[],
+     "New"->{
+       "Package":>
+         newPackage[],
+       "App":>
+         newApp[],
+       "Release":>
+         createRelease[]
+       },
      "Open Toolbar":>
        addAppsToolbar[]
     };

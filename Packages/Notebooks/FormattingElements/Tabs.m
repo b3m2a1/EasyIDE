@@ -19,12 +19,66 @@ IDETabNameFiles::usage="Not sure where else this one would live...?"
 IDESwitchTab::usage="Switches the IDE tab";
 
 
+$TabCacheDir::usage="";
+CacheTabData::usage="";
+LoadCachedTabData::usage="";
+ClearCachedTabData::usage="";
+
+
 Begin["`Private`"];
 
 
 (* ::Subsection:: *)
 (*TabData*)
 
+
+
+(* ::Subsubsection::Closed:: *)
+(*$TabCacheDir*)
+
+
+
+If[!ValueQ[$TabCacheDir],
+  $TabCacheDir = FileNameJoin@{$TemporaryDirectory, "EasyIDE", "tab_cache"}
+  ];
+
+
+tabCacheFile[fileName_]:=
+  Module[{ef =ExpandFileName[fileName],  hashName},
+    If[!DirectoryQ[$TabCacheDir], 
+      CreateDirectory[$TabCacheDir, CreateIntermediateDirectories->True]
+      ];
+    hashName = FileNameJoin@{$TabCacheDir, ToString[Hash[ef]]<>".mx"}
+    ];
+
+
+checkTabCache[fileName_]:=
+  With[{f=tabCacheFile[fileName]},
+    If[FileExistsQ[f]&&TrueQ[FileDate[f]>FileDate[fileName]],
+      f,
+      None
+      ]
+    ]
+
+
+loadTabCacheData[fileName_String]:=
+  Replace[checkTabCache[fileName], s_String:>Get[s]];
+loadTabCacheData[e_]:=
+  None;
+
+
+setTabCacheData[fileName_String, data_]:=
+  Export[tabCacheFile[fileName], data, "MX"];
+setTabCacheData[e__]:=
+  $Failed;
+
+
+LoadCachedTabData[nb_, tabName_]:=
+  loadTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}]];
+CacheTabData[nb_, tabName_, data_]:=
+  setTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}], data];
+ClearCachedTabData[nb_, tabName_]:=
+  Quiet[DeleteFile@tabCacheFile@IDEData[nb, {"Tabs", tabName, "File"}]];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -177,24 +231,41 @@ NotebookCreateTab[nb_NotebookObject, tabName_String, tabData_]:=
 
 
 
-NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]:=
+Options[NotebookSwitchTab]=
+  {
+    "UseCache"->True,
+    "SaveCurrent"->True
+    };
+NotebookSwitchTab[nb_NotebookObject, tabName_String, 
+  ops:OptionsPattern[]
+  ]:=
   Module[
     {
       file,
-      active = IDEData[nb, "ActiveTab"]
+      active = IDEData[nb, "ActiveTab"],
+      cached
       },
     If[active =!= tabName,
-      If[saveCurrent, 
+      If[OptionValue["SaveCurrent"], 
         IDESave[nb, 
           "AutoGenerateSave"->False,
           "HandleSavingAction"->False
           ]
         ];
+      If[OptionValue["UseCache"],
+        CacheTabData[file, active, GetNotebookExpression[nb]];
+        cached = LoadCachedTabData[nb, tabName];
+        ];
       file = IDEData[nb, {"Tabs", tabName, "File"}];
-      NotebookPutFile[nb, file];
+      If[Head[cached]===Notebook,
+        NotebookPutFile[nb, file, cached],
+        NotebookPutFile[nb, file]
+        ];
       ideSetTab[nb, tabName];
       ]
-    ]
+    ];
+NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
+  NotebookSwitchTab[nb, tabName, "SaveCurrent"->saveCurrent];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -202,7 +273,12 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True
 
 
 
-NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]:=
+Options[NotebookCloseTab]=
+  {
+    "ClearCache"->True,
+    "SaveCurrent"->True
+    };
+NotebookCloseTab[nb_NotebookObject, tabName_String, ops:OptionsPattern[]]:=
   Module[
     {
       active = IDEData[nb, "ActiveTab"],
@@ -212,10 +288,13 @@ NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]
       WithNotebookPaused[
         nb,
         tabs = DeleteCases[tabs, tabName->_];
+        If[OptionValue["ClearCache"],
+          ClearCachedTabData[nb, tabName]
+          ];
         If[tabName == active,
           If[Length@tabs > 0,
             NotebookSwitchTab[nb, Keys[tabs][[1]]],
-            If[saveCurrent, 
+            If[OptionValue["SaveCurrent"], 
               NotebookSaveContents[nb, 
                 "AutoGenerateSave"->False,
                 "HandleSavingAction"->False
@@ -229,7 +308,9 @@ NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]
         ];
       refreshTabs[]
       ]
-    ]
+    ];
+NotebookCloseTab[nb_NotebookObject, tabName_String, saveCurrent:True|False:True]:=
+  NotebookCloseTab[nb, tabName, "SaveCurrent"->saveCurrent]
 
 
 (* ::Subsection:: *)
