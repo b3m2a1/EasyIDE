@@ -131,17 +131,25 @@ ideActiveFile[nb_]:=
 
 
 
+ideAbsPath[nb_NotebookObject, ""]:=
+  ideProjectDir[nb];
 ideAbsPath[nb_NotebookObject, file_]:=
   Module[
     {
       absFile = file,
+      expF,
       dir
       },
-    If[ExpandFileName[absFile] =!= absFile,
+   expF = ExpandFileName[absFile];
+    If[expF =!= absFile,
       dir = ideProjectDir[nb];
-      If[FileExistsQ@FileNameJoin@{dir, absFile},
-        absFile = FileNameJoin@{dir, absFile},
-        absFile = ExpandFileName[absFile]
+      Which[
+        FileExistsQ@FileNameJoin@{dir, absFile}, (* I want this to be the first tested branch *)
+          absFile = FileNameJoin@{dir, absFile},
+        FileExistsQ@expF,
+          absFile = expF,
+        True,
+          absFile = FileNameJoin@{dir, absFile}
         ]
       ];
     absFile

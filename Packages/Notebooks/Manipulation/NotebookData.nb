@@ -168,29 +168,42 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                  "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
         Cell[CellGroupData[{Cell["\[LeftCeiling]ideAbsPath\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"ideAbsPath", "[", RowBox[
-                  {"nb_NotebookObject", ",", " ", "file_"}], "]"}], ":=", 
-               "\n", "\t", RowBox[{"Module", "[", "\n", "\t\t", 
-                 RowBox[{RowBox[{"{", "\n", "\t\t\t", RowBox[{RowBox[
-                        {"absFile", " ", "=", " ", "file"}], ",", "\n", 
-                       "\t\t\t", "dir"}], "\n", "\t\t\t", "}"}], ",", "\n", 
-                   "\t\t", RowBox[{RowBox[{"If", "[", RowBox[{RowBox[
-                          {RowBox[{"ExpandFileName", "[", "absFile", "]"}], 
-                          " ", "=!=", " ", "absFile"}], ",", "\n", "\t\t\t", 
-                         RowBox[{RowBox[{"dir", " ", "=", " ", RowBox[
-                          {"ideProjectDir", "[", "nb", "]"}]}], ";", "\n", 
-                          "\t\t\t", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"FileExistsQ", "@", RowBox[{"FileNameJoin", "@", 
-                          RowBox[{"{", RowBox[{"dir", ",", " ", "absFile"}], 
-                          "}"}]}]}], ",", "\n", "\t\t\t\t", RowBox[
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"ideAbsPath", "[", 
+                    RowBox[{"nb_NotebookObject", ",", " ", "\"\""}], "]"}], 
+                  ":=", "\n", "  ", RowBox[{"ideProjectDir", "[", "nb", 
+                    "]"}]}], ";"}], "\n", RowBox[{RowBox[{"ideAbsPath", "[", 
+                  RowBox[{"nb_NotebookObject", ",", " ", "file_"}], "]"}], 
+                ":=", "\n", "\t", RowBox[{"Module", "[", "\n", "\t\t", 
+                  RowBox[{RowBox[{"{", "\n", "\t\t\t", RowBox[{RowBox[
+                         {"absFile", " ", "=", " ", "file"}], ",", "\n", 
+                        "\t\t\t", "expF", ",", "\n", "\t\t\t", "dir"}], "\n", 
+                      "\t\t\t", "}"}], ",", "\n", "\t ", RowBox[
+                     {RowBox[{"expF", " ", "=", " ", RowBox[
+                         {"ExpandFileName", "[", "absFile", "]"}]}], ";", 
+                      "\n", "\t\t", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"expF", " ", "=!=", " ", "absFile"}], ",", "\n", 
+                          "\t\t\t", RowBox[{RowBox[{"dir", " ", "=", " ", 
+                          RowBox[{"ideProjectDir", "[", "nb", "]"}]}], ";", 
+                          "\n", "\t\t\t", RowBox[{"Which", "[", "\n", 
+                          "\t\t\t  ", RowBox[{RowBox[{"FileExistsQ", "@", 
+                          RowBox[{"FileNameJoin", "@", RowBox[{"{", RowBox[
+                          {"dir", ",", " ", "absFile"}], "}"}]}]}], ",", " ", 
+                          RowBox[{"(*", " ", RowBox[{"I", " ", "want", " ", 
+                          "this", " ", "to", " ", "be", " ", "the", " ", 
+                          "first", " ", "tested", " ", "branch"}], " ", 
+                          "*)"}], "\n", "  \t\t\t\t", RowBox[{"absFile", " ", 
+                          "=", " ", RowBox[{"FileNameJoin", "@", RowBox[{"{", 
+                          RowBox[{"dir", ",", " ", "absFile"}], "}"}]}]}], 
+                          ",", "\n", "\t\t\t\t", RowBox[{"FileExistsQ", "@", 
+                          "expF"}], ",", "\n", "\t\t\t\t  ", RowBox[
+                          {"absFile", " ", "=", " ", "expF"}], ",", "\n", 
+                          "\t\t\t\t", "True", ",", "\n", "\t\t\t\t  ", RowBox[
                           {"absFile", " ", "=", " ", RowBox[{"FileNameJoin", 
                           "@", RowBox[{"{", RowBox[{"dir", ",", " ", 
-                          "absFile"}], "}"}]}]}], ",", "\n", "\t\t\t\t", 
-                          RowBox[{"absFile", " ", "=", " ", RowBox[
-                          {"ExpandFileName", "[", "absFile", "]"}]}]}], "\n", 
-                          "\t\t\t\t", "]"}]}]}], "\n", "\t\t\t", "]"}], ";", 
-                     "\n", "\t\t", "absFile"}]}], "\n", "\t\t", "]"}]}]], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+                          "absFile"}], "}"}]}]}]}], "\n", "\t\t\t\t", 
+                          "]"}]}]}], "\n", "\t\t\t", "]"}], ";", "\n", 
+                      "\t\t", "absFile"}]}], "\n", "\t\t", "]"}]}]}], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]IDEData\[RightFloor]", "CodeSubsubsection", 
             Evaluatable -> True], Cell[BoxData[{RowBox[{"IDEData", "//", 
                 "Unprotect"}], "\n", RowBox[{"IDEData", "//", "Clear"}]}], 
