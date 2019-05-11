@@ -176,41 +176,65 @@ CreateTabRow[refresh_]:=
 
 
 TabObject[tabName_String, file_]:=
-  Style[
-    Panel[
-      Grid[
-        List@{
-          MouseAppearance[
-            RawBoxes@ButtonBox[
-              ToBoxes@Tooltip[Pane[tabName, BaseStyle->"TabName"], file],
-              BaseStyle->"TabName",
-              ButtonData->tabName
-              ],
-            "LinkHand"
-            ],
-          RawBoxes@ButtonBox["", 
-            BaseStyle->"TabCloseButton",
-            ButtonData->tabName
-            ]
-          }
-        ],
-      BaseStyle->
-        With[
-          {
-            c=
+With[
+  {
+    c=
               Block[
-                {CurrentValue=FrontEnd`CurrentValue}, 
-                IDEData[FrontEnd`EvaluationNotebook[], "ActiveTab"]
+                {MathLink`CallFrontEnd=Identity}, 
+                First@IDEData[FrontEnd`EvaluationNotebook[], "ActiveTab"]
+                ],
+            c2=
+              Block[
+                {MathLink`CallFrontEnd=Identity}, 
+                First@IDEData[FrontEnd`EvaluationNotebook[], {"Tabs", tabName, "Modified"}]
                 ]
             },
-          FEPrivate`If[FEPrivate`SameQ[c, tabName], 
-            "TabPanelActive", 
-            "TabPanelBackground"
-            ]
+    Style[
+      Panel[
+        Grid[
+          List@{
+            MouseAppearance[
+              RawBoxes@ButtonBox[
+                ToBoxes@
+              Tooltip[
+                Pane[
+                  tabName, 
+                  BaseStyle->
+                    FEPrivate`Which[
+                        FEPrivate`SameQ[c, tabName],
+                          "TabNameActive",
+                      FEPrivate`SameQ[c2, True], 
+                        {"TabModified", "TabName"}, 
+                      True,
+                        "TabName"
+                      ]
+                  ], 
+                file
+                ],
+                BaseStyle->"TabName",
+                ButtonData->tabName
+                ],
+              "LinkHand"
+              ],
+            RawBoxes@ButtonBox["", 
+              BaseStyle->"TabCloseButton",
+              ButtonData->tabName
+              ]
+            }
           ],
-      BoxID->tabName<>"-tab"
-      ],
-    ContextMenu->FileEntryContextMenu[file]
+        BaseStyle->
+            FEPrivate`Which[
+              FEPrivate`SameQ[c, tabName], 
+                "TabPanelActive",
+              FEPrivate`SameQ[c2, True],
+                {"TabModified", "TabPanelBackground"},
+            True,
+                "TabPanelBackground"
+              ],
+        BoxID->tabName<>"-tab"
+        ],
+      ContextMenu->FileEntryContextMenu[file]
+      ]
     ]
 
 
@@ -261,18 +285,31 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
     {
       file,
       active = IDEData[nb, "ActiveTab"],
-      cached
+      actFile,
+      cached,
+      modTime,
+      buffer
       },
     If[active =!= tabName,
+      If[active=!=None,
+        modTime =
+          FromAbsoluteTime[Lookup[NotebookInformation[nb], "MemoryModificationTime"],
+            TimeZone->0
+            ];
+        buffer = Quantity[3, "Seconds"];
+        actFile = IDEData[nb, {"Tabs", active, "File"}];
+        IDEData[nb, {"Tabs", active, "Modified"}] = 
+          Quiet[!TrueQ[modTime <= ( FileDate[actFile] + buffer )]];
+        If[OptionValue["UseCache"],
+          CacheTabData[nb, active, GetNotebookExpression[nb]];
+          cached = LoadCachedTabData[nb, tabName];
+          ]
+      ];
       If[OptionValue["SaveCurrent"], 
         IDESave[nb, 
           "AutoGenerateSave"->False,
           "HandleSavingAction"->False
           ]
-        ];
-      If[OptionValue["UseCache"],
-        CacheTabData[nb, active, GetNotebookExpression[nb]];
-        cached = LoadCachedTabData[nb, tabName];
         ];
       file = IDEData[nb, {"Tabs", tabName, "File"}];
       NotebookPutFile[nb, file, Replace[cached, Except[_Notebook]->None]];
