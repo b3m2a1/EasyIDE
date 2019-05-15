@@ -93,7 +93,7 @@ nbPut2[enb_NotebookObject, nb_Notebook]:=
 
 nbPut3[enb_NotebookObject, nb_Notebook]:=
   MathLink`CallFrontEnd@{
-   FrontEnd`SelectionMove[enb, Before, Notebook],
+   (*FrontEnd`SelectionMove[enb, Before, Notebook],*)
    FrontEnd`NotebookWrite[enb, nb[[1]], None, AutoScroll->False]
    }
 

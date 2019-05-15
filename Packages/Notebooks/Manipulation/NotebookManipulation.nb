@@ -85,19 +85,19 @@ file and the current notebook state aren't out-of-sync\""}], ";"}]],
             "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"nbPut3", "[", 
                  RowBox[{"enb_NotebookObject", ",", " ", "nb_Notebook"}], 
                  "]"}], ":=", "\n", "\t", RowBox[{"MathLink`CallFrontEnd", 
-                 "@", RowBox[{"{", "\n", "\t ", RowBox[{RowBox[
-                      {"FrontEnd`SelectionMove", "[", RowBox[{"enb", ",", 
-                         " ", "Before", ",", " ", "Notebook"}], "]"}], ",", 
-                     "\n", "   ", RowBox[{"FrontEnd`NotebookWrite", "[", 
-                       RowBox[{"enb", ",", " ", RowBox[{"nb", "[", RowBox[
-                          {"[", "1", "]"}], "]"}], ",", " ", "None", ",", 
-                         " ", RowBox[{"AutoScroll", "->", "False"}]}], 
-                       "]"}]}], "\n", "   ", "}"}]}]}]], "CodeInput"], 
-           Cell[BoxData[{RowBox[{"NotebookPutContents", "//", "Clear"}], 
-              "\n", RowBox[{RowBox[{"NotebookPutContents", "[", RowBox[
-                   {"ideNb_NotebookObject", ",", " ", "nb_Notebook", ",", 
-                    "\n", "  ", RowBox[{"mode", ":", RowBox[{"(", RowBox[
-                         {"NotebookWrite", "|", "NotebookPut", "|", 
+                 "@", RowBox[{"{", "\n", "\t ", RowBox[{"(*", RowBox[
+                      {RowBox[{"FrontEnd`SelectionMove", "[", RowBox[{"enb", 
+                          ",", " ", "Before", ",", " ", "Notebook"}], "]"}], 
+                       ","}], "*)"}], "\n", "   ", RowBox[
+                    {"FrontEnd`NotebookWrite", "[", RowBox[{"enb", ",", " ", 
+                       RowBox[{"nb", "[", RowBox[{"[", "1", "]"}], "]"}], 
+                       ",", " ", "None", ",", " ", RowBox[{"AutoScroll", 
+                         "->", "False"}]}], "]"}], "\n", "   ", "}"}]}]}]], 
+            "CodeInput"], Cell[BoxData[{RowBox[{"NotebookPutContents", "//", 
+                "Clear"}], "\n", RowBox[{RowBox[{"NotebookPutContents", "[", 
+                  RowBox[{"ideNb_NotebookObject", ",", " ", "nb_Notebook", 
+                    ",", "\n", "  ", RowBox[{"mode", ":", RowBox[{"(", 
+                        RowBox[{"NotebookWrite", "|", "NotebookPut", "|", 
                           "Automatic"}], ")"}], ":", "Automatic"}]}], "\n", 
                   "  ", "]"}], ":=", "\n", "\t", RowBox[{"Module", "[", "\n", 
                   "\t\t", RowBox[{RowBox[{"{", "\n", "\t\t\t", RowBox[
