@@ -292,7 +292,6 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
       buffer,
       tst
       },
-    Global`time1 = Now;
     If[active =!= tabName,
       If[active=!=None,
         buffer = Quantity[3, "Seconds"];
@@ -324,14 +323,11 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
           ]
         ];
       file = IDEData[nb, {"Tabs", tabName, "File"}];
-      Global`time2 = Now;
       NotebookPutFile[nb, file, Replace[cached, Except[_Notebook]->None]];
-      Global`time3 = Now;
       ideSetTab[nb, tabName];
       If[OptionValue["SaveSettings"], 
         NotebookSave[nb](* note that we don't invoke any of the other processing here *);
         ];
-      Global`time4 = Now;
     ];
 NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
   NotebookSwitchTab[nb, tabName, "SaveCurrent"->saveCurrent];

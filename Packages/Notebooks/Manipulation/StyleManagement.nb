@@ -91,6 +91,29 @@ Cell["\[LeftCeiling]Styles\[RightFloor]", "CodeSubsection",
 
 Cell[CellGroupData[{
 
+Cell["\[LeftCeiling]getThemeName\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"1c5c825b-527c-47de-9c04-13dda39a4901"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getThemeName", "[", "nb_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Replace", "[", 
+    RowBox[{
+     RowBox[{"IDEData", "[", 
+      RowBox[{"nb", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<Theme\>\""}], "}"}]}], "]"}],
+      ",", " ", "\n", "\t\t", 
+     RowBox[{"Inherited", ":>", "\n", "\t\t\t", 
+      RowBox[{"IDEData", "[", 
+       RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}]}]}], "\n", 
+    "\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"022aca52-6450-4e06-b336-d14c94926e9c"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["\[LeftCeiling]GetMainStylesheet\[RightFloor]", "CodeSubsubsection",
  Evaluatable->True,
  CellID->974413720,ExpressionUUID->"bbb3ee4e-a5bb-4d67-980e-6418da308d9d"],
@@ -209,7 +232,7 @@ Cell[BoxData[{
         RowBox[{"StyleDefinitions", "\[Rule]", "sPath"}]}], "]"}]}], "\n", 
      "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}]}], "CodeInput",
  CellID->1829357336,ExpressionUUID->"2cf0cc77-b03c-4d58-9310-a36ef1bdc664"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -257,7 +280,7 @@ Cell[BoxData[
              "\"\<.nb\>\""}], "]"}]}], "]"}]}]}], "\n", "  \t\t\t", "}"}]}], 
      "\n", "  \t\t", "]"}]}], "\n", "   ", "]"}]}]], "CodeInput",
  CellID->1505203465,ExpressionUUID->"666d90f1-b0fd-46ac-8632-eaeaca3b73b2"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -392,7 +415,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", "}"}], ",", " ", "s"}], "]"}], ",", "\n", "  ", 
            "\t\t\t\t  ", "fallback"}], "\n", "  ", "\t\t\t\t  ", "]"}]}]}], 
-       "\n", "  ", "\t\t\t", "}"}]}], "\n", "  ", "\t\t", "]"}]}]}], 
+       "\n", "  ", "\t\t\t", "}"}]}], "\n", "  \t\t", "]"}]}]}], 
   ";"}], "\n", 
  RowBox[{
   RowBox[{"GetMainStylesheetName", "[", 
@@ -400,28 +423,26 @@ Cell[BoxData[{
     RowBox[{"fallback_:", "Automatic"}]}], "]"}], ":=", "\n", "\t", 
   RowBox[{"Replace", "[", "\n", "\t\t", 
    RowBox[{
-    RowBox[{"IDEData", "[", 
-     RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}], ",", "\n", 
-    "\t\t", 
+    RowBox[{"getThemeName", "[", "nb", "]"}], ",", "\n", "\t\t", 
     RowBox[{"Inherited", ":>", "\n", "\t\t\t", 
      RowBox[{"Set", "[", "\n", "\t\t\t\t", 
       RowBox[{
        RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}], ",", "\n", 
-       "\t\t\t\t", 
+        RowBox[{"nb", ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<Theme\>\""}], "}"}]}], 
+        "]"}], ",", "\n", "\t\t\t\t", 
        RowBox[{"GetMainStylesheetName", "[", "\n", "\t\t\t\t  ", 
         RowBox[{
          RowBox[{"GetMainStylesheet", "[", "nb", "]"}], ",", "\n", "\t", "\t",
           "\t", "\t  ", 
          RowBox[{"Replace", "[", 
           RowBox[{"fallback", ",", " ", 
-           RowBox[{"Automatic", "\[RuleDelayed]", 
-            RowBox[{"IDEData", "[", 
-             RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}]}]}], 
+           RowBox[{"Automatic", "\[RuleDelayed]", "\"\<LightMode\>\""}]}], 
           "]"}]}], "\n", "\t\t\t\t  ", "]"}]}], "\n", "\t\t\t\t", "]"}]}]}], 
    "\n", "\t\t", "]"}]}]}], "CodeInput",
  CellID->1055552087,ExpressionUUID->"30bccc27-73b1-4c2a-a9f1-d9320d8fb82b"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -451,8 +472,10 @@ Cell[BoxData[
         RowBox[{
          RowBox[{
           RowBox[{"IDEData", "[", 
-           RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}], " ", "=",
-           " ", "themeName"}], ";", "\n", "  ", "      ", 
+           RowBox[{"nb", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<Theme\>\""}], "}"}]}], 
+           "]"}], " ", "=", " ", "themeName"}], ";", "\n", "  ", "      ", 
          RowBox[{"SetOptions", "[", 
           RowBox[{"nb", ",", " ", 
            RowBox[{
@@ -519,58 +542,61 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"{", "\n", "\t\t\t", 
      RowBox[{
-      RowBox[{"currentStyles", " ", "=", " ", 
-       RowBox[{"IDEData", "[", 
-        RowBox[{"nb", ",", " ", "\"\<StyleSheet\>\"", ",", " ", "None"}], 
-        "]"}]}], ",", "\n", "\t\t\t", "mainName"}], "\n", "\t\t\t", "}"}], 
-    ",", "\n", "\t\t", 
+      RowBox[{"currentStyles", " ", "=", " ", "\n", "\t\t\t\t", 
+       RowBox[{"Replace", "[", 
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<StyleSheet\>\""}], 
+            "}"}]}], "]"}], ",", " ", 
+         RowBox[{"Inherited", ":>", 
+          RowBox[{"IDEData", "[", "\"\<Stylesheet\>\"", "]"}]}]}], "]"}]}], 
+      ",", "\n", "\t\t\t", "mainName"}], "\n", "\t\t\t", "}"}], ",", "\n", 
+    "\t\t", 
     RowBox[{
-     RowBox[{"Global`t31", "=", "Now"}], ";", "\n", "\t\t", 
      RowBox[{
       RowBox[{"IDEData", "[", 
-       RowBox[{"nb", ",", " ", "\"\<StyleSheet\>\""}], "]"}], " ", "=", " ", 
-      "targ"}], ";", "\n", "\t\t", 
-     RowBox[{"Global`t32", "=", "Now"}], ";", "\n", "\t\t", 
+       RowBox[{"nb", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<StyleSheet\>\""}], "}"}]}], 
+       "]"}], " ", "=", " ", "targ"}], ";", "\n", "\t\t", 
      RowBox[{"If", "[", 
       RowBox[{
        RowBox[{"targ", " ", "=!=", " ", "None"}], ",", "\n", "\t\t\t", 
        RowBox[{
-        RowBox[{"Global`t33", "=", "Now"}], ";", "\n", "\t\t\t", 
         RowBox[{"SetMainStylesheet", "[", 
          RowBox[{"nb", ",", " ", "targ"}], "]"}], ";", "\n", "\t\t\t", 
-        RowBox[{"Global`t34", "=", "Now"}], ";", "\n", "\t\t\t", 
         RowBox[{
          RowBox[{"IDEData", "[", 
-          RowBox[{"nb", ",", " ", "\"\<MainStyleName\>\""}], "]"}], " ", "=", 
-         " ", 
-         RowBox[{"(", "\n", "\t\t\t\t", "\n", "\t\t\t\t", 
-          RowBox[{
-           RowBox[{"Global`t34", "=", "Now"}], ";", "\n", "\t\t\t\t", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"Global`t35", "=", "Now"}], ";", "#"}], ")"}], "&"}], 
-            "@", 
-            RowBox[{"GetMainStylesheetName", "[", "nb", "]"}]}]}], "\n", 
-          "\t\t\t\t", ")"}]}], ";", "\n", "\t\t\t", 
-        RowBox[{"Global`t36", "=", "Now"}], ";"}]}], "\n", "\t\t\t", "]"}], 
-     ";"}]}], "\n", "\t", "\n", "\t\t", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<Theme\>\""}], "}"}]}], 
+          "]"}], " ", "=", " ", 
+         RowBox[{"GetMainStylesheetName", "[", "nb", "]"}]}], ";"}]}], "\n", 
+      "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
    "]"}]}]], \
 "CodeInput",ExpressionUUID->"63bcf7f8-193a-4ea1-bb47-37fb7c184f57"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]sheetExistsQ\[RightFloor]", "CodeSubsubsection",
  Evaluatable->True,ExpressionUUID->"81f401b7-ab58-46be-b303-da845771c2c4"],
 
+Cell["\<\
+\[LeftCeiling]
+\tI might want to reimp something like this for myself to speed this up...?
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"e7eb578c-c67a-4919-8dd1-65f84bb279ba"],
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"sheetExistsQ", "[", "s_String", "]"}], ":=", "\n", "  ", 
    RowBox[{
-    RowBox[{"FrontEndExecute", "@", 
+    RowBox[{"MathLink`CallFrontEnd", "@", 
      RowBox[{"FrontEnd`FindFileOnPath", "[", 
       RowBox[{"s", ",", " ", "\"\<StyleSheetPath\>\""}], "]"}]}], "=!=", 
     "$Failed"}]}], ";"}], "\n", 
@@ -579,7 +605,7 @@ Cell[BoxData[{
    RowBox[{"sheetExistsQ", "[", "f_FrontEnd`FileName", "]"}], ":=", "\n", 
    "  ", 
    RowBox[{
-    RowBox[{"FrontEndExecute", "@", 
+    RowBox[{"MathLink`CallFrontEnd", "@", 
      RowBox[{"FrontEnd`FindFileOnPath", "[", 
       RowBox[{
        RowBox[{"ToFileName", "[", "f", "]"}], ",", " ", 

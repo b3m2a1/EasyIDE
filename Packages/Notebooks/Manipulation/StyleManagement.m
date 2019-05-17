@@ -36,6 +36,18 @@ Begin["`Private`"];
 
 
 (* ::Subsubsection::Closed:: *)
+(*getThemeName*)
+
+
+
+getThemeName[nb_]:=
+  Replace[IDEData[nb, {"Styles", "Theme"}], 
+    Inherited:>
+      IDEData[nb, "MainStyleName"]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
 (*GetMainStylesheet*)
 
 
@@ -165,13 +177,13 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
       ];
 GetMainStylesheetName[nb_NotebookObject, fallback_:Automatic]:=
   Replace[
-    IDEData[nb, "MainStyleName"],
+    getThemeName[nb],
     Inherited:>
       Set[
-        IDEData[nb, "MainStyleName"],
+        IDEData[nb, {"Styles", "Theme"}],
         GetMainStylesheetName[
           GetMainStylesheet[nb],
-          Replace[fallback, Automatic:>IDEData[nb, "MainStyleName"]]
+          Replace[fallback, Automatic:>"LightMode"]
           ]
         ]
     ]
@@ -186,7 +198,7 @@ SetNotebookStyleTheme[nb_NotebookObject, themeName_String]:=
   With[{gs=GetMainStylesheet[nb]},
     With[{tname=GetMainStylesheetName[gs]},
       If[tname=!=themeName,
-        IDEData[nb, "MainStyleName"] = themeName;
+        IDEData[nb, {"Styles", "Theme"}] = themeName;
         SetOptions[nb, StyleDefinitions->gs/.tname->themeName]
         ]
       ]
@@ -229,24 +241,15 @@ GetThemedStylesheet[sheet_]:=
 SetThemedStylesheet[nb_, targ_]:=
   Module[
     {
-      currentStyles = IDEData[nb, "StyleSheet", None],
+      currentStyles = 
+        Replace[IDEData[nb, {"Styles", "StyleSheet"}], Inherited:>IDEData["Stylesheet"]],
       mainName
       },
-    Global`t31=Now;
-    IDEData[nb, "StyleSheet"] = targ;
-    Global`t32=Now;
+    IDEData[nb, {"Styles", "StyleSheet"}] = targ;
     If[targ =!= None,
-      Global`t33=Now;
       SetMainStylesheet[nb, targ];
-      Global`t34=Now;
-      IDEData[nb, "MainStyleName"] = (
-        
-        Global`t34=Now;
-        (Global`t35=Now;#)&@GetMainStylesheetName[nb]
-        );
-      Global`t36=Now;
+      IDEData[nb, {"Styles", "Theme"}] = GetMainStylesheetName[nb];
       ];
-  
     ]
 
 
@@ -255,10 +258,17 @@ SetThemedStylesheet[nb_, targ_]:=
 
 
 
+(* ::Text:: *)
+(*
+	I might want to reimp something like this for myself to speed this up...?
+*)
+
+
+
 sheetExistsQ[s_String]:=
-  FrontEndExecute@FrontEnd`FindFileOnPath[s, "StyleSheetPath"]=!=$Failed;
+  MathLink`CallFrontEnd@FrontEnd`FindFileOnPath[s, "StyleSheetPath"]=!=$Failed;
 sheetExistsQ[f_FrontEnd`FileName]:=
-  FrontEndExecute@FrontEnd`FindFileOnPath[ToFileName[f], "StyleSheetPath"]=!=$Failed;
+  MathLink`CallFrontEnd@FrontEnd`FindFileOnPath[ToFileName[f], "StyleSheetPath"]=!=$Failed;
 
 
 (* ::Subsubsection::Closed:: *)

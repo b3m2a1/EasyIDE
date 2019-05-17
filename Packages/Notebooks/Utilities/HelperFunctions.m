@@ -80,15 +80,10 @@ iCurrentValue[a___]/;!TrueQ[$inCVHeld]:=
         ]
       ]
     ];
- iCurrentValue[nb_, k_]/;TrueQ[$inCVHeld]:=
+  iCurrentValue[nb_, k_, default___]/;TrueQ[$inCVHeld]:=
    If[KeyExistsQ[$setCurrentValueStack, {nb, k}],
      $setCurrentValueStack[{nb, k}],
-     Inherited
-     ];
-  iCurrentValue[nb_, k_, default_]/;TrueQ[$inCVHeld]:=
-   If[KeyExistsQ[$setCurrentValueStack, {nb, k}],
-     $setCurrentValueStack[{nb, k}],
-     $setCurrentValueStack[{nb, k}] = default
+     Block[{$inCVHeld}, iCurrentValue[nb, k, default]]
      ]
 
 
@@ -284,6 +279,14 @@ WithoutDynamics~SetAttributes~HoldAll;
 
 
 
+pauseScreen[nb_]:=
+  MathLink`CallFrontEnd@
+    FrontEnd`NotebookSuspendScreenUpdates[nb];
+resumeScreen[nb_]:=
+  MathLink`CallFrontEnd@
+    FrontEnd`NotebookResumeScreenUpdates[nb];
+
+
 WithoutScreenUpdates//Clear;
 WithoutScreenUpdates[nb_NotebookObject, expr_]:=
   Block[
@@ -293,12 +296,10 @@ WithoutScreenUpdates[nb_NotebookObject, expr_]:=
       If[noScreen,
         expr,
         Internal`WithLocalSettings[
-          FrontEndExecute@
-            FrontEnd`NotebookSuspendScreenUpdates[nb],
+          pauseScreen[nb],
           noScreen = True;
-          expr,
-          FrontEndExecute@
-            FrontEnd`NotebookResumeScreenUpdates[nb]
+          Block[{pauseScreen, resumeScreen}, expr],
+          resumeScreen[nb]
           ]
         ]
       ];
@@ -343,10 +344,11 @@ WithoutScreenUpdatesOrDynamics[nb_NotebookObject, expr_]:=
               FrontEnd`SetOptions[nb, DynamicUpdating->False]
               },
             noScreen = True;
+            dynamicsOff = False;
             expr,
             FrontEndExecute@{
               FrontEnd`NotebookResumeScreenUpdates[nb],
-              FrontEnd`SetOptions[nb, DynamicUpdating->Automatic]
+              FrontEnd`SetOptions[nb, DynamicUpdating->Inherited]
               }
             ]
           ]
@@ -374,13 +376,13 @@ WithoutScreenUpdatesOrDynamics~SetAttributes~HoldAll;
 WithFrontEndTracking[expr_]:=
   Block[
     {
-      FrontEnd`$TrackingEnabled = True,
-      $inCVHeld = False,
-      $setCurrentValueStack = 
-        If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]
+      FrontEnd`$TrackingEnabled = True(*,
+  	  $inCVHeld = False,
+  	  $setCurrentValueStack = 
+  	    If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]*)
       },
-   SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]];
-   $setCurrentValueStack = <||>;
+   (*SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]];
+   $setCurrentValueStack = <||>;*)
     expr
     ];
 WithFrontEndTracking~SetAttributes~HoldRest
@@ -395,20 +397,21 @@ WithoutFrontEndTracking//Clear
 WithoutFrontEndTracking[expr_]:=
   Block[
     {
-      FrontEnd`$TrackingEnabled = False,
-      $headCall = If[TrueQ[$headCall], False, True],
-      $inCVHeld = True,
-      $setCurrentValueStack = 
-        If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]
+      FrontEnd`$TrackingEnabled = False(*,
+  	  $headCall = If[TrueQ[$headCall], False, True],
+  	  $inCVHeld = True,
+  	  $setCurrentValueStack = 
+  	    If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]*)
       },
-    Internal`WithLocalSettings[
-      (* don't need to process $setCurrentValueStack before hand *)
-      None,
-      expr,
-      If[$headCall, (* if we've bottomed out we call into the FE *)
-        SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]]
-        ]
-      ]
+    expr
+    (*Internal`WithLocalSettings[
+  	  (* don't need to process $setCurrentValueStack before hand *)
+  	  None,
+		  expr,
+		  If[$headCall, (* if we've bottomed out we call into the FE *)
+		    SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]]
+		    ]
+		  ]*)
     ];
 WithoutFrontEndTracking~SetAttributes~HoldRest
 

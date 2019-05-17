@@ -41,6 +41,49 @@ createFailuresDialog[loadPackageFailures_]:=
   ];
 
 
+createFailuresDialog[loadPackageFailures_]:=
+  Grid[
+    {
+      Style[
+        Replace[
+          #[[2]]["MessageParameters"],
+          {
+            {___, HoldForm[s_String?(StringContainsQ["(line "])], ___}:>
+              "Line ``:"~TemplateApply~StringCases[s, "(line "~~n:NumberString:>n, 1],
+            _->"No Line:"
+            }
+          ],
+        GrayLevel[.5]
+        ],
+      Framed[
+        MouseAppearance[
+          Tooltip[
+            EventHandler[#, "MouseClicked":>CopyToClipboard[#]],
+            "Click to copy",
+            TooltipDelay->0
+            ],
+          "LinkHand"
+          ],
+        Background->White,
+        FrameStyle->GrayLevel[.7,.5]
+        ]
+      }&/@
+     If[Length@loadPackageFailures>10,
+      Append[
+        Take[
+          loadPackageFailures,
+          9
+          ],
+        Skeleton[
+          Length@loadPackageFailures-9
+          ]
+        ],
+      loadPackageFailures
+      ],
+    Alignment->Left
+    ]//CreateMessagePopup
+
+
 loadPackage[]:=
   Block[{
       loadPackageFailures={},

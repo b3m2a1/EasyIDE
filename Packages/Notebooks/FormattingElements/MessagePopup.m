@@ -22,7 +22,7 @@ Begin["`Private`"];
 
 
 
-MessagePopupPanel[expression_]:=
+MessagePopupPanel[expression_, ops:OptionsPattern[]]:=
   Panel[
     Grid[
       {
@@ -33,6 +33,7 @@ MessagePopupPanel[expression_]:=
         },
       GridBoxItemSize->Inherited
       ],
+    ops,
     BaseStyle->"MessagePopup"
     ]
 
@@ -55,31 +56,40 @@ CreateMessagePopup[
   expression_, 
   position:{_Integer|_Scaled, _Integer|_Scaled}:{-15, -15},
   align:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
-  anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom}
+  anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
+  ops:OptionsPattern[]
   ]:=
   FEAttachCell[
     nb,
     Cell[
-      BoxData@ToBoxes@MessagePopupPanel[expression],
-      "MessagePopupCell"
+      BoxData@ToBoxes@
+        MessagePopupPanel[expression, FilterRules[{ops}, Options[Panel]]],
+      "MessagePopupCell",
+      Sequence@@
+        FilterRules[
+          FilterRules[{ops}, Options[Cell]],
+          Except[Alternatives@@Keys[Options[Panel]]]
+          ]
       ],
     Offset[position, 0],
     align,
     anchor,
     {"OutsideMouseClick"}
     ];
-CreateMessagePopup[ 
+CreateMessagePopup[
   expression:Except[attachables], 
   position:{_Integer|_Scaled, _Integer|_Scaled}:{-15, -15},
   align:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
-  anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom}
+  anchor:{Left|Center|Right, Bottom|Center|Top}:{Right, Bottom},
+  ops:OptionsPattern[]
   ]:=
   CreateMessagePopup[
     $CurrentIDENotebook,
     expression,
     position,
     align,
-    anchor
+    anchor,
+    ops
     ]
 
 

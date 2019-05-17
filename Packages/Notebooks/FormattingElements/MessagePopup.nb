@@ -15,20 +15,22 @@ Notebook[{Cell[CellGroupData[{Cell["MessagePopup", "CodeSection",
           {Cell["\[LeftCeiling]MessagePopupPanel\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{"MessagePopupPanel", "[", 
-                 "expression_", "]"}], ":=", "\n", "  ", RowBox[{"Panel", 
-                 "[", "\n", "    ", RowBox[{RowBox[{"Grid", "[", "\n", 
-                     "      ", RowBox[{RowBox[{"{", "\n", "        ", 
-                         RowBox[{"{", "\n", "          ", RowBox[{RowBox[
-                          {"Pane", "[", "expression", "]"}], ",", " ", "\n", 
-                          "          ", RowBox[{"RawBoxes", "@", RowBox[
-                          {"ButtonBox", "[", RowBox[{"\"\"", ",", " ", RowBox[
-                          {"BaseStyle", "->", "\"MessagePopupClose\""}]}], 
-                          "]"}]}]}], "\n", "          ", "}"}], "\n", 
-                         "        ", "}"}], ",", "\n", "      ", RowBox[
-                        {"GridBoxItemSize", "->", "Inherited"}]}], "\n", 
-                     "      ", "]"}], ",", "\n", "    ", RowBox[{"BaseStyle", 
+                 RowBox[{"expression_", ",", " ", RowBox[{"ops", ":", 
+                     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+               "\n", "  ", RowBox[{"Panel", "[", "\n", "    ", RowBox[
+                  {RowBox[{"Grid", "[", "\n", "      ", RowBox[
+                      {RowBox[{"{", "\n", "        ", RowBox[{"{", "\n", 
+                          "          ", RowBox[{RowBox[{"Pane", "[", 
+                          "expression", "]"}], ",", " ", "\n", "          ", 
+                          RowBox[{"RawBoxes", "@", RowBox[{"ButtonBox", "[", 
+                          RowBox[{"\"\"", ",", " ", RowBox[{"BaseStyle", 
+                          "->", "\"MessagePopupClose\""}]}], "]"}]}]}], "\n", 
+                          "          ", "}"}], "\n", "        ", "}"}], ",", 
+                       "\n", "      ", RowBox[{"GridBoxItemSize", "->", 
+                         "Inherited"}]}], "\n", "      ", "]"}], ",", "\n", 
+                   "    ", "ops", ",", "\n", "    ", RowBox[{"BaseStyle", 
                      "->", "\"MessagePopup\""}]}], "\n", "    ", "]"}]}]], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]CreateMessagePopup\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{"attachables", "=", "\n", "\t", 
@@ -60,21 +62,34 @@ Notebook[{Cell[CellGroupData[{Cell["MessagePopup", "CodeSection",
                           "|", "Center", "|", "Right"}], ",", " ", RowBox[
                           {"Bottom", "|", "Center", "|", "Top"}]}], "}"}], 
                         ":", RowBox[{"{", RowBox[{"Right", ",", " ", 
-                          "Bottom"}], "}"}]}]}], "\n", "  ", "]"}], ":=", 
-                  "\n", "  ", RowBox[{"FEAttachCell", "[", "\n", "    ", 
-                    RowBox[{"nb", ",", "\n", "    ", RowBox[{"Cell", "[", 
-                        "\n", "      ", RowBox[{RowBox[{"BoxData", "@", 
-                          RowBox[{"ToBoxes", "@", RowBox[
-                          {"MessagePopupPanel", "[", "expression", "]"}]}]}], 
-                          ",", "\n", "      ", "\"MessagePopupCell\""}], 
-                        "\n", "      ", "]"}], ",", "\n", "    ", RowBox[
-                       {"Offset", "[", RowBox[{"position", ",", " ", "0"}], 
-                        "]"}], ",", "\n", "    ", "align", ",", "\n", "    ", 
-                      "anchor", ",", "\n", "    ", RowBox[{"{", 
-                        "\"OutsideMouseClick\"", "}"}]}], "\n", "    ", 
-                    "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {"CreateMessagePopup", "[", " ", "\n", "  ", RowBox[
-                   {RowBox[{"expression", ":", RowBox[{"Except", "[", 
+                          "Bottom"}], "}"}]}], ",", "\n", "  ", RowBox[
+                       {"ops", ":", RowBox[{"OptionsPattern", "[", "]"}]}]}], 
+                    "\n", "  ", "]"}], ":=", "\n", "  ", RowBox[
+                   {"FEAttachCell", "[", "\n", "    ", RowBox[{"nb", ",", 
+                      "\n", "    ", RowBox[{"Cell", "[", "\n", "      ", 
+                        RowBox[{RowBox[{"BoxData", "@", RowBox[{"ToBoxes", 
+                          "@", "\n", "        ", RowBox[{"MessagePopupPanel", 
+                          "[", RowBox[{"expression", ",", " ", RowBox[
+                          {"FilterRules", "[", RowBox[{RowBox[{"{", "ops", 
+                          "}"}], ",", " ", RowBox[{"Options", "[", "Panel", 
+                          "]"}]}], "]"}]}], "]"}]}]}], ",", "\n", "      ", 
+                          "\"MessagePopupCell\"", ",", "\n", "      ", 
+                          RowBox[{"Sequence", "@@", "\n", "        ", RowBox[
+                          {"FilterRules", "[", "\n", "          ", RowBox[
+                          {RowBox[{"FilterRules", "[", RowBox[{RowBox[{"{", 
+                          "ops", "}"}], ",", " ", RowBox[{"Options", "[", 
+                          "Cell", "]"}]}], "]"}], ",", "\n", "          ", 
+                          RowBox[{"Except", "[", RowBox[{"Alternatives", 
+                          "@@", RowBox[{"Keys", "[", RowBox[{"Options", "[", 
+                          "Panel", "]"}], "]"}]}], "]"}]}], "\n", 
+                          "          ", "]"}]}]}], "\n", "      ", "]"}], 
+                      ",", "\n", "    ", RowBox[{"Offset", "[", RowBox[
+                         {"position", ",", " ", "0"}], "]"}], ",", "\n", 
+                      "    ", "align", ",", "\n", "    ", "anchor", ",", 
+                      "\n", "    ", RowBox[{"{", "\"OutsideMouseClick\"", 
+                        "}"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+              RowBox[{RowBox[{"CreateMessagePopup", "[", "\n", "  ", 
+                  RowBox[{RowBox[{"expression", ":", RowBox[{"Except", "[", 
                         "attachables", "]"}]}], ",", " ", "\n", "  ", 
                     RowBox[{"position", ":", RowBox[{"{", RowBox[{RowBox[
                           {"_Integer", "|", "_Scaled"}], ",", " ", RowBox[
@@ -90,16 +105,19 @@ Notebook[{Cell[CellGroupData[{Cell["MessagePopup", "CodeSection",
                           "|", "Center", "|", "Right"}], ",", " ", RowBox[
                           {"Bottom", "|", "Center", "|", "Top"}]}], "}"}], 
                       ":", RowBox[{"{", RowBox[{"Right", ",", " ", 
-                          "Bottom"}], "}"}]}]}], "\n", "  ", "]"}], ":=", 
-                "\n", "  ", RowBox[{"CreateMessagePopup", "[", "\n", "    ", 
-                  RowBox[{"$CurrentIDENotebook", ",", "\n", "    ", 
-                    "expression", ",", "\n", "    ", "position", ",", "\n", 
-                    "    ", "align", ",", "\n", "    ", "anchor"}], "\n", 
-                  "    ", "]"}]}]}], "CodeInput"]}, Closed]]}, Open]], 
-     Cell[CellGroupData[{Cell["\[LeftCeiling]IDECreateMessage\[RightFloor]", 
-         "CodeSubsection", Evaluatable -> True], 
-        Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDECreateMessage", "[", 
-                 RowBox[{"nb_NotebookObject", ",", " ", "expr_", ",", " ", 
+                          "Bottom"}], "}"}]}], ",", "\n", "  ", RowBox[
+                     {"ops", ":", RowBox[{"OptionsPattern", "[", "]"}]}]}], 
+                  "\n", "  ", "]"}], ":=", "\n", "  ", RowBox[
+                 {"CreateMessagePopup", "[", "\n", "    ", RowBox[
+                   {"$CurrentIDENotebook", ",", "\n", "    ", "expression", 
+                    ",", "\n", "    ", "position", ",", "\n", "    ", 
+                    "align", ",", "\n", "    ", "anchor", ",", "\n", "    ", 
+                    "ops"}], "\n", "    ", "]"}]}]}], "CodeInput"]}, Open]]}, 
+       Open]], Cell[CellGroupData[
+       {Cell["\[LeftCeiling]IDECreateMessage\[RightFloor]", "CodeSubsection", 
+         Evaluatable -> True], Cell[BoxData[
+          {RowBox[{RowBox[{RowBox[{"IDECreateMessage", "[", RowBox[
+                  {"nb_NotebookObject", ",", " ", "expr_", ",", " ", 
                    "args___"}], "]"}], ":=", "\n", "  ", RowBox[
                 {"CreateMessagePopup", "[", RowBox[{"nb", ",", " ", "expr", 
                    ",", " ", "args"}], "]"}]}], ";"}], "\n", 
@@ -111,13 +129,12 @@ Notebook[{Cell[CellGroupData[{Cell["MessagePopup", "CodeSection",
                    "args"}], "]"}]}], ";"}]}], "CodeInput"]}, Open]], 
      Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
       "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
- WindowSize -> {808, 755}, WindowMargins -> {{Automatic, 212}, 
-   {-4, Automatic}}, TaggingRules -> 
+ WindowSize -> {808, 755}, WindowMargins -> 
+  {{45, Automatic}, {Automatic, 0}}, TaggingRules -> 
   {"UUIDButtons" -> 
     {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
        "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
        "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
- FrontEndVersion -> 
-  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
  StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
    CharacterEncoding -> "UTF-8"]]
