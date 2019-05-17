@@ -276,7 +276,8 @@ NotebookSwitchTab//Clear;
 Options[NotebookSwitchTab]=
   {
     "UseCache"->True,
-    "SaveCurrent"->False
+    "SaveCurrent"->False,
+    "SaveSettings"->False
     };
 NotebookSwitchTab[nb_NotebookObject, tabName_String, 
   ops:OptionsPattern[]
@@ -288,23 +289,33 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
       actFile,
       cached,
       modTime,
-      buffer
+      buffer,
+      tst
       },
     If[active =!= tabName,
       If[active=!=None,
-        modTime =
-          FromAbsoluteTime[Lookup[NotebookInformation[nb], "MemoryModificationTime"],
-            TimeZone->0
-            ];
         buffer = Quantity[3, "Seconds"];
+        modTime =
+          FromAbsoluteTime[
+            Lookup[NotebookInformation[nb], "MemoryModificationTime"],
+            TimeZone->0
+            ] - buffer;
         actFile = IDEData[nb, {"Tabs", active, "File"}];
+        (* my own version of a MemoryModificationTime just to check when the tab was switched to *)
+        tst = IDEData[nb, PrivateKey[active<>"_TabSwitchTime"]];
         IDEData[nb, {"Tabs", active, "Modified"}] = 
-          Quiet[!TrueQ[modTime <= ( FileDate[actFile] + buffer )]];
+          If[TrueQ[modTime <= FileDate[actFile]],
+            False,
+            TrueQ[tst<=modTime]||
+              TrueQ[IDEData[nb, {"Tabs", active, "Modified"}]]
+            ]
+         ];
         If[OptionValue["UseCache"],
           CacheTabData[nb, active, GetNotebookExpression[nb]];
           cached = LoadCachedTabData[nb, tabName];
           ]
       ];
+     IDEData[nb, PrivateKey[tabName<>"_TabSwitchTime"]] = Now;
       If[OptionValue["SaveCurrent"], 
         IDESave[nb, 
           "AutoGenerateSave"->False,
@@ -314,7 +325,9 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
       file = IDEData[nb, {"Tabs", tabName, "File"}];
       NotebookPutFile[nb, file, Replace[cached, Except[_Notebook]->None]];
       ideSetTab[nb, tabName];
-      ]
+      If[OptionValue["SaveSettings"], 
+        NotebookSave[nb](* note that we don't invoke any of the other processing here *);
+        ]
     ];
 NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
   NotebookSwitchTab[nb, tabName, "SaveCurrent"->saveCurrent];

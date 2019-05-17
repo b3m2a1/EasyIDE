@@ -107,7 +107,7 @@ SaveProjectFileAs[nb_, file_String?(FileExistsQ)]:=
 SetProjectDirectory[nb_, dir_]:=
   If[(StringQ[dir]&&DirectoryQ[dir]),
     IDEData[nb, {"Project", "Directory"}] = dir;
-    CurrentValue[nb, WindowTitle] = getIDETitleBar[dir];
+    SetOptions[nb, WindowTitle->getIDETitleBar[dir]];
     ];
 
 

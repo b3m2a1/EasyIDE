@@ -9,6 +9,10 @@ EndPackage[];
 Begin["`Private`"];
 
 
+getDir[]:=
+  Replace[IDEPath[$CurrentIDENotebook], Except[_String]->$HomeDirectory];
+
+
 setProject[dir_]:=
   If[DirectoryQ[dir],
     With[
@@ -20,11 +24,11 @@ setProject[dir_]:=
       ]
     ];
 setProject[]:=
-  setProject@SystemDialogInput["Directory", IDEPath[$CurrentIDENotebook]];
+  setProject@SystemDialogInput["Directory", getDir[]];
 
 
 newProject[]:=
-  Module[{newDir=SystemDialogInput["Directory"]},
+  Module[{newDir=SystemDialogInput["Directory", getDir[]]},
     If[StringQ@newDir,
       If[DirectoryQ[newDir],
         IDENotebookObject[newDir]

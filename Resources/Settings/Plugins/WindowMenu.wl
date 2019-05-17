@@ -79,7 +79,10 @@ setStylesheet[]:=
         Function[
           SetThemedStylesheet[$CurrentIDENotebook,
             GetThemedStylesheet[#Stylesheet]
-            ]
+            ];
+          IDEData[$CurrentIDENotebook, 
+            {"Options", StyleDefinitions}
+            ]=#Stylesheet
           ]
       |>
     ]
