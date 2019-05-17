@@ -25,9 +25,9 @@ Begin["`Private`"];
 
 
 ideNbData[nb_, {opts___}, default_]:=
-  iCurrentValue[nb, {TaggingRules, $PackageName, opts}, default];
+  GetCurrentValue[nb, {TaggingRules, $PackageName, opts}, default];
 ideNbData[nb_, {opts___}]:=
-  iCurrentValue[nb, {TaggingRules, $PackageName, opts}];
+  GetCurrentValue[nb, {TaggingRules, $PackageName, opts}];
 ideNbData[nb_, opt_String, default_]:=
   ideNbData[nb, {opt}, default];
 ideNbData[nb_, opt_String]:=

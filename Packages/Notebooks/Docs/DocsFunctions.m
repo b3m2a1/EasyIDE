@@ -159,11 +159,11 @@ OpenMetadataEditor[nb_]:=
             WithoutCurrentValueUpdating[
               SetCurrentValue[nb, 
                 {TaggingRules, "EasyIDE", "Options", TaggingRules, "Metadata"}, 
-                iCurrentValue[evnb, {TaggingRules, "Metadata"}]
+                GetCurrentValue[evnb, {TaggingRules, "Metadata"}]
                 ];
               SetCurrentValue[nb, 
                 {TaggingRules, "EasyIDE", "Options", TaggingRules, "ColorType"}, 
-                iCurrentValue[evnb, {TaggingRules, "ColorType"}]
+                GetCurrentValue[evnb, {TaggingRules, "ColorType"}]
                 ]
               ];
             NotebookClose[EvaluationNotebook[]]
@@ -172,7 +172,7 @@ OpenMetadataEditor[nb_]:=
       |>,
     TaggingRules->
       WithoutCurrentValueUpdating@
-        iCurrentValue[nb, {TaggingRules, "EasyIDE", "Options", TaggingRules}],
+        GetCurrentValue[nb, {TaggingRules, "EasyIDE", "Options", TaggingRules}],
     WindowSize->{500, All}
     ]
 

@@ -43,7 +43,7 @@ Begin["`Private`"];
 GetMainStylesheet[nb_]:=
   Module[
     {
-      s=iCurrentValue[nb, StyleDefinitions]
+      s=GetCurrentValue[nb, StyleDefinitions]
       },
     If[Head[s]===Notebook,
       FirstCase[s, Cell[StyleData[StyleDefinitions->f_, ___], ___]:>f, None, \[Infinity]],
@@ -61,10 +61,10 @@ SetMainStylesheet//Clear
 SetMainStylesheet[nb_, f_]:=
   Module[
     {
-      s=iCurrentValue[nb, StyleDefinitions],
+      s = GetCurrentValue[nb, StyleDefinitions],
       scell,
       nbo,
-      sPath = GetCleanStylePath[nb, f]
+      sPath = (Global`t41=Now;(Global`t42=Now;#)&@GetCleanStylePath[nb, f])
       },
     If[Head[s]===Notebook,
       nbo = StyleSheetNotebookObject[nb];
@@ -74,16 +74,18 @@ SetMainStylesheet[nb_, f_]:=
           None
           ];
       If[scell === None,
-        SelectionMove[nbo, Before, Notebook];
-        NotebookWrite[nbo,
-          Cell[StyleData[StyleDefinitions->sPath]]
-          ],
+        MathLink`CallFrontEnd@{
+          FrontEnd`SelectionMove[nbo, Before, Notebook],
+          FrontEnd`NotebookWrite[nbo,
+            Cell[StyleData[StyleDefinitions->sPath]]
+            ]
+          },
         NotebookWrite[
           scell,
           Cell[StyleData[StyleDefinitions->sPath]]
           ]
         ],
-      iSetOptions[nb, StyleDefinitions->sPath]
+      SetNotebookOptions[nb, StyleDefinitions->sPath]
       ]
     ]
 
@@ -109,6 +111,14 @@ GetCleanStylePath[nb_, f_]:=
 
 (* ::Subsubsection::Closed:: *)
 (*GetMainStylesheetName*)
+
+
+
+(* ::Text:: *)
+(*
+	This is currently a slow point in my code... 
+	Can I get it from the theme if the theme is set...?
+*)
 
 
 
@@ -154,9 +164,16 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
         }
       ];
 GetMainStylesheetName[nb_NotebookObject, fallback_:Automatic]:=
-  GetMainStylesheetName[
-    GetMainStylesheet[nb],
-    Replace[fallback, Automatic:>IDEData[nb, "MainStyleName", "LightMode"]]
+  Replace[
+    IDEData[nb, "MainStyleName"],
+    Inherited:>
+      Set[
+        IDEData[nb, "MainStyleName"],
+        GetMainStylesheetName[
+          GetMainStylesheet[nb],
+          Replace[fallback, Automatic:>IDEData[nb, "MainStyleName"]]
+          ]
+        ]
     ]
 
 
@@ -215,11 +232,21 @@ SetThemedStylesheet[nb_, targ_]:=
       currentStyles = IDEData[nb, "StyleSheet", None],
       mainName
       },
+    Global`t31=Now;
     IDEData[nb, "StyleSheet"] = targ;
+    Global`t32=Now;
     If[targ =!= None,
+      Global`t33=Now;
       SetMainStylesheet[nb, targ];
-      IDEData[nb, "MainStyleName"] = GetMainStylesheetName[nb];
+      Global`t34=Now;
+      IDEData[nb, "MainStyleName"] = (
+        
+        Global`t34=Now;
+        (Global`t35=Now;#)&@GetMainStylesheetName[nb]
+        );
+      Global`t36=Now;
       ];
+  
     ]
 
 
@@ -347,7 +374,7 @@ AddNotebookStyles[nb_, styleData:_Cell, tag_]:=
       currDefs,
       defCells
       },
-    currDefs = iCurrentValue[nb, StyleDefinitions];
+    currDefs = GetCurrentValue[nb, StyleDefinitions];
     If[Head[currDefs] =!= Notebook,
       SetCurrentValue[nb, 
         StyleDefinitions,

@@ -136,7 +136,6 @@ RemoveNotebookToolbar[nb_, tag_]:=
         IDEData[nb, {"Toolbars", "Cells", tag}] = None;
         ];
       ];
-    (*refreshToolbars[nb]*)
     WithCurrentValueUpdating@
       If[update,
         UpdateNotebookToolbars[nb, DeleteCases[tags, tag]]

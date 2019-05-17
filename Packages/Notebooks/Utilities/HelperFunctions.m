@@ -37,10 +37,12 @@ $CurrentIDENotebook::usage="";
 $CurrentIDE::usage="";
 
 
-iCurrentValue::usage="Just reimplements CurrentValue for when it's needed";
-iSetOptions::usage="Reimplements SetOptions for when that is needed";
+GetCurrentValue::usage="Just reimplements CurrentValue for when it's needed";
+SetNotebookOptions::usage="Reimplements SetOptions for when that is needed";
 SetCurrentValue::usage="";
 SetCurrentValueDelayed::usage="";
+SetCurrentValues::usage="Batch form of SetCurrentValue";
+SetCurrentValuesDelayed::usage="Batch form of SetCurrentValueDelayed";
 WithIDEData::usage="Reroutes CurrentValue to the EasyIDE path";
 
 
@@ -52,12 +54,23 @@ Begin["`Private`"];
 
 
 
+(* ::Text:: *)
+(*
+	I do a lot of hoop jumping to avoid having to call into the front end multiple times but I think it\[CloseCurlyQuote]s worth it...
+*)
+
+
+
 (* ::Subsubsection::Closed:: *)
 (*iCurrentValue*)
 
 
 
-iCurrentValue[a___]:=
+GetCurrentValue[a___]:=
+  iCurrentValue[a]
+
+
+iCurrentValue[a___]/;!TrueQ[$inCVHeld]:=
   Block[{FrontEnd`CurrentValue},
     With[{c=FrontEnd`CurrentValue[a]},
       Replace[
@@ -66,7 +79,17 @@ iCurrentValue[a___]:=
         c->$Failed
         ]
       ]
-    ]
+    ];
+ iCurrentValue[nb_, k_]/;TrueQ[$inCVHeld]:=
+   If[KeyExistsQ[$setCurrentValueStack, {nb, k}],
+     $setCurrentValueStack[{nb, k}],
+     Inherited
+     ];
+  iCurrentValue[nb_, k_, default_]/;TrueQ[$inCVHeld]:=
+   If[KeyExistsQ[$setCurrentValueStack, {nb, k}],
+     $setCurrentValueStack[{nb, k}],
+     $setCurrentValueStack[{nb, k}] = default
+     ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -74,7 +97,7 @@ iCurrentValue[a___]:=
 
 
 
-iSetOptions[o_, a___]:=
+SetNotebookOptions[o_, a___]:=
   Block[{FrontEnd`SetOptions},
     MathLink`CallFrontEnd@
       FrontEnd`SetOptions[o, a]
@@ -88,16 +111,45 @@ iSetOptions[o_, a___]:=
 
 SetCurrentValue//Clear
 SetCurrentValue[nb_, k_, value_]:=
+  iSetCurrentValue[nb, k, value];
+iSetCurrentValue[nb_, k_, value_]/;!TrueQ[$inCVHeld]:=
   With[{h=FrontEnd`$TrackingEnabled},
-    MathLink`CallFrontEndHeld[
-      FrontEnd`SetValue[
-          FEPrivate`Set[
-            FrontEnd`CurrentValue[nb, k], 
-          value
-            ],
-          h
-          ]
-      ]
+      MathLink`CallFrontEndHeld[
+        FrontEnd`SetValue[
+            FEPrivate`Set[
+              FrontEnd`CurrentValue[nb, k], 
+            value
+              ],
+            h
+            ]
+        ]
+      ];
+iSetCurrentValue[nb_, k_, value_]/;TrueQ[$inCVHeld]:=
+  $setCurrentValueStack[{nb, k}] = value;
+
+
+SetCurrentValues[triples_]:=
+  MathLink`CallFrontEnd@FrontEnd`SetValue@
+    Map[
+      FEPrivate`Set[
+        FrontEnd`CurrentValue[#[[1, 1]], #[[1, 2]]], 
+        #[[2]]
+          ]&,
+        triples
+        ];
+SetCurrentValuesDelayed[triples_]:=
+  With[
+    {
+      r=FrontEnd`SetValue@
+        Map[
+          FEPrivate`SetDelayed[
+            FrontEnd`CurrentValue[#[[1, 1]], #[[1, 2]]], 
+            Extract[#[[2]], 1, Unevaluated]
+              ]&,
+            triples
+            ]
+        },
+    MathLink`CallFrontEndHeld[r]
     ]
 
 
@@ -322,8 +374,13 @@ WithoutScreenUpdatesOrDynamics~SetAttributes~HoldAll;
 WithFrontEndTracking[expr_]:=
   Block[
     {
-      FrontEnd`$TrackingEnabled = True
+      FrontEnd`$TrackingEnabled = True,
+      $inCVHeld = False,
+      $setCurrentValueStack = 
+        If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]
       },
+   SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]];
+   $setCurrentValueStack = <||>;
     expr
     ];
 WithFrontEndTracking~SetAttributes~HoldRest
@@ -338,9 +395,20 @@ WithoutFrontEndTracking//Clear
 WithoutFrontEndTracking[expr_]:=
   Block[
     {
-      FrontEnd`$TrackingEnabled = False
+      FrontEnd`$TrackingEnabled = False,
+      $headCall = If[TrueQ[$headCall], False, True],
+      $inCVHeld = True,
+      $setCurrentValueStack = 
+        If[!AssociationQ[$setCurrentValueStack], <||>, $setCurrentValueStack]
       },
-    expr
+    Internal`WithLocalSettings[
+      (* don't need to process $setCurrentValueStack before hand *)
+      None,
+      expr,
+      If[$headCall, (* if we've bottomed out we call into the FE *)
+        SetCurrentValues[KeyValueMap[List, $setCurrentValueStack]]
+        ]
+      ]
     ];
 WithoutFrontEndTracking~SetAttributes~HoldRest
 
