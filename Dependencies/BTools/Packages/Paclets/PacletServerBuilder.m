@@ -27,7 +27,7 @@ PacletServerRemove::usage=
 
 
 PacletServerBuild::usage="Builds a paclet server and site";
-PacletServerDeploy::usage="Deploys a paclet server";
+PacletServerDeploy::usage="Deploys a paclet server to the web";
 
 
 PacletServerInterface::usage=

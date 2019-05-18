@@ -20,7 +20,7 @@ EndPackage[]
 Begin["`Private`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*PreConfig*)
 
 
@@ -110,7 +110,7 @@ openerSelector[label_, types_, path_String, depth_:4]:=
 		]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Formatting Objects*)
 
 
@@ -226,7 +226,7 @@ checkboxGrid[vars:{(_:>_)..}]:=
 	checkboxGrid[Thread[{vars}]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Functions*)
 
 
@@ -390,7 +390,7 @@ inputDialog[header_]:=
 		]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Regen*)
 
 
@@ -425,7 +425,7 @@ regenActions=
   		}
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*UpdateDependencies*)
 
 
@@ -440,7 +440,7 @@ updateDeps[]:=
 	  ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*newApp*)
 
 
@@ -461,7 +461,7 @@ newApp[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*New*)
 
 
@@ -469,7 +469,7 @@ newPackage[]:=
   IDEOpen[Notebook[{}, StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb"]]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Git*)
 
 
@@ -569,7 +569,7 @@ gitBranch=
 	];*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*GitHub*)
 
 
@@ -588,7 +588,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Paclet*)
 
 
@@ -603,7 +603,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Publish*)
 
 
@@ -621,7 +621,8 @@ publishApp[]:=
               "GH"->"Push To GitHub",
               "SV"->"Push To Server",
               "PI"->"Update PacletInfo",
-              "PS"->"Publish Server"
+              "PS"->"Publish Server",
+              "RL"->"Create Release"
               },
             Appearance->"Horizontal"->{Automatic, 2}
             },
@@ -629,7 +630,8 @@ publishApp[]:=
             If[gitPushFlag=!=False, "GH", Nothing],
             If[pushToServerFlag=!=False, "SV", Nothing],
             If[updatePacletFlag=!=False, "PI", Nothing],
-            If[TrueQ[publishServerFlag], "PS", Nothing]
+            If[TrueQ[publishServerFlag], "PS", Nothing],
+            If[TrueQ[createReleaseServerFlag], "RL", Nothing]
             }
           |>
         |>,
@@ -640,6 +642,7 @@ publishApp[]:=
             pushToServerFlag=MemberQ[#Settings, "SV"];
             updatePacletFlag=MemberQ[#Settings, "PI"];
             publishServerFlag=MemberQ[#Settings, "PS"];
+            createReleaseServerFlag=MemberQ[#Settings, "RL"];
             makeSiteFlag=False;
             backupFlag=False;
             Module[{popup, r},
@@ -655,7 +658,8 @@ publishApp[]:=
           					"PushToGitHub"->gitPushFlag=!=False,
           					"PacletBackup"->backupFlag=!=False,
           					"PushToServer"->pushToServerFlag=!=False,
-          					"UpdatePaclet"->updatePacletFlag=!=False
+          					"UpdatePaclet"->updatePacletFlag=!=False,
+          					"CreateRelease"->TrueQ[createReleaseServerFlag]
           					];
               NotebookDelete[popup];
               CreateMessagePopup@"Published"
@@ -678,7 +682,7 @@ publishApp[]:=
     ];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*CreateRelease*)
 
 
@@ -695,14 +699,14 @@ createRelease[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Toolbar*)
 
 
 addAppsToolbar[]:=CreateMessagePopup["Toolbar still in progress! Sorry!"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Exported*)
 
 
@@ -726,7 +730,7 @@ appManagerPluginCommands =
     };
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 
