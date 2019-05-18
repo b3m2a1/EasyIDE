@@ -344,35 +344,38 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
                 TrueQ[IDEData[nb, {"Tabs", active, "Modified"}]]
               ]
            ];
-          If[OptionValue["UseCache"],
-            MathLink`CallFrontEnd@{
-              FrontEnd`SelectionMove[nb, Previous, Cell],
-              FrontEnd`SelectionAddCellTags[nb, {"EasyIDEScrollTag"}]
-              };
-            CacheTabData[nb, active, GetNotebookExpression[nb]];
-            cached = LoadCachedTabData[nb, tabName];
-            ]
-        ];
-       IDEData[nb, PrivateKey[tabName<>"_TabSwitchTime"]] = Now;
-        If[OptionValue["SaveCurrent"], 
-          IDESave[nb, 
-            "AutoGenerateSave"->False,
-            "HandleSavingAction"->False
-            ]
+        If[OptionValue["UseCache"],
+          MathLink`CallFrontEnd@{
+            FrontEnd`SelectionMove[nb, Previous, Cell],
+            FrontEnd`SelectionAddCellTags[nb, {"EasyIDEScrollTag"}]
+            };
+          CacheTabData[nb, active, GetNotebookExpression[nb]];
+          cached = LoadCachedTabData[nb, tabName];
           ];
-        file = IDEData[nb, {"Tabs", tabName, "File"}];
-        NotebookPutFile[nb, file, 
-          Replace[cached, Except[_Notebook]->None]
+        WithoutDynamics[
+          nb,
+         IDEData[nb, PrivateKey[tabName<>"_TabSwitchTime"]] = Now;
+          If[OptionValue["SaveCurrent"], 
+            IDESave[nb, 
+              "AutoGenerateSave"->False,
+              "HandleSavingAction"->False
+              ]
+            ];
+          file = IDEData[nb, {"Tabs", tabName, "File"}];
+          NotebookPutFile[nb, file, 
+            Replace[cached, Except[_Notebook]->None]
+            ];
+          MathLink`CallFrontEnd@{
+          FrontEnd`NotebookFind[nb, "EasyIDEScrollTag", Next, CellTags, WrapAround->True],
+          FrontEnd`SelectionRemoveCellTags[nb, {"EasyIDEScrollTag"}],
+          FrontEnd`SelectionMove[nb, After, Cell]
+           };
+          ideSetTab[nb, tabName];
           ];
-        MathLink`CallFrontEnd@{
-        FrontEnd`NotebookFind[nb, "EasyIDEScrollTag", Next, CellTags, WrapAround->True],
-        FrontEnd`SelectionRemoveCellTags[nb, {"EasyIDEScrollTag"}],
-        FrontEnd`SelectionMove[nb, After, Cell]
-         };
-        ideSetTab[nb, tabName];
         If[OptionValue["SaveSettings"], 
           NotebookSave[nb](* note that we don't invoke any of the other processing here *);
           ];
+        ];
       ]
     ];
 NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
