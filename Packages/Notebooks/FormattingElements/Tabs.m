@@ -365,11 +365,21 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
           NotebookPutFile[nb, file, 
             Replace[cached, Except[_Notebook]->None]
             ];
-          MathLink`CallFrontEnd@{
-          FrontEnd`NotebookFind[nb, "EasyIDEScrollTag", Next, CellTags, WrapAround->True],
-          FrontEnd`SelectionRemoveCellTags[nb, {"EasyIDEScrollTag"}],
-          FrontEnd`SelectionMove[nb, After, Cell]
-           };
+          Replace[
+            MathLink`CallFrontEnd@
+              FrontEnd`NotebookFindReturnObject[nb, "EasyIDEScrollTag", 
+                Next, CellTags, WrapAround->True
+                ],
+            Except[$Failed]:>
+              MathLink`CallFrontEnd@{
+                FrontEnd`SelectionMove[nb, After, Notebook],
+                FrontEnd`NotebookFind[nb, "EasyIDEScrollTag", 
+                  Next, CellTags, WrapAround->True
+                  ],
+                FrontEnd`SelectionRemoveCellTags[nb, {"EasyIDEScrollTag"}],
+                FrontEnd`SelectionMove[nb, After, Cell]
+                }
+              ];
           ideSetTab[nb, tabName];
           ];
         If[OptionValue["SaveSettings"], 

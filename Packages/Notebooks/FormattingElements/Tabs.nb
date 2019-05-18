@@ -448,23 +448,38 @@ Notebook[{Cell[CellGroupData[{Cell["Tabbing", "CodeSection"],
                           "  ", "  ", "        ", RowBox[{"Replace", "[", 
                           RowBox[{"cached", ",", " ", RowBox[{RowBox[
                           {"Except", "[", "_Notebook", "]"}], "\[Rule]", 
-                          "None"}]}], "]"}]}], "\n", "  ", "          ", 
-                          "]"}], ";", "\n", "  ", "        ", RowBox[
-                          {"MathLink`CallFrontEnd", "@", RowBox[{"{", "\n", 
-                          "  ", "        ", RowBox[{RowBox[{
-                          "FrontEnd`NotebookFind", "[", RowBox[{"nb", ",", 
-                          " ", "\"EasyIDEScrollTag\"", ",", " ", "Next", ",", 
-                          " ", "CellTags", ",", " ", RowBox[{"WrapAround", 
-                          "\[Rule]", "True"}]}], "]"}], ",", "\n", "  ", 
-                          "        ", RowBox[{
+                          "None"}]}], "]"}]}], "\n", "            ", "]"}], 
+                          ";", "\n", "          ", RowBox[{"Replace", "[", 
+                          "\n", "            ", RowBox[{RowBox[{
+                          "MathLink`CallFrontEnd", "@", "\n", 
+                          "              ", RowBox[{
+                          "FrontEnd`NotebookFindReturnObject", "[", RowBox[
+                          {"nb", ",", " ", "\"EasyIDEScrollTag\"", ",", " ", 
+                          "\n", "  ", "              ", "Next", ",", " ", 
+                          "CellTags", ",", " ", RowBox[{"WrapAround", 
+                          "\[Rule]", "True"}]}], "\n", "                ", 
+                          "]"}]}], ",", "\n", "            ", RowBox[{RowBox[
+                          {"Except", "[", "$Failed", "]"}], ":>", "\n", 
+                          "              ", RowBox[{"MathLink`CallFrontEnd", 
+                          "@", RowBox[{"{", "\n", "                ", RowBox[
+                          {RowBox[{"FrontEnd`SelectionMove", "[", RowBox[
+                          {"nb", ",", " ", "After", ",", " ", "Notebook"}], 
+                          "]"}], ",", "\n", "                ", RowBox[
+                          {"FrontEnd`NotebookFind", "[", RowBox[{"nb", ",", 
+                          " ", "\"EasyIDEScrollTag\"", ",", " ", "\n", "  ", 
+                          "                ", "Next", ",", " ", "CellTags", 
+                          ",", " ", RowBox[{"WrapAround", "\[Rule]", 
+                          "True"}]}], "\n", "                  ", "]"}], ",", 
+                          "\n", "                ", RowBox[{
                           "FrontEnd`SelectionRemoveCellTags", "[", RowBox[
                           {"nb", ",", " ", RowBox[{"{", 
                           "\"EasyIDEScrollTag\"", "}"}]}], "]"}], ",", "\n", 
-                          "  ", "        ", RowBox[{"FrontEnd`SelectionMove", 
-                          "[", RowBox[{"nb", ",", " ", "After", ",", " ", 
-                          "Cell"}], "]"}]}], "\n", "  ", "         ", 
-                          "}"}]}], ";", "\n", "  ", "        ", RowBox[
-                          {"ideSetTab", "[", RowBox[{"nb", ",", " ", 
+                          "                ", RowBox[{
+                          "FrontEnd`SelectionMove", "[", RowBox[{"nb", ",", 
+                          " ", "After", ",", " ", "Cell"}], "]"}]}], "\n", 
+                          "                ", "}"}]}]}]}], "\n", 
+                          "              ", "]"}], ";", "\n", "          ", 
+                          RowBox[{"ideSetTab", "[", RowBox[{"nb", ",", " ", 
                           "tabName"}], "]"}], ";"}]}], "\n", "  ", 
                           "        ", "]"}], ";", "\n", "        ", RowBox[
                           {"If", "[", RowBox[{RowBox[{"OptionValue", "[", 
