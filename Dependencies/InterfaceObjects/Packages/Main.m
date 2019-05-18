@@ -936,13 +936,13 @@ iRegisterInterfaceAccessor[head_, dispatcher_]:=
               unevaluate=False
               }, 
             unevaluate=
-              (MissingQ@res||Head[res]===lookup);
-            unevaluate=
-              unevaluate&&
+              Head[res]===lookup||(
+                MissingQ@res&&
                 (
                   KeyExistsQ[InterfaceAttributes[head], arg]||
                     KeyExistsQ[InterfaceMethods[head], arg]
-                  );
+                  )
+                );
             res/;!unevaluate
             ];
         obj_head?valid[meth_String[arg___]]:=
@@ -952,10 +952,10 @@ iRegisterInterfaceAccessor[head_, dispatcher_]:=
               unevaluate=False
               }, 
             unevaluate=
-              (MissingQ@res||Head[res]===lookup);
-            unevaluate=
-              unevaluate&&
-                KeyExistsQ[InterfaceMethods[head], meth];
+              Head[res]===lookup||(
+                MissingQ@res&&
+                  KeyExistsQ[InterfaceMethods[head], meth]
+                );
             res/;!unevaluate
             ];
         obj_head?valid[arg:Except[_String|_String[___]]]:=

@@ -29,7 +29,7 @@ Begin["`Private`"];
 
 
 (* ::Subsection:: *)
-(*TabData*)
+(*TabCaching*)
 
 
 
@@ -41,6 +41,23 @@ Begin["`Private`"];
 If[!ValueQ[$TabCacheDir],
   $TabCacheDir = FileNameJoin@{$TemporaryDirectory, "EasyIDE", "tab_cache"}
   ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*LoadCachedTabData*)
+
+
+
+LoadCachedTabData//Clear
+LoadCachedTabData[nb_, tabName_String]:=
+  loadTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}]];
+LoadCachedTabData[nb_]:=
+  LoadCachedTabData[nb, IDEData[nb, "ActiveTab"]];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*tabCacheFile*)
+
 
 
 tabCacheFile[fileName_]:=
@@ -61,6 +78,11 @@ checkTabCache[fileName_]:=
     ]
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*loadTabCacheData*)
+
+
+
 loadTabCacheData[fileName_String]:=
   Replace[checkTabCache[fileName], s_String:>Quiet@Import[s]];
 loadTabCacheData[e_]:=
@@ -73,22 +95,27 @@ setTabCacheData[e__]:=
   $Failed;
 
 
-LoadCachedTabData//Clear
-LoadCachedTabData[nb_, tabName_String]:=
-  loadTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}]];
-LoadCachedTabData[nb_]:=
-  LoadCachedTabData[nb, IDEData[nb, "ActiveTab"]];
+(* ::Subsubsection::Closed:: *)
+(*CacheTabData*)
+
 
 
 CacheTabData//Clear
 CacheTabData[nb_, tabName_String, data_]:=
   setTabCacheData[IDEData[nb, {"Tabs", tabName, "File"}], data];
 CacheTabData[nb_, tabName_String]:=
-  CacheTabData[nb, tabName, GetNotebookExpression[nb]];
+  CacheTabData[nb, tabName, 
+    GetNotebookExpression[nb]
+    ];
 CacheTabData[nb_]:=
   CacheTabData[nb, IDEData[nb, "ActiveTab"]];
 CacheTabData[e___]:=
   $Failed;
+
+
+(* ::Subsubsection::Closed:: *)
+(*ClearCachedTabData*)
+
 
 
 ClearCachedTabData//Clear;
@@ -96,6 +123,11 @@ ClearCachedTabData[nb_, tabName_]:=
   Quiet[DeleteFile@tabCacheFile@IDEData[nb, {"Tabs", tabName, "File"}]];
 ClearCachedTabData[nb_]:=
   ClearCachedTabData[nb, IDEData[nb, "ActiveTab"]];
+
+
+(* ::Subsection:: *)
+(*TabData*)
+
 
 
 (* ::Subsubsection::Closed:: *)
@@ -282,52 +314,66 @@ Options[NotebookSwitchTab]=
 NotebookSwitchTab[nb_NotebookObject, tabName_String, 
   ops:OptionsPattern[]
   ]:=
-  Module[
-    {
-      file,
-      active = IDEData[nb, "ActiveTab"],
-      actFile,
-      cached,
-      modTime,
-      buffer,
-      tst
-      },
-    If[active =!= tabName,
-      If[active=!=None,
-        buffer = Quantity[3, "Seconds"];
-        modTime =
-          FromAbsoluteTime[
-            Lookup[NotebookInformation[nb], "MemoryModificationTime"],
-            TimeZone->0
-            ] - buffer;
-        actFile = IDEData[nb, {"Tabs", active, "File"}];
-        (* my own version of a MemoryModificationTime just to check when the tab was switched to *)
-        tst = IDEData[nb, PrivateKey[active<>"_TabSwitchTime"]];
-        IDEData[nb, {"Tabs", active, "Modified"}] = 
-          If[TrueQ[modTime <= FileDate[actFile]],
-            False,
-            TrueQ[tst<=modTime]||
-              TrueQ[IDEData[nb, {"Tabs", active, "Modified"}]]
+  WithoutScreenUpdates[
+    nb,
+    Module[
+      {
+        file,
+        active = IDEData[nb, "ActiveTab"],
+        actFile,
+        cached,
+        modTime,
+        buffer,
+        tst
+        },
+      If[active =!= tabName,
+        If[active=!=None,
+          buffer = Quantity[3, "Seconds"];
+          modTime =
+            FromAbsoluteTime[
+              Lookup[NotebookInformation[nb], "MemoryModificationTime"],
+              TimeZone->0
+              ] - buffer;
+          actFile = IDEData[nb, {"Tabs", active, "File"}];
+          (* my own version of a MemoryModificationTime just to check when the tab was switched to *)
+          tst = IDEData[nb, PrivateKey[active<>"_TabSwitchTime"]];
+          IDEData[nb, {"Tabs", active, "Modified"}] = 
+            If[TrueQ[modTime <= FileDate[actFile]],
+              False,
+              TrueQ[tst<=modTime]||
+                TrueQ[IDEData[nb, {"Tabs", active, "Modified"}]]
+              ]
+           ];
+          If[OptionValue["UseCache"],
+            MathLink`CallFrontEnd@{
+              FrontEnd`SelectionMove[nb, Previous, Cell],
+              FrontEnd`SelectionAddCellTags[nb, {"EasyIDEScrollTag"}]
+              };
+            CacheTabData[nb, active, GetNotebookExpression[nb]];
+            cached = LoadCachedTabData[nb, tabName];
             ]
-         ];
-        If[OptionValue["UseCache"],
-          CacheTabData[nb, active, GetNotebookExpression[nb]];
-          cached = LoadCachedTabData[nb, tabName];
-          ]
-      ];
-     IDEData[nb, PrivateKey[tabName<>"_TabSwitchTime"]] = Now;
-      If[OptionValue["SaveCurrent"], 
-        IDESave[nb, 
-          "AutoGenerateSave"->False,
-          "HandleSavingAction"->False
-          ]
         ];
-      file = IDEData[nb, {"Tabs", tabName, "File"}];
-      NotebookPutFile[nb, file, Replace[cached, Except[_Notebook]->None]];
-      ideSetTab[nb, tabName];
-      If[OptionValue["SaveSettings"], 
-        NotebookSave[nb](* note that we don't invoke any of the other processing here *);
-        ];
+       IDEData[nb, PrivateKey[tabName<>"_TabSwitchTime"]] = Now;
+        If[OptionValue["SaveCurrent"], 
+          IDESave[nb, 
+            "AutoGenerateSave"->False,
+            "HandleSavingAction"->False
+            ]
+          ];
+        file = IDEData[nb, {"Tabs", tabName, "File"}];
+        NotebookPutFile[nb, file, 
+          Replace[cached, Except[_Notebook]->None]
+          ];
+        MathLink`CallFrontEnd@{
+        FrontEnd`NotebookFind[nb, "EasyIDEScrollTag", Next, CellTags, WrapAround->True],
+        FrontEnd`SelectionRemoveCellTags[nb, {"EasyIDEScrollTag"}],
+        FrontEnd`SelectionMove[nb, After, Cell]
+         };
+        ideSetTab[nb, tabName];
+        If[OptionValue["SaveSettings"], 
+          NotebookSave[nb](* note that we don't invoke any of the other processing here *);
+          ];
+      ]
     ];
 NotebookSwitchTab[nb_NotebookObject, tabName_String, saveCurrent:True|False]:=
   NotebookSwitchTab[nb, tabName, "SaveCurrent"->saveCurrent];

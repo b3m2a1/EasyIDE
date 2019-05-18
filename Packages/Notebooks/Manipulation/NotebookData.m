@@ -165,9 +165,19 @@ IDEData//Unprotect
 IDEData//Clear
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*notebookObjectQ*)
+
+
+
 notebookObjectQ[nb_]:=
   MatchQ[nb, _NotebookObject]||
     MatchQ[FE`Evaluate@nb, _NotebookObject]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*getNbObj*)
+
 
 
 getNbObj[nb_]:=

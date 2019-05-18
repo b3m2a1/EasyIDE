@@ -73,7 +73,7 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                       RowBox[{"Hold", "[", "value", "]"}]}], "]"}]}], ";"}], 
               "\n", RowBox[{RowBox[{"ideSetNbDataDelayed", "~", 
                   "SetAttributes", "~", "HoldRest"}], ";"}]}], "CodeInput"]}, 
-          Closed]], Cell[CellGroupData[
+          Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]ideTmpData\[RightFloor]", "CodeSubsubsection", 
             Evaluatable -> True], Cell[BoxData[RowBox[{RowBox[{"If", "[", 
                  RowBox[{RowBox[{"!", RowBox[{"ValueQ", "[", "$ideDataCache", 
@@ -207,18 +207,24 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
           {Cell["\[LeftCeiling]IDEData\[RightFloor]", "CodeSubsubsection", 
             Evaluatable -> True], Cell[BoxData[{RowBox[{"IDEData", "//", 
                 "Unprotect"}], "\n", RowBox[{"IDEData", "//", "Clear"}]}], 
-            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"notebookObjectQ", 
-                 "[", "nb_", "]"}], ":=", "\n", "  ", RowBox[
-                {RowBox[{"MatchQ", "[", RowBox[{"nb", ",", " ", 
-                     "_NotebookObject"}], "]"}], "||", "\n", "    ", 
-                 RowBox[{"MatchQ", "[", RowBox[{RowBox[{"FE`Evaluate", "@", 
-                       "nb"}], ",", " ", "_NotebookObject"}], "]"}]}]}]], 
-            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"getNbObj", "[", 
-                 "nb_", "]"}], ":=", "\n", "  ", RowBox[{"Replace", "[", 
-                 RowBox[{"nb", ",", "\n", "    ", RowBox[{RowBox[{"e", ":", 
-                       RowBox[{"Except", "[", "_NotebookObject", "]"}]}], 
-                     "\[RuleDelayed]", RowBox[{"FE`Evaluate", "[", "e", 
-                       "]"}]}]}], "\n", "    ", "]"}]}]], "CodeInput"], 
+            "CodeInput"], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]notebookObjectQ\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{"notebookObjectQ", "[", "nb_", "]"}], ":=", 
+                  "\n", "  ", RowBox[{RowBox[{"MatchQ", "[", RowBox[{"nb", 
+                        ",", " ", "_NotebookObject"}], "]"}], "||", "\n", 
+                    "    ", RowBox[{"MatchQ", "[", RowBox[{RowBox[
+                         {"FE`Evaluate", "@", "nb"}], ",", " ", 
+                        "_NotebookObject"}], "]"}]}]}]], "CodeInput"]}, 
+             Closed]], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]getNbObj\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{"getNbObj", "[", "nb_", "]"}], ":=", "\n", 
+                  "  ", RowBox[{"Replace", "[", RowBox[{"nb", ",", "\n", 
+                      "    ", RowBox[{RowBox[{"e", ":", RowBox[{"Except", 
+                          "[", "_NotebookObject", "]"}]}], "\[RuleDelayed]", 
+                        RowBox[{"FE`Evaluate", "[", "e", "]"}]}]}], "\n", 
+                    "    ", "]"}]}]], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[{Cell["\[LeftCeiling]Normal\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 {RowBox[{RowBox[{RowBox[{"IDEData", "[", "\n", "\t", 
@@ -344,7 +350,7 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                           " ", "res"}], "}"}], ",", "\n", "\t\t\t", RowBox[
                           {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
                           "key"}], "]"}], ":=", "val"}]}], "\n", "\t\t\t", 
-                       "]"}]}], ";"}]}], "CodeInput"]}, Open]], 
+                       "]"}]}], ";"}]}], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[{Cell["\[LeftCeiling]No Object\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 {RowBox[{RowBox[{RowBox[{"IDEData", "[", RowBox[{"key", ":", 
@@ -377,7 +383,7 @@ Notebook[{Cell[CellGroupData[{Cell["Notebook Data", "CodeSection"],
                        "]"}], ":=", "\n", "\t\t", RowBox[{RowBox[{"IDEData", 
                          "[", RowBox[{"$CurrentIDENotebook", ",", " ", 
                           "key"}], "]"}], "~", "Set", "~", "val"}]}], 
-                   ";"}]}], "CodeInput"]}, Open]], 
+                   ";"}]}], "CodeInput"]}, Closed]], 
            Cell[CellGroupData[{Cell["\[LeftCeiling]Protect\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{"IDEData", "//", "Protect"}]], "CodeInput"]}, 

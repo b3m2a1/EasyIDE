@@ -1,1018 +1,1733 @@
-Notebook[{Cell[CellGroupData[{Cell["Notebook Manipulation", "CodeSection"], 
-     Cell["\[LeftCeiling]Lower-level functions directly used to manipulate \
-the IDE interface\[RightFloor]", "Text", Evaluatable -> True], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"NotebookSaveContents", "::", 
-              "usage"}], "=", 
-            "\"Saves the contents of a NotebookObject to a file\""}], ";"}], 
-        "\n", RowBox[{RowBox[{RowBox[{"NotebookPutFile", "::", "usage"}], 
-            "=", "\"Puts a File expression into a NotebookObject\""}], ";"}], 
-        "\n", RowBox[{RowBox[{RowBox[{"NotebookPutContents", "::", "usage"}], 
-            "=", "\"Puts a Notebook into a NotebookObject\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"NotebookPutScratch", "::", "usage"}], "=", 
-            "\"Puts a notebook into a scratch file\""}], ";"}]}], 
-      "CodeInput"], Cell[BoxData[
-       {RowBox[{RowBox[{RowBox[{"GetNotebookExpression", "::", "usage"}], 
-            "=", "\"Extracts the Notebook expression\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"GetFileTabName", "::", "usage"}], "=", 
-            "\"Gets a unique name for a tab\""}], ";"}]}], "CodeInput"], 
-     Cell["\[LeftCeiling]The functions provided to an IDENotebookObject as \
-methods\[RightFloor]", "Text", Evaluatable -> True], 
-     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDEOpen", "::", "usage"}], "=", 
-            "\"Open a file in the IDE notebook\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"IDESave", "::", "usage"}], "=", 
-            "\"Save the active IDE notebook file\""}], ";"}], "\n", 
-        RowBox[{RowBox[{RowBox[{"IDEClose", "::", "usage"}], "=", 
-            "\"Close the IDE notebook\""}], ";"}]}], "CodeInput"], 
-     Cell[BoxData[RowBox[{RowBox[{RowBox[{"$SaveNotebookMethod", "::", 
-             "usage"}], "=", "\"The method to use when saving notebooks\""}], 
-         ";"}]], "CodeInput"], 
-     Cell[BoxData[RowBox[{RowBox[{RowBox[{"EnsureNotebookUpdated", "::", 
-             "usage"}], "=", "\n", "  ", "\"Checks to make sure the notebook \
-file and the current notebook state aren't out-of-sync\""}], ";"}]], 
-      "CodeInput"], Cell[BoxData[RowBox[
-        {RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-      "InputSection"], Cell[CellGroupData[
-       {Cell["\[LeftCeiling]Notebook Manipulation\[RightFloor]", 
-         "CodeSubsection", Evaluatable -> True], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]NotebookPutContents\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[
-            "\[LeftCeiling]\n\tPut a new notebook in the pane\n\[RightFloor]"\
-, "Text", Evaluatable -> True], Cell[BoxData[RowBox[{RowBox[
-                {RowBox[{"nbPut1", "[", RowBox[{"nbObj_NotebookObject", ",", 
-                     " ", "nb_Notebook"}], "]"}], ":=", "\n", "\t\t", 
-                 RowBox[{"Module", "[", "\n", "\t\t\t", RowBox[
-                    {RowBox[{"{", "\n", "\t\t\t\t", "baseExpr", "\n", 
-                       "\t\t\t\t", "}"}], ",", "\n", "\t\t\t", RowBox[
-                      {"FrontEndExecute", "@", RowBox[{"{", "\n", "\t\t\t  ", 
-                         RowBox[{RowBox[{"FrontEnd`NotebookPut", "[", "\n", 
-                          "  \t\t\t\t", RowBox[{RowBox[{"Notebook", "[", 
-                          RowBox[{RowBox[{"nb", "[", RowBox[{"[", "1", "]"}], 
-                          "]"}], ",", " ", RowBox[{"Options", "[", "nbObj", 
-                          "]"}]}], "]"}], ",", "\n", "  \t\t\t\t", "nbObj"}], 
-                          "\n", "  \t\t\t\t", "]"}], ",", "\n", "  \t\t\t", 
-                          RowBox[{"FrontEnd`SelectionMove", "[", "\n", 
-                          "  \t\t\t\t", RowBox[{"nbObj", ",", "\n", 
-                          "  \t\t\t\t", "Before", ",", "\n", "  \t\t\t\t", 
-                          "Notebook"}], "\n", "  \t\t\t\t", "]"}]}], "\n", 
-                         "      ", "}"}]}]}], "\n", "\t\t\t", "]"}]}], 
-               ";"}]], "CodeInput"], Cell[BoxData[RowBox[{RowBox[
-                {"nbPut2", "[", RowBox[{"enb_NotebookObject", ",", " ", 
-                   "nb_Notebook"}], "]"}], ":=", "\n", "\t", RowBox[
-                {"With", "[", "\n", "\t  ", RowBox[{RowBox[{"{", "\n", 
-                     "     ", RowBox[{"mcells", "=", "\n", "       ", 
-                       RowBox[{"Sequence", "@@", RowBox[{"{", "\n", 
-                          "         ", RowBox[{RowBox[
-                          {"FrontEnd`SelectionMove", "[", RowBox[{"enb", ",", 
-                          " ", "All", ",", " ", "Notebook"}], "]"}], ",", 
-                          "\n", "         ", RowBox[{"FrontEnd`SetOptions", 
-                          "[", RowBox[{RowBox[{"NotebookSelection", "[", 
-                          "enb", "]"}], ",", " ", RowBox[{"Deletable", "->", 
-                          "True"}]}], "]"}], ",", "\n", "         ", RowBox[
-                          {"FrontEnd`NotebookDelete", "[", "enb", "]"}]}], 
-                          "\n", "         ", "}"}]}]}], "\n", "    ", "}"}], 
-                   ",", "\n", "    ", RowBox[{RowBox[
-                      {"MathLink`CallFrontEnd", "@", RowBox[{"{", "\n", 
-                         "     ", RowBox[{"mcells", ",", "\n", "     ", 
-                          RowBox[{"(*", RowBox[{RowBox[{
-                          "FrontEnd`SelectionMove", "[", RowBox[{"enb", ",", 
-                          " ", "Before", ",", " ", "Notebook"}], "]"}], 
-                          ","}], "*)"}], "\n", "     ", RowBox[
-                          {"FrontEnd`NotebookWrite", "[", RowBox[{"enb", ",", 
-                          " ", RowBox[{"nb", "[", RowBox[{"[", "1", "]"}], 
-                          "]"}], ",", " ", "None", ",", " ", RowBox[
-                          {"AutoScroll", "->", "False"}]}], "]"}]}], "\n", 
-                         "     ", "}"}]}], ";"}]}], "\n", "   ", "]"}]}]], 
-            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"nbPut3", "[", 
-                 RowBox[{"enb_NotebookObject", ",", " ", "nb_Notebook"}], 
-                 "]"}], ":=", "\n", "\t", RowBox[{"MathLink`CallFrontEnd", 
-                 "@", RowBox[{"{", "\n", "\t ", RowBox[{"(*", RowBox[
-                      {RowBox[{"FrontEnd`SelectionMove", "[", RowBox[{"enb", 
-                          ",", " ", "Before", ",", " ", "Notebook"}], "]"}], 
-                       ","}], "*)"}], "\n", "   ", RowBox[
-                    {"FrontEnd`NotebookWrite", "[", RowBox[{"enb", ",", " ", 
-                       RowBox[{"nb", "[", RowBox[{"[", "1", "]"}], "]"}], 
-                       ",", " ", "None", ",", " ", RowBox[{"AutoScroll", 
-                         "->", "False"}]}], "]"}], "\n", "   ", "}"}]}]}]], 
-            "CodeInput"], Cell[BoxData[{RowBox[{"NotebookPutContents", "//", 
-                "Clear"}], "\n", RowBox[{RowBox[{"NotebookPutContents", "[", 
-                  "\n", "  ", RowBox[{"ideNb_NotebookObject", ",", " ", "\n", 
-                    "  ", RowBox[{"notebook", ":", RowBox[{"_Notebook", "|", 
-                        "_Hold"}]}], " ", RowBox[{"(*", " ", RowBox[
-                       {RowBox[{RowBox[{"for", " ", "some", " ", "reason", 
-                          " ", "pass"}], "-", "by", "-", RowBox[{"value", 
-                          " ", "helps", " ", "a", " ", "lot", " ", 
-                          "here"}]}], "..."}], " ", "*)"}], ",", "\n", "  ", 
-                    RowBox[{"mode", ":", RowBox[{"(", RowBox[
-                         {"NotebookWrite", "|", "NotebookPut", "|", 
-                          "Automatic"}], ")"}], ":", "Automatic"}]}], "\n", 
-                  "  ", "]"}], ":=", "\n", "\t", RowBox[{"Module", "[", "\n", 
-                  "\t\t", RowBox[{RowBox[{"{", "\n", "\t\t\t", RowBox[
-                       {"ops", ",", "\n", "\t\t\t", "c", ",", "\n", "\t\t\t", 
-                        "m", ",", "\n", "\t\t\t", RowBox[{"nb", " ", "=", 
-                          " ", RowBox[{"ReleaseHold", "[", "notebook", 
-                          "]"}]}]}], "\n", "\t\t\t", "}"}], ",", "\n", 
-                    "\t\t", RowBox[{RowBox[{"ops", "=", RowBox[{"Flatten", 
-                          "@", RowBox[{"{", RowBox[{"List", "@@", RowBox[
-                          {"Rest", "[", "nb", "]"}]}], "}"}]}]}], ";", "\n", 
-                      "\t\t", RowBox[{"m", " ", "=", " ", "\n", "\t\t  ", 
-                        RowBox[{"Replace", "[", RowBox[{"mode", ",", " ", 
-                          "\n", "\t\t    ", RowBox[{"Automatic", 
-                          "\[RuleDelayed]", RowBox[{"(", "\n", "\t\t      ", 
-                          RowBox[{RowBox[{"c", "=", RowBox[{"Cells", "[", 
-                          "ideNb", "]"}]}], ";", "\n", "\t\t      ", RowBox[
-                          {"If", "[", RowBox[{RowBox[{RowBox[{"Length", "@", 
-                          "c"}], ">", "100000"}], ",", " ", "NotebookPut", 
-                          ",", " ", "NotebookWrite"}], "]"}]}], "\n", 
-                          "\t\t      ", ")"}]}]}], "\n", "\t\t    ", "]"}]}], 
-                      ";", "\n", "\t\t", RowBox[{"WithNotebookPaused", "[", 
-                        "\n", "\t\t\t", RowBox[{"ideNb", ",", "\n", "\t\t\t", 
-                          RowBox[{RowBox[{"If", "[", RowBox[{RowBox[{"m", 
-                          "===", "NotebookWrite"}], ",", "\n", "\t\t\t  ", 
-                          RowBox[{RowBox[{"If", "[", RowBox[{RowBox[{"!", 
-                          RowBox[{"ListQ", "[", "c", "]"}]}], ",", " ", 
-                          RowBox[{"c", "=", RowBox[{"Cells", "[", "ideNb", 
-                          "]"}]}]}], "]"}], ";", "\n", "\t\t\t  ", RowBox[
-                          {"If", "[", RowBox[{RowBox[{RowBox[{"Length", "@", 
-                          "c"}], "===", "0"}], ",", "\n", "\t\t\t    ", 
-                          RowBox[{"nbPut3", "[", RowBox[{"ideNb", ",", " ", 
-                          "nb"}], "]"}], ",", "\n", "\t\t\t    ", RowBox[
-                          {"nbPut2", "[", RowBox[{"ideNb", ",", " ", "nb"}], 
-                          "]"}]}], "\n", "\t\t\t    ", "]"}]}], ",", "\n", 
-                          "\t\t\t  ", RowBox[{"nbPut1", "[", RowBox[{"ideNb", 
-                          ",", " ", "nb"}], "]"}]}], "\n", "\t\t\t  ", "]"}], 
-                          ";", "\n", "     ", RowBox[{RowBox[{"IDEData", "[", 
-                          RowBox[{"ideNb", ",", " ", "\"Options\""}], "]"}], 
-                          " ", "=", " ", "ops"}], ";"}]}], "\n", "     ", 
-                        "]"}], ";"}]}], "\n", "   ", "]"}]}]}], 
-            "CodeInput"]}, Open]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getFExtStylesheet\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"loadExtStyles", "[", "]"}], ":=", "\n", 
-                  "\t", RowBox[{"Append", "[", "\n", "\t\t", RowBox[
-                     {RowBox[{"Normal", "@", "\n", "\t\t\t", RowBox[{"Merge", 
-                          "[", "\n", "\t\t\t\t", RowBox[{RowBox[{"Get", "/@", 
-                          "\n", "\t", "\t", "\t\t\t", RowBox[{"FileNames", 
-                          "[", "\n", "\t", "\t", "\t\t\t\t", RowBox[
-                          {"\"ExtensionStylesMap.wl\"", ",", "\n", "\t", 
-                          "\t\t\t\t\t", RowBox[{"FileNames", "[", RowBox[
-                          {"\"Mappings\"", ",", " ", "$IDESettingsPath"}], 
-                          "]"}]}], "\n", "\t", "\t", "\t\t\t\t", "]"}]}], 
-                          ",", "\n", "\t", "\t\t\t", "First"}], "\n", "\t", 
-                          "\t\t\t", "]"}]}], ",", "\n", "\t\t", RowBox[
-                       {"_", "\[Rule]", "None"}]}], "\n", "\t\t", "]"}]}]], 
-               "CodeInput"], Cell[BoxData[RowBox[{RowBox[
-                   {"getFExtStylesheet", "[", "fExt_", "]"}], ":=", "\n", 
-                  "\t", RowBox[{"fExt", "/.", RowBox[{"loadExtStyles", "[", 
-                      "]"}]}]}]], "CodeInput"]}, Closed]], 
-           Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getNbFileSSheet\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{RowBox[{"getNbFileSSheet", "[", "nbFile_", 
-                      "]"}], ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
-                       {RowBox[{RowBox[{"FileByteCount", "[", "nbFile", 
-                          "]"}], "<", "1000000000"}], ",", "\n", "\t\t", 
-                        RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[
-                          {RowBox[{"g", "=", RowBox[{"Get", "[", "nbFile", 
-                          "]"}]}], ",", " ", "sd", ",", " ", "sdFile"}], 
-                          "}"}], ",", "\n", "\t", "\t\t", RowBox[{RowBox[
-                          {"sd", "=", RowBox[{"FirstCase", "[", RowBox[
-                          {RowBox[{"Flatten", "@", RowBox[{"Apply", "[", 
-                          RowBox[{"List", ",", " ", RowBox[{"Rest", "[", "g", 
-                          "]"}]}], "]"}]}], ",", " ", RowBox[{RowBox[{"(", 
-                          RowBox[{"StyleDefinitions", "\[Rule]", "s_"}], 
-                          ")"}], "\[RuleDelayed]", "s"}], ",", " ", 
-                          "\"Default.nb\""}], "]"}]}], ";", "\n", "\t\t\t", 
-                          RowBox[{"sdFile", "=", "\n", "\t\t\t\t", RowBox[
-                          {"Replace", "[", RowBox[{"sd", ",", " ", "\n", 
-                          "\t\t\t\t\t", RowBox[{RowBox[{"Except", "[", RowBox[
-                          {"_String", "|", "_FrontEnd`FileName"}], "]"}], 
-                          ":>", "\n", "\t\t\t\t\t\t", RowBox[{"FirstCase", 
-                          "[", RowBox[{"sd", ",", " ", "\n", 
-                          "\t\t\t\t\t\t\t", RowBox[{RowBox[{"StyleData", "[", 
-                          RowBox[{RowBox[{"StyleDefinitions", "\[Rule]", 
-                          "s_"}], ",", " ", "___"}], "]"}], "\[RuleDelayed]", 
-                          "s"}], ",", " ", "\n", "\t\t\t\t\t\t\t", 
-                          "\"Default.nb\"", ",", "\n", "\t\t\t\t\t\t\t", 
-                          "\[Infinity]"}], "\n", "\t\t\t\t\t\t\t", "]"}]}]}], 
-                          "\n", "\t\t\t\t\t", "]"}]}], ";", "\n", "\t\t\t", 
-                          RowBox[{"If", "[", RowBox[{RowBox[{RowBox[
-                          {"StringQ", "@", "sdFile"}], "&&", RowBox[{RowBox[
-                          {"FileNameDepth", "[", "sdFile", "]"}], ">", 
-                          "1"}]}], ",", "\n", "\t\t\t\t", RowBox[{"sdFile", 
-                          " ", "=", " ", RowBox[{RowBox[{RowBox[
-                          {"FrontEnd`FileName", "[", RowBox[{RowBox[{"#", 
-                          "[", RowBox[{"[", RowBox[{";;", RowBox[{"-", 
-                          "2"}]}], "]"}], "]"}], ",", " ", RowBox[{"#", "[", 
-                          RowBox[{"[", RowBox[{"-", "1"}], "]"}], "]"}]}], 
-                          "]"}], "&"}], "@", RowBox[{"FileNameSplit", "[", 
-                          "sdFile", "]"}]}]}]}], "\n", "\t\t\t\t", "]"}], 
-                          ";", "\n", "\t\t\t", RowBox[{"(*", RowBox[
-                          {"Replace", "[", RowBox[{"sdFile", ",", "\n", 
-                          "\t\t\t\t", RowBox[{"f_FrontEnd`FileName", 
-                          "\[RuleDelayed]", RowBox[{"ToFileName", "[", "f", 
-                          "]"}]}]}], "\n", "\t\t\t\t", "]"}], "*)"}], "\n", 
-                          "\t\t\t", "sdFile"}]}], "\n", "\t\t\t", "]"}], ",", 
-                        "\n", "\t\t", "$Failed"}], "\n", "\t\t", "]"}]}], 
-                  ";"}]], "CodeInput"], Cell[BoxData[RowBox[
-                 {RowBox[{"getStylesheetStylesheet", "[", "nbFile_", "]"}], 
-                  ":=", "\n", "\t", RowBox[{"GetThemedStylesheet", "@", 
-                    RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}]}]}]], 
-               "CodeInput"]}, Closed]], Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getFileStylesheet\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"getFileStylesheet", "[", RowBox[{"nb_", ",", 
-                      " ", "file_"}], "]"}], ":=", "\n", "\t", RowBox[
-                   {"Module", "[", "\n", "\t\t", RowBox[{RowBox[{"{", "\n", 
-                        "\t\t\t", RowBox[{"fExt", " ", "=", " ", RowBox[
-                          {"FileExtension", "[", "file", "]"}]}], "\n", 
-                        "\t\t\t", "}"}], ",", "\n", "\t\t\t", RowBox[
-                       {"Replace", "[", RowBox[{RowBox[{"getFExtStylesheet", 
-                          "[", "fExt", "]"}], ",", "\n", "\t\t\t\t", RowBox[
-                          {"None", "\[RuleDelayed]", RowBox[{"If", "[", 
-                          RowBox[{RowBox[{"fExt", "===", "\"nb\""}], ",", 
-                          " ", RowBox[{"getStylesheetStylesheet", "[", 
-                          "file", "]"}], ",", " ", "None"}], "]"}]}]}], "\n", 
-                        "\t\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}]], 
-               "CodeInput"]}, Closed]], Cell[CellGroupData[
-             {Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], 
-              Cell["\[LeftCeiling]\n\tThis is a little too slow in general... \
-like .3s? We can probably do better by only updating when the \n\tactual base \
-stylesheet changes?\n\[RightFloor]", "Text", Evaluatable -> True], 
-              Cell[BoxData[RowBox[{RowBox[{RowBox[{"setNbFileStyle", "[", 
-                      RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", 
-                    "\t", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
-                          {"f", "=", RowBox[{"getFileStylesheet", "[", 
-                          RowBox[{"nb", ",", " ", "file"}], "]"}]}], "}"}], 
-                        ",", "\n", "\t\t", RowBox[{"If", "[", RowBox[
-                          {RowBox[{"f", "=!=", RowBox[{"IDEData", "[", RowBox[
-                          {"nb", ",", " ", RowBox[{"{", RowBox[{"\"Styles\"", 
-                          ",", " ", "\"UnthemedStylesheet\""}], "}"}]}], 
-                          "]"}]}], ",", "\n", "\t\t\t", RowBox[{RowBox[
-                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          RowBox[{"{", RowBox[{"\"Styles\"", ",", " ", 
-                          "\"UnthemedStylesheet\""}], "}"}]}], "]"}], " ", 
-                          "=", " ", "f"}], ";", "\n", "\t\t\t", RowBox[
-                          {"SetThemedStylesheet", "[", RowBox[{"nb", ",", 
-                          " ", RowBox[{"GetCleanStylePath", "[", RowBox[
-                          {"nb", ",", " ", "f"}], "]"}]}], "]"}], ";", "\n", 
-                          "\t\t\t", "True"}], ",", "\n", "\t\t\t", "False"}], 
-                          "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], 
-                  ";"}]], "CodeInput"]}, Open]]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getFExtToolbar\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"loadExtToolbars", "[", "]"}], ":=", "\n", 
-                  "\t", RowBox[{"Append", "[", "\n", "\t\t", RowBox[
-                     {RowBox[{"Normal", "@", "\n", "\t\t\t", RowBox[{"Merge", 
-                          "[", "\n", "\t\t\t\t", RowBox[{RowBox[{"Get", "/@", 
-                          "\n", "\t", "\t", "\t\t\t", RowBox[{"FileNames", 
-                          "[", "\n", "\t", "\t\t\t\t\t", RowBox[
-                          {"\"ExtensionToolbarsMap.wl\"", ",", "\n", "\t", 
-                          "\t\t\t\t\t", RowBox[{"FileNames", "[", RowBox[
-                          {"\"Mappings\"", ",", " ", "$IDESettingsPath"}], 
-                          "]"}]}], "\n", "\t", "\t\t\t\t\t", "]"}]}], ",", 
-                          "\n", "\t", "\t\t\t", "First"}], "\n", "\t", 
-                          "\t\t\t", "]"}]}], ",", "\n", "\t\t", RowBox[
-                       {"_", "\[Rule]", "None"}]}], "\n", "\t\t", "]"}]}]], 
-               "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"getFExtToolbar", 
-                    "[", "fExt_", "]"}], ":=", "\n", "\t", RowBox[{"fExt", 
-                    "/.", RowBox[{"loadExtToolbars", "[", "]"}]}]}]], 
-               "CodeInput"]}, Closed]], Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getStylesheetToolbar\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{RowBox[{"loadSheetToolbars", "[", "]"}], 
-                    ":=", "\n", "\t", RowBox[{"Append", "[", "\n", "\t\t", 
-                      RowBox[{RowBox[{"Normal", "@", "\n", "\t\t\t", RowBox[
-                          {"Merge", "[", "\n", "\t\t\t\t", RowBox[{RowBox[
-                          {"Get", "/@", "\n", "\t", "\t", "\t\t\t", RowBox[
-                          {"FileNames", "[", "\n", "\t", "\t\t\t\t\t", RowBox[
-                          {"\"StylesheetToolbarsMap.wl\"", ",", "\n", "\t", 
-                          "\t\t\t\t\t", RowBox[{"FileNames", "[", RowBox[
-                          {"\"Mappings\"", ",", " ", "$IDESettingsPath"}], 
-                          "]"}]}], "\n", "\t", "\t", "\t\t\t\t", "]"}]}], 
-                          ",", "\n", "\t", "\t\t\t", "First"}], "\n", "\t", 
-                          "\t\t\t", "]"}]}], ",", "\n", "\t\t", RowBox[
-                         {"_", "\[Rule]", "None"}]}], "\n", "\t\t", "]"}]}], 
-                  ";"}]], "CodeInput"], Cell[BoxData[RowBox[
-                 {RowBox[{"getStylesheetToolbar", "[", "nbFile_", "]"}], 
-                  ":=", "\n", "\t", RowBox[{RowBox[{"getNbFileSSheet", "[", 
-                      "nbFile", "]"}], "/.", "\n", "\t\t", RowBox[
-                     {"loadSheetToolbars", "[", "]"}]}]}]], "CodeInput"]}, 
-             Closed]], Cell[CellGroupData[
-             {Cell["\[LeftCeiling]getFileToolbar\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], 
-              Cell["\[LeftCeiling]\n\tToolbars are just treated as another \
-case of a Plugin, but not always attached to the menu or put into a \
-ActionMenu\n\[RightFloor]", "Text", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"getFileToolbar", "[", RowBox[{"nb_", ",", 
-                      " ", "file_"}], "]"}], ":=", "\n", "\t", RowBox[
-                   {"Module", "[", "\n", "\t\t", RowBox[{RowBox[{"{", "\n", 
-                        "\t\t\t", RowBox[{RowBox[{"fExt", " ", "=", " ", 
-                          RowBox[{"FileExtension", "[", "file", "]"}]}], ",", 
-                          "\n", "\t\t\t", "tbName"}], "\n", "\t\t\t", "}"}], 
-                      ",", "\n", "\t\t", RowBox[{RowBox[{"tbName", "=", "\n", 
-                          "\t\t\t", RowBox[{"Replace", "[", RowBox[{RowBox[
-                          {"getFExtToolbar", "[", "fExt", "]"}], ",", "\n", 
-                          "\t", "\t\t\t", RowBox[{"None", "\[RuleDelayed]", 
-                          RowBox[{"If", "[", RowBox[{RowBox[{"fExt", "===", 
-                          "\"nb\""}], ",", " ", RowBox[{
-                          "getStylesheetToolbar", "[", "file", "]"}], ",", 
-                          " ", "None"}], "]"}]}]}], "\n", "\t\t\t\t", 
-                          "]"}]}], ";", "\n", "\t\t", "tbName"}]}], "\n", 
-                    "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
-           Cell[CellGroupData[
-             {Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", 
-               "CodeSubsubsubsection", Evaluatable -> True], 
-              Cell["\[LeftCeiling]\n\tThis is like .2s in \
-general...\n\[RightFloor]", "Text", Evaluatable -> True], Cell[BoxData[
-                RowBox[{RowBox[{"setNbFileToolbar", "[", RowBox[{"nb_", ",", 
-                      " ", "file_"}], "]"}], ":=", "\n", "\t", RowBox[
-                   {"Module", "[", "\n", "\t\t", RowBox[{RowBox[{"{", "\n", 
-                        "\t\t\t", RowBox[{RowBox[{"currentTb", " ", "=", " ", 
-                          RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          "\"FileToolbar\"", ",", " ", "None"}], "]"}]}], 
-                          ",", "\n", "\t\t\t", "name"}], "\n", "\t\t\t", 
-                        "}"}], ",", "\n", "\t\t", RowBox[{RowBox[{"name", 
-                          " ", "=", " ", RowBox[{"getFileToolbar", "[", 
-                          RowBox[{"nb", ",", " ", "file"}], "]"}]}], ";", 
-                        "\n", "\t\t", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"currentTb", " ", "=!=", " ", "name"}], ",", "\n", 
-                          "\t\t\t", RowBox[{RowBox[{RowBox[{"IDEData", "[", 
-                          RowBox[{"nb", ",", " ", "\"FileToolbar\""}], "]"}], 
-                          " ", "=", "  ", "name"}], ";", "\n", "\t\t\t", 
-                          RowBox[{"If", "[", RowBox[{RowBox[{"currentTb", 
-                          " ", "=!=", " ", "None"}], ",", "\n", "\t\t\t\t", 
-                          RowBox[{"RemoveNotebookToolbar", "[", RowBox[{"nb", 
-                          ",", " ", "currentTb"}], "]"}]}], "\n", "\t\t\t\t", 
-                          "]"}], ";", "\n", "\t\t\t", RowBox[
-                          {"UpdateNotebookToolbars", "[", "nb", "]"}], ";", 
-                          " ", RowBox[{"(*", " ", RowBox[{RowBox[{RowBox[
-                          {"seems", " ", "to", " ", "be", " ", "necessary"}], 
-                          "..."}], "?"}], " ", "*)"}], "\n", "\t\t\t", 
-                          "True"}], ",", "\n", "\t\t\t", "False"}], "\n", 
-                          "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", "]"}]}]], 
-               "CodeInput"]}, Open]]}, Open]], 
-        Cell[CellGroupData[{Cell["\[LeftCeiling]setAutoSave\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{RowBox[{"setAutoSave", "[", "nb_", 
-                   "]"}], ":=", "\n", "\t", RowBox[{"Module", "[", 
-                   RowBox[{RowBox[{"{", RowBox[{"aug", " ", "=", " ", 
-                         RowBox[{"GetCurrentValue", "[", RowBox[{"nb", ",", 
-                          " ", "AutoGeneratedPackage"}], "]"}]}], "}"}], ",", 
-                     "\n", "\t\t", RowBox[{"If", "[", RowBox[{RowBox[{"aug", 
-                          " ", "===", " ", "Automatic"}], ",", "\n", 
-                         "\t\t\t", RowBox[{RowBox[{"IDEData", "[", RowBox[
-                          {"nb", ",", " ", "\"AutoGeneratePackage\""}], 
-                          "]"}], " ", "=", " ", "True"}], ",", "\n", 
-                         "\t\t\t", RowBox[{RowBox[{"SetCurrentValue", "[", 
-                          RowBox[{"nb", ",", " ", "AutoGeneratedPackage", 
-                          ",", " ", "Inherited"}], "]"}], ";", "\n", 
-                          "\t\t\t", RowBox[{RowBox[{"IDEData", "[", RowBox[
-                          {"nb", ",", " ", "\"AutoGeneratePackage\""}], 
-                          "]"}], " ", "=", " ", "False"}]}]}], "\n", 
-                       "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], ";"}]], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]setNbActions\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"setNbActions", "[", "nb_", "]"}], 
-               ":=", "\n", "\t", RowBox[{"Module", "[", RowBox[
-                  {RowBox[{"{", RowBox[{"nbActs", ",", " ", "saveAction"}], 
-                     "}"}], ",", "\n", "\t  ", RowBox[{"(*", " ", RowBox[
-                      {"reset", " ", "the", " ", "actions", " ", "to", " ", 
-                       "start"}], " ", "*)"}], "\n", "\t  ", RowBox[
-                    {RowBox[{"SetCurrentValue", "[", RowBox[{"nb", ",", " ", 
-                         "NotebookEventActions", ",", " ", "Inherited"}], 
-                       "]"}], ";", "\n", "\t  ", RowBox[{"(*", " ", RowBox[
-                        {"pull", " ", "the", " ", "events", " ", "from", " ", 
-                         "the", " ", "stylesheet"}], " ", "*)"}], "\n", 
-                     "\t  ", RowBox[{"nbActs", " ", "=", " ", RowBox[
-                        {"GetCurrentValue", "[", RowBox[{"nb", ",", " ", 
-                          "NotebookEventActions"}], "]"}]}], ";", "\n", 
-                     "\t  ", RowBox[{"If", "[", RowBox[{RowBox[{"MemberQ", 
-                          "[", RowBox[{RowBox[{"Keys", "@", "nbActs"}], ",", 
-                          " ", RowBox[{"{", RowBox[{"\"MenuCommand\"", ",", 
-                          " ", "\"Save\""}], "}"}]}], "]"}], ",", "\n", 
-                         "\t    ", RowBox[{"saveAction", " ", "=", " ", "\n", 
-                          "\t      ", RowBox[{"Extract", "[", RowBox[
-                          {RowBox[{"Association", "[", "nbActs", "]"}], ",", 
-                          "\n", "\t        ", RowBox[{"Key", "[", RowBox[
-                          {"{", RowBox[{"\"MenuCommand\"", ",", " ", 
-                          "\"Save\""}], "}"}], "]"}], ",", "\n", 
-                          "\t        ", "Hold"}], "\n", "\t        ", 
-                          "]"}]}], ",", "\n", "\t    ", RowBox[{"saveAction", 
-                          " ", "=", " ", "None"}]}], "\n", "\t    ", "]"}], 
-                     ";", "\n", "\t  ", RowBox[{"If", "[", RowBox[
-                        {RowBox[{"MatchQ", "[", RowBox[{"saveAction", ",", 
-                          " ", "\n", "  ", "\t    ", RowBox[{RowBox[{"Hold", 
-                          "[", RowBox[{"IDESave", "[", RowBox[
-                          {"EvaluationNotebook", "[", "]"}], "]"}], "]"}], 
-                          "|", "\n", "  \t      ", RowBox[{"Hold", "[", 
-                          RowBox[{"CompoundExpression", "[", RowBox[
-                          {"_Needs", ",", " ", RowBox[{"IDESave", "[", RowBox[
-                          {"EvaluationNotebook", "[", "]"}], "]"}]}], "]"}], 
-                          "]"}]}]}], "\n", "  \t    ", "]"}], ",", "\n", 
-                         "\t    ", RowBox[{"saveAction", " ", "=", " ", 
-                          "None"}]}], "\n", "\t    ", "]"}], ";", "\n", 
-                     "\t  ", RowBox[{RowBox[{"IDEData", "[", RowBox[{"nb", 
-                          ",", " ", "\"SavingAction\""}], "]"}], " ", "=", 
-                       " ", "saveAction"}], ";", "\n", "\t  ", RowBox[
-                      {"SetCurrentValue", "[", RowBox[{"nb", ",", " ", "\n", 
-                         "\t    ", "NotebookEventActions", ",", "\n", 
-                         "\t    ", RowBox[{RowBox[{"DeleteDuplicatesBy", "[", 
-                          "First", "]"}], "@", "\n", "\t      ", RowBox[
-                          {"Join", "[", "\n", "  \t      ", RowBox[{RowBox[
-                          {"{", "\n", "    \t      ", RowBox[{RowBox[{"{", 
-                          RowBox[{"\"MenuCommand\"", ",", " ", "\"Save\""}], 
-                          "}"}], "\[RuleDelayed]", "\n", "    \t        ", 
-                          RowBox[{"IDESave", "[", RowBox[{
-                          "EvaluationNotebook", "[", "]"}], "]"}]}], "\n", 
-                          "  ", "         ", "}"}], ",", "\n", "          ", 
-                          RowBox[{"Replace", "[", RowBox[{"nbActs", ",", 
-                          "\n", "          \t", RowBox[{RowBox[{"Except", 
-                          "[", "_List", "]"}], "\[RuleDelayed]", RowBox[{"{", 
-                          "}"}]}]}], "\n", "          \t", "]"}], ",", "\n", 
-                          "    \t    ", RowBox[{"{", "\n", "            ", 
-                          RowBox[{RowBox[{"PassEventsDown", "\[Rule]", 
-                          "True"}], ",", "\n", "  ", "          ", RowBox[
-                          {"EvaluationOrder", "\[Rule]", "After"}]}], "\n", 
-                          "  \t        ", "}"}]}], "\n", "    \t   ", 
-                          "]"}]}]}], "\n", "      ", "]"}]}]}], "\n", "\t  ", 
-                 "]"}]}]], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]GetNotebookExpression\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"GetNotebookExpression", "[", "nb_", 
-                 "]"}], ":=", "\n", "\t", RowBox[{"Module", "[", "\n", 
-                 "\t\t", RowBox[{RowBox[{"{", "\n", "\t\t\t", RowBox[
-                      {"opts", " ", "=", " ", RowBox[{"IDEData", "[", 
-                         RowBox[{"nb", ",", " ", "\"Options\"", ",", " ", 
-                          RowBox[{"{", "}"}]}], "]"}]}], "\n", "\t\t\t", 
-                     "}"}], ",", "\n", "\t\t", RowBox[{"Notebook", "[", "\n", 
-                     "\t\t\t", RowBox[{RowBox[{RowBox[{"NotebookGet", "[", 
-                          "nb", "]"}], "[", RowBox[{"[", "1", "]"}], "]"}], 
-                       ",", "\n", "\t\t\t", RowBox[{"Sequence", "@@", 
-                         RowBox[{"Flatten", "[", RowBox[{"List", "@@", 
-                          "opts"}], "]"}]}]}], "\n", "\t\t\t", "]"}]}], "\n", 
-                 "\t\t", "]"}]}]], "CodeInput"]}, Open]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]NotebookPutFile\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], Cell["\[LeftCeiling]\n\
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Notebook Manipulation", \
+"CodeSection",ExpressionUUID->"67425249-76a8-455e-9959-9be7ccb2ad5b"],
+
+Cell["\<\
+\[LeftCeiling]Lower-level functions directly used to manipulate the IDE \
+interface\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"38141835-5127-43ec-913d-c2f3bef105b7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"NotebookSaveContents", "::", "usage"}], "=", 
+   "\"\<Saves the contents of a NotebookObject to a file\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NotebookPutFile", "::", "usage"}], "=", 
+   "\"\<Puts a File expression into a NotebookObject\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NotebookPutContents", "::", "usage"}], "=", 
+   "\"\<Puts a Notebook into a NotebookObject\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NotebookPutScratch", "::", "usage"}], "=", 
+   "\"\<Puts a notebook into a scratch file\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"ebff45a9-733c-4fc3-8ca1-53ef406d1f87"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetNotebookExpression", "::", "usage"}], "=", 
+   "\"\<Extracts the Notebook expression\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetFileTabName", "::", "usage"}], "=", 
+   "\"\<Gets a unique name for a tab\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"0cb14291-24fb-4c8d-82a0-1dbb1b276c41"],
+
+Cell["\[LeftCeiling]The functions provided to an IDENotebookObject as methods\
+\[RightFloor]", "Text",
+ Evaluatable->True,ExpressionUUID->"ad46f3b0-8930-4b93-9861-8b41b65d5bfa"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "::", "usage"}], "=", 
+   "\"\<Open a file in the IDE notebook\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESave", "::", "usage"}], "=", 
+   "\"\<Save the active IDE notebook file\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEClose", "::", "usage"}], "=", 
+   "\"\<Close the IDE notebook\>\""}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"d5b532b6-2250-491c-955f-1d97cf5c2cff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"$SaveNotebookMethod", "::", "usage"}], "=", 
+   "\"\<The method to use when saving notebooks\>\""}], 
+  ";"}]], "CodeInput",ExpressionUUID->"e672448e-92e1-4d7a-873c-8ef1478f2d36"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"EnsureNotebookUpdated", "::", "usage"}], "=", "\n", "  ", 
+   "\"\<Checks to make sure the notebook file and the current notebook state \
+aren't out-of-sync\>\""}], 
+  ";"}]], "CodeInput",ExpressionUUID->"2fd0e0c5-0b7b-497d-abdc-f7f4e6edfa7c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"492c4455-0983-4941-b588-\
+ef97b84bd464"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Notebook Manipulation\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"3da9f6c2-29e3-4170-ad39-a7f9edd55463"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]NotebookPutContents\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"ce099d04-bdb7-404f-911e-63e7c4f90a07"],
+
+Cell["\<\
+\[LeftCeiling]
+\tPut a new notebook in the pane
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"04026c6f-b801-4e8c-8c79-2e4b7de4ce56"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"nbPut1", "[", 
+    RowBox[{"nbObj_NotebookObject", ",", " ", "nb_Notebook"}], "]"}], ":=", 
+   "\n", "\t\t", 
+   RowBox[{"Module", "[", "\n", "\t\t\t", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t\t\t", "baseExpr", "\n", "\t\t\t\t", "}"}], ",", 
+     "\n", "\t\t\t", 
+     RowBox[{"FrontEndExecute", "@", 
+      RowBox[{"{", "\n", "\t\t\t  ", 
+       RowBox[{
+        RowBox[{"FrontEnd`NotebookPut", "[", "\n", "  \t\t\t\t", 
+         RowBox[{
+          RowBox[{"Notebook", "[", 
+           RowBox[{
+            RowBox[{"nb", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+            RowBox[{"Options", "[", "nbObj", "]"}]}], "]"}], ",", "\n", 
+          "  \t\t\t\t", "nbObj"}], "\n", "  \t\t\t\t", "]"}], ",", "\n", 
+        "  \t\t\t", 
+        RowBox[{"FrontEnd`SelectionMove", "[", "\n", "  \t\t\t\t", 
+         RowBox[{
+         "nbObj", ",", "\n", "  \t\t\t\t", "Before", ",", "\n", "  \t\t\t\t", 
+          "Notebook"}], "\n", "  \t\t\t\t", "]"}]}], "\n", "      ", 
+       "}"}]}]}], "\n", "\t\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"c118f746-598e-4b66-bf77-4a58b1647d1a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nbPut2", "[", 
+   RowBox[{"enb_NotebookObject", ",", " ", "nb_Notebook"}], "]"}], ":=", "\n",
+   "\t", 
+  RowBox[{"With", "[", "\n", "\t  ", 
+   RowBox[{
+    RowBox[{"{", "\n", "     ", 
+     RowBox[{"mcells", "=", "\n", "       ", 
+      RowBox[{"Sequence", "@@", 
+       RowBox[{"{", "\n", "         ", 
+        RowBox[{
+         RowBox[{"FrontEnd`SelectionMove", "[", 
+          RowBox[{"enb", ",", " ", "All", ",", " ", "Notebook"}], "]"}], ",", 
+         "\n", "         ", 
+         RowBox[{"FrontEnd`SetOptions", "[", 
+          RowBox[{
+           RowBox[{"NotebookSelection", "[", "enb", "]"}], ",", " ", 
+           RowBox[{"Deletable", "->", "True"}]}], "]"}], ",", "\n", 
+         "         ", 
+         RowBox[{"FrontEnd`NotebookDelete", "[", "enb", "]"}]}], "\n", 
+        "         ", "}"}]}]}], "\n", "    ", "}"}], ",", "\n", "    ", 
+    RowBox[{
+     RowBox[{"MathLink`CallFrontEnd", "@", 
+      RowBox[{"{", "\n", "     ", 
+       RowBox[{"mcells", ",", "\n", "     ", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"FrontEnd`SelectionMove", "[", 
+           RowBox[{"enb", ",", " ", "Before", ",", " ", "Notebook"}], "]"}], 
+          ","}], "*)"}], "\n", "     ", 
+        RowBox[{"FrontEnd`NotebookWrite", "[", 
+         RowBox[{"enb", ",", " ", 
+          RowBox[{"nb", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", " ", "None", ",", " ", 
+          RowBox[{"AutoScroll", "->", "False"}]}], "]"}], ",", "\n", "     ", 
+        
+        RowBox[{"FrontEnd`SelectionMove", "[", 
+         RowBox[{"enb", ",", " ", "Before", ",", " ", "Notebook"}], "]"}]}], 
+       "\n", "     ", "}"}]}], ";"}]}], "\n", "   ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"eca7ef70-7904-4f9f-9a0b-a416ad344137"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nbPut3", "[", 
+   RowBox[{"enb_NotebookObject", ",", " ", "nb_Notebook"}], "]"}], ":=", "\n",
+   "\t", 
+  RowBox[{"MathLink`CallFrontEnd", "@", 
+   RowBox[{"{", "\n", "\t ", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"FrontEnd`SelectionMove", "[", 
+       RowBox[{"enb", ",", " ", "Before", ",", " ", "Notebook"}], "]"}], 
+      ","}], "*)"}], "\n", "   ", 
+    RowBox[{
+     RowBox[{"FrontEnd`NotebookWrite", "[", 
+      RowBox[{"enb", ",", " ", 
+       RowBox[{"nb", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", " ", "None", ",", " ", 
+       RowBox[{"AutoScroll", "->", "False"}]}], "]"}], ",", "\n", "   ", 
+     RowBox[{"FrontEnd`SelectionMove", "[", 
+      RowBox[{"enb", ",", " ", "Before", ",", " ", "Notebook"}], "]"}]}], 
+    "\n", "   ", 
+    "}"}]}]}]], \
+"CodeInput",ExpressionUUID->"3e3a8c86-20d8-4620-a6e2-a3f83cd39e92"],
+
+Cell[BoxData[{
+ RowBox[{"NotebookPutContents", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{"NotebookPutContents", "[", "\n", "  ", 
+   RowBox[{"ideNb_NotebookObject", ",", " ", "\n", "  ", 
+    RowBox[{"notebook", ":", 
+     RowBox[{"_Notebook", "|", "_Hold"}]}], " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"for", " ", "some", " ", "reason", " ", "pass"}], "-", "by", 
+       "-", 
+       RowBox[{"value", " ", "helps", " ", "a", " ", "lot", " ", "here"}]}], 
+      "..."}], " ", "*)"}], ",", "\n", "  ", 
+    RowBox[{"mode", ":", 
+     RowBox[{"(", 
+      RowBox[{"NotebookWrite", "|", "NotebookPut", "|", "Automatic"}], ")"}], 
+     ":", "Automatic"}]}], "\n", "  ", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{
+     "ops", ",", "\n", "\t\t\t", "c", ",", "\n", "\t\t\t", "m", ",", "\n", 
+      "\t\t\t", 
+      RowBox[{"nb", " ", "=", " ", 
+       RowBox[{"ReleaseHold", "[", "notebook", "]"}]}]}], "\n", "\t\t\t", 
+     "}"}], ",", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"ops", "=", 
+      RowBox[{"Flatten", "@", 
+       RowBox[{"{", 
+        RowBox[{"List", "@@", 
+         RowBox[{"Rest", "[", "nb", "]"}]}], "}"}]}]}], ";", "\n", "\t\t", 
+     RowBox[{"m", " ", "=", " ", "\n", "\t\t  ", 
+      RowBox[{"Replace", "[", 
+       RowBox[{"mode", ",", " ", "\n", "\t\t    ", 
+        RowBox[{"Automatic", "\[RuleDelayed]", 
+         RowBox[{"(", "\n", "\t\t      ", 
+          RowBox[{
+           RowBox[{"c", "=", 
+            RowBox[{"Cells", "[", "ideNb", "]"}]}], ";", "\n", "\t\t      ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "@", "c"}], ">", "100000"}], ",", " ", 
+             "NotebookPut", ",", " ", "NotebookWrite"}], "]"}]}], "\n", 
+          "\t\t      ", ")"}]}]}], "\n", "\t\t    ", "]"}]}], ";", "\n", 
+     "\t\t", 
+     RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t", 
+      RowBox[{"ideNb", ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"m", "===", "NotebookWrite"}], ",", "\n", "\t\t\t  ", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"!", 
+              RowBox[{"ListQ", "[", "c", "]"}]}], ",", " ", 
+             RowBox[{"c", "=", 
+              RowBox[{"Cells", "[", "ideNb", "]"}]}]}], "]"}], ";", "\n", 
+           "\t\t\t  ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "@", "c"}], "===", "0"}], ",", "\n", 
+             "\t\t\t    ", 
+             RowBox[{"nbPut3", "[", 
+              RowBox[{"ideNb", ",", " ", "nb"}], "]"}], ",", "\n", 
+             "\t\t\t    ", 
+             RowBox[{"nbPut2", "[", 
+              RowBox[{"ideNb", ",", " ", "nb"}], "]"}]}], "\n", "\t\t\t    ", 
+            "]"}]}], ",", "\n", "\t\t\t  ", 
+          RowBox[{"nbPut1", "[", 
+           RowBox[{"ideNb", ",", " ", "nb"}], "]"}]}], "\n", "\t\t\t  ", 
+         "]"}], ";", "\n", "     ", 
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"ideNb", ",", " ", "\"\<Options\>\""}], "]"}], " ", "=", 
+         " ", "ops"}], ";"}]}], "\n", "     ", "]"}], ";"}]}], "\n", "   ", 
+   "]"}]}]}], \
+"CodeInput",ExpressionUUID->"7956d2ae-7273-489c-bfe2-bac9cf60cad9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"d020598f-f3e5-4e6f-b4b3-4f7f111b9e23"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getFExtStylesheet\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"6c809c21-b896-488f-964a-e0be19614d57"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"loadExtStyles", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Append", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"Normal", "@", "\n", "\t\t\t", 
+     RowBox[{"Merge", "[", "\n", "\t\t\t\t", 
+      RowBox[{
+       RowBox[{"Get", "/@", "\n", "\t", "\t", "\t\t\t", 
+        RowBox[{"FileNames", "[", "\n", "\t", "\t", "\t\t\t\t", 
+         RowBox[{
+         "\"\<ExtensionStylesMap.wl\>\"", ",", "\n", "\t", "\t\t\t\t\t", 
+          RowBox[{"FileNames", "[", 
+           RowBox[{"\"\<Mappings\>\"", ",", " ", "$IDESettingsPath"}], 
+           "]"}]}], "\n", "\t", "\t", "\t\t\t\t", "]"}]}], ",", "\n", "\t", 
+       "\t\t\t", "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+    
+    RowBox[{"_", "\[Rule]", "None"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"cc2e3d1d-0855-45ce-97e4-fa6f15a79a54"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getFExtStylesheet", "[", "fExt_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"fExt", "/.", 
+   RowBox[{
+   "loadExtStyles", "[", 
+    "]"}]}]}]], \
+"CodeInput",ExpressionUUID->"b535230e-7345-4781-bb0e-f7ce15ab2127"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getNbFileSSheet\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"24920f0f-a5b5-4eec-bbd3-ea66e9d24eca"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"getNbFileSSheet", "[", "nbFile_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"FileByteCount", "[", "nbFile", "]"}], "<", "1000000000"}], ",",
+      "\n", "\t\t", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"g", "=", 
+          RowBox[{"Get", "[", "nbFile", "]"}]}], ",", " ", "sd", ",", " ", 
+         "sdFile"}], "}"}], ",", "\n", "\t", "\t\t", 
+       RowBox[{
+        RowBox[{"sd", "=", 
+         RowBox[{"FirstCase", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "@", 
+            RowBox[{"Apply", "[", 
+             RowBox[{"List", ",", " ", 
+              RowBox[{"Rest", "[", "g", "]"}]}], "]"}]}], ",", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"StyleDefinitions", "\[Rule]", "s_"}], ")"}], 
+            "\[RuleDelayed]", "s"}], ",", " ", "\"\<Default.nb\>\""}], 
+          "]"}]}], ";", "\n", "\t\t\t", 
+        RowBox[{"sdFile", "=", "\n", "\t\t\t\t", 
+         RowBox[{"Replace", "[", 
+          RowBox[{"sd", ",", " ", "\n", "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"Except", "[", 
+             RowBox[{"_String", "|", "_FrontEnd`FileName"}], "]"}], ":>", 
+            "\n", "\t\t\t\t\t\t", 
+            RowBox[{"FirstCase", "[", 
+             RowBox[{"sd", ",", " ", "\n", "\t\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"StyleData", "[", 
+                RowBox[{
+                 RowBox[{"StyleDefinitions", "\[Rule]", "s_"}], ",", " ", 
+                 "___"}], "]"}], "\[RuleDelayed]", "s"}], ",", " ", "\n", 
+              "\t\t\t\t\t\t\t", "\"\<Default.nb\>\"", ",", "\n", 
+              "\t\t\t\t\t\t\t", "\[Infinity]"}], "\n", "\t\t\t\t\t\t\t", 
+             "]"}]}]}], "\n", "\t\t\t\t\t", "]"}]}], ";", "\n", "\t\t\t", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringQ", "@", "sdFile"}], "&&", 
+           RowBox[{
+            RowBox[{"FileNameDepth", "[", "sdFile", "]"}], ">", "1"}]}], ",", 
+          "\n", "\t\t\t\t", 
+          RowBox[{"sdFile", " ", "=", " ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"FrontEnd`FileName", "[", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", 
+                  RowBox[{"-", "2"}]}], "]"}], "]"}], ",", " ", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", 
+                 RowBox[{"-", "1"}], "]"}], "]"}]}], "]"}], "&"}], "@", 
+            RowBox[{"FileNameSplit", "[", "sdFile", "]"}]}]}]}], "\n", 
+         "\t\t\t\t", "]"}], ";", "\n", "\t\t\t", 
+        RowBox[{"(*", 
+         RowBox[{"Replace", "[", 
+          RowBox[{"sdFile", ",", "\n", "\t\t\t\t", 
+           RowBox[{"f_FrontEnd`FileName", "\[RuleDelayed]", 
+            RowBox[{"ToFileName", "[", "f", "]"}]}]}], "\n", "\t\t\t\t", 
+          "]"}], "*)"}], "\n", "\t\t\t", "sdFile"}]}], "\n", "\t\t\t", "]"}], 
+     ",", "\n", "\t\t", "$Failed"}], "\n", "\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"be648a16-e0c1-49bc-936f-21a2a7dd5c3a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getStylesheetStylesheet", "[", "nbFile_", "]"}], ":=", "\n", "\t", 
+  
+  RowBox[{"GetThemedStylesheet", "@", 
+   RowBox[{
+   "getNbFileSSheet", "[", "nbFile", 
+    "]"}]}]}]], \
+"CodeInput",ExpressionUUID->"08d00610-755a-4aa3-bb01-e3c8b6df570d"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getFileStylesheet\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"d5c10ea4-66eb-40ff-8ae2-a42fcfebe162"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getFileStylesheet", "[", 
+   RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{"fExt", " ", "=", " ", 
+      RowBox[{"FileExtension", "[", "file", "]"}]}], "\n", "\t\t\t", "}"}], 
+    ",", "\n", "\t\t\t", 
+    RowBox[{"Replace", "[", 
+     RowBox[{
+      RowBox[{"getFExtStylesheet", "[", "fExt", "]"}], ",", "\n", "\t\t\t\t", 
+      
+      RowBox[{"None", "\[RuleDelayed]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"fExt", "===", "\"\<nb\>\""}], ",", " ", 
+         RowBox[{"getStylesheetStylesheet", "[", "file", "]"}], ",", " ", 
+         "None"}], "]"}]}]}], "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"78519839-aba3-47d6-a775-72808ae25961"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setNbFileStyle\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"37019469-ba3a-40d0-ac4e-00191f0bdb98"],
+
+Cell["\<\
+\[LeftCeiling]
+\tThis is a little too slow in general... like .3s? We can probably do better \
+by only updating when the 
+\tactual base stylesheet changes?
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"169fca90-0836-47ec-b086-cbe7b36e30c7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"setNbFileStyle", "[", 
+    RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f", "=", 
+       RowBox[{"getFileStylesheet", "[", 
+        RowBox[{"nb", ",", " ", "file"}], "]"}]}], "}"}], ",", "\n", "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"f", "=!=", 
+        RowBox[{"IDEData", "[", 
+         RowBox[{"nb", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Styles\>\"", ",", " ", "\"\<UnthemedStylesheet\>\""}],
+            "}"}]}], "]"}]}], ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Styles\>\"", ",", " ", "\"\<UnthemedStylesheet\>\""}], 
+            "}"}]}], "]"}], " ", "=", " ", "f"}], ";", "\n", "\t\t\t", 
+        RowBox[{"SetThemedStylesheet", "[", 
+         RowBox[{"nb", ",", " ", 
+          RowBox[{"GetCleanStylePath", "[", 
+           RowBox[{"nb", ",", " ", "f"}], "]"}]}], "]"}], ";", "\n", "\t\t\t",
+         "True"}], ",", "\n", "\t\t\t", "False"}], "\n", "\t\t\t", "]"}]}], 
+    "\n", "\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"1c5068f7-d9b7-4e4c-82e2-e9024126f217"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"03bd9c5a-f8a5-4617-85ab-1d73227ea3bf"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getFExtToolbar\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"8c81858c-add4-4e06-bda3-eddd00e46249"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"loadExtToolbars", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Append", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"Normal", "@", "\n", "\t\t\t", 
+     RowBox[{"Merge", "[", "\n", "\t\t\t\t", 
+      RowBox[{
+       RowBox[{"Get", "/@", "\n", "\t", "\t", "\t\t\t", 
+        RowBox[{"FileNames", "[", "\n", "\t", "\t\t\t\t\t", 
+         RowBox[{
+         "\"\<ExtensionToolbarsMap.wl\>\"", ",", "\n", "\t", "\t\t\t\t\t", 
+          RowBox[{"FileNames", "[", 
+           RowBox[{"\"\<Mappings\>\"", ",", " ", "$IDESettingsPath"}], 
+           "]"}]}], "\n", "\t", "\t\t\t\t\t", "]"}]}], ",", "\n", "\t", 
+       "\t\t\t", "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+    
+    RowBox[{"_", "\[Rule]", "None"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"a57d3a1b-fc0a-4f2b-bcf6-92a47e466e3f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getFExtToolbar", "[", "fExt_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"fExt", "/.", 
+   RowBox[{
+   "loadExtToolbars", "[", 
+    "]"}]}]}]], \
+"CodeInput",ExpressionUUID->"76b34019-cf70-42a3-83b8-41887fb6521b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getStylesheetToolbar\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"aa8169b4-fe39-493f-ae82-bbc0eda17099"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"loadSheetToolbars", "[", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Append", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"Normal", "@", "\n", "\t\t\t", 
+      RowBox[{"Merge", "[", "\n", "\t\t\t\t", 
+       RowBox[{
+        RowBox[{"Get", "/@", "\n", "\t", "\t", "\t\t\t", 
+         RowBox[{"FileNames", "[", "\n", "\t", "\t\t\t\t\t", 
+          RowBox[{
+          "\"\<StylesheetToolbarsMap.wl\>\"", ",", "\n", "\t", "\t\t\t\t\t", 
+           RowBox[{"FileNames", "[", 
+            RowBox[{"\"\<Mappings\>\"", ",", " ", "$IDESettingsPath"}], 
+            "]"}]}], "\n", "\t", "\t", "\t\t\t\t", "]"}]}], ",", "\n", "\t", 
+        "\t\t\t", "First"}], "\n", "\t", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+     RowBox[{"_", "\[Rule]", "None"}]}], "\n", "\t\t", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"a8df87e7-0745-49ae-b5b6-0e68f21ca195"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getStylesheetToolbar", "[", "nbFile_", "]"}], ":=", "\n", "\t", 
+  RowBox[{
+   RowBox[{"getNbFileSSheet", "[", "nbFile", "]"}], "/.", "\n", "\t\t", 
+   RowBox[{
+   "loadSheetToolbars", "[", 
+    "]"}]}]}]], \
+"CodeInput",ExpressionUUID->"ca889ef1-0297-4af0-9068-c68b5d31ace8"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]getFileToolbar\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"058870ee-fd72-4a64-8570-222798290470"],
+
+Cell["\<\
+\[LeftCeiling]
+\tToolbars are just treated as another case of a Plugin, but not always \
+attached to the menu or put into a ActionMenu
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"3b7da32d-0a74-43fa-9105-104a7b14577b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getFileToolbar", "[", 
+   RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{"fExt", " ", "=", " ", 
+       RowBox[{"FileExtension", "[", "file", "]"}]}], ",", "\n", "\t\t\t", 
+      "tbName"}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"tbName", "=", "\n", "\t\t\t", 
+      RowBox[{"Replace", "[", 
+       RowBox[{
+        RowBox[{"getFExtToolbar", "[", "fExt", "]"}], ",", "\n", "\t", 
+        "\t\t\t", 
+        RowBox[{"None", "\[RuleDelayed]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"fExt", "===", "\"\<nb\>\""}], ",", " ", 
+           RowBox[{"getStylesheetToolbar", "[", "file", "]"}], ",", " ", 
+           "None"}], "]"}]}]}], "\n", "\t\t\t\t", "]"}]}], ";", "\n", "\t\t", 
+     "tbName"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"9fa7d276-6733-4c9b-b311-bbdd24daf948"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setNbFileToolbar\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"f875151b-348b-46ef-ba50-cd6cd215703a"],
+
+Cell["\<\
+\[LeftCeiling]
+\tThis is like .2s in general...
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"ffeaa352-ff37-4a52-96c0-7c40f1afc20f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"setNbFileToolbar", "[", 
+   RowBox[{"nb_", ",", " ", "file_"}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{"currentTb", " ", "=", " ", 
+       RowBox[{"IDEData", "[", 
+        RowBox[{"nb", ",", " ", "\"\<FileToolbar\>\"", ",", " ", "None"}], 
+        "]"}]}], ",", "\n", "\t\t\t", "name"}], "\n", "\t\t\t", "}"}], ",", 
+    "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"name", " ", "=", " ", 
+      RowBox[{"getFileToolbar", "[", 
+       RowBox[{"nb", ",", " ", "file"}], "]"}]}], ";", "\n", "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"currentTb", " ", "=!=", " ", "name"}], ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", "\"\<FileToolbar\>\""}], "]"}], " ", "=", 
+         "  ", "name"}], ";", "\n", "\t\t\t", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"currentTb", " ", "=!=", " ", "None"}], ",", "\n", 
+          "\t\t\t\t", 
+          RowBox[{"RemoveNotebookToolbar", "[", 
+           RowBox[{"nb", ",", " ", "currentTb"}], "]"}]}], "\n", "\t\t\t\t", 
+         "]"}], ";", "\n", "\t\t\t", 
+        RowBox[{"UpdateNotebookToolbars", "[", "nb", "]"}], ";", " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"seems", " ", "to", " ", "be", " ", "necessary"}], "..."}],
+           "?"}], " ", "*)"}], "\n", "\t\t\t", "True"}], ",", "\n", "\t\t\t", 
+       "False"}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"3267e66a-560a-4910-bebb-c17532ec9a67"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setAutoSave\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"7236e889-ec01-419b-9707-83db5b129c7d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"setAutoSave", "[", "nb_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"aug", " ", "=", " ", 
+       RowBox[{"GetCurrentValue", "[", 
+        RowBox[{"nb", ",", " ", "AutoGeneratedPackage"}], "]"}]}], "}"}], ",",
+      "\n", "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"aug", " ", "===", " ", "Automatic"}], ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"IDEData", "[", 
+         RowBox[{"nb", ",", " ", "\"\<AutoGeneratePackage\>\""}], "]"}], " ", 
+        "=", " ", "True"}], ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"SetCurrentValue", "[", 
+         RowBox[{
+         "nb", ",", " ", "AutoGeneratedPackage", ",", " ", "Inherited"}], 
+         "]"}], ";", "\n", "\t\t\t", 
+        RowBox[{
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", "\"\<AutoGeneratePackage\>\""}], "]"}], " ",
+          "=", " ", "False"}]}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
+    "]"}]}], ";"}]], \
+"CodeInput",ExpressionUUID->"e46010c2-88f1-418d-a611-67945d972846"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]setNbActions\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"ea477eb7-a367-4401-8b57-538ee2fad788"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"setNbActions", "[", "nb_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"nbActs", ",", " ", "saveAction"}], "}"}], ",", "\n", "\t  ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"reset", " ", "the", " ", "actions", " ", "to", " ", "start"}], 
+     " ", "*)"}], "\n", "\t  ", 
+    RowBox[{
+     RowBox[{"SetCurrentValue", "[", 
+      RowBox[{"nb", ",", " ", "NotebookEventActions", ",", " ", "Inherited"}],
+       "]"}], ";", "\n", "\t  ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "pull", " ", "the", " ", "events", " ", "from", " ", "the", " ", 
+       "stylesheet"}], " ", "*)"}], "\n", "\t  ", 
+     RowBox[{"nbActs", " ", "=", " ", 
+      RowBox[{"GetCurrentValue", "[", 
+       RowBox[{"nb", ",", " ", "NotebookEventActions"}], "]"}]}], ";", "\n", 
+     "\t  ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MemberQ", "[", 
+        RowBox[{
+         RowBox[{"Keys", "@", "nbActs"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Save\>\""}], "}"}]}], 
+        "]"}], ",", "\n", "\t    ", 
+       RowBox[{"saveAction", " ", "=", " ", "\n", "\t      ", 
+        RowBox[{"Extract", "[", 
+         RowBox[{
+          RowBox[{"Association", "[", "nbActs", "]"}], ",", "\n", 
+          "\t        ", 
+          RowBox[{"Key", "[", 
+           RowBox[{"{", 
+            RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Save\>\""}], "}"}], 
+           "]"}], ",", "\n", "\t        ", "Hold"}], "\n", "\t        ", 
+         "]"}]}], ",", "\n", "\t    ", 
+       RowBox[{"saveAction", " ", "=", " ", "None"}]}], "\n", "\t    ", "]"}],
+      ";", "\n", "\t  ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MatchQ", "[", 
+        RowBox[{"saveAction", ",", " ", "\n", "  ", "\t    ", 
+         RowBox[{
+          RowBox[{"Hold", "[", 
+           RowBox[{"IDESave", "[", 
+            RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], "]"}], "|", "\n",
+           "  \t      ", 
+          RowBox[{"Hold", "[", 
+           RowBox[{"CompoundExpression", "[", 
+            RowBox[{"_Needs", ",", " ", 
+             RowBox[{"IDESave", "[", 
+              RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], "]"}], 
+           "]"}]}]}], "\n", "  \t    ", "]"}], ",", "\n", "\t    ", 
+       RowBox[{"saveAction", " ", "=", " ", "None"}]}], "\n", "\t    ", "]"}],
+      ";", "\n", "\t  ", 
+     RowBox[{
+      RowBox[{"IDEData", "[", 
+       RowBox[{"nb", ",", " ", "\"\<SavingAction\>\""}], "]"}], " ", "=", " ",
+       "saveAction"}], ";", "\n", "\t  ", 
+     RowBox[{"SetCurrentValue", "[", 
+      RowBox[{
+      "nb", ",", " ", "\n", "\t    ", "NotebookEventActions", ",", "\n", 
+       "\t    ", 
+       RowBox[{
+        RowBox[{"DeleteDuplicatesBy", "[", "First", "]"}], "@", "\n", 
+        "\t      ", 
+        RowBox[{"Join", "[", "\n", "  \t      ", 
+         RowBox[{
+          RowBox[{"{", "\n", "    \t      ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Save\>\""}], "}"}],
+             "\[RuleDelayed]", "\n", "    \t        ", 
+            RowBox[{"IDESave", "[", 
+             RowBox[{"EvaluationNotebook", "[", "]"}], "]"}]}], "\n", "  ", 
+           "         ", "}"}], ",", "\n", "          ", 
+          RowBox[{"Replace", "[", 
+           RowBox[{"nbActs", ",", "\n", "          \t", 
+            RowBox[{
+             RowBox[{"Except", "[", "_List", "]"}], "\[RuleDelayed]", 
+             RowBox[{"{", "}"}]}]}], "\n", "          \t", "]"}], ",", "\n", 
+          "    \t    ", 
+          RowBox[{"{", "\n", "            ", 
+           RowBox[{
+            RowBox[{"PassEventsDown", "\[Rule]", "True"}], ",", "\n", "  ", 
+            "          ", 
+            RowBox[{"EvaluationOrder", "\[Rule]", "After"}]}], "\n", 
+           "  \t        ", "}"}]}], "\n", "    \t   ", "]"}]}]}], "\n", 
+      "      ", "]"}]}]}], "\n", "\t  ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"3b079eee-90bf-4bd4-8b5c-d4038e137294"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]GetNotebookExpression\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"8c0db20a-60b2-4f55-a8e3-65ebea9d2443"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GetNotebookExpression", "[", "nb_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{"opts", " ", "=", " ", 
+      RowBox[{"IDEData", "[", 
+       RowBox[{"nb", ",", " ", "\"\<Options\>\"", ",", " ", 
+        RowBox[{"{", "}"}]}], "]"}]}], "\n", "\t\t\t", "}"}], ",", "\n", 
+    "\t\t", 
+    RowBox[{"Notebook", "[", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"NotebookGet", "[", "nb", "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "\t\t\t", 
+      RowBox[{"Sequence", "@@", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"List", "@@", "opts"}], "]"}]}]}], "\n", "\t\t\t", "]"}]}], 
+   "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"c93ab15a-2f36-4cc7-844a-3681fd8f7068"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]NotebookPutFile\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"6f6cbaaf-9e3c-4fd0-a7db-f5ce1b2e6fb0"],
+
+Cell["\<\
+\[LeftCeiling]
 \tShould make use of the tab cache to find some way to check if I need to \
-reload from disk...\n\[RightFloor]", "Text", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{"NotebookPutFile", "//", "Clear"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"NotebookPutFile", "[", RowBox[
-                     {"nb_NotebookObject", ",", " ", "f_String", ",", " ", 
-                      RowBox[{"data", ":", RowBox[{"_Notebook", "|", 
-                          "None"}], ":", "None"}]}], "]"}], ":=", "\n", "\t", 
-                  RowBox[{"Module", "[", "\n", "\t\t", RowBox[
-                     {RowBox[{"{", "\n", "\t\t\t", RowBox[{"nbObj", ",", 
-                          "\n", "\t\t\t", RowBox[{"nbExpr", " ", "=", " ", 
-                          "data"}], ",", "\n", "\t\t\t", "stylesChanged", 
-                          ",", "\n", "\t\t\t", "tbChanged"}], "\n", "\t\t\t", 
-                        "}"}], ",", "\n", "\t\t", RowBox[{"(*", " ", 
-                        RowBox[{RowBox[{"since", " ", "we", " ", "need", " ", 
-                          "to", " ", "handle", " ", "autogeneration", " ", 
-                          "stuff", " ", "too"}], "..."}], " ", "*)"}], "\n", 
-                      "\t\t", RowBox[{RowBox[{"SetCurrentValue", "[", 
-                          RowBox[{"nb", ",", " ", "AutoGeneratedPackage", 
-                          ",", " ", "Inherited"}], "]"}], ";", "\n", "\t\t", 
-                        RowBox[{"If", "[", RowBox[{RowBox[{"nbExpr", "===", 
-                          "None"}], ",", "\n", "\t\t\t", RowBox[{"Switch", 
-                          "[", RowBox[{RowBox[{"FileExtension", "[", "f", 
-                          "]"}], ",", "\n", "\t", "\t\t\t", "\"nb\"", ",", 
-                          "\n", "\t", "\t\t\t\t", RowBox[{"nbExpr", " ", "=", 
-                          " ", RowBox[{"Get", "[", "f", "]"}]}], ",", "\n", 
-                          "\t", "\t\t\t", "_", ",", "\n", "\t", "\t\t\t\t", 
-                          RowBox[{RowBox[{"nbObj", " ", "=", " ", RowBox[
-                          {"NotebookOpen", "[", RowBox[{"f", ",", " ", RowBox[
-                          {"Visible", "->", "False"}]}], "]"}]}], ";", "\n", 
-                          "\t", "\t\t\t\t", RowBox[{"nbExpr", " ", "=", " ", 
-                          RowBox[{"NotebookGet", "[", "nbObj", "]"}]}], ";", 
-                          "\n", "\t", "\t\t\t\t", RowBox[{"NotebookClose", 
-                          "[", "nbObj", "]"}], ";"}]}], "\n", "\t\t\t\t", 
-                          "]"}]}], "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", 
-                        RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t", 
-                          RowBox[{"nb", ",", "\n", "\t\t\t", RowBox[
-                          {RowBox[{"stylesChanged", " ", "=", " ", RowBox[
-                          {"setNbFileStyle", "[", RowBox[{"nb", ",", " ", 
-                          "f"}], "]"}]}], ";", "\n", "\t\t\t", RowBox[
-                          {"tbChanged", " ", "=", " ", RowBox[
-                          {"setNbFileToolbar", "[", RowBox[{"nb", ",", " ", 
-                          "f"}], "]"}]}], ";", "\n", "\t\t\t", RowBox[
-                          {"NotebookPutContents", "[", RowBox[{"nb", ",", 
-                          " ", RowBox[{"Hold", "[", "nbExpr", "]"}]}], "]"}], 
-                          ";", "\n", "\t\t\t", RowBox[{"(*", " ", RowBox[
-                          {RowBox[{RowBox[{RowBox[{"can", "'"}], "t", " ", 
-                          "see", " ", "why", " ", "not", " ", "to", " ", 
-                          "put", " ", "it", " ", "here"}], "..."}], " ", 
-                          "?"}], " ", "*)"}], "\n", "\t\t\t", RowBox[{"If", 
-                          "[", RowBox[{"stylesChanged", ",", "\n", 
-                          "\t\t  \t", RowBox[{RowBox[{"setAutoSave", "[", 
-                          "nb", "]"}], ";", "\n", "\t", "  ", "\t\t", RowBox[
-                          {"setNbActions", "[", "nb", "]"}], ";"}]}], "\n", 
-                          "\t\t\t\t", "]"}], ";"}]}], "\n", "\t\t\t", "]"}], 
-                        ";"}]}], "\n", "\t\t", "]"}]}], ";"}]}], 
-            "CodeInput"]}, Open]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]notebookSaveNotebook\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"If", "[", RowBox[
-                  {RowBox[{"!", RowBox[{"ValueQ", "[", "$SaveNotebookMethod", 
-                       "]"}]}], ",", " ", RowBox[{"$SaveNotebookMethod", " ", 
-                     "=", " ", "notebookSaveNotebook"}]}], "]"}], ";"}]], 
-            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"$poisonBoxes", " ", 
-                 "=", " ", RowBox[{"_GraphicsBox", "|", "_Graphics3DBox", 
-                   "|", "_Raster3DBox", "|", "_RasterBox"}]}], ";"}]], 
-            "CodeInput"], Cell[BoxData[RowBox[{RowBox[
-                {"notebookSaveNotebook", "[", RowBox[{"f_", ",", " ", 
-                   "nb_"}], "]"}], ":=", "\n", "  ", RowBox[{"With", "[", 
-                 RowBox[{RowBox[{"{", RowBox[{"expr", "=", RowBox[
-                        {"GetNotebookExpression", "[", "nb", "]"}]}], "}"}], 
-                   ",", "\n", "    ", RowBox[{"If", "[", RowBox[
-                      {RowBox[{"!", RowBox[{"FreeQ", "[", RowBox[{RowBox[
-                          {"expr", "[", RowBox[{"[", "1", "]"}], "]"}], ",", 
-                          " ", "$poisonBoxes"}], "]"}]}], ",", "\n", 
-                       "      ", RowBox[{"Export", "[", RowBox[{"f", ",", 
-                          " ", "expr", ",", " ", "\"Notebook\""}], "]"}], 
-                       ",", "\n", "      ", RowBox[{"Put", "[", RowBox[
-                          {"expr", ",", " ", "f"}], "]"}]}], "\n", "      ", 
-                     "]"}]}], "\n", "    ", "]"}]}]], "CodeInput"]}, 
-          Closed]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]notebookHandleAutoSave\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"notebookHandleAutoSave", "[", 
-                 RowBox[{"f_", ",", " ", "nb_"}], "]"}], ":=", "\n", "  ", 
-               RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[{"nbFName", 
-                       ",", " ", "nbPkgName"}], "}"}], ",", "\n", "  ", "  ", 
-                   RowBox[{"If", "[", RowBox[{RowBox[{"IDEData", "[", 
-                         RowBox[{"nb", ",", " ", "\"AutoGeneratePackage\""}], 
-                         "]"}], ",", "\n", "  ", "    ", RowBox[{RowBox[
-                          {"nbFName", " ", "=", " ", RowBox[
-                          {"NotebookFileName", "[", "nb", "]"}]}], ";", "\n", 
-                         "  ", "    ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"StringQ", "[", "nbFName", "]"}], ",", "\n", "  ", 
-                          "      ", RowBox[{RowBox[{"nbPkgName", " ", "=", 
-                          " ", RowBox[{"StringReplace", "[", RowBox[
-                          {"nbFName", ",", " ", RowBox[{"\".nb\"", "\[Rule]", 
-                          "\".m\""}]}], "]"}]}], ";", "\n", "  ", "  ", 
-                          "    ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"FileExistsQ", "[", "nbPkgName", "]"}], ",", "\n", 
-                          "  ", "  ", "      ", RowBox[{"RenameFile", "[", 
-                          "\n", "  ", "  ", "        ", RowBox[{"nbPkgName", 
-                          ",", "\n", "  ", "  ", "        ", RowBox[
-                          {"StringReplace", "[", RowBox[{"f", ",", " ", 
-                          RowBox[{"\".nb\"", "\[Rule]", "\".m\""}]}], "]"}], 
-                          ",", "\n", "  ", "  ", "        ", RowBox[
-                          {"OverwriteTarget", "\[Rule]", "True"}]}], "\n", 
-                          "  ", "  ", "        ", "]"}]}], "\n", "  ", 
-                          "        ", "]"}]}]}], "\n", "  ", "      ", 
-                          "]"}]}]}], "\n", "  ", "    ", "]"}]}], "\n", "  ", 
-                 "  ", "]"}]}]], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]NotebookSaveContents\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{"NotebookSaveContents", "//", "Clear"}], 
-              "\n", RowBox[{RowBox[{RowBox[{"Options", "[", 
-                    "NotebookSaveContents", "]"}], "=", "\n", "\t", 
-                  RowBox[{"{", "\n", "\t\t", RowBox[{RowBox[
-                       {"\"AutoGenerateSave\"", "\[Rule]", "True"}], ",", 
-                      "\n", "\t\t", RowBox[{"\"HandleSavingAction\"", 
-                        "\[Rule]", "True"}], ",", "\n", "\t\t", RowBox[
-                       {"\"ClearCache\"", "\[Rule]", "True"}], ",", "\n", 
-                      "\t\t", RowBox[{"\"Preemptive\"", "\[Rule]", 
-                        "False"}]}], "\n", "\t\t", "}"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{"Module", "[", RowBox[{RowBox[{"{", 
-                      "recurseProtect", "}"}], ",", "\n", "\t", RowBox[
-                     {RowBox[{RowBox[{"NotebookSaveContents", "[", RowBox[
-                          {"nb_NotebookObject", ",", " ", "\n", "\t\t", 
-                          RowBox[{"file", ":", RowBox[{"_String", "|", 
-                          "Automatic"}], ":", "Automatic"}], ",", "\n", 
-                          "\t\t", RowBox[{"ops", ":", RowBox[
-                          {"OptionsPattern", "[", "]"}]}]}], "\n", "\t\t", 
-                          "]"}], ":=", "\n", "\t\t", RowBox[{"Block", "[", 
-                          "\n", "\t\t  ", RowBox[{RowBox[{"{", "\n", 
-                          "\t\t    ", RowBox[{RowBox[{"preemptive", " ", "=", 
-                          " ", "False"}], ",", "\n", "\t\t    ", RowBox[
-                          {"recurseProtect", " ", "=", " ", RowBox[{RowBox[
-                          {"!", "preempt"}], "&&", RowBox[{"TrueQ", "[", 
-                          "recurseProtect", "]"}]}]}]}], "\n", "\t\t    ", 
-                          "}"}], ",", "\n", "\t\t\t", RowBox[{"If", "[", 
-                          RowBox[{RowBox[{"!", "recurseProtect"}], ",", "\n", 
-                          "\t\t\t\t", RowBox[{RowBox[{"recurseProtect", "=", 
-                          "True"}], ";", "\n", "\t\t\t\t", RowBox[{"Module", 
-                          "[", "\n", "\t\t\t\t\t", RowBox[{RowBox[{"{", "\n", 
-                          "\t\t\t\t\t\t", RowBox[{RowBox[{"f", " ", "=", " ", 
-                          "file"}], ",", "\n", "\t", "\t", "\t", "\t\t\t", 
-                          "dir", ",", "\n", "\t", "\t", "\t", "\t\t\t", 
-                          "nbExpr", ",", "\n", "\t\t\t\t\t\t", "nbObj", ",", 
-                          "\n", "\t\t\t\t\t\t", RowBox[{"ags", " ", "=", " ", 
-                          RowBox[{"TrueQ", "@", RowBox[{"OptionValue", "[", 
-                          "\"AutoGenerateSave\"", "]"}]}]}], ",", "\n", 
-                          "\t\t\t\t\t\t", RowBox[{"sa", " ", "=", " ", RowBox[
-                          {"TrueQ", "@", RowBox[{"OptionValue", "[", 
-                          "\"HandleSavingAction\"", "]"}]}]}]}], "\n", 
-                          "\t\t\t\t\t\t", "}"}], ",", "\n", "\t\t\t\t\t", 
-                          RowBox[{RowBox[{"If", "[", RowBox[{RowBox[{"f", 
-                          " ", "===", " ", "Automatic"}], ",", "\n", 
-                          "\t\t\t\t\t\t", RowBox[{"f", " ", "=", " ", RowBox[
-                          {"IDEPath", "[", RowBox[{"nb", ",", " ", RowBox[
-                          {"Key", "[", "\"ActiveFile\"", "]"}]}], "]"}]}]}], 
-                          "\n", "\t\t\t\t\t\t", "]"}], ";", "\n", 
-                          "\t\t\t\t\t", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"f", "=!=", "None"}], ",", "\n", "\t\t\t\t\t\t", 
-                          RowBox[{RowBox[{"f", " ", "=", " ", RowBox[
-                          {"IDEPath", "[", RowBox[{"nb", ",", " ", "f"}], 
-                          "]"}]}], ";", "\n", "\t\t\t\t\t\t", RowBox[
-                          {"Switch", "[", RowBox[{RowBox[{"FileExtension", 
-                          "[", "f", "]"}], ",", "\n", "\t", "\t", "\t", "\t", 
-                          "\t\t\t", "\"nb\"", ",", "\n", "\t\t\t\t\t\t\t\t", 
-                          RowBox[{RowBox[{"If", "[", RowBox[{"preemptive", 
-                          ",", "\n", "\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "PreemptiveQueued", "[", RowBox[{"nb", ",", " ", 
-                          RowBox[{"notebookSaveNotebook", "[", RowBox[{"f", 
-                          ",", " ", "nb"}], "]"}]}], "]"}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t ", RowBox[{RowBox[{
-                          "$SaveNotebookMethod", "[", RowBox[{"f", ",", " ", 
-                          "nb"}], "]"}], ";"}]}], "\n", "\t\t\t\t\t\t\t\t\t", 
-                          "]"}], ";", "\n", "\t\t\t\t\t\t\t\t", RowBox[{"If", 
-                          "[", RowBox[{"ags", ",", "\n", 
-                          "\t\t\t\t\t\t\t\t  ", RowBox[{RowBox[{"If", "[", 
-                          RowBox[{"preemptive", ",", "\n", "  ", 
-                          "\t\t\t\t\t\t\t\t\t", RowBox[{"Function", "[", 
-                          RowBox[{"Null", ",", " ", RowBox[{
-                          "PreemptiveQueued", "[", RowBox[{"nb", ",", " ", 
-                          "#"}], "]"}], ",", " ", "HoldAllComplete"}], "]"}], 
-                          ",", "\n", "  ", "\t\t\t\t\t\t\t\t\t", RowBox[{"#", 
-                          "&"}]}], "\n", "  \t\t\t\t\t\t\t\t\t", "]"}], "@", 
-                          RowBox[{"notebookHandleAutoSave", "[", RowBox[{"f", 
-                          ",", " ", "nb"}], "]"}]}]}], "\n", 
-                          "  \t\t\t\t\t\t\t\t", "]"}], ";", "\n", 
-                          "  \t\t\t\t\t\t ", RowBox[{"If", "[", RowBox[{"sa", 
-                          ",", "\n", "  \t\t\t\t\t\t   ", RowBox[{
-                          "ReleaseHold", "@", RowBox[{"IDEData", "[", RowBox[
-                          {"nb", ",", " ", "\"SavingAction\""}], "]"}]}]}], 
-                          "\n", "  \t\t\t\t\t\t   ", "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t", RowBox[{"\"m\"", "|", "\"wl\""}], 
-                          ",", "\n", "\t\t\t\t\t\t\t\t", RowBox[{"If", "[", 
-                          RowBox[{"preemptive", ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"nbExpr", 
-                          " ", "=", RowBox[{"GetNotebookExpression", "[", 
-                          "nb", "]"}]}], ";", "\n", "\t\t\t\t\t\t\t\t\t", 
-                          RowBox[{"PreemptiveQueued", "[", RowBox[{"nb", ",", 
-                          "\n", "\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "Internal`WithLocalSettings", "[", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"nbObj", 
-                          " ", "=", " ", RowBox[{"CreateDocument", "[", 
-                          RowBox[{"nbExpr", ",", " ", RowBox[{"Visible", 
-                          "\[Rule]", "False"}]}], "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "FrontEndExecute", "@", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "FrontEndToken", "[", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t\t\t", RowBox[{"nbObj", ",", 
-                          "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t\t", 
-                          "\"Save\"", ",", "\n", "\t", "\t", "\t", "\t", 
-                          "\t", "\t", "\t", "\t\t\t\t\t\t", RowBox[{"{", 
-                          RowBox[{"f", ",", " ", "\"Package\""}], "}"}]}], 
-                          "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", 
-                          "\n", "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "NotebookClose", "[", "nbObj", "]"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"nbObj", " ", 
-                          "=", " ", "nb"}], ";", "\n", "\t\t\t\t\t\t\t\t\t", 
-                          RowBox[{"FrontEndExecute", "@", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t", RowBox[{"FrontEndToken", 
-                          "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "nbObj", ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
-                          "\"Save\"", ",", "\n", "\t", "\t", "\t", "\t", 
-                          "\t", "\t\t\t\t\t\t", RowBox[{"{", RowBox[{"f", 
-                          ",", " ", "\"Package\""}], "}"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}]}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t", "]"}], ",", "\n", 
-                          "\t\t\t\t\t\t\t", "_", ",", "\n", 
-                          "\t\t\t\t\t\t\t\t", RowBox[{"If", "[", RowBox[
-                          {"preemptive", ",", "\n", "\t\t\t\t\t\t\t\t\t", 
-                          RowBox[{RowBox[{"nbExpr", " ", "=", RowBox[{
-                          "GetNotebookExpression", "[", "nb", "]"}]}], ";", 
-                          "\n", "\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "PreemptiveQueued", "[", RowBox[{"nb", ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "Internal`WithLocalSettings", "[", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"nbObj", 
-                          " ", "=", " ", RowBox[{"CreateDocument", "[", 
-                          RowBox[{"nbExpr", ",", " ", RowBox[{"Visible", 
-                          "\[Rule]", "False"}]}], "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "FrontEndExecute", "@", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "FrontEndToken", "[", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t\t\t", RowBox[{"nbObj", ",", 
-                          "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t\t", 
-                          "\"Save\"", ",", "\n", "\t", "\t", "\t", "\t", 
-                          "\t", "\t", "\t", "\t\t\t\t\t\t", RowBox[{"{", 
-                          RowBox[{"f", ",", " ", "\"Text\""}], "}"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{"NotebookClose", 
-                          "[", "nbObj", "]"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
-                          "\t\t\t\t\t\t\t\t\t", RowBox[{RowBox[{"nbObj", " ", 
-                          "=", " ", "nb"}], ";", "\n", "\t\t\t\t\t\t\t\t\t", 
-                          RowBox[{"FrontEndExecute", "@", "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t", RowBox[{"FrontEndToken", 
-                          "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t", RowBox[{
-                          "nbObj", ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
-                          "\"Save\"", ",", "\n", "\t", "\t", "\t", "\t", 
-                          "\t", "\t\t\t\t\t\t", RowBox[{"{", RowBox[{"f", 
-                          ",", " ", "\"Text\""}], "}"}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}]}]}], "\n", 
-                          "\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
-                          "\t\t\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t\t\t\t", 
-                          "]"}]}]}], "\n", "\t\t\t\t\t", "]"}], ";", "\n", 
-                          "\t\t\t  ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {"OptionValue", "[", "\"ClearCache\"", "]"}], ",", 
-                          "\n", "\t\t\t    ", RowBox[{"ClearCachedTabData", 
-                          "[", "nb", "]"}]}], "\n", "\t\t\t    ", "]"}]}]}], 
-                          "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], 
-                      ";"}]}], "\n", "\t\t", "]"}], ";"}], "\n", 
-              RowBox[{RowBox[{"NotebookSaveContents", "[", RowBox[
-                   {"nb_NotebookObject", ",", " ", "\n", "\t\t", RowBox[
-                     {"file", ":", RowBox[{"_String", "|", "Automatic"}], 
-                      ":", "Automatic"}], ",", "\n", "\t\t", RowBox[
-                     {"preempt", ":", RowBox[{"True", "|", "False"}]}], ",", 
-                    "\n", "\t\t", RowBox[{"ops", ":", RowBox[
-                       {"OptionsPattern", "[", "]"}]}]}], "\n", "\t\t", 
-                  "]"}], ":=", "\n", "\t\t", RowBox[{"NotebookSaveContents", 
-                  "[", RowBox[{"nb", ",", " ", "file", ",", " ", RowBox[
-                     {"\"Preemptive\"", "\[Rule]", "preempt"}], ",", " ", 
-                    "ops"}], "]"}]}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]NotebookPutScratch\[RightFloor] ", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"NotebookPutScratch", "[", 
-                 RowBox[{"nb_", ",", " ", "expr_Notebook"}], "]"}], ":=", 
-               "\n", "  ", RowBox[{"NotebookPutFile", "[", RowBox[{"nb", ",", 
-                   " ", RowBox[{"CreateProjectScratchFile", "[", RowBox[
-                      {"nb", ",", " ", "expr"}], "]"}]}], "]"}]}]], 
-            "CodeInput"]}, Closed]]}, Open]], 
-     Cell[CellGroupData[{Cell["\[LeftCeiling]File Operations\[RightFloor]", 
-         "CodeSubsection", Evaluatable -> True], 
-        Cell[CellGroupData[
-          {Cell["\[LeftCeiling]EnsureNotebookUpdated\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"EnsureNotebookUpdated", "[", 
-                 RowBox[{"nb_NotebookObject", ",", " ", RowBox[{"openDialog", 
-                     ":", RowBox[{"True", "|", "False"}], ":", "True"}]}], 
-                 "]"}], ":=", "\n", "  ", RowBox[{"Module", "[", "\n", 
-                 "    ", RowBox[{RowBox[{"{", "\n", "      ", RowBox[
-                      {RowBox[{"nbDate", " ", "=", " ", "\n", "        ", 
-                         RowBox[{"FromAbsoluteTime", "[", RowBox[{RowBox[
-                          {"Lookup", "[", RowBox[{RowBox[{
-                          "NotebookInformation", "[", "nb", "]"}], ",", " ", 
-                          "\"MemoryModificationTime\""}], "]"}], ",", " ", 
-                          RowBox[{"TimeZone", "\[Rule]", "0"}]}], "]"}]}], 
-                       ",", "\n", "      ", RowBox[{"buffer", " ", "=", " ", 
-                         RowBox[{"Quantity", "[", RowBox[{"3", ",", " ", 
-                          "\"Seconds\""}], "]"}]}], ",", "\n", "      ", 
-                       RowBox[{"active", " ", "=", " ", RowBox[{"IDEPath", 
-                          "[", RowBox[{"nb", ",", " ", RowBox[{"Key", "[", 
-                          "\"ActiveFile\"", "]"}]}], "]"}]}], ",", "\n", 
-                       "      ", "needsUpdate", ",", "\n", "      ", 
-                       "hasDeclined"}], "\n", "      ", "}"}], ",", "\n", 
-                   "    ", RowBox[{RowBox[{"needsUpdate", " ", "=", " ", 
-                       RowBox[{"Quiet", "[", RowBox[{"TrueQ", "[", RowBox[
-                          {RowBox[{"FileDate", "[", "active", "]"}], ">", 
-                          RowBox[{"nbDate", "+", "buffer"}]}], "]"}], 
-                         "]"}]}], ";", "\n", "    ", RowBox[{"If", "[", 
-                       RowBox[{RowBox[{"needsUpdate", "&&", "openDialog"}], 
-                         ",", "\n", "      ", RowBox[{RowBox[{"hasDeclined", 
-                          " ", "=", " ", RowBox[{"IDEData", "[", RowBox[
-                          {"nb", ",", " ", RowBox[{"PrivateKey", "[", 
-                          "\"CheckUpdateData\"", "]"}]}], "]"}]}], ";", "\n", 
-                          "      ", RowBox[{"If", "[", RowBox[{RowBox[{"!", 
-                          RowBox[{"AssociationQ", "@", "hasDeclined"}]}], 
-                          ",", "\n", "        ", RowBox[{"hasDeclined", " ", 
-                          "=", " ", RowBox[{"<|", RowBox[{RowBox[{"\"Tab\"", 
-                          "\[Rule]", "active"}], ",", " ", RowBox[
-                          {"\"InUpdate\"", "\[Rule]", "False"}], ",", " ", 
-                          RowBox[{"\"HasDeclined\"", "\[Rule]", "False"}]}], 
-                          "|>"}]}]}], "\n", "        ", "]"}], ";", "\n", 
-                          "      ", RowBox[{"If", "[", RowBox[{RowBox[
-                          {RowBox[{"(", RowBox[{RowBox[{"!", RowBox[{"TrueQ", 
-                          "[", RowBox[{"hasDeclined", "[", "\"InUpdate\"", 
-                          "]"}], "]"}]}], "&&", RowBox[{"!", RowBox[{"TrueQ", 
-                          "[", RowBox[{"hasDeclined", "[", "\"HasDeclined\"", 
-                          "]"}], "]"}]}]}], ")"}], "||", "\n", "          ", 
-                          RowBox[{RowBox[{"hasDeclined", "[", "\"Tab\"", 
-                          "]"}], "=!=", "active"}]}], ",", "\n", "        ", 
-                          RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
-                          {RowBox[{"active", "=", "active"}], ",", " ", 
-                          RowBox[{"hasDeclined", "=", "hasDeclined"}]}], 
-                          "}"}], ",", "\n", "          ", RowBox[{RowBox[
-                          {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          RowBox[{"PrivateKey", "[", "\"CheckUpdateData\"", 
-                          "]"}]}], "]"}], " ", "=", " ", "\n", 
-                          "            ", RowBox[{"<|", RowBox[{RowBox[
-                          {"\"Tab\"", "\[Rule]", "active"}], ",", " ", RowBox[
-                          {"\"InUpdate\"", "\[Rule]", "True"}], ",", " ", 
-                          RowBox[{"\"HasDeclined\"", "\[Rule]", RowBox[
-                          {"hasDeclined", "[", "\"HasDeclined\"", "]"}]}]}], 
-                          "|>"}]}], ";", "\n", "          ", RowBox[
-                          {"CreateAttachedDialog", "[", "\n", "            ", 
-                          RowBox[{"nb", ",", "\n", "            ", RowBox[
-                          {"<|", "\n", "              ", RowBox[{RowBox[
-                          {"\"Header\"", "\[Rule]", 
-                          "\"Update from Disk?\""}], ",", "\n", "  ", "  ", 
-                          "          ", RowBox[{"\"Body\"", "->", "\"File \
-changed on disk. Would you like to reload?\""}], ",", "\n", "  ", "  ", 
-                          "          ", RowBox[{"\"SubmitButton\"", "->", 
-                          "\n", "  ", "  ", "            ", RowBox[{"{", 
-                          "\n", "  ", "  ", "              ", RowBox[
-                          {"\"Reload\"", ",", "\n", "  ", "  ", 
-                          "              ", RowBox[{"Function", "[", "\n", 
-                          "  ", "  ", "                ", RowBox[{RowBox[
-                          {"NotebookDelete", "[", RowBox[{"EvaluationCell", 
-                          "[", "]"}], "]"}], ";", "\n", "  ", "  ", 
-                          "                ", RowBox[{"NotebookPutFile", "[", 
-                          RowBox[{"nb", ",", " ", "active"}], "]"}], ";", 
-                          "\n", "                    ", RowBox[{RowBox[
-                          {"IDEData", "[", RowBox[{"nb", ",", " ", RowBox[
-                          {"PrivateKey", "[", "\"CheckUpdateData\"", "]"}]}], 
-                          "]"}], " ", "=", " ", "\n", 
-                          "                      ", RowBox[{"Append", "[", 
-                          RowBox[{"hasDeclined", ",", " ", RowBox[{
-                          "\"HasDeclined\"", "\[Rule]", "False"}]}], "]"}]}], 
-                          ";", "\n", "                    ", RowBox[{
-                          "needsUpdate", " ", "=", " ", "False"}]}], "\n", 
-                          "                    ", "]"}]}], "\n", "  ", 
-                          "                ", "}"}]}], ",", "\n", "  ", 
-                          "            ", RowBox[{"\"CancelButton\"", "->", 
-                          "\n", "  ", "              ", RowBox[{"{", "\n", 
-                          "  ", "                ", RowBox[{"\"Cancel\"", 
-                          ",", "\n", "  ", "                ", RowBox[
-                          {"Function", "[", "\n", "  ", "  ", 
-                          "                ", RowBox[{RowBox[{
-                          "NotebookDelete", "[", RowBox[{"EvaluationCell", 
-                          "[", "]"}], "]"}], ";", "\n", 
-                          "                    ", RowBox[{RowBox[{"IDEData", 
-                          "[", RowBox[{"nb", ",", " ", RowBox[{"PrivateKey", 
-                          "[", "\"CheckUpdateData\"", "]"}]}], "]"}], " ", 
-                          "=", " ", "\n", "                      ", RowBox[
-                          {"Append", "[", RowBox[{"hasDeclined", ",", " ", 
-                          RowBox[{"\"HasDeclined\"", "\[Rule]", "True"}]}], 
-                          "]"}]}], ";"}], "\n", "                    ", 
-                          "]"}]}], "\n", "                  ", "}"}]}]}], 
-                          "\n", "              ", "|>"}]}], "\n", 
-                          "            ", "]"}]}]}], "\n", "          ", 
-                          "]"}]}], "\n", "        ", "]"}]}]}], "\n", 
-                       "      ", "]"}], ";", "\n", "    ", RowBox[{"!", 
-                       "needsUpdate"}]}]}], "\n", "    ", "]"}]}]], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]GetFileTabName\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[RowBox[{RowBox[{"GetFileTabName", "[", RowBox[
-                  {"nb_", ",", " ", "f_"}], "]"}], ":=", "\n", "\t", RowBox[
-                {"Module", "[", "\n", "\t\t", RowBox[{RowBox[{"{", "\n", 
-                     "\t\t\t", RowBox[{RowBox[{"tabs", " ", "=", " ", 
-                         RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          "\"Tabs\""}], "]"}]}], ",", "\n", "\t\t\t", "tns", 
-                       ",", "\n", "\t\t\t", "tabName"}], "\n", "\t\t\t", 
-                     "}"}], ",", "\n", "\t\t", RowBox[{RowBox[{"tabName", 
-                       " ", "=", "\n", "\t\t\t", RowBox[{"Do", "[", RowBox[
-                          {RowBox[{"If", "[", RowBox[{RowBox[{RowBox[
-                          {"Lookup", "[", RowBox[{RowBox[{"t", "[", RowBox[
-                          {"[", "2", "]"}], "]"}], ",", " ", "\"File\""}], 
-                          "]"}], "\[Equal]", "f"}], ",", " ", RowBox[
-                          {"Return", "[", RowBox[{RowBox[{"t", "[", RowBox[
-                          {"[", "1", "]"}], "]"}], ",", " ", "Do"}], "]"}]}], 
-                          "]"}], ",", " ", RowBox[{"{", RowBox[{"t", ",", 
-                          " ", "tabs"}], "}"}]}], "]"}]}], ";", "\n", "\t\t", 
-                     RowBox[{"If", "[", RowBox[{RowBox[{"tabName", "===", 
-                          "Null"}], ",", "\n", "\t\t\t", RowBox[{RowBox[
-                          {"tabName", " ", "=", " ", RowBox[{"FileBaseName", 
-                          "[", "f", "]"}]}], ";", "\n", "\t\t\t", RowBox[
-                          {"tns", " ", "=", " ", RowBox[{"tabs", "[", RowBox[
-                          {"[", RowBox[{"All", ",", " ", "1"}], "]"}], 
-                          "]"}]}], ";", "\n", "\t\t\t", RowBox[{"If", "[", 
-                          RowBox[{RowBox[{"MemberQ", "[", RowBox[{"tns", ",", 
-                          " ", "tabName"}], "]"}], ",", "\n", "\t", "\t\t\t", 
-                          RowBox[{"tabName", " ", "=", " ", RowBox[
-                          {"tabName", " ", "<>", " ", "\".\"", " ", "<>", 
-                          " ", RowBox[{"FileExtension", "[", "f", 
-                          "]"}]}]}]}], "\n", "\t\t\t\t", "]"}], ";", "\n", 
-                          "\t\t\t", RowBox[{"tabName", "=", "\n", "\t\t\t\t", 
-                          RowBox[{"NestWhile", "[", "\n", "\t\t\t\t\t", 
-                          RowBox[{RowBox[{RowBox[{"#", " ", "<>", " ", 
-                          "\"/\"", " ", "<>", " ", RowBox[{"FileNameTake", 
-                          "[", RowBox[{"f", ",", " ", RowBox[{"-", RowBox[
-                          {"Length", "[", RowBox[{"URLParse", "[", RowBox[
-                          {"#", ",", " ", "\"Path\""}], "]"}], "]"}]}]}], 
-                          "]"}]}], "&"}], ",", "\n", "\t", "\t\t\t\t", 
-                          "tabName", ",", "\n", "\t", "\t\t\t\t", RowBox[
-                          {RowBox[{"MemberQ", "[", RowBox[{"tns", ",", " ", 
-                          "#"}], "]"}], "&"}], ",", "\n", "\t\t\t\t\t", "1", 
-                          ",", "\n", "\t\t\t\t\t", RowBox[{RowBox[
-                          {"FileNameDepth", "[", "f", "]"}], "-", "1"}]}], 
-                          "\n", "\t", "\t\t\t\t", "]"}]}]}]}], "\n", 
-                       "\t\t\t", "]"}], ";", "\n", "\t\t", "tabName"}]}], 
-                 "\n", "\t\t", "]"}]}]], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[{Cell["\[LeftCeiling]IDEOpen\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDEOpen", "[", RowBox[
-                     {"nb_NotebookObject", ",", " ", RowBox[{"f_String", "?", 
-                        "FileExistsQ"}]}], "]"}], ":=", "\n", "\t", 
-                  RowBox[{"Module", "[", "\n", "\t\t", RowBox[
-                     {RowBox[{"{", "\n", "\t\t\t", RowBox[{"nbObj", ",", 
-                          "\n", "\t\t\t", "nbExpr", ",", "\n", "\t\t\t", 
-                          "tabName"}], "\n", "\t\t\t", "}"}], ",", "\n", 
-                      "\t\t", RowBox[{RowBox[{"tabName", " ", "=", " ", 
-                          RowBox[{"GetFileTabName", "[", RowBox[{"nb", ",", 
-                          " ", "f"}], "]"}]}], ";", "\n", "\t\t", RowBox[
-                         {"If", "[", RowBox[{RowBox[{"!", RowBox[{"TrueQ", 
-                          "@", RowBox[{"IDETabExists", "[", RowBox[{"nb", 
-                          ",", " ", "tabName"}], "]"}]}]}], ",", "\n", 
-                          "\t\t\t", RowBox[{"NotebookCreateTab", "[", RowBox[
-                          {"nb", ",", " ", "tabName", ",", " ", "\n", "\t", 
-                          "\t\t\t", RowBox[{"{", "\n", "\t", "\t\t\t\t", 
-                          RowBox[{"\"File\"", "\[Rule]", "f"}], "\t", "\n", 
-                          "\t\t\t\t\t", "}"}]}], "\n", "\t\t\t\t", "]"}]}], 
-                          "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", RowBox[
-                         {"NotebookSwitchTab", "[", RowBox[{"nb", ",", " ", 
-                          "tabName"}], "]"}]}]}], "\n", "\t\t", "]"}]}], 
-                ";"}], "\n", RowBox[{RowBox[{RowBox[{"IDEOpen", "[", 
-                    RowBox[{"nb_IDENotebookObject", ",", " ", RowBox[
-                       {"f_String", "?", "FileExistsQ"}]}], "]"}], ":=", 
-                  "\n", "\t", RowBox[{"IDEOpen", "[", RowBox[{RowBox[
-                       {"nb", "[", "\"Notebook\"", "]"}], ",", " ", "f"}], 
-                    "]"}]}], ";"}], "\n", RowBox[{RowBox[{RowBox[{"IDEOpen", 
-                    "[", RowBox[{"nb_NotebookObject", ",", " ", 
-                      "expr_Notebook"}], "]"}], ":=", "\n", "  ", 
-                  RowBox[{"IDEOpen", "[", RowBox[{"nb", ",", " ", RowBox[
-                       {"CreateProjectScratchFile", "[", RowBox[{"nb", ",", 
-                          " ", "expr"}], "]"}]}], "]"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"IDEOpen", "[", RowBox[
-                     {"nb_IDENotebookObject", ",", " ", "expr_Notebook"}], 
-                    "]"}], ":=", "\n", "\t", RowBox[{"IDEOpen", "[", 
-                    RowBox[{RowBox[{"nb", "[", "\"Notebook\"", "]"}], ",", 
-                      " ", "expr"}], "]"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"IDEOpen", "[", RowBox[{"e", ":", 
-                      RowBox[{RowBox[{"_String", "?", "FileExistsQ"}], "|", 
-                        "_Notebook"}]}], "]"}], ":=", "\n", "  ", 
-                  RowBox[{"IDEOpen", "[", RowBox[{"$CurrentIDENotebook", ",", 
-                      " ", "e"}], "]"}]}], ";"}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[{Cell["\[LeftCeiling]IDESave\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{"IDESave", "//", "Clear"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"IDESave", "[", RowBox[
-                     {"nb_NotebookObject", ",", " ", RowBox[{"ops", ":", 
-                        RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], 
-                  ":=", "\n", "\t", RowBox[{"NotebookSaveContents", "[", 
-                    RowBox[{"nb", ",", " ", "ops"}], "]"}]}], ";"}], "\n", 
-              RowBox[{RowBox[{RowBox[{"IDESave", "[", RowBox[
-                     {"nb_IDENotebookObject", ",", " ", RowBox[{"ops", ":", 
-                        RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], 
-                  ":=", "\n", "\t", RowBox[{"IDESave", "[", RowBox[
-                     {RowBox[{"nb", "[", "\"Notebook\"", "]"}], ",", " ", 
-                      "ops"}], "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {RowBox[{"IDESave", "[", RowBox[{"ops", ":", RowBox[
-                       {"OptionsPattern", "[", "]"}]}], "]"}], ":=", "\n", 
-                  "  ", RowBox[{"IDESave", "[", RowBox[
-                     {"$CurrentIDENotebook", ",", " ", "ops"}], "]"}]}], 
-                ";"}]}], "CodeInput"]}, Closed]], 
-        Cell[CellGroupData[{Cell["\[LeftCeiling]IDEClose\[RightFloor]", 
-            "CodeSubsubsection", Evaluatable -> True], 
-           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"IDEClose", "[", RowBox[
-                     {"nb_NotebookObject", ",", " ", "tabName_"}], "]"}], 
-                  ":=", "\n", "\t", RowBox[{"If", "[", RowBox[
-                     {RowBox[{"IDETabExists", "[", "tabName", "]"}], ",", 
-                      "\n", "\t\t", RowBox[{"NotebookCloseTab", "[", 
-                        RowBox[{"nb", ",", " ", "tabName"}], "]"}]}], "\n", 
-                    "\t\t", "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {RowBox[{"IDEClose", "[", RowBox[{"nb_IDENotebookObject", 
-                      ",", " ", "tabName_"}], "]"}], ":=", "\n", "\t", 
-                  RowBox[{"IDEClose", "[", RowBox[{RowBox[{"nb", "[", 
-                        "\"Notebook\"", "]"}], ",", " ", "tabName"}], 
-                    "]"}]}], ";"}], "\n", RowBox[{RowBox[{RowBox[{"IDEClose", 
-                    "[", "tabName_", "]"}], ":=", "\n", "  ", RowBox[
-                   {"IDEClose", "[", RowBox[{"$CurrentIDENotebook", ",", " ", 
-                      "tabName"}], "]"}]}], ";"}]}], "CodeInput"]}, 
-          Closed]]}, Open]], Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], 
-         ";"}]], "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
- WindowSize -> {808, 755}, WindowMargins -> 
-  {{11, Automatic}, {33, Automatic}}, TaggingRules -> 
-  {"UUIDButtons" -> 
-    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
- FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
- StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
-   CharacterEncoding -> "UTF-8"]]
+reload from disk...
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"8c1fc624-61c6-4738-afea-a759b00f10c3"],
+
+Cell[BoxData[{
+ RowBox[{"NotebookPutFile", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NotebookPutFile", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "f_String", ",", " ", 
+     RowBox[{"data", ":", 
+      RowBox[{"_Notebook", "|", "None"}], ":", "None"}]}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"Module", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t\t", 
+      RowBox[{"nbObj", ",", "\n", "\t\t\t", 
+       RowBox[{"nbExpr", " ", "=", " ", "data"}], ",", "\n", "\t\t\t", 
+       "stylesChanged", ",", "\n", "\t\t\t", "tbChanged"}], "\n", "\t\t\t", 
+      "}"}], ",", "\n", "\t\t", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "since", " ", "we", " ", "need", " ", "to", " ", "handle", " ", 
+        "autogeneration", " ", "stuff", " ", "too"}], "..."}], " ", "*)"}], 
+     "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"SetCurrentValue", "[", 
+       RowBox[{
+       "nb", ",", " ", "AutoGeneratedPackage", ",", " ", "Inherited"}], "]"}],
+       ";", "\n", "\t\t", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"nbExpr", "===", "None"}], ",", "\n", "\t\t\t", 
+        RowBox[{"Switch", "[", 
+         RowBox[{
+          RowBox[{"FileExtension", "[", "f", "]"}], ",", "\n", "\t", 
+          "\t\t\t", "\"\<nb\>\"", ",", "\n", "\t", "\t\t\t\t", 
+          RowBox[{"nbExpr", " ", "=", " ", 
+           RowBox[{"Get", "[", "f", "]"}]}], ",", "\n", "\t", "\t\t\t", "_", 
+          ",", "\n", "\t", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"nbObj", " ", "=", " ", 
+            RowBox[{"NotebookOpen", "[", 
+             RowBox[{"f", ",", " ", 
+              RowBox[{"Visible", "->", "False"}]}], "]"}]}], ";", "\n", "\t", 
+           "\t\t\t\t", 
+           RowBox[{"nbExpr", " ", "=", " ", 
+            RowBox[{"NotebookGet", "[", "nbObj", "]"}]}], ";", "\n", "\t", 
+           "\t\t\t\t", 
+           RowBox[{"NotebookClose", "[", "nbObj", "]"}], ";"}]}], "\n", 
+         "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", 
+      RowBox[{"WithNotebookPaused", "[", "\n", "\t\t\t", 
+       RowBox[{"nb", ",", "\n", "\t\t\t", 
+        RowBox[{
+         RowBox[{"stylesChanged", " ", "=", " ", 
+          RowBox[{"setNbFileStyle", "[", 
+           RowBox[{"nb", ",", " ", "f"}], "]"}]}], ";", "\n", "\t\t\t", 
+         RowBox[{"tbChanged", " ", "=", " ", 
+          RowBox[{"setNbFileToolbar", "[", 
+           RowBox[{"nb", ",", " ", "f"}], "]"}]}], ";", "\n", "\t\t\t", 
+         RowBox[{"NotebookPutContents", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"Hold", "[", "nbExpr", "]"}]}], "]"}], ";", "\n", "\t\t\t", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"can", "'"}], "t", " ", "see", " ", "why", " ", "not", 
+             " ", "to", " ", "put", " ", "it", " ", "here"}], "..."}], " ", 
+           "?"}], " ", "*)"}], "\n", "\t\t\t", 
+         RowBox[{"If", "[", 
+          RowBox[{"stylesChanged", ",", "\n", "\t\t  \t", 
+           RowBox[{
+            RowBox[{"setAutoSave", "[", "nb", "]"}], ";", "\n", "\t", "  ", 
+            "\t\t", 
+            RowBox[{"setNbActions", "[", "nb", "]"}], ";"}]}], "\n", 
+          "\t\t\t\t", "]"}], ";"}]}], "\n", "\t\t\t", "]"}], ";"}]}], "\n", 
+    "\t\t", "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"b2cc8443-0bf4-41ba-8a80-2370f77ae475"]\
+
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]notebookSaveNotebook\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"19dc2075-bdec-4c65-b834-30dddda86622"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"!", 
+     RowBox[{"ValueQ", "[", "$SaveNotebookMethod", "]"}]}], ",", " ", 
+    RowBox[{"$SaveNotebookMethod", " ", "=", " ", "notebookSaveNotebook"}]}], 
+   "]"}], ";"}]], \
+"CodeInput",ExpressionUUID->"9ad9f448-f91b-48fb-b9cf-447e3fdc311e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$poisonBoxes", " ", "=", " ", 
+   RowBox[{
+   "_GraphicsBox", "|", "_Graphics3DBox", "|", "_Raster3DBox", "|", 
+    "_RasterBox"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"53f096aa-3d13-46ad-8726-499c9d542b80"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"notebookSaveNotebook", "[", 
+   RowBox[{"f_", ",", " ", "nb_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"expr", "=", 
+      RowBox[{"GetNotebookExpression", "[", "nb", "]"}]}], "}"}], ",", "\n", 
+    "    ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"FreeQ", "[", 
+        RowBox[{
+         RowBox[{"expr", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", " ", "$poisonBoxes"}], "]"}]}],
+       ",", "\n", "      ", 
+      RowBox[{"Export", "[", 
+       RowBox[{"f", ",", " ", "expr", ",", " ", "\"\<Notebook\>\""}], "]"}], 
+      ",", "\n", "      ", 
+      RowBox[{"Put", "[", 
+       RowBox[{"expr", ",", " ", "f"}], "]"}]}], "\n", "      ", "]"}]}], 
+   "\n", "    ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"cf48916f-11ed-466f-ae99-7ec28fa95af5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]notebookHandleAutoSave\[RightFloor]", "CodeSubsubsection",
+ 
+ Evaluatable->True,ExpressionUUID->"58c6cae2-cde3-4ee1-af41-dd29215e3a0c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"notebookHandleAutoSave", "[", 
+   RowBox[{"f_", ",", " ", "nb_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"nbFName", ",", " ", "nbPkgName"}], "}"}], ",", "\n", "  ", "  ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"IDEData", "[", 
+       RowBox[{"nb", ",", " ", "\"\<AutoGeneratePackage\>\""}], "]"}], ",", 
+      "\n", "  ", "    ", 
+      RowBox[{
+       RowBox[{"nbFName", " ", "=", " ", 
+        RowBox[{"NotebookFileName", "[", "nb", "]"}]}], ";", "\n", "  ", 
+       "    ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"StringQ", "[", "nbFName", "]"}], ",", "\n", "  ", "      ", 
+         
+         RowBox[{
+          RowBox[{"nbPkgName", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"nbFName", ",", " ", 
+             RowBox[{"\"\<.nb\>\"", "\[Rule]", "\"\<.m\>\""}]}], "]"}]}], ";",
+           "\n", "  ", "  ", "    ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"FileExistsQ", "[", "nbPkgName", "]"}], ",", "\n", "  ", 
+            "  ", "      ", 
+            RowBox[{"RenameFile", "[", "\n", "  ", "  ", "        ", 
+             RowBox[{"nbPkgName", ",", "\n", "  ", "  ", "        ", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{"f", ",", " ", 
+                RowBox[{"\"\<.nb\>\"", "\[Rule]", "\"\<.m\>\""}]}], "]"}], 
+              ",", "\n", "  ", "  ", "        ", 
+              RowBox[{"OverwriteTarget", "\[Rule]", "True"}]}], "\n", "  ", 
+             "  ", "        ", "]"}]}], "\n", "  ", "        ", "]"}]}]}], 
+        "\n", "  ", "      ", "]"}]}]}], "\n", "  ", "    ", "]"}]}], "\n", 
+   "  ", "  ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"32a1f967-4608-45c9-8cf2-4a2475e06119"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]NotebookSaveContents\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"311012ee-4272-4bd7-88ea-ff85edb2353e"],
+
+Cell[BoxData[{
+ RowBox[{"NotebookSaveContents", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "NotebookSaveContents", "]"}], "=", "\n", "\t", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"\"\<AutoGenerateSave\>\"", "\[Rule]", "True"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<HandleSavingAction\>\"", "\[Rule]", "True"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<ClearCache\>\"", "\[Rule]", "True"}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<Preemptive\>\"", "\[Rule]", "False"}]}], "\n", "\t\t", 
+    "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "recurseProtect", "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookSaveContents", "[", 
+       RowBox[{"nb_NotebookObject", ",", " ", "\n", "\t\t", 
+        RowBox[{"file", ":", 
+         RowBox[{"_String", "|", "Automatic"}], ":", "Automatic"}], ",", "\n",
+         "\t\t", 
+        RowBox[{"ops", ":", 
+         RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "\t\t", "]"}], ":=", 
+      "\n", "\t\t", 
+      RowBox[{"Block", "[", "\n", "\t\t  ", 
+       RowBox[{
+        RowBox[{"{", "\n", "\t\t    ", 
+         RowBox[{
+          RowBox[{"preemptive", " ", "=", " ", "False"}], ",", "\n", 
+          "\t\t    ", 
+          RowBox[{"recurseProtect", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"!", "preempt"}], "&&", 
+            RowBox[{"TrueQ", "[", "recurseProtect", "]"}]}]}]}], "\n", 
+         "\t\t    ", "}"}], ",", "\n", "\t\t\t", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", "recurseProtect"}], ",", "\n", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"recurseProtect", "=", "True"}], ";", "\n", "\t\t\t\t", 
+           RowBox[{"Module", "[", "\n", "\t\t\t\t\t", 
+            RowBox[{
+             RowBox[{"{", "\n", "\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"f", " ", "=", " ", "file"}], ",", "\n", "\t", "\t", 
+               "\t", "\t\t\t", "dir", ",", "\n", "\t", "\t", "\t", "\t\t\t", 
+               "nbExpr", ",", "\n", "\t\t\t\t\t\t", "nbObj", ",", "\n", 
+               "\t\t\t\t\t\t", 
+               RowBox[{"ags", " ", "=", " ", 
+                RowBox[{"TrueQ", "@", 
+                 RowBox[{
+                 "OptionValue", "[", "\"\<AutoGenerateSave\>\"", "]"}]}]}], 
+               ",", "\n", "\t\t\t\t\t\t", 
+               RowBox[{"sa", " ", "=", " ", 
+                RowBox[{"TrueQ", "@", 
+                 RowBox[{
+                 "OptionValue", "[", "\"\<HandleSavingAction\>\"", 
+                  "]"}]}]}]}], "\n", "\t\t\t\t\t\t", "}"}], ",", "\n", 
+             "\t\t\t\t\t", 
+             RowBox[{
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"f", " ", "===", " ", "Automatic"}], ",", "\n", 
+                "\t\t\t\t\t\t", 
+                RowBox[{"f", " ", "=", " ", 
+                 RowBox[{"IDEPath", "[", 
+                  RowBox[{"nb", ",", " ", 
+                   RowBox[{"Key", "[", "\"\<ActiveFile\>\"", "]"}]}], 
+                  "]"}]}]}], "\n", "\t\t\t\t\t\t", "]"}], ";", "\n", 
+              "\t\t\t\t\t", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"f", "=!=", "None"}], ",", "\n", "\t\t\t\t\t\t", 
+                RowBox[{
+                 RowBox[{"f", " ", "=", " ", 
+                  RowBox[{"IDEPath", "[", 
+                   RowBox[{"nb", ",", " ", "f"}], "]"}]}], ";", "\n", 
+                 "\t\t\t\t\t\t", 
+                 RowBox[{"Switch", "[", 
+                  RowBox[{
+                   RowBox[{"FileExtension", "[", "f", "]"}], ",", "\n", "\t", 
+                   "\t", "\t", "\t", "\t\t\t", "\"\<nb\>\"", ",", "\n", 
+                   "\t\t\t\t\t\t\t\t", 
+                   RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{"preemptive", ",", "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"PreemptiveQueued", "[", 
+                    RowBox[{"nb", ",", " ", 
+                    RowBox[{"notebookSaveNotebook", "[", 
+                    RowBox[{"f", ",", " ", "nb"}], "]"}]}], "]"}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t ", 
+                    RowBox[{
+                    RowBox[{"$SaveNotebookMethod", "[", 
+                    RowBox[{"f", ",", " ", "nb"}], "]"}], ";"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t", "]"}], ";", "\n", 
+                    "\t\t\t\t\t\t\t\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"ags", ",", "\n", "\t\t\t\t\t\t\t\t  ", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    "preemptive", ",", "\n", "  ", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"Function", "[", 
+                    RowBox[{"Null", ",", " ", 
+                    RowBox[{"PreemptiveQueued", "[", 
+                    RowBox[{"nb", ",", " ", "#"}], "]"}], ",", " ", 
+                    "HoldAllComplete"}], "]"}], ",", "\n", "  ", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"#", "&"}]}], "\n", "  \t\t\t\t\t\t\t\t\t", "]"}],
+                     "@", 
+                    RowBox[{"notebookHandleAutoSave", "[", 
+                    RowBox[{"f", ",", " ", "nb"}], "]"}]}]}], "\n", 
+                    "  \t\t\t\t\t\t\t\t", "]"}], ";", "\n", "  \t\t\t\t\t\t ", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"sa", ",", "\n", "  \t\t\t\t\t\t   ", 
+                    RowBox[{"ReleaseHold", "@", 
+                    RowBox[{"IDEData", "[", 
+                    RowBox[{"nb", ",", " ", "\"\<SavingAction\>\""}], 
+                    "]"}]}]}], "\n", "  \t\t\t\t\t\t   ", "]"}]}], ",", "\n", 
+                   "\t\t\t\t\t\t\t", 
+                   RowBox[{"\"\<m\>\"", "|", "\"\<wl\>\""}], ",", "\n", 
+                   "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"preemptive", ",", "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbExpr", " ", "=", 
+                    RowBox[{"GetNotebookExpression", "[", "nb", "]"}]}], ";", 
+                    "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"PreemptiveQueued", "[", 
+                    RowBox[{"nb", ",", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "Internal`WithLocalSettings", "[", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbObj", " ", "=", " ", 
+                    RowBox[{"CreateDocument", "[", 
+                    RowBox[{"nbExpr", ",", " ", 
+                    RowBox[{"Visible", "\[Rule]", "False"}]}], "]"}]}], ",", 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndExecute", "@", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    
+                    RowBox[{
+                    "FrontEndToken", "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    
+                    RowBox[{
+                    "nbObj", ",", "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    "\"\<Save\>\"", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+                    "\t", "\t", "\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"f", ",", " ", "\"\<Package\>\""}], "}"}]}], "\n",
+                     "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"NotebookClose", "[", "nbObj", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbObj", " ", "=", " ", "nb"}], ";", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndExecute", "@", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndToken", "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "nbObj", ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    "\"\<Save\>\"", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+                    "\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"f", ",", " ", "\"\<Package\>\""}], "}"}]}], "\n",
+                     "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}]}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t\t\t", 
+                   "_", ",", "\n", "\t\t\t\t\t\t\t\t", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"preemptive", ",", "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbExpr", " ", "=", 
+                    RowBox[{"GetNotebookExpression", "[", "nb", "]"}]}], ";", 
+                    "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"PreemptiveQueued", "[", 
+                    RowBox[{"nb", ",", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "Internal`WithLocalSettings", "[", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbObj", " ", "=", " ", 
+                    RowBox[{"CreateDocument", "[", 
+                    RowBox[{"nbExpr", ",", " ", 
+                    RowBox[{"Visible", "\[Rule]", "False"}]}], "]"}]}], ",", 
+                    "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndExecute", "@", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    
+                    RowBox[{
+                    "FrontEndToken", "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t\t\t", 
+                    
+                    RowBox[{
+                    "nbObj", ",", "\n", "\t", "\t", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    "\"\<Save\>\"", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+                    "\t", "\t", "\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"f", ",", " ", "\"\<Text\>\""}], "}"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"NotebookClose", "[", "nbObj", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t", "]"}]}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"nbObj", " ", "=", " ", "nb"}], ";", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndExecute", "@", "\n", "\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "FrontEndToken", "[", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    "nbObj", ",", "\n", "\t\t\t\t\t\t\t\t\t\t\t", 
+                    "\"\<Save\>\"", ",", "\n", "\t", "\t", "\t", "\t", "\t", 
+                    "\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"f", ",", " ", "\"\<Text\>\""}], "}"}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t\t\t", "]"}]}]}]}], "\n", 
+                    "\t\t\t\t\t\t\t\t\t", "]"}]}], "\n", "\t\t\t\t\t\t\t", 
+                  "]"}]}]}], "\n", "\t\t\t\t\t\t", "]"}]}]}], "\n", 
+            "\t\t\t\t\t", "]"}], ";", "\n", "\t\t\t  ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"OptionValue", "[", "\"\<ClearCache\>\"", "]"}], ",", 
+             "\n", "\t\t\t    ", 
+             RowBox[{"ClearCachedTabData", "[", "nb", "]"}]}], "\n", 
+            "\t\t\t    ", "]"}]}]}], "\n", "\t\t\t\t", "]"}]}], "\n", 
+       "\t\t\t", "]"}]}], ";"}]}], "\n", "\t\t", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"NotebookSaveContents", "[", 
+   RowBox[{"nb_NotebookObject", ",", " ", "\n", "\t\t", 
+    RowBox[{"file", ":", 
+     RowBox[{"_String", "|", "Automatic"}], ":", "Automatic"}], ",", "\n", 
+    "\t\t", 
+    RowBox[{"preempt", ":", 
+     RowBox[{"True", "|", "False"}]}], ",", "\n", "\t\t", 
+    RowBox[{"ops", ":", 
+     RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "\t\t", "]"}], ":=", 
+  "\n", "\t\t", 
+  RowBox[{"NotebookSaveContents", "[", 
+   RowBox[{"nb", ",", " ", "file", ",", " ", 
+    RowBox[{"\"\<Preemptive\>\"", "\[Rule]", "preempt"}], ",", " ", "ops"}], 
+   "]"}]}]}], \
+"CodeInput",ExpressionUUID->"b5e21969-21a4-42ae-bfaa-51e8af238b5e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]NotebookPutScratch\[RightFloor] ", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"7a691d37-30e2-4cfe-97ff-8c8556c5fd9a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NotebookPutScratch", "[", 
+   RowBox[{"nb_", ",", " ", "expr_Notebook"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"NotebookPutFile", "[", 
+   RowBox[{"nb", ",", " ", 
+    RowBox[{"CreateProjectScratchFile", "[", 
+     RowBox[{"nb", ",", " ", "expr"}], "]"}]}], 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"ca031407-4704-470e-aeb4-cfc1c5cee5b2"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]File Operations\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"5f1afa83-52ee-4001-9f61-5af079fd17fb"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]EnsureNotebookUpdated\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"ff937583-0a3c-44ba-be8d-3d7f06fa4dc3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EnsureNotebookUpdated", "[", 
+   RowBox[{"nb_NotebookObject", ",", " ", 
+    RowBox[{"openDialog", ":", 
+     RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"Module", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"{", "\n", "      ", 
+     RowBox[{
+      RowBox[{"nbDate", " ", "=", " ", "\n", "        ", 
+       RowBox[{"FromAbsoluteTime", "[", 
+        RowBox[{
+         RowBox[{"Lookup", "[", 
+          RowBox[{
+           RowBox[{"NotebookInformation", "[", "nb", "]"}], ",", " ", 
+           "\"\<MemoryModificationTime\>\""}], "]"}], ",", " ", 
+         RowBox[{"TimeZone", "\[Rule]", "0"}]}], "]"}]}], ",", "\n", "      ", 
+      RowBox[{"buffer", " ", "=", " ", 
+       RowBox[{"Quantity", "[", 
+        RowBox[{"3", ",", " ", "\"\<Seconds\>\""}], "]"}]}], ",", "\n", 
+      "      ", 
+      RowBox[{"active", " ", "=", " ", 
+       RowBox[{"IDEPath", "[", 
+        RowBox[{"nb", ",", " ", 
+         RowBox[{"Key", "[", "\"\<ActiveFile\>\"", "]"}]}], "]"}]}], ",", 
+      "\n", "      ", "needsUpdate", ",", "\n", "      ", "hasDeclined"}], 
+     "\n", "      ", "}"}], ",", "\n", "    ", 
+    RowBox[{
+     RowBox[{"needsUpdate", " ", "=", " ", 
+      RowBox[{"Quiet", "[", 
+       RowBox[{"TrueQ", "[", 
+        RowBox[{
+         RowBox[{"FileDate", "[", "active", "]"}], ">", 
+         RowBox[{"nbDate", "+", "buffer"}]}], "]"}], "]"}]}], ";", "\n", 
+     "    ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"needsUpdate", "&&", "openDialog"}], ",", "\n", "      ", 
+       RowBox[{
+        RowBox[{"hasDeclined", " ", "=", " ", 
+         RowBox[{"IDEData", "[", 
+          RowBox[{"nb", ",", " ", 
+           RowBox[{"PrivateKey", "[", "\"\<CheckUpdateData\>\"", "]"}]}], 
+          "]"}]}], ";", "\n", "      ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"AssociationQ", "@", "hasDeclined"}]}], ",", "\n", 
+          "        ", 
+          RowBox[{"hasDeclined", " ", "=", " ", 
+           RowBox[{"<|", 
+            RowBox[{
+             RowBox[{"\"\<Tab\>\"", "\[Rule]", "active"}], ",", " ", 
+             RowBox[{"\"\<InUpdate\>\"", "\[Rule]", "False"}], ",", " ", 
+             RowBox[{"\"\<HasDeclined\>\"", "\[Rule]", "False"}]}], 
+            "|>"}]}]}], "\n", "        ", "]"}], ";", "\n", "      ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"!", 
+              RowBox[{"TrueQ", "[", 
+               RowBox[{"hasDeclined", "[", "\"\<InUpdate\>\"", "]"}], "]"}]}],
+              "&&", 
+             RowBox[{"!", 
+              RowBox[{"TrueQ", "[", 
+               RowBox[{"hasDeclined", "[", "\"\<HasDeclined\>\"", "]"}], 
+               "]"}]}]}], ")"}], "||", "\n", "          ", 
+           RowBox[{
+            RowBox[{"hasDeclined", "[", "\"\<Tab\>\"", "]"}], "=!=", 
+            "active"}]}], ",", "\n", "        ", 
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"active", "=", "active"}], ",", " ", 
+              RowBox[{"hasDeclined", "=", "hasDeclined"}]}], "}"}], ",", "\n",
+             "          ", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"IDEData", "[", 
+               RowBox[{"nb", ",", " ", 
+                RowBox[{"PrivateKey", "[", "\"\<CheckUpdateData\>\"", "]"}]}],
+                "]"}], " ", "=", " ", "\n", "            ", 
+              RowBox[{"<|", 
+               RowBox[{
+                RowBox[{"\"\<Tab\>\"", "\[Rule]", "active"}], ",", " ", 
+                RowBox[{"\"\<InUpdate\>\"", "\[Rule]", "True"}], ",", " ", 
+                RowBox[{"\"\<HasDeclined\>\"", "\[Rule]", 
+                 RowBox[{"hasDeclined", "[", "\"\<HasDeclined\>\"", "]"}]}]}],
+                "|>"}]}], ";", "\n", "          ", 
+             RowBox[{"CreateAttachedDialog", "[", "\n", "            ", 
+              RowBox[{"nb", ",", "\n", "            ", 
+               RowBox[{"<|", "\n", "              ", 
+                RowBox[{
+                 RowBox[{
+                 "\"\<Header\>\"", "\[Rule]", "\"\<Update from Disk?\>\""}], 
+                 ",", "\n", "  ", "  ", "          ", 
+                 RowBox[{
+                 "\"\<Body\>\"", "->", 
+                  "\"\<File changed on disk. Would you like to reload?\>\""}],
+                  ",", "\n", "  ", "  ", "          ", 
+                 RowBox[{
+                 "\"\<SubmitButton\>\"", "->", "\n", "  ", "  ", 
+                  "            ", 
+                  RowBox[{"{", "\n", "  ", "  ", "              ", 
+                   RowBox[{
+                   "\"\<Reload\>\"", ",", "\n", "  ", "  ", "              ", 
+                    
+                    RowBox[{
+                    "Function", "[", "\n", "  ", "  ", "                ", 
+                    RowBox[{
+                    RowBox[{"NotebookDelete", "[", 
+                    RowBox[{"EvaluationCell", "[", "]"}], "]"}], ";", "\n", 
+                    "  ", "  ", "                ", 
+                    RowBox[{"NotebookPutFile", "[", 
+                    RowBox[{"nb", ",", " ", "active"}], "]"}], ";", "\n", 
+                    "                    ", 
+                    RowBox[{
+                    RowBox[{"IDEData", "[", 
+                    RowBox[{"nb", ",", " ", 
+                    RowBox[{
+                    "PrivateKey", "[", "\"\<CheckUpdateData\>\"", "]"}]}], 
+                    "]"}], " ", "=", " ", "\n", "                      ", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"hasDeclined", ",", " ", 
+                    RowBox[{"\"\<HasDeclined\>\"", "\[Rule]", "False"}]}], 
+                    "]"}]}], ";", "\n", "                    ", 
+                    RowBox[{"needsUpdate", " ", "=", " ", "False"}]}], "\n", 
+                    "                    ", "]"}]}], "\n", "  ", 
+                   "                ", "}"}]}], ",", "\n", "  ", 
+                 "            ", 
+                 RowBox[{
+                 "\"\<CancelButton\>\"", "->", "\n", "  ", "              ", 
+                  RowBox[{"{", "\n", "  ", "                ", 
+                   RowBox[{
+                   "\"\<Cancel\>\"", ",", "\n", "  ", "                ", 
+                    RowBox[{
+                    "Function", "[", "\n", "  ", "  ", "                ", 
+                    RowBox[{
+                    RowBox[{"NotebookDelete", "[", 
+                    RowBox[{"EvaluationCell", "[", "]"}], "]"}], ";", "\n", 
+                    "                    ", 
+                    RowBox[{
+                    RowBox[{"IDEData", "[", 
+                    RowBox[{"nb", ",", " ", 
+                    RowBox[{
+                    "PrivateKey", "[", "\"\<CheckUpdateData\>\"", "]"}]}], 
+                    "]"}], " ", "=", " ", "\n", "                      ", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"hasDeclined", ",", " ", 
+                    RowBox[{"\"\<HasDeclined\>\"", "\[Rule]", "True"}]}], 
+                    "]"}]}], ";"}], "\n", "                    ", "]"}]}], 
+                   "\n", "                  ", "}"}]}]}], "\n", 
+                "              ", "|>"}]}], "\n", "            ", "]"}]}]}], 
+           "\n", "          ", "]"}]}], "\n", "        ", "]"}]}]}], "\n", 
+      "      ", "]"}], ";", "\n", "    ", 
+     RowBox[{"!", "needsUpdate"}]}]}], "\n", "    ", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"1450e585-de62-41bc-bce3-4cae1c1a66ff"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]GetFileTabName\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"d3e3d795-9a2a-454c-bc2f-731f4081e753"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GetFileTabName", "[", 
+   RowBox[{"nb_", ",", " ", "f_"}], "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{"tabs", " ", "=", " ", 
+       RowBox[{"IDEData", "[", 
+        RowBox[{"nb", ",", " ", "\"\<Tabs\>\""}], "]"}]}], ",", "\n", 
+      "\t\t\t", "tns", ",", "\n", "\t\t\t", "tabName"}], "\n", "\t\t\t", 
+     "}"}], ",", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"tabName", " ", "=", "\n", "\t\t\t", 
+      RowBox[{"Do", "[", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Lookup", "[", 
+            RowBox[{
+             RowBox[{"t", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], ",", " ", "\"\<File\>\""}], 
+            "]"}], "\[Equal]", "f"}], ",", " ", 
+          RowBox[{"Return", "[", 
+           RowBox[{
+            RowBox[{"t", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", " ", "Do"}], "]"}]}], "]"}],
+         ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "tabs"}], "}"}]}], "]"}]}], ";", "\n", "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"tabName", "===", "Null"}], ",", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"tabName", " ", "=", " ", 
+         RowBox[{"FileBaseName", "[", "f", "]"}]}], ";", "\n", "\t\t\t", 
+        RowBox[{"tns", " ", "=", " ", 
+         RowBox[{"tabs", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", " ", "1"}], "]"}], "]"}]}], ";", "\n", 
+        "\t\t\t", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"tns", ",", " ", "tabName"}], "]"}], ",", "\n", "\t", 
+          "\t\t\t", 
+          RowBox[{"tabName", " ", "=", " ", 
+           RowBox[{"tabName", " ", "<>", " ", "\"\<.\>\"", " ", "<>", " ", 
+            RowBox[{"FileExtension", "[", "f", "]"}]}]}]}], "\n", "\t\t\t\t", 
+         "]"}], ";", "\n", "\t\t\t", 
+        RowBox[{"tabName", "=", "\n", "\t\t\t\t", 
+         RowBox[{"NestWhile", "[", "\n", "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", " ", "<>", " ", "\"\</\>\"", " ", "<>", " ", 
+             RowBox[{"FileNameTake", "[", 
+              RowBox[{"f", ",", " ", 
+               RowBox[{"-", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"URLParse", "[", 
+                  RowBox[{"#", ",", " ", "\"\<Path\>\""}], "]"}], "]"}]}]}], 
+              "]"}]}], "&"}], ",", "\n", "\t", "\t\t\t\t", "tabName", ",", 
+           "\n", "\t", "\t\t\t\t", 
+           RowBox[{
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"tns", ",", " ", "#"}], "]"}], "&"}], ",", "\n", 
+           "\t\t\t\t\t", "1", ",", "\n", "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"FileNameDepth", "[", "f", "]"}], "-", "1"}]}], "\n", 
+          "\t", "\t\t\t\t", "]"}]}]}]}], "\n", "\t\t\t", "]"}], ";", "\n", 
+     "\t\t", "tabName"}]}], "\n", "\t\t", 
+   "]"}]}]], \
+"CodeInput",ExpressionUUID->"4cc1a144-b52f-4f27-b09f-32a7a5423777"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDEOpen\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"50c10e0d-160d-4fe1-9c17-f2d747e28593"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", 
+     RowBox[{"f_String", "?", "FileExistsQ"}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"Module", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t\t", 
+      RowBox[{
+      "nbObj", ",", "\n", "\t\t\t", "nbExpr", ",", "\n", "\t\t\t", 
+       "tabName"}], "\n", "\t\t\t", "}"}], ",", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"tabName", " ", "=", " ", 
+       RowBox[{"GetFileTabName", "[", 
+        RowBox[{"nb", ",", " ", "f"}], "]"}]}], ";", "\n", "\t\t", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"!", 
+         RowBox[{"TrueQ", "@", 
+          RowBox[{"IDETabExists", "[", 
+           RowBox[{"nb", ",", " ", "tabName"}], "]"}]}]}], ",", "\n", 
+        "\t\t\t", 
+        RowBox[{"NotebookCreateTab", "[", 
+         RowBox[{"nb", ",", " ", "tabName", ",", " ", "\n", "\t", "\t\t\t", 
+          RowBox[{"{", "\n", "\t", "\t\t\t\t", 
+           RowBox[{"\"\<File\>\"", "\[Rule]", "f"}], "\t", "\n", "\t\t\t\t\t",
+            "}"}]}], "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}], ";", 
+      "\n", "\t\t", 
+      RowBox[{"NotebookSwitchTab", "[", 
+       RowBox[{"nb", ",", " ", "tabName"}], "]"}]}]}], "\n", "\t\t", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"nb_IDENotebookObject", ",", " ", 
+     RowBox[{"f_String", "?", "FileExistsQ"}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{
+     RowBox[{"nb", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "f"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "expr_Notebook"}], "]"}], ":=", 
+   "\n", "  ", 
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"nb", ",", " ", 
+     RowBox[{"CreateProjectScratchFile", "[", 
+      RowBox[{"nb", ",", " ", "expr"}], "]"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"nb_IDENotebookObject", ",", " ", "expr_Notebook"}], "]"}], ":=", 
+   "\n", "\t", 
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{
+     RowBox[{"nb", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "expr"}], 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"e", ":", 
+     RowBox[{
+      RowBox[{"_String", "?", "FileExistsQ"}], "|", "_Notebook"}]}], "]"}], ":=",
+    "\n", "  ", 
+   RowBox[{"IDEOpen", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "e"}], "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"968af050-f580-42db-b548-fa2988c450cd"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDESave\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"63ae87c8-c022-47dd-b7ce-10f5e2885806"],
+
+Cell[BoxData[{
+ RowBox[{"IDESave", "//", "Clear"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESave", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"NotebookSaveContents", "[", 
+    RowBox[{"nb", ",", " ", "ops"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESave", "[", 
+    RowBox[{"nb_IDENotebookObject", ",", " ", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"IDESave", "[", 
+    RowBox[{
+     RowBox[{"nb", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "ops"}], "]"}]}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDESave", "[", 
+    RowBox[{"ops", ":", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"IDESave", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "ops"}], "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"3bda5ac6-3080-4cbd-a268-24f712a29b6e"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]IDEClose\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"4747e744-885c-44bd-bb21-85c964729967"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEClose", "[", 
+    RowBox[{"nb_NotebookObject", ",", " ", "tabName_"}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"IDETabExists", "[", "tabName", "]"}], ",", "\n", "\t\t", 
+     RowBox[{"NotebookCloseTab", "[", 
+      RowBox[{"nb", ",", " ", "tabName"}], "]"}]}], "\n", "\t\t", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEClose", "[", 
+    RowBox[{"nb_IDENotebookObject", ",", " ", "tabName_"}], "]"}], ":=", "\n",
+    "\t", 
+   RowBox[{"IDEClose", "[", 
+    RowBox[{
+     RowBox[{"nb", "[", "\"\<Notebook\>\"", "]"}], ",", " ", "tabName"}], 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IDEClose", "[", "tabName_", "]"}], ":=", "\n", "  ", 
+   RowBox[{"IDEClose", "[", 
+    RowBox[{"$CurrentIDENotebook", ",", " ", "tabName"}], "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"9e45d1ce-8acf-47ca-aa0b-e4cd5942fbe6"]\
+
+}, Closed]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"0425d73a-a77f-4e2c-a37e-\
+039f7adcecdc"]
+}, Open  ]],
+
+Cell["", "SectionSeparator",ExpressionUUID->"6027cce7-e936-419b-9aeb-\
+c452d0e52f5d"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{11, Automatic}, {33, Automatic}},
+TaggingRules->{
+ "UUIDButtons" -> {
+   "Active" -> {
+     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+
