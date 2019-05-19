@@ -226,7 +226,7 @@ checkboxGrid[vars:{(_:>_)..}]:=
 	checkboxGrid[Thread[{vars}]];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Functions*)
 
 
@@ -455,7 +455,7 @@ newApp[]:=
         },
       "SubmitAction"->
         Function[
-          AppExecute["Configure", #Name]
+          IDENotebookObject@AppExecute["Configure", #Name]
           ]
       |>
     ]
@@ -603,7 +603,7 @@ gitHubDelete=
 		];*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Publish*)
 
 
@@ -622,7 +622,8 @@ publishApp[]:=
               "SV"->"Push To Server",
               "PI"->"Update PacletInfo",
               "PS"->"Publish Server",
-              "RL"->"Create Release"
+              "RL"->"Create Release",
+              "MS"->"Build Paclet Server Site"
               },
             Appearance->"Horizontal"->{Automatic, 2}
             },
@@ -631,7 +632,8 @@ publishApp[]:=
             If[pushToServerFlag=!=False, "SV", Nothing],
             If[updatePacletFlag=!=False, "PI", Nothing],
             If[TrueQ[publishServerFlag], "PS", Nothing],
-            If[TrueQ[createReleaseServerFlag], "RL", Nothing]
+            If[TrueQ[createReleaseServerFlag], "RL", Nothing],
+            If[TrueQ[makeSiteFlag], "MS", Nothing]
             }
           |>
         |>,
@@ -643,7 +645,7 @@ publishApp[]:=
             updatePacletFlag=MemberQ[#Settings, "PI"];
             publishServerFlag=MemberQ[#Settings, "PS"];
             createReleaseServerFlag=MemberQ[#Settings, "RL"];
-            makeSiteFlag=False;
+            makeSiteFlag=MemberQ[#Settings, "MS"];
             backupFlag=False;
             Module[{popup, r},
               popup = 

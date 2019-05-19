@@ -1,6 +1,6 @@
 Paclet[
   Name -> "EasyIDE",
-  Version -> "1.0.14",
+  Version -> "1.0.15",
   Creator -> "b3m2a1 <b3m2a1@gmail.com>",
   URL -> "https://github.com/b3m2a1/EasyIDE",
   Description -> "An IDE for Mathematica written entirely within Mathematica",
@@ -27,6 +27,10 @@ Paclet[
      		"Resources" -> {
        			"Settings",
        			"StyleSheets",
+       			{
+        				"SetterStylesheets",
+        				"Settings/Config/SetterStylesheets.wl"
+        			},
        			{
         				"ExtensionStylesMap",
         				"Settings/Mappings/ExtensionStylesMap.wl"
@@ -106,6 +110,10 @@ Paclet[
        			{
         				"Custom",
         				"StyleSheets/Custom.nb"
+        			},
+       			{
+        				"Config",
+        				"Settings/Config"
         			},
        			{
         				"Mappings",
