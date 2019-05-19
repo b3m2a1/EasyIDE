@@ -22,7 +22,7 @@ EndPackage[]
 Begin["`WindowMenu`Private`"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*getThemes*)
 
 
@@ -35,7 +35,7 @@ getThemes[]:=
         ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*setTheme*)
 
 
@@ -60,6 +60,25 @@ setTheme[]:=
 
 
 (* ::Subsubsection:: *)
+(*getStylesheets*)
+
+
+getStylesheets[]:=
+  Reverse/@Normal@
+    Merge[
+      Normal/@Replace[
+        Import/@
+          FileNames["SetterStylesheets.wl", 
+            FileNames["Config", $IDESettingsPath]
+            ],
+        Except[_?OptionQ|_?AssociationQ]:>{},
+        1
+        ],
+      First
+      ]
+
+
+(* ::Subsubsection:: *)
 (*setStylesheet*)
 
 
@@ -72,7 +91,7 @@ setStylesheet[]:=
         <|
           "Name"->None,
           "ID"->"Stylesheet",
-          "Type"->{PopupMenu, FE`Evaluate@FEPrivate`GetPopupList["MenuListStyleDefinitions"]}
+          "Type"->{PopupMenu, getStylesheets[]}
           |>
         },
       "SubmitAction"->
@@ -88,7 +107,7 @@ setStylesheet[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*getToolbars*)
 
 
@@ -98,7 +117,7 @@ getToolbars[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*addToolbar*)
 
 
@@ -123,7 +142,7 @@ addToolbar[]:=
     ]
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*End*)
 
 

@@ -115,11 +115,14 @@ LoadPlugin[file_String, default_:Automatic]:=
 
 getPluginActionMenu[plugin_]:=
   ActionMenu[
-    Button[
-      plugin["Name"], 
-      "",
-      BaseStyle->"PluginMenu",
-      Appearance->Inherited
+    MouseAppearance[
+      Button[
+        plugin["Name"],
+        "",
+        BaseStyle->"PluginMenu",
+        Appearance->Inherited
+        ],
+      "LinkHand"
       ],
     Replace[
       plugin["Menu"],
@@ -145,15 +148,19 @@ getPluginToolbar[plugin_]:=
      plugin["Toolbar"],
      {
        (key_:>{command_, ops___}):>
-            Button[key, 
-              command, 
-              Sequence@@FilterRules[
-                {Appearance->Inherited, ops}, 
-                Join[Options[Button], Options[ButtonBox]]
-                ]
-              ],
+            MouseAppearance[
+              Button[
+              key, 
+                command,
+                Sequence@@FilterRules[
+                  {Appearance->Inherited, ops}, 
+                  Join[Options[Button], Options[ButtonBox]]
+                  ]
+                ],
+            "LinkHand"
+            ],
           (key_:>command_):>
-             Button[key, command, Appearance->Inherited]
+             MouseAppearance[Button[key, command, Appearance->Inherited], "LinkHand"]
            },
         1
         ]
@@ -239,13 +246,16 @@ GetPluginsMenus[nb_]:=
         "DropDown"->
           Replace[state,
             Hold[s_]:>
-              Button[
-                "Plugins",
-                createPluginCommandsMenu[s, data],
-                BaseStyle->"PluginMenu",
-                Appearance->Inherited,
-                ImageSize->{Automatic, Automatic}
-                ]
+              MouseAppearance[
+                Button[
+                  "Plugins",
+                  createPluginCommandsMenu[s, data],
+                  BaseStyle->"PluginMenu",
+                  Appearance->Inherited,
+                  ImageSize->{Automatic, Automatic}
+                  ],
+               "LinkHand"
+               ]
             ],
         "Menus"->Lookup[data["Menu"], "Menu"]
         |>

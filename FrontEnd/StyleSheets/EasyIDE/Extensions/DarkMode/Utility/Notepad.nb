@@ -1,0 +1,678 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     25441,        670]
+NotebookOptionsPosition[     12837,        499]
+NotebookOutlinePosition[     13227,        516]
+CellTagsIndexPosition[     13184,        513]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> "EasyIDE/DarkMode.nb"],ExpressionUUID->"5d8400ef-f6d9-4992-ac6a-82b49db5c424"],
+
+Cell[CellGroupData[{
+
+Cell["Notepad", "Title",
+ CellChangeTimes->{{3.7672835449901657`*^9, 
+  3.767283546702343*^9}},ExpressionUUID->"6ce9208b-68b8-4461-be12-\
+7af2045dff0a"],
+
+Cell[StyleData[StyleDefinitions -> "StyleMenuClear.nb"]],
+
+Cell[StyleData[StyleDefinitions -> "EnvironmentMenuClear.nb"]],
+
+Cell["\<\
+Modify the definitions below to change the default appearance of all cells in \
+a given style. 
+Make modifications to any definition using commands in the Format menu.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Style Environment Names", "Section"],
+
+Cell[StyleData[All, "Working"],
+ PageWidth->WindowWidth,
+ ShowAutoStyles->False,
+ ScriptMinSize->9],
+
+Cell[StyleData[All, "WorkingProportional"],
+ PageWidth->WindowWidth,
+ ShowAutoStyles->False,
+ ScriptMinSize->9,
+ MenuSortingValue->1150],
+
+Cell[StyleData[All, "Presentation"],
+ PageWidth->WindowWidth,
+ ShowGroupOpener->True,
+ ShowAutoStyles->False,
+ ScriptMinSize->14],
+
+Cell[StyleData[All, "PresentationProportional"],
+ PageWidth->WindowWidth,
+ ShowAutoStyles->False,
+ ScriptMinSize->14],
+
+Cell[StyleData[All, "SlideShow", StyleDefinitions -> StyleData[
+ All, "Presentation"]],
+ PageWidth->WindowWidth,
+ DockedCells->FEPrivate`FrontEndResource[
+  "FEExpressions", "SlideshowToolbar"],
+ ScrollingOptions->{"PagewiseDisplay"->True,
+ "VerticalScrollRange"->Fit},
+ MenuSortingValue->1300],
+
+Cell[StyleData[All, "SlideShowProportional", StyleDefinitions -> StyleData[
+ All, "PresentationProportional"]],
+ PageWidth->WindowWidth,
+ DockedCells->FEPrivate`FrontEndResource[
+  "FEExpressions", "SlideshowToolbar"],
+ ScrollingOptions->{"PagewiseDisplay"->True,
+ "VerticalScrollRange"->Fit},
+ MenuSortingValue->1350],
+
+Cell[StyleData[All, "Printout"],
+ PageWidth->PaperWidth,
+ ShowAutoStyles->False,
+ ScriptMinSize->7,
+ MenuSortingValue->1400,
+ PrivateFontOptions->{"FontType"->"Outline"}],
+
+Cell[StyleData[All, "PrintoutProportional"],
+ PageWidth->PaperWidth,
+ ShowAutoStyles->False,
+ ScriptMinSize->7,
+ MenuSortingValue->1450,
+ PrivateFontOptions->{"FontType"->"Outline"}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Notebook Options", "Section"],
+
+Cell["\<\
+
+The options defined for the style below will be used at the Notebook level.
+\
+\>", "Text"],
+
+Cell[StyleData["Notebook"],
+ WindowToolbars->{},
+ PageHeaders->{{
+    Cell[
+     TextData[{
+       CounterBox["Page"]}], "PageNumber"], None, 
+    Cell[
+     TextData[{
+       ValueBox[FileName], " \[Bullet]  ", 
+       ValueBox[Date]}], "Header"]}, {
+    Cell[
+     TextData[{
+       ValueBox[FileName], " \[Bullet]  ", 
+       ValueBox[Date]}], "Header"], None, 
+    Cell[
+     TextData[{
+       CounterBox["Page"]}], "PageNumber"]}},
+ DefaultNewCellStyle->"Text",
+ DefaultDuplicateCellStyle->"Text",
+ DefaultInlineFormatType->StandardForm,
+ StyleMenuListing->None]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Styles for Input/Output", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Input"],
+ MenuSortingValue->1900,
+ MenuCommandKey->"9",
+ FontSize->12],
+
+Cell[StyleData["Input", "WorkingProportional"]],
+
+Cell[StyleData["Input", "Presentation"],
+ FontSize->24],
+
+Cell[StyleData["Input", "PresentationProportional"],
+ FontSize->24],
+
+Cell[StyleData["Input", "Print"],
+ FontSize->10],
+
+Cell[StyleData["Input", "PrintoutProportional"],
+ FontSize->10]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Output"],
+ FontSize->12],
+
+Cell[StyleData["Output", "WorkingProportional"]],
+
+Cell[StyleData["Output", "Presentation"],
+ FontSize->24],
+
+Cell[StyleData["Output", "PresentationProportional"],
+ FontSize->24],
+
+Cell[StyleData["Output", "Print"],
+ FontSize->10],
+
+Cell[StyleData["Output", "PrintoutProportional"],
+ FontSize->10]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Styles for Body Text", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Text"],
+ CellMargins->{{24, 24}, {7, 7}},
+ LineSpacing->{1, 6},
+ ParagraphSpacing->{0., 10.},
+ LanguageCategory->"NaturalLanguage",
+ MenuSortingValue->1700,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["Text", "WorkingProportional"],
+ LineSpacing->{1, 4},
+ FontFamily->"Times"],
+
+Cell[StyleData["Text", "Presentation"],
+ CellMargins->{{30, 30}, {10, 10}}],
+
+Cell[StyleData["Text", "PresentationProportional", StyleDefinitions -> \
+StyleData["Text", "ProportionalScreen"]],
+ CellMargins->{{30, 30}, {10, 10}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["Text", "Printout"],
+ CellMargins->{{2, 2}, {6, 6}}],
+
+Cell[StyleData["Text", "PrintoutProportional"],
+ CellMargins->{{2, 2}, {6, 6}},
+ Hyphenation->True,
+ FontFamily->"Times"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Section"],
+ CellFrame->{{0, 0}, {0.5, 0}},
+ CellDingbat->None,
+ CellMargins->{{24, Inherited}, {8, 24}},
+ MenuSortingValue->1400,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]],
+ FontWeight->"Bold"],
+
+Cell[StyleData["Section", "WorkingProportional"],
+ FontFamily->"Helvetica"],
+
+Cell[StyleData["Section", "Presentation"],
+ CellMargins->{{30, 10}, {12, 36}}],
+
+Cell[StyleData["Section", "PresentationProportional"],
+ CellMargins->{{30, 10}, {12, 36}},
+ FontFamily->"Helvetica",
+ FontSize->40],
+
+Cell[StyleData["Section", "Printout"],
+ CellMargins->{{2, 0}, {7, 22}}],
+
+Cell[StyleData["Section", "PrintoutProportional"],
+ CellMargins->{{2, 0}, {7, 22}},
+ FontFamily->"Helvetica"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Display", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Lists", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell["Bulleted", "Subsubsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Item"],
+ CellDingbat->Cell["\[FilledSmallCircle]", FontWeight -> "Bold"],
+ CellMargins->{{75, 10}, {4, 4}},
+ LineSpacing->{1, 6},
+ MenuSortingValue->2100,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["Item", "WorkingProportional"],
+ CellDingbat->Cell["\[FilledSmallCircle]", FontWeight -> "Bold"],
+ CellMargins->{{75, 10}, {4, 4}},
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000},
+ CellFrameLabelMargins->4,
+ LineSpacing->{1, 4},
+ CounterIncrements->"Item",
+ CounterAssignments->{{"Subitem", 0}, {"Subsubitem", 0}},
+ MenuSortingValue->2100,
+ FontFamily->"Times",
+ $CellContext`ReturnCreatesNewCell -> True],
+
+Cell[StyleData["Item", "Presentation"],
+ CellMargins->{{100, 10}, {7, 7}}],
+
+Cell[StyleData["Item", "PresentationProportional"],
+ CellMargins->{{100, 10}, {7, 7}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["Item", "Printout"],
+ CellMargins->{{50, 0}, {2, 2}}],
+
+Cell[StyleData["Item", "PrintoutProportional"],
+ CellMargins->{{50, 0}, {2, 2}},
+ FontFamily->"Times"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["ItemParagraph"],
+ CellMargins->{{75, 10}, {4, 1}},
+ CellFrameLabelMargins->4,
+ LineSpacing->{1, 6},
+ MenuSortingValue->2100,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["ItemParagraph", "WorkingProportional"],
+ CellMargins->{{75, 10}, {4, 1}},
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000},
+ CellFrameLabelMargins->4,
+ DefaultNewCellStyle->"Item",
+ LineSpacing->{1, 4},
+ CounterIncrements->"Item",
+ CounterAssignments->{{"Subitem", 0}, {"Subsubitem", 0}},
+ MenuSortingValue->2100,
+ FontFamily->"Times",
+ $CellContext`ReturnCreatesNewCell -> True],
+
+Cell[StyleData["ItemParagraph", "Presentation"],
+ CellMargins->{{100, 10}, {7, 2}}],
+
+Cell[StyleData["ItemParagraph", "PresentationProportional"],
+ CellMargins->{{100, 10}, {7, 7}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["ItemParagraph", "Printout"],
+ CellMargins->{{50, 0}, {2, 1}}],
+
+Cell[StyleData["ItemParagraph", "PrintoutProportional"],
+ CellMargins->{{50, 0}, {2, 1}},
+ FontFamily->"Times"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Subitem"],
+ CellDingbat->Cell["\[FilledSmallCircle]", FontWeight -> "Bold"],
+ CellMargins->{{99, 12}, {4, 4}},
+ LineSpacing->{1, 6},
+ MenuSortingValue->2200,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["Subitem", "WorkingProportional"],
+ CellDingbat->Cell["\[FilledSmallCircle]", FontWeight -> "Bold"],
+ CellMargins->{{99, 12}, {4, 4}},
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100},
+ CellFrameLabelMargins->4,
+ DefaultNewCellStyle->"Item",
+ LineSpacing->{1, 4},
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200,
+ FontFamily->"Times",
+ $CellContext`ReturnCreatesNewCell -> True],
+
+Cell[StyleData["Subitem", "Presentation"],
+ CellMargins->{{136, 12}, {7, 7}}],
+
+Cell[StyleData["Subitem", "PresentationProportional"],
+ CellMargins->{{136, 12}, {7, 7}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["Subitem", "Printout"],
+ CellMargins->{{82, 2}, {2, 2}}],
+
+Cell[StyleData["Subitem", "PrintoutProportional"],
+ CellMargins->{{82, 2}, {2, 2}},
+ FontFamily->"Times"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["SubitemParagraph"],
+ CellMargins->{{99, 12}, {4, 1}},
+ LineSpacing->{1, 6},
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200,
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["SubitemParagraph", "WorkingProportional"],
+ CellDingbat->Cell["\[FilledSmallCircle]", FontWeight -> "Bold"],
+ CellMargins->{{99, 12}, {4, 1}},
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100},
+ CellFrameLabelMargins->4,
+ DefaultNewCellStyle->"Item",
+ LineSpacing->{1, 4},
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200,
+ FontFamily->"Times",
+ $CellContext`ReturnCreatesNewCell -> True],
+
+Cell[StyleData["SubitemParagraph", "Presentation"],
+ CellMargins->{{136, 12}, {7, 2}}],
+
+Cell[StyleData["SubitemParagraph", "PresentationProportional"],
+ CellMargins->{{136, 12}, {7, 2}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["SubitemParagraph", "Printout"],
+ CellMargins->{{82, 2}, {2, 1}}],
+
+Cell[StyleData["SubitemParagraph", "PrintoutProportional"],
+ CellMargins->{{82, 2}, {2, 1}},
+ FontFamily->"Times"]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Styles for Formulas and Programming", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["DisplayFormula"],
+ CellMargins->{{60, Inherited}, {Inherited, Inherited}},
+ DefaultFormatType->DefaultInputFormatType,
+ HyphenationOptions->{"HyphenationCharacter"->"\[Continuation]"},
+ LanguageCategory->"Formula",
+ ScriptLevel->0,
+ SingleLetterItalics->True,
+ MenuSortingValue->2300,
+ UnderoverscriptBoxOptions->{LimitsPositioning->True},
+ $CellContext`StripStyleOnPaste -> True],
+
+Cell[StyleData["DisplayFormula", "Presentation"],
+ LineSpacing->{1, 5},
+ FontSize->24],
+
+Cell[StyleData["DisplayFormula", "Printout"]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["DisplayFormulaNumbered"],
+ CellMargins->{{60, Inherited}, {Inherited, Inherited}},
+ CellFrameLabels->{{None, 
+    Cell[
+     TextData[{"(", 
+       CounterBox["DisplayFormulaNumbered"], ")"}]]}, {None, None}},
+ DefaultFormatType->DefaultInputFormatType,
+ HyphenationOptions->{"HyphenationCharacter"->"\[Continuation]"},
+ LanguageCategory->"Formula",
+ ScriptLevel->0,
+ SingleLetterItalics->True,
+ CounterIncrements->"DisplayFormulaNumbered",
+ MenuSortingValue->2400,
+ UnderoverscriptBoxOptions->{LimitsPositioning->True},
+ $CellContext`StripStyleOnPaste -> True],
+
+Cell[StyleData["DisplayFormulaNumbered", "Presentation"],
+ LineSpacing->{1, 5},
+ FontSize->24],
+
+Cell[StyleData["DisplayFormulaNumbered", "Printout"]]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Citation Styles", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Reference"],
+ CellMargins->{{24, 24}, {3, 3}},
+ FontFamily->Dynamic[
+   CurrentValue[{StyleHints, "CodeFont"}]]],
+
+Cell[StyleData["Reference", "WorkingProportional"],
+ CellMargins->{{24, 24}, {3, 3}},
+ FontFamily->"Times"],
+
+Cell[StyleData["Reference", "Presentation"],
+ CellMargins->{{30, 30}, {5, 5}}],
+
+Cell[StyleData["Reference", "PresentationProportional"],
+ CellMargins->{{30, 30}, {5, 5}},
+ FontFamily->"Times",
+ FontSize->24],
+
+Cell[StyleData["Reference", "Printout"],
+ CellMargins->{{7, 3}, {3, 3}}],
+
+Cell[StyleData["Reference", "PrintoutProportional"],
+ CellMargins->{{7, 3}, {3, 3}},
+ FontFamily->"Times"]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+},
+Editable->True,
+Saveable->True,
+WindowSize->{808, 755},
+WindowMargins->{{100, Automatic}, {-4, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"PrivateStylesheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 113, 0, 36, 58, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"5d8400ef-f6d9-4992-ac6a-82b49db5c424"],
+Cell[CellGroupData[{
+Cell[696, 24, 152, 3, 67, "Title",ExpressionUUID->"6ce9208b-68b8-4461-be12-7af2045dff0a"],
+Cell[851, 29, 56, 0, 36, 56, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"b9a6b952-4be7-40ad-a574-1e25fb91b01e"],
+Cell[910, 31, 62, 0, 36, 62, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"d0b3d00e-36e8-4b72-82cd-6f13dbc69456"],
+Cell[975, 33, 191, 4, 59, "Text",ExpressionUUID->"fe2ab9de-c423-4c13-bddf-fe53622eee56"],
+Cell[CellGroupData[{
+Cell[1191, 41, 42, 0, 49, "Section",ExpressionUUID->"0652f511-c274-4e8b-ba36-3f6eb935b45b"],
+Cell[1236, 43, 99, 3, 70, 31, 0, "StyleData", "All", "Working",ExpressionUUID->"9d4cd083-470e-446e-9146-dc5d0a42feab"],
+Cell[1338, 48, 136, 4, 70, 43, 0, "StyleData", "All", "WorkingProportional",ExpressionUUID->"905e6784-22c5-45e5-aa72-359fdc38e2db",
+ MenuSortingValue->1150],
+Cell[1477, 54, 129, 4, 70, 36, 0, "StyleData", "All", "Presentation",ExpressionUUID->"48594b73-5a2c-4684-a9ee-974e140d68dc"],
+Cell[1609, 60, 117, 3, 70, 48, 0, "StyleData", "All", "PresentationProportional",ExpressionUUID->"11092c15-4950-4268-ad5c-0aec2a672b2b"],
+Cell[1729, 65, 294, 7, 70, 87, 1, "StyleData", "All", "SlideShow",ExpressionUUID->"6792aa73-1e82-474d-879c-f7e41be48ac0",
+ MenuSortingValue->1300],
+Cell[2026, 74, 318, 7, 70, 111, 1, "StyleData", "All", "SlideShowProportional",ExpressionUUID->"985bd85d-70ee-47cb-a251-87657dc93499",
+ MenuSortingValue->1350],
+Cell[2347, 83, 170, 5, 70, 32, 0, "StyleData", "All", "Printout",ExpressionUUID->"049a2cd5-26a5-43b9-9bb3-6adec634fbf0",
+ MenuSortingValue->1400],
+Cell[2520, 90, 182, 5, 70, 44, 0, "StyleData", "All", "PrintoutProportional",ExpressionUUID->"2c98926c-5227-4a6a-895f-253fccdae392",
+ MenuSortingValue->1450]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2739, 100, 35, 0, 33, "Section",ExpressionUUID->"7791dd63-d413-4895-8778-b1c89d9dd48b"],
+Cell[2777, 102, 101, 4, 70, "Text",ExpressionUUID->"eb77ef56-b7a8-478b-b292-f5f4ae63749d"],
+Cell[2881, 108, 567, 20, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"2664b3eb-376a-420f-a22d-74879c92ebb4",
+ StyleMenuListing->None]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3485, 133, 42, 0, 33, "Section",ExpressionUUID->"bde03000-3421-43c3-9321-adec0bb3bdfb"],
+Cell[CellGroupData[{
+Cell[3552, 137, 86, 3, 70, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"46e23558-0ba0-4ec2-aae5-c12b1fc8c631",
+ MenuSortingValue->1900,
+ MenuCommandKey->"9"],
+Cell[3641, 142, 47, 0, 70, 47, 0, "StyleData", "Input", "WorkingProportional",ExpressionUUID->"594ac422-ca91-4225-ab7b-d2f953a17356"],
+Cell[3691, 144, 55, 1, 70, 40, 0, "StyleData", "Input", "Presentation",ExpressionUUID->"a0caa305-4670-447b-baa2-22841ecf2f58"],
+Cell[3749, 147, 67, 1, 70, 52, 0, "StyleData", "Input", "PresentationProportional",ExpressionUUID->"e1b0b510-5b6d-4b1b-9496-c93d3e3a2a48"],
+Cell[3819, 150, 48, 1, 70, 33, 0, "StyleData", "Input", "Print",ExpressionUUID->"6f9554f7-5362-4d87-95aa-5a66e9c3dc32"],
+Cell[3870, 153, 63, 1, 70, 48, 0, "StyleData", "Input", "PrintoutProportional",ExpressionUUID->"77be5ae6-07bc-4f80-b61e-45bb03ea196f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3970, 159, 40, 1, 70, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"678e8e8c-9034-4618-87fa-1e108680215c"],
+Cell[4013, 162, 48, 0, 70, 48, 0, "StyleData", "Output", "WorkingProportional",ExpressionUUID->"b80a2dbe-18b1-41b5-9e48-b7dbef136eba"],
+Cell[4064, 164, 56, 1, 70, 41, 0, "StyleData", "Output", "Presentation",ExpressionUUID->"685b0938-02ee-40a2-a507-58d411efcc7e"],
+Cell[4123, 167, 68, 1, 70, 53, 0, "StyleData", "Output", "PresentationProportional",ExpressionUUID->"911708d8-9194-45c9-8d77-cd6b33fc4f52"],
+Cell[4194, 170, 49, 1, 70, 34, 0, "StyleData", "Output", "Print",ExpressionUUID->"fcc991f4-403c-4cec-a781-97525d50c29f"],
+Cell[4246, 173, 64, 1, 70, 49, 0, "StyleData", "Output", "PrintoutProportional",ExpressionUUID->"5ae8ecd1-8f27-4523-ade6-1ee9daf84578"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4359, 180, 39, 0, 33, "Section",ExpressionUUID->"ee2ffc97-14e4-42b4-87ea-0931cf596a59"],
+Cell[CellGroupData[{
+Cell[4423, 184, 238, 7, 70, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"a4ce173b-888f-45fe-916e-f28a891f837d",
+ MenuSortingValue->1700],
+Cell[4664, 193, 90, 2, 70, 46, 0, "StyleData", "Text", "WorkingProportional",ExpressionUUID->"0ddc3d6f-60ff-4226-a499-f80d93e7c428"],
+Cell[4757, 197, 75, 1, 70, 39, 0, "StyleData", "Text", "Presentation",ExpressionUUID->"513265de-3e49-428c-a5c2-38a14dfc224b"],
+Cell[4835, 200, 187, 4, 70, 114, 1, "StyleData", "Text", "PresentationProportional",ExpressionUUID->"0e3c8eac-f616-45d0-a26e-612faae14485"],
+Cell[5025, 206, 67, 1, 70, 35, 0, "StyleData", "Text", "Printout",ExpressionUUID->"1cfec554-a0d7-4917-b393-d10653fe80d5"],
+Cell[5095, 209, 121, 3, 70, 47, 0, "StyleData", "Text", "PrintoutProportional",ExpressionUUID->"c045cd51-d59c-45d6-82fb-4bb7ddb5ee3f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5253, 217, 232, 7, 70, 26, 0, "StyleData", "Section", "All",ExpressionUUID->"1c86183b-43d7-4e5a-8972-71a68bf92cdd",
+ MenuSortingValue->1400],
+Cell[5488, 226, 75, 1, 70, 49, 0, "StyleData", "Section", "WorkingProportional",ExpressionUUID->"5ae2a05d-e22e-4989-8d85-d10b1db4ffa9"],
+Cell[5566, 229, 78, 1, 70, 42, 0, "StyleData", "Section", "Presentation",ExpressionUUID->"746d5b00-7171-4b1b-8a5b-20c357c62829"],
+Cell[5647, 232, 131, 3, 70, 54, 0, "StyleData", "Section", "PresentationProportional",ExpressionUUID->"41cd3a96-728e-4a37-86fb-73fd23f713c4"],
+Cell[5781, 237, 71, 1, 70, 38, 0, "StyleData", "Section", "Printout",ExpressionUUID->"cf854c47-bf08-4723-b4f6-469e37185590"],
+Cell[5855, 240, 109, 2, 70, 50, 0, "StyleData", "Section", "PrintoutProportional",ExpressionUUID->"4031fb7f-3688-41b4-b932-49597b568da0"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[6001, 247, 29, 0, 70, "Subsection",ExpressionUUID->"dfade680-01d9-4006-b4e9-c77654b68858"],
+Cell[CellGroupData[{
+Cell[6055, 251, 30, 0, 70, "Subsubsection",ExpressionUUID->"e53235a1-d857-4858-a6fb-7f8d1b8fb4af"],
+Cell[CellGroupData[{
+Cell[6110, 255, 36, 0, 70, "Subsubsubsection",ExpressionUUID->"c98c2db8-9253-4ea6-b5ba-c23900f41700"],
+Cell[CellGroupData[{
+Cell[6171, 259, 236, 6, 70, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"b3f26266-67e6-4910-9e42-2860c6dce42b",
+ MenuSortingValue->2100],
+Cell[6410, 267, 432, 10, 70, 46, 0, "StyleData", "Item", "WorkingProportional",ExpressionUUID->"fca235b7-9f07-4623-8895-537123c17436",
+ CounterIncrements->"Item",
+ CounterAssignments->{{"Subitem", 0}, {"Subsubitem", 0}},
+ MenuSortingValue->2100],
+Cell[6845, 279, 74, 1, 70, 39, 0, "StyleData", "Item", "Presentation",ExpressionUUID->"610f48bf-dc7c-44ed-b11b-8f4a49d8803c"],
+Cell[6922, 282, 123, 3, 70, 51, 0, "StyleData", "Item", "PresentationProportional",ExpressionUUID->"9f5c17e3-00b3-4238-8640-70e56e3ac541"],
+Cell[7048, 287, 68, 1, 70, 35, 0, "StyleData", "Item", "Printout",ExpressionUUID->"f380019f-782d-4920-a1eb-5e5a7972065f"],
+Cell[7119, 290, 102, 2, 70, 47, 0, "StyleData", "Item", "PrintoutProportional",ExpressionUUID->"b0eadecf-3f76-4d48-bc89-c3006bd9b80f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7258, 297, 206, 6, 70, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"d57e9ec8-0619-45b7-b306-7f92cd6bc5a2",
+ MenuSortingValue->2100],
+Cell[7467, 305, 405, 10, 70, 55, 0, "StyleData", "ItemParagraph", "WorkingProportional",ExpressionUUID->"f3b3daab-03a8-41ae-baf3-161e1e6f5c12",
+ CounterIncrements->"Item",
+ CounterAssignments->{{"Subitem", 0}, {"Subsubitem", 0}},
+ MenuSortingValue->2100],
+Cell[7875, 317, 83, 1, 70, 48, 0, "StyleData", "ItemParagraph", "Presentation",ExpressionUUID->"3afda937-ad64-4c15-9103-a2589f39a029"],
+Cell[7961, 320, 132, 3, 70, 60, 0, "StyleData", "ItemParagraph", "PresentationProportional",ExpressionUUID->"ca7294b2-8c81-4a51-b934-c092b87dea9a"],
+Cell[8096, 325, 77, 1, 70, 44, 0, "StyleData", "ItemParagraph", "Printout",ExpressionUUID->"51e385e3-e85b-4df6-a589-410f5b9c540b"],
+Cell[8176, 328, 111, 2, 70, 56, 0, "StyleData", "ItemParagraph", "PrintoutProportional",ExpressionUUID->"2c0940a3-5054-46e6-8fad-ae5b3dc45d87"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8324, 335, 239, 6, 70, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"e488b8c4-8e1f-4cd2-9d8d-33064cfc6d29",
+ MenuSortingValue->2200],
+Cell[8566, 343, 452, 11, 70, 49, 0, "StyleData", "Subitem", "WorkingProportional",ExpressionUUID->"ca9ace33-20ba-4054-a15b-39297aa31461",
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200],
+Cell[9021, 356, 77, 1, 70, 42, 0, "StyleData", "Subitem", "Presentation",ExpressionUUID->"8ef5805e-a7de-4c79-bc6b-67b3b38f8d21"],
+Cell[9101, 359, 126, 3, 70, 54, 0, "StyleData", "Subitem", "PresentationProportional",ExpressionUUID->"984c2ca4-8273-48b7-8b23-f1b67cba85d9"],
+Cell[9230, 364, 71, 1, 70, 38, 0, "StyleData", "Subitem", "Printout",ExpressionUUID->"d6144b9f-773f-4a80-96f4-cadb8130920f"],
+Cell[9304, 367, 105, 2, 70, 50, 0, "StyleData", "Subitem", "PrintoutProportional",ExpressionUUID->"735ad8e6-6e0c-4f1f-b93c-b01267b62dee"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[9446, 374, 255, 7, 70, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"889ea4ba-3c7b-4e2e-a39f-188848577f8f",
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200],
+Cell[9704, 383, 461, 11, 70, 58, 0, "StyleData", "SubitemParagraph", "WorkingProportional",ExpressionUUID->"fc768175-a655-4c0e-b45e-0fba2203ee91",
+ CounterIncrements->"Subitem",
+ CounterAssignments->{{"Subsubitem", 0}},
+ MenuSortingValue->2200],
+Cell[10168, 396, 86, 1, 70, 51, 0, "StyleData", "SubitemParagraph", "Presentation",ExpressionUUID->"31d8fd06-4694-4f35-a787-154da91206dd"],
+Cell[10257, 399, 135, 3, 70, 63, 0, "StyleData", "SubitemParagraph", "PresentationProportional",ExpressionUUID->"d87f3e63-6414-4627-a1e7-06cae3c4de08"],
+Cell[10395, 404, 80, 1, 70, 47, 0, "StyleData", "SubitemParagraph", "Printout",ExpressionUUID->"4b6c8b5c-31db-4755-b4c3-3c520f491515"],
+Cell[10478, 407, 114, 2, 70, 59, 0, "StyleData", "SubitemParagraph", "PrintoutProportional",ExpressionUUID->"e21b2533-33d4-47db-b5cf-8178b4ab1cc4"]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10677, 418, 54, 0, 33, "Section",ExpressionUUID->"d8a2d11a-6899-42a7-9908-3e9e0e289723"],
+Cell[CellGroupData[{
+Cell[10756, 422, 396, 9, 70, 33, 0, "StyleData", "DisplayFormula", "All",ExpressionUUID->"9c9ffc72-bd4b-416b-a7be-b06e147d8b0a",
+ MenuSortingValue->2300],
+Cell[11155, 433, 86, 2, 70, 49, 0, "StyleData", "DisplayFormula", "Presentation",ExpressionUUID->"7de145fe-a120-4dd6-9934-3a6d05c63ebd"],
+Cell[11244, 437, 45, 0, 70, 45, 0, "StyleData", "DisplayFormula", "Printout",ExpressionUUID->"35730e43-02d7-4dc1-be25-a9f7951d6e9a"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11326, 442, 577, 14, 70, 41, 0, "StyleData", "DisplayFormulaNumbered", "All",ExpressionUUID->"647f0e01-94d2-44c1-bc96-07d20bd0a7d6",
+ CounterIncrements->"DisplayFormulaNumbered",
+ MenuSortingValue->2400],
+Cell[11906, 458, 94, 2, 70, 57, 0, "StyleData", "DisplayFormulaNumbered", "Presentation",ExpressionUUID->"77254644-293e-418a-9e76-d85a159b25e4"],
+Cell[12003, 462, 53, 0, 70, 53, 0, "StyleData", "DisplayFormulaNumbered", "Printout",ExpressionUUID->"b0e6c070-39d9-45fe-8828-b10b8c830844"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[12105, 468, 34, 0, 33, "Section",ExpressionUUID->"6786589d-9f1c-4682-a0c9-7c73ab3a3d87"],
+Cell[CellGroupData[{
+Cell[12164, 472, 128, 3, 70, 28, 0, "StyleData", "Reference", "All",ExpressionUUID->"c530126f-0dc3-4804-86d8-a85c4c3233b2"],
+Cell[12295, 477, 107, 2, 70, 51, 0, "StyleData", "Reference", "WorkingProportional",ExpressionUUID->"7b2ea4a0-e06f-4ccf-9102-2acb65b89f6e"],
+Cell[12405, 481, 78, 1, 70, 44, 0, "StyleData", "Reference", "Presentation",ExpressionUUID->"828b7ef0-13f1-4d5d-8e35-fa1bfd8f3b8f"],
+Cell[12486, 484, 127, 3, 70, 56, 0, "StyleData", "Reference", "PresentationProportional",ExpressionUUID->"0a514862-7b51-4eb9-84a9-4787825dff25"],
+Cell[12616, 489, 72, 1, 70, 40, 0, "StyleData", "Reference", "Printout",ExpressionUUID->"47eacc80-2cf9-4f19-965e-da3e3bb58565"],
+Cell[12691, 492, 106, 2, 70, 52, 0, "StyleData", "Reference", "PrintoutProportional",ExpressionUUID->"d1ed33ea-545d-404f-ab5b-833956e2109c"]
+}, Closed]]
+}, Closed]]
+}, Closed]]
+}
+]
+*)
+

@@ -76,7 +76,7 @@ SetMainStylesheet[nb_, f_]:=
       s = GetCurrentValue[nb, StyleDefinitions],
       scell,
       nbo,
-      sPath = (Global`t41=Now;(Global`t42=Now;#)&@GetCleanStylePath[nb, f])
+      sPath = GetCleanStylePath[nb, f]
       },
     If[Head[s]===Notebook,
       nbo = StyleSheetNotebookObject[nb];
@@ -276,21 +276,38 @@ sheetExistsQ[f_FrontEnd`FileName]:=
 
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*getExtStyleSubpathAndName*)
+
+
+
+getExtStyleSubpathAndName[s_]:=
+  Module[{base=StringTrim[StringTrim[s, "-"], ".nb"]<>".nb"},
+    {Most[#], Last[#]}&@StringSplit[base, "/"]
+    ]
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*cleanStylesheetName*)
+
+
+
 cleanStylesheetName[mainName_, sheet_]:=
   Replace[sheet,
     {
       FrontEnd`FileName[{path___}, s_String?(StringStartsQ["-"]), r___]:>
-        With[{tt=StringTrim[StringTrim[s, "-"], ".nb"]<>".nb"},
-          SelectFirst[
-            {
-            FrontEnd`FileName[{path, mainName}, tt],
-            FrontEnd`FileName[{path}, Evaluate[mainName<>"-"<>tt]],
-            FrontEnd`FileName[{path}, tt],
-            FrontEnd`FileName[{path}, s]
-             },
-            sheetExistsQ,
-            FrontEnd`FileName[{path}, s]
-            ]
+        Replace[getExtStyleSubpathAndName[s],
+          {{subpath___}, tt_}:>
+            SelectFirst[
+              {
+              FrontEnd`FileName[{path, mainName, subpath}, tt],
+              FrontEnd`FileName[{path, subpath}, Evaluate[mainName<>"-"<>tt]],
+              FrontEnd`FileName[{path, subpath}, tt],
+              FrontEnd`FileName[{path}, s]
+               },
+              sheetExistsQ,
+              FrontEnd`FileName[{path}, s]
+              ]
           ],
       s_String?(StringStartsQ["-"]):>
         cleanStylesheetName[mainName, FrontEnd`FileName[{"EasyIDE", "Extensions"}, s]],

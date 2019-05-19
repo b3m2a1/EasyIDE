@@ -226,7 +226,7 @@ checkboxGrid[vars:{(_:>_)..}]:=
 	checkboxGrid[Thread[{vars}]];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Functions*)
 
 
