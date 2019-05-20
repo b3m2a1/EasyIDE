@@ -346,14 +346,13 @@ NotebookSwitchTab[nb_NotebookObject, tabName_String,
               ]
            ];
         If[OptionValue["UseCache"],
-          nbExpr = GetNotebookExpression[nb];
-          If[Length@nbExpr[[1]]>0,
+          If[Length[Cells[nb]]>0,
             MathLink`CallFrontEnd@{
               FrontEnd`SelectionMove[nb, Previous, Cell],
               FrontEnd`SelectionAddCellTags[nb, {"EasyIDEScrollTag"}]
-              }
+              };
                ];
-          CacheTabData[nb, active, nbExpr];
+          CacheTabData[nb, active, GetNotebookExpression[nb]];
           cached = LoadCachedTabData[nb, tabName];
           ];
         WithoutDynamics[

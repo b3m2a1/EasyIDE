@@ -401,7 +401,6 @@ getFileViewerCell[nb_]:=
           ],
         BaseStyle->"FileViewerPane"
         ],
-    "FileViewerCell",
     "DockedCell"
     ]
 

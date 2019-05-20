@@ -14,17 +14,18 @@ Notebook[{Cell[CellGroupData[{Cell["Plugins", "CodeSection"],
            Cell[BoxData[RowBox[{"Quiet", "[", "\n", "\t", RowBox[
                 {"System`MenuKey", ";", "\n", "\t", "System`MenuItem", ";"}], 
                "\n", "\t", "]"}]], "CodeInput"], Cell["\[LeftCeiling]\n\tMenu\
-Commands get loaded into the main menu bar, ActionMenus get stuck into the \
-DockedCell, and \n\tsome day MenuItem expressions will get dumped into the \
-main menu.\n\[RightFloor]", "Text", Evaluatable -> True], 
+Commands get loaded into the main menu bar, \n\tActionMenus get stuck into \
+the DockedCell, \n\tand some day MenuItem expressions will get dumped into \
+the main menu(?).\n\[RightFloor]", "Text", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{"LoadPlugin", "//", "Clear"}], "\n", 
-              RowBox[{RowBox[{"LoadPlugin", "[", RowBox[{"file_String", ",", 
-                    " ", RowBox[{"default_:", "Automatic"}]}], "]"}], ":=", 
-                "\n", "\t", RowBox[{"Module", "[", "\n", "\t\t", 
-                  RowBox[{RowBox[{"{", "\n", "\t\t\t", "pluginData", "\n", 
-                      "\t\t\t", "}"}], ",", "\n", "\t\t", RowBox[
-                     {RowBox[{"PackageExecute", "[", "\n", "\t\t\t", 
-                        RowBox[{"Internal`WithLocalSettings", "[", "\n", 
+              RowBox[{RowBox[{RowBox[{"LoadPlugin", "[", RowBox[
+                     {RowBox[{"file_String", "?", "FileExistsQ"}], ",", " ", 
+                      RowBox[{"default_:", "Automatic"}]}], "]"}], ":=", 
+                  "\n", "\t", RowBox[{"Module", "[", "\n", "\t\t", 
+                    RowBox[{RowBox[{"{", "\n", "\t\t\t", "pluginData", "\n", 
+                        "\t\t\t", "}"}], ",", "\n", "\t\t", RowBox[
+                       {RowBox[{"PackageExecute", "[", "\n", "\t\t\t", 
+                          RowBox[{"Internal`WithLocalSettings", "[", "\n", 
                           "\t\t\t\t", RowBox[{RowBox[{RowBox[{"BeginPackage", 
                           "[", "\"`Plugins`\"", "]"}], ";", "\n", "\t\t\t\t", 
                           RowBox[{"$ContextPath", " ", "=", " ", "\n", 
@@ -39,8 +40,8 @@ main menu.\n\[RightFloor]", "Text", Evaluatable -> True],
                           "file", "]"}]}], ",", "\n", "\t\t\t\t", RowBox[
                           {"EndPackage", "[", "]"}]}], "\n", "\t\t\t\t", 
                           "]"}], "\n", "\t\t\t", "]"}], ";", "\n", "\t\t", 
-                      RowBox[{"pluginData", "=", "\n", "\t\t\t", RowBox[
-                         {"Replace", "[", RowBox[{"pluginData", ",", " ", 
+                        RowBox[{"pluginData", "=", "\n", "\t\t\t", RowBox[
+                          {"Replace", "[", RowBox[{"pluginData", ",", " ", 
                           "\n", "\t\t\t\t", RowBox[{"{", "\n", "\t\t\t\t\t", 
                           RowBox[{RowBox[{RowBox[{"a_Association", "?", 
                           RowBox[{"(", RowBox[{RowBox[{RowBox[{"KeyExistsQ", 
@@ -58,8 +59,8 @@ main menu.\n\[RightFloor]", "Text", Evaluatable -> True],
                           {"(", RowBox[{RowBox[{"StringQ", "[", "default", 
                           "]"}], "&"}], ")"}]}], ":>", "\n", "\t\t\t\t\t\t", 
                           RowBox[{"<|", "\n", "\t\t\t\t\t\t\t", RowBox[
-                          {RowBox[{"\"Name\"", "\[Rule]", RowBox[
-                          {"FileBaseName", "[", "file", "]"}]}], ",", "\n", 
+                          {RowBox[{"\"Name\"", "\[Rule]", RowBox[{
+                          "FileBaseName", "[", "file", "]"}]}], ",", "\n", 
                           "\t\t\t\t\t\t\t", RowBox[{"default", "\[Rule]", 
                           "pd"}]}], "\n", "\t\t\t\t\t\t\t", "|>"}]}], ",", 
                           "\n", "\t\t\t\t\t", RowBox[{RowBox[{"pd", ":", 
@@ -96,13 +97,13 @@ main menu.\n\[RightFloor]", "Text", Evaluatable -> True],
                           {"\"Menu\"", "\[Rule]", "m"}]}], "\n", 
                           "\t\t\t\t\t\t\t", "|>"}]}]}], "\n", "\t\t\t\t\t", 
                           "}"}]}], "\n", "\t\t\t\t", "]"}]}], ";", "\n", 
-                      "\t\t", RowBox[{"If", "[", RowBox[{RowBox[{"!", RowBox[
+                        "\t\t", RowBox[{"If", "[", RowBox[{RowBox[{"!", 
+                          RowBox[{"KeyExistsQ", "[", RowBox[{"pluginData", 
+                          ",", " ", "\"Type\""}], "]"}]}], ",", "\n", 
+                          "\t\t\t", RowBox[{RowBox[{"pluginData", "[", 
+                          "\"Type\"", "]"}], "=", "\n", "\t\t\t\t", RowBox[
+                          {"Which", "[", "\n", "\t\t\t\t\t", RowBox[{RowBox[
                           {"KeyExistsQ", "[", RowBox[{"pluginData", ",", " ", 
-                          "\"Type\""}], "]"}]}], ",", "\n", "\t\t\t", 
-                          RowBox[{RowBox[{"pluginData", "[", "\"Type\"", 
-                          "]"}], "=", "\n", "\t\t\t\t", RowBox[{"Which", "[", 
-                          "\n", "\t\t\t\t\t", RowBox[{RowBox[{"KeyExistsQ", 
-                          "[", RowBox[{"pluginData", ",", " ", 
                           "\"Commands\""}], "]"}], ",", "\n", "\t\t\t\t\t\t", 
                           "\"Commands\"", ",", "\n", "\t\t\t\t\t", RowBox[
                           {"KeyExistsQ", "[", RowBox[{"pluginData", ",", " ", 
@@ -110,17 +111,43 @@ main menu.\n\[RightFloor]", "Text", Evaluatable -> True],
                           "\"Toolbar\"", ",", "\n", "\t\t\t\t\t", "True", 
                           ",", "\n", "\t\t\t\t\t\t", "\"Menu\""}], "\n", 
                           "\t\t\t\t\t", "]"}]}]}], "\n", "\t\t\t", "]"}], 
-                      ";", "\n", "\t\t", RowBox[{"If", "[", RowBox[
-                         {RowBox[{RowBox[{"pluginData", "[", "\"Type\"", 
+                        ";", "\n", "\t\t", RowBox[{"If", "[", RowBox[
+                          {RowBox[{RowBox[{"pluginData", "[", "\"Type\"", 
                           "]"}], "===", "\"Commands\""}], ",", "\n", 
                           "\t\t\t", RowBox[{RowBox[{"pluginData", "[", 
                           "\"Commands\"", "]"}], "=", "\n", "\t\t\t\t", 
                           RowBox[{RowBox[{"pluginData", "[", "\"Name\"", 
                           "]"}], "\[Rule]", RowBox[{"pluginData", "[", 
                           "\"Commands\"", "]"}]}]}]}], "\n", "\t\t\t", "]"}], 
-                      ";", "\n", "\t\t", RowBox[{"normalizePlugin", "@", 
-                        "pluginData"}]}]}], "\n", "\t\t", "]"}]}]}], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+                        ";", "\n", "\t\t", RowBox[{"normalizePlugin", "@", 
+                          "pluginData"}]}]}], "\n", "\t\t", "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{"LoadPlugin", "[", RowBox[{"name_String", 
+                    ",", " ", RowBox[{"default_:", "Automatic"}]}], "]"}], 
+                ":=", "\n", "  ", RowBox[{"Module", "[", RowBox[
+                   {RowBox[{"{", "pgfs", "}"}], ",", "\n", "    ", 
+                    RowBox[{RowBox[{"pgfs", "=", "\n", "      ", RowBox[
+                         {"FileNames", "[", RowBox[{RowBox[{"name", "~~", 
+                          RowBox[{"(", RowBox[{"\".wl\"", "|", "\".m\""}], 
+                          ")"}]}], ",", " ", "\n", "\t\t\t\t\t", RowBox[
+                          {"FileNames", "[", "\n", "\t\t\t\t\t  ", RowBox[
+                          {RowBox[{"Switch", "[", RowBox[{"default", ",", 
+                          "\n", "\t\t\t\t\t    ", "Automatic", ",", "\n", 
+                          "  \t\t\t\t\t    ", RowBox[{"\"Plugins\"", "|", 
+                          "\"Toolbars\""}], ",", "\n", "\t\t\t\t\t    ", 
+                          "\"Menu\"", ",", "\n", "\t\t\t\t\t      ", 
+                          "\"Plugins\"", ",", "\n", "\t\t\t\t\t    ", 
+                          "\"Toolbar\"", ",", "\n", "\t\t\t\t\t      ", 
+                          "\"Toolbars\""}], "\n", "\t\t\t\t\t    ", "]"}], 
+                          ",", "\n", "\t\t\t\t\t  ", "$IDESettingsPath"}], 
+                          "\n", "\t\t\t\t\t  ", "]"}]}], "\n", "\t\t\t\t\t", 
+                          "]"}]}], ";", "\n", "\t\t ", RowBox[{"If", "[", 
+                        RowBox[{RowBox[{RowBox[{"Length", "@", "pgfs"}], ">", 
+                          "0"}], ",", "\n", "\t\t   ", RowBox[{"LoadPlugin", 
+                          "[", RowBox[{RowBox[{"First", "@", "pgfs"}], ",", 
+                          " ", "default"}], "]"}], ",", "\n", "\t\t   ", 
+                          "None"}], "\n", "\t\t   ", "]"}]}]}], "\n", 
+                  "\t\t ", "]"}]}]}], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[
           {Cell["\[LeftCeiling]getPluginActionMenu\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[RowBox[{RowBox[{RowBox[{"getPluginActionMenu", "[", 
@@ -242,7 +269,7 @@ main menu.\n\[RightFloor]", "Text", Evaluatable -> True],
                           {RowBox[{"baseData", "[", "\"Commands\"", "]"}], 
                           "=", RowBox[{"{", "}"}]}]}], "]"}], ";", "\n", 
                      "\t\t", "baseData"}]}], "\n", "\t\t", "]"}]}]], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]createPluginCommandsMenu\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"createPluginCommandsMenu", 

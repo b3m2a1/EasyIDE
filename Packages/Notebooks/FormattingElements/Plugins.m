@@ -28,14 +28,15 @@ Quiet[
 
 (* ::Text:: *)
 (*
-	MenuCommands get loaded into the main menu bar, ActionMenus get stuck into the DockedCell, and 
-	some day MenuItem expressions will get dumped into the main menu.
+	MenuCommands get loaded into the main menu bar, 
+	ActionMenus get stuck into the DockedCell, 
+	and some day MenuItem expressions will get dumped into the main menu(?).
 *)
 
 
 
 LoadPlugin//Clear
-LoadPlugin[file_String, default_:Automatic]:=
+LoadPlugin[file_String?FileExistsQ, default_:Automatic]:=
   Module[
     {
       pluginData
@@ -105,7 +106,28 @@ LoadPlugin[file_String, default_:Automatic]:=
         pluginData["Name"]->pluginData["Commands"]
       ];
     normalizePlugin@pluginData
-    ]
+    ];
+LoadPlugin[name_String, default_:Automatic]:=
+  Module[{pgfs},
+    pgfs=
+      FileNames[name~~(".wl"|".m"), 
+          FileNames[
+            Switch[default,
+              Automatic,
+                "Plugins"|"Toolbars",
+              "Menu",
+                "Plugins",
+              "Toolbar",
+                "Toolbars"
+              ],
+            $IDESettingsPath
+            ]
+          ];
+     If[Length@pgfs>0,
+       LoadPlugin[First@pgfs, default],
+       None
+       ]
+     ]
 
 
 (* ::Subsubsection::Closed:: *)
