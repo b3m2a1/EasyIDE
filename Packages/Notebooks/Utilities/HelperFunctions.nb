@@ -117,47 +117,52 @@ it\[CloseCurlyQuote]s worth it...\n\[RightFloor]", "Text",
                         "]"}]}]}], ":=", "\n", "  ", RowBox[{"With", "[", 
                     RowBox[{RowBox[{"{", RowBox[{"h", "=", 
                           "FrontEnd`$TrackingEnabled"}], "}"}], ",", "\n", 
-                      "  ", "  \t", RowBox[{"MathLink`CallFrontEndHeld", "[", 
-                        "\n", "  ", "      ", RowBox[{"FrontEnd`SetValue", 
-                          "[", "\n", "  ", "\t\t\t\t\t", RowBox[{RowBox[
+                      "  ", "  \t", RowBox[{RowBox[
+                         {"MathLink`CallFrontEndHeld", "[", "\n", "  ", 
+                          "      ", RowBox[{"FrontEnd`SetValue", "[", "\n", 
+                          "  ", "\t\t\t\t\t", RowBox[{RowBox[
                           {"FEPrivate`Set", "[", "\n", "  ", "\t\t\t\t\t\t", 
                           RowBox[{RowBox[{"FrontEnd`CurrentValue", "[", 
                           RowBox[{"nb", ",", " ", "k"}], "]"}], ",", " ", 
                           "\n", "  ", "          ", "value"}], "\n", "  ", 
                           "\t\t\t\t\t\t", "]"}], ",", "\n", "  ", 
-                          "\t\t\t\t\t", "h"}], "\n", "  ", "\t\t\t\t\t", 
-                          "]"}], "\n", "  ", "      ", "]"}]}], "\n", "  ", 
-                    "    ", "]"}]}], ";"}], "\n", RowBox[{RowBox[
-                 {RowBox[{RowBox[{"iSetCurrentValue", "[", RowBox[{"nb_", 
-                        ",", " ", "k_", ",", " ", "value_"}], "]"}], "/;", 
-                    RowBox[{"TrueQ", "[", "$inCVHeld", "]"}]}], ":=", "\n", 
-                  "  ", RowBox[{RowBox[{"$setCurrentValueStack", "[", 
-                      RowBox[{"{", RowBox[{"nb", ",", " ", "k"}], "}"}], 
-                      "]"}], " ", "=", " ", "value"}]}], ";"}]}], 
-            "CodeInput"], Cell[BoxData[{RowBox[{RowBox[{RowBox[
-                   {"SetCurrentValues", "[", "triples_", "]"}], ":=", "\n", 
-                  "  ", RowBox[{"MathLink`CallFrontEnd", "@", RowBox[
-                     {"FrontEnd`SetValue", "@", "\n", "    ", RowBox[
-                       {"Map", "[", "\n", "      ", RowBox[{RowBox[
-                          {RowBox[{"FEPrivate`Set", "[", "\n", "        ", 
-                          RowBox[{RowBox[{"FrontEnd`CurrentValue", "[", 
-                          RowBox[{RowBox[{"#", "[", RowBox[{"[", RowBox[{"1", 
-                          ",", " ", "1"}], "]"}], "]"}], ",", " ", RowBox[
-                          {"#", "[", RowBox[{"[", RowBox[{"1", ",", " ", 
-                          "2"}], "]"}], "]"}]}], "]"}], ",", " ", "\n", 
-                          "        ", RowBox[{"#", "[", RowBox[{"[", "2", 
-                          "]"}], "]"}]}], "\n", "\t\t\t\t\t", "]"}], "&"}], 
-                          ",", "\n", "\t\t\t  ", "triples"}], "\n", 
-                        "\t\t\t  ", "]"}]}]}]}], ";"}], "\n", 
-              RowBox[{RowBox[{"SetCurrentValuesDelayed", "[", "triples_", 
-                  "]"}], ":=", "\n", "  ", RowBox[{"With", "[", "\n", "    ", 
-                  RowBox[{RowBox[{"{", "\n", "      ", RowBox[{"r", "=", 
-                        RowBox[{"FrontEnd`SetValue", "@", "\n", "  ", "  ", 
-                          "    ", RowBox[{"Map", "[", "\n", "  ", "  ", 
-                          "      ", RowBox[{RowBox[{RowBox[
-                          {"FEPrivate`SetDelayed", "[", "\n", "  ", "  ", 
+                          "\t\t\t\t\t", "h"}], "\n", "  \t\t\t\t\t", "]"}], 
+                          "\n", "        ", "]"}], ";", "\n", "      ", 
+                        "value"}]}], "\n", "      ", "]"}]}], ";"}], "\n", 
+              RowBox[{RowBox[{RowBox[{RowBox[{"iSetCurrentValue", "[", 
+                      RowBox[{"nb_", ",", " ", "k_", ",", " ", "value_"}], 
+                      "]"}], "/;", RowBox[{"TrueQ", "[", "$inCVHeld", 
+                      "]"}]}], ":=", "\n", "  ", RowBox[{RowBox[
+                     {"$setCurrentValueStack", "[", RowBox[{"{", RowBox[
+                         {"nb", ",", " ", "k"}], "}"}], "]"}], " ", "=", " ", 
+                    "value"}]}], ";"}]}], "CodeInput"], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"SetCurrentValues", "[", 
+                    "triples_", "]"}], ":=", "\n", "  ", RowBox[{"(", "\n", 
+                    "    ", RowBox[{RowBox[{"MathLink`CallFrontEnd", "@", 
+                        RowBox[{"FrontEnd`SetValue", "@", "\n", "  ", "    ", 
+                          RowBox[{"Map", "[", "\n", "  ", "      ", RowBox[
+                          {RowBox[{RowBox[{"FEPrivate`Set", "[", "\n", "  ", 
                           "        ", RowBox[{RowBox[{
                           "FrontEnd`CurrentValue", "[", RowBox[{RowBox[{"#", 
+                          "[", RowBox[{"[", RowBox[{"1", ",", " ", "1"}], 
+                          "]"}], "]"}], ",", " ", RowBox[{"#", "[", RowBox[
+                          {"[", RowBox[{"1", ",", " ", "2"}], "]"}], "]"}]}], 
+                          "]"}], ",", " ", "\n", "  ", "        ", RowBox[
+                          {"#", "[", RowBox[{"[", "2", "]"}], "]"}]}], "\n", 
+                          "  ", "\t\t\t\t\t", "]"}], "&"}], ",", "\n", "  ", 
+                          "\t\t\t  ", "triples"}], "\n", "  \t\t\t  ", 
+                          "]"}]}]}], ";", "\n", "    ", RowBox[{"triples", 
+                        "[", RowBox[{"[", RowBox[{"All", ",", " ", RowBox[
+                          {"-", "1"}]}], "]"}], "]"}]}], "\n", "    ", 
+                    ")"}]}], ";"}], "\n", RowBox[{RowBox[
+                 {"SetCurrentValuesDelayed", "[", "triples_", "]"}], ":=", 
+                "\n", "  ", RowBox[{"With", "[", "\n", "    ", RowBox[
+                   {RowBox[{"{", "\n", "      ", RowBox[{"r", "=", RowBox[
+                         {"FrontEnd`SetValue", "@", "\n", "  ", "  ", "    ", 
+                          RowBox[{"Map", "[", "\n", "  ", "  ", "      ", 
+                          RowBox[{RowBox[{RowBox[{"FEPrivate`SetDelayed", 
+                          "[", "\n", "  ", "  ", "        ", RowBox[{RowBox[
+                          {"FrontEnd`CurrentValue", "[", RowBox[{RowBox[{"#", 
                           "[", RowBox[{"[", RowBox[{"1", ",", " ", "1"}], 
                           "]"}], "]"}], ",", " ", RowBox[{"#", "[", RowBox[
                           {"[", RowBox[{"1", ",", " ", "2"}], "]"}], "]"}]}], 
@@ -170,7 +175,7 @@ it\[CloseCurlyQuote]s worth it...\n\[RightFloor]", "Text",
                           "\t\t\t  ", "]"}]}]}], "\n", "  ", "  \t\t", "}"}], 
                     ",", "\n", "\t\t", RowBox[{"MathLink`CallFrontEndHeld", 
                       "[", "r", "]"}]}], "\n", "\t\t", "]"}]}]}], 
-            "CodeInput"]}, Closed]], Cell[CellGroupData[
+            "CodeInput"]}, Open]], Cell[CellGroupData[
           {Cell["\[LeftCeiling]SetCurrentValueDelayed\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{"SetCurrentValueDelayed", "//", "Clear"}], 

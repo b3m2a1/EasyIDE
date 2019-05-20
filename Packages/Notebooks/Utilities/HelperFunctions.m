@@ -117,21 +117,25 @@ iSetCurrentValue[nb_, k_, value_]/;!TrueQ[$inCVHeld]:=
               ],
             h
             ]
-        ]
+        ];
+      value
       ];
 iSetCurrentValue[nb_, k_, value_]/;TrueQ[$inCVHeld]:=
   $setCurrentValueStack[{nb, k}] = value;
 
 
 SetCurrentValues[triples_]:=
-  MathLink`CallFrontEnd@FrontEnd`SetValue@
-    Map[
-      FEPrivate`Set[
-        FrontEnd`CurrentValue[#[[1, 1]], #[[1, 2]]], 
-        #[[2]]
-          ]&,
-        triples
-        ];
+  (
+    MathLink`CallFrontEnd@FrontEnd`SetValue@
+      Map[
+        FEPrivate`Set[
+          FrontEnd`CurrentValue[#[[1, 1]], #[[1, 2]]], 
+          #[[2]]
+            ]&,
+          triples
+          ];
+    triples[[All, -1]]
+    );
 SetCurrentValuesDelayed[triples_]:=
   With[
     {

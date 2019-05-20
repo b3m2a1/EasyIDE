@@ -1,16 +1,36 @@
 (* ::Package:: *)
 
+(* ::Section:: *)
+(*File Menu*)
+
+
 BeginPackage["`FileMenu`"]
+
+
 openFile;
 newFile;
+
+
 EndPackage[]
+
+
+(* ::Subsection:: *)
+(*Private*)
 
 
 Begin["Private`"];
 
 
+(* ::Subsubsection::Closed:: *)
+(*getDir*)
+
+
 getDir[]:=
   Replace[IDEPath[$CurrentIDENotebook], Except[_String]->$HomeDirectory];
+
+
+(* ::Subsubsection:: *)
+(*openFile*)
 
 
 openFile[f_String]:=
@@ -20,6 +40,10 @@ openFile[f_String]:=
 openFile[]:=
   openFile@
     SystemDialogInput["FileOpen", getDir[]]
+
+
+(* ::Subsubsection:: *)
+(*newFile*)
 
 
 newFile[]:=
@@ -36,7 +60,15 @@ newFile[]:=
     ]
 
 
+(* ::Subsubsection:: *)
+(*End*)
+
+
 End[]
+
+
+(* ::Subsection:: *)
+(*Exposed*)
 
 
 <|

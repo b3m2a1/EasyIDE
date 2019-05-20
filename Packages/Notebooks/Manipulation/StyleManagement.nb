@@ -67,7 +67,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "\[RuleDelayed]", "f"}], ",", " ", "None", ",", 
                           " ", "\[Infinity]"}], "]"}], ",", "\n", "\t\t\t", 
                        "s"}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
-                 "]"}]}]], "CodeInput", CellID -> 261100018]}, Closed]], 
+                 "]"}]}]], "CodeInput", CellID -> 261100018]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]SetMainStylesheet\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 998911705], 
@@ -148,7 +148,7 @@ Notebook[{Cell[CellGroupData[{Cell["Styles", "CodeSection",
                           "\"-\""}], "]"}], "<>", "\".nb\""}], "]"}]}], 
                           "]"}]}]}], "\n", "  \t\t\t", "}"}]}], "\n", 
                      "  \t\t", "]"}]}], "\n", "   ", "]"}]}]], "CodeInput", 
-            CellID -> 1505203465]}, Closed]], 
+            CellID -> 1505203465]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]GetMainStylesheetName\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True, CellID -> 597274595], 
@@ -240,20 +240,20 @@ set...?\n\[RightFloor]", "Text", Evaluatable -> True],
                      {"fallback_:", "Automatic"}]}], "]"}], ":=", "\n", "\t", 
                 RowBox[{"Replace", "[", "\n", "\t\t", RowBox[
                    {RowBox[{"getThemeName", "[", "nb", "]"}], ",", "\n", 
-                    "\t\t", RowBox[{"Inherited", ":>", "\n", "\t\t\t", 
-                      RowBox[{"Set", "[", "\n", "\t\t\t\t", RowBox[
-                         {RowBox[{"IDEData", "[", RowBox[{"nb", ",", " ", 
-                          RowBox[{"{", RowBox[{"\"Styles\"", ",", " ", 
-                          "\"Theme\""}], "}"}]}], "]"}], ",", "\n", 
+                    "\t\t", RowBox[{RowBox[{"Except", "[", "_String", "]"}], 
+                      ":>", "\n", "\t\t\t", RowBox[{"Set", "[", "\n", 
+                        "\t\t\t\t", RowBox[{RowBox[{"IDEData", "[", RowBox[
+                          {"nb", ",", " ", RowBox[{"{", RowBox[{"\"Styles\"", 
+                          ",", " ", "\"Theme\""}], "}"}]}], "]"}], ",", "\n", 
                           "\t\t\t\t", RowBox[{"GetMainStylesheetName", "[", 
                           "\n", "\t\t\t\t  ", RowBox[{RowBox[
                           {"GetMainStylesheet", "[", "nb", "]"}], ",", "\n", 
                           "\t", "\t", "\t", "\t  ", RowBox[{"Replace", "[", 
-                          RowBox[{"fallback", ",", " ", RowBox[{"Automatic", 
-                          "\[RuleDelayed]", "\"LightMode\""}]}], "]"}]}], 
-                          "\n", "\t\t\t\t  ", "]"}]}], "\n", "\t\t\t\t", 
-                        "]"}]}]}], "\n", "\t\t", "]"}]}]}], "CodeInput", 
-            CellID -> 1055552087]}, Closed]], 
+                          RowBox[{"fallback", ",", " ", RowBox[{RowBox[
+                          {"Except", "[", "_String", "]"}], "\[RuleDelayed]", 
+                          "\"LightMode\""}]}], "]"}]}], "\n", "\t\t\t\t  ", 
+                          "]"}]}], "\n", "\t\t\t\t", "]"}]}]}], "\n", "\t\t", 
+                  "]"}]}]}], "CodeInput", CellID -> 1055552087]}, Open]], 
         Cell[CellGroupData[
           {Cell["\[LeftCeiling]SetNotebookStyleTheme\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
@@ -371,9 +371,9 @@ up...?\n\[RightFloor]", "Text", Evaluatable -> True],
              {Cell["\[LeftCeiling]cleanStylesheetName\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"cleanStylesheetName", "[", RowBox[
-                     {"mainName_", ",", " ", "sheet_"}], "]"}], ":=", "\n", 
-                  "\t", RowBox[{"Replace", "[", RowBox[{"sheet", ",", "\n", 
-                      "\t\t", RowBox[{"{", "\n", "\t\t\t", RowBox[
+                     {"mainName_String", ",", " ", "sheet_"}], "]"}], ":=", 
+                  "\n", "\t", RowBox[{"Replace", "[", RowBox[{"sheet", ",", 
+                      "\n", "\t\t", RowBox[{"{", "\n", "\t\t\t", RowBox[
                          {RowBox[{RowBox[{"FrontEnd`FileName", "[", RowBox[
                           {RowBox[{"{", "path___", "}"}], ",", " ", RowBox[
                           {"s_String", "?", RowBox[{"(", RowBox[

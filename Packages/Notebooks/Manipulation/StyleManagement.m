@@ -178,12 +178,12 @@ GetMainStylesheetName[main:_String|_FrontEnd`FileName, fallback_:"LightMode"]:=
 GetMainStylesheetName[nb_NotebookObject, fallback_:Automatic]:=
   Replace[
     getThemeName[nb],
-    Inherited:>
+    Except[_String]:>
       Set[
         IDEData[nb, {"Styles", "Theme"}],
         GetMainStylesheetName[
           GetMainStylesheet[nb],
-          Replace[fallback, Automatic:>"LightMode"]
+          Replace[fallback, Except[_String]:>"LightMode"]
           ]
         ]
     ]
@@ -292,7 +292,7 @@ getExtStyleSubpathAndName[s_]:=
 
 
 
-cleanStylesheetName[mainName_, sheet_]:=
+cleanStylesheetName[mainName_String, sheet_]:=
   Replace[sheet,
     {
       FrontEnd`FileName[{path___}, s_String?(StringStartsQ["-"]), r___]:>
